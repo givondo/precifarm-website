@@ -1,0 +1,117 @@
+"use client";
+
+import { useState } from "react";
+
+const interests = [
+  "Book Nairobi–Kisumu travel",
+  "Operate coaches on a route",
+  "Host a charging hub site",
+  "Fleet or logistics charging",
+  "Finance or OEM partnership",
+  "General enquiry",
+];
+
+export default function ContactForm() {
+  const [submitted, setSubmitted] = useState(false);
+
+  if (submitted) {
+    return (
+      <div className="card flex flex-col items-center justify-center p-12 text-center">
+        <span className="flex h-14 w-14 items-center justify-center rounded-full bg-charge-500/15">
+          <svg
+            viewBox="0 0 24 24"
+            className="h-7 w-7 text-charge-600"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+          >
+            <path d="M20 6 9 17l-5-5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </span>
+        <h2 className="mt-5 text-xl font-semibold text-forest-900">Message sent</h2>
+        <p className="mt-2 max-w-sm text-sm leading-relaxed text-forest-600/80">
+          Thank you for getting in touch. We will reply within one business day.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <form
+      className="card p-6"
+      onSubmit={(e) => {
+        e.preventDefault();
+        setSubmitted(true);
+      }}
+    >
+      <h2 className="text-lg font-semibold text-forest-900">Send us a message</h2>
+      <p className="mt-2 text-sm leading-relaxed text-forest-600/80">
+        Tell us whether you want to travel, partner or host a site and we will
+        direct your enquiry to the right team.
+      </p>
+
+      <div className="mt-6 grid gap-6 sm:grid-cols-2">
+        <label className="block">
+          <span className="text-sm font-medium text-forest-900">Name</span>
+          <input
+            type="text"
+            name="name"
+            required
+            className="mt-2 w-full rounded-xl border border-border bg-muted px-4 py-3 text-sm outline-none focus:border-charge-500"
+            placeholder="Your name"
+          />
+        </label>
+        <label className="block">
+          <span className="text-sm font-medium text-forest-900">Email</span>
+          <input
+            type="email"
+            name="email"
+            required
+            className="mt-2 w-full rounded-xl border border-border bg-muted px-4 py-3 text-sm outline-none focus:border-charge-500"
+            placeholder="you@company.com"
+          />
+        </label>
+      </div>
+
+      <label className="mt-6 block">
+        <span className="text-sm font-medium text-forest-900">Phone</span>
+        <input
+          type="tel"
+          name="phone"
+          className="mt-2 w-full rounded-xl border border-border bg-muted px-4 py-3 text-sm outline-none focus:border-charge-500"
+          placeholder="07XX XXX XXX"
+        />
+      </label>
+
+      <label className="mt-6 block">
+        <span className="text-sm font-medium text-forest-900">I am enquiring about</span>
+        <select
+          name="interest"
+          className="mt-2 w-full rounded-xl border border-border bg-muted px-4 py-3 text-sm outline-none focus:border-charge-500"
+        >
+          {interests.map((i) => (
+            <option key={i}>{i}</option>
+          ))}
+        </select>
+      </label>
+
+      <label className="mt-6 block">
+        <span className="text-sm font-medium text-forest-900">Message</span>
+        <textarea
+          name="message"
+          required
+          rows={5}
+          className="mt-2 w-full resize-y rounded-xl border border-border bg-muted px-4 py-3 text-sm outline-none focus:border-charge-500"
+          placeholder="Tell us about your route, site, fleet or travel plans…"
+        />
+      </label>
+
+      <button
+        type="submit"
+        className="mt-8 w-full rounded-xl bg-forest-900 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-forest-700 sm:w-auto"
+      >
+        Send message
+      </button>
+    </form>
+  );
+}

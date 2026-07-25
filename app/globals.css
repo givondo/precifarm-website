@@ -1,0 +1,114 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f1a14;
+  --muted: #f4f7f5;
+  --border: #e2ebe6;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --color-forest-950: #0a120e;
+  --color-forest-900: #0e1a14;
+  --color-forest-800: #14261d;
+  --color-forest-700: #1d3a2b;
+  --color-forest-600: #275940;
+  --color-forest-500: #347a52;
+  --color-forest-100: #dcefe4;
+  --color-forest-50: #f0f7f2;
+
+  --color-charge-600: #16a34a;
+  --color-charge-500: #22c55e;
+  --color-charge-400: #4ade80;
+  --color-charge-300: #86efac;
+
+  --color-solar-500: #f59e0b;
+  --color-solar-400: #fbbf24;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+}
+
+.page-container {
+  @apply mx-auto w-full max-w-5xl px-5 sm:px-6;
+}
+
+.page-container-narrow {
+  @apply mx-auto w-full max-w-2xl px-5 sm:px-6;
+}
+
+.section-pad {
+  @apply py-12 sm:py-16;
+}
+
+.content-measure {
+  @apply max-w-prose;
+}
+
+.card {
+  @apply rounded-2xl border border-border bg-white shadow-sm;
+}
+
+a,
+button,
+input,
+select,
+textarea {
+  outline-color: var(--color-charge-600);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--color-charge-300);
+  color: var(--color-forest-950);
+}
+
+@keyframes hub-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.08;
+    transform: scale(1.6);
+  }
+}
+
+@keyframes route-flow {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+.hub-grid-pulse {
+  animation: hub-pulse 2.5s ease-in-out infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+.hub-grid-line-live {
+  stroke-dasharray: 8 4;
+  animation: route-flow 1.5s linear infinite;
+}
+
+.hub-grid-line-next {
+  stroke-dasharray: 6 6;
+  animation: route-flow 2.5s linear infinite;
+}
