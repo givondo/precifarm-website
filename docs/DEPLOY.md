@@ -6,6 +6,8 @@ Repository: `givondo/precifarm-website` (after push)
 
 ## Vercel (recommended for Next.js)
 
+> **Note:** If Vercel billing is inactive, use Netlify below (precifarm.com is already on Netlify).
+
 1. Import `givondo/precifarm-website` at [vercel.com/new](https://vercel.com/new)
 2. Add environment variable:
 
@@ -21,7 +23,15 @@ Repository: `givondo/precifarm-website` (after push)
 
 The domain currently points to **Netlify** (`givondo/Precifarm` Astro repo).
 
-To switch to this booking website:
+**Option A — Stay on Netlify (simplest):**
+
+1. Netlify → **Add site** → Import `givondo/precifarm-website`
+2. Set env `CMS_API_URL=https://YOUR-CMS-HOST/api`
+3. After deploy works on `*.netlify.app`, change the existing **precifarm.com** site to this repo (Site settings → Build & deploy → Link repository), or swap DNS to the new site.
+
+**Option B — Vercel:**
+
+To switch to this booking website on Vercel:
 
 1. Deploy this project on Vercel first (verify on `*.vercel.app` URL).
 2. In **Vercel** → Domains → add `precifarm.com` — Vercel shows required DNS records.
