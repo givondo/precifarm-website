@@ -11,7 +11,7 @@ In Netlify → **Site configuration → Build & deploy → Build settings**, con
 | Branch | `main` | `main` |
 | Base directory | *(leave empty)* | *(leave empty)* |
 | Build command | `npm run build` | `npm run build:netlify` |
-| Publish directory | **Leave empty** (Netlify auto-detects Next.js) |
+| Publish directory | **Leave empty in UI** — `netlify.toml` sets `.next` for the Next.js plugin |
 
 **Do not** set Publish directory to `.next` — that breaks Next.js on Netlify.
 
