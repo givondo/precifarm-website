@@ -3,11 +3,23 @@ import { buildBooking, validateBookingInput, type CreateBookingInput } from "@/l
 import { cmsCreateBooking, CmsError, isCmsEnabled } from "@/lib/cms";
 import { areSeatsAvailable, saveBooking } from "@/lib/booking-store";
 
+type BookingRequestBody = CreateBookingInput & {
+  analytics?: {
+    anonymousId?: string;
+    sessionId?: string;
+    acquisitionSource?: string;
+    acquisitionMedium?: string;
+    acquisitionCampaign?: string;
+    acquisitionTerm?: string;
+    acquisitionContent?: string;
+  };
+};
+
 export async function POST(request: Request) {
-  let body: CreateBookingInput;
+  let body: BookingRequestBody;
 
   try {
-    body = (await request.json()) as CreateBookingInput;
+    body = (await request.json()) as BookingRequestBody;
   } catch {
     return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
   }
@@ -30,6 +42,7 @@ export async function POST(request: Request) {
         idNumber: body.idNumber,
         email: body.email,
         channel: "web",
+        analytics: body.analytics,
       });
       return NextResponse.json({
         bookingId: data.bookingId,

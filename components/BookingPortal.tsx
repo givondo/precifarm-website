@@ -21,6 +21,7 @@ import {
 } from "@/lib/payment";
 import { nairobiKisumuRoute } from "@/lib/route";
 import type { SeatId } from "@/lib/seats";
+import { getBookingAnalyticsPayload, trackEvent } from "@/lib/analytics";
 
 const { from, to, duration, fare, departures, vehicle, label } = nairobiKisumuRoute;
 
@@ -141,6 +142,9 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
           };
           if (!res.ok) continue;
           if (data.paid) {
+            trackEvent("website_payment_succeeded", {
+              booking_reference: data.reference ?? pendingReference,
+            });
             setBookingRef(data.reference ?? pendingReference);
             setMpesaReceipt(data.mpesaReceipt ?? "");
             setIsDemo(false);
@@ -149,6 +153,7 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
             return;
           }
           if (data.failed) {
+            trackEvent("website_payment_failed", { reason: "declined_or_cancelled" });
             setError("M-Pesa payment was declined or cancelled.");
             setStep("confirm");
             setPendingBookingId("");
@@ -159,6 +164,7 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
         }
       }
       if (!cancelled) {
+        trackEvent("website_payment_failed", { reason: "timeout" });
         setError("Payment timed out. Tap Retry M-Pesa or check status.");
         setStep("confirm");
         setPendingBookingId("");
@@ -219,6 +225,12 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
       return;
     }
     setStep("seats");
+    trackEvent("website_booking_search_submitted", {
+      route_id: nairobiKisumuRoute.id,
+      date,
+      time,
+      passengers,
+    });
   }
 
   function goToDetails() {
@@ -230,6 +242,10 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
       return;
     }
     setStep("details");
+    trackEvent("website_booking_seats_selected", {
+      seat_count: selectedSeats.length,
+      seats: selectedSeats.join(","),
+    });
   }
 
   function goToConfirm() {
@@ -251,6 +267,7 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
       return;
     }
     setStep("confirm");
+    trackEvent("website_booking_details_submitted", { passengers });
   }
 
   async function handlePayment() {
@@ -272,13 +289,22 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
           phone,
           idNumber,
           email: email || undefined,
+          analytics: getBookingAnalyticsPayload(),
         }),
       });
 
       const bookingData = (await bookingRes.json()) as BookingResponse & { error?: string };
       if (!bookingRes.ok) {
+        trackEvent("website_booking_failed", { step: "create" });
         throw new Error(bookingData.error ?? "Could not create booking.");
       }
+
+      trackEvent("website_booking_created", {
+        booking_reference: bookingData.reference,
+        amount_kes: bookingData.total,
+      });
+
+      trackEvent("website_payment_started", { booking_reference: bookingData.reference });
 
       const paymentRes = await fetch("/api/payment", {
         method: "POST",
@@ -292,6 +318,7 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
       }
 
       if (paymentData.status === "pending") {
+        trackEvent("website_payment_pending", { booking_reference: bookingData.reference });
         setPendingBookingId(bookingData.bookingId);
         setPendingReference(paymentData.reference || bookingData.reference);
         setPaymentMessage(
@@ -304,8 +331,13 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
       setBookingRef(paymentData.reference || bookingData.reference);
       setMpesaReceipt(paymentData.mpesaReceipt ?? "");
       setIsDemo(paymentData.demo ?? false);
+      trackEvent("website_payment_succeeded", {
+        booking_reference: paymentData.reference || bookingData.reference,
+        is_demo: paymentData.demo ?? false,
+      });
       setStep("done");
     } catch (err) {
+      trackEvent("website_payment_failed", { step: "payment" });
       setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
       setStep("confirm");
       setPendingBookingId("");
@@ -365,6 +397,9 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
         throw new Error(data.error ?? "Could not verify payment.");
       }
       if (data.paid) {
+        trackEvent("website_payment_succeeded", {
+          booking_reference: data.reference ?? pendingReference,
+        });
         setBookingRef(data.reference ?? pendingReference);
         setMpesaReceipt(data.mpesaReceipt ?? "");
         setIsDemo(false);
@@ -373,6 +408,7 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
         return;
       }
       if (data.failed) {
+        trackEvent("website_payment_failed", { reason: "declined_or_cancelled" });
         setError("M-Pesa payment failed. Tap Retry M-Pesa to try again.");
         setStep("confirm");
         setPendingBookingId("");

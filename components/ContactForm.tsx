@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { getAnonymousId } from "@/lib/analytics";
 
 const interests = [
   "Book Nairobi–Kisumu travel",
@@ -13,6 +14,45 @@ const interests = [
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setSubmitting(true);
+    setError(null);
+
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    const payload = {
+      name: String(data.get("name") ?? "").trim(),
+      email: String(data.get("email") ?? "").trim(),
+      phone: String(data.get("phone") ?? "").trim() || undefined,
+      interest: String(data.get("interest") ?? "").trim(),
+      message: String(data.get("message") ?? "").trim(),
+      channel: "web",
+      anonymousId: getAnonymousId(),
+    };
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const json = await res.json();
+      if (!res.ok) {
+        setError(typeof json.error === "string" ? json.error : "Could not send message.");
+        return;
+      }
+      setSubmitted(true);
+    } catch {
+      setError("Network error. Please try again or email us directly.");
+    } finally {
+      setSubmitting(false);
+    }
+  }
 
   if (submitted) {
     return (
@@ -37,18 +77,18 @@ export default function ContactForm() {
   }
 
   return (
-    <form
-      className="card p-6"
-      onSubmit={(e) => {
-        e.preventDefault();
-        setSubmitted(true);
-      }}
-    >
+    <form className="card p-6" onSubmit={handleSubmit}>
       <h2 className="text-lg font-semibold text-forest-900">Send us a message</h2>
       <p className="mt-2 text-sm leading-relaxed text-forest-600/80">
         Tell us whether you want to travel, partner or host a site and we will
         direct your enquiry to the right team.
       </p>
+
+      {error ? (
+        <p className="mt-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
+          {error}
+        </p>
+      ) : null}
 
       <div className="mt-6 grid gap-6 sm:grid-cols-2">
         <label className="block">
@@ -108,9 +148,10 @@ export default function ContactForm() {
 
       <button
         type="submit"
-        className="mt-8 w-full rounded-xl bg-forest-900 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-forest-700 sm:w-auto"
+        disabled={submitting}
+        className="mt-8 w-full rounded-xl bg-forest-900 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-forest-700 disabled:opacity-60 sm:w-auto"
       >
-        Send message
+        {submitting ? "Sending…" : "Send message"}
       </button>
     </form>
   );

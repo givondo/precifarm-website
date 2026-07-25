@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import DownloadApkButton from "@/components/DownloadApkButton";
 import PageCTA from "@/components/ui/PageCTA";
 import PageHero from "@/components/ui/PageHero";
 import SectionHeader from "@/components/ui/SectionHeader";
@@ -28,14 +29,14 @@ export default function DownloadPage() {
         description="Download the Precifarm app for seat selection, M-Pesa Express payment, cargo waybills and ticket lookup — powered by the same booking system as this website."
       >
         <div className="flex flex-wrap items-center gap-3">
-          <a
+          <DownloadApkButton
             href={appDownload.apkUrl}
             download={appDownload.fileName}
             className="inline-flex items-center gap-2 rounded-full bg-charge-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-charge-500"
           >
             <AndroidIcon className="h-5 w-5" />
             Download for Android
-          </a>
+          </DownloadApkButton>
           <Link
             href="/#book"
             className="inline-flex items-center rounded-full border border-border px-6 py-3 text-sm font-semibold text-forest-900 transition-colors hover:bg-muted"
@@ -87,14 +88,14 @@ export default function DownloadPage() {
             ))}
           </ol>
           <div className="mt-8">
-            <a
+            <DownloadApkButton
               href={appDownload.apkUrl}
               download={appDownload.fileName}
               className="inline-flex items-center gap-2 rounded-full bg-charge-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-charge-500"
             >
               <AndroidIcon className="h-5 w-5" />
               Download APK v{appDownload.version}
-            </a>
+            </DownloadApkButton>
           </div>
         </div>
       </section>
