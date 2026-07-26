@@ -2,6 +2,10 @@
 
 import { useCallback, useEffect, useState } from "react";
 import SeatMap from "@/components/SeatMap";
+import Badge from "@/components/ui/Badge";
+import Button from "@/components/ui/Button";
+import Input from "@/components/ui/Input";
+import StepIndicator from "@/components/ui/StepIndicator";
 import {
   addDaysToDateString,
   calculateFare,
@@ -82,7 +86,7 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
 
   const shell = compact
     ? "rounded-2xl border-0 bg-transparent shadow-none"
-    : "rounded-2xl border border-border bg-white shadow-md shadow-forest-900/5";
+    : "overflow-hidden rounded-2xl border border-border bg-white";
   const bodyPad = compact ? "p-0" : "p-6";
   const formGap = compact ? "space-y-4" : "space-y-5";
 
@@ -556,57 +560,25 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
       <div className={compact ? "pb-4" : "border-b border-border px-6 py-5"}>
         <div className="flex items-start justify-between gap-3">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-charge-600">
+            <p className="text-xs font-semibold uppercase tracking-widest text-forest-500">
               Book Now
             </p>
             <h3 className={`font-semibold text-forest-900 ${compact ? "mt-0.5 text-sm" : "mt-1 text-lg"}`}>
               Choose your journey
             </h3>
           </div>
-          <span className="shrink-0 rounded-full bg-charge-500/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-charge-600">
-            Live
+          <span className="shrink-0">
+            <Badge>Live</Badge>
           </span>
         </div>
 
         {stepIndex >= 0 && (
-          <div className="mt-4 flex items-center gap-1">
-            {STEPS.map((s, i) => (
-              <div key={s.id} className="flex flex-1 items-center gap-1">
-                <div
-                  className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-bold ${
-                    i < stepIndex
-                      ? "bg-charge-600 text-white"
-                      : i === stepIndex
-                        ? "bg-forest-900 text-white"
-                        : "bg-muted text-forest-500"
-                  }`}
-                >
-                  {i < stepIndex ? (
-                    <svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="3">
-                      <path d="M20 6 9 17l-5-5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  ) : (
-                    i + 1
-                  )}
-                </div>
-                <span
-                  className={`hidden text-[10px] font-medium sm:inline ${
-                    i === stepIndex ? "text-forest-900" : "text-forest-500"
-                  }`}
-                >
-                  {s.label}
-                </span>
-                {i < STEPS.length - 1 && (
-                  <div
-                    className={`mx-0.5 h-px flex-1 ${i < stepIndex ? "bg-charge-500/50" : "bg-border"}`}
-                  />
-                )}
-              </div>
-            ))}
+          <div className="mt-5">
+            <StepIndicator steps={STEPS} currentIndex={stepIndex} />
           </div>
         )}
 
-        <div className="mt-4 rounded-xl border border-charge-500/20 bg-charge-500/5 p-4">
+        <div className="mt-5 rounded-xl border border-border bg-muted p-4">
           <div className="flex items-center justify-between gap-3">
             <div className="min-w-0">
               <p className="text-base font-semibold text-forest-900">{from}</p>
@@ -614,15 +586,15 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
             </div>
             <div className="flex min-w-0 flex-1 flex-col items-center px-2">
               <span className="text-[11px] font-medium text-forest-500">{duration}</span>
-              <div className="mt-1 h-px w-full max-w-[5rem] bg-charge-500/40" />
-              <span className="mt-1 text-[11px] font-medium text-charge-600">{vehicle}</span>
+              <div className="mt-1 h-px w-full max-w-[5rem] bg-border" />
+              <span className="mt-1 text-[11px] font-medium text-forest-700">{vehicle}</span>
             </div>
             <div className="min-w-0 text-right">
               <p className="text-base font-semibold text-forest-900">{to}</p>
               <p className="text-xs text-forest-500">Arrival</p>
             </div>
           </div>
-          <div className="mt-3 flex flex-wrap items-center justify-between gap-2 border-t border-charge-500/15 pt-3 text-xs text-forest-600">
+          <div className="mt-3 flex flex-wrap items-center justify-between gap-2 border-t border-border pt-3 text-xs text-forest-600">
             <span>{label}</span>
             <span className="font-medium text-forest-900">
               KSh {fare.toLocaleString()} per seat
@@ -659,7 +631,7 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
                       onClick={() => setDate(chip.value)}
                       className={`rounded-full px-3 py-1.5 text-xs font-semibold transition-colors ${
                         date === chip.value
-                          ? "bg-forest-900 text-white"
+                          ? "bg-charge-600 text-white"
                           : "border border-border bg-muted text-forest-700 hover:border-forest-300"
                       }`}
                     >
@@ -672,7 +644,7 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
                   min={minDate}
                   value={date}
                   onChange={(e) => setDate(e.target.value)}
-                  className="mt-2 w-full rounded-xl border border-border bg-muted px-4 py-3 text-sm outline-none focus:border-charge-500"
+                  className="field-input mt-2"
                 />
               </div>
               <label className="block">
@@ -680,7 +652,7 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
                 <select
                   value={passengers}
                   onChange={(e) => handlePassengersChange(Number(e.target.value))}
-                  className="mt-2 w-full rounded-xl border border-border bg-muted px-4 py-3 text-sm outline-none focus:border-charge-500"
+                  className="field-input mt-2"
                 >
                   {Array.from({ length: MAX_PASSENGERS }, (_, i) => i + MIN_PASSENGERS).map((n) => (
                     <option key={n} value={n}>
@@ -713,7 +685,7 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
                       compact ? "px-2 py-2 text-xs" : "px-3 py-2.5 text-sm"
                     } ${
                       time === t
-                        ? "bg-forest-900 text-white"
+                        ? "bg-charge-600 text-white"
                         : "border border-border bg-muted text-forest-700 hover:border-forest-300"
                     }`}
                   >
@@ -726,11 +698,9 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
             <button
               type="button"
               onClick={goToSeats}
-              className={`w-full rounded-xl bg-charge-600 font-semibold text-white transition-colors hover:bg-charge-500 ${
-                compact ? "py-3 text-sm" : "py-3.5 text-sm"
-              }`}
+              className="btn-primary w-full disabled:opacity-50"
             >
-              Continue
+              Continue to seat selection
             </button>
 
             <p className="text-center text-xs leading-relaxed text-forest-500">
@@ -746,7 +716,7 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
                 <p className="font-medium text-forest-900">
                   Select {passengers} seat{passengers > 1 ? "s" : ""}
                 </p>
-                <span className="text-xs font-bold text-charge-600">
+                <span className="text-xs font-bold text-forest-900">
                   {selectedSeats.length}/{passengers}
                 </span>
               </div>
@@ -757,7 +727,7 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
                 />
               </div>
               {selectedSeats.length > 0 && (
-                <p className="mt-2 font-medium text-charge-600">
+                <p className="mt-2 font-medium text-forest-900">
                   {formatSeats(selectedSeats)}
                 </p>
               )}
@@ -772,29 +742,21 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
             />
 
             <div className="flex gap-3">
-              <button
-                type="button"
-                onClick={goToSearch}
-                className="rounded-xl border border-border px-5 py-3 text-sm font-medium text-forest-700 hover:bg-muted"
-              >
+              <Button variant="secondary" onClick={goToSearch}>
                 Back
-              </button>
-              <button
-                type="button"
+              </Button>
+              <Button
+                fullWidth
                 onClick={goToDetails}
-                className={`flex-1 rounded-xl py-3 text-sm font-semibold text-white transition-colors ${
-                  selectedSeats.length === passengers
-                    ? "bg-charge-600 hover:bg-charge-500"
-                    : "bg-charge-600/60 hover:bg-charge-600/70"
-                }`}
+                className={selectedSeats.length !== passengers ? "opacity-80" : ""}
               >
                 Continue
                 {selectedSeats.length > 0 && (
-                  <span className="ml-1 font-normal opacity-90">
+                  <span className="font-normal opacity-90">
                     ({selectedSeats.length}/{passengers})
                   </span>
                 )}
-              </button>
+              </Button>
             </div>
           </div>
         )}
@@ -819,7 +781,7 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="As on ID"
-                className="mt-2 w-full rounded-xl border border-border bg-muted px-4 py-3 text-sm outline-none focus:border-charge-500"
+                className="field-input mt-2"
               />
             </label>
 
@@ -830,7 +792,7 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="07XX XXX XXX"
-                className="mt-2 w-full rounded-xl border border-border bg-muted px-4 py-3 text-sm outline-none focus:border-charge-500"
+                className="field-input mt-2"
               />
             </label>
 
@@ -841,41 +803,26 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
                 value={idNumber}
                 onChange={(e) => setIdNumber(e.target.value)}
                 placeholder="Required for boarding"
-                className="mt-2 w-full rounded-xl border border-border bg-muted px-4 py-3 text-sm uppercase outline-none focus:border-charge-500"
+                className="field-input mt-2 uppercase"
               />
             </label>
 
-            <label className="block">
-              <span className="text-sm font-medium text-forest-900">
-                Email <span className="font-normal text-forest-500">(optional)</span>
-              </span>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="For receipt"
-                className="mt-2 w-full rounded-xl border border-border bg-muted px-4 py-3 text-sm outline-none focus:border-charge-500"
-              />
-            </label>
+            <Input
+              label="Email"
+              optional
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="For receipt"
+            />
 
             <div className="flex gap-3">
-              <button
-                type="button"
-                onClick={() => {
-                  setError("");
-                  setStep("seats");
-                }}
-                className="rounded-xl border border-border px-5 py-3 text-sm font-medium text-forest-700 hover:bg-muted"
-              >
+              <Button variant="secondary" onClick={() => { setError(""); setStep("seats"); }}>
                 Back
-              </button>
-              <button
-                type="button"
-                onClick={goToConfirm}
-                className="flex-1 rounded-xl bg-charge-600 py-3 text-sm font-semibold text-white hover:bg-charge-500"
-              >
+              </Button>
+              <Button fullWidth onClick={goToConfirm}>
                 Review & pay
-              </button>
+              </Button>
             </div>
           </div>
         )}
@@ -921,8 +868,8 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
               </div>
             </div>
 
-            <div className="flex items-start gap-3 rounded-xl border border-charge-500/20 bg-charge-500/5 px-4 py-3 text-xs leading-relaxed text-forest-600">
-              <svg viewBox="0 0 24 24" className="mt-0.5 h-4 w-4 shrink-0 text-charge-600" fill="currentColor" aria-hidden>
+            <div className="flex items-start gap-3 rounded-xl border border-border bg-muted px-4 py-3 text-xs leading-relaxed text-forest-600">
+              <svg viewBox="0 0 24 24" className="mt-0.5 h-4 w-4 shrink-0 text-forest-900" fill="currentColor" aria-hidden>
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H8v-2h3V9h2v4h3v2h-3v4h-2z" />
               </svg>
               <p>
@@ -945,7 +892,7 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
               <button
                 type="button"
                 onClick={handlePayment}
-                className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-charge-600 py-3 text-sm font-semibold text-white hover:bg-charge-500"
+                className="btn-primary flex flex-1 items-center justify-center gap-2 py-3"
               >
                 <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden>
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H8v-2h3V9h2v4h3v2h-3v4h-2z" />

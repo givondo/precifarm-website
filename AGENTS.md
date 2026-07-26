@@ -12,6 +12,8 @@ Read relevant guides in `node_modules/next/dist/docs/` before changing framework
 
 **Business rules:** [`../docs/CANON.md`](../docs/CANON.md)
 
+**UI system:** [`docs/UI.md`](docs/UI.md)
+
 ## Scope
 
 Maintain Nairobi–Kisumu passenger booking:
@@ -33,13 +35,25 @@ Do not add cargo, financing, home charging, or multiple routes without explicit 
 
 | Change | File |
 |---|---|
-| Booking | `components/BookingPortal.tsx` |
+| Layout + fonts | `app/layout.tsx` |
+| Design tokens | `app/globals.css` |
+| Hero + booking section | `components/BookingCTA.tsx` |
+| Booking wizard | `components/BookingPortal.tsx` |
 | Seats | `components/SeatMap.tsx` |
+| Navigation | `components/Header.tsx` |
+| UI primitives | `components/ui/{Button,Input,Badge,StepIndicator,...}.tsx` |
 | API proxy | `app/api/{booking,payment,seats}/route.ts` |
 | CMS client | `lib/cms.ts` |
 | Validation | `lib/booking.ts` |
 | Demo | `lib/booking-store.ts` |
 | Route | `lib/route.ts` |
+
+## UI conventions
+
+- Headings: `.heading-display` (Plus Jakarta Sans)
+- Forms: `Input` / `.field-input`, actions: `Button`
+- Booking card: `.card-elevated`
+- Reuse `components/ui/*` — avoid one-off button/input Tailwind strings
 
 ## Copy
 
@@ -47,6 +61,10 @@ Do not add cargo, financing, home charging, or multiple routes without explicit 
 - Book Now
 - Nairobi–Kisumu only
 - Planning assumptions are not traction
+
+## Deploy
+
+Production: **Google Cloud Run** (`europe-west1`). See [`docs/DEPLOY-GCP.md`](docs/DEPLOY-GCP.md). Netlify/Vercel deprecated.
 
 ## Required checks
 

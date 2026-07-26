@@ -2,13 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { contact } from "@/lib/contact";
 import ContactForm from "@/components/ContactForm";
+import JsonLd from "@/components/seo/JsonLd";
 import PageHero from "@/components/ui/PageHero";
+import { pageJsonLd, pageMetadata } from "@/lib/seo/pages/helpers";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description:
-    "Contact Precifarm to book Nairobi–Kisumu travel, partner on fleet charging, or discuss hosting a hub site. HQ in Nairobi with teams across Kenya.",
-};
+export const metadata: Metadata = pageMetadata("/contact");
 
 const channels = [
   {
@@ -35,6 +33,7 @@ const channels = [
 export default function ContactPage() {
   return (
     <>
+      <JsonLd data={pageJsonLd("/contact")} />
       <PageHero
         eyebrow="Contact"
         title="Talk to the Precifarm team"

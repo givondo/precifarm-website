@@ -22,10 +22,11 @@ function seatStatus(
 
 const statusClasses: Record<SeatStatus, string> = {
   available:
-    "border-border bg-white text-forest-700 hover:border-charge-500 hover:bg-charge-500/5",
-  selected: "border-charge-600 bg-charge-600 text-white",
+    "border-border bg-white text-forest-700 hover:border-forest-900 hover:bg-muted hover:shadow-sm",
+  selected:
+    "border-charge-600 bg-charge-600 text-white shadow-md shadow-blue-900/10 ring-2 ring-charge-500/20 ring-offset-1",
   occupied:
-    "cursor-not-allowed border-border bg-forest-100 text-forest-400 line-through",
+    "cursor-not-allowed border-border bg-muted text-forest-400 line-through opacity-60",
 };
 
 export default function SeatMap({
@@ -36,17 +37,17 @@ export default function SeatMap({
   compact = false,
 }: SeatMapProps) {
   const rows = Array.from({ length: 12 }, (_, i) => i + 1);
-  const seatSize = compact ? "h-8 w-8 text-[10px]" : "h-9 w-9 text-xs sm:h-10 sm:w-10 sm:text-xs";
+  const seatSize = compact ? "h-9 w-9 text-[10px]" : "h-10 w-10 text-xs sm:h-11 sm:w-11";
 
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-center">
         <div
-          className={`rounded-t-2xl border border-b-0 border-forest-200 bg-forest-50 text-center font-medium text-forest-500 ${
-            compact ? "w-24 px-3 py-1.5 text-[10px]" : "w-28 px-4 py-2 text-xs"
+          className={`rounded-t-2xl border border-b-0 border-forest-200 bg-gradient-to-b from-forest-50 to-white text-center font-semibold text-forest-500 ${
+            compact ? "w-28 px-3 py-2 text-[10px]" : "w-32 px-4 py-2.5 text-xs"
           }`}
         >
-          Driver
+          ↑ Front · Driver
         </div>
       </div>
 

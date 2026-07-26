@@ -1,0 +1,53 @@
+# Cloud Build — precifarm-website → Cloud Run
+# Trigger from GitHub or: gcloud builds submit --config cloudbuild.yaml
+substitutions:
+  _AR_REGION: africa-south1
+  _REGION: europe-west1
+  _SERVICE: precifarm-website
+  _AR_REPO: precifarm
+  _SITE_URL: https://precifarm.com
+  _CMS_API_URL: https://api.precifarm.com/api
+  _ANDROID_APP_SHA256: A7:C5:1D:8B:11:33:10:14:0B:65:99:17:1F:A4:70:D8:3A:CC:11:BE:5F:01:85:A9:1C:02:2E:78:45:14:D6:DB
+
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - --build-arg
+      - NEXT_PUBLIC_SITE_URL=${_SITE_URL}
+      - --build-arg
+      - CMS_API_URL=${_CMS_API_URL}
+      - -t
+      - ${_AR_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO}/website:$BUILD_ID
+      - -t
+      - ${_AR_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO}/website:latest
+      - .
+
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - --all-tags
+      - ${_AR_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO}/website
+
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
+    args:
+      - run
+      - deploy
+      - ${_SERVICE}
+      - --image=${_AR_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO}/website:$BUILD_ID
+      - --region=${_REGION}
+      - --platform=managed
+      - --allow-unauthenticated
+      - --port=8080
+      - --memory=512Mi
+      - --min-instances=0
+      - --max-instances=10
+      - --set-env-vars=CMS_API_URL=${_CMS_API_URL},NEXT_PUBLIC_SITE_URL=${_SITE_URL},ANDROID_APP_SHA256=${_ANDROID_APP_SHA256}
+
+images:
+  - ${_AR_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO}/website:$BUILD_ID
+  - ${_AR_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO}/website:latest
+
+options:
+  logging: CLOUD_LOGGING_ONLY

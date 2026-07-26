@@ -1,16 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import DownloadApkButton from "@/components/DownloadApkButton";
+import JsonLd from "@/components/seo/JsonLd";
 import PageCTA from "@/components/ui/PageCTA";
 import PageHero from "@/components/ui/PageHero";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { appDownload, appFeatures, installSteps } from "@/lib/app-download";
+import { pageJsonLd, pageMetadata } from "@/lib/seo/pages/helpers";
 
-export const metadata: Metadata = {
-  title: "Download app",
-  description:
-    "Download the Precifarm Android app to book Nairobi–Kisumu bus tickets and cargo waybills with M-Pesa.",
-};
+export const metadata: Metadata = pageMetadata("/download");
 
 function AndroidIcon({ className }: { className?: string }) {
   return (
@@ -23,6 +21,7 @@ function AndroidIcon({ className }: { className?: string }) {
 export default function DownloadPage() {
   return (
     <>
+      <JsonLd data={pageJsonLd("/download")} />
       <PageHero
         eyebrow="Mobile app"
         title="Book Nairobi–Kisumu on your Android phone"
@@ -66,7 +65,7 @@ export default function DownloadPage() {
         </div>
       </section>
 
-      <section className="border-y border-border bg-muted section-pad">
+      <section className="border-y border-border bg-white section-pad">
         <div className="page-container">
           <SectionHeader
             eyebrow="Install"

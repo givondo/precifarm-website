@@ -1,9 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AnalyticsProvider from "@/components/AnalyticsProvider";
+import JsonLd from "@/components/seo/JsonLd";
+import { siteConfig } from "@/lib/seo/config";
+import { rootLayoutMetadata } from "@/lib/seo/metadata";
+import { globalSchemas } from "@/lib/seo/schema";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,18 +19,27 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const plusJakarta = Plus_Jakarta_Sans({
+  variable: "--font-plus-jakarta",
+  subsets: ["latin"],
+  weight: ["500", "600", "700", "800"],
+});
+
 export const metadata: Metadata = {
-  title: {
-    default: "Precifarm — Electric Transport Infrastructure for Kenya",
-    template: "%s | Precifarm",
-  },
-  description:
-    "Precifarm is building the charging hubs and operating network that make electric travel between Kenyan cities dependable, affordable and easy to book.",
+  metadataBase: new URL(siteConfig.url),
+  ...rootLayoutMetadata(),
+  applicationName: siteConfig.name,
+  authors: [{ name: siteConfig.legalName, url: siteConfig.url }],
+  creator: siteConfig.legalName,
+  publisher: siteConfig.legalName,
+  formatDetection: { email: false, address: false, telephone: false },
+  category: "technology",
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({
@@ -36,14 +49,15 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang={siteConfig.language}
       data-scroll-behavior="smooth"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${plusJakarta.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col font-sans text-base text-forest-900">
+      <body className="flex min-h-full flex-col bg-white font-sans text-base text-forest-900">
+        <JsonLd data={globalSchemas()} />
         <AnalyticsProvider>
           <Header />
-          <main className="flex-1">{children}</main>
+          <main className="relative z-0 flex-1">{children}</main>
           <Footer />
         </AnalyticsProvider>
       </body>

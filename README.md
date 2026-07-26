@@ -2,9 +2,11 @@
 
 Public passenger-booking channel for Nairobi–Kisumu.
 
+**Production:** `https://precifarm.com` · `https://precifarm.com/#book`
+
 **Core job:** publish departures, reserve seats, collect passenger details, initiate M-Pesa, and issue `PF-XXXXXX`.
 
-**Stack:** Next.js 16 · React 19 · TypeScript · Tailwind CSS 4
+**Stack:** Next.js 16 · React 19 · TypeScript · Tailwind CSS 4 · Plus Jakarta Sans (headings) · Geist Sans (body)
 
 ## Start
 
@@ -32,6 +34,8 @@ Required passenger data: name, phone, National ID/passport.
 
 CMS mode is required for shared or production-like testing.
 
+Production: `CMS_API_URL=https://api.precifarm.com/api`
+
 ## API routes
 
 | Route | Purpose |
@@ -46,8 +50,14 @@ These proxy to CMS when `CMS_API_URL` is set.
 
 | Concern | Path |
 |---|---|
-| Booking UI | `components/BookingPortal.tsx` |
+| Layout + fonts | `app/layout.tsx` |
+| Global styles / tokens | `app/globals.css` |
+| Homepage | `app/page.tsx` |
+| Hero + booking section | `components/BookingCTA.tsx` |
+| Booking wizard | `components/BookingPortal.tsx` |
 | Seat map | `components/SeatMap.tsx` |
+| Navigation | `components/Header.tsx` |
+| UI library | `components/ui/{Button,Input,Badge,StepIndicator,SectionHeader,...}.tsx` |
 | Website API | `app/api/{booking,payment,seats}/route.ts` |
 | CMS client | `lib/cms.ts` |
 | Validation | `lib/booking.ts` |
@@ -76,7 +86,9 @@ These proxy to CMS when `CMS_API_URL` is set.
 
 ## Status
 
-**Actual:** booking UI, seat inventory, API routes, demo store, CMS proxy, M-Pesa hooks.
+**Actual:** booking UI (2026-07 refresh), seat inventory, API routes, demo store, CMS proxy, M-Pesa hooks, GCP Cloud Run deploy.
+
+**In progress:** custom domain SSL (`precifarm.com`), CMS Cloud SQL migrations.
 
 **Not proven:** paid production volume, conversion, live SMS delivery, shared production inventory, payment success.
 
@@ -88,9 +100,22 @@ npm run build
 npm run start
 ```
 
+## Deploy
+
+Production hosting is **Google Cloud Run** (`europe-west1`). See [DEPLOY-GCP.md](./docs/DEPLOY-GCP.md).
+
+```powershell
+gcloud builds submit --config cloudbuild.yaml
+```
+
+Netlify and Vercel are **deprecated**.
+
 ## Documentation
 
+- [Deploy to Google Cloud](./docs/DEPLOY-GCP.md)
+- [UI design system](./docs/UI.md)
 - [Passenger Booking Agent](../agents/passenger-booking/README.md)
 - [Website Channel](../docs/channels/website.md)
+- [GCP infrastructure](../docs/infrastructure/gcp-deployment.md)
 - [Canon](../docs/CANON.md)
 - [Product Overview](../docs/product/product-overview.md)

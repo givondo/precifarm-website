@@ -1,10 +1,20 @@
-import Image from "next/image";
+import dynamic from "next/dynamic";
 import BookingPortal from "@/components/BookingPortal";
 import { bookingHighlights, nairobiKisumuRoute } from "@/lib/route";
-import { siteImages } from "@/lib/vehicles";
+
+const BookingPortalLazy = dynamic(() => import("@/components/BookingPortal"), {
+  loading: () => (
+    <div className="flex min-h-[28rem] items-center justify-center rounded-2xl border border-border bg-white p-8">
+      <div className="text-center">
+        <div className="mx-auto h-8 w-8 animate-spin rounded-full border-2 border-charge-600 border-t-transparent" />
+        <p className="mt-4 text-sm text-forest-500">Loading booking…</p>
+      </div>
+    </div>
+  ),
+});
 
 const bookingGrid =
-  "grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(300px,400px)] lg:items-center lg:gap-10";
+  "grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(300px,400px)] lg:items-start lg:gap-10";
 
 export default function BookingCTA({
   className = "bg-white",
@@ -32,29 +42,25 @@ export default function BookingCTA({
   return (
     <section
       id="book"
-      className={`scroll-mt-20 relative overflow-hidden border-b border-border ${className}`}
+      className={`scroll-mt-20 bg-white ${className}`}
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(34,197,94,0.12),transparent)]" />
-
-      <div className="page-container relative py-8 sm:py-10 lg:py-12">
-        <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(280px,420px)] lg:gap-10">
-          <div>
+      <div className="page-container py-8 sm:py-10 lg:py-12">
+        <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(300px,420px)] lg:gap-10">
+          <div className="max-w-xl">
             <div className="flex flex-wrap items-center gap-2">
-              <p className="text-sm font-semibold uppercase tracking-widest text-charge-600">
+              <p className="text-sm font-semibold uppercase tracking-widest text-forest-500">
                 {nairobiKisumuRoute.label}
               </p>
-              <span className="rounded-full bg-charge-500/10 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-charge-600">
+              <span className="rounded-full border border-border px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-forest-600">
                 {nairobiKisumuRoute.status}
               </span>
             </div>
 
             <h1 className="mt-3 max-w-xl text-balance text-3xl font-semibold leading-tight tracking-tight text-forest-900 sm:text-4xl">
               Electric transport infrastructure
-              <span className="block text-charge-600">
-                for Kenya.
-              </span>
+              <span className="block text-charge-600">for Kenya.</span>
             </h1>
-            <p className="mt-5 max-w-lg text-base leading-relaxed text-forest-600/90">
+            <p className="mt-5 max-w-lg text-base leading-relaxed text-forest-600">
               Precifarm is building the charging hubs and operating network that
               make electric travel between Kenyan cities dependable, affordable
               and easy to book. Nairobi–Kisumu is where we are proving it first.
@@ -73,35 +79,16 @@ export default function BookingCTA({
               </span>
               {" per seat"}
             </p>
+
+            <p className="mt-6 text-sm text-forest-500">
+              Departures daily · {nairobiKisumuRoute.departures.join(", ")} · National ID
+              required at boarding
+            </p>
           </div>
 
-          <div className="relative mx-auto w-full max-w-md lg:mx-0 lg:max-w-none lg:justify-self-end">
-            <div className="absolute -inset-3 -z-10 rounded-2xl bg-gradient-to-br from-forest-50 to-charge-500/5" />
-            <div className="overflow-hidden rounded-2xl border border-border shadow-lg shadow-forest-900/10">
-              <Image
-                src={siteImages.bookingHero.image}
-                alt={siteImages.bookingHero.imageAlt}
-                width={1200}
-                height={675}
-                sizes="(max-width: 1024px) 100vw, 420px"
-                className="aspect-[4/3] w-full object-cover"
-                priority
-              />
-            </div>
-            <div className="absolute -bottom-3 -left-3 max-w-[15rem] rounded-xl border border-border bg-white/95 px-4 py-3 shadow-lg backdrop-blur-sm sm:max-w-none">
-              <p className="text-xs font-medium text-forest-500">
-                Charging hubs, operating network and partner mobility
-              </p>
-              <p className="text-sm font-semibold text-forest-900">
-                One connected system from energy to booking
-              </p>
-            </div>
+          <div className="relative z-0 w-full lg:sticky lg:top-24 lg:justify-self-end">
+            <BookingPortalLazy />
           </div>
-        </div>
-
-        <div className={`mt-10 border-t border-border pt-10 sm:mt-12 sm:pt-12 ${bookingGrid}`}>
-          <BookingCopy />
-          <BookingPortal />
         </div>
       </div>
     </section>

@@ -82,7 +82,7 @@ export default function ValueProposition() {
   return (
     <section
       id="why-precifarm"
-      className="scroll-mt-20 border-b border-border bg-muted section-pad"
+      className="scroll-mt-20 border-b border-border bg-white section-pad"
     >
       <div className="page-container">
         <div className="mx-auto max-w-3xl text-center">

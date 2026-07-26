@@ -13,7 +13,7 @@ export default function PageHero({
 }: PageHeroProps) {
   return (
     <section className="relative overflow-hidden border-b border-border bg-white">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_90%_70%_at_20%_-30%,rgba(34,197,94,0.1),transparent)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_90%_70%_at_20%_-30%,rgba(37,99,235,0.08),transparent)]" />
       <div className="page-container relative py-10 sm:py-12">
         <p className="text-sm font-semibold uppercase tracking-widest text-charge-600">
           {eyebrow}

@@ -4,21 +4,20 @@ import { contact } from "@/lib/contact";
 
 export default function Footer() {
   return (
-    <footer className="mt-auto border-t border-border bg-muted">
+    <footer className="mt-auto border-t border-border bg-white">
       <div className="page-container py-12 sm:py-14">
         <div className="grid gap-10 md:grid-cols-4">
           <div className="md:col-span-2">
             <Logo height={32} />
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-forest-600/80">
-              Precifarm is building the charging hubs and operating network that
-              make electric travel between Kenyan cities dependable, affordable
-              and easy to book. Our first route is Nairobi–Kisumu.
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-forest-600">
+              Electric intercity travel between Nairobi and Kisumu — charging hubs,
+              scheduled service and M-Pesa booking in one network.
             </p>
           </div>
 
           <div>
             <h3 className="text-sm font-semibold text-forest-900">Company</h3>
-            <ul className="mt-4 space-y-2.5 text-sm text-forest-600/80">
+            <ul className="mt-4 space-y-2.5 text-sm text-forest-600">
               <li><Link href="/network" className="hover:text-forest-900">Charge Map</Link></li>
               <li><Link href="/charging" className="hover:text-forest-900">Charging</Link></li>
               <li><Link href="/partners" className="hover:text-forest-900">Partners</Link></li>
@@ -31,7 +30,7 @@ export default function Footer() {
 
           <div>
             <h3 className="text-sm font-semibold text-forest-900">Contact</h3>
-            <ul className="mt-4 space-y-2.5 text-sm text-forest-600/80">
+            <ul className="mt-4 space-y-2.5 text-sm text-forest-600">
               <li>{contact.hq}</li>
               <li>
                 <a href={`mailto:${contact.email}`} className="hover:text-forest-900">

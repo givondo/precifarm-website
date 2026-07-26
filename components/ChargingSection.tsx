@@ -128,11 +128,11 @@ export default function ChargingSection() {
         ))}
       </div>
 
-      <dl className="mt-10 grid grid-cols-2 gap-4 rounded-2xl border border-border bg-forest-900 p-6 text-white sm:grid-cols-4 sm:gap-5 sm:p-7">
+      <dl className="mt-10 grid grid-cols-2 gap-4 rounded-2xl border border-border bg-white p-6 sm:grid-cols-4 sm:gap-5 sm:p-7">
         {hubOutcomes.map(({ stat, label }) => (
           <div key={label}>
-            <dt className="text-lg font-semibold text-charge-400 sm:text-xl">{stat}</dt>
-            <dd className="mt-1 text-sm text-white/65">{label}</dd>
+            <dt className="text-lg font-semibold text-charge-600 sm:text-xl">{stat}</dt>
+            <dd className="mt-1 text-sm text-forest-600">{label}</dd>
           </div>
         ))}
       </dl>

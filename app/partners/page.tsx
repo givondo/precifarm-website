@@ -1,15 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import CheckItem from "@/components/ui/CheckItem";
+import JsonLd from "@/components/seo/JsonLd";
 import PageCTA from "@/components/ui/PageCTA";
 import PageHero from "@/components/ui/PageHero";
 import SectionHeader from "@/components/ui/SectionHeader";
+import { pageJsonLd, pageMetadata } from "@/lib/seo/pages/helpers";
 
-export const metadata: Metadata = {
-  title: "Partners",
-  description:
-    "Partner with Precifarm on charging hubs, intercity mobility and fleet energy across Kenya.",
-};
+export const metadata: Metadata = pageMetadata("/partners");
 
 const partnerTypes = [
   {
@@ -88,6 +86,7 @@ const promises = [
 export default function PartnersPage() {
   return (
     <>
+      <JsonLd data={pageJsonLd("/partners")} />
       <PageHero
         eyebrow="Partners"
         title="An intercity route works when every partner has a clear role"
@@ -115,7 +114,7 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      <section className="border-y border-border bg-muted section-pad">
+      <section className="border-y border-border bg-white section-pad">
         <div className="page-container">
           <SectionHeader
             eyebrow="Our commitments"

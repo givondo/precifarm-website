@@ -21,19 +21,19 @@ export default function SectionHeader({
     >
       {eyebrow && (
         <p
-          className={`text-sm font-semibold uppercase tracking-widest ${inverted ? "text-charge-400" : "text-charge-600"}`}
+          className={`text-xs font-semibold uppercase tracking-widest ${inverted ? "text-white/70" : "text-forest-500"}`}
         >
           {eyebrow}
         </p>
       )}
       <h2
-        className={`${eyebrow ? "mt-3" : ""} text-xl font-semibold tracking-tight sm:text-2xl ${inverted ? "text-white" : "text-forest-900"}`}
+        className={`heading-display ${eyebrow ? "mt-3" : ""} text-xl sm:text-2xl ${inverted ? "text-white" : ""}`}
       >
         {title}
       </h2>
       {description && (
         <p
-          className={`mt-4 text-base leading-relaxed ${inverted ? "text-white/70" : "text-forest-600/85"}`}
+          className={`mt-4 text-base leading-relaxed ${inverted ? "text-white/70" : "text-forest-600"}`}
         >
           {description}
         </p>

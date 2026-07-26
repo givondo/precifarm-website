@@ -141,7 +141,7 @@ export default function HubConnectivityMap() {
                   route.phase === "planned"
                     ? "#94a3b8"
                     : route.phase === "live"
-                      ? "#22c55e"
+                      ? "#2563eb"
                       : "#fbbf24",
                 opacity: route.phase === "planned" ? 0.7 : 1,
               }}

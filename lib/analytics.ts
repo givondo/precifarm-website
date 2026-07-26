@@ -1,6 +1,4 @@
-/**
- * First-party analytics — UTM capture, session IDs, ingest via website API proxy.
- */
+import { classifyAiReferrer } from "@/lib/seo/ai-referrers";
 
 export type AnalyticsEnvironment = "development" | "staging" | "production";
 
@@ -182,9 +180,18 @@ export function initWebsiteSession(): void {
   if (!isBrowser()) return;
   captureUtmFromUrl();
   getSessionId();
-  trackEvent("website_session_started", {
-    referrer: document.referrer ? document.referrer.slice(0, 200) : "",
-  });
+  const referrer = document.referrer ? document.referrer.slice(0, 200) : "";
+  trackEvent("website_session_started", { referrer });
+
+  const aiSource = classifyAiReferrer(referrer);
+  if (aiSource) {
+    trackEvent("website_referrer_captured", {
+      ai_source: aiSource,
+      source: aiSource,
+      medium: "ai_referral",
+      referrer,
+    });
+  }
 }
 
 /** Report client-side errors to CMS analytics_errors (no PII). */

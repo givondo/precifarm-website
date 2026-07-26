@@ -1,16 +1,14 @@
 import type { Metadata } from "next";
 import HubGridMap from "@/components/HubGridMap";
 import SiteImage from "@/components/SiteImage";
+import JsonLd from "@/components/seo/JsonLd";
 import PageCTA from "@/components/ui/PageCTA";
 import PageHero from "@/components/ui/PageHero";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { chargingOfferings } from "@/lib/charging";
+import { pageJsonLd, pageMetadata } from "@/lib/seo/pages/helpers";
 
-export const metadata: Metadata = {
-  title: "Charge Map",
-  description:
-    "Precifarm's intercity charge map — live charging locations, connected routes and intelligent software linking Nairobi, Kisumu, Mombasa and beyond.",
-};
+export const metadata: Metadata = pageMetadata("/network");
 
 const phases = [
   {
@@ -116,6 +114,7 @@ const statusStyles = {
 export default function HubGridPage() {
   return (
     <>
+      <JsonLd data={pageJsonLd("/network")} />
       <PageHero
         eyebrow="Charge Map"
         title="Connected charging hubs across Kenya, route by route"
@@ -137,7 +136,7 @@ export default function HubGridPage() {
         </div>
       </section>
 
-      <section className="border-b border-border bg-muted section-pad">
+      <section className="border-b border-border bg-white section-pad">
         <div className="page-container">
           <SectionHeader
             eyebrow="Hub anatomy"
@@ -156,7 +155,7 @@ export default function HubGridPage() {
                   className="group relative flex gap-4 rounded-2xl border border-border bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-charge-500/35 hover:shadow-md sm:gap-5 sm:p-5"
                 >
                   <div className="relative z-10 flex shrink-0 flex-col items-center gap-2">
-                    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-forest-900 ring-4 ring-muted transition-colors group-hover:bg-charge-600">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-charge-600 ring-4 ring-muted transition-colors group-hover:bg-charge-500">
                       <svg
                         viewBox="0 0 24 24"
                         className="h-5 w-5"
@@ -261,7 +260,7 @@ export default function HubGridPage() {
         </a>
       </section>
 
-      <section className="border-y border-border bg-muted section-pad">
+      <section className="border-y border-border bg-white section-pad">
         <div className="page-container">
           <SectionHeader
             eyebrow="Site selection"

@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
 import ChargingSection from "@/components/ChargingSection";
+import JsonLd from "@/components/seo/JsonLd";
 import PageHero from "@/components/ui/PageHero";
+import { pageJsonLd, pageMetadata } from "@/lib/seo/pages/helpers";
 
-export const metadata: Metadata = {
-  title: "Charging",
-  description:
-    "Precifarm route charging hubs, EV home charging and in-house charging stations for private entities across Kenya.",
-};
+export const metadata: Metadata = pageMetadata("/charging");
 
 export default function ChargingPage() {
   return (
     <>
+      <JsonLd data={pageJsonLd("/charging")} />
       <PageHero
         eyebrow="Charging"
         title="Route hubs, EV home charging and in-house stations for private entities"

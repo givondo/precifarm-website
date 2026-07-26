@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
 import SiteImage from "@/components/SiteImage";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
+import JsonLd from "@/components/seo/JsonLd";
 import PageCTA from "@/components/ui/PageCTA";
 import PageHero from "@/components/ui/PageHero";
 import RouteRolesTable from "@/components/RouteRolesTable";
 import SectionHeader from "@/components/ui/SectionHeader";
+import { pageJsonLd, pageMetadata } from "@/lib/seo/pages/helpers";
 import { siteImages } from "@/lib/vehicles";
 
-export const metadata: Metadata = {
-  title: "About",
-  description:
-    "Precifarm builds charging hubs and the operating network for dependable electric travel between Kenyan cities.",
-};
+export const metadata: Metadata = pageMetadata("/about");
 
 const principles = [
   {
@@ -34,6 +33,7 @@ const principles = [
 export default function AboutPage() {
   return (
     <>
+      <JsonLd data={pageJsonLd("/about")} />
       <PageHero
         eyebrow="About Precifarm"
         title="From solar infrastructure to dependable electric intercity travel"
@@ -41,6 +41,12 @@ export default function AboutPage() {
       />
 
       <section className="section-pad page-container">
+        <Breadcrumbs
+          items={[
+            { name: "Home", href: "/" },
+            { name: "About", href: "/about" },
+          ]}
+        />
         <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-10">
           <div className="overflow-hidden rounded-2xl border border-border shadow-lg">
             <SiteImage
@@ -74,7 +80,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-y border-border bg-muted section-pad">
+      <section className="border-y border-border bg-white section-pad">
         <div className="page-container">
           <SectionHeader
             eyebrow="How we work"
