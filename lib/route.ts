@@ -10,7 +10,7 @@ export const nairobiKisumuRoute = {
   vehicle: vehicles.intercity.model,
   fare: 1550,
   departures: ["06:00", "08:00", "10:00", "14:00", "16:00"],
-  status: "Current route",
+  status: "Booking open",
 } as const;
 
 export const bookingHighlights = [

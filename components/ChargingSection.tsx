@@ -30,9 +30,9 @@ const hubOutcomes = [
 ];
 
 const homeChargingPoints = [
-  "DC fast charging for homes, apartments and gated estates",
-  "Integration with Neura Pod solar and LiFePO₄ storage where the site needs it",
-  "Site survey, installation and commissioning by the same regional crew that services our hubs",
+  "DC fast charging at your private house or townhouse — your land, your meter",
+  "Optional Neura Pod solar and LiFePO₄ storage at the home",
+  "Site survey, install and commissioning by the same regional crew that services our hubs",
   "Five-year engineering support from Nairobi, Mombasa, Kisumu, Eldoret, Kitui and Nakuru",
 ];
 
@@ -50,7 +50,7 @@ function CheckList({ items }: { items: readonly string[] }) {
         <li key={point} className="flex items-start gap-2.5 text-sm text-forest-700">
           <svg
             viewBox="0 0 24 24"
-            className="mt-0.5 h-4 w-4 shrink-0 text-charge-600"
+            className="mt-0.5 h-4 w-4 shrink-0 text-forest-600"
             fill="none"
             stroke="currentColor"
             strokeWidth="2.5"
@@ -131,7 +131,7 @@ export default function ChargingSection() {
       <dl className="mt-10 grid grid-cols-2 gap-4 rounded-2xl border border-border bg-white p-6 sm:grid-cols-4 sm:gap-5 sm:p-7">
         {hubOutcomes.map(({ stat, label }) => (
           <div key={label}>
-            <dt className="text-lg font-semibold text-charge-600 sm:text-xl">{stat}</dt>
+            <dt className="text-lg font-semibold text-forest-600 sm:text-xl">{stat}</dt>
             <dd className="mt-1 text-sm text-forest-600">{label}</dd>
           </div>
         ))}
@@ -140,30 +140,30 @@ export default function ChargingSection() {
       <div className="mt-16 grid items-center gap-8 lg:grid-cols-2 lg:gap-10">
         <OfferingImage src={home.image} alt={home.imageAlt} />
         <div>
-          <p className="text-xs font-semibold uppercase tracking-widest text-charge-600">
-            {home.eyebrow}
+          <p className="text-eyebrow text-xs font-semibold uppercase tracking-widest text-forest-500">
+            Private house charging
           </p>
           <h2 className="mt-2 text-xl font-semibold text-forest-900 sm:text-2xl">
-            Residential DC fast charging with the same engineering team that builds our route hubs
+            House-based private charging on your property
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-forest-600/85">
-            Precifarm installs EV home charging where owners want dependable overnight
-            top-up — as a standalone DC charger or integrated with Neura Pod solar and
-            storage on the property.
+            A DC fast charger on your driveway or car port — your land, your meter, your
+            vehicle. Not a public hub and not a shared commercial site. Optional Neura Pod
+            solar and storage at the house.
           </p>
           <CheckList items={homeChargingPoints} />
           <Link
-            href="/contact"
+            href="/charging/private-house"
             className="mt-6 inline-flex rounded-full bg-charge-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-charge-500"
           >
-            Request a home charging survey
+            Private house charging
           </Link>
         </div>
       </div>
 
       <div className="mt-16 grid items-center gap-8 lg:grid-cols-2 lg:gap-10">
         <div className="lg:order-1">
-          <p className="text-xs font-semibold uppercase tracking-widest text-charge-600">
+          <p className="text-eyebrow text-xs font-semibold uppercase tracking-widest text-forest-500">
             {privateSite.eyebrow}
           </p>
           <h2 className="mt-2 text-xl font-semibold text-forest-900 sm:text-2xl">

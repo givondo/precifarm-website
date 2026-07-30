@@ -294,6 +294,20 @@ export const routePhases: RoutePhase[] = [
 export const KENYA_CENTER = { lat: -0.5, lng: 37.5 };
 export const DEFAULT_ZOOM = 6;
 
+/** Canon live route — Nairobi–Kisumu only on Charge Map */
+export const LIVE_ROUTE_LABEL = "Nairobi – Kisumu";
+
+export const LIVE_ROUTE_CENTER = { lat: -0.72, lng: 35.75 };
+export const LIVE_ROUTE_ZOOM = 7;
+
+export function isLiveRouteHub(hub: ChargingHub): boolean {
+  return hub.phase === "live" || hub.route === LIVE_ROUTE_LABEL;
+}
+
+export const liveRouteHubs = chargingHubs.filter(isLiveRouteHub);
+
+export const liveRoutePhases = routePhases.filter((route) => route.phase === "live");
+
 export type HubFilter = "all" | "precifarm" | "partners" | "available";
 
 export function haversineKm(
@@ -358,8 +372,8 @@ export const availabilityConfig: Record<
   available: {
     label: "Free",
     color: "#22c55e",
-    bgClass: "bg-charge-500/15 border-charge-500/30 text-charge-400",
-    textClass: "text-charge-400",
+    bgClass: "bg-forest-100 border-forest-200 text-forest-700",
+    textClass: "text-forest-700",
   },
   limited: {
     label: "Limited",

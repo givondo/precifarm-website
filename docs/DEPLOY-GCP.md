@@ -23,9 +23,9 @@ Hostinger (registrar)
               └── Cloud SQL PostgreSQL (bookings, payments, analytics)
 ```
 
-Website env: `CMS_API_URL=https://api.precifarm.com/api`
+Website env: see [`website/.env.example`](../.env.example) — production sets `CMS_API_URL` only (non-secret URLs).
 
-CMS env: `MPESA_CALLBACK_URL=https://api.precifarm.com/api/v1/payments/mpesa/callback`
+CMS env: Daraja and database credentials in **Secret Manager** — see [`docs/infrastructure/environment.md`](../../docs/infrastructure/environment.md).
 
 ---
 
@@ -68,7 +68,7 @@ gcloud sql instances create precifarm-db `
 
 gcloud sql databases create precifarm --instance=precifarm-db
 
-gcloud sql users create precifarm_app --instance=precifarm-db --password="STRONG_PASSWORD_HERE"
+gcloud sql users create precifarm_app --instance=precifarm-db --password="CHOOSE_A_STRONG_PASSWORD"
 ```
 
 Note the instance connection name: `PROJECT:REGION:precifarm-db`
@@ -80,10 +80,10 @@ gcloud run deploy precifarm-cms ... `
   --add-cloudsql-instances=PROJECT:africa-south1:precifarm-db
 ```
 
-`DATABASE_URL` format (via Unix socket on Cloud Run):
+`DATABASE_URL` format (via Unix socket on Cloud Run) — substitute your password and project ID from `.env.local`, never from docs:
 
 ```text
-postgresql://precifarm_app:PASSWORD@/precifarm?host=/cloudsql/PROJECT:africa-south1:precifarm-db
+postgresql://precifarm_app:<PASSWORD>@/precifarm?host=/cloudsql/<PROJECT_ID>:africa-south1:precifarm-db
 ```
 
 Run migrations after first CMS deploy:
@@ -98,17 +98,12 @@ npm run db:seed
 
 ## 2. Secrets (CMS)
 
-Store production values in Secret Manager — never commit them.
+Store production values in **Secret Manager** from your CMS `.env.local` — never commit them or paste into documentation. Variable names and patterns: [`docs/infrastructure/environment.md`](../../docs/infrastructure/environment.md).
 
 ```powershell
+# Pipe each value from a file or stdin — do not commit secret values
 echo -n "false" | gcloud secrets create precifarm-demo-payment --data-file=-
-echo -n "postgresql://..." | gcloud secrets create precifarm-database-url --data-file=-
-echo -n "YOUR_KEY" | gcloud secrets create precifarm-mpesa-consumer-key --data-file=-
-echo -n "YOUR_SECRET" | gcloud secrets create precifarm-mpesa-consumer-secret --data-file=-
-echo -n "YOUR_PASSKEY" | gcloud secrets create precifarm-mpesa-passkey --data-file=-
-echo -n "YOUR_SHORTCODE" | gcloud secrets create precifarm-mpesa-shortcode --data-file=-
-echo -n "https://api.precifarm.com/api/v1/payments/mpesa/callback" | gcloud secrets create precifarm-mpesa-callback-url --data-file=-
-echo -n "sandbox" | gcloud secrets create precifarm-mpesa-environment --data-file=-
+# Create remaining secrets: database URL, MPESA_*, ANALYTICS_INGEST_KEY, OPENAI_API_KEY, etc.
 ```
 
 Grant Cloud Run access:
@@ -162,11 +157,15 @@ cd C:\Users\DAVID\Desktop\kenya-ebus-ecosystem\website
 gcloud builds submit --config cloudbuild.yaml
 ```
 
-Set CMS URL on the website service:
+Set non-secret env vars on the website service (secrets: see environment guide):
 
 ```powershell
 gcloud run services update precifarm-website --region europe-west1 `
-  --set-env-vars="CMS_API_URL=https://api.precifarm.com/api"
+  --set-env-vars="CMS_API_URL=https://api.precifarm.com/api,NEXT_PUBLIC_SITE_URL=https://precifarm.com"
+
+# Optional: Android App Links fingerprint from mobile signing cert (store in Secret Manager in production)
+# gcloud run services update precifarm-website --region europe-west1 `
+#   --set-secrets=ANDROID_APP_SHA256=precifarm-android-sha256:latest
 ```
 
 Map domains:
@@ -193,7 +192,7 @@ gcloud run domain-mappings create --service precifarm-website --domain www.preci
 
 Before SSL and routing work, Google must verify you own `precifarm.com`:
 
-1. Open [Cloud Run → Domain mappings](https://console.cloud.google.com/run/domains?project=skilled-orbit-460722-h9) (region **europe-west1**).
+1. Open [Cloud Run → Domain mappings](https://console.cloud.google.com/run/domains) (region **europe-west1**, project **YOUR_PROJECT_ID**).
 2. Click **`precifarm.com`** → **Verify** (or use [Search Console](https://search.google.com/search-console/welcome)).
 3. Copy the **TXT** record Google gives you.
 4. In Hostinger → **DNS / Nameservers** → **DNS records** → add:
@@ -312,6 +311,6 @@ Scale up `db-custom` tier and Cloud Run memory when route-one goes live.
 | CMS DB connection fails | Verify `--add-cloudsql-instances` and `DATABASE_URL` socket format |
 | Domain SSL pending | Wait for managed cert; confirm DNS records at Hostinger |
 | Booking uses demo store | Set `CMS_API_URL` on website Cloud Run service |
-| M-Pesa callback fails | `MPESA_CALLBACK_URL` must be public `https://api.precifarm.com/...` |
+| M-Pesa callback fails | `MPESA_CALLBACK_URL` in CMS secrets must match your public API URL — see [environment.md](../../docs/infrastructure/environment.md) |
 
 See also: [`../../docs/infrastructure/gcp-deployment.md`](../../docs/infrastructure/gcp-deployment.md)

@@ -211,9 +211,14 @@ Register new pages in `lib/seo/pages/registry.ts`.
 
 ## 7. Environment variables
 
+All values belong in `website/.env.local` (from `.env.example`). Full reference: [`docs/infrastructure/environment.md`](../../docs/infrastructure/environment.md).
+
 | Variable | Purpose |
 |----------|---------|
 | `NEXT_PUBLIC_SITE_URL` | Canonical base URL (required in production) |
+| `CMS_API_URL` | CMS proxy for booking, search, analytics |
+| `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` | Optional maps on `/network` |
+| `ANALYTICS_INGEST_KEY` | Analytics proxy (must match CMS) |
 
 ---
 

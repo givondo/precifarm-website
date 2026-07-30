@@ -19,7 +19,7 @@ export default function StepIndicator({
                 i < currentIndex
                   ? "bg-charge-600 text-white"
                   : i === currentIndex
-                    ? "bg-charge-600 text-white ring-2 ring-charge-500/20 ring-offset-1"
+                    ? "bg-charge-600 text-white ring-2 ring-charge-500/25 ring-offset-1"
                     : "bg-muted text-forest-400"
               }`}
             >
@@ -41,7 +41,7 @@ export default function StepIndicator({
             {i < steps.length - 1 && (
               <div
                 className={`mx-0.5 h-0.5 flex-1 rounded-full transition-colors ${
-                  i < currentIndex ? "bg-charge-600" : "bg-border"
+                  i < currentIndex ? "bg-charge-500" : "bg-border"
                 }`}
               />
             )}

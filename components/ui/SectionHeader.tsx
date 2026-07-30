@@ -21,7 +21,7 @@ export default function SectionHeader({
     >
       {eyebrow && (
         <p
-          className={`text-xs font-semibold uppercase tracking-widest ${inverted ? "text-white/70" : "text-forest-500"}`}
+          className={`text-eyebrow text-xs font-semibold uppercase tracking-widest ${inverted ? "text-white/70" : "text-forest-500"}`}
         >
           {eyebrow}
         </p>
@@ -33,7 +33,7 @@ export default function SectionHeader({
       </h2>
       {description && (
         <p
-          className={`mt-4 text-base leading-relaxed ${inverted ? "text-white/70" : "text-forest-600"}`}
+          className={`text-subtitle mt-4 text-base leading-relaxed ${inverted ? "text-white/70" : "text-forest-600"}`}
         >
           {description}
         </p>

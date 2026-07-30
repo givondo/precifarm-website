@@ -57,7 +57,7 @@ export default function TrustSignals({
               <li key={source.url}>
                 <a
                   href={source.url}
-                  className="text-charge-600 underline-offset-2 hover:underline"
+                  className="text-link underline-offset-2"
                   rel="noopener noreferrer"
                   target="_blank"
                 >

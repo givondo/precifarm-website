@@ -1,10 +1,11 @@
-import Link from "next/link";
+import PageHero from "@/components/ui/PageHero";
+import PageCTA from "@/components/ui/PageCTA";
 import AisoPageSections from "@/components/seo/AisoPageSections";
-import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import JsonLd from "@/components/seo/JsonLd";
 import MarkdownContent from "@/components/seo/MarkdownContent";
 import TrustSignals from "@/components/seo/TrustSignals";
 import { cmsGetSeoContent, cmsListSeoContent, type CmsSeoContent } from "@/lib/seo/cms-client";
+import { siteConfig } from "@/lib/seo/config";
 import { internalLinksForPath } from "@/lib/seo/entities/registry";
 import { createPageSeo } from "@/lib/seo/metadata";
 import { articleSchema, faqSchema } from "@/lib/seo/schema";
@@ -42,7 +43,7 @@ function buildSeo(slug: string, content: CmsSeoContent) {
 }
 
 export async function generateStaticParams() {
-  const items = await cmsListSeoContent({ status: "published" });
+  const items = await cmsListSeoContent({ status: "published", locale: siteConfig.locale });
   return items.filter((item) => item.contentType === "faq").map((item) => ({ slug: item.slug }));
 }
 
@@ -81,34 +82,45 @@ export default async function FaqPage({ params }: Props) {
       ]
     : seo.jsonLd;
   const aisoBlocks = content.aisoBlocks as AisoContentBlock[];
+  const supplementalBlocks = aisoBlocks.filter((block) => block.type !== "faq");
 
   return (
     <>
       <JsonLd data={jsonLd} />
       <article className="bg-white">
-        <header className="border-b border-border section-pad">
-          <div className="page-container max-w-3xl">
-            <Breadcrumbs
-              items={[
-                { name: "Home", href: "/" },
-                { name: "FAQ", href: "/faq" },
-                { name: content.title, href: path },
-              ]}
-            />
-            <p className="text-sm font-semibold uppercase tracking-widest text-forest-500">FAQ</p>
-            <h1 className="mt-3 text-3xl font-semibold tracking-tight text-forest-900 sm:text-4xl">
-              {content.title}
-            </h1>
-            <p className="mt-4 text-base leading-relaxed text-forest-600">{content.description}</p>
-            <TrustSignals
-              authorName={content.authorName}
-              reviewerName={content.reviewerName}
-              reviewedAt={content.reviewedAt}
-              updatedAt={content.updatedAt}
-              sources={content.sources}
-            />
+        <PageHero
+          eyebrow="FAQ"
+          title={content.title}
+          description={content.description}
+          breadcrumbs={[
+            { name: "Home", href: "/" },
+            { name: "FAQ", href: "/faq" },
+            { name: content.title, href: path },
+          ]}
+        >
+          <TrustSignals
+            authorName={content.authorName}
+            reviewerName={content.reviewerName}
+            reviewedAt={content.reviewedAt}
+            updatedAt={content.updatedAt}
+            sources={content.sources}
+          />
+        </PageHero>
+
+        {faqs.length > 0 && (
+          <div className="section-pad border-b border-border">
+            <div className="page-container max-w-3xl">
+              <dl className="space-y-6">
+                {faqs.map((faq) => (
+                  <div key={faq.question}>
+                    <dt className="text-base font-semibold text-forest-900">{faq.question}</dt>
+                    <dd className="mt-2 text-sm leading-relaxed text-forest-600">{faq.answer}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
           </div>
-        </header>
+        )}
 
         {content.bodyMd && (
           <div className="section-pad">
@@ -118,17 +130,19 @@ export default async function FaqPage({ params }: Props) {
           </div>
         )}
 
-        {aisoBlocks.length > 0 && (
-          <AisoPageSections blocks={aisoBlocks} relatedLinks={internalLinksForPath(path)} />
-        )}
+        <AisoPageSections
+          blocks={supplementalBlocks}
+          relatedLinks={internalLinksForPath(path)}
+        />
 
-        <div className="border-t border-border section-pad">
-          <div className="page-container max-w-3xl">
-            <Link href="/contact" className="btn-secondary inline-flex rounded-full px-6 py-3 text-sm">
-              Contact support
-            </Link>
-          </div>
-        </div>
+        <PageCTA
+          title="Need more help?"
+          description="Contact our team by phone, email or WhatsApp."
+          primaryHref="/contact"
+          primaryLabel="Contact support"
+          secondaryHref="/#book"
+          secondaryLabel="Book now"
+        />
       </article>
     </>
   );

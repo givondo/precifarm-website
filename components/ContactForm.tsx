@@ -57,10 +57,10 @@ export default function ContactForm() {
   if (submitted) {
     return (
       <div className="card flex flex-col items-center justify-center p-12 text-center">
-        <span className="flex h-14 w-14 items-center justify-center rounded-full bg-charge-500/15">
+        <span className="flex h-14 w-14 items-center justify-center rounded-full bg-forest-100">
           <svg
             viewBox="0 0 24 24"
-            className="h-7 w-7 text-charge-600"
+            className="h-7 w-7 text-forest-600"
             fill="none"
             stroke="currentColor"
             strokeWidth="2.5"
@@ -97,7 +97,7 @@ export default function ContactForm() {
             type="text"
             name="name"
             required
-            className="mt-2 w-full rounded-xl border border-border bg-muted px-4 py-3 text-sm outline-none focus:border-charge-500"
+            className="mt-2 w-full rounded-xl border border-border bg-muted px-4 py-3 text-sm outline-none focus:border-forest-500"
             placeholder="Your name"
           />
         </label>
@@ -107,7 +107,7 @@ export default function ContactForm() {
             type="email"
             name="email"
             required
-            className="mt-2 w-full rounded-xl border border-border bg-muted px-4 py-3 text-sm outline-none focus:border-charge-500"
+            className="mt-2 w-full rounded-xl border border-border bg-muted px-4 py-3 text-sm outline-none focus:border-forest-500"
             placeholder="you@company.com"
           />
         </label>
@@ -118,7 +118,7 @@ export default function ContactForm() {
         <input
           type="tel"
           name="phone"
-          className="mt-2 w-full rounded-xl border border-border bg-muted px-4 py-3 text-sm outline-none focus:border-charge-500"
+          className="mt-2 w-full rounded-xl border border-border bg-muted px-4 py-3 text-sm outline-none focus:border-forest-500"
           placeholder="07XX XXX XXX"
         />
       </label>
@@ -127,7 +127,7 @@ export default function ContactForm() {
         <span className="text-sm font-medium text-forest-900">I am enquiring about</span>
         <select
           name="interest"
-          className="mt-2 w-full rounded-xl border border-border bg-muted px-4 py-3 text-sm outline-none focus:border-charge-500"
+          className="mt-2 w-full rounded-xl border border-border bg-muted px-4 py-3 text-sm outline-none focus:border-forest-500"
         >
           {interests.map((i) => (
             <option key={i}>{i}</option>
@@ -141,7 +141,7 @@ export default function ContactForm() {
           name="message"
           required
           rows={5}
-          className="mt-2 w-full resize-y rounded-xl border border-border bg-muted px-4 py-3 text-sm outline-none focus:border-charge-500"
+          className="mt-2 w-full resize-y rounded-xl border border-border bg-muted px-4 py-3 text-sm outline-none focus:border-forest-500"
           placeholder="Tell us about your route, site, fleet or travel plans…"
         />
       </label>

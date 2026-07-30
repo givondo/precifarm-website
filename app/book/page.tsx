@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import { redirect } from "next/navigation";
+
+export const metadata: Metadata = {
+  title: "Book",
+  robots: { index: false, follow: true },
+};
 
 type Props = { searchParams: Promise<Record<string, string | string[] | undefined>> };
 

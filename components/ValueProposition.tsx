@@ -60,20 +60,20 @@ const whyUs = [
 const revenueStreams = [
   {
     audience: "Passengers",
-    title: "Fares on scheduled service",
-    text: "You pay for your seat on intercity electric coaches — clear pricing, M-Pesa checkout and SMS tickets. Nairobi–Kisumu is live today.",
+    title: "Coach fares",
+    text: "Seat sales on Nairobi–Kisumu with fixed pricing, M-Pesa checkout and SMS tickets.",
     cta: { href: "#book", label: "Book a seat" },
   },
   {
     audience: "Operators & fleets",
-    title: "Charging and network services",
-    text: "Fleet charging contracts, reserved hub sessions and passenger demand through Precifarm booking and agent channels.",
+    title: "Charging contracts",
+    text: "Reserved hub sessions, fleet energy and passenger demand through Precifarm booking channels.",
     cta: { href: "/partners", label: "Partner as an operator" },
   },
   {
     audience: "Site hosts & partners",
-    title: "Hub revenue and O&M",
-    text: "Revenue share for hub site hosts, energy sales at route hubs, and installation plus O&M for home and private charging.",
+    title: "Hub and charging services",
+    text: "Revenue share at route hubs, energy sales, and home or private-site install plus O&M.",
     cta: { href: "/charging", label: "Explore charging services" },
   },
 ];
@@ -86,10 +86,10 @@ export default function ValueProposition() {
     >
       <div className="page-container">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest text-charge-600">
+          <p className="text-eyebrow text-sm font-semibold uppercase tracking-widest text-forest-500">
             What Precifarm does
           </p>
-          <p className="mt-4 text-balance text-xl font-semibold leading-snug tracking-tight text-forest-900 sm:text-2xl">
+          <p className="text-subtitle mt-4 text-balance text-xl font-semibold leading-snug tracking-tight text-forest-900 sm:text-2xl">
             We build the charging hubs and operating network that make electric
             intercity travel in Kenya dependable and bookable — starting on
             Nairobi–Kisumu.
@@ -98,7 +98,7 @@ export default function ValueProposition() {
 
         <div className="mt-12 grid gap-5 lg:grid-cols-2">
           <div className="card p-6 sm:p-7">
-            <p className="text-xs font-semibold uppercase tracking-widest text-forest-500">
+            <p className="text-eyebrow text-xs font-semibold uppercase tracking-widest text-forest-500">
               The problem
             </p>
             <h3 className="mt-2 text-lg font-semibold text-forest-900">
@@ -111,8 +111,8 @@ export default function ValueProposition() {
             </ul>
           </div>
 
-          <div className="card border-charge-500/30 bg-charge-500/5 p-6 sm:p-7">
-            <p className="text-xs font-semibold uppercase tracking-widest text-charge-600">
+          <div className="card border-forest-500/30 bg-forest-50 p-6 sm:p-7">
+            <p className="text-eyebrow text-xs font-semibold uppercase tracking-widest text-forest-600">
               Our answer
             </p>
             <h3 className="mt-2 text-lg font-semibold text-forest-900">
@@ -170,7 +170,7 @@ export default function ValueProposition() {
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {whyUs.map((item) => (
               <div key={item.title} className="card p-5">
-                <p className="font-mono text-sm font-semibold text-charge-600">
+                <p className="font-mono text-sm font-semibold text-forest-600">
                   {item.stat}
                 </p>
                 <h3 className="mt-2 font-semibold text-forest-900">
@@ -187,15 +187,15 @@ export default function ValueProposition() {
         <div className="mt-14">
           <SectionHeader
             eyebrow="How the network sustains itself"
-            title="Where revenue comes from — honestly"
-            description="Precifarm is not a bus company. We earn when dependable energy and bookings keep the route running for passengers, operators and partners."
+            title="Three revenue streams on every route"
+            description="Passenger fares, operator charging contracts and hub partnerships fund the energy and bookings that keep each corridor running."
             centered
             className="mx-auto"
           />
           <div className="mt-8 grid gap-5 lg:grid-cols-3">
             {revenueStreams.map((stream) => (
               <div key={stream.audience} className="card flex flex-col p-6">
-                <p className="text-xs font-semibold uppercase tracking-widest text-charge-600">
+                <p className="text-eyebrow text-xs font-semibold uppercase tracking-widest text-forest-500">
                   {stream.audience}
                 </p>
                 <h3 className="mt-2 text-lg font-semibold text-forest-900">
@@ -206,7 +206,7 @@ export default function ValueProposition() {
                 </p>
                 <Link
                   href={stream.cta.href}
-                  className="mt-5 inline-flex text-sm font-semibold text-charge-600 hover:text-charge-500"
+                  className="text-link mt-5 inline-flex text-sm font-semibold"
                 >
                   {stream.cta.label} →
                 </Link>

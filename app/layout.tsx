@@ -34,6 +34,11 @@ export const metadata: Metadata = {
   publisher: siteConfig.legalName,
   formatDetection: { email: false, address: false, telephone: false },
   category: "technology",
+  alternates: {
+    types: {
+      "application/rss+xml": `${siteConfig.url}/feed.xml`,
+    },
+  },
 };
 
 export const viewport: Viewport = {

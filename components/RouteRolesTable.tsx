@@ -50,7 +50,7 @@ export default function RouteRolesTable() {
       <div className="overflow-hidden rounded-2xl border border-border shadow-sm">
         <div className="overflow-x-auto">
           <table className="w-full min-w-[640px] text-left text-sm">
-            <thead className="bg-charge-600 text-white">
+            <thead className="bg-forest-800 text-white">
               <tr>
                 <th className="px-5 py-4 font-semibold sm:px-6">Layer</th>
                 <th className="px-5 py-4 font-semibold sm:px-6">Precifarm</th>

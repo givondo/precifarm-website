@@ -3,6 +3,8 @@
  * Align with GCP production: website on Cloud Run, CMS at api.precifarm.com
  */
 
+import { contact } from "@/lib/contact";
+
 export const siteConfig = {
   name: "Precifarm",
   legalName: "Precifarm",
@@ -25,8 +27,8 @@ export const siteConfig = {
     "renewable energy transport",
   ] as const,
   contact: {
-    email: "hello@precifarm.com",
-    phone: "+254700000000",
+    email: contact.email,
+    phone: contact.phoneHref.replace(/^tel:/, ""),
   },
   social: {
     twitter: undefined as string | undefined,
@@ -49,16 +51,21 @@ export const publicRoutes = [
   { path: "/", label: "Home", changefreq: "weekly" as const, priority: 1.0 },
   { path: "/network", label: "Charge Map", changefreq: "weekly" as const, priority: 0.9 },
   { path: "/charging", label: "Charging Services", changefreq: "monthly" as const, priority: 0.85 },
+  { path: "/charging/private-house", label: "Private House Charging", changefreq: "monthly" as const, priority: 0.82 },
   { path: "/partners", label: "Partners", changefreq: "monthly" as const, priority: 0.8 },
+  { path: "/training", label: "Training", changefreq: "monthly" as const, priority: 0.76 },
   { path: "/about", label: "About", changefreq: "monthly" as const, priority: 0.75 },
+  { path: "/careers", label: "Careers", changefreq: "monthly" as const, priority: 0.7 },
   { path: "/download", label: "Download App", changefreq: "monthly" as const, priority: 0.7 },
   { path: "/contact", label: "Contact", changefreq: "yearly" as const, priority: 0.65 },
   { path: "/guides", label: "Guides", changefreq: "weekly" as const, priority: 0.8 },
   { path: "/faq", label: "FAQ", changefreq: "weekly" as const, priority: 0.75 },
   { path: "/locations", label: "Locations", changefreq: "weekly" as const, priority: 0.78 },
-  { path: "/book", label: "Book", changefreq: "weekly" as const, priority: 0.95 },
+  { path: "/book", label: "Book", changefreq: "weekly" as const, priority: 0.95, sitemap: false as const },
   { path: "/sw", label: "Kiswahili", changefreq: "weekly" as const, priority: 0.85 },
 ] as const;
+
+export type PublicRoute = (typeof publicRoutes)[number];
 
 export function absoluteUrl(path: string): string {
   const normalized = path.startsWith("/") ? path : `/${path}`;

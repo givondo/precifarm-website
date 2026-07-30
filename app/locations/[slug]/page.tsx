@@ -1,8 +1,8 @@
-import Link from "next/link";
+import PageCTA from "@/components/ui/PageCTA";
+import PageHero from "@/components/ui/PageHero";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import AisoPageSections from "@/components/seo/AisoPageSections";
-import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import JsonLd from "@/components/seo/JsonLd";
 import MarkdownContent from "@/components/seo/MarkdownContent";
 import TrustSignals from "@/components/seo/TrustSignals";
@@ -131,29 +131,24 @@ export default async function LocationPage({ params }: Props) {
     <>
       <JsonLd data={jsonLd} />
       <article className="bg-white">
-        <header className="border-b border-border section-pad">
-          <div className="page-container max-w-3xl">
-            <Breadcrumbs
-              items={[
-                { name: "Home", href: "/" },
-                { name: "Locations", href: "/locations" },
-                { name: title, href: path },
-              ]}
-            />
-            <p className="text-sm font-semibold uppercase tracking-widest text-forest-500">Location</p>
-            <h1 className="mt-3 text-3xl font-semibold tracking-tight text-forest-900 sm:text-4xl">
-              {title}
-            </h1>
-            <p className="mt-4 text-base leading-relaxed text-forest-600">{description}</p>
-            <TrustSignals
-              authorName={content?.authorName}
-              reviewerName={content?.reviewerName}
-              reviewedAt={content?.reviewedAt}
-              updatedAt={content?.updatedAt}
-              sources={content?.sources}
-            />
-          </div>
-        </header>
+        <PageHero
+          eyebrow="Location"
+          title={title}
+          description={description}
+          breadcrumbs={[
+            { name: "Home", href: "/" },
+            { name: "Locations", href: "/locations" },
+            { name: title, href: path },
+          ]}
+        >
+          <TrustSignals
+            authorName={content?.authorName}
+            reviewerName={content?.reviewerName}
+            reviewedAt={content?.reviewedAt}
+            updatedAt={content?.updatedAt}
+            sources={content?.sources}
+          />
+        </PageHero>
 
         {content?.bodyMd && (
           <div className="section-pad">
@@ -185,16 +180,14 @@ export default async function LocationPage({ params }: Props) {
           <AisoPageSections blocks={aisoBlocks} relatedLinks={internalLinksForPath(path)} />
         )}
 
-        <div className="border-t border-border section-pad">
-          <div className="page-container max-w-3xl flex flex-wrap gap-3">
-            <Link href="/charging" className="btn-secondary inline-flex rounded-full px-6 py-3 text-sm">
-              Charging services
-            </Link>
-            <Link href="/#book" className="btn-primary inline-flex rounded-full px-6 py-3 text-sm">
-              Book a trip
-            </Link>
-          </div>
-        </div>
+        <PageCTA
+          title="Plan your trip"
+          description="Explore charging services or book a seat on Nairobi–Kisumu."
+          primaryHref="/#book"
+          primaryLabel="Book a trip"
+          secondaryHref="/charging"
+          secondaryLabel="Charging services"
+        />
       </article>
     </>
   );

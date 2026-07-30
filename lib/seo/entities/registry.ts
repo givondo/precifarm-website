@@ -165,7 +165,8 @@ export function internalLinksForPath(path: string): { href: string; label: strin
       add("/network", "Charge Map", "View hub locations on the operating network");
       add("/charging", "Charging services", "Hub, home and private-site charging");
       add("/partners", "Partner with us", "Operators and fleet partners");
-      break;
+      add("/faq", "FAQ", "Booking and travel answers");
+      return links.slice(0, 5);
     case "/network":
       add("/charging", "Charging services", "Energy infrastructure behind the map");
       add("/#book", "Book a seat", "Travel on Nairobi–Kisumu");

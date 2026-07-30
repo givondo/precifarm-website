@@ -5,12 +5,6 @@ import { buildStaticSitemapEntries } from "@/lib/seo/sitemap";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticEntries = buildStaticSitemapEntries();
-  const indexEntries: MetadataRoute.Sitemap = [
-    { url: absoluteUrl("/guides"), changeFrequency: "weekly", priority: 0.8 },
-    { url: absoluteUrl("/faq"), changeFrequency: "weekly", priority: 0.75 },
-    { url: absoluteUrl("/locations"), changeFrequency: "weekly", priority: 0.78 },
-    { url: absoluteUrl("/sw"), changeFrequency: "weekly", priority: 0.85 },
-  ];
 
   let dynamicEntries: MetadataRoute.Sitemap = [];
 
@@ -34,5 +28,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // CMS unavailable at build time — static sitemap only
   }
 
-  return [...staticEntries, ...indexEntries, ...dynamicEntries];
+  return [...staticEntries, ...dynamicEntries];
 }

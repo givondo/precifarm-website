@@ -1,24 +1,43 @@
-import { publicRoutes, siteConfig } from "@/lib/seo/config";
+import { absoluteUrl, publicRoutes, siteConfig } from "@/lib/seo/config";
+import { getPageSeo } from "@/lib/seo/pages/registry";
+
+function escapeXml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+}
+
+function routeDescription(path: string, label: string): string {
+  return getPageSeo(path)?.description ?? `${siteConfig.name} — ${label}. ${siteConfig.defaultDescription}`;
+}
 
 export async function GET() {
   const items = publicRoutes
-    .map(
-      (route) => `
+    .filter((route) => !("sitemap" in route && route.sitemap === false))
+    .map((route) => {
+      const link = absoluteUrl(route.path);
+      const title = `${siteConfig.name} — ${route.label}`;
+      const description = routeDescription(route.path, route.label);
+
+      return `
     <item>
-      <title>${siteConfig.name} — ${route.label}</title>
-      <link>${siteConfig.url}${route.path === "/" ? "" : route.path}</link>
-      <guid isPermaLink="true">${siteConfig.url}${route.path}</guid>
-      <description>${siteConfig.defaultDescription}</description>
-    </item>`,
-    )
+      <title>${escapeXml(title)}</title>
+      <link>${link}</link>
+      <guid isPermaLink="true">${link}</guid>
+      <description>${escapeXml(description)}</description>
+    </item>`;
+    })
     .join("");
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>${siteConfig.name}</title>
+    <title>${escapeXml(siteConfig.name)}</title>
     <link>${siteConfig.url}</link>
-    <description>${siteConfig.defaultDescription}</description>
+    <description>${escapeXml(siteConfig.defaultDescription)}</description>
     <language>${siteConfig.language}</language>
     <atom:link href="${siteConfig.url}/feed.xml" rel="self" type="application/rss+xml" />
     ${items}

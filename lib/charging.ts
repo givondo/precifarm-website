@@ -14,10 +14,10 @@ export const chargingOfferings = {
       "Energy supply, fast charging, passenger dwell and operations — integrated in one dependable stop.",
   },
   home: {
-    eyebrow: "EV home charging",
+    eyebrow: "Private house charging",
     image: "/images/charging-home.png",
     imageAlt:
-      "Wall-mounted home DC charger and battery unit charging an electric SUV at a house with rooftop solar",
+      "Wall-mounted DC charger at a private house charging an electric SUV, with rooftop solar on the property",
   },
   privateSite: {
     eyebrow: "Private in-house stations",
@@ -35,8 +35,8 @@ export const chargingCategories = [
     imageAlt: chargingOfferings.routeHub.imageAlt,
   },
   {
-    title: "EV home charging",
-    text: "Residential DC chargers integrated with Neura Pod solar and storage, with survey, install and five-year service.",
+    title: "Private house charging",
+    text: "House-based DC charging on your private property — survey, install, optional Neura Pod solar and five-year support.",
     image: chargingOfferings.home.image,
     imageAlt: chargingOfferings.home.imageAlt,
   },

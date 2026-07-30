@@ -27,9 +27,54 @@ export const vehicles = {
   },
 } as const;
 
+const routeHubImage = "/images/charging-route-hub.png";
+const fleetHubImage = "/images/charging-private-site.png";
+
+const routeHubAlt =
+  "Precifarm intercity route charging hub with DC fast chargers, solar canopy and battery storage in Kenya";
+
+/** Hub photography — same ecosystem, different sites and angles */
+export const hubImages = {
+  /** Intercity route hub — coach at charger */
+  intercityCharger: {
+    image: routeHubImage,
+    imageAlt: "Electric coach charging at a Precifarm DC fast charger on an intercity route",
+    objectPosition: "object-[22%_58%]",
+  },
+  /** Fleet / private-site hub — solar canopy over multiple bays */
+  fleetCanopy: {
+    image: fleetHubImage,
+    imageAlt:
+      "Electric vans and shuttle bus charging under a solar canopy at a Precifarm fleet hub",
+    objectPosition: "object-[48%_38%]",
+  },
+  /** Balanced wide view of intercity hub */
+  intercityWide: {
+    image: routeHubImage,
+    imageAlt: routeHubAlt,
+    objectPosition: "object-[45%_45%]",
+  },
+  /** Large-scale route hub — premium minimal showcase */
+  showcasePremium: {
+    image: "/images/charging-hub-premium-kenya.png",
+    imageAlt:
+      "Large-scale Precifarm electric vehicle charging hub with solar canopy and DC fast chargers in Kenya",
+    objectPosition: "object-[50%_42%]",
+  },
+} as const;
+
+export type HubImageKey = keyof typeof hubImages;
+
+/** @deprecated Use hubImages — kept for any legacy crop references */
+export const hubImageCrops = hubImages;
+
+export type HubImageCrop = HubImageKey;
+
 /** Vehicle images for mobility and intercity storytelling pages */
 export const siteImages = {
-  bookingHero: vehicles.intercity,
-  about: vehicles.intercity,
-  networkHub: vehicles.intercity,
+  bookingHero: hubImages.intercityCharger,
+  about: hubImages.intercityWide,
+  networkHub: hubImages.fleetCanopy,
+  routeShowcase: hubImages.showcasePremium,
+  hubSpotlight: hubImages.fleetCanopy,
 } as const;

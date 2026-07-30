@@ -24,7 +24,7 @@ export default function VehicleMobilityCard({
     <article
       className={`overflow-hidden rounded-2xl border bg-white ${
         featured
-          ? "border-charge-500/30 shadow-md shadow-charge-500/10"
+          ? "border-forest-500/30 shadow-md shadow-forest-500/10"
           : "border-border shadow-sm"
       }`}
     >
@@ -37,8 +37,8 @@ export default function VehicleMobilityCard({
           className={`object-cover ${imagePosition}`}
         />
       </div>
-      <div className={`p-5 ${featured ? "bg-charge-500/5" : ""}`}>
-        <p className="text-xs font-semibold uppercase tracking-widest text-charge-600">
+      <div className={`p-5 ${featured ? "bg-forest-50" : ""}`}>
+        <p className="text-eyebrow text-xs font-semibold uppercase tracking-widest text-forest-500">
           {role}
         </p>
         <h3 className="mt-1 text-lg font-semibold text-forest-900">{model}</h3>

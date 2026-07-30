@@ -75,7 +75,7 @@ export default function DownloadPage() {
           <ol className="mt-8 max-w-2xl space-y-4">
             {installSteps.map((step, i) => (
               <li key={step} className="flex gap-4 text-sm leading-relaxed text-forest-600/85">
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-charge-600 text-xs font-bold text-white">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-forest-700 text-xs font-bold text-white">
                   {i + 1}
                 </span>
                 <span

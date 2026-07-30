@@ -22,19 +22,31 @@ export class CmsError extends Error {
   }
 }
 
-export async function cmsFetch<T>(path: string, init?: RequestInit): Promise<T> {
+export async function cmsFetch<T>(
+  path: string,
+  init?: RequestInit,
+  options?: { revalidate?: number },
+): Promise<T> {
   if (!CMS_API_URL) {
     throw new CmsError("CMS_API_URL is not configured.", 503);
   }
 
   const url = `${CMS_API_URL}/v1${path.startsWith("/") ? path : `/${path}`}`;
+  const method = init?.method?.toUpperCase() ?? "GET";
+  const cacheInit =
+    method !== "GET"
+      ? { cache: "no-store" as const }
+      : options?.revalidate != null
+        ? { next: { revalidate: options.revalidate } }
+        : { cache: "no-store" as const };
+
   const res = await fetch(url, {
     ...init,
+    ...cacheInit,
     headers: {
       "Content-Type": "application/json",
       ...init?.headers,
     },
-    cache: "no-store",
   });
 
   let json: { data?: T } & CmsErrorBody;

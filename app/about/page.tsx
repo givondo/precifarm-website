@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import SiteImage from "@/components/SiteImage";
+import HubImage from "@/components/HubImage";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import JsonLd from "@/components/seo/JsonLd";
 import PageCTA from "@/components/ui/PageCTA";
@@ -7,7 +7,6 @@ import PageHero from "@/components/ui/PageHero";
 import RouteRolesTable from "@/components/RouteRolesTable";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { pageJsonLd, pageMetadata } from "@/lib/seo/pages/helpers";
-import { siteImages } from "@/lib/vehicles";
 
 export const metadata: Metadata = pageMetadata("/about");
 
@@ -40,7 +39,7 @@ export default function AboutPage() {
         description="Precifarm is building the charging hubs and operating network that make electric travel between Kenyan cities dependable, affordable and easy to book. Our solar and storage work across Kenya is the engineering foundation behind intercity charging that lasts."
       />
 
-      <section className="section-pad page-container">
+      <section className="page-container pb-12 pt-6 sm:pb-14 sm:pt-8">
         <Breadcrumbs
           items={[
             { name: "Home", href: "/" },
@@ -49,14 +48,7 @@ export default function AboutPage() {
         />
         <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-10">
           <div className="overflow-hidden rounded-2xl border border-border shadow-lg">
-            <SiteImage
-              src={siteImages.about.image}
-              alt={siteImages.about.imageAlt}
-              width={1200}
-              height={675}
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="aspect-video w-full object-cover"
-            />
+            <HubImage variant="intercityWide" aspectClass="aspect-video" />
           </div>
           <div className="space-y-5 leading-relaxed text-forest-600/85">
             <h2 className="text-lg font-semibold text-forest-900 sm:text-xl">Why we exist</h2>

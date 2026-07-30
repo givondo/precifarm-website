@@ -1,4 +1,5 @@
 import { siteConfig } from "@/lib/seo/config";
+import { contact } from "@/lib/contact";
 
 export async function GET() {
   const body = `# ${siteConfig.name}
@@ -12,10 +13,18 @@ export async function GET() {
 - Home & booking: ${siteConfig.url}/
 - Charge map: ${siteConfig.url}/network
 - Charging services: ${siteConfig.url}/charging
+- Private house charging: ${siteConfig.url}/charging/private-house
 - Partners: ${siteConfig.url}/partners
+- EV charging training (T1, T2, T3): ${siteConfig.url}/training
 - About: ${siteConfig.url}/about
+- Careers: ${siteConfig.url}/careers
 - Download app: ${siteConfig.url}/download
 - Contact: ${siteConfig.url}/contact
+
+## Content hubs
+- FAQ index: ${siteConfig.url}/faq
+- Guides index: ${siteConfig.url}/guides
+- Locations index: ${siteConfig.url}/locations
 
 ## Machine-readable APIs (JSON)
 - Knowledge graph: ${siteConfig.url}/api/knowledge?path=/
@@ -24,6 +33,8 @@ export async function GET() {
 - Search: ${siteConfig.url}/api/search
 - Schema generator: ${siteConfig.url}/api/seo/schema
 - SEO health audit: ${siteConfig.url}/api/seo/health
+- RSS feed: ${siteConfig.url}/feed.xml
+- Sitemap: ${siteConfig.url}/sitemap.xml
 
 ## Languages
 - English: ${siteConfig.url}/
@@ -43,7 +54,8 @@ export async function GET() {
 - Partner operator networks
 
 ## Contact
-- ${siteConfig.contact.email}
+- ${contact.email}
+- ${contact.phone}
 `;
 
   return new Response(body, {

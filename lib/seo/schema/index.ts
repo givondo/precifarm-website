@@ -13,6 +13,7 @@ export function organizationSchema(): JsonLd {
     logo: absoluteUrl("/images/precifarm-logo.png"),
     description: siteConfig.defaultDescription,
     email: siteConfig.contact.email,
+    telephone: siteConfig.contact.phone,
     areaServed: {
       "@type": "Country",
       name: "Kenya",
@@ -262,6 +263,28 @@ export function imageObjectSchema(input: {
     caption: input.caption,
     width: input.width,
     height: input.height,
+  };
+}
+
+export function itemListSchema(input: {
+  name: string;
+  description: string;
+  path: string;
+  items: { name: string; url: string }[];
+}): JsonLd {
+  return {
+    "@context": SCHEMA_CONTEXT,
+    "@type": "ItemList",
+    name: input.name,
+    description: input.description,
+    url: absoluteUrl(input.path),
+    numberOfItems: input.items.length,
+    itemListElement: input.items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      url: item.url.startsWith("http") ? item.url : absoluteUrl(item.url),
+    })),
   };
 }
 

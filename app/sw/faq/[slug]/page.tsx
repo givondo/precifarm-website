@@ -84,7 +84,7 @@ export default async function SwahiliFaqPage({ params }: Props) {
               updatedAt={content.updatedAt}
               sources={content.sources}
             />
-            <Link href="/faq/precifarm-booking-faq" className="mt-4 inline-block text-sm text-charge-600 hover:underline">
+            <Link href="/faq/precifarm-booking-faq" className="text-link mt-4 inline-block text-sm">
               English version
             </Link>
           </div>

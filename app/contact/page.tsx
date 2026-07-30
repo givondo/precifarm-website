@@ -55,14 +55,14 @@ export default function ContactPage() {
               <div className="mt-6 space-y-4">
                 {channels.map((c) => (
                   <div key={c.label} className="card p-5">
-                    <h3 className="text-xs font-semibold uppercase tracking-widest text-charge-600">
+                    <h3 className="text-eyebrow text-xs font-semibold uppercase tracking-widest text-forest-500">
                       {c.label}
                     </h3>
                     <a
                       href={c.href}
                       target={c.external ? "_blank" : undefined}
                       rel={c.external ? "noopener noreferrer" : undefined}
-                      className="mt-1 block font-medium text-forest-900 hover:text-charge-600"
+                      className="text-link mt-1 block font-medium"
                     >
                       {c.value}
                     </a>

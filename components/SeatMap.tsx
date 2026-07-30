@@ -24,7 +24,7 @@ const statusClasses: Record<SeatStatus, string> = {
   available:
     "border-border bg-white text-forest-700 hover:border-forest-900 hover:bg-muted hover:shadow-sm",
   selected:
-    "border-charge-600 bg-charge-600 text-white shadow-md shadow-blue-900/10 ring-2 ring-charge-500/20 ring-offset-1",
+    "border-charge-600 bg-charge-600 text-white shadow-md shadow-charge-600/25 ring-2 ring-charge-400/30 ring-offset-1",
   occupied:
     "cursor-not-allowed border-border bg-muted text-forest-400 line-through opacity-60",
 };
@@ -131,7 +131,7 @@ export default function SeatMap({
           Available
         </span>
         <span className="flex items-center gap-1.5">
-          <span className="h-3 w-3 rounded border border-charge-600 bg-charge-600" />
+          <span className="h-3 w-3 rounded border border-forest-700 bg-forest-700" />
           Selected
         </span>
         <span className="flex items-center gap-1.5">

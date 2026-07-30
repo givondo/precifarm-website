@@ -13,9 +13,10 @@ export const pageSeoRegistry: PageSeoInput[] = [
   },
   {
     path: "/network",
-    title: "Charge Map",
+    title: "Charge Map — EV hubs & Nairobi–Kisumu route",
     description:
       "Interactive map of Precifarm charging hubs, partner sites and Nairobi–Kisumu route coverage across Kenya's electric transport network.",
+    keywords: ["EV charge map Kenya", "Precifarm hubs", "Nairobi Kisumu route map"],
     breadcrumbs: [
       { name: "Home", href: "/" },
       { name: "Charge Map", href: "/network" },
@@ -23,12 +24,30 @@ export const pageSeoRegistry: PageSeoInput[] = [
   },
   {
     path: "/charging",
-    title: "Charging Services",
+    title: "Charging Services — Hubs, home & fleet EV charging",
     description:
       "Route hub charging, home DC installation and private-site stations — engineered and operated by Precifarm for intercity and fleet partners.",
+    keywords: ["EV charging Kenya", "fleet charging", "home DC charger installation"],
     breadcrumbs: [
       { name: "Home", href: "/" },
       { name: "Charging", href: "/charging" },
+    ],
+  },
+  {
+    path: "/charging/private-house",
+    title: "Private House Charging — House-based EV charging in Kenya",
+    description:
+      "House-based private EV charging for your property — DC install at your home, on your meter, with survey, optional Neura Pod solar and five-year Precifarm support.",
+    keywords: [
+      "private house EV charging Kenya",
+      "home DC charger private property",
+      "house based EV charging Nairobi",
+      "residential private charging install",
+    ],
+    breadcrumbs: [
+      { name: "Home", href: "/" },
+      { name: "Charging", href: "/charging" },
+      { name: "Private house charging", href: "/charging/private-house" },
     ],
   },
   {
@@ -42,6 +61,22 @@ export const pageSeoRegistry: PageSeoInput[] = [
     ],
   },
   {
+    path: "/training",
+    title: "EV Charging Training — T1, T2 & T3",
+    description:
+      "Precifarm EV charging training for hub staff and field engineers. T1 safety awareness, T2 field technician and T3 commissioning specialist certification in Kenya.",
+    keywords: [
+      "EV charging training Kenya",
+      "T1 T2 T3 technician certification",
+      "DC fast charger training",
+      "Precifarm training",
+    ],
+    breadcrumbs: [
+      { name: "Home", href: "/" },
+      { name: "Training", href: "/training" },
+    ],
+  },
+  {
     path: "/about",
     title: "About",
     description:
@@ -49,6 +84,16 @@ export const pageSeoRegistry: PageSeoInput[] = [
     breadcrumbs: [
       { name: "Home", href: "/" },
       { name: "About", href: "/about" },
+    ],
+  },
+  {
+    path: "/careers",
+    title: "Careers",
+    description:
+      "Join Precifarm to build charging hubs, booking systems and route operations for electric intercity travel in Kenya.",
+    breadcrumbs: [
+      { name: "Home", href: "/" },
+      { name: "Careers", href: "/careers" },
     ],
   },
   {
@@ -69,6 +114,49 @@ export const pageSeoRegistry: PageSeoInput[] = [
     breadcrumbs: [
       { name: "Home", href: "/" },
       { name: "Contact", href: "/contact" },
+    ],
+  },
+  {
+    path: "/faq",
+    title: "FAQ — Booking, coaches & charging",
+    description:
+      "Frequently asked questions about Precifarm booking, Nairobi–Kisumu electric coaches, M-Pesa tickets and charging hubs in Kenya.",
+    keywords: ["Precifarm FAQ", "electric coach booking Kenya", "M-Pesa bus ticket"],
+    breadcrumbs: [
+      { name: "Home", href: "/" },
+      { name: "FAQ", href: "/faq" },
+    ],
+  },
+  {
+    path: "/guides",
+    title: "Guides — Booking & EV charging in Kenya",
+    description:
+      "Precifarm guides for booking Nairobi–Kisumu electric coach travel, EV charging hubs and partner services in Kenya.",
+    keywords: ["Precifarm guides", "book electric coach Kenya", "EV charging guide"],
+    breadcrumbs: [
+      { name: "Home", href: "/" },
+      { name: "Guides", href: "/guides" },
+    ],
+  },
+  {
+    path: "/locations",
+    title: "Locations — EV charging & electric travel in Kenya",
+    description:
+      "Precifarm hub locations across Kenyan cities. EV charging infrastructure and intercity electric coach connections.",
+    keywords: ["EV charging Kenya cities", "Precifarm hubs", "electric travel locations"],
+    breadcrumbs: [
+      { name: "Home", href: "/" },
+      { name: "Locations", href: "/locations" },
+    ],
+  },
+  {
+    path: "/sw",
+    title: "Precifarm — Usafiri wa umeme Kenya",
+    description:
+      "Precifarm inajenga vituo vya kuchaji na mtandao wa usafiri wa umeme kati ya miji mikuu nchini Kenya. Hifadhi nafasi Nairobi–Kisumu.",
+    breadcrumbs: [
+      { name: "Home", href: "/" },
+      { name: "Kiswahili", href: "/sw" },
     ],
   },
 ];

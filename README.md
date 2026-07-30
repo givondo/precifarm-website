@@ -11,11 +11,14 @@ Public passenger-booking channel for Nairobi–Kisumu.
 ## Start
 
 ```bash
+cp .env.example .env.local   # Windows: copy .env.example .env.local
 npm install
 npm run dev
 ```
 
 Open <http://localhost:3000/#book>.
+
+**Environment:** copy [`.env.example`](./.env.example) → `.env.local`. Full reference: [`docs/infrastructure/environment.md`](../docs/infrastructure/environment.md).
 
 ## Passenger flow
 
@@ -34,7 +37,21 @@ Required passenger data: name, phone, National ID/passport.
 
 CMS mode is required for shared or production-like testing.
 
-Production: `CMS_API_URL=https://api.precifarm.com/api`
+Production non-secret URLs are set on Cloud Run; secrets live in Secret Manager — see [environment.md](../docs/infrastructure/environment.md).
+
+## Public routes
+
+| Route | Purpose |
+|---|---|
+| `/`, `/#book` | Home + booking |
+| `/training` | EV charging certification (T1–T3) |
+| `/charging`, `/charging/private-house` | Charging services + house-based private charging |
+| `/network` | Charge map |
+| `/guides`, `/faq`, `/locations` | CMS-backed SEO content (ISR) |
+| `/sw` | Kiswahili locale |
+| `/partners`, `/about`, `/contact`, `/careers`, `/download` | Marketing |
+
+Full map: [Website channel doc](../docs/channels/website.md).
 
 ## API routes
 
@@ -43,8 +60,12 @@ Production: `CMS_API_URL=https://api.precifarm.com/api`
 | `GET /api/seats` | Seat availability |
 | `POST /api/booking` | Passenger booking |
 | `POST /api/payment` | M-Pesa initiation |
+| `POST /api/contact` | Contact form → CMS |
+| `POST /api/analytics/events` | Analytics proxy |
+| `GET /api/search` | CMS semantic search |
+| `GET /api/cms/health` | CMS connectivity |
 
-These proxy to CMS when `CMS_API_URL` is set.
+Booking routes proxy to CMS when `CMS_API_URL` is set.
 
 ## Key files
 
@@ -53,28 +74,28 @@ These proxy to CMS when `CMS_API_URL` is set.
 | Layout + fonts | `app/layout.tsx` |
 | Global styles / tokens | `app/globals.css` |
 | Homepage | `app/page.tsx` |
-| Hero + booking section | `components/BookingCTA.tsx` |
-| Booking wizard | `components/BookingPortal.tsx` |
-| Seat map | `components/SeatMap.tsx` |
-| Navigation | `components/Header.tsx` |
-| UI library | `components/ui/{Button,Input,Badge,StepIndicator,SectionHeader,...}.tsx` |
-| Website API | `app/api/{booking,payment,seats}/route.ts` |
-| CMS client | `lib/cms.ts` |
-| Validation | `lib/booking.ts` |
-| Demo store | `lib/booking-store.ts` |
-| Route assumptions | `lib/route.ts` |
-| M-Pesa | `lib/mpesa.ts` |
+| Booking | `components/BookingPortal.tsx`, `components/SeatMap.tsx` |
+| Training | `app/training/`, `lib/training.ts` |
+| Private house charging | `app/charging/private-house/`, `lib/home-charging.ts` |
+| SEO | `lib/seo/`, `components/seo/` |
+| Analytics | `lib/analytics.ts`, `components/AnalyticsProvider.tsx` |
+| CMS client | `lib/cms.ts`, `lib/seo/cms-client.ts` |
 
 ## Environment
 
+Copy [`.env.example`](./.env.example) → `.env.local`. **Do not commit `.env.local`.**
+
 | Variable | Purpose |
 |---|---|
+| `NEXT_PUBLIC_SITE_URL` | Canonical URL (SEO) |
 | `CMS_API_URL` | CMS base URL |
-| `DEMO_PAYMENT` | `false` enables live Daraja flow |
-| `MPESA_CONSUMER_KEY` / `MPESA_CONSUMER_SECRET` | Daraja credentials |
-| `MPESA_PASSKEY` / `MPESA_SHORTCODE` | STK credentials |
-| `MPESA_CALLBACK_URL` | Live callback |
-| `MPESA_ENVIRONMENT` | `sandbox` or `production` |
+| `DEMO_PAYMENT` | Demo vs live STK (website-only mode) |
+| `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` | Maps on `/network` (optional) |
+| `ANALYTICS_INGEST_KEY` | Analytics proxy key (must match CMS) |
+| `ANDROID_APP_SHA256` | Android App Links fingerprint |
+| `MPESA_*` | Daraja — **only when CMS is unset** |
+
+Full list and GCP Secret Manager mapping: [`docs/infrastructure/environment.md`](../docs/infrastructure/environment.md).
 
 ## Copy rules
 
@@ -113,9 +134,8 @@ Netlify and Vercel are **deprecated**.
 ## Documentation
 
 - [Deploy to Google Cloud](./docs/DEPLOY-GCP.md)
+- [Workflows](../docs/infrastructure/workflows.md)
+- [Database / Supabase](../docs/infrastructure/database.md)
+- [SEO architecture](./docs/SEO-AISO-ARCHITECTURE.md)
 - [UI design system](./docs/UI.md)
-- [Passenger Booking Agent](../agents/passenger-booking/README.md)
 - [Website Channel](../docs/channels/website.md)
-- [GCP infrastructure](../docs/infrastructure/gcp-deployment.md)
-- [Canon](../docs/CANON.md)
-- [Product Overview](../docs/product/product-overview.md)

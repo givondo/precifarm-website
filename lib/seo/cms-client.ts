@@ -1,4 +1,7 @@
 import { cmsFetch, isCmsEnabled } from "@/lib/cms";
+import { siteConfig } from "@/lib/seo/config";
+
+const SEO_REVALIDATE = 3600;
 
 export type CmsSeoContent = {
   id: string;
@@ -52,7 +55,11 @@ export async function cmsListSeoContent(filters?: {
     if (filters?.status) params.set("status", filters.status);
     if (filters?.locale) params.set("locale", filters.locale);
     const qs = params.toString();
-    const data = await cmsFetch<{ items: CmsSeoContent[] }>(`/seo/content${qs ? `?${qs}` : ""}`);
+    const data = await cmsFetch<{ items: CmsSeoContent[] }>(
+      `/seo/content${qs ? `?${qs}` : ""}`,
+      undefined,
+      { revalidate: SEO_REVALIDATE },
+    );
     return data.items ?? [];
   } catch {
     return [];
@@ -64,6 +71,8 @@ export async function cmsGetSeoContent(slug: string, locale = "en-KE"): Promise<
   try {
     const data = await cmsFetch<{ content: CmsSeoContent }>(
       `/seo/content/${encodeURIComponent(slug)}?locale=${encodeURIComponent(locale)}`,
+      undefined,
+      { revalidate: SEO_REVALIDATE },
     );
     return data.content ?? null;
   } catch {
@@ -75,7 +84,11 @@ export async function cmsListSeoEntities(type?: string): Promise<CmsSeoEntity[]>
   if (!isCmsEnabled()) return [];
   try {
     const qs = type ? `?type=${encodeURIComponent(type)}` : "";
-    const data = await cmsFetch<{ entities: CmsSeoEntity[] }>(`/seo/entities${qs}`);
+    const data = await cmsFetch<{ entities: CmsSeoEntity[] }>(
+      `/seo/entities${qs}`,
+      undefined,
+      { revalidate: SEO_REVALIDATE },
+    );
     return data.entities ?? [];
   } catch {
     return [];
@@ -94,7 +107,7 @@ export async function cmsSearchSeo(query: string, mode: "keyword" | "semantic" =
       content: CmsSeoContent[];
       entities: CmsSeoEntity[];
       meta?: { engine: string; version: string };
-    }>(`/seo/search?${params.toString()}`);
+    }>(`/seo/search?${params.toString()}`, undefined, { revalidate: SEO_REVALIDATE });
   } catch {
     return { query, content: [] as CmsSeoContent[], entities: [] as CmsSeoEntity[] };
   }
@@ -103,7 +116,11 @@ export async function cmsSearchSeo(query: string, mode: "keyword" | "semantic" =
 export async function cmsSeoReport() {
   if (!isCmsEnabled()) return null;
   try {
-    return await cmsFetch<{ report: Record<string, unknown> }>("/seo/report");
+    return await cmsFetch<{ report: Record<string, unknown> }>(
+      "/seo/report",
+      undefined,
+      { revalidate: SEO_REVALIDATE },
+    );
   } catch {
     return null;
   }
@@ -114,6 +131,8 @@ export async function cmsGetSeoEntity(slug: string): Promise<(CmsSeoEntity & { r
   try {
     const data = await cmsFetch<{ entity: CmsSeoEntity; related?: CmsSeoEntity[] }>(
       `/seo/entities/${encodeURIComponent(slug)}`,
+      undefined,
+      { revalidate: SEO_REVALIDATE },
     );
     if (!data.entity) return null;
     return { ...data.entity, related: data.related };
@@ -123,14 +142,18 @@ export async function cmsGetSeoEntity(slug: string): Promise<(CmsSeoEntity & { r
 }
 
 export async function cmsListLocalContent(): Promise<CmsSeoContent[]> {
-  const items = await cmsListSeoContent({ status: "published" });
+  const items = await cmsListSeoContent({ status: "published", locale: siteConfig.locale });
   return items.filter((item) => item.contentType === "local_page");
 }
 
 export async function cmsSeoHealth() {
   if (!isCmsEnabled()) return null;
   try {
-    return await cmsFetch<{ status: string; counts: Record<string, number> }>("/seo/health");
+    return await cmsFetch<{ status: string; counts: Record<string, number> }>(
+      "/seo/health",
+      undefined,
+      { revalidate: SEO_REVALIDATE },
+    );
   } catch {
     return null;
   }

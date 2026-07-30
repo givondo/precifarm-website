@@ -1,20 +1,17 @@
-import Link from "next/link";
-import { createPageSeo } from "@/lib/seo/metadata";
-import { cmsListSeoEntities, cmsListLocalContent } from "@/lib/seo/cms-client";
 import type { Metadata } from "next";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
+import JsonLd from "@/components/seo/JsonLd";
+import ContentIndexCard from "@/components/ui/ContentIndexCard";
+import PageCTA from "@/components/ui/PageCTA";
+import PageHero from "@/components/ui/PageHero";
+import { absoluteUrl } from "@/lib/seo/config";
+import { cmsListSeoEntities, cmsListLocalContent } from "@/lib/seo/cms-client";
+import { pageJsonLd, pageMetadata } from "@/lib/seo/pages/helpers";
+import { itemListSchema } from "@/lib/seo/schema";
 
 export const revalidate = 3600;
 
-export const metadata: Metadata = createPageSeo({
-  title: "Locations — EV charging & electric travel in Kenya",
-  description:
-    "Precifarm hub locations across Kenyan cities. EV charging infrastructure and intercity electric coach connections.",
-  path: "/locations",
-  breadcrumbs: [
-    { name: "Home", href: "/" },
-    { name: "Locations", href: "/locations" },
-  ],
-}).metadata;
+export const metadata: Metadata = pageMetadata("/locations");
 
 export default async function LocationsIndexPage() {
   const [locations, localPages] = await Promise.all([
@@ -24,23 +21,43 @@ export default async function LocationsIndexPage() {
 
   const localBySlug = new Map(localPages.map((p) => [p.slug, p]));
 
-  return (
-    <div className="bg-white">
-      <header className="border-b border-border section-pad">
-        <div className="page-container max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-widest text-forest-500">Locations</p>
-          <h1 className="mt-3 text-3xl font-semibold tracking-tight text-forest-900 sm:text-4xl">
-            EV hubs & cities we serve
-          </h1>
-          <p className="mt-4 text-base leading-relaxed text-forest-600">
-            Local pages for Precifarm charging infrastructure and electric intercity travel across Kenya.
-          </p>
-        </div>
-      </header>
+  const listItems = locations.map((loc) => {
+    const localSlug = `ev-charging-${loc.slug}`;
+    const path = localBySlug.has(localSlug) ? `/locations/${localSlug}` : `/locations/${loc.slug}`;
+    return { name: loc.name, url: absoluteUrl(path) };
+  });
 
-      <div className="section-pad">
+  const jsonLd = [
+    ...pageJsonLd("/locations"),
+    ...(listItems.length > 0
+      ? [
+          itemListSchema({
+            name: "Precifarm Locations",
+            description: "EV charging hubs and cities served by Precifarm across Kenya.",
+            path: "/locations",
+            items: listItems,
+          }),
+        ]
+      : []),
+  ];
+
+  const breadcrumbs = [
+    { name: "Home", href: "/" },
+    { name: "Locations", href: "/locations" },
+  ];
+
+  return (
+    <>
+      <JsonLd data={jsonLd} />
+      <PageHero
+        eyebrow="Locations"
+        title="EV hubs and cities we serve"
+        description="Local pages for Precifarm charging infrastructure and electric intercity travel across Kenya."
+      />
+      <section className="section-pad bg-white">
         <div className="page-container max-w-3xl">
-          <ul className="divide-y divide-border">
+          <Breadcrumbs items={breadcrumbs} />
+          <div className="content-index-grid">
             {locations.map((loc) => {
               const localSlug = `ev-charging-${loc.slug}`;
               const href = localBySlug.has(localSlug)
@@ -49,26 +66,32 @@ export default async function LocationsIndexPage() {
               const county = String(loc.metadata.county ?? loc.metadata.region ?? "");
 
               return (
-                <li key={loc.slug} className="py-5">
-                  <Link href={href} className="group block">
-                    <h2 className="text-lg font-semibold text-forest-900 group-hover:text-charge-600">
-                      {loc.name}
-                    </h2>
-                    {county && <p className="mt-1 text-sm text-forest-500">{county}</p>}
-                    <p className="mt-2 text-sm text-forest-600">{loc.description}</p>
-                  </Link>
-                </li>
+                <ContentIndexCard
+                  key={loc.slug}
+                  href={href}
+                  title={loc.name}
+                  description={loc.description}
+                  meta={county || undefined}
+                />
               );
             })}
-          </ul>
 
-          {locations.length === 0 && (
-            <p className="text-sm text-forest-600">
-              Location data will appear when the CMS is connected and seeded.
-            </p>
-          )}
+            {locations.length === 0 && (
+              <p className="text-sm text-forest-600">
+                Location data will appear when the CMS is connected and seeded.
+              </p>
+            )}
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+      <PageCTA
+        title="Find charging on your route"
+        description="Explore the charge map or book a seat on Nairobi–Kisumu."
+        primaryHref="/network"
+        primaryLabel="View charge map"
+        secondaryHref="/#book"
+        secondaryLabel="Book now"
+      />
+    </>
   );
 }

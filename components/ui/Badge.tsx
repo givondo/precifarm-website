@@ -1,5 +1,5 @@
 const variantClasses: Record<string, string> = {
-  live: "bg-charge-600 text-white border-charge-600",
+  live: "bg-forest-700 text-white border-forest-700",
   muted: "bg-muted text-forest-600 border-border",
   solar: "bg-solar-500/10 text-solar-500 border-solar-500/20",
   outline: "bg-white text-forest-600 border-border",

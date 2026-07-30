@@ -7,17 +7,46 @@ type AisoPageSectionsProps = {
   className?: string;
 };
 
-function FaqList({ items }: { items: FaqItem[] }) {
+function FaqAccordion({ items }: { items: FaqItem[] }) {
   return (
-    <dl className="space-y-5">
+    <div className="aiso-faq-list divide-y divide-border rounded-2xl border border-border bg-white">
       {items.map((faq) => (
-        <div key={faq.question}>
-          <dt className="font-medium text-forest-900">{faq.question}</dt>
-          <dd className="mt-1 text-sm leading-relaxed text-forest-600">{faq.answer}</dd>
-        </div>
+        <details key={faq.question} className="aiso-faq-item group">
+          <summary className="aiso-faq-question">{faq.question}</summary>
+          <p className="aiso-faq-answer">{faq.answer}</p>
+        </details>
       ))}
-    </dl>
+    </div>
   );
+}
+
+function KeyFactsGrid({ items }: { items: string[] }) {
+  return (
+    <ul className="aiso-facts-grid">
+      {items.map((item) => (
+        <li key={item} className="aiso-fact-card">
+          {item}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function HowToSteps({ items }: { items: string[] }) {
+  return (
+    <ol className="aiso-steps">
+      {items.map((step, index) => (
+        <li key={step} className="aiso-step">
+          <span className="aiso-step-num">{index + 1}</span>
+          <span className="aiso-step-text">{step}</span>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+function blockByType(blocks: AisoContentBlock[], type: AisoContentBlock["type"]) {
+  return blocks.find((b) => b.type === type);
 }
 
 export default function AisoPageSections({
@@ -25,65 +54,99 @@ export default function AisoPageSections({
   relatedLinks,
   className = "",
 }: AisoPageSectionsProps) {
-  return (
-    <aside
-      className={`border-t border-border bg-white section-pad ${className}`}
-      aria-label="Additional information for search and AI systems"
-    >
-      <div className="page-container space-y-10">
-        {blocks.map((block) => (
-          <section key={block.id} id={block.id} className="max-w-3xl">
-            <h2 className="text-lg font-semibold text-forest-900">{block.title}</h2>
+  const summary = blockByType(blocks, "executive_summary");
+  const keyFacts = blockByType(blocks, "key_facts");
+  const faq = blockByType(blocks, "faq");
+  const howTo = blockByType(blocks, "how_to");
+  const otherBlocks = blocks.filter(
+    (b) => !["executive_summary", "key_facts", "faq", "how_to"].includes(b.type),
+  );
 
+  const faqItems = faq?.items as FaqItem[] | undefined;
+  const factItems = keyFacts?.items as string[] | undefined;
+  const howToItems = howTo?.items as string[] | undefined;
+
+  return (
+    <section
+      className={`aiso-section border-t border-border bg-muted/30 section-pad ${className}`}
+      aria-label="Quick answers about Precifarm"
+    >
+      <div className="page-container">
+        <div className="aiso-section-head">
+          <p className="text-eyebrow text-sm font-semibold uppercase tracking-widest text-charge-600">
+            Quick answers
+          </p>
+          <h2 className="heading-display mt-2 text-2xl sm:text-3xl">
+            Plan your trip and find what you need
+          </h2>
+        </div>
+
+        <div className="aiso-section-grid mt-10">
+          {(summary || keyFacts) && (
+            <div className="aiso-section-panel">
+              {summary?.content && (
+                <div className="aiso-summary-card">
+                  <h3 className="aiso-panel-title">{summary.title}</h3>
+                  <p className="aiso-summary-text">{summary.content}</p>
+                </div>
+              )}
+              {factItems && factItems.length > 0 && (
+                <div className={summary?.content ? "mt-6" : ""}>
+                  <h3 className="aiso-panel-title">{keyFacts?.title ?? "Key facts"}</h3>
+                  <KeyFactsGrid items={factItems} />
+                </div>
+              )}
+            </div>
+          )}
+
+          {howToItems && howToItems.length > 0 && (
+            <div className="aiso-section-panel">
+              <h3 className="aiso-panel-title">{howTo?.title ?? "How to book"}</h3>
+              <HowToSteps items={howToItems} />
+              <Link href="/#book" className="aiso-book-link">
+                Book now →
+              </Link>
+            </div>
+          )}
+        </div>
+
+        {faqItems && faqItems.length > 0 && (
+          <div className="mt-10">
+            <h3 className="aiso-panel-title mb-4">{faq?.title ?? "FAQ"}</h3>
+            <FaqAccordion items={faqItems} />
+          </div>
+        )}
+
+        {otherBlocks.map((block) => (
+          <section key={block.id} id={block.id} className="mt-10 max-w-3xl">
+            <h3 className="aiso-panel-title">{block.title}</h3>
             {block.content && (
               <p className="mt-3 text-sm leading-relaxed text-forest-600">{block.content}</p>
-            )}
-
-            {block.type === "faq" && Array.isArray(block.items) && block.items.length > 0 && (
-              <div className="mt-4">
-                <FaqList items={block.items as FaqItem[]} />
-              </div>
-            )}
-
-            {block.type === "key_facts" && Array.isArray(block.items) && (
-              <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-forest-600">
-                {(block.items as string[]).map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            )}
-
-            {block.type === "how_to" && Array.isArray(block.items) && (
-              <ol className="mt-4 list-decimal space-y-2 pl-5 text-sm text-forest-600">
-                {(block.items as string[]).map((step) => (
-                  <li key={step}>{step}</li>
-                ))}
-              </ol>
             )}
           </section>
         ))}
 
         {relatedLinks && relatedLinks.length > 0 && (
-          <section className="max-w-3xl">
-            <h2 className="text-lg font-semibold text-forest-900">Related pages</h2>
-            <ul className="mt-4 space-y-2">
+          <div className="mt-10">
+            <h3 className="aiso-panel-title mb-4">Related pages</h3>
+            <ul className="aiso-related-grid">
               {relatedLinks.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm font-medium text-charge-600 hover:underline"
-                  >
-                    {link.label}
+                  <Link href={link.href} className="aiso-related-card group">
+                    <span className="aiso-related-label">{link.label}</span>
+                    {link.reason && (
+                      <span className="aiso-related-reason">{link.reason}</span>
+                    )}
+                    <span className="aiso-related-arrow" aria-hidden>
+                      →
+                    </span>
                   </Link>
-                  {link.reason && (
-                    <span className="ml-2 text-sm text-forest-500">— {link.reason}</span>
-                  )}
                 </li>
               ))}
             </ul>
-          </section>
+          </div>
         )}
       </div>
-    </aside>
+    </section>
   );
 }

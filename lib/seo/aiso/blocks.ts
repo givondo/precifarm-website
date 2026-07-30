@@ -16,38 +16,40 @@ export function buildExecutiveSummary(text: string): AisoContentBlock {
 /** Default homepage AISO blocks */
 export const homepageAisoBlocks: AisoContentBlock[] = [
   buildExecutiveSummary(
-    "Precifarm is Kenya's electric transport infrastructure company. We build route charging hubs, run the booking and payments network, and partner with licensed operators on scheduled intercity coaches — starting with Nairobi–Kisumu.",
+    "Precifarm builds route charging hubs and runs the booking network for scheduled electric coaches in Kenya. Licensed operators run the coaches; we provide reserved hub energy, timetables, M-Pesa tickets and passenger data — live today on Nairobi–Kisumu.",
   ),
   buildKeyFacts("Key facts", [
-    "Live route: Nairobi – Kisumu (~345 km, about 4h 45m)",
-    "Fare: KSh 1,550 per seat with M-Pesa checkout",
+    "Live route: Nairobi – Kisumu · ~345 km · about 4h 45m",
+    "Fare: KSh 1,550 per seat · M-Pesa checkout",
     "Vehicle: Yutong U18 electric intercity coach",
-    "Ticket delivery: SMS confirmation with booking reference",
-    "Hub charging reserved before every scheduled departure",
+    "Ticket: SMS confirmation with PF booking reference",
+    "Energy: hub charging reserved before every departure",
   ]),
-  buildGeoFaqSet("Precifarm and Nairobi–Kisumu booking", [
+  buildGeoFaqSet("booking and travel", [
     {
       question: "What is Precifarm?",
       answer:
-        "Precifarm builds charging hubs and the operating network that make electric travel between Kenyan cities dependable and bookable. We are not a bus company — licensed partners operate the coaches while we provide energy, schedules and passenger booking.",
+        "Precifarm is electric transport infrastructure — charging hubs plus the operating software that keeps intercity coaches on timetable. We are not a bus company; licensed partners operate the vehicles while we provide energy, booking and passenger data.",
     },
     {
-      question: "How do I book a seat on Nairobi–Kisumu?",
+      question: "How do I book Nairobi–Kisumu?",
       answer:
-        "Visit precifarm.com, choose your departure date and time, select a seat, enter passenger details and pay with M-Pesa. You receive an SMS ticket with your booking reference.",
+        "Open precifarm.com, pick your date and departure, choose a seat, enter passenger details and pay with M-Pesa. Your SMS ticket includes a PF booking reference for boarding.",
     },
     {
-      question: "How much does Nairobi–Kisumu cost?",
-      answer: "The fixed fare is KSh 1,550 per seat on the Yutong U18 electric coach.",
+      question: "How much does the fare cost?",
+      answer:
+        "KSh 1,550 per seat on the Yutong U18 electric coach. The price is fixed at checkout — no surprise fuel surcharges.",
     },
     {
       question: "What payment methods are accepted?",
-      answer: "M-Pesa is supported at checkout on the website and Android passenger app.",
+      answer:
+        "M-Pesa STK push at checkout on the website and Android passenger app. Pay on your phone; the ticket arrives by SMS.",
     },
     {
-      question: "Where does Precifarm operate charging hubs?",
+      question: "Where are Precifarm charging hubs?",
       answer:
-        "Precifarm operates intercity charging hubs along live and planned routes. View current hub locations on the Charge Map at precifarm.com/network.",
+        "Kisumu, Nakuru and Nairobi depot are live on the Nairobi–Kisumu corridor today, with partner stops along the route. See the Charge Map at precifarm.com/network.",
     },
   ]),
 ];
@@ -57,11 +59,18 @@ export const bookingHowToBlock: AisoContentBlock = {
   type: "how_to",
   title: "How to book a seat",
   items: [
-    "Open precifarm.com and scroll to the booking form",
-    "Select travel date, departure time and number of passengers",
+    "Open precifarm.com and go to Book your seat",
+    "Pick travel date, departure time and passengers",
     "Choose your seat on the Yutong U18 coach",
-    "Enter full name, phone number and National ID or passport",
-    "Confirm details and pay with M-Pesa STK push",
-    "Save your SMS ticket with the PF booking reference",
+    "Enter name, phone and National ID or passport",
+    "Pay with M-Pesa STK push on your phone",
+    "Save the SMS ticket with your PF reference for boarding",
   ],
 };
+
+export const homepageRelatedLinks = [
+  { href: "/network", label: "Charge Map", reason: "Live hub locations on Nairobi–Kisumu" },
+  { href: "/charging", label: "Charging services", reason: "Route hubs, home and private-site" },
+  { href: "/faq", label: "FAQ", reason: "Answers on booking and travel" },
+  { href: "/guides/book-nairobi-kisumu-coach", label: "Booking guide", reason: "Full walkthrough" },
+] as const;

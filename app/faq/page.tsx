@@ -1,41 +1,82 @@
-import Link from "next/link";
 import type { Metadata } from "next";
-import { createPageSeo } from "@/lib/seo/metadata";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
+import JsonLd from "@/components/seo/JsonLd";
+import ContentIndexCard from "@/components/ui/ContentIndexCard";
+import PageCTA from "@/components/ui/PageCTA";
+import PageHero from "@/components/ui/PageHero";
+import { absoluteUrl } from "@/lib/seo/config";
 import { cmsListSeoContent } from "@/lib/seo/cms-client";
+import { pageJsonLd, pageMetadata } from "@/lib/seo/pages/helpers";
+import { itemListSchema } from "@/lib/seo/schema";
+import { siteConfig } from "@/lib/seo/config";
 
 export const revalidate = 3600;
 
-export const metadata: Metadata = createPageSeo({
-  title: "FAQ",
-  description:
-    "Frequently asked questions about Precifarm booking, Nairobi–Kisumu electric coaches, M-Pesa tickets and charging hubs.",
-  path: "/faq",
-}).metadata;
+export const metadata: Metadata = pageMetadata("/faq");
 
 export default async function FaqIndexPage() {
-  const items = await cmsListSeoContent({ status: "published" });
+  const items = await cmsListSeoContent({ status: "published", locale: siteConfig.locale });
   const faqs = items.filter((item) => item.contentType === "faq");
+  const pageSeo = pageJsonLd("/faq");
+  const listItems = faqs.map((item) => ({
+    name: item.title,
+    url: absoluteUrl(`/faq/${item.slug}`),
+  }));
+
+  const jsonLd = [
+    ...pageSeo,
+    ...(listItems.length > 0
+      ? [
+          itemListSchema({
+            name: "Precifarm FAQ",
+            description: "Frequently asked questions about Precifarm booking and electric travel in Kenya.",
+            path: "/faq",
+            items: listItems,
+          }),
+        ]
+      : []),
+  ];
+
+  const breadcrumbs = [
+    { name: "Home", href: "/" },
+    { name: "FAQ", href: "/faq" },
+  ];
 
   return (
-    <div className="bg-white section-pad">
-      <div className="page-container max-w-3xl">
-        <p className="text-sm font-semibold uppercase tracking-widest text-forest-500">FAQ</p>
-        <h1 className="mt-3 text-3xl font-semibold text-forest-900">Frequently asked questions</h1>
-
-        <ul className="mt-10 space-y-4">
-          {faqs.length === 0 && (
-            <li className="text-sm text-forest-500">FAQs will appear here once published from the CMS.</li>
-          )}
-          {faqs.map((item) => (
-            <li key={item.slug} className="border-b border-border pb-4">
-              <Link href={`/faq/${item.slug}`} className="text-lg font-semibold text-charge-600 hover:underline">
-                {item.title}
-              </Link>
-              <p className="mt-1 text-sm text-forest-600">{item.description}</p>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
+    <>
+      <JsonLd data={jsonLd} />
+      <PageHero
+        eyebrow="FAQ"
+        title="Frequently asked questions"
+        description="Booking, M-Pesa tickets, charging hubs and travel on the Nairobi–Kisumu route."
+      />
+      <section className="section-pad bg-white">
+        <div className="page-container max-w-3xl">
+          <Breadcrumbs items={breadcrumbs} />
+          <div className="content-index-grid">
+            {faqs.length === 0 && (
+              <p className="text-sm text-forest-500">
+                FAQs will appear here once published from the CMS.
+              </p>
+            )}
+            {faqs.map((item) => (
+              <ContentIndexCard
+                key={item.id}
+                href={`/faq/${item.slug}`}
+                title={item.title}
+                description={item.description}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+      <PageCTA
+        title="Still have questions?"
+        description="Book a seat or reach out — we respond on phone, email and WhatsApp."
+        primaryLabel="Book now"
+        secondaryHref="/contact"
+        secondaryLabel="Contact us"
+      />
+    </>
   );
 }

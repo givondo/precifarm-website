@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import SeatMap from "@/components/SeatMap";
-import Badge from "@/components/ui/Badge";
+import BookingRouteCard from "@/components/BookingRouteCard";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import StepIndicator from "@/components/ui/StepIndicator";
@@ -27,7 +27,7 @@ import { nairobiKisumuRoute } from "@/lib/route";
 import type { SeatId } from "@/lib/seats";
 import { getBookingAnalyticsPayload, trackEvent } from "@/lib/analytics";
 
-const { from, to, duration, fare, departures, vehicle, label } = nairobiKisumuRoute;
+const { from, to, duration, fare, departures, vehicle } = nairobiKisumuRoute;
 
 type Step = "search" | "seats" | "details" | "confirm" | "paying" | "done";
 
@@ -86,7 +86,7 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
 
   const shell = compact
     ? "rounded-2xl border-0 bg-transparent shadow-none"
-    : "overflow-hidden rounded-2xl border border-border bg-white";
+    : "card-elevated overflow-hidden";
   const bodyPad = compact ? "p-0" : "p-6";
   const formGap = compact ? "space-y-4" : "space-y-5";
 
@@ -430,18 +430,19 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
 
   if (step === "done") {
     return (
-      <div className={compact ? "rounded-2xl border border-border bg-white p-6 shadow-sm" : `${shell} p-6`}>
-        <div className="text-center">
-          <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-charge-500/15">
-            <svg viewBox="0 0 24 24" className="h-7 w-7 text-charge-600" fill="none" stroke="currentColor" strokeWidth="2.5">
+      <div className={compact ? "rounded-2xl border border-border bg-white p-6 shadow-sm" : `${shell} overflow-hidden`}>
+        <div className="p-6 text-center">
+          <span className="booking-pulse-ring mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-green-100 to-charge-100">
+            <svg viewBox="0 0 24 24" className="h-8 w-8 text-green-600" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="M20 6 9 17l-5-5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </span>
-          <h3 className="mt-4 text-lg font-semibold text-forest-900">Ticket confirmed</h3>
-          <p className="mt-3 font-mono text-2xl font-bold tracking-wide text-charge-600">{bookingRef}</p>
+          <h3 className="mt-5 text-xl font-bold text-forest-900">You&apos;re booked!</h3>
+          <p className="mt-1 text-sm text-forest-600">Ticket confirmed · SMS sent</p>
+          <p className="mt-4 font-mono text-3xl font-bold tracking-wide text-charge-600">{bookingRef}</p>
           <p className="mt-1 text-xs text-forest-500">Show this reference at boarding</p>
 
-          <div className="mt-5 space-y-2 rounded-xl border border-border bg-forest-50 p-4 text-left text-sm">
+          <div className="mt-6 space-y-2.5 rounded-2xl border border-border bg-gradient-to-br from-muted/50 to-white p-4 text-left text-sm">
             <div className="flex justify-between gap-4">
               <span className="text-forest-600">Route</span>
               <span className="font-medium text-forest-900">
@@ -481,7 +482,7 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
           </p>
 
           {isDemo && (
-            <p className="mt-3 rounded-lg bg-charge-500/10 px-3 py-2 text-xs text-charge-700">
+            <p className="mt-3 rounded-lg bg-forest-100 px-3 py-2 text-xs text-forest-700">
               Demo payment — no real M-Pesa charge was made.
             </p>
           )}
@@ -489,7 +490,7 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
           <button
             type="button"
             onClick={resetForm}
-            className="mt-6 text-sm font-medium text-charge-600 hover:text-charge-500"
+            className="btn-secondary mt-6 rounded-full px-6 py-2.5 text-sm"
           >
             Book another journey
           </button>
@@ -500,33 +501,31 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
 
   if (step === "paying") {
     return (
-      <div className={compact ? "rounded-2xl border border-border bg-white p-6 shadow-sm" : `${shell} p-6`}>
-        <div className="py-6 text-center">
-          <span className="mx-auto flex h-12 w-12 items-center justify-center">
-            <svg
-              className="h-10 w-10 animate-spin text-charge-600"
-              viewBox="0 0 24 24"
-              fill="none"
-              aria-hidden
-            >
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" />
-              <path
-                className="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-              />
-            </svg>
+      <div className={compact ? "rounded-2xl border border-border bg-white p-6 shadow-sm" : `${shell} overflow-hidden`}>
+        <div className="p-6 py-8 text-center">
+          <span className="relative mx-auto flex h-16 w-16 items-center justify-center">
+            <span className="absolute inset-0 animate-ping rounded-full bg-green-400/20" aria-hidden />
+            <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-green-100">
+              <svg viewBox="0 0 24 24" className="h-7 w-7 text-green-700" fill="currentColor" aria-hidden>
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H8v-2h3V9h2v4h3v2h-3v4h-2z" />
+              </svg>
+            </span>
           </span>
-          <h3 className="mt-4 text-lg font-semibold text-forest-900">M-Pesa Express STK sent</h3>
-          <p className="mt-2 text-sm text-forest-600/80">
+          <h3 className="mt-5 text-lg font-bold text-forest-900">Check your phone</h3>
+          <p className="mt-2 text-sm leading-relaxed text-forest-600">
             {paymentMessage ||
-              `Check your phone (${formatPhoneDisplay(phone)}) and enter your M-Pesa PIN when prompted.`}
+              `M-Pesa STK sent to ${formatPhoneDisplay(phone)}. Enter your PIN to pay.`}
           </p>
           {pendingReference ? (
             <p className="mt-3 font-mono text-sm font-semibold text-charge-600">{pendingReference}</p>
           ) : null}
-          <p className="mt-4 text-xs text-forest-500">KSh {total.toLocaleString()} · {from} → {to}</p>
-          <p className="mt-2 text-xs text-forest-500 animate-pulse">Waiting for payment confirmation…</p>
+          <div className="booking-fare-highlight mx-auto mt-5 max-w-xs">
+            <p className="text-xs text-forest-500">{from} → {to}</p>
+            <p className="font-mono text-xl font-bold text-charge-600">KSh {total.toLocaleString()}</p>
+          </div>
+          <p className="mt-4 text-xs font-medium text-forest-500 animate-pulse">
+            Waiting for payment confirmation…
+          </p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
             <button
               type="button"
@@ -557,49 +556,45 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
 
   return (
     <div className={shell}>
-      <div className={compact ? "pb-4" : "border-b border-border px-6 py-5"}>
+      <div className={compact ? "pb-4 pt-4" : "border-b border-border px-6 py-5"}>
         <div className="flex items-start justify-between gap-3">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-forest-500">
+            <p className="text-eyebrow text-xs font-semibold uppercase tracking-widest text-charge-600">
               Book Now
             </p>
-            <h3 className={`font-semibold text-forest-900 ${compact ? "mt-0.5 text-sm" : "mt-1 text-lg"}`}>
-              Choose your journey
+            <h3 className={`font-bold text-forest-900 ${compact ? "mt-0.5 text-sm" : "mt-1 text-lg"}`}>
+              {step === "search" && "Choose your journey"}
+              {step === "seats" && "Pick your seats"}
+              {step === "details" && "Passenger details"}
+              {step === "confirm" && "Review & pay"}
             </h3>
+            {!compact && (
+              <p className="mt-0.5 text-xs text-forest-500">
+                Step {stepIndex + 1} of {STEPS.length}
+              </p>
+            )}
           </div>
-          <span className="shrink-0">
-            <Badge>Live</Badge>
+          <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-green-200 bg-green-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-green-800">
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-green-500" aria-hidden />
+            Live
           </span>
         </div>
 
         {stepIndex >= 0 && (
-          <div className="mt-5">
+          <div className="mt-4">
             <StepIndicator steps={STEPS} currentIndex={stepIndex} />
           </div>
         )}
 
-        <div className="mt-5 rounded-xl border border-border bg-muted p-4">
-          <div className="flex items-center justify-between gap-3">
-            <div className="min-w-0">
-              <p className="text-base font-semibold text-forest-900">{from}</p>
-              <p className="text-xs text-forest-500">Departure</p>
-            </div>
-            <div className="flex min-w-0 flex-1 flex-col items-center px-2">
-              <span className="text-[11px] font-medium text-forest-500">{duration}</span>
-              <div className="mt-1 h-px w-full max-w-[5rem] bg-border" />
-              <span className="mt-1 text-[11px] font-medium text-forest-700">{vehicle}</span>
-            </div>
-            <div className="min-w-0 text-right">
-              <p className="text-base font-semibold text-forest-900">{to}</p>
-              <p className="text-xs text-forest-500">Arrival</p>
-            </div>
-          </div>
-          <div className="mt-3 flex flex-wrap items-center justify-between gap-2 border-t border-border pt-3 text-xs text-forest-600">
-            <span>{label}</span>
-            <span className="font-medium text-forest-900">
-              KSh {fare.toLocaleString()} per seat
-            </span>
-          </div>
+        <div className="mt-4">
+          <BookingRouteCard
+            from={from}
+            to={to}
+            duration={duration}
+            vehicle={vehicle}
+            fare={fare}
+            compact={compact}
+          />
         </div>
       </div>
 
@@ -662,10 +657,15 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
                 </select>
               </label>
               <div className="flex items-end">
-                <div className="w-full rounded-xl border border-border bg-muted px-4 py-3">
-                  <p className="text-xs text-forest-500">Total fare</p>
-                  <p className="text-base font-semibold text-forest-900">
+                <div className="booking-fare-highlight w-full">
+                  <p className="text-[10px] font-semibold uppercase tracking-wider text-forest-500">
+                    Total fare
+                  </p>
+                  <p className="font-mono text-2xl font-bold tabular-nums text-charge-600">
                     KSh {total.toLocaleString()}
+                  </p>
+                  <p className="text-[11px] text-forest-500">
+                    {passengers} passenger{passengers > 1 ? "s" : ""} × KSh {fare.toLocaleString()}
                   </p>
                 </div>
               </div>
@@ -681,12 +681,8 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
                     key={t}
                     type="button"
                     onClick={() => setTime(t)}
-                    className={`rounded-lg font-medium transition-colors ${
-                      compact ? "px-2 py-2 text-xs" : "px-3 py-2.5 text-sm"
-                    } ${
-                      time === t
-                        ? "bg-charge-600 text-white"
-                        : "border border-border bg-muted text-forest-700 hover:border-forest-300"
+                    className={`booking-time-chip ${compact ? "px-2 py-2 text-xs" : ""} ${
+                      time === t ? "booking-time-chip-selected" : ""
                     }`}
                   >
                     {t}
@@ -698,31 +694,34 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
             <button
               type="button"
               onClick={goToSeats}
-              className="btn-primary w-full disabled:opacity-50"
+              className="btn-primary w-full rounded-xl py-3.5 text-base shadow-md shadow-charge-600/20 disabled:opacity-50"
             >
-              Continue to seat selection
+              Continue to seats →
             </button>
 
-            <p className="text-center text-xs leading-relaxed text-forest-500">
-              Pay with M-Pesa and receive your ticket by SMS.
-            </p>
+            <div className="booking-mpesa-strip">
+              <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0 text-green-700" fill="currentColor" aria-hidden>
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H8v-2h3V9h2v4h3v2h-3v4h-2z" />
+              </svg>
+              Pay with M-Pesa · SMS ticket in seconds
+            </div>
           </div>
         )}
 
         {step === "seats" && (
           <div className="space-y-5">
-            <div className="rounded-xl bg-forest-50 p-4 text-sm">
+            <div className="rounded-2xl border border-charge-200 bg-charge-50 p-4 text-sm">
               <div className="flex items-center justify-between gap-2">
-                <p className="font-medium text-forest-900">
+                <p className="font-semibold text-forest-900">
                   Select {passengers} seat{passengers > 1 ? "s" : ""}
                 </p>
-                <span className="text-xs font-bold text-forest-900">
+                <span className="rounded-full bg-charge-600 px-2 py-0.5 text-xs font-bold text-white">
                   {selectedSeats.length}/{passengers}
                 </span>
               </div>
-              <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-border">
+              <div className="mt-2.5 h-2 overflow-hidden rounded-full bg-white">
                 <div
-                  className="h-full rounded-full bg-charge-600 transition-all duration-300"
+                  className="h-full rounded-full bg-gradient-to-r from-charge-600 to-green-500 transition-all duration-300"
                   style={{ width: `${seatProgress * 100}%` }}
                 />
               </div>
@@ -763,13 +762,13 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
 
         {step === "details" && (
           <div className="space-y-5">
-            <div className="rounded-xl bg-forest-50 p-4 text-sm">
-              <p className="font-medium text-forest-900">
+            <div className="rounded-2xl border border-border bg-gradient-to-br from-muted/60 to-white p-4 text-sm">
+              <p className="font-semibold text-forest-900">
                 {from} → {to} · {vehicle}
               </p>
               <p className="mt-1 text-forest-600">
-                {date} · {time} · Seats {formatSeats(selectedSeats)} · KSh{" "}
-                {total.toLocaleString()}
+                {date} · {time} · Seats {formatSeats(selectedSeats)} ·{" "}
+                <span className="font-semibold text-charge-600">KSh {total.toLocaleString()}</span>
               </p>
             </div>
 
@@ -829,7 +828,7 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
 
         {step === "confirm" && (
           <div className="space-y-5">
-            <div className="space-y-3 rounded-xl border border-border p-4 text-sm">
+            <div className="space-y-3 rounded-2xl border border-border bg-gradient-to-br from-muted/40 to-white p-4 text-sm">
               <div className="flex justify-between gap-4">
                 <span className="text-forest-600">Route</span>
                 <span className="text-right font-medium text-forest-900">
@@ -861,20 +860,20 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
                 <span className="font-medium text-forest-900">{formatPhoneDisplay(phone)}</span>
               </div>
               <div className="flex justify-between gap-4 border-t border-border pt-3">
-                <span className="font-medium text-forest-900">Total</span>
-                <span className="text-base font-semibold text-forest-900">
+                <span className="font-semibold text-forest-900">Total</span>
+                <span className="font-mono text-lg font-bold text-charge-600">
                   KSh {total.toLocaleString()}
                 </span>
               </div>
             </div>
 
-            <div className="flex items-start gap-3 rounded-xl border border-border bg-muted px-4 py-3 text-xs leading-relaxed text-forest-600">
-              <svg viewBox="0 0 24 24" className="mt-0.5 h-4 w-4 shrink-0 text-forest-900" fill="currentColor" aria-hidden>
+            <div className="booking-mpesa-strip text-left">
+              <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0 text-green-700" fill="currentColor" aria-hidden>
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H8v-2h3V9h2v4h3v2h-3v4h-2z" />
               </svg>
-              <p>
-                {mpesaTrustCopy(paymentMode)} Payment goes to{" "}
-                {formatPhoneDisplay(phone) || "your phone"} · KSh {total.toLocaleString()}.
+              <p className="leading-relaxed">
+                {mpesaTrustCopy(paymentMode)} Payment to{" "}
+                {formatPhoneDisplay(phone) || "your phone"}.
               </p>
             </div>
 
@@ -885,19 +884,19 @@ export default function BookingPortal({ compact = false }: { compact?: boolean }
                   setError("");
                   setStep("details");
                 }}
-                className="rounded-xl border border-border px-5 py-3 text-sm font-medium text-forest-700 hover:bg-muted"
+                className="btn-secondary rounded-xl px-5 py-3 text-sm"
               >
                 Back
               </button>
               <button
                 type="button"
                 onClick={handlePayment}
-                className="btn-primary flex flex-1 items-center justify-center gap-2 py-3"
+                className="btn-primary flex flex-1 items-center justify-center gap-2 rounded-xl py-3.5 text-base shadow-md shadow-charge-600/20"
               >
                 <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden>
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H8v-2h3V9h2v4h3v2h-3v4h-2z" />
                 </svg>
-                Pay KSh {total.toLocaleString()} with M-Pesa Express
+                Pay KSh {total.toLocaleString()}
               </button>
             </div>
           </div>

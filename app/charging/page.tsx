@@ -12,8 +12,8 @@ export default function ChargingPage() {
       <JsonLd data={pageJsonLd("/charging")} />
       <PageHero
         eyebrow="Charging"
-        title="Route hubs, EV home charging and in-house stations for private entities"
-        description="Precifarm delivers dependable DC fast charging on intercity routes, at home and on private sites — designed, installed and operated by the same regional engineering teams."
+        title="Route hubs, private house charging and in-house stations for private entities"
+        description="Precifarm delivers dependable DC fast charging on intercity routes, at private houses and on commercial private sites — designed, installed and operated by the same regional engineering teams."
       />
       <section className="border-b border-border bg-white">
         <ChargingSection />

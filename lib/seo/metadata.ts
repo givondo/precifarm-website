@@ -1,17 +1,21 @@
 import type { Metadata } from "next";
+import { contact } from "@/lib/contact";
 import { absoluteUrl, siteConfig } from "@/lib/seo/config";
+import { bookingHowToBlock } from "@/lib/seo/aiso/blocks";
 import { hreflangAlternates } from "@/lib/seo/i18n";
 import {
   articleSchema,
   breadcrumbSchema,
   faqSchema,
-  globalSchemas,
+  howToSchema,
   serviceSchema,
   webPageSchema,
 } from "@/lib/seo/schema";
 import type { GeneratedPageSeo, PageSeoInput } from "@/lib/seo/types";
 
-const DEFAULT_OG_IMAGE = "/images/precifarm-logo.png";
+const DEFAULT_OG_IMAGE = "/opengraph-image";
+const OG_IMAGE_WIDTH = 1200;
+const OG_IMAGE_HEIGHT = 630;
 
 function buildTitle(title: string): string {
   if (title.includes("Precifarm")) return title;
@@ -41,7 +45,7 @@ export function createPageSeo(input: PageSeoInput): GeneratedPageSeo {
       siteName: siteConfig.name,
       title,
       description: input.description,
-      images: [{ url: ogImage, alt: siteConfig.name }],
+      images: [{ url: ogImage, width: OG_IMAGE_WIDTH, height: OG_IMAGE_HEIGHT, alt: siteConfig.name }],
       ...(input.publishedTime ? { publishedTime: input.publishedTime } : {}),
       ...(input.modifiedTime ? { modifiedTime: input.modifiedTime } : {}),
     },
@@ -55,7 +59,6 @@ export function createPageSeo(input: PageSeoInput): GeneratedPageSeo {
   };
 
   const jsonLd = [
-    ...globalSchemas(),
     webPageSchema({ title, description: input.description, path: input.path }),
   ];
 
@@ -74,6 +77,16 @@ export function createPageSeo(input: PageSeoInput): GeneratedPageSeo {
         description: input.description,
         path: "/#book",
         areaServed: "Kenya",
+      }),
+      howToSchema({
+        name: bookingHowToBlock.title,
+        description: "Book a Nairobi–Kisumu electric coach seat on Precifarm with M-Pesa.",
+        steps: (bookingHowToBlock.items ?? [])
+          .filter((step): step is string => typeof step === "string")
+          .map((step, index) => ({
+            name: `Step ${index + 1}`,
+            text: step,
+          })),
       }),
     );
   }

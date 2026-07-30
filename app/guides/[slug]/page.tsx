@@ -1,11 +1,12 @@
-import Link from "next/link";
+import PageCTA from "@/components/ui/PageCTA";
+import PageHero from "@/components/ui/PageHero";
 import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import MarkdownContent from "@/components/seo/MarkdownContent";
 import TrustSignals from "@/components/seo/TrustSignals";
 import AisoPageSections from "@/components/seo/AisoPageSections";
-import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import { cmsGetSeoContent, cmsListSeoContent, type CmsSeoContent } from "@/lib/seo/cms-client";
+import { siteConfig } from "@/lib/seo/config";
 import { internalLinksForPath } from "@/lib/seo/entities/registry";
 import { createPageSeo } from "@/lib/seo/metadata";
 import { articleSchema } from "@/lib/seo/schema";
@@ -42,7 +43,7 @@ function buildSeo(slug: string, content: CmsSeoContent) {
 }
 
 export async function generateStaticParams() {
-  const items = await cmsListSeoContent({ status: "published" });
+  const items = await cmsListSeoContent({ status: "published", locale: siteConfig.locale });
   return items
     .filter((item) => ["guide", "howto", "article"].includes(item.contentType))
     .map((item) => ({ slug: item.slug }));
@@ -84,29 +85,24 @@ export default async function GuidePage({ params }: Props) {
     <>
       <JsonLd data={jsonLd} />
       <article className="bg-white">
-        <header className="border-b border-border section-pad">
-          <div className="page-container max-w-3xl">
-            <Breadcrumbs
-              items={[
-                { name: "Home", href: "/" },
-                { name: "Guides", href: "/guides" },
-                { name: content.title, href: path },
-              ]}
-            />
-            <p className="text-sm font-semibold uppercase tracking-widest text-forest-500">Guide</p>
-            <h1 className="mt-3 text-3xl font-semibold tracking-tight text-forest-900 sm:text-4xl">
-              {content.title}
-            </h1>
-            <p className="mt-4 text-base leading-relaxed text-forest-600">{content.description}</p>
-            <TrustSignals
-              authorName={content.authorName}
-              reviewerName={content.reviewerName}
-              reviewedAt={content.reviewedAt}
-              updatedAt={content.updatedAt}
-              sources={content.sources}
-            />
-          </div>
-        </header>
+        <PageHero
+          eyebrow="Guide"
+          title={content.title}
+          description={content.description}
+          breadcrumbs={[
+            { name: "Home", href: "/" },
+            { name: "Guides", href: "/guides" },
+            { name: content.title, href: path },
+          ]}
+        >
+          <TrustSignals
+            authorName={content.authorName}
+            reviewerName={content.reviewerName}
+            reviewedAt={content.reviewedAt}
+            updatedAt={content.updatedAt}
+            sources={content.sources}
+          />
+        </PageHero>
 
         {content.bodyMd && (
           <div className="section-pad">
@@ -120,13 +116,11 @@ export default async function GuidePage({ params }: Props) {
           <AisoPageSections blocks={aisoBlocks} relatedLinks={internalLinksForPath(path)} />
         )}
 
-        <div className="border-t border-border section-pad">
-          <div className="page-container max-w-3xl">
-            <Link href="/#book" className="btn-primary inline-flex rounded-full px-6 py-3 text-sm">
-              Book Nairobi–Kisumu
-            </Link>
-          </div>
-        </div>
+        <PageCTA
+          title="Book Nairobi to Kisumu"
+          description="Choose a departure, pay with M-Pesa and receive your SMS ticket."
+          primaryLabel="Book now"
+        />
       </article>
     </>
   );

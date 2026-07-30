@@ -7,7 +7,7 @@ substitutions:
   _AR_REPO: precifarm
   _SITE_URL: https://precifarm.com
   _CMS_API_URL: https://api.precifarm.com/api
-  _ANDROID_APP_SHA256: A7:C5:1D:8B:11:33:10:14:0B:65:99:17:1F:A4:70:D8:3A:CC:11:BE:5F:01:85:A9:1C:02:2E:78:45:14:D6:DB
+  # Optional: set ANDROID_APP_SHA256 via Cloud Run secrets after deploy — see docs/infrastructure/environment.md
 
 steps:
   - name: gcr.io/cloud-builders/docker
@@ -43,7 +43,7 @@ steps:
       - --memory=512Mi
       - --min-instances=0
       - --max-instances=10
-      - --set-env-vars=CMS_API_URL=${_CMS_API_URL},NEXT_PUBLIC_SITE_URL=${_SITE_URL},ANDROID_APP_SHA256=${_ANDROID_APP_SHA256}
+      - --set-env-vars=CMS_API_URL=${_CMS_API_URL},NEXT_PUBLIC_SITE_URL=${_SITE_URL}
 
 images:
   - ${_AR_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO}/website:$BUILD_ID

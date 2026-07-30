@@ -1,64 +1,98 @@
 import Link from "next/link";
+import BookNowLink from "@/components/BookNowLink";
 import Logo from "@/components/Logo";
 import { contact } from "@/lib/contact";
+import { LIVE_ROUTE_LABEL } from "@/lib/hub-locations";
+
+const footerGroups = [
+  {
+    title: "Network",
+    links: [
+      { href: "/network", label: "Charge Map" },
+      { href: "/charging", label: "Charging" },
+      { href: "/charging/private-house", label: "Private house charging" },
+      { href: "/locations", label: "Locations" },
+    ],
+  },
+  {
+    title: "Partners",
+    links: [
+      { href: "/partners", label: "Partner with us" },
+      { href: "/training", label: "Training" },
+      { href: "/partners#hub-hosts", label: "Hub site hosts" },
+      { href: "/partners#fleet-logistics", label: "Fleet & logistics" },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { href: "/about", label: "About" },
+      { href: "/guides", label: "Guides" },
+      { href: "/faq", label: "FAQ" },
+      { href: "/careers", label: "Careers" },
+      { href: "/download", label: "Download app" },
+    ],
+  },
+] as const;
 
 export default function Footer() {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="mt-auto border-t border-border bg-white">
-      <div className="page-container py-12 sm:py-14">
-        <div className="grid gap-10 md:grid-cols-4">
-          <div className="md:col-span-2">
-            <Logo height={32} />
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-forest-600">
-              Electric intercity travel between Nairobi and Kisumu — charging hubs,
-              scheduled service and M-Pesa booking in one network.
+    <footer className="site-footer mt-auto">
+      <div className="page-container site-footer-container">
+        <div className="site-footer-grid">
+          <div className="site-footer-segment site-footer-brand">
+            <div className="site-footer-logo">
+              <Logo height={30} />
+            </div>
+            <p className="site-footer-tagline">
+              Fast EV charging and scheduled electric coaches across Kenya.
             </p>
+            <p className="site-footer-live">
+              <span className="site-footer-live-dot" aria-hidden />
+              Live · {LIVE_ROUTE_LABEL}
+            </p>
+            <BookNowLink className="site-footer-cta">Book your seat</BookNowLink>
           </div>
 
-          <div>
-            <h3 className="text-sm font-semibold text-forest-900">Company</h3>
-            <ul className="mt-4 space-y-2.5 text-sm text-forest-600">
-              <li><Link href="/network" className="hover:text-forest-900">Charge Map</Link></li>
-              <li><Link href="/charging" className="hover:text-forest-900">Charging</Link></li>
-              <li><Link href="/partners" className="hover:text-forest-900">Partners</Link></li>
-              <li><Link href="/about" className="hover:text-forest-900">About</Link></li>
-              <li><Link href="/download" className="hover:text-forest-900">Download app</Link></li>
-              <li><Link href="/contact" className="hover:text-forest-900">Contact</Link></li>
-              <li><a href="/#book" className="hover:text-forest-900">Book Now</a></li>
-            </ul>
-          </div>
+          {footerGroups.map((group) => (
+            <nav key={group.title} className="site-footer-segment" aria-label={group.title}>
+              <h3 className="site-footer-heading">{group.title}</h3>
+              <ul className="site-footer-links">
+                {group.links.map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href}>{link.label}</Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ))}
 
-          <div>
-            <h3 className="text-sm font-semibold text-forest-900">Contact</h3>
-            <ul className="mt-4 space-y-2.5 text-sm text-forest-600">
-              <li>{contact.hq}</li>
+          <div className="site-footer-segment site-footer-contact">
+            <h3 className="site-footer-heading">Contact</h3>
+            <ul className="site-footer-links">
               <li>
-                <a href={`mailto:${contact.email}`} className="hover:text-forest-900">
-                  {contact.email}
+                <a href={`mailto:${contact.email}`}>{contact.email}</a>
+              </li>
+              <li>
+                <a href={contact.phoneHref}>{contact.phone}</a>
+              </li>
+              <li>
+                <a href={contact.whatsapp} target="_blank" rel="noopener noreferrer">
+                  Chat on WhatsApp
                 </a>
               </li>
               <li>
-                <a href={contact.phoneHref} className="hover:text-forest-900">
-                  {contact.phone}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={contact.whatsapp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-forest-900"
-                >
-                  WhatsApp
-                </a>
+                <span className="site-footer-contact-location">{contact.hq}</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-border pt-6 text-xs text-forest-500 sm:flex-row sm:items-center sm:justify-between">
-          <p>&copy; {new Date().getFullYear()} Precifarm. All rights reserved.</p>
-          <p>{contact.hubs.join(" · ")}</p>
+        <div className="site-footer-bottom">
+          <p>&copy; {year} Precifarm. All rights reserved.</p>
+          <p className="site-footer-bottom-meta">Built for Kenya&apos;s intercity electric routes</p>
         </div>
       </div>
     </footer>

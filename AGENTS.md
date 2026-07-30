@@ -22,7 +22,9 @@ Maintain Nairobi–Kisumu passenger booking:
 search → seats → passenger details → M-Pesa → PF confirmation
 ```
 
-Do not add cargo, financing, home charging, or multiple routes without explicit instruction.
+**Also maintained (marketing/education — not booking agent scope):** `/training`, `/charging/private-house`, CMS-backed `/guides`, `/faq`, `/locations`. These are public surfaces; product status is in [Canon](../docs/CANON.md).
+
+Do not add cargo, financing, or multiple routes without explicit instruction.
 
 ## Source of truth
 
@@ -65,6 +67,8 @@ Do not add cargo, financing, home charging, or multiple routes without explicit 
 ## Deploy
 
 Production: **Google Cloud Run** (`europe-west1`). See [`docs/DEPLOY-GCP.md`](docs/DEPLOY-GCP.md). Netlify/Vercel deprecated.
+
+**Secrets:** copy [`.env.example`](.env.example) → `.env.local`; never commit credentials. See [`docs/infrastructure/environment.md`](../docs/infrastructure/environment.md).
 
 ## Required checks
 

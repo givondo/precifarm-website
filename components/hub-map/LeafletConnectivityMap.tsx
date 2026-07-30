@@ -11,16 +11,20 @@ import {
 } from "react-leaflet";
 import L from "leaflet";
 import {
-  KENYA_CENTER,
   DEFAULT_ZOOM,
+  KENYA_CENTER,
   phaseRouteColors,
-  routePhases,
   type ChargingHub,
+  type RoutePhase,
 } from "@/lib/hub-locations";
+import { cartoAttribution, cartoTileUrl } from "@/lib/hub-map-config";
 import { pinDataUrl } from "./pin-icons";
 
 type LeafletConnectivityMapProps = {
   hubs: ChargingHub[];
+  routes: RoutePhase[];
+  mapCenter?: { lat: number; lng: number };
+  mapZoom?: number;
   selectedHubId: string | null;
   onSelectHub: (id: string) => void;
   userLocation: { lat: number; lng: number } | null;
@@ -58,7 +62,7 @@ function UserLocationMarker({ location }: { location: { lat: number; lng: number
     () =>
       L.divIcon({
         className: "",
-        html: `<div style="width:14px;height:14px;border-radius:50%;background:#3b82f6;border:3px solid white;box-shadow:0 0 0 4px rgba(59,130,246,0.35)"></div>`,
+        html: `<div style="width:14px;height:14px;border-radius:50%;background:#347a52;border:3px solid white;box-shadow:0 0 0 4px rgba(52,122,82,0.35)"></div>`,
         iconSize: [14, 14],
         iconAnchor: [7, 7],
       }),
@@ -70,6 +74,9 @@ function UserLocationMarker({ location }: { location: { lat: number; lng: number
 
 export default function LeafletConnectivityMap({
   hubs,
+  routes,
+  mapCenter = KENYA_CENTER,
+  mapZoom = DEFAULT_ZOOM,
   selectedHubId,
   onSelectHub,
   userLocation,
@@ -96,19 +103,16 @@ export default function LeafletConnectivityMap({
 
   return (
     <MapContainer
-      center={[KENYA_CENTER.lat, KENYA_CENTER.lng]}
-      zoom={DEFAULT_ZOOM}
+      center={[mapCenter.lat, mapCenter.lng]}
+      zoom={mapZoom}
       className="h-full w-full"
       scrollWheelZoom
       zoomControl={false}
     >
-      <ZoomControl position="bottomright" />
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
+      <ZoomControl position="bottomleft" />
+      <TileLayer attribution={cartoAttribution} url={cartoTileUrl} />
 
-      {routePhases.map((route) => (
+      {routes.map((route) => (
         <Polyline
           key={route.id}
           positions={route.path.map((p) => [p.lat, p.lng] as [number, number])}

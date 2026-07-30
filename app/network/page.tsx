@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import HubGridMap from "@/components/HubGridMap";
+import ConnectivityMapSection from "@/components/hub-map/ConnectivityMapSection";
 import SiteImage from "@/components/SiteImage";
 import JsonLd from "@/components/seo/JsonLd";
 import PageCTA from "@/components/ui/PageCTA";
@@ -106,7 +106,7 @@ const siteCriteria = [
 ];
 
 const statusStyles = {
-  Live: "bg-charge-500/10 text-charge-600 border-charge-500/25",
+  Live: "bg-forest-100 text-forest-700 border-forest-500/25",
   Next: "bg-muted text-forest-600 border-border",
   Planned: "bg-muted text-forest-500 border-border",
 };
@@ -121,20 +121,7 @@ export default function HubGridPage() {
         description="Precifarm is building Kenya's intercity charge map — charging infrastructure and operating software that make electric travel between Kenyan cities dependable, affordable and easy to book. Hubs provide the energy; the operating layer provides the timetable, tickets and passenger data."
       />
 
-      <section className="border-b border-border bg-white section-pad">
-        <div className="page-container">
-          <SectionHeader
-            eyebrow="Connectivity map"
-            title="Find a free bay — Precifarm hubs and partners near you"
-            description="Interactive map with live-demo availability, partner charging sites, route overlays and directions. Tap Near me to sort by distance."
-            centered
-            className="max-w-2xl"
-          />
-          <div className="mt-8 -mx-5 sm:-mx-6 lg:mx-0">
-            <HubGridMap />
-          </div>
-        </div>
-      </section>
+      <ConnectivityMapSection />
 
       <section className="border-b border-border bg-white section-pad">
         <div className="page-container">
@@ -146,21 +133,21 @@ export default function HubGridPage() {
           <div className="mt-12 grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-12">
             <div className="relative space-y-3">
               <div
-                className="pointer-events-none absolute bottom-6 left-[1.375rem] top-6 hidden w-px bg-gradient-to-b from-charge-500/40 via-charge-500/20 to-charge-500/40 sm:block"
+                className="pointer-events-none absolute bottom-6 left-[1.375rem] top-6 hidden w-px bg-gradient-to-b from-forest-500/40 via-forest-500/20 to-forest-500/40 sm:block"
                 aria-hidden
               />
               {hubLayers.map((layer) => (
                 <article
                   key={layer.title}
-                  className="group relative flex gap-4 rounded-2xl border border-border bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-charge-500/35 hover:shadow-md sm:gap-5 sm:p-5"
+                  className="group relative flex gap-4 rounded-2xl border border-border bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-forest-500/35 hover:shadow-md sm:gap-5 sm:p-5"
                 >
                   <div className="relative z-10 flex shrink-0 flex-col items-center gap-2">
-                    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-charge-600 ring-4 ring-muted transition-colors group-hover:bg-charge-500">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-forest-700 ring-4 ring-muted transition-colors group-hover:bg-forest-600">
                       <svg
                         viewBox="0 0 24 24"
                         className="h-5 w-5"
                         fill="none"
-                        stroke="var(--color-charge-300)"
+                        stroke="var(--color-forest-100)"
                         strokeWidth="1.8"
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -168,11 +155,11 @@ export default function HubGridPage() {
                         {layer.icon}
                       </svg>
                     </span>
-                    <span className="font-mono text-[10px] font-semibold tracking-wider text-charge-600">
+                    <span className="font-mono text-[10px] font-semibold tracking-wider text-forest-600">
                       {layer.step}
                     </span>
                   </div>
-                  <div className="min-w-0 flex-1 border-l border-charge-500/15 pl-4 sm:pl-5">
+                  <div className="min-w-0 flex-1 border-l border-forest-500/15 pl-4 sm:pl-5">
                     <h3 className="text-base font-semibold text-forest-900 sm:text-lg">
                       {layer.title}
                     </h3>
@@ -196,7 +183,7 @@ export default function HubGridPage() {
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-forest-900/85 via-forest-900/20 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-charge-400">
+                  <p className="text-eyebrow text-xs font-semibold uppercase tracking-widest text-forest-100">
                     Four layers, one hub
                   </p>
                   <p className="mt-2 max-w-md text-sm leading-relaxed text-white/85">
@@ -210,7 +197,7 @@ export default function HubGridPage() {
                     key={layer.title}
                     className="inline-flex items-center gap-1.5 rounded-full border border-border bg-white px-3 py-1 text-xs font-medium text-forest-700"
                   >
-                    <span className="font-mono text-[10px] font-semibold text-charge-600">
+                    <span className="font-mono text-[10px] font-semibold text-forest-600">
                       {layer.step}
                     </span>
                     {layer.title}
@@ -233,7 +220,7 @@ export default function HubGridPage() {
             <div
               key={p.phase}
               className={`grid gap-4 rounded-2xl border bg-white p-5 md:grid-cols-[auto_auto_1fr_1.5fr] md:items-center md:gap-5 ${
-                p.active ? "border-charge-500/30" : "border-border"
+                p.active ? "border-forest-500/30" : "border-border"
               }`}
             >
               <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-muted text-lg font-semibold text-forest-900">
@@ -254,7 +241,7 @@ export default function HubGridPage() {
         </div>
         <a
           href="/#book"
-          className="mt-6 inline-block text-sm font-semibold text-charge-600 hover:text-charge-500"
+          className="text-link mt-6 inline-block text-sm font-semibold"
         >
           Book Now for Nairobi–Kisumu →
         </a>
@@ -270,7 +257,7 @@ export default function HubGridPage() {
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {siteCriteria.map((c, i) => (
               <div key={c.title} className="card p-5">
-                <span className="font-mono text-xs font-semibold text-charge-600">
+                <span className="font-mono text-xs font-semibold text-forest-600">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <h3 className="mt-2 font-semibold text-forest-900">{c.title}</h3>

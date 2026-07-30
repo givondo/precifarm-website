@@ -13,15 +13,14 @@ Netlify and Vercel are **deprecated**. Use [`DEPLOY-GCP.md`](./DEPLOY-GCP.md) fo
 | Image registry | `africa-south1-docker.pkg.dev/.../precifarm/website` |
 | Service | `precifarm-website` |
 | Domain | `precifarm.com`, `www.precifarm.com` |
-| CMS URL | `CMS_API_URL=https://api.precifarm.com/api` |
+| CMS URL | Set via `CMS_API_URL` in Cloud Run — see [environment.md](../../docs/infrastructure/environment.md) |
 | DNS | Hostinger (`ns1.dns-parking.com`, `ns2.dns-parking.com`) |
 
 ## Deploy
 
 ```powershell
 gcloud builds submit --config cloudbuild.yaml
-gcloud run services update precifarm-website --region europe-west1 `
-  --set-env-vars="CMS_API_URL=https://api.precifarm.com/api"
+# Non-secret env vars are set by cloudbuild.yaml; secrets via Secret Manager — see environment.md
 ```
 
 `cloudbuild.yaml` builds images in `africa-south1` Artifact Registry and deploys to `europe-west1` Cloud Run.
@@ -40,6 +39,6 @@ After EAS build, from the mobile app repo:
 npm run publish:apk -- ./precifarm.apk
 ```
 
-Commit or upload `public/downloads/precifarm.apk` before deploy, or set `NEXT_PUBLIC_APP_APK_URL`.
+Commit or upload `public/downloads/precifarm.apk` before deploy, or set `NEXT_PUBLIC_APP_APK_URL` in `.env.local` / Cloud Run.
 
 See also: [UI design system](./UI.md)

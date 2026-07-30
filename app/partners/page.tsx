@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import CheckItem from "@/components/ui/CheckItem";
 import JsonLd from "@/components/seo/JsonLd";
 import PageCTA from "@/components/ui/PageCTA";
@@ -96,7 +95,17 @@ export default function PartnersPage() {
       <section className="section-pad page-container">
         <div className="grid gap-5 lg:grid-cols-2">
           {partnerTypes.map((p) => (
-            <div key={p.title} className="card flex flex-col p-6">
+            <div
+              key={p.title}
+              id={
+                p.title === "Hub site hosts"
+                  ? "hub-hosts"
+                  : p.title === "Fleet and logistics"
+                    ? "fleet-logistics"
+                    : undefined
+              }
+              className="card flex scroll-mt-24 flex-col p-6"
+            >
               <h2 className="text-lg font-semibold text-forest-900">{p.title}</h2>
               <p className="mt-2 text-sm leading-relaxed text-forest-600/85">
                 {p.summary}
@@ -131,24 +140,6 @@ export default function PartnersPage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="section-pad page-container">
-        <div className="mx-auto max-w-2xl card px-6 py-10 text-center sm:px-10 sm:py-12">
-          <h2 className="text-lg font-semibold text-forest-900 sm:text-xl">
-            We are signing anchor partners for Nairobi–Kisumu
-          </h2>
-          <p className="mx-auto mt-3 max-w-md text-base leading-relaxed text-forest-600/80">
-            If you are an operator, hub host or finance partner on our first
-            route, we would like to talk about how you fit into the system.
-          </p>
-          <Link
-            href="/contact"
-            className="mt-6 inline-block rounded-full bg-charge-600 px-6 py-2.5 text-sm font-semibold text-white hover:bg-charge-500"
-          >
-            Get in touch
-          </Link>
         </div>
       </section>
 

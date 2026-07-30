@@ -8,16 +8,20 @@ import {
   useJsApiLoader,
 } from "@react-google-maps/api";
 import {
-  KENYA_CENTER,
   DEFAULT_ZOOM,
+  KENYA_CENTER,
   phaseRouteColors,
-  routePhases,
   type ChargingHub,
+  type RoutePhase,
 } from "@/lib/hub-locations";
+import { googleHubMapStyles } from "@/lib/hub-map-config";
 import { pinDataUrl } from "./pin-icons";
 
 type GoogleConnectivityMapProps = {
   hubs: ChargingHub[];
+  routes: RoutePhase[];
+  mapCenter?: { lat: number; lng: number };
+  mapZoom?: number;
   selectedHubId: string | null;
   onSelectHub: (id: string) => void;
   userLocation: { lat: number; lng: number } | null;
@@ -27,6 +31,9 @@ type GoogleConnectivityMapProps = {
 
 export default function GoogleConnectivityMap({
   hubs,
+  routes,
+  mapCenter = KENYA_CENTER,
+  mapZoom = DEFAULT_ZOOM,
   selectedHubId,
   onSelectHub,
   userLocation,
@@ -47,10 +54,10 @@ export default function GoogleConnectivityMap({
     if (selectedHub) {
       return { lat: selectedHub.lat, lng: selectedHub.lng };
     }
-    return KENYA_CENTER;
-  }, [nearMeActive, userLocation, selectedHub]);
+    return mapCenter;
+  }, [nearMeActive, userLocation, selectedHub, mapCenter]);
 
-  const zoom = nearMeActive && userLocation ? 9 : selectedHub ? 8 : DEFAULT_ZOOM;
+  const zoom = nearMeActive && userLocation ? 9 : selectedHub ? 8 : mapZoom;
 
   const hubIcons = useMemo(() => {
     if (!isLoaded || typeof google === "undefined") return new Map<string, google.maps.Icon>();
@@ -94,10 +101,13 @@ export default function GoogleConnectivityMap({
         disableDefaultUI: true,
         zoomControl: true,
         zoomControlOptions: { position: google.maps.ControlPosition.RIGHT_BOTTOM },
+        fullscreenControl: true,
+        fullscreenControlOptions: { position: google.maps.ControlPosition.RIGHT_TOP },
         gestureHandling: "greedy",
+        styles: googleHubMapStyles,
       }}
     >
-      {routePhases.map((route) => (
+      {routes.map((route) => (
         <Polyline
           key={route.id}
           path={route.path}
@@ -134,7 +144,7 @@ export default function GoogleConnectivityMap({
           icon={{
             path: google.maps.SymbolPath.CIRCLE,
             scale: 8,
-            fillColor: "#3b82f6",
+            fillColor: "#347a52",
             fillOpacity: 1,
             strokeColor: "#ffffff",
             strokeWeight: 3,
