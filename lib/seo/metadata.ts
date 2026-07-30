@@ -108,7 +108,7 @@ export function createPageSeo(input: PageSeoInput): GeneratedPageSeo {
 
 export function rootLayoutMetadata(): Metadata {
   return createPageSeo({
-    title: `${siteConfig.name} — ${siteConfig.tagline}`,
+    title: siteConfig.name,
     description: siteConfig.defaultDescription,
     path: "/",
   }).metadata;

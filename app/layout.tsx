@@ -28,6 +28,10 @@ const plusJakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   ...rootLayoutMetadata(),
+  title: {
+    default: siteConfig.name,
+    template: `%s · ${siteConfig.name}`,
+  },
   applicationName: siteConfig.name,
   authors: [{ name: siteConfig.legalName, url: siteConfig.url }],
   creator: siteConfig.legalName,
@@ -44,6 +48,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  viewportFit: "cover",
   themeColor: "#ffffff",
 };
 

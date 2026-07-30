@@ -304,6 +304,47 @@ export function webPageSchema(input: {
   };
 }
 
+export function jobPostingSchema(input: {
+  title: string;
+  description: string;
+  employmentType?: string;
+  location: string;
+  datePosted?: string;
+}): JsonLd {
+  const locality = input.location.split("·")[0]?.trim() || "Nairobi";
+
+  return {
+    "@context": SCHEMA_CONTEXT,
+    "@type": "JobPosting",
+    title: input.title,
+    description: input.description,
+    datePosted: input.datePosted ?? new Date().toISOString().slice(0, 10),
+    hiringOrganization: {
+      "@type": "Organization",
+      name: siteConfig.legalName,
+      sameAs: siteConfig.url,
+    },
+    jobLocation: {
+      "@type": "Place",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: locality,
+        addressCountry: "KE",
+      },
+    },
+    employmentType: input.employmentType ?? "FULL_TIME",
+    applicantLocationRequirements: {
+      "@type": "Country",
+      name: "Kenya",
+    },
+    applicationContact: {
+      "@type": "ContactPoint",
+      email: siteConfig.contact.email,
+      contactType: "HR",
+    },
+  };
+}
+
 /** Validate required @type and @context on a schema node */
 export function validateSchema(node: JsonLd): { valid: boolean; errors: string[] } {
   const errors: string[] = [];

@@ -5,27 +5,22 @@ import JsonLd from "@/components/seo/JsonLd";
 import MarkdownContent from "@/components/seo/MarkdownContent";
 import TrustSignals from "@/components/seo/TrustSignals";
 import AisoPageSections from "@/components/seo/AisoPageSections";
+import { faqsFromCmsContent } from "@/lib/seo/cms-content";
 import { cmsGetSeoContent, cmsListSeoContent, type CmsSeoContent } from "@/lib/seo/cms-client";
 import { siteConfig } from "@/lib/seo/config";
 import { internalLinksForPath } from "@/lib/seo/entities/registry";
 import { createPageSeo } from "@/lib/seo/metadata";
 import { articleSchema } from "@/lib/seo/schema";
-import type { AisoContentBlock, FaqItem } from "@/lib/seo/types";
+import type { AisoContentBlock } from "@/lib/seo/types";
 import { notFound } from "next/navigation";
 
 export const revalidate = 3600;
 
 type Props = { params: Promise<{ slug: string }> };
 
-function faqsFromBlocks(blocks: CmsSeoContent["aisoBlocks"]): FaqItem[] {
-  const faqBlock = blocks.find((b) => b.type === "faq");
-  if (!faqBlock?.items) return [];
-  return faqBlock.items as FaqItem[];
-}
-
 function buildSeo(slug: string, content: CmsSeoContent) {
   const path = `/guides/${slug}`;
-  const faqs = faqsFromBlocks(content.aisoBlocks);
+  const faqs = faqsFromCmsContent(content);
   return createPageSeo({
     title: content.title,
     description: content.description,

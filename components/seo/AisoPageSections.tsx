@@ -1,4 +1,5 @@
 import Link from "next/link";
+import FaqAccordion from "@/components/seo/FaqAccordion";
 import type { AisoContentBlock, FaqItem } from "@/lib/seo/types";
 
 type AisoPageSectionsProps = {
@@ -6,19 +7,6 @@ type AisoPageSectionsProps = {
   relatedLinks?: { href: string; label: string; reason?: string }[];
   className?: string;
 };
-
-function FaqAccordion({ items }: { items: FaqItem[] }) {
-  return (
-    <div className="aiso-faq-list divide-y divide-border rounded-2xl border border-border bg-white">
-      {items.map((faq) => (
-        <details key={faq.question} className="aiso-faq-item group">
-          <summary className="aiso-faq-question">{faq.question}</summary>
-          <p className="aiso-faq-answer">{faq.answer}</p>
-        </details>
-      ))}
-    </div>
-  );
-}
 
 function KeyFactsGrid({ items }: { items: string[] }) {
   return (

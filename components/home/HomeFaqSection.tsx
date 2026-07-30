@@ -1,9 +1,7 @@
 import Link from "next/link";
 import BookNowLink from "@/components/BookNowLink";
-import { homepageAisoBlocks } from "@/lib/seo/aiso/blocks";
-import type { FaqItem } from "@/lib/seo/types";
-
-const faqs = (homepageAisoBlocks.find((b) => b.type === "faq")?.items ?? []) as FaqItem[];
+import FaqAccordion from "@/components/seo/FaqAccordion";
+import { getHomepageFaqs } from "@/lib/seo/cms-content";
 
 const quickLinks = [
   { href: "/faq", label: "All FAQ" },
@@ -11,7 +9,9 @@ const quickLinks = [
   { href: "/network", label: "Charge map" },
 ] as const;
 
-export default function HomeFaqSection() {
+export default async function HomeFaqSection() {
+  const faqs = await getHomepageFaqs(5);
+
   return (
     <section className="home-faq border-t border-border bg-white section-pad">
       <div className="page-container">
@@ -40,14 +40,11 @@ export default function HomeFaqSection() {
             </div>
           </div>
 
-          <dl className="home-faq-list">
-            {faqs.map((item) => (
-              <div key={item.question} className="home-faq-item">
-                <dt className="home-faq-question">{item.question}</dt>
-                <dd className="home-faq-answer">{item.answer}</dd>
-              </div>
-            ))}
-          </dl>
+          {faqs.length > 0 ? (
+            <FaqAccordion items={faqs} className="shadow-sm" />
+          ) : (
+            <p className="text-sm text-forest-500">FAQ content will appear here once published.</p>
+          )}
         </div>
       </div>
     </section>

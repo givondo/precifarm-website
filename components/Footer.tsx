@@ -1,5 +1,4 @@
 import Link from "next/link";
-import BookNowLink from "@/components/BookNowLink";
 import Logo from "@/components/Logo";
 import { contact } from "@/lib/contact";
 import { LIVE_ROUTE_LABEL } from "@/lib/hub-locations";
@@ -31,9 +30,49 @@ const footerGroups = [
       { href: "/faq", label: "FAQ" },
       { href: "/careers", label: "Careers" },
       { href: "/download", label: "Download app" },
+      { href: "/contact", label: "Contact" },
+      { href: "/sw", label: "Kiswahili" },
     ],
   },
 ] as const;
+
+function FooterLinkList({ links }: { links: readonly { href: string; label: string }[] }) {
+  return (
+    <ul className="site-footer-links">
+      {links.map((link) => (
+        <li key={link.href}>
+          {link.href.includes("#") ? (
+            <a href={link.href}>{link.label}</a>
+          ) : (
+            <Link href={link.href}>{link.label}</Link>
+          )}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function FooterNavGroup({
+  title,
+  links,
+}: {
+  title: string;
+  links: readonly { href: string; label: string }[];
+}) {
+  return (
+    <>
+      <details className="site-footer-mobile-group sm:hidden">
+        <summary className="site-footer-mobile-summary">{title}</summary>
+        <FooterLinkList links={links} />
+      </details>
+
+      <nav className="site-footer-segment hidden sm:block" aria-label={title}>
+        <h3 className="site-footer-heading">{title}</h3>
+        <FooterLinkList links={links} />
+      </nav>
+    </>
+  );
+}
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -43,7 +82,7 @@ export default function Footer() {
       <div className="page-container site-footer-container">
         <div className="site-footer-grid">
           <div className="site-footer-segment site-footer-brand">
-            <div className="site-footer-logo">
+            <div className="site-footer-logo hidden sm:inline-flex">
               <Logo height={30} />
             </div>
             <p className="site-footer-tagline">
@@ -53,25 +92,34 @@ export default function Footer() {
               <span className="site-footer-live-dot" aria-hidden />
               Live · {LIVE_ROUTE_LABEL}
             </p>
-            <BookNowLink className="site-footer-cta">Book your seat</BookNowLink>
           </div>
 
           {footerGroups.map((group) => (
-            <nav key={group.title} className="site-footer-segment" aria-label={group.title}>
-              <h3 className="site-footer-heading">{group.title}</h3>
-              <ul className="site-footer-links">
-                {group.links.map((link) => (
-                  <li key={link.href}>
-                    <Link href={link.href}>{link.label}</Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
+            <FooterNavGroup key={group.title} title={group.title} links={group.links} />
           ))}
 
           <div className="site-footer-segment site-footer-contact">
-            <h3 className="site-footer-heading">Contact</h3>
-            <ul className="site-footer-links">
+            <h3 className="site-footer-heading hidden sm:block">Contact</h3>
+            <details className="site-footer-mobile-group sm:hidden">
+              <summary className="site-footer-mobile-summary">Contact</summary>
+              <ul className="site-footer-links">
+                <li>
+                  <a href={`mailto:${contact.email}`}>{contact.email}</a>
+                </li>
+                <li>
+                  <a href={contact.phoneHref}>{contact.phone}</a>
+                </li>
+                <li>
+                  <a href={contact.whatsapp} target="_blank" rel="noopener noreferrer">
+                    Chat on WhatsApp
+                  </a>
+                </li>
+                <li>
+                  <span className="site-footer-contact-location">{contact.hq}</span>
+                </li>
+              </ul>
+            </details>
+            <ul className="site-footer-links hidden sm:block">
               <li>
                 <a href={`mailto:${contact.email}`}>{contact.email}</a>
               </li>

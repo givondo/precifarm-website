@@ -4,8 +4,13 @@ import JsonLd from "@/components/seo/JsonLd";
 import ContentIndexCard from "@/components/ui/ContentIndexCard";
 import PageCTA from "@/components/ui/PageCTA";
 import PageHero from "@/components/ui/PageHero";
-import { absoluteUrl, siteConfig } from "@/lib/seo/config";
-import { cmsListSeoContent } from "@/lib/seo/cms-client";
+import { absoluteUrl } from "@/lib/seo/config";
+import {
+  excerptFromMarkdown,
+  formatContentDate,
+  getPublishedGuides,
+  guideTypeLabel,
+} from "@/lib/seo/cms-content";
 import { pageJsonLd, pageMetadata } from "@/lib/seo/pages/helpers";
 import { itemListSchema } from "@/lib/seo/schema";
 
@@ -14,10 +19,7 @@ export const revalidate = 3600;
 export const metadata: Metadata = pageMetadata("/guides");
 
 export default async function GuidesIndexPage() {
-  const items = await cmsListSeoContent({ status: "published", locale: siteConfig.locale });
-  const guides = items.filter((item) =>
-    ["guide", "howto", "article"].includes(item.contentType),
-  );
+  const guides = await getPublishedGuides();
 
   const listItems = guides.map((item) => ({
     name: item.title,
@@ -49,12 +51,17 @@ export default async function GuidesIndexPage() {
       <PageHero
         eyebrow="Guides"
         title="How-to guides"
-        description="Step-by-step guides for booking, charging and operating on the Precifarm network."
+        description="Step-by-step guides for booking Nairobi–Kisumu, EV charging hubs and the Precifarm passenger app — updated from our CMS."
       />
       <section className="section-pad bg-white">
         <div className="page-container max-w-3xl">
           <Breadcrumbs items={breadcrumbs} />
-          <div className="content-index-grid">
+          {guides.length > 0 && (
+            <p className="mt-4 text-sm text-forest-500">
+              {guides.length} {guides.length === 1 ? "guide" : "guides"} published
+            </p>
+          )}
+          <div className="content-index-grid mt-6">
             {guides.length === 0 && (
               <p className="text-sm text-forest-500">
                 Guides will appear here once published from the CMS.
@@ -65,7 +72,13 @@ export default async function GuidesIndexPage() {
                 key={item.id}
                 href={`/guides/${item.slug}`}
                 title={item.title}
-                description={item.description}
+                description={item.description || excerptFromMarkdown(item.bodyMd)}
+                meta={[
+                  guideTypeLabel(item.contentType),
+                  formatContentDate(item.publishedAt ?? item.updatedAt),
+                ]
+                  .filter(Boolean)
+                  .join(" · ")}
               />
             ))}
           </div>

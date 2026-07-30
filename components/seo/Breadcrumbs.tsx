@@ -5,8 +5,8 @@ export default function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
   if (items.length <= 1) return null;
 
   return (
-    <nav aria-label="Breadcrumb" className="mb-6">
-      <ol className="flex flex-wrap items-center gap-1.5 text-sm text-forest-600">
+    <nav aria-label="Breadcrumb" className="mb-4 overflow-x-auto sm:mb-6">
+      <ol className="flex min-w-0 flex-wrap items-center gap-1 text-xs text-forest-600 sm:gap-1.5 sm:text-sm">
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
           return (

@@ -1,15 +1,17 @@
 import PageHero from "@/components/ui/PageHero";
 import PageCTA from "@/components/ui/PageCTA";
 import AisoPageSections from "@/components/seo/AisoPageSections";
+import FaqAccordion from "@/components/seo/FaqAccordion";
 import JsonLd from "@/components/seo/JsonLd";
 import MarkdownContent from "@/components/seo/MarkdownContent";
 import TrustSignals from "@/components/seo/TrustSignals";
+import { faqsFromCmsContent } from "@/lib/seo/cms-content";
 import { cmsGetSeoContent, cmsListSeoContent, type CmsSeoContent } from "@/lib/seo/cms-client";
 import { siteConfig } from "@/lib/seo/config";
 import { internalLinksForPath } from "@/lib/seo/entities/registry";
 import { createPageSeo } from "@/lib/seo/metadata";
 import { articleSchema, faqSchema } from "@/lib/seo/schema";
-import type { AisoContentBlock, FaqItem } from "@/lib/seo/types";
+import type { AisoContentBlock } from "@/lib/seo/types";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -17,15 +19,9 @@ export const revalidate = 3600;
 
 type Props = { params: Promise<{ slug: string }> };
 
-function faqsFromBlocks(blocks: CmsSeoContent["aisoBlocks"]): FaqItem[] {
-  const faqBlock = blocks.find((b) => b.type === "faq");
-  if (!faqBlock?.items) return [];
-  return faqBlock.items as FaqItem[];
-}
-
 function buildSeo(slug: string, content: CmsSeoContent) {
   const path = `/faq/${slug}`;
-  const faqs = faqsFromBlocks(content.aisoBlocks);
+  const faqs = faqsFromCmsContent(content);
   return createPageSeo({
     title: content.title,
     description: content.description,
@@ -63,7 +59,7 @@ export default async function FaqPage({ params }: Props) {
 
   const path = `/faq/${slug}`;
   const seo = buildSeo(slug, content);
-  const faqs = faqsFromBlocks(content.aisoBlocks);
+  const faqs = faqsFromCmsContent(content);
   const jsonLd = faqs.length
     ? [
         ...seo.jsonLd,
@@ -110,14 +106,7 @@ export default async function FaqPage({ params }: Props) {
         {faqs.length > 0 && (
           <div className="section-pad border-b border-border">
             <div className="page-container max-w-3xl">
-              <dl className="space-y-6">
-                {faqs.map((faq) => (
-                  <div key={faq.question}>
-                    <dt className="text-base font-semibold text-forest-900">{faq.question}</dt>
-                    <dd className="mt-2 text-sm leading-relaxed text-forest-600">{faq.answer}</dd>
-                  </div>
-                ))}
-              </dl>
+              <FaqAccordion items={faqs} />
             </div>
           </div>
         )}

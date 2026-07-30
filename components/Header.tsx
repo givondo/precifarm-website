@@ -2,8 +2,19 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 import BookNowLink from "@/components/BookNowLink";
+import {
+  IconChevron,
+  IconClose,
+  IconGrid,
+  IconMap,
+  IconMenu,
+  IconPhone,
+  IconTicket,
+  IconUsers,
+} from "@/components/header/mobile-nav-icons";
 import Logo from "@/components/Logo";
 import { contact } from "@/lib/contact";
 
@@ -11,74 +22,45 @@ type NavLink = { href: string; label: string; description?: string };
 
 type NavGroup = {
   label: string;
+  icon: ReactNode;
   items: NavLink[];
 };
 
-const primaryLinks: NavLink[] = [
-  { href: "/network", label: "Charge Map" },
-  { href: "/charging", label: "Charging" },
-];
-
 const navGroups: NavGroup[] = [
   {
-    label: "Partners",
+    label: "EV charging",
+    icon: <IconMap />,
     items: [
-      { href: "/partners", label: "Partner with us", description: "Operators, fleets and site hosts" },
-      { href: "/partners#hub-hosts", label: "Hub site hosts", description: "Retail, yards and route-side sites" },
-      { href: "/partners#fleet-logistics", label: "Fleet & logistics", description: "Contracted charging for cargo" },
-      { href: "/training", label: "Training", description: "T1, T2, T3 EV charging certification" },
+      { href: "/network", label: "Charge Map" },
+      { href: "/charging", label: "Charging" },
+      { href: "/charging/private-house", label: "Private house charging" },
+      { href: "/locations", label: "Locations" },
     ],
   },
   {
-    label: "More",
+    label: "Partners",
+    icon: <IconUsers />,
     items: [
-      { href: "/about", label: "About", description: "Mission and route-one proof" },
-      { href: "/guides", label: "Guides", description: "Booking and travel how-tos" },
-      { href: "/faq", label: "FAQ", description: "Common questions" },
-      { href: "/locations", label: "Locations", description: "Cities and hub pages" },
-      { href: "/download", label: "Download app", description: "Android passenger app" },
-      { href: "/careers", label: "Careers", description: "Join the team" },
-      { href: "/contact", label: "Contact", description: "Support and enquiries" },
-      { href: "/sw", label: "Kiswahili", description: "Toleo la Kiswahili" },
+      { href: "/partners", label: "Partner with us" },
+      { href: "/training", label: "Training" },
+      { href: "/partners#hub-hosts", label: "Hub site hosts" },
+      { href: "/partners#fleet-logistics", label: "Fleet & logistics" },
+    ],
+  },
+  {
+    label: "Company",
+    icon: <IconGrid />,
+    items: [
+      { href: "/about", label: "About" },
+      { href: "/guides", label: "Guides" },
+      { href: "/faq", label: "FAQ" },
+      { href: "/careers", label: "Careers" },
+      { href: "/download", label: "Download app" },
+      { href: "/contact", label: "Contact" },
+      { href: "/sw", label: "Kiswahili" },
     ],
   },
 ];
-
-function PhoneIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.75"
-      className={className}
-      aria-hidden
-    >
-      <path
-        d="M5.5 4h3l1.5 5.5-2 1.5a11 11 0 0 0 5.5 5.5l1.5-2L20 16.5V19.5a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1Z"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function ChevronIcon({ className = "", open = false }: { className?: string; open?: boolean }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      className={`h-4 w-4 shrink-0 transition-transform duration-300 ease-out ${
-        open ? "rotate-180" : ""
-      } ${className}`}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      aria-hidden
-    >
-      <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
 
 const DROPDOWN_OPEN_DELAY_MS = 60;
 const DROPDOWN_CLOSE_DELAY_MS = 160;
@@ -150,7 +132,7 @@ function isGroupActive(group: NavGroup, pathname: string) {
   return group.items.some((item) => isNavItemActive(item.href, pathname));
 }
 
-function NavMenuLink({
+function DesktopMenuLink({
   item,
   pathname,
   className,
@@ -164,9 +146,7 @@ function NavMenuLink({
   const label = (
     <>
       <span className="site-header-menu-label">{item.label}</span>
-      {item.description && (
-        <span className="site-header-menu-desc">{item.description}</span>
-      )}
+      {item.description && <span className="site-header-menu-desc">{item.description}</span>}
     </>
   );
 
@@ -180,18 +160,6 @@ function NavMenuLink({
 
   return (
     <Link href={item.href} role="menuitem" onClick={onNavigate} className={className}>
-      {label}
-    </Link>
-  );
-}
-
-function DesktopNavLink({ href, label, pathname }: { href: string; label: string; pathname: string }) {
-  const active = isNavItemActive(href, pathname);
-  return (
-    <Link
-      href={href}
-      className={`site-header-link ${active ? "site-header-link-active" : ""}`}
-    >
       {label}
     </Link>
   );
@@ -212,15 +180,11 @@ function DesktopNavDropdown({ group, pathname }: { group: NavGroup; pathname: st
     if (!open) return;
 
     function handlePointerDown(event: MouseEvent) {
-      if (!rootRef.current?.contains(event.target as Node)) {
-        closeNow();
-      }
+      if (!rootRef.current?.contains(event.target as Node)) closeNow();
     }
 
     function handleEscape(event: KeyboardEvent) {
-      if (event.key === "Escape") {
-        closeNow();
-      }
+      if (event.key === "Escape") closeNow();
     }
 
     document.addEventListener("mousedown", handlePointerDown);
@@ -241,9 +205,7 @@ function DesktopNavDropdown({ group, pathname }: { group: NavGroup; pathname: st
       onMouseLeave={scheduleClose}
       onFocusCapture={openNow}
       onBlurCapture={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget as Node)) {
-          scheduleClose();
-        }
+        if (!event.currentTarget.contains(event.relatedTarget as Node)) scheduleClose();
       }}
     >
       <button
@@ -258,7 +220,7 @@ function DesktopNavDropdown({ group, pathname }: { group: NavGroup; pathname: st
         }`}
       >
         {group.label}
-        <ChevronIcon open={open} />
+        <IconChevron open={open} />
       </button>
 
       <div
@@ -270,7 +232,7 @@ function DesktopNavDropdown({ group, pathname }: { group: NavGroup; pathname: st
       >
         <div className="site-header-dropdown-menu">
           {group.items.map((item) => (
-            <NavMenuLink
+            <DesktopMenuLink
               key={`${group.label}-${item.href}`}
               item={item}
               pathname={pathname}
@@ -286,35 +248,135 @@ function DesktopNavDropdown({ group, pathname }: { group: NavGroup; pathname: st
   );
 }
 
+function MobileNavLink({
+  href,
+  label,
+  icon,
+  active,
+  onNavigate,
+}: {
+  href: string;
+  label: string;
+  icon?: ReactNode;
+  active?: boolean;
+  onNavigate: () => void;
+}) {
+  const className = `mobile-nav-link ${active ? "mobile-nav-link-active" : ""}`;
+  const content = (
+    <>
+      {icon && <span className="mobile-nav-link-icon">{icon}</span>}
+      <span>{label}</span>
+    </>
+  );
+
+  if (href.includes("#")) {
+    return (
+      <a href={href} className={className} onClick={onNavigate}>
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={href} className={className} onClick={onNavigate}>
+      {content}
+    </Link>
+  );
+}
+
+function MobileNavPanel({ pathname, onClose }: { pathname: string; onClose: () => void }) {
+  return (
+    <nav id="site-header-mobile-panel" className="mobile-nav-panel" aria-label="Mobile menu">
+      {navGroups.map((group) => (
+        <details key={group.label} className="mobile-nav-details">
+          <summary className="mobile-nav-summary">
+            <span className="mobile-nav-summary-left">
+              <span className="mobile-nav-link-icon">{group.icon}</span>
+              {group.label}
+            </span>
+            <IconChevron className="mobile-nav-chevron" />
+          </summary>
+          <ul className="mobile-nav-sublist">
+            {group.items.map((item) => (
+              <li key={item.href}>
+                <MobileNavLink
+                  href={item.href}
+                  label={item.label}
+                  active={isNavItemActive(item.href, pathname)}
+                  onNavigate={onClose}
+                />
+              </li>
+            ))}
+          </ul>
+        </details>
+      ))}
+
+      <div className="mobile-nav-actions">
+        <BookNowLink onClick={onClose} className="mobile-nav-book">
+          <IconTicket className="h-4 w-4 shrink-0" />
+          Book now
+        </BookNowLink>
+        <a href={contact.phoneHref} className="mobile-nav-icon-btn" aria-label="Call us" onClick={onClose}>
+          <IconPhone />
+        </a>
+      </div>
+    </nav>
+  );
+}
+
 export default function Header() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const ignoreOutsideRef = useRef(false);
+
+  const closeMobile = useCallback(() => setMobileOpen(false), []);
+
+  const toggleMobile = useCallback(() => {
+    setMobileOpen((open) => {
+      if (!open) ignoreOutsideRef.current = true;
+      return !open;
+    });
+  }, []);
 
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileOpen]);
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
-    setMobileOpen(false);
-    setMobileExpanded(null);
-  }, [pathname]);
+    closeMobile();
+  }, [pathname, closeMobile]);
 
   useEffect(() => {
+    if (!mobileOpen) return;
+
+    const enableOutside = window.setTimeout(() => {
+      ignoreOutsideRef.current = false;
+    }, 0);
+
     function handleEscape(event: KeyboardEvent) {
-      if (event.key === "Escape") {
-        setMobileOpen(false);
-        setMobileExpanded(null);
-      }
+      if (event.key === "Escape") closeMobile();
+    }
+
+    function handleClick(event: MouseEvent) {
+      if (ignoreOutsideRef.current) return;
+      const target = event.target as Node;
+      if (menuButtonRef.current?.contains(target)) return;
+      if (panelRef.current?.contains(target)) return;
+      closeMobile();
     }
 
     document.addEventListener("keydown", handleEscape);
-    return () => document.removeEventListener("keydown", handleEscape);
-  }, []);
+    document.addEventListener("click", handleClick, true);
+    return () => {
+      window.clearTimeout(enableOutside);
+      document.removeEventListener("keydown", handleEscape);
+      document.removeEventListener("click", handleClick, true);
+    };
+  }, [mobileOpen, closeMobile]);
 
   useEffect(() => {
     function onScroll() {
@@ -325,150 +387,55 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  return (
-    <header
-      id="site-header"
-      className={`site-header ${scrolled ? "site-header-scrolled" : ""}`}
-    >
-      <div className="page-container site-header-bar">
-        <Logo height={30} onClick={() => setMobileOpen(false)} />
-
-        <nav className="site-header-nav" aria-label="Main">
-          {primaryLinks.map((link) => (
-            <DesktopNavLink
-              key={link.href}
-              href={link.href}
-              label={link.label}
-              pathname={pathname}
-            />
-          ))}
-          {navGroups.map((group) => (
-            <DesktopNavDropdown key={group.label} group={group} pathname={pathname} />
-          ))}
-        </nav>
-
-        <div className="site-header-actions">
-          <a href={contact.phoneHref} className="site-header-phone">
-            <PhoneIcon className="h-4 w-4 shrink-0" />
-            <span className="hidden xl:inline">{contact.phone}</span>
-          </a>
-          <BookNowLink className="site-header-cta">Book now</BookNowLink>
-        </div>
-
-        <div className="site-header-mobile-actions">
-          <BookNowLink className="site-header-cta site-header-cta-compact">Book</BookNowLink>
-          <button
-            type="button"
-            className="site-header-menu-btn"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            aria-expanded={mobileOpen}
-          >
-            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
-              {mobileOpen ? (
-                <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
-              ) : (
-                <path d="M4 7h16M4 12h16M4 17h16" strokeLinecap="round" />
-              )}
-            </svg>
-          </button>
-        </div>
+  const mobileMenu =
+    mobileOpen && mounted ? (
+      <div ref={panelRef} className="mobile-nav-shell">
+        <MobileNavPanel pathname={pathname} onClose={closeMobile} />
       </div>
+    ) : null;
 
-      {mobileOpen && (
-        <>
-          <button
-            type="button"
-            className="site-header-backdrop"
-            onClick={() => setMobileOpen(false)}
-            aria-label="Close menu"
-          />
-          <nav className="site-header-mobile" aria-label="Mobile">
-            <div className="site-header-mobile-primary">
-              {primaryLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className={`site-header-mobile-link ${
-                    isNavItemActive(link.href, pathname) ? "site-header-mobile-link-active" : ""
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              ))}
-              <Link
-                href="/faq"
-                onClick={() => setMobileOpen(false)}
-                className={`site-header-mobile-link ${
-                  pathname === "/faq" ? "site-header-mobile-link-active" : ""
-                }`}
-              >
-                FAQ
-              </Link>
-            </div>
+  return (
+    <>
+      <header
+        id="site-header"
+        className={`site-header ${scrolled ? "site-header-scrolled" : ""} ${
+          mobileOpen ? "site-header-menu-open" : ""
+        }`}
+      >
+        <div className="page-container site-header-bar">
+          <Logo height={30} className="site-header-logo" onClick={closeMobile} />
 
-            {navGroups.map((group) => {
-              const expanded = mobileExpanded === group.label;
-              return (
-                <div
-                  key={group.label}
-                  className={`site-header-mobile-group ${expanded ? "site-header-mobile-group-open" : ""}`}
-                >
-                  <button
-                    type="button"
-                    className="site-header-mobile-group-btn"
-                    aria-expanded={expanded}
-                    onClick={() =>
-                      setMobileExpanded((current) => (current === group.label ? null : group.label))
-                    }
-                  >
-                    {group.label}
-                    <ChevronIcon open={expanded} />
-                  </button>
-                  <div
-                    className="site-header-mobile-group-items"
-                    aria-hidden={!expanded}
-                  >
-                    <div className="site-header-mobile-group-items-inner">
-                      {group.items.map((item) => (
-                        <NavMenuLink
-                          key={`${group.label}-${item.href}`}
-                          item={item}
-                          pathname={pathname}
-                          onNavigate={() => setMobileOpen(false)}
-                          className={`site-header-mobile-sub ${
-                            isNavItemActive(item.href, pathname)
-                              ? "site-header-mobile-sub-active"
-                              : ""
-                          }`}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-
-            <div className="site-header-mobile-foot">
-              <a
-                href={contact.phoneHref}
-                onClick={() => setMobileOpen(false)}
-                className="site-header-mobile-phone"
-              >
-                <PhoneIcon className="h-4 w-4 shrink-0" />
-                {contact.phone}
-              </a>
-              <BookNowLink
-                onClick={() => setMobileOpen(false)}
-                className="site-header-cta site-header-cta-full"
-              >
-                Book your seat
-              </BookNowLink>
-            </div>
+          <nav className="site-header-nav" aria-label="Main">
+            {navGroups.map((group) => (
+              <DesktopNavDropdown key={group.label} group={group} pathname={pathname} />
+            ))}
           </nav>
-        </>
-      )}
-    </header>
+
+          <div className="site-header-actions">
+            <a href={contact.phoneHref} className="site-header-phone">
+              <IconPhone className="h-4 w-4 shrink-0" />
+              <span className="hidden xl:inline">{contact.phone}</span>
+            </a>
+            <BookNowLink className="site-header-cta">Book now</BookNowLink>
+          </div>
+
+          <div className="site-header-mobile-actions">
+            <button
+              ref={menuButtonRef}
+              type="button"
+              className="site-header-menu-btn"
+              onClick={toggleMobile}
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileOpen}
+              aria-controls="site-header-mobile-panel"
+            >
+              {mobileOpen ? <IconClose /> : <IconMenu />}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {mounted && mobileMenu ? createPortal(mobileMenu, document.body) : null}
+    </>
   );
 }

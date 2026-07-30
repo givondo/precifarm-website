@@ -9,14 +9,28 @@ import HomeFaqSection from "@/components/home/HomeFaqSection";
 import JsonLd from "@/components/seo/JsonLd";
 import ValueProposition from "@/components/ValueProposition";
 import { createPageSeo } from "@/lib/seo";
+import { getHomepageFaqsForSchema } from "@/lib/seo/cms-content";
 import { getPageSeo } from "@/lib/seo/pages/registry";
 
+export const revalidate = 3600;
+
 const pageSeo = getPageSeo("/")!;
-const seo = createPageSeo(pageSeo);
 
-export const metadata: Metadata = seo.metadata;
+export async function generateMetadata(): Promise<Metadata> {
+  const cmsFaqs = await getHomepageFaqsForSchema();
+  return createPageSeo({
+    ...pageSeo,
+    faqs: cmsFaqs.length > 0 ? cmsFaqs : pageSeo.faqs,
+  }).metadata;
+}
 
-export default function Home() {
+export default async function Home() {
+  const cmsFaqs = await getHomepageFaqsForSchema();
+  const seo = createPageSeo({
+    ...pageSeo,
+    faqs: cmsFaqs.length > 0 ? cmsFaqs : pageSeo.faqs,
+  });
+
   return (
     <>
       <JsonLd data={seo.jsonLd} />

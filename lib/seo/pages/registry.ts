@@ -5,7 +5,7 @@ import type { PageSeoInput } from "@/lib/seo/types";
 export const pageSeoRegistry: PageSeoInput[] = [
   {
     path: "/",
-    title: "Precifarm — Electric transport infrastructure for Kenya",
+    title: "Precifarm",
     description:
       "Book Nairobi–Kisumu electric coach seats online. Precifarm builds charging hubs and the operating network for dependable intercity travel in Kenya.",
     faqs: (homepageAisoBlocks.find((b) => b.type === "faq")?.items ?? []) as PageSeoInput["faqs"],
