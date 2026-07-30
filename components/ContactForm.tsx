@@ -5,7 +5,7 @@ import { getAnonymousId } from "@/lib/analytics";
 
 const interests = [
   "Book Nairobi–Kisumu travel",
-  "Operate coaches on a route",
+  "Operate buses on a route",
   "Host a charging hub site",
   "Fleet or logistics charging",
   "Finance or OEM partnership",

@@ -4,7 +4,7 @@ import { bookingHighlights, nairobiKisumuRoute } from "@/lib/route";
 
 const hubFeatures = ["Solar canopy", "DC fast charge", "Multi-bay hub"] as const;
 
-const trustItems = ["Electric coaches", "M-Pesa checkout", "SMS tickets"] as const;
+const trustItems = ["Electric buses", "M-Pesa checkout", "SMS tickets"] as const;
 
 export default function HomeRouteShowcase() {
   return (
@@ -46,7 +46,7 @@ export default function HomeRouteShowcase() {
 
             <h2 className="heading-display mt-3 text-2xl sm:text-3xl lg:text-[2rem] lg:leading-tight">
               Nairobi to Kisumu on
-              <span className="block text-charge-600">scheduled electric coaches</span>
+              <span className="block text-charge-600">scheduled electric buses</span>
             </h2>
             <p className="mt-3 max-w-prose text-sm leading-relaxed text-forest-600 sm:text-base">
               Reserved DC charging at Precifarm solar-canopy hubs keeps every departure on
@@ -70,7 +70,7 @@ export default function HomeRouteShowcase() {
                   </p>
                 </div>
                 <div className="home-showcase-stat">
-                  <p className="home-showcase-stat-label">Coach</p>
+                  <p className="home-showcase-stat-label">Bus</p>
                   <p className="home-showcase-stat-value">{nairobiKisumuRoute.vehicle}</p>
                 </div>
               </div>

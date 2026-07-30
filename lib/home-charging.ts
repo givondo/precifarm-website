@@ -76,8 +76,8 @@ export const chargingTypeComparison = [
   {
     type: "Route charging hubs",
     where: "Public intercity stops on Nairobi–Kisumu and partner routes",
-    access: "Coaches, fleets and public sessions",
-    typical: "Scheduled coach windows and fleet dwell",
+    access: "Buses, fleets and public sessions",
+    typical: "Scheduled bus windows and fleet dwell",
     page: "/network",
   },
   {
@@ -147,7 +147,7 @@ export const privateHouseChargingFaqs = [
   {
     question: "Is this different from a public charging hub?",
     answer:
-      "Yes. House-based private charging is on your property for your vehicle only. Route hubs on the Charge Map serve scheduled coaches and public sessions.",
+      "Yes. House-based private charging is on your property for your vehicle only. Route hubs on the Charge Map serve scheduled buses and public sessions.",
   },
   {
     question: "Can you install at an apartment?",

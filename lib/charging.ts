@@ -4,20 +4,20 @@ export const chargingOfferings = {
     eyebrow: "Route charging hubs",
     image: "/images/charging-route-hub.png",
     imageAlt:
-      "Electric intercity coach charging at a DC fast charger under a solar canopy with battery storage cabinets beside the highway",
+      "Electric intercity bus charging at a DC fast charger under a solar canopy with battery storage cabinets beside the highway",
   },
   hubAnatomy: {
     image: "/images/charging-route-hub.png",
     imageAlt:
-      "Route charging hub with solar canopy, DC fast charger and battery storage serving an electric coach on an intercity route",
+      "Route charging hub with solar canopy, DC fast charger and battery storage serving an electric bus on an intercity route",
     caption:
       "Energy supply, fast charging, passenger dwell and operations — integrated in one dependable stop.",
   },
   home: {
     eyebrow: "Private house charging",
-    image: "/images/charging-home.png",
+    image: "/images/charging-private-house-hybrid.png",
     imageAlt:
-      "Wall-mounted DC charger at a private house charging an electric SUV, with rooftop solar on the property",
+      "Grid-connected and hybrid private house EV charging — wall DC charger, rooftop solar, home battery storage and electric SUV at a Kenyan residence, installed to the same engineering standard as Precifarm route hubs",
   },
   privateSite: {
     eyebrow: "Private in-house stations",
@@ -30,7 +30,7 @@ export const chargingOfferings = {
 export const chargingCategories = [
   {
     title: "Route charging hubs",
-    text: "DC fast charging, solar and storage on key intercity routes with reserved windows for scheduled coaches and fleets.",
+    text: "DC fast charging, solar and storage on key intercity routes with reserved windows for scheduled buses and fleets.",
     image: chargingOfferings.routeHub.image,
     imageAlt: chargingOfferings.routeHub.imageAlt,
   },

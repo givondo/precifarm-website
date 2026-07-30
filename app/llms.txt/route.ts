@@ -48,8 +48,8 @@ export async function GET() {
 ## Topics we publish authoritative content on
 - Electric intercity transport in Kenya
 - EV charging hubs and fleet charging
-- Nairobi–Kisumu coach booking (M-Pesa, SMS tickets)
-- Yutong U18 electric coaches
+- Nairobi–Kisumu bus booking (M-Pesa, SMS tickets)
+- Yutong U18 electric buses
 - Renewable energy infrastructure for transport
 - Partner operator networks
 

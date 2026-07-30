@@ -11,10 +11,10 @@ export const vehicles = {
     model: "Yutong U18",
     role: "City-to-city travel",
     summary:
-      "Long-distance electric coach for scheduled intercity routes such as Nairobi–Kisumu, with reserved charging and premium cabin comfort.",
+      "Long-distance electric bus for scheduled intercity routes such as Nairobi–Kisumu, with reserved charging and premium cabin comfort.",
     image: "/images/yutong-u18.png",
     imageAlt:
-      "Yutong U18 electric coach on the Nairobi–Kisumu route",
+      "Yutong U18 electric bus on the Nairobi–Kisumu route",
   },
   cargo: {
     model: "ET01 electric cargo van",
@@ -35,10 +35,10 @@ const routeHubAlt =
 
 /** Hub photography — same ecosystem, different sites and angles */
 export const hubImages = {
-  /** Intercity route hub — coach at charger */
+  /** Intercity route hub — bus at charger */
   intercityCharger: {
     image: routeHubImage,
-    imageAlt: "Electric coach charging at a Precifarm DC fast charger on an intercity route",
+    imageAlt: "Electric bus charging at a Precifarm DC fast charger on an intercity route",
     objectPosition: "object-[22%_58%]",
   },
   /** Fleet / private-site hub — solar canopy over multiple bays */

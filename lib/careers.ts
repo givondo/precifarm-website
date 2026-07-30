@@ -36,7 +36,7 @@ export const careerOpenings: CareerOpening[] = [
     location: "Nairobi · Kisumu · route corridor",
     type: "Full-time",
     summary:
-      "Install, commission and maintain DC fast chargers, solar and storage at intercity hubs. You keep uptime high so coaches leave on schedule.",
+      "Install, commission and maintain DC fast chargers, solar and storage at intercity hubs. You keep uptime high so buses leave on schedule.",
     points: [
       "Electrical or renewable energy background with field experience",
       "Comfortable with CCS2 chargers, monitoring and fault recovery",

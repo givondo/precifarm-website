@@ -10,9 +10,9 @@ export const metadata: Metadata = pageMetadata("/partners");
 
 const partnerTypes = [
   {
-    title: "Coach operators",
+    title: "Bus operators",
     summary:
-      "Run Yutong U12 within-city service or Yutong U18 intercity coaches on energy and passenger demand you can plan around.",
+      "Run Yutong U12 within-city service or Yutong U18 intercity buses on energy and passenger demand you can plan around.",
     points: [
       "Reserved charging windows aligned to your departure schedule",
       "Passenger bookings through Precifarm and agent channels",
@@ -20,7 +20,7 @@ const partnerTypes = [
       "Access to OEM, finance and route operating data",
     ],
     keeps:
-      "You retain your U12 and U18 coaches, drivers and PSV licence while Precifarm provides energy and passenger demand.",
+      "You retain your U12 and U18 buses, drivers and PSV licence while Precifarm provides energy and passenger demand.",
   },
   {
     title: "Hub site hosts",
@@ -89,7 +89,7 @@ export default function PartnersPage() {
       <PageHero
         eyebrow="Partners"
         title="An intercity route works when every partner has a clear role"
-        description="Precifarm builds and runs charging hubs and the operating network. Partners host sites, operate coaches and move cargo. Financiers and OEMs deploy against contracted route demand. Each organisation does what it does best."
+        description="Precifarm builds and runs charging hubs and the operating network. Partners host sites, operate buses and move cargo. Financiers and OEMs deploy against contracted route demand. Each organisation does what it does best."
       />
 
       <section className="section-pad page-container">
@@ -145,7 +145,7 @@ export default function PartnersPage() {
 
       <PageCTA
         title="Ready to partner on Nairobi–Kisumu?"
-        description="Tell us whether you operate coaches, host a site, move freight or support route finance — and we will follow up within one business day."
+        description="Tell us whether you operate buses, host a site, move freight or support route finance — and we will follow up within one business day."
         primaryHref="/contact"
         primaryLabel="Contact the team"
         secondaryHref="/#book"

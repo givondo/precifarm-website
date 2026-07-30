@@ -1,4 +1,4 @@
-/** Yutong U18 intercity coach — 2+2 layout, 12 rows × 4 seats = 48 seats */
+/** Yutong U18 intercity bus — 2+2 layout, 12 rows × 4 seats = 48 seats */
 export const SEAT_ROWS = 12;
 export const SEAT_LETTERS = ["A", "B", "C", "D"] as const;
 

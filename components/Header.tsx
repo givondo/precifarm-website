@@ -403,7 +403,7 @@ export default function Header() {
         }`}
       >
         <div className="page-container site-header-bar">
-          <Logo height={30} className="site-header-logo" onClick={closeMobile} />
+          <Logo size="header" className="site-header-logo" onClick={closeMobile} />
 
           <nav className="site-header-nav" aria-label="Main">
             {navGroups.map((group) => (

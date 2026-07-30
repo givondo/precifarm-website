@@ -10,7 +10,7 @@ const hubStack = [
   },
   {
     title: "DC fast charging",
-    text: "Modular CCS2 chargers with reserved windows for scheduled coaches and contracted fleet demand.",
+    text: "Modular CCS2 chargers with reserved windows for scheduled buses and contracted fleet demand.",
   },
   {
     title: "Built for dwell",
@@ -103,7 +103,7 @@ export default function ChargingSection() {
           <p className="mt-4 leading-relaxed text-forest-600/85">
             We place hubs where intercity routes need them — sized to contracted
             demand, approved on power and site control, and operated to keep
-            coaches, vans and fleets moving on time.
+            buses, vans and fleets moving on time.
           </p>
           <Link
             href="/network"

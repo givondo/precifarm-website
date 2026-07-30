@@ -83,10 +83,10 @@ export default function Footer() {
         <div className="site-footer-grid">
           <div className="site-footer-segment site-footer-brand">
             <div className="site-footer-logo hidden sm:inline-flex">
-              <Logo height={30} />
+              <Logo size="footer" variant="onDark" />
             </div>
             <p className="site-footer-tagline">
-              Fast EV charging and scheduled electric coaches across Kenya.
+              Fast EV charging and scheduled electric buses across Kenya.
             </p>
             <p className="site-footer-live">
               <span className="site-footer-live-dot" aria-hidden />

@@ -1,13 +1,14 @@
 import { homepageAisoBlocks } from "@/lib/seo/aiso/blocks";
+import { siteConfig } from "@/lib/seo/config";
 import type { PageSeoInput } from "@/lib/seo/types";
 
 /** Central registry for SEO audit and metadata consistency */
 export const pageSeoRegistry: PageSeoInput[] = [
   {
     path: "/",
-    title: "Precifarm",
+    title: siteConfig.defaultTitle,
     description:
-      "Book Nairobi–Kisumu electric coach seats online. Precifarm builds charging hubs and the operating network for dependable intercity travel in Kenya.",
+      "Book Nairobi–Kisumu electric bus seats online. Precifarm builds charging hubs and the operating network for dependable intercity travel in Kenya.",
     faqs: (homepageAisoBlocks.find((b) => b.type === "faq")?.items ?? []) as PageSeoInput["faqs"],
     breadcrumbs: [{ name: "Home", href: "/" }],
   },
@@ -100,7 +101,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
     path: "/download",
     title: "Download App",
     description:
-      "Download the Precifarm Android passenger app to book Nairobi–Kisumu coach seats, pay with M-Pesa and receive SMS tickets.",
+      "Download the Precifarm Android passenger app to book Nairobi–Kisumu bus seats, pay with M-Pesa and receive SMS tickets.",
     breadcrumbs: [
       { name: "Home", href: "/" },
       { name: "Download", href: "/download" },
@@ -118,10 +119,10 @@ export const pageSeoRegistry: PageSeoInput[] = [
   },
   {
     path: "/faq",
-    title: "FAQ — Booking, coaches & charging",
+    title: "FAQ — Booking, buses & charging",
     description:
-      "Frequently asked questions about Precifarm booking, Nairobi–Kisumu electric coaches, M-Pesa tickets and charging hubs in Kenya.",
-    keywords: ["Precifarm FAQ", "electric coach booking Kenya", "M-Pesa bus ticket"],
+      "Frequently asked questions about Precifarm booking, Nairobi–Kisumu electric buses, M-Pesa tickets and charging hubs in Kenya.",
+    keywords: ["Precifarm FAQ", "electric bus booking Kenya", "M-Pesa bus ticket"],
     breadcrumbs: [
       { name: "Home", href: "/" },
       { name: "FAQ", href: "/faq" },
@@ -131,8 +132,8 @@ export const pageSeoRegistry: PageSeoInput[] = [
     path: "/guides",
     title: "Guides — Booking & EV charging in Kenya",
     description:
-      "Precifarm guides for booking Nairobi–Kisumu electric coach travel, EV charging hubs and partner services in Kenya.",
-    keywords: ["Precifarm guides", "book electric coach Kenya", "EV charging guide"],
+      "Precifarm guides for booking Nairobi–Kisumu electric bus travel, EV charging hubs and partner services in Kenya.",
+    keywords: ["Precifarm guides", "book electric bus Kenya", "EV charging guide"],
     breadcrumbs: [
       { name: "Home", href: "/" },
       { name: "Guides", href: "/guides" },
@@ -142,7 +143,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
     path: "/locations",
     title: "Locations — EV charging & electric travel in Kenya",
     description:
-      "Precifarm hub locations across Kenyan cities. EV charging infrastructure and intercity electric coach connections.",
+      "Precifarm hub locations across Kenyan cities. EV charging infrastructure and intercity electric bus connections.",
     keywords: ["EV charging Kenya cities", "Precifarm hubs", "electric travel locations"],
     breadcrumbs: [
       { name: "Home", href: "/" },

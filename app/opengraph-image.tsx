@@ -45,7 +45,7 @@ export default function OpenGraphImage() {
         </div>
 
         <div style={{ display: "flex", fontSize: 22, color: "#94a3b8" }}>
-          EV charging hubs · Electric coaches · M-Pesa booking
+          EV charging hubs · Electric buses · M-Pesa booking
         </div>
       </div>
     ),

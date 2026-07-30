@@ -123,7 +123,7 @@ export function softwareApplicationSchema(): JsonLd {
             "http://schema.org/AndroidPlatform",
           ],
         },
-        name: "Book intercity coach",
+        name: "Book intercity bus",
       },
       {
         "@type": "ViewAction",

@@ -55,7 +55,7 @@ const hubLayers = [
   {
     step: "02",
     title: "Fast charging",
-    text: "Modular CCS2 DC dispensers provide reserved charging windows for scheduled coaches and contracted fleet vehicles.",
+    text: "Modular CCS2 DC dispensers provide reserved charging windows for scheduled buses and contracted fleet vehicles.",
     icon: <path d="M13 2 4.5 13.5H11L9.5 22 19 9.5h-6.5L13 2Z" />,
   },
   {

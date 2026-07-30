@@ -8,6 +8,8 @@ import { contact } from "@/lib/contact";
 export const siteConfig = {
   name: "Precifarm",
   legalName: "Precifarm",
+  /** Shown in the browser tab on the homepage */
+  defaultTitle: "Precifarm · EV charging & electric buses",
   tagline: "Electric transport infrastructure for Kenya",
   url: process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ?? "https://precifarm.com",
   locale: "en-KE",
@@ -15,11 +17,11 @@ export const siteConfig = {
   region: "KE",
   timezone: "Africa/Nairobi",
   defaultDescription:
-    "Precifarm builds charging hubs and the operating network for dependable electric travel between Kenyan cities. Book Nairobi–Kisumu coach seats online with M-Pesa.",
+    "Precifarm builds charging hubs and the operating network for dependable electric travel between Kenyan cities. Book Nairobi–Kisumu bus seats online with M-Pesa.",
   defaultKeywords: [
     "electric bus Kenya",
     "EV charging hubs Kenya",
-    "Nairobi Kisumu electric coach",
+    "Nairobi Kisumu electric bus",
     "Precifarm booking",
     "intercity electric transport",
     "M-Pesa bus ticket",

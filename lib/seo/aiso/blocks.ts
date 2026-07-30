@@ -16,12 +16,12 @@ export function buildExecutiveSummary(text: string): AisoContentBlock {
 /** Default homepage AISO blocks */
 export const homepageAisoBlocks: AisoContentBlock[] = [
   buildExecutiveSummary(
-    "Precifarm builds route charging hubs and runs the booking network for scheduled electric coaches in Kenya. Licensed operators run the coaches; we provide reserved hub energy, timetables, M-Pesa tickets and passenger data — live today on Nairobi–Kisumu.",
+    "Precifarm builds route charging hubs and runs the booking network for scheduled electric buses in Kenya. Licensed operators run the buses; we provide reserved hub energy, timetables, M-Pesa tickets and passenger data — live today on Nairobi–Kisumu.",
   ),
   buildKeyFacts("Key facts", [
     "Live route: Nairobi – Kisumu · ~345 km · about 4h 45m",
     "Fare: KSh 1,550 per seat · M-Pesa checkout",
-    "Vehicle: Yutong U18 electric intercity coach",
+    "Vehicle: Yutong U18 electric intercity bus",
     "Ticket: SMS confirmation with PF booking reference",
     "Energy: hub charging reserved before every departure",
   ]),
@@ -29,7 +29,7 @@ export const homepageAisoBlocks: AisoContentBlock[] = [
     {
       question: "What is Precifarm?",
       answer:
-        "Precifarm is electric transport infrastructure — charging hubs plus the operating software that keeps intercity coaches on timetable. We are not a bus company; licensed partners operate the vehicles while we provide energy, booking and passenger data.",
+        "Precifarm is electric transport infrastructure — charging hubs plus the operating software that keeps intercity buses on timetable. We are not a bus company; licensed partners operate the vehicles while we provide energy, booking and passenger data.",
     },
     {
       question: "How do I book Nairobi–Kisumu?",
@@ -39,7 +39,7 @@ export const homepageAisoBlocks: AisoContentBlock[] = [
     {
       question: "How much does the fare cost?",
       answer:
-        "KSh 1,550 per seat on the Yutong U18 electric coach. The price is fixed at checkout — no surprise fuel surcharges.",
+        "KSh 1,550 per seat on the Yutong U18 electric bus. The price is fixed at checkout — no surprise fuel surcharges.",
     },
     {
       question: "What payment methods are accepted?",
@@ -61,7 +61,7 @@ export const bookingHowToBlock: AisoContentBlock = {
   items: [
     "Open precifarm.com and go to Book your seat",
     "Pick travel date, departure time and passengers",
-    "Choose your seat on the Yutong U18 coach",
+    "Choose your seat on the Yutong U18 bus",
     "Enter name, phone and National ID or passport",
     "Pay with M-Pesa STK push on your phone",
     "Save the SMS ticket with your PF reference for boarding",

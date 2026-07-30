@@ -9,13 +9,13 @@ const energyCostMetric = whyItWorksMetrics.find((m) =>
 
 const problemPoints = [
   "Electric vehicles are arriving faster than dependable intercity charging",
-  "Diesel coaches cost more per kilometre and move with every fuel-price swing",
+  "Diesel buses cost more per kilometre and move with every fuel-price swing",
   "Operators cannot run a timetable on occupied, offline or slow chargers",
   "Passengers have no way to book a dependable electric journey between cities today",
 ];
 
 const solutionPoints = [
-  "Charging hubs placed on routes where scheduled coaches actually need energy",
+  "Charging hubs placed on routes where scheduled buses actually need energy",
   "Reserved charging windows aligned to every departure — energy you can plan around",
   "Timetables, M-Pesa tickets and live route data in one operating network",
   "One proof route at a time — Nairobi–Kisumu live before we finance the next",
@@ -25,7 +25,7 @@ const offering = [
   {
     label: "Charging hubs",
     title: "Dependable energy on intercity routes",
-    text: "Fast charging, solar and storage at the sites that matter — with reserved windows for scheduled coaches and fleet partners.",
+    text: "Fast charging, solar and storage at the sites that matter — with reserved windows for scheduled buses and fleet partners.",
   },
   {
     label: "Operating network",
@@ -60,7 +60,7 @@ const whyUs = [
 const revenueStreams = [
   {
     audience: "Passengers",
-    title: "Coach fares",
+    title: "Bus fares",
     text: "Seat sales on Nairobi–Kisumu with fixed pricing, M-Pesa checkout and SMS tickets.",
     cta: { href: "#book", label: "Book a seat" },
   },
@@ -153,7 +153,7 @@ export default function ValueProposition() {
             <span className="font-semibold text-forest-900">
               What only Precifarm does:
             </span>{" "}
-            licensed partners run the Yutong coaches — we provide the energy,
+            licensed partners run the Yutong buses — we provide the energy,
             passenger demand and operating standards so intercity electric travel
             works as a connected system, not a pilot project.
           </p>

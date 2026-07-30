@@ -107,7 +107,7 @@ export default function HubSchematic({ className = "" }: { className?: string })
       </svg>
       <figcaption className="sr-only">
         Schematic of a Precifarm route hub: solar canopy, grid and battery storage, DC fast
-        charging for intercity coaches, passenger dwell space and remote operations monitoring.
+        charging for intercity buses, passenger dwell space and remote operations monitoring.
       </figcaption>
     </figure>
   );

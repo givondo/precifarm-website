@@ -21,7 +21,7 @@ export const entityRegistry: KnowledgeEntity[] = [
     slug: "nairobi-kisumu",
     type: "route",
     name: "Nairobi – Kisumu",
-    description: "Live intercity electric coach route operated on the Precifarm network.",
+    description: "Live intercity electric bus route operated on the Precifarm network.",
     url: absoluteUrl("/#book"),
     metadata: { duration: "4h 45m", distance: "345 km", fare: 1550, currency: "KES" },
     relatedIds: ["vehicle-yutong-u18", "service-coach-booking", "equipment-ev-charger"],
@@ -31,7 +31,7 @@ export const entityRegistry: KnowledgeEntity[] = [
     slug: "yutong-u18",
     type: "equipment",
     name: "Yutong U18",
-    description: "Electric intercity coach used on Nairobi–Kisumu scheduled service.",
+    description: "Electric intercity bus used on Nairobi–Kisumu scheduled service.",
     relatedIds: ["route-nairobi-kisumu", "manufacturer-yutong"],
   },
   {
@@ -55,7 +55,7 @@ export const entityRegistry: KnowledgeEntity[] = [
     slug: "ev-fast-charger",
     type: "equipment",
     name: "DC Fast Charger",
-    description: "Hub fast charging equipment for intercity electric coaches and fleets.",
+    description: "Hub fast charging equipment for intercity electric buses and fleets.",
     relatedIds: ["service-hub-charging", "component-inverter", "component-battery"],
   },
   {
@@ -86,7 +86,7 @@ export const entityRegistry: KnowledgeEntity[] = [
     id: "service-coach-booking",
     slug: "coach-booking",
     type: "service",
-    name: "Coach Seat Booking",
+    name: "Bus Seat Booking",
     description: "Online seat reservation with M-Pesa payment and SMS ticket delivery.",
     url: absoluteUrl("/#book"),
     relatedIds: ["route-nairobi-kisumu"],
@@ -114,7 +114,7 @@ export const entityRegistry: KnowledgeEntity[] = [
     slug: "nairobi",
     type: "location",
     name: "Nairobi",
-    description: "Origin city for Nairobi–Kisumu electric coach service.",
+    description: "Origin city for Nairobi–Kisumu electric bus service.",
     relatedIds: ["route-nairobi-kisumu"],
   },
   {
@@ -122,7 +122,7 @@ export const entityRegistry: KnowledgeEntity[] = [
     slug: "kisumu",
     type: "location",
     name: "Kisumu",
-    description: "Destination city for Nairobi–Kisumu electric coach service.",
+    description: "Destination city for Nairobi–Kisumu electric bus service.",
     relatedIds: ["route-nairobi-kisumu"],
   },
 ];

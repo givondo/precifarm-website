@@ -17,7 +17,7 @@ const principles = [
   },
   {
     title: "Partners run the vehicles",
-    text: "Precifarm is not a fleet company. Licensed operators own the coaches and employ the drivers, while we provide energy, passenger demand and operating standards.",
+    text: "Precifarm is not a fleet company. Licensed operators own the buses and employ the drivers, while we provide energy, passenger demand and operating standards.",
   },
   {
     title: "Uptime is what passengers and operators depend on",
@@ -98,7 +98,7 @@ export default function AboutPage() {
 
       <PageCTA
         title="Join us on the Nairobi–Kisumu route"
-        description="Whether you want to travel, operate coaches, host a hub site or support the route as a partner, we would like to hear from you."
+        description="Whether you want to travel, operate buses, host a hub site or support the route as a partner, we would like to hear from you."
       />
     </>
   );

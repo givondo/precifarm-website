@@ -70,7 +70,8 @@ export default function PrivateHouseChargingPage() {
               priority
             />
             <figcaption className="border-t border-border px-5 py-3 text-sm text-forest-600">
-              Private DC charging at a house — your property, your vehicle, your schedule.
+              Grid-connected or hybrid DC charging at your house — same commissioning discipline as our
+              intercity route hubs.
             </figcaption>
           </figure>
         </div>

@@ -3,7 +3,7 @@ export const homeHero = {
   headline: "Reliable fast EV charging",
   headlineAccent: "that keeps every departure on time",
   whatWeDo:
-    "We deploy high-power charging hubs and run the booking network for scheduled electric coaches — reserved energy, clear fares, and M-Pesa tickets on every trip.",
+    "We deploy high-power charging hubs and run the booking network for scheduled electric buses — reserved energy, clear fares, and M-Pesa tickets on every trip.",
   usp: [
     {
       title: "Charging reserved",

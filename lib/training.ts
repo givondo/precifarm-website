@@ -44,7 +44,7 @@ export const trainingIntro = {
     "Our three-tier programme builds competence in a clear sequence: safe awareness (T1), routine field maintenance (T2), then commissioning and advanced diagnostics (T3). Every module is mapped to the chargers, CSMS and hub layouts we operate on live intercity routes — not generic classroom theory.",
   whoShouldAttend: [
     "Hub operators and site hosts on Nairobi–Kisumu and partner locations",
-    "Partner coach operators, fleet managers and front-line depot staff",
+    "Partner bus operators, fleet managers and front-line depot staff",
     "Field engineers, electricians and maintenance teams installing or servicing chargers",
     "Precifarm partner cohorts — operators, financiers and OEM field teams on request",
   ],
@@ -72,7 +72,7 @@ export const trainingTiers: TrainingTier[] = [
       "Support passengers and fleet dwell safely during charging windows",
     ],
     modules: [
-      "EV and battery basics for intercity coaches and fleet vehicles",
+      "EV and battery basics for intercity buses and fleet vehicles",
       "High-voltage awareness and PPE requirements",
       "Hub layout: chargers, solar canopy, storage and passenger zones",
       "Incident reporting, CCTV and emergency contact escalation",
@@ -172,7 +172,7 @@ export const evChargingTracks: EvChargingTrack[] = [
     tiers: ["t1", "t2", "t3"],
     roles: "Hub operators, route engineers, partner depot leads",
     topics: [
-      "Reserved coach charging windows and fleet dwell",
+      "Reserved bus charging windows and fleet dwell",
       "Multi-port load sharing and queue management",
       "Uptime targets, MTTR and passenger communication",
     ],

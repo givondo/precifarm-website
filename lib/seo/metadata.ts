@@ -17,18 +17,19 @@ const DEFAULT_OG_IMAGE = "/opengraph-image";
 const OG_IMAGE_WIDTH = 1200;
 const OG_IMAGE_HEIGHT = 630;
 
-function buildTitle(title: string): string {
+function buildTitle(title: string, path?: string): string {
+  if (path === "/") return siteConfig.defaultTitle;
   if (title.includes("Precifarm")) return title;
-  return `${title} | ${siteConfig.name}`;
+  return `${title} · ${siteConfig.name}`;
 }
 
 export function createPageSeo(input: PageSeoInput): GeneratedPageSeo {
   const canonical = absoluteUrl(input.path);
   const ogImage = absoluteUrl(input.ogImage ?? DEFAULT_OG_IMAGE);
-  const title = buildTitle(input.title);
+  const title = buildTitle(input.title, input.path);
 
   const metadata: Metadata = {
-    title: input.title,
+    title: input.path === "/" ? { absolute: siteConfig.defaultTitle } : input.title,
     description: input.description,
     keywords: input.keywords ?? [...siteConfig.defaultKeywords],
     alternates: {
@@ -73,14 +74,14 @@ export function createPageSeo(input: PageSeoInput): GeneratedPageSeo {
   if (input.path === "/") {
     jsonLd.push(
       serviceSchema({
-        name: "Nairobi–Kisumu Electric Coach Booking",
+        name: "Nairobi–Kisumu Electric Bus Booking",
         description: input.description,
         path: "/#book",
         areaServed: "Kenya",
       }),
       howToSchema({
         name: bookingHowToBlock.title,
-        description: "Book a Nairobi–Kisumu electric coach seat on Precifarm with M-Pesa.",
+        description: "Book a Nairobi–Kisumu electric bus seat on Precifarm with M-Pesa.",
         steps: (bookingHowToBlock.items ?? [])
           .filter((step): step is string => typeof step === "string")
           .map((step, index) => ({
@@ -108,7 +109,7 @@ export function createPageSeo(input: PageSeoInput): GeneratedPageSeo {
 
 export function rootLayoutMetadata(): Metadata {
   return createPageSeo({
-    title: siteConfig.name,
+    title: siteConfig.defaultTitle,
     description: siteConfig.defaultDescription,
     path: "/",
   }).metadata;

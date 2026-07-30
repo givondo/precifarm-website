@@ -100,7 +100,7 @@ body {
 }
 
 .site-header-logo {
-  @apply shrink-0;
+  @apply shrink-0 -ml-1 min-h-11 py-1 pl-1 pr-0.5 sm:min-h-0 sm:py-0;
 }
 
 .site-header-nav {
@@ -536,11 +536,7 @@ body {
 }
 
 .site-footer-logo {
-  @apply inline-flex rounded-lg bg-white px-2.5 py-1.5;
-}
-
-.site-footer-logo img {
-  @apply opacity-100;
+  @apply inline-flex;
 }
 
 .site-footer-tagline {

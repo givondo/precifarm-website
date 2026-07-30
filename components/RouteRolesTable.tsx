@@ -13,14 +13,14 @@ export const routeRoles = [
     precifarm:
       "Precifarm manages the brand, timetable, tickets, booking, payments and passenger service data.",
     partners:
-      "Coach operators provide vehicles, drivers, PSV licences and passenger insurance on the published schedule.",
+      "Bus operators provide vehicles, drivers, PSV licences and passenger insurance on the published schedule.",
   },
   {
     layer: "Partner mobility",
     precifarm:
       "Precifarm aggregates passenger demand, coordinates charging windows and sets the service standards passengers book against.",
     partners:
-      "Licensed operators own and maintain Yutong U12 city buses and U18 intercity coaches, delivering the in-cabin experience on each departure.",
+      "Licensed operators own and maintain Yutong U12 city buses and U18 intercity buses, delivering the in-cabin experience on each departure.",
   },
   {
     layer: "Fleet and cargo",
