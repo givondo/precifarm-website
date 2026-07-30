@@ -14,7 +14,7 @@ export const entityRegistry: KnowledgeEntity[] = [
     description:
       "Kenyan company building charging hubs and operating network for intercity electric travel.",
     url: siteConfig.url,
-    relatedIds: ["route-nairobi-kisumu", "vehicle-yutong-u18", "service-coach-booking"],
+    relatedIds: ["route-nairobi-kisumu", "vehicle-yutong-u18", "service-bus-booking"],
   },
   {
     id: "route-nairobi-kisumu",
@@ -24,7 +24,7 @@ export const entityRegistry: KnowledgeEntity[] = [
     description: "Live intercity electric bus route operated on the Precifarm network.",
     url: absoluteUrl("/#book"),
     metadata: { duration: "4h 45m", distance: "345 km", fare: 1550, currency: "KES" },
-    relatedIds: ["vehicle-yutong-u18", "service-coach-booking", "equipment-ev-charger"],
+    relatedIds: ["vehicle-yutong-u18", "service-bus-booking", "equipment-ev-charger"],
   },
   {
     id: "vehicle-yutong-u18",
@@ -83,8 +83,8 @@ export const entityRegistry: KnowledgeEntity[] = [
     relatedIds: ["service-hub-charging", "component-inverter", "component-battery"],
   },
   {
-    id: "service-coach-booking",
-    slug: "coach-booking",
+    id: "service-bus-booking",
+    slug: "bus-booking",
     type: "service",
     name: "Bus Seat Booking",
     description: "Online seat reservation with M-Pesa payment and SMS ticket delivery.",
@@ -98,7 +98,26 @@ export const entityRegistry: KnowledgeEntity[] = [
     name: "Route Hub Charging",
     description: "Reserved fast-charging windows for partner operators at intercity hubs.",
     url: absoluteUrl("/charging"),
-    relatedIds: ["equipment-ev-charger", "location-nairobi", "location-kisumu"],
+    relatedIds: ["equipment-ev-charger", "location-nairobi", "location-kisumu", "service-charge-map"],
+  },
+  {
+    id: "service-charge-map",
+    slug: "charge-map",
+    type: "service",
+    name: "Charge Map",
+    description: "Interactive map of Precifarm EV charging hubs and Nairobi–Kisumu route coverage.",
+    url: absoluteUrl("/network"),
+    relatedIds: ["service-hub-charging", "service-private-house-charging", "location-nairobi", "location-kisumu"],
+  },
+  {
+    id: "service-private-house-charging",
+    slug: "private-house-charging",
+    type: "service",
+    name: "Private House Charging",
+    description:
+      "House-based private DC EV charging on the customer's property and meter, with optional solar and storage.",
+    url: absoluteUrl("/charging/private-house"),
+    relatedIds: ["service-hub-charging", "equipment-ev-charger"],
   },
   {
     id: "service-fleet-charging",
@@ -108,6 +127,16 @@ export const entityRegistry: KnowledgeEntity[] = [
     description: "Energy services for fleet operators and logistics partners.",
     url: absoluteUrl("/partners"),
     relatedIds: ["vehicle-yutong-u12", "equipment-ev-charger"],
+  },
+  {
+    id: "service-mobile-app",
+    slug: "mobile-app",
+    type: "service",
+    name: "Precifarm Mobile App",
+    description:
+      "Android app for Charge Map, personal home charging management and Nairobi–Kisumu booking. iOS not available yet.",
+    url: absoluteUrl("/download"),
+    relatedIds: ["service-charge-map", "service-private-house-charging", "service-bus-booking"],
   },
   {
     id: "location-nairobi",
@@ -164,16 +193,29 @@ export function internalLinksForPath(path: string): { href: string; label: strin
     case "/":
       add("/network", "Charge Map", "View hub locations on the operating network");
       add("/charging", "Charging services", "Hub, home and private-site charging");
-      add("/partners", "Partner with us", "Operators and fleet partners");
+      add("/charging/private-house", "Private house charging", "Manage charging on your property");
+      add("/download", "Download app", "Android EV charging app");
       add("/faq", "FAQ", "Booking and travel answers");
       return links.slice(0, 5);
     case "/network":
       add("/charging", "Charging services", "Energy infrastructure behind the map");
+      add("/charging/private-house", "Private house charging", "House-based private DC install");
       add("/#book", "Book a seat", "Travel on Nairobi–Kisumu");
       break;
     case "/charging":
       add("/network", "Charge Map", "See hub locations");
+      add("/charging/private-house", "Private house charging", "On your property, your meter");
       add("/partners", "Fleet charging", "Partner operator services");
+      break;
+    case "/charging/private-house":
+      add("/charging", "All charging services", "Hubs, home and fleet");
+      add("/download", "Download app", "Manage home charging on Android");
+      add("/network", "Charge Map", "Route hub locations");
+      break;
+    case "/download":
+      add("/network", "Charge Map", "Hubs and route coverage");
+      add("/charging/private-house", "Private house charging", "Home charger installs");
+      add("/#book", "Book a seat", "Nairobi–Kisumu on web or app");
       break;
     case "/partners":
       add("/charging", "Charging services", "Energy for partner fleets");
