@@ -11,6 +11,11 @@ export const appDownload = {
   apkVersionedUrl: `/downloads/precifarm-1.0.0.apk`,
   playStoreUrl: null as string | null,
   fileName: "precifarm.apk",
+  ios: {
+    available: false,
+    appStoreUrl: null as string | null,
+    minIos: "15.0",
+  },
 } as const;
 
 export const appFeatures = [

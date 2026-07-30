@@ -5,11 +5,14 @@
 
 import { contact } from "@/lib/contact";
 
+/** Browser tab title for the homepage — keep in sync with layout metadata */
+export const defaultSiteTitle = "Precifarm · EV charging & electric buses" as const;
+
 export const siteConfig = {
   name: "Precifarm",
   legalName: "Precifarm",
   /** Shown in the browser tab on the homepage */
-  defaultTitle: "Precifarm · EV charging & electric buses",
+  defaultTitle: defaultSiteTitle,
   tagline: "Electric transport infrastructure for Kenya",
   url: process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ?? "https://precifarm.com",
   locale: "en-KE",

@@ -1309,6 +1309,51 @@ button,
   @apply border-t border-charge-200 bg-gradient-to-br from-charge-50 via-white to-white px-5 py-4;
 }
 
+.home-app-phone {
+  @apply rounded-[2rem] border border-border bg-forest-900 p-2 shadow-xl shadow-charge-600/10;
+}
+
+.home-app-phone-screen {
+  @apply relative overflow-hidden rounded-[1.6rem] bg-gradient-to-b from-charge-50 to-white px-5 pb-8 pt-10;
+  min-height: 20rem;
+}
+
+.home-app-phone-notch {
+  @apply absolute left-1/2 top-3 h-1.5 w-12 -translate-x-1/2 rounded-full bg-forest-900/10;
+}
+
+.home-app-phone-content {
+  @apply flex flex-col items-center text-center;
+}
+
+.home-app-phone-icon {
+  @apply h-20 w-20 shadow-md ring-1 ring-black/5;
+}
+
+.home-app-phone-brand {
+  @apply mt-5 font-display text-xl font-bold tracking-[-0.03em];
+}
+
+.home-app-phone-tagline {
+  @apply mt-1 text-xs font-medium text-forest-500;
+}
+
+.home-app-phone-pill {
+  @apply mt-6 rounded-full bg-charge-600 px-4 py-2 text-xs font-semibold text-white;
+}
+
+.home-app-store-btn {
+  @apply inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold;
+}
+
+.home-app-store-btn-unavailable {
+  @apply cursor-not-allowed border border-border bg-muted/60 text-forest-400;
+}
+
+.home-app-store-badge {
+  @apply rounded-full bg-forest-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-forest-500;
+}
+
 .home-charging-cta {
   @apply bg-white;
 }

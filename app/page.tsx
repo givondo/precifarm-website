@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import HomeHero from "@/components/home/HomeHero";
+import HomeAppDownload from "@/components/home/HomeAppDownload";
 import HomeBookingSteps from "@/components/home/HomeBookingSteps";
 import HomeHubSpotlight from "@/components/home/HomeHubSpotlight";
 import HomeRouteShowcase from "@/components/home/HomeRouteShowcase";
@@ -42,6 +43,8 @@ export default async function Home() {
         <HomeRouteShowcase />
 
         <HomeBookingSteps />
+
+        <HomeAppDownload />
 
         <ValueProposition />
 

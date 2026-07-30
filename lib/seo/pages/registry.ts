@@ -1,12 +1,12 @@
 import { homepageAisoBlocks } from "@/lib/seo/aiso/blocks";
-import { siteConfig } from "@/lib/seo/config";
+import { defaultSiteTitle } from "@/lib/seo/config";
 import type { PageSeoInput } from "@/lib/seo/types";
 
 /** Central registry for SEO audit and metadata consistency */
 export const pageSeoRegistry: PageSeoInput[] = [
   {
     path: "/",
-    title: siteConfig.defaultTitle,
+    title: defaultSiteTitle,
     description:
       "Book Nairobi–Kisumu electric bus seats online. Precifarm builds charging hubs and the operating network for dependable intercity travel in Kenya.",
     faqs: (homepageAisoBlocks.find((b) => b.type === "faq")?.items ?? []) as PageSeoInput["faqs"],
