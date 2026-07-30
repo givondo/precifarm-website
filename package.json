@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "eslint",
     "deploy:gcp": "powershell -ExecutionPolicy Bypass -File scripts/deploy-gcp.ps1",
+    "seo:search-console": "powershell -ExecutionPolicy Bypass -File scripts/submit-search-console.ps1",
     "verify:cms": "node scripts/verify-cms-content.mjs",
     "seo:verify-cms": "node scripts/verify-cms-content.mjs"
   },
