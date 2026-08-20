@@ -4,40 +4,45 @@
  */
 
 import { contact } from "@/lib/contact";
+import { chargingHub } from "@/lib/charging-hub";
+import { socialHandles, socialProfileUrls } from "@/lib/social";
 
 /** Browser tab title for the homepage — keep in sync with layout metadata */
-export const defaultSiteTitle = "Precifarm · EV charging & electric buses" as const;
+export const defaultSiteTitle = "Precifarm · EV charging in Kenya" as const;
 
 export const siteConfig = {
   name: "Precifarm",
   legalName: "Precifarm",
   /** Shown in the browser tab on the homepage */
   defaultTitle: defaultSiteTitle,
-  tagline: "Electric transport infrastructure for Kenya",
+  tagline: "Electric mobility infrastructure for Africa",
   url: process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ?? "https://precifarm.com",
   locale: "en-KE",
   language: "en",
   region: "KE",
   timezone: "Africa/Nairobi",
   defaultDescription:
-    "Precifarm builds charging hubs and the operating network for dependable electric travel between Kenyan cities. Book Nairobi–Kisumu bus seats online with M-Pesa.",
+    "Precifarm installs, finances and runs EV charging in Kenya — from home charging to highway charging, paid with M-Pesa.",
   defaultKeywords: [
-    "electric bus Kenya",
-    "EV charging hubs Kenya",
-    "Nairobi Kisumu electric bus",
-    "Precifarm booking",
-    "intercity electric transport",
-    "M-Pesa bus ticket",
-    "Yutong U18 Kenya",
-    "renewable energy transport",
+    "EV charging Kenya",
+    "home charging Kenya",
+    "Pulse charger",
+    "Pod energy storage",
+    "highway charging Kenya",
+    "Corridor charging",
+    "Lipa na M-Pesa EV",
+    "Lipa Pole Pole",
+    "public DC KES 39 kWh",
+    "Precifarm Charging Hub",
   ] as const,
   contact: {
     email: contact.email,
     phone: contact.phoneHref.replace(/^tel:/, ""),
   },
   social: {
-    twitter: undefined as string | undefined,
-    linkedin: undefined as string | undefined,
+    twitter: socialHandles.x,
+    linkedin: socialProfileUrls.find((url) => url.includes("linkedin")),
+    profiles: socialProfileUrls,
   },
   androidApp: {
     packageName: "com.precifarm.mobile",
@@ -54,9 +59,10 @@ export type SiteConfig = typeof siteConfig;
 /** Static routes included in sitemap and internal linking graph */
 export const publicRoutes = [
   { path: "/", label: "Home", changefreq: "weekly" as const, priority: 1.0 },
-  { path: "/network", label: "Charge Map", changefreq: "weekly" as const, priority: 0.9 },
-  { path: "/charging", label: "Charging Services", changefreq: "monthly" as const, priority: 0.85 },
-  { path: "/charging/private-house", label: "Private House Charging", changefreq: "monthly" as const, priority: 0.82 },
+  { path: chargingHub.path, label: chargingHub.label, changefreq: "weekly" as const, priority: 0.9 },
+  { path: "/charging", label: "Charging", changefreq: "monthly" as const, priority: 0.95 },
+  { path: "/charging/private-house", label: "Home charging", changefreq: "monthly" as const, priority: 0.82 },
+  { path: "/charging/engineering", label: "Engineering Design Package", changefreq: "monthly" as const, priority: 0.8 },
   { path: "/partners", label: "Partners", changefreq: "monthly" as const, priority: 0.8 },
   { path: "/training", label: "Training", changefreq: "monthly" as const, priority: 0.76 },
   { path: "/about", label: "About", changefreq: "monthly" as const, priority: 0.75 },
@@ -66,7 +72,7 @@ export const publicRoutes = [
   { path: "/guides", label: "Guides", changefreq: "weekly" as const, priority: 0.8 },
   { path: "/faq", label: "FAQ", changefreq: "weekly" as const, priority: 0.75 },
   { path: "/locations", label: "Locations", changefreq: "weekly" as const, priority: 0.78 },
-  { path: "/book", label: "Book", changefreq: "weekly" as const, priority: 0.95, sitemap: false as const },
+  { path: "/book", label: "Charging", changefreq: "weekly" as const, priority: 0.5, sitemap: false as const },
   { path: "/sw", label: "Kiswahili", changefreq: "weekly" as const, priority: 0.85 },
 ] as const;
 

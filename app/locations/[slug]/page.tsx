@@ -181,12 +181,12 @@ export default async function LocationPage({ params }: Props) {
         )}
 
         <PageCTA
-          title="Plan your trip"
-          description="Explore charging services or book a seat on Nairobi–Kisumu."
-          primaryHref="/#book"
-          primaryLabel="Book a trip"
-          secondaryHref="/charging"
-          secondaryLabel="Charging services"
+          title="Plan your charging"
+          description="Explore charging services or find public chargers on the Charging Hub."
+          primaryHref="/charging"
+          primaryLabel="Explore charging"
+          secondaryHref="/network"
+          secondaryLabel="Charging Hub"
         />
       </article>
     </>

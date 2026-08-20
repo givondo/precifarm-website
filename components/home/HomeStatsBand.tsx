@@ -5,7 +5,7 @@ export default function HomeStatsBand() {
     <section className="home-stats-band border-y border-forest-900 section-pad">
       <div className="page-container">
         <p className="text-center text-xs font-semibold uppercase tracking-widest text-white/60">
-          Nairobi–Kisumu · Route-one proof
+          Precifarm charging range · Kenya
         </p>
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
           {whyItWorksMetrics.map((item) => (

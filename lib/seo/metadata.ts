@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { contact } from "@/lib/contact";
 import { absoluteUrl, siteConfig } from "@/lib/seo/config";
-import { bookingHowToBlock } from "@/lib/seo/aiso/blocks";
+import { chargingHowToBlock } from "@/lib/seo/aiso/blocks";
 import { hreflangAlternates } from "@/lib/seo/i18n";
 import {
   articleSchema,
@@ -74,15 +74,15 @@ export function createPageSeo(input: PageSeoInput): GeneratedPageSeo {
   if (input.path === "/") {
     jsonLd.push(
       serviceSchema({
-        name: "Nairobi–Kisumu Electric Bus Booking",
+        name: "Precifarm EV Charging",
         description: input.description,
-        path: "/#book",
+        path: "/charging",
         areaServed: "Kenya",
       }),
       howToSchema({
-        name: bookingHowToBlock.title,
-        description: "Book a Nairobi–Kisumu electric bus seat on Precifarm with M-Pesa.",
-        steps: (bookingHowToBlock.items ?? [])
+        name: chargingHowToBlock.title,
+        description: "Request a certified Pulse charger or Pod energy storage installation on Precifarm with M-Pesa.",
+        steps: (chargingHowToBlock.items ?? [])
           .filter((step): step is string => typeof step === "string")
           .map((step, index) => ({
             name: `Step ${index + 1}`,

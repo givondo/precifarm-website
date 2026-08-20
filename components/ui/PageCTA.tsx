@@ -37,8 +37,8 @@ function CtaLink({
 export default function PageCTA({
   title,
   description,
-  primaryHref = "/#book",
-  primaryLabel = "Book now",
+  primaryHref = "/charging",
+  primaryLabel = "Explore charging",
   secondaryHref = "/contact",
   secondaryLabel = "Contact us",
 }: PageCTAProps) {

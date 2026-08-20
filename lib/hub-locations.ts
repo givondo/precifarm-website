@@ -1,6 +1,7 @@
 export type AvailabilityStatus = "available" | "limited" | "busy";
 export type HubOperator = "precifarm" | "partner";
 export type HubPhase = "live" | "next" | "planned";
+export type HubSiteKind = "dc" | "swap";
 
 export type ChargingHub = {
   id: string;
@@ -8,6 +9,8 @@ export type ChargingHub = {
   lat: number;
   lng: number;
   operator: HubOperator;
+  /** DC fast charge or Boda Hub battery swap */
+  siteKind: HubSiteKind;
   /** Partner brand or venue name when operator is partner */
   partnerName?: string;
   availability: AvailabilityStatus;
@@ -16,6 +19,8 @@ export type ChargingHub = {
   route?: string;
   phase?: HubPhase;
   role: string;
+  /** Typical swap time for Boda Hub sites */
+  swapTime?: string;
 };
 
 export type RoutePhase = {
@@ -33,12 +38,13 @@ export const chargingHubs: ChargingHub[] = [
     lat: -0.1022,
     lng: 34.7617,
     operator: "precifarm",
+    siteKind: "dc",
     availability: "available",
     freeBays: 3,
     totalChargers: 4,
     route: "Nairobi – Kisumu",
     phase: "live",
-    role: "Western terminus hub",
+    role: "Western terminus · CCS2 & CHAdeMO DC",
   },
   {
     id: "nakuru",
@@ -46,25 +52,27 @@ export const chargingHubs: ChargingHub[] = [
     lat: -0.3031,
     lng: 36.08,
     operator: "precifarm",
+    siteKind: "dc",
     availability: "limited",
     freeBays: 1,
     totalChargers: 3,
     route: "Nairobi – Kisumu",
     phase: "live",
-    role: "En-route charging",
+    role: "En-route Corridor DC",
   },
   {
     id: "nairobi",
-    name: "Nairobi Depot",
+    name: "Nairobi Hub",
     lat: -1.2921,
     lng: 36.8219,
     operator: "precifarm",
+    siteKind: "dc",
     availability: "busy",
     freeBays: 0,
     totalChargers: 6,
     route: "All routes",
     phase: "live",
-    role: "Depot & hub access",
+    role: "Capital hub · corridor access",
   },
   {
     id: "mtito-andei",
@@ -72,6 +80,7 @@ export const chargingHubs: ChargingHub[] = [
     lat: -2.6922,
     lng: 38.1667,
     operator: "precifarm",
+    siteKind: "dc",
     availability: "available",
     freeBays: 2,
     totalChargers: 2,
@@ -85,6 +94,7 @@ export const chargingHubs: ChargingHub[] = [
     lat: -3.3963,
     lng: 38.5565,
     operator: "precifarm",
+    siteKind: "dc",
     availability: "limited",
     freeBays: 1,
     totalChargers: 2,
@@ -98,6 +108,7 @@ export const chargingHubs: ChargingHub[] = [
     lat: -4.0435,
     lng: 39.6682,
     operator: "precifarm",
+    siteKind: "dc",
     availability: "available",
     freeBays: 2,
     totalChargers: 4,
@@ -111,6 +122,7 @@ export const chargingHubs: ChargingHub[] = [
     lat: -0.4536,
     lng: 39.6461,
     operator: "precifarm",
+    siteKind: "dc",
     availability: "limited",
     freeBays: 1,
     totalChargers: 2,
@@ -124,6 +136,7 @@ export const chargingHubs: ChargingHub[] = [
     lat: 0.5143,
     lng: 35.2698,
     operator: "precifarm",
+    siteKind: "dc",
     availability: "available",
     freeBays: 1,
     totalChargers: 1,
@@ -136,6 +149,7 @@ export const chargingHubs: ChargingHub[] = [
     lat: -1.3744,
     lng: 38.0106,
     operator: "precifarm",
+    siteKind: "dc",
     availability: "available",
     freeBays: 1,
     totalChargers: 1,
@@ -148,12 +162,13 @@ export const chargingHubs: ChargingHub[] = [
     lat: -1.3456,
     lng: 36.7892,
     operator: "partner",
+    siteKind: "dc",
     partnerName: "Shell",
     availability: "available",
     freeBays: 2,
     totalChargers: 2,
     route: "Nairobi – Mombasa",
-    role: "Fuel station partner site",
+    role: "Fuel station partner · DC",
   },
   {
     id: "partner-total-westlands",
@@ -161,6 +176,7 @@ export const chargingHubs: ChargingHub[] = [
     lat: -1.2678,
     lng: 36.8074,
     operator: "partner",
+    siteKind: "dc",
     partnerName: "Total Energies",
     availability: "busy",
     freeBays: 0,
@@ -173,11 +189,12 @@ export const chargingHubs: ChargingHub[] = [
     lat: -1.2112,
     lng: 36.8567,
     operator: "partner",
+    siteKind: "dc",
     partnerName: "Two Rivers",
     availability: "limited",
     freeBays: 1,
     totalChargers: 3,
-    role: "Mall parking partner hub",
+    role: "Mall parking partner · DC",
   },
   {
     id: "partner-naivas-nakuru",
@@ -185,6 +202,7 @@ export const chargingHubs: ChargingHub[] = [
     lat: -0.2891,
     lng: 36.0654,
     operator: "partner",
+    siteKind: "dc",
     partnerName: "Naivas",
     availability: "available",
     freeBays: 2,
@@ -198,6 +216,7 @@ export const chargingHubs: ChargingHub[] = [
     lat: -0.0912,
     lng: 34.7689,
     operator: "partner",
+    siteKind: "dc",
     partnerName: "Tuskys",
     availability: "busy",
     freeBays: 0,
@@ -211,12 +230,13 @@ export const chargingHubs: ChargingHub[] = [
     lat: -4.0156,
     lng: 39.7123,
     operator: "partner",
+    siteKind: "dc",
     partnerName: "Bamburi",
     availability: "available",
     freeBays: 1,
     totalChargers: 2,
     route: "Nairobi – Mombasa",
-    role: "Coast fuel partner site",
+    role: "Coast fuel partner · DC",
   },
   {
     id: "partner-ku",
@@ -224,11 +244,12 @@ export const chargingHubs: ChargingHub[] = [
     lat: -1.1805,
     lng: 36.9267,
     operator: "partner",
+    siteKind: "dc",
     partnerName: "Kenyatta University",
     availability: "limited",
     freeBays: 1,
     totalChargers: 2,
-    role: "Campus partner charging",
+    role: "Campus partner · DC",
   },
   {
     id: "partner-thika-road",
@@ -236,11 +257,12 @@ export const chargingHubs: ChargingHub[] = [
     lat: -1.2198,
     lng: 36.8891,
     operator: "partner",
+    siteKind: "dc",
     partnerName: "Thika Road Mall",
     availability: "available",
     freeBays: 2,
     totalChargers: 3,
-    role: "Mall partner hub",
+    role: "Mall partner · DC",
   },
   {
     id: "partner-gilgil",
@@ -248,12 +270,113 @@ export const chargingHubs: ChargingHub[] = [
     lat: -0.5045,
     lng: 36.3212,
     operator: "partner",
+    siteKind: "dc",
     partnerName: "Kenol Kobil",
     availability: "available",
     freeBays: 1,
     totalChargers: 2,
     route: "Nairobi – Kisumu",
     role: "Highway partner en-route",
+  },
+  {
+    id: "boda-westlands",
+    name: "Boda Hub Westlands",
+    lat: -1.2589,
+    lng: 36.8034,
+    operator: "precifarm",
+    siteKind: "swap",
+    availability: "available",
+    freeBays: 5,
+    totalChargers: 6,
+    phase: "live",
+    role: "Battery swap · Roam Air & compatible e-bodas",
+    swapTime: "<5 min",
+  },
+  {
+    id: "boda-cbd",
+    name: "Boda Hub CBD",
+    lat: -1.2864,
+    lng: 36.8172,
+    operator: "precifarm",
+    siteKind: "swap",
+    availability: "limited",
+    freeBays: 2,
+    totalChargers: 4,
+    phase: "live",
+    role: "City-centre swap · M-Pesa",
+    swapTime: "<5 min",
+  },
+  {
+    id: "boda-eastlands",
+    name: "Boda Hub Eastlands",
+    lat: -1.2765,
+    lng: 36.8945,
+    operator: "precifarm",
+    siteKind: "swap",
+    availability: "available",
+    freeBays: 4,
+    totalChargers: 5,
+    phase: "live",
+    role: "High-traffic boda corridor",
+    swapTime: "<5 min",
+  },
+  {
+    id: "boda-south-b",
+    name: "Boda Hub South B",
+    lat: -1.3135,
+    lng: 36.8288,
+    operator: "precifarm",
+    siteKind: "swap",
+    availability: "available",
+    freeBays: 3,
+    totalChargers: 4,
+    phase: "live",
+    role: "South Nairobi swap station",
+    swapTime: "<5 min",
+  },
+  {
+    id: "boda-karen",
+    name: "Boda Hub Karen",
+    lat: -1.3197,
+    lng: 36.7073,
+    operator: "precifarm",
+    siteKind: "swap",
+    availability: "limited",
+    freeBays: 1,
+    totalChargers: 3,
+    phase: "live",
+    role: "Suburban swap · Langata corridor",
+    swapTime: "<5 min",
+  },
+  {
+    id: "boda-kisumu",
+    name: "Boda Hub Kisumu",
+    lat: -0.0988,
+    lng: 34.7521,
+    operator: "precifarm",
+    siteKind: "swap",
+    availability: "available",
+    freeBays: 3,
+    totalChargers: 4,
+    route: "Kisumu",
+    phase: "live",
+    role: "Lake-side e-boda swap",
+    swapTime: "<5 min",
+  },
+  {
+    id: "boda-nakuru",
+    name: "Boda Hub Nakuru",
+    lat: -0.2978,
+    lng: 36.0721,
+    operator: "precifarm",
+    siteKind: "swap",
+    availability: "available",
+    freeBays: 2,
+    totalChargers: 3,
+    route: "Nairobi – Kisumu",
+    phase: "live",
+    role: "En-route boda swap",
+    swapTime: "<5 min",
   },
 ];
 
@@ -294,21 +417,62 @@ export const routePhases: RoutePhase[] = [
 export const KENYA_CENTER = { lat: -0.5, lng: 37.5 };
 export const DEFAULT_ZOOM = 6;
 
-/** Canon live route — Nairobi–Kisumu only on Charge Map */
+/** Canon live route — Nairobi–Kisumu only on Charging Hub */
 export const LIVE_ROUTE_LABEL = "Nairobi – Kisumu";
 
 export const LIVE_ROUTE_CENTER = { lat: -0.72, lng: 35.75 };
 export const LIVE_ROUTE_ZOOM = 7;
 
+export const NAIROBI_SWAP_CENTER = { lat: -1.2864, lng: 36.82 };
+export const NAIROBI_SWAP_ZOOM = 11;
+
+export const siteKindConfig: Record<
+  HubSiteKind,
+  { label: string; shortLabel: string; pinColor: string }
+> = {
+  dc: { label: "DC charging", shortLabel: "DC", pinColor: "#347a52" },
+  swap: { label: "Boda swap", shortLabel: "Swap", pinColor: "#0ea5e9" },
+};
+
+export function hubSiteTypeLabel(hub: ChargingHub): string {
+  if (hub.siteKind === "swap") return "Boda Hub · Swap";
+  if (hub.operator === "partner") return "Partner · DC";
+  return "Precifarm · DC";
+}
+
+export function hubCapacityLabel(hub: ChargingHub): string {
+  if (hub.siteKind === "swap") {
+    return `${hub.freeBays} of ${hub.totalChargers} batteries ready`;
+  }
+  return `${hub.freeBays} of ${hub.totalChargers} bays free`;
+}
+
 export function isLiveRouteHub(hub: ChargingHub): boolean {
+  return hub.siteKind === "dc" && (hub.phase === "live" || hub.route === LIVE_ROUTE_LABEL);
+}
+
+export function isChargingMapHub(hub: ChargingHub): boolean {
+  if (hub.siteKind === "swap") return hub.phase === "live";
   return hub.phase === "live" || hub.route === LIVE_ROUTE_LABEL;
 }
 
 export const liveRouteHubs = chargingHubs.filter(isLiveRouteHub);
+export const chargingMapHubs = chargingHubs.filter(isChargingMapHub);
+export const bodaSwapHubs = chargingHubs.filter((h) => h.siteKind === "swap" && h.phase === "live");
+
+export function getChargingMapStats() {
+  const onMap = chargingMapHubs;
+  return {
+    dcLive: onMap.filter((h) => h.siteKind === "dc").length,
+    swapLive: onMap.filter((h) => h.siteKind === "swap").length,
+    partners: onMap.filter((h) => h.operator === "partner").length,
+    available: onMap.filter((h) => h.availability === "available").length,
+  };
+}
 
 export const liveRoutePhases = routePhases.filter((route) => route.phase === "live");
 
-export type HubFilter = "all" | "precifarm" | "partners" | "available";
+export type HubFilter = "all" | "dc" | "swap" | "partners" | "available";
 
 export function haversineKm(
   lat1: number,
@@ -341,8 +505,10 @@ export function filterHubs(
   filter: HubFilter,
 ): ChargingHub[] {
   switch (filter) {
-    case "precifarm":
-      return hubs.filter((h) => h.operator === "precifarm");
+    case "dc":
+      return hubs.filter((h) => h.siteKind === "dc");
+    case "swap":
+      return hubs.filter((h) => h.siteKind === "swap");
     case "partners":
       return hubs.filter((h) => h.operator === "partner");
     case "available":

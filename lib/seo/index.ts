@@ -11,6 +11,6 @@ export {
   internalLinksForPath,
 } from "@/lib/seo/entities/registry";
 export { runSeoAudit, auditPageSeo } from "@/lib/seo/audit/checks";
-export { homepageAisoBlocks, bookingHowToBlock, homepageRelatedLinks, buildGeoFaqSet } from "@/lib/seo/aiso/blocks";
+export { homepageAisoBlocks, chargingHowToBlock, homepageRelatedLinks, buildGeoFaqSet } from "@/lib/seo/aiso/blocks";
 export { buildStaticSitemapEntries, buildImageSitemapEntries } from "@/lib/seo/sitemap";
 export * from "@/lib/seo/cms-client";

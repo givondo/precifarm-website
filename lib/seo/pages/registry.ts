@@ -1,3 +1,9 @@
+import {
+  chargingServicesFaqs,
+  hubEngineeringFaqs,
+  privateHouseChargingFaqs,
+} from "@/lib/charging-faqs";
+import { chargingHub } from "@/lib/charging-hub";
 import { homepageAisoBlocks } from "@/lib/seo/aiso/blocks";
 import { defaultSiteTitle } from "@/lib/seo/config";
 import type { PageSeoInput } from "@/lib/seo/types";
@@ -8,27 +14,56 @@ export const pageSeoRegistry: PageSeoInput[] = [
     path: "/",
     title: defaultSiteTitle,
     description:
-      "Book Nairobi–Kisumu electric bus seats online. Precifarm builds charging hubs and the operating network for dependable intercity travel in Kenya.",
+      "Precifarm installs, finances and runs EV charging in Kenya — from home charging to highway charging, paid with M-Pesa. Pulse charger from KES 79,000. Public DC from KES 39/kWh.",
     faqs: (homepageAisoBlocks.find((b) => b.type === "faq")?.items ?? []) as PageSeoInput["faqs"],
     breadcrumbs: [{ name: "Home", href: "/" }],
   },
   {
-    path: "/network",
-    title: "Charge Map — EV hubs & Nairobi–Kisumu route",
-    description:
-      "Interactive map of Precifarm charging hubs, partner sites and Nairobi–Kisumu route coverage across Kenya's electric transport network.",
-    keywords: ["EV charge map Kenya", "Precifarm hubs", "Nairobi Kisumu route map"],
+    path: chargingHub.path,
+    title: `${chargingHub.name} — Find EV charging in Kenya`,
+    description: chargingHub.description,
+    keywords: [
+      "EV charging map Kenya",
+      "find EV chargers Kenya",
+      "Boda Hub swap Kenya",
+      "battery swap station Nairobi",
+      "DC fast charging Nairobi Kisumu",
+      "Precifarm Charging Hub",
+      "EV charger locations Kenya",
+      "M-Pesa EV charging",
+      "public EV charging Kenya",
+      "Nissan Leaf charging Kenya",
+      "BYD charging Kenya",
+    ],
+    faqs: [
+      {
+        question: "How do I find EV chargers in Kenya?",
+        answer:
+          "Open the Precifarm Charging Hub map to see live Precifarm hubs and partner chargers, filter by availability, search by route or name, and get directions to each site.",
+      },
+      {
+        question: "Can I pay for EV charging with M-Pesa?",
+        answer:
+          "Yes. Every Precifarm hub supports M-Pesa payment. Download the Precifarm app to start a session, see live bay status and view your charging history.",
+      },
+      {
+        question: "Which EV charging corridor is live in Kenya?",
+        answer:
+          "The Nairobi–Kisumu corridor is live on the Charging Hub map, with hubs at Kisumu, Nakuru and Nairobi plus partner retail stops along the western route.",
+      },
+    ],
     breadcrumbs: [
       { name: "Home", href: "/" },
-      { name: "Charge Map", href: "/network" },
+      { name: chargingHub.label, href: chargingHub.path },
     ],
   },
   {
     path: "/charging",
-    title: "Charging Services — Hubs, home & fleet EV charging",
+    title: "Charging — From home charging to highway charging",
     description:
-      "Route hub charging, home DC installation and private-site stations — engineered and operated by Precifarm for intercity and fleet partners.",
-    keywords: ["EV charging Kenya", "fleet charging", "home DC charger installation"],
+      "Pulse charger and Pod energy storage at home, Depot and Boda Hub for fleets, Corridor charging on the highway — M-Pesa on every product. Pulse charger from KES 79,000. Public DC from KES 39/kWh.",
+    keywords: ["EV charging Kenya", "fleet charging", "home DC charger installation", "KES 39 kWh"],
+    faqs: chargingServicesFaqs,
     breadcrumbs: [
       { name: "Home", href: "/" },
       { name: "Charging", href: "/charging" },
@@ -36,9 +71,10 @@ export const pageSeoRegistry: PageSeoInput[] = [
   },
   {
     path: "/charging/private-house",
-    title: "Private House Charging — House-based EV charging in Kenya",
+    title: "Home Charging — Pulse charger and Pod energy storage in Kenya",
     description:
-      "House-based private EV charging for your property — DC install at your home, on your meter, with survey, optional Neura Pod solar and five-year Precifarm support.",
+      "Pulse charger from KES 79,000, Pod energy storage, Lipa Pole Pole on M-Pesa. A typical home charging day about KES 140 vs petrol. Survey and three-year Precifarm aftersale support.",
+    faqs: privateHouseChargingFaqs,
     keywords: [
       "private house EV charging Kenya",
       "home DC charger private property",
@@ -48,14 +84,78 @@ export const pageSeoRegistry: PageSeoInput[] = [
     breadcrumbs: [
       { name: "Home", href: "/" },
       { name: "Charging", href: "/charging" },
-      { name: "Private house charging", href: "/charging/private-house" },
+      { name: "Home charging", href: "/charging/private-house" },
+    ],
+  },
+  {
+    path: "/charging/engineering",
+    title: "Solar Chargers & Stations — Engineering Design Doc",
+    description:
+      "Downloadable Precifarm engineering design basis for solar-assisted DC route hubs, campus stations and private house hybrid charging — energy model, Kenya Power hold points and site task sheet.",
+    faqs: hubEngineeringFaqs,
+    keywords: [
+      "EV charging station design Kenya",
+      "solar EV charger engineering",
+      "DC fast charging hub task sheet",
+      "Precifarm charging station design",
+    ],
+    breadcrumbs: [
+      { name: "Home", href: "/" },
+      { name: "Charging", href: "/charging" },
+      { name: "Engineering package", href: "/charging/engineering" },
+    ],
+  },
+  {
+    path: "/evs",
+    title: "Kenya EV Guide — Range, charging time & Precifarm fit",
+    description:
+      "Compare 17 EVs in Kenya — Nissan Leaf, BYD Atto 3, MG4, Tesla Model 3, Roam Air and more. Practical range, DC charging speed, daily top-up time and where Precifarm home, hub and corridor charging fit.",
+    keywords: [
+      "EV Kenya comparison",
+      "Kenya EV guide",
+      "Nissan Leaf Kenya",
+      "BYD Atto 3 Kenya",
+      "BYD Dolphin Kenya",
+      "Roam Air Kenya",
+      "electric motorcycle Kenya",
+      "EV practical range Kenya",
+      "EV charging time Kenya",
+      "CHAdeMO Kenya",
+      "Precifarm EV charging",
+    ],
+    faqs: [
+      {
+        question: "Which EVs are most common in Kenya?",
+        answer:
+          "Used Nissan Leaf imports with CHAdeMO fast charging remain widespread. Newer BYD models (Dolphin, Atto 3, Seal), MG, Hyundai, Kia and Tesla imports are growing, alongside Roam Air and M-KOPA electric motorcycles in the e-boda segment.",
+      },
+      {
+        question: "How long does home EV charging take in Kenya?",
+        answer:
+          "On a Precifarm Pulse charger, a typical daily top-up for most passenger EVs takes about 90 minutes. DC fast charging at a public hub can add the same energy in roughly 5–15 minutes depending on the vehicle and charger power.",
+      },
+      {
+        question: "Does Precifarm support Nissan Leaf CHAdeMO charging?",
+        answer:
+          "Yes. Precifarm maps home, workplace and destination charging for Leaf drivers in Kenya, including CHAdeMO-capable DC sessions where available — without requiring every Leaf to use high-power CCS corridor chargers.",
+      },
+    ],
+    breadcrumbs: [
+      { name: "Home", href: "/" },
+      { name: "Kenya EV guide", href: "/evs" },
     ],
   },
   {
     path: "/partners",
-    title: "Partners",
+    title: "Partners — Fleet charging, hub hosts & home installers",
     description:
-      "Partner with Precifarm as an operator, fleet or site host. Reserved hub charging, timetables and passenger demand on Kenya's electric route network.",
+      "Partner with Precifarm to host Corridor hubs, run Depot and Boda Hub for fleets, or sell Pulse charger and Pod energy storage home installations — M-Pesa on every product.",
+    keywords: [
+      "EV charging partner Kenya",
+      "charging hub site host",
+      "fleet depot charging",
+      "Precifarm dealer install",
+    ],
     breadcrumbs: [
       { name: "Home", href: "/" },
       { name: "Partners", href: "/partners" },
@@ -79,9 +179,9 @@ export const pageSeoRegistry: PageSeoInput[] = [
   },
   {
     path: "/about",
-    title: "About",
+    title: "About — From home charging to highway charging",
     description:
-      "Precifarm builds charging hubs and the operating network for dependable electric travel between Kenyan cities — proving Nairobi–Kisumu first.",
+      "Precifarm installs, finances and runs EV charging in Kenya — Pulse charger and Pod energy storage at home, Depot and Boda Hub for fleets, Corridor charging on the highway, paid with M-Pesa.",
     breadcrumbs: [
       { name: "Home", href: "/" },
       { name: "About", href: "/about" },
@@ -91,7 +191,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
     path: "/careers",
     title: "Careers",
     description:
-      "Join Precifarm to build charging hubs, booking systems and route operations for electric intercity travel in Kenya.",
+      "Join Precifarm to install Pulse charger and Pod energy storage at home, commission Depot and Corridor charging, and keep M-Pesa sessions online across Kenya.",
     breadcrumbs: [
       { name: "Home", href: "/" },
       { name: "Careers", href: "/careers" },
@@ -101,7 +201,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
     path: "/download",
     title: "Download App",
     description:
-      "Download the Precifarm Android passenger app to book Nairobi–Kisumu bus seats, pay with M-Pesa and receive SMS tickets.",
+      "Download the Precifarm Android app to find chargers, explore the charging range and request home installation quotes with M-Pesa.",
     breadcrumbs: [
       { name: "Home", href: "/" },
       { name: "Download", href: "/download" },
@@ -111,7 +211,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
     path: "/contact",
     title: "Contact",
     description:
-      "Contact Precifarm for booking support, partnership enquiries and charging services across Kenya's electric transport network.",
+      "Contact Precifarm for Pulse charger and Pod energy storage home installations, fleet depot design, highway hub hosting and charging services across Kenya.",
     breadcrumbs: [
       { name: "Home", href: "/" },
       { name: "Contact", href: "/contact" },
@@ -119,10 +219,16 @@ export const pageSeoRegistry: PageSeoInput[] = [
   },
   {
     path: "/faq",
-    title: "FAQ — Booking, buses & charging",
+    title: "FAQ — EV charging in Kenya",
     description:
-      "Frequently asked questions about Precifarm booking, Nairobi–Kisumu electric buses, M-Pesa tickets and charging hubs in Kenya.",
-    keywords: ["Precifarm FAQ", "electric bus booking Kenya", "M-Pesa bus ticket"],
+      "FAQs on Precifarm charging — a home charging day about KES 140, Pulse charger from KES 79,000, public DC from KES 39/kWh, Lipa Pole Pole and the Charging Hub.",
+    keywords: [
+      "Precifarm FAQ",
+      "EV charging Kenya cost",
+      "home charger Kenya price",
+      "KES 39 kWh",
+      "Lipa Pole Pole financing",
+    ],
     breadcrumbs: [
       { name: "Home", href: "/" },
       { name: "FAQ", href: "/faq" },
@@ -130,10 +236,10 @@ export const pageSeoRegistry: PageSeoInput[] = [
   },
   {
     path: "/guides",
-    title: "Guides — Booking & EV charging in Kenya",
+    title: "Guides — EV charging in Kenya",
     description:
-      "Precifarm guides for booking Nairobi–Kisumu electric bus travel, EV charging hubs and partner services in Kenya.",
-    keywords: ["Precifarm guides", "book electric bus Kenya", "EV charging guide"],
+      "Precifarm guides for home charger installs, public DC charging, the Charging Hub and partner services in Kenya.",
+    keywords: ["Precifarm guides", "home EV charger Kenya", "EV charging guide"],
     breadcrumbs: [
       { name: "Home", href: "/" },
       { name: "Guides", href: "/guides" },
@@ -141,9 +247,9 @@ export const pageSeoRegistry: PageSeoInput[] = [
   },
   {
     path: "/locations",
-    title: "Locations — EV charging & electric travel in Kenya",
+    title: "Locations — EV charging across Kenya",
     description:
-      "Precifarm hub locations across Kenyan cities. EV charging infrastructure and intercity electric bus connections.",
+      "Precifarm hub locations across Kenyan cities — from home charging to highway charging.",
     keywords: ["EV charging Kenya cities", "Precifarm hubs", "electric travel locations"],
     breadcrumbs: [
       { name: "Home", href: "/" },
@@ -154,7 +260,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
     path: "/sw",
     title: "Precifarm — Usafiri wa umeme Kenya",
     description:
-      "Precifarm inajenga vituo vya kuchaji na mtandao wa usafiri wa umeme kati ya miji mikuu nchini Kenya. Hifadhi nafasi Nairobi–Kisumu.",
+      "Precifarm inajenga vituo vya kuchaji nchini Kenya — kutoka kuchaji nyumbani hadi kuchaji barabarani, Lipa na M-Pesa.",
     breadcrumbs: [
       { name: "Home", href: "/" },
       { name: "Kiswahili", href: "/sw" },

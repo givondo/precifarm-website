@@ -14,16 +14,16 @@ export type CareerOpening = {
 
 export const careersIntro = {
   eyebrow: "Careers",
-  title: "Help build dependable electric travel between Kenyan cities",
+  title: "Help build charging from home to highway",
   description:
-    "Precifarm is growing the team that delivers charging hubs, live booking and route operations for Nairobi–Kisumu — and the routes that follow.",
+    "Precifarm is growing the team that installs Pulse charger and Pod energy storage at home, runs Depot and Boda Hub for fleets, and keeps Corridor charging online — starting on Nairobi–Kisumu.",
   lead:
-    "We hire for route-one first: people who care about uptime, honest passenger communication and infrastructure that works in the field — not slide decks.",
+    "We hire for charging first: people who care about uptime, honest status and infrastructure that works in the field — not slide decks.",
 } as const;
 
 export const careersHighlights = [
-  { stat: "Live route", label: "Nairobi–Kisumu in production today" },
-  { stat: "Small team", label: "Direct impact on hubs, booking and ops" },
+  { stat: "Route 1", label: "Nairobi–Kisumu — first corridor we are proving" },
+  { stat: "Small team", label: "Direct impact on hubs, home installations and ops" },
   { stat: "Field + software", label: "Engineering from chargers to M-Pesa checkout" },
   { stat: "Kenya-first", label: "Hubs and hires in the cities we serve" },
 ] as const;
@@ -36,7 +36,7 @@ export const careerOpenings: CareerOpening[] = [
     location: "Nairobi · Kisumu · route corridor",
     type: "Full-time",
     summary:
-      "Install, commission and maintain DC fast chargers, solar and storage at intercity hubs. You keep uptime high so buses leave on schedule.",
+      "Install, commission and maintain Pulse, Pod, Depot and Corridor chargers. You keep uptime high so homes and highway stops stay online.",
     points: [
       "Electrical or renewable energy background with field experience",
       "Comfortable with CCS2 chargers, monitoring and fault recovery",
@@ -51,7 +51,7 @@ export const careerOpenings: CareerOpening[] = [
     location: "Nairobi–Kisumu corridor",
     type: "Full-time",
     summary:
-      "Run day-to-day hub activity — charging windows, passenger dwell, partner coordination and honest status updates when plans change.",
+      "Run day-to-day hub activity — Corridor sessions, partner coordination and honest status updates when plans change.",
     points: [
       "Operations or transport background; calm under timetable pressure",
       "Clear communication with drivers, partners and passengers",
@@ -60,15 +60,15 @@ export const careerOpenings: CareerOpening[] = [
   },
   {
     id: "software-engineer",
-    title: "Software engineer — booking & payments",
+    title: "Software engineer — charging & payments",
     department: "Engineering",
     location: "Nairobi (hybrid)",
     type: "Full-time · Contract",
     summary:
-      "Extend the ticketing CMS, passenger website and mobile app — M-Pesa STK, seat maps, analytics and the SEO knowledge layer behind precifarm.com.",
+      "Extend the Charging Hub, website and Android app — M-Pesa sessions, Lipa Pole Pole, live hub status and the SEO knowledge layer behind precifarm.com.",
     points: [
       "TypeScript, React/Next.js or React Native experience",
-      "Care about reliable payments and clear passenger UX",
+      "Care about reliable M-Pesa flows and clear charging UX",
       "Bonus: PostgreSQL, Cloud Run or mobile release experience",
     ],
   },
@@ -77,7 +77,7 @@ export const careerOpenings: CareerOpening[] = [
 export const careersValues = [
   "We prove one route properly before financing the next.",
   "Uptime and honest communication beat glossy decks.",
-  "Partners operate vehicles; we build the energy and booking layer.",
+  "Partners operate vehicles; we build the energy layer.",
   "Kenya-first engineering — hubs in the cities we serve.",
 ] as const;
 
@@ -88,7 +88,7 @@ export const careersPerks = [
   },
   {
     title: "Route-one focus",
-    text: "Ship improvements passengers and operators feel on Nairobi–Kisumu this quarter.",
+    text: "Ship improvements drivers and operators feel on Nairobi–Kisumu this quarter.",
   },
   {
     title: "Training pathway",

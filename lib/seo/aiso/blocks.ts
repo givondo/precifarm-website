@@ -1,3 +1,5 @@
+import { chargingHub } from "@/lib/charging-hub";
+import { homepageChargingFaqs } from "@/lib/charging-faqs";
 import type { AisoContentBlock, FaqItem } from "@/lib/seo/types";
 
 /** GEO patterns — structured sections LLMs extract easily */
@@ -13,64 +15,39 @@ export function buildExecutiveSummary(text: string): AisoContentBlock {
   return { id: "summary", type: "executive_summary", title: "Summary", content: text };
 }
 
-/** Default homepage AISO blocks */
-export const homepageAisoBlocks: AisoContentBlock[] = [
-  buildExecutiveSummary(
-    "Precifarm builds route charging hubs and runs the booking network for scheduled electric buses in Kenya. Licensed operators run the buses; we provide reserved hub energy, timetables, M-Pesa tickets and passenger data — live today on Nairobi–Kisumu.",
-  ),
-  buildKeyFacts("Key facts", [
-    "Live route: Nairobi – Kisumu · ~345 km · about 4h 45m",
-    "Fare: KSh 1,550 per seat · M-Pesa checkout",
-    "Vehicle: Yutong U18 electric intercity bus",
-    "Ticket: SMS confirmation with PF booking reference",
-    "Energy: hub charging reserved before every departure",
-  ]),
-  buildGeoFaqSet("booking and travel", [
-    {
-      question: "What is Precifarm?",
-      answer:
-        "Precifarm is electric transport infrastructure — charging hubs plus the operating software that keeps intercity buses on timetable. We are not a bus company; licensed partners operate the vehicles while we provide energy, booking and passenger data.",
-    },
-    {
-      question: "How do I book Nairobi–Kisumu?",
-      answer:
-        "Open precifarm.com, pick your date and departure, choose a seat, enter passenger details and pay with M-Pesa. Your SMS ticket includes a PF booking reference for boarding.",
-    },
-    {
-      question: "How much does the fare cost?",
-      answer:
-        "KSh 1,550 per seat on the Yutong U18 electric bus. The price is fixed at checkout — no surprise fuel surcharges.",
-    },
-    {
-      question: "What payment methods are accepted?",
-      answer:
-        "M-Pesa STK push at checkout on the website and Android passenger app. Pay on your phone; the ticket arrives by SMS.",
-    },
-    {
-      question: "Where are Precifarm charging hubs?",
-      answer:
-        "Kisumu, Nakuru and Nairobi depot are live on the Nairobi–Kisumu corridor today, with partner stops along the route. See the Charge Map at precifarm.com/network.",
-    },
-  ]),
-];
-
-export const bookingHowToBlock: AisoContentBlock = {
-  id: "how-to-book",
+/** Homepage HowTo JSON-LD — home charger request flow */
+export const chargingHowToBlock: AisoContentBlock = {
+  id: "how-to-charge",
   type: "how_to",
-  title: "How to book a seat",
+  title: "How to get a Precifarm home charger",
   items: [
-    "Open precifarm.com and go to Book your seat",
-    "Pick travel date, departure time and passengers",
-    "Choose your seat on the Yutong U18 bus",
-    "Enter name, phone and National ID or passport",
-    "Pay with M-Pesa STK push on your phone",
-    "Save the SMS ticket with your PF reference for boarding",
+    "Visit precifarm.com/charging/private-house or open the Precifarm app.",
+    "Choose the Pulse charger or Pod energy storage and request a site survey.",
+    "Pay the deposit via M-Pesa (Lipa Pole Pole instalments available).",
+    "Precifarm installs and commissions your charger — typically within one day after survey approval.",
   ],
 };
 
+/** Default homepage AISO blocks */
+export const homepageAisoBlocks: AisoContentBlock[] = [
+  buildExecutiveSummary(
+    "Precifarm designs, finances, deploys and operates electric mobility infrastructure in Kenya — from a Spark charger in the boot to Corridor DC on the highway. One account, M-Pesa on every product, Lipa Pole Pole on any phone.",
+  ),
+  buildKeyFacts("Key facts", [
+    "Chargers: Spark charger · Pulse charger · Pod energy storage · Boda Hub · Depot · Corridor. Lipa Pole Pole finances Pulse charger and Pod energy storage on M-Pesa.",
+    "Pulse charger from KES 79,000 · Lipa Pole Pole on M-Pesa",
+    "Public DC from KES 39/kWh at Depot charging stations and Corridor charging",
+    "A home charging day of ~60 km ≈ KES 140 vs ~KES 1,000 diesel per day",
+    "Pulse charger or Pod energy storage: typical day in about 90 minutes. Corridor: fast highway top-up in 30 minutes.",
+    "Certified home installation typically in one day · three-year aftersale care",
+  ]),
+  buildGeoFaqSet("EV charging", homepageChargingFaqs),
+];
+
 export const homepageRelatedLinks = [
-  { href: "/network", label: "Charge Map", reason: "Live hub locations on Nairobi–Kisumu" },
-  { href: "/charging", label: "Charging services", reason: "Route hubs, home and private-site" },
-  { href: "/faq", label: "FAQ", reason: "Answers on booking and travel" },
-  { href: "/guides/book-nairobi-kisumu-coach", label: "Booking guide", reason: "Full walkthrough" },
+  { href: "/charging", label: "Charging", reason: "Home, fleet and highway charging" },
+  { href: chargingHub.path, label: chargingHub.label, reason: "Find public chargers in Kenya" },
+  { href: "/charging/private-house", label: "Home charging", reason: "Pulse charger and Pod energy storage" },
+  { href: "/download", label: "Download app", reason: "Find chargers and request installs on Android" },
+  { href: "/faq", label: "FAQ", reason: "Charging and installation answers" },
 ] as const;

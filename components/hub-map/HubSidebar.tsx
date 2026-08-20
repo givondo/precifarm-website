@@ -2,10 +2,12 @@
 
 import {
   availabilityConfig,
-  googleDirectionsUrl,
+  hubCapacityLabel,
+  siteKindConfig,
   type ChargingHub,
   formatDistance,
 } from "@/lib/hub-locations";
+import { HubSiteDetail } from "./HubSiteDetail";
 
 type HubSidebarProps = {
   hubs: (ChargingHub & { distanceKm?: number })[];
@@ -13,55 +15,31 @@ type HubSidebarProps = {
   onSelectHub: (id: string) => void;
 };
 
+function groupHubs(hubs: HubSidebarProps["hubs"]) {
+  const swap = hubs.filter((h) => h.siteKind === "swap");
+  const dc = hubs.filter((h) => h.siteKind === "dc");
+  return [
+    { key: "dc", label: "DC charging", hubs: dc },
+    { key: "swap", label: "Boda swap", hubs: swap },
+  ].filter((g) => g.hubs.length > 0);
+}
+
 export default function HubSidebar({ hubs, selectedHubId, onSelectHub }: HubSidebarProps) {
   const selectedHub = hubs.find((h) => h.id === selectedHubId) ?? null;
+  const groups = groupHubs(hubs);
+  const showGroups = groups.length > 1;
 
   return (
     <aside className="hub-map-sidebar">
       {selectedHub ? (
         <div className="hub-map-sidebar-detail">
-          {(() => {
-            const avail = availabilityConfig[selectedHub.availability];
-            return (
-              <>
-                <div className="hub-map-sidebar-detail-head">
-                  <span
-                    className="hub-map-sidebar-badge"
-                    style={{
-                      color: avail.color,
-                      borderColor: `${avail.color}40`,
-                      backgroundColor: `${avail.color}12`,
-                    }}
-                  >
-                    {avail.label}
-                  </span>
-                  <span className="hub-map-sidebar-operator">
-                    {selectedHub.operator === "partner" ? "Partner site" : "Precifarm hub"}
-                  </span>
-                </div>
-                <h3 className="hub-map-sidebar-detail-title">{selectedHub.name}</h3>
-                <p className="hub-map-sidebar-detail-body">
-                  {selectedHub.role}. {selectedHub.freeBays} of {selectedHub.totalChargers} bays free
-                  {selectedHub.route ? ` · ${selectedHub.route}` : ""}
-                  {selectedHub.distanceKm != null ? ` · ${formatDistance(selectedHub.distanceKm)} away` : ""}.
-                </p>
-                <a
-                  href={googleDirectionsUrl(selectedHub.lat, selectedHub.lng)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary hub-map-sidebar-directions"
-                >
-                  Get directions
-                </a>
-              </>
-            );
-          })()}
+          <HubSiteDetail hub={selectedHub} />
         </div>
       ) : (
         <div className="hub-map-sidebar-empty">
-          <p className="hub-map-sidebar-empty-title">Select a hub</p>
+          <p className="hub-map-sidebar-empty-title">Select a site</p>
           <p className="hub-map-sidebar-empty-body">
-            Choose a site from the list or tap a pin on the map.
+            Pick a DC charger or Boda Hub swap station from the list, or tap a pin on the map.
           </p>
         </div>
       )}
@@ -70,40 +48,73 @@ export default function HubSidebar({ hubs, selectedHubId, onSelectHub }: HubSide
         <p className="hub-map-sidebar-list-label">
           {hubs.length} {hubs.length === 1 ? "site" : "sites"}
         </p>
-        <ul className="hub-map-sidebar-list">
-          {hubs.length === 0 ? (
-            <li className="hub-map-sidebar-no-results">No hubs match your search.</li>
-          ) : (
-            hubs.map((hub) => {
-              const avail = availabilityConfig[hub.availability];
-              const selected = hub.id === selectedHubId;
-
-              return (
-                <li key={hub.id}>
-                  <button
-                    type="button"
-                    onClick={() => onSelectHub(hub.id)}
-                    className={`hub-map-sidebar-item ${selected ? "hub-map-sidebar-item-active" : ""}`}
-                  >
-                    <span
-                      className="hub-map-sidebar-dot"
-                      style={{ backgroundColor: avail.color }}
-                      aria-hidden
-                    />
-                    <span className="min-w-0 flex-1 text-left">
-                      <span className="hub-map-sidebar-name">{hub.name}</span>
-                      <span className="hub-map-sidebar-meta">
-                        {avail.label} · {hub.freeBays}/{hub.totalChargers} bays
-                        {hub.distanceKm != null && ` · ${formatDistance(hub.distanceKm)}`}
-                      </span>
-                    </span>
-                  </button>
-                </li>
-              );
-            })
-          )}
-        </ul>
+        {hubs.length === 0 ? (
+          <p className="hub-map-sidebar-no-results">No sites match your search.</p>
+        ) : showGroups ? (
+          groups.map((group) => (
+            <div key={group.key} className="hub-map-sidebar-group">
+              <p className="hub-map-sidebar-group-label">{group.label}</p>
+              <ul className="hub-map-sidebar-list">
+                {group.hubs.map((hub) => (
+                  <HubSidebarItem
+                    key={hub.id}
+                    hub={hub}
+                    selected={hub.id === selectedHubId}
+                    onSelect={onSelectHub}
+                  />
+                ))}
+              </ul>
+            </div>
+          ))
+        ) : (
+          <ul className="hub-map-sidebar-list">
+            {hubs.map((hub) => (
+              <HubSidebarItem
+                key={hub.id}
+                hub={hub}
+                selected={hub.id === selectedHubId}
+                onSelect={onSelectHub}
+              />
+            ))}
+          </ul>
+        )}
       </div>
     </aside>
+  );
+}
+
+function HubSidebarItem({
+  hub,
+  selected,
+  onSelect,
+}: {
+  hub: ChargingHub & { distanceKm?: number };
+  selected: boolean;
+  onSelect: (id: string) => void;
+}) {
+  const avail = availabilityConfig[hub.availability];
+  const kind = siteKindConfig[hub.siteKind];
+
+  return (
+    <li>
+      <button
+        type="button"
+        onClick={() => onSelect(hub.id)}
+        className={`hub-map-sidebar-item ${selected ? "hub-map-sidebar-item-active" : ""}`}
+      >
+        <span
+          className="hub-map-sidebar-dot"
+          style={{ backgroundColor: hub.siteKind === "swap" ? kind.pinColor : avail.color }}
+          aria-hidden
+        />
+        <span className="min-w-0 flex-1 text-left">
+          <span className="hub-map-sidebar-name">{hub.name}</span>
+          <span className="hub-map-sidebar-meta">
+            {kind.shortLabel} · {avail.label} · {hubCapacityLabel(hub)}
+            {hub.distanceKm != null && ` · ${formatDistance(hub.distanceKm)}`}
+          </span>
+        </span>
+      </button>
+    </li>
   );
 }

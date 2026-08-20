@@ -1,0 +1,185 @@
+/**
+ * Precifarm branded shell for downloadable HTML/PDF documents.
+ * Link from any document in public/downloads/:
+ *   <link rel="stylesheet" href="./precifarm-document-brand.css" />
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&display=swap");
+
+:root {
+  --pf-ink: #0a0a0a;
+  --pf-muted: #404040;
+  --pf-subtle: #737373;
+  --pf-line: #e5e5e5;
+  --pf-bg: #ffffff;
+  --pf-soft: #f5f5f5;
+  --pf-charge: #2563eb;
+  --pf-charge-soft: #eff6ff;
+  --pf-charge-hover: #1d4ed8;
+  --pf-mark-bg: #eff6ff;
+
+  /* Aliases for document body styles */
+  --ink: var(--pf-ink);
+  --muted: var(--pf-muted);
+  --line: var(--pf-line);
+  --bg: var(--pf-bg);
+  --soft: var(--pf-soft);
+  --blue: var(--pf-charge);
+  --blue-soft: var(--pf-charge-soft);
+}
+
+/* Branded header band */
+.pf-doc-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0 0 1.75rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--pf-line);
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--pf-charge-soft) 0%, #ffffff 55%);
+}
+
+.pf-doc-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.pf-doc-mark {
+  display: block;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+}
+
+.pf-doc-mark-sm {
+  width: 28px;
+  height: 28px;
+}
+
+.pf-doc-brand-text {
+  min-width: 0;
+}
+
+.pf-doc-wordmark {
+  margin: 0;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--pf-ink);
+  line-height: 1.2;
+}
+
+.pf-doc-wordmark-sm {
+  font-size: 1rem;
+}
+
+.pf-doc-brand-tagline {
+  margin: 0.15rem 0 0;
+  font-size: 0.8rem;
+  color: var(--pf-subtle);
+  line-height: 1.35;
+}
+
+.pf-doc-header-id {
+  margin: 0;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.78rem;
+  color: var(--pf-muted);
+  white-space: nowrap;
+}
+
+/* Branded footer */
+.pf-doc-footer,
+footer.doc-foot.pf-doc-footer {
+  margin-top: 2.5rem;
+  padding: 1.1rem 1.15rem;
+  border: 1px solid var(--pf-line);
+  border-radius: 14px;
+  background: var(--pf-soft);
+  font-size: 0.82rem;
+  color: var(--pf-muted);
+  line-height: 1.55;
+}
+
+.pf-doc-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 0.65rem;
+}
+
+.pf-doc-footer-meta,
+.pf-doc-footer-contact,
+.pf-doc-footer-disclaimer,
+.pf-doc-footer-link {
+  margin: 0.25rem 0 0;
+}
+
+.pf-doc-footer-disclaimer {
+  color: var(--pf-subtle);
+  font-size: 0.78rem;
+}
+
+.pf-doc-footer a {
+  color: var(--pf-charge);
+  text-decoration: none;
+}
+
+.pf-doc-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Branded toolbar (screen only) */
+.pf-doc-toolbar {
+  border-bottom-color: var(--pf-line);
+}
+
+.pf-doc-toolbar-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.pf-doc-toolbar-brand img {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.pf-doc-toolbar .primary,
+.toolbar .primary {
+  background: var(--pf-charge);
+  border-color: var(--pf-charge);
+}
+
+.pf-doc-toolbar .primary:hover,
+.toolbar .primary:hover {
+  background: var(--pf-charge-hover);
+  border-color: var(--pf-charge-hover);
+}
+
+@media print {
+  .pf-doc-header {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 1.25rem;
+    padding: 0.75rem 0.9rem;
+  }
+
+  .pf-doc-footer,
+  footer.doc-foot.pf-doc-footer {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .pf-doc-footer a {
+    color: var(--pf-muted);
+  }
+}

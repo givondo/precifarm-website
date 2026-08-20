@@ -1,51 +1,26 @@
 import Link from "next/link";
 import Logo from "@/components/Logo";
+import SocialIcon from "@/components/SocialIcon";
+import { footerNavGroups, footerSection } from "@/lib/brand-messaging";
 import { contact } from "@/lib/contact";
-import { LIVE_ROUTE_LABEL } from "@/lib/hub-locations";
+import { socialLinks } from "@/lib/social";
 
-const footerGroups = [
-  {
-    title: "Network",
-    links: [
-      { href: "/network", label: "Charge Map" },
-      { href: "/charging", label: "Charging" },
-      { href: "/charging/private-house", label: "Private house charging" },
-      { href: "/locations", label: "Locations" },
-    ],
-  },
-  {
-    title: "Partners",
-    links: [
-      { href: "/partners", label: "Partner with us" },
-      { href: "/training", label: "Training" },
-      { href: "/partners#hub-hosts", label: "Hub site hosts" },
-      { href: "/partners#fleet-logistics", label: "Fleet & logistics" },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      { href: "/about", label: "About" },
-      { href: "/guides", label: "Guides" },
-      { href: "/faq", label: "FAQ" },
-      { href: "/careers", label: "Careers" },
-      { href: "/download", label: "Download app" },
-      { href: "/contact", label: "Contact" },
-      { href: "/sw", label: "Kiswahili" },
-    ],
-  },
-] as const;
+type FooterLink = { href: string; label: string };
 
-function FooterLinkList({ links }: { links: readonly { href: string; label: string }[] }) {
+function FooterLinkItem({ link }: { link: FooterLink }) {
+  if (link.href.includes("#")) {
+    return <a href={link.href}>{link.label}</a>;
+  }
+
+  return <Link href={link.href}>{link.label}</Link>;
+}
+
+function FooterLinkList({ links }: { links: readonly FooterLink[] }) {
   return (
     <ul className="site-footer-links">
       {links.map((link) => (
         <li key={link.href}>
-          {link.href.includes("#") ? (
-            <a href={link.href}>{link.label}</a>
-          ) : (
-            <Link href={link.href}>{link.label}</Link>
-          )}
+          <FooterLinkItem link={link} />
         </li>
       ))}
     </ul>
@@ -57,7 +32,7 @@ function FooterNavGroup({
   links,
 }: {
   title: string;
-  links: readonly { href: string; label: string }[];
+  links: readonly FooterLink[];
 }) {
   return (
     <>
@@ -74,6 +49,48 @@ function FooterNavGroup({
   );
 }
 
+function FooterSocialLinks() {
+  return (
+    <div className="site-footer-social">
+      <p className="site-footer-social-label">{footerSection.socialLabel}</p>
+      <nav aria-label="Social media" className="site-footer-social-nav">
+        <ul className="site-footer-social-list">
+          {socialLinks.map((link) => (
+            <li key={link.id}>
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="site-footer-social-link"
+                aria-label={link.label}
+                title={link.label}
+              >
+                <SocialIcon platform={link.id} className="site-footer-social-icon" />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+  );
+}
+
+function FooterContactLinks() {
+  return (
+    <ul className="site-footer-links">
+      <li>
+        <a href={`mailto:${contact.email}`}>{contact.email}</a>
+      </li>
+      <li>
+        <a href={contact.phoneHref}>{contact.phone}</a>
+      </li>
+      <li>
+        <span className="site-footer-contact-location">{contact.hq}</span>
+      </li>
+    </ul>
+  );
+}
+
 export default function Footer() {
   const year = new Date().getFullYear();
 
@@ -82,19 +99,16 @@ export default function Footer() {
       <div className="page-container site-footer-container">
         <div className="site-footer-grid">
           <div className="site-footer-segment site-footer-brand">
-            <div className="site-footer-logo hidden sm:inline-flex">
-              <Logo size="footer" variant="onDark" />
+            <div className="site-footer-brand-stack">
+              <div className="site-footer-logo">
+                <Logo size="footer" variant="onDark" />
+              </div>
+              <p className="site-footer-tagline">{footerSection.tagline}</p>
+              <FooterSocialLinks />
             </div>
-            <p className="site-footer-tagline">
-              Fast EV charging and scheduled electric buses across Kenya.
-            </p>
-            <p className="site-footer-live">
-              <span className="site-footer-live-dot" aria-hidden />
-              Live · {LIVE_ROUTE_LABEL}
-            </p>
           </div>
 
-          {footerGroups.map((group) => (
+          {footerNavGroups.map((group) => (
             <FooterNavGroup key={group.title} title={group.title} links={group.links} />
           ))}
 
@@ -102,45 +116,24 @@ export default function Footer() {
             <h3 className="site-footer-heading hidden sm:block">Contact</h3>
             <details className="site-footer-mobile-group sm:hidden">
               <summary className="site-footer-mobile-summary">Contact</summary>
-              <ul className="site-footer-links">
-                <li>
-                  <a href={`mailto:${contact.email}`}>{contact.email}</a>
-                </li>
-                <li>
-                  <a href={contact.phoneHref}>{contact.phone}</a>
-                </li>
-                <li>
-                  <a href={contact.whatsapp} target="_blank" rel="noopener noreferrer">
-                    Chat on WhatsApp
-                  </a>
-                </li>
-                <li>
-                  <span className="site-footer-contact-location">{contact.hq}</span>
-                </li>
-              </ul>
+              <FooterContactLinks />
             </details>
-            <ul className="site-footer-links hidden sm:block">
-              <li>
-                <a href={`mailto:${contact.email}`}>{contact.email}</a>
-              </li>
-              <li>
-                <a href={contact.phoneHref}>{contact.phone}</a>
-              </li>
-              <li>
-                <a href={contact.whatsapp} target="_blank" rel="noopener noreferrer">
-                  Chat on WhatsApp
-                </a>
-              </li>
-              <li>
-                <span className="site-footer-contact-location">{contact.hq}</span>
-              </li>
-            </ul>
+            <div className="hidden sm:block">
+              <FooterContactLinks />
+            </div>
           </div>
         </div>
 
         <div className="site-footer-bottom">
-          <p>&copy; {year} Precifarm. All rights reserved.</p>
-          <p className="site-footer-bottom-meta">Built for Kenya&apos;s intercity electric routes</p>
+          <div className="site-footer-bottom-start">
+            <p>&copy; {year} Precifarm</p>
+            <nav className="site-footer-bottom-links" aria-label="Footer shortcuts">
+              {footerSection.bottomLinks.map((link) => (
+                <FooterLinkItem key={link.href} link={link} />
+              ))}
+            </nav>
+          </div>
+          <p className="site-footer-bottom-meta">{footerSection.meta}</p>
         </div>
       </div>
     </footer>

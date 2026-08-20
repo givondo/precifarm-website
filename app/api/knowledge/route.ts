@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { homepageAisoBlocks, bookingHowToBlock } from "@/lib/seo/aiso/blocks";
+import { homepageAisoBlocks, chargingHowToBlock } from "@/lib/seo/aiso/blocks";
 import { entityRegistry, internalLinksForPath } from "@/lib/seo/entities/registry";
 import { publicRoutes, siteConfig } from "@/lib/seo/config";
 import { cmsGetSeoContent, cmsListSeoEntities } from "@/lib/seo/cms-client";
@@ -90,7 +90,7 @@ export async function GET(request: Request) {
     executiveSummary: homepageAisoBlocks.find((b) => b.type === "executive_summary")?.content,
     keyFacts: homepageAisoBlocks.find((b) => b.type === "key_facts")?.items,
     faqs: homepageAisoBlocks.find((b) => b.type === "faq")?.items,
-    howTo: bookingHowToBlock.items,
+    howTo: chargingHowToBlock.items,
     relatedLinks: internalLinksForPath(path),
     entities: entityFallback,
     meta: {

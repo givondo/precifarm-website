@@ -43,8 +43,9 @@ export function hreflangAlternates(logicalPath: string): Record<string, string> 
 }
 
 export const swahiliUi = {
-  homeTagline: "Miundombinu ya usafiri wa umeme kwa Kenya.",
-  bookCta: "Hifadhi nafasi Nairobi–Kisumu",
+  homeTagline: "Kuchaji umeme kutoka nyumbani hadi barabarani.",
+  bookCta: "Angalia huduma za kuchaji",
+  chargingHubCta: "Charging Hub",
   guides: "Miongozo",
   faq: "Maswali",
   locations: "Maeneo",

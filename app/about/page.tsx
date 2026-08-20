@@ -12,20 +12,20 @@ export const metadata: Metadata = pageMetadata("/about");
 
 const principles = [
   {
-    title: "We build hubs before we scale routes",
-    text: "Dependable charging at the right sites is the foundation. Timetables, tickets and passenger confidence only work when the energy layer holds.",
+    title: "From home charging to highway charging",
+    text: "Pulse charger and Pod energy storage at home, Depot and Boda Hub for fleets, Corridor charging on the highway — one engineering team and M-Pesa on every product.",
   },
   {
     title: "Partners run the vehicles",
-    text: "Precifarm is not a fleet company. Licensed operators own the buses and employ the drivers, while we provide energy, passenger demand and operating standards.",
+    text: "Precifarm is not a fleet company. Licensed operators own the buses and employ the drivers. We own the energy layer: survey, installation, uptime and settlement.",
   },
   {
-    title: "Uptime is what passengers and operators depend on",
-    text: "An offline charger breaks a timetable, so we monitor every hub around the clock, recover quickly and communicate honestly when plans change.",
+    title: "Uptime is the product",
+    text: "An offline charger breaks a home morning and a highway timetable. We monitor commissioned sites, recover quickly and label live versus planned honestly.",
   },
   {
-    title: "We prove each route before we finance the next",
-    text: "Nairobi–Kisumu must demonstrate utilisation, partner returns and passenger experience before we commit capital to the next intercity route.",
+    title: "Nairobi–Kisumu first",
+    text: "The western corridor must demonstrate utilisation, partner returns and driver experience before we commit capital to the next highway hub.",
   },
 ];
 
@@ -35,8 +35,8 @@ export default function AboutPage() {
       <JsonLd data={pageJsonLd("/about")} />
       <PageHero
         eyebrow="About Precifarm"
-        title="From solar infrastructure to dependable electric intercity travel"
-        description="Precifarm is building the charging hubs and operating network that make electric travel between Kenyan cities dependable, affordable and easy to book. Our solar and storage work across Kenya is the engineering foundation behind intercity charging that lasts."
+        title="From home charging to highway charging"
+        description="Precifarm installs, finances and runs EV charging in Kenya so a home charging day costs about KES 140 instead of ~KES 1,000 in diesel per day, paid with M-Pesa. Licensed operators run the vehicles. We own the energy layer."
       />
 
       <section className="page-container pb-12 pt-6 sm:pb-14 sm:pt-8">
@@ -48,25 +48,23 @@ export default function AboutPage() {
         />
         <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-10">
           <div className="overflow-hidden rounded-2xl border border-border shadow-lg">
-            <HubImage variant="intercityWide" aspectClass="aspect-video" />
+            <HubImage variant="homeSolar" aspectClass="aspect-video" />
           </div>
           <div className="space-y-5 leading-relaxed text-forest-600/85">
             <h2 className="text-lg font-semibold text-forest-900 sm:text-xl">Why we exist</h2>
             <p>
-              Electric vehicles are arriving in Kenya faster than the infrastructure
-              needed to connect cities. Without dependable charging and an operator
-              who keeps the timetable, intercity electric travel remains a city
-              demonstration rather than a national service.
+              Electric vehicles are arriving in Kenya faster than dependable charging. A
+              typical Nairobi day is about ~KES 1,000 in diesel per day versus about KES 140 at home
+              on Pulse charger — if the charger is installed, financed and kept online.
             </p>
             <p>
-              Precifarm closes that gap with charging hubs on key routes and the
-              operating network around them — schedules, M-Pesa booking, fleet
-              charging and live operating data that connect energy to the passenger
-              journey.
+              Precifarm closes that gap with Pulse charger and Pod energy storage at home, Depot and Boda Hub for
+              fleets, and Corridor charging on the highway — Lipa Pole Pole on M-Pesa,
+              remote monitoring and live status on the Charging Hub.
             </p>
             <p>
-              Our work starts on Nairobi–Kisumu. Each route that proves itself
-              makes the next one easier to finance and operate.
+              Work starts on Nairobi–Kisumu. Each site that proves itself makes the next
+              one easier to finance and operate.
             </p>
           </div>
         </div>
@@ -76,8 +74,8 @@ export default function AboutPage() {
         <div className="page-container">
           <SectionHeader
             eyebrow="How we work"
-            title="We build the system in the right order"
-            description="Precifarm connects energy, operations and partner mobility so intercity electric travel works as a whole — not as isolated chargers or vehicles."
+            title="One partner from the wallbox to the highway"
+            description="Precifarm connects power, charging, storage, software and financing so electric travel works as a system — not as isolated chargers."
           />
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             {principles.map((p) => (
@@ -97,8 +95,12 @@ export default function AboutPage() {
       </section>
 
       <PageCTA
-        title="Join us on the Nairobi–Kisumu route"
-        description="Whether you want to travel, operate buses, host a hub site or support the route as a partner, we would like to hear from you."
+        title="Join us in building EV charging in Kenya"
+        description="Whether you want a Pulse charger at home, host a highway hub, operate a fleet or support a project as a partner, we would like to hear from you."
+        primaryHref="/contact"
+        primaryLabel="Contact us"
+        secondaryHref="/charging"
+        secondaryLabel="Explore charging"
       />
     </>
   );

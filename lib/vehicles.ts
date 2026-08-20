@@ -35,6 +35,13 @@ const routeHubAlt =
 
 /** Hub photography — same ecosystem, different sites and angles */
 export const hubImages = {
+  /** Home solar + storage + wall charging */
+  homeSolar: {
+    image: "/images/charging-private-house-hybrid.png",
+    imageAlt:
+      "Home with rooftop solar panels, battery storage and a wall charger powering an electric car",
+    objectPosition: "object-[42%_48%]",
+  },
   /** Intercity route hub — bus at charger */
   intercityCharger: {
     image: routeHubImage,

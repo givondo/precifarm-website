@@ -1,7 +1,14 @@
 /** EV charger images — self-hosted in /public/images/ (AI-generated brand imagery) */
+export const chargingPage = {
+  eyebrow: "Charging",
+  title: "From home charging to highway charging",
+  description:
+    "Pulse charger and Pod energy storage at home, Depot and Boda Hub for fleets, Corridor charging on the highway — M-Pesa on every product, Lipa Pole Pole for home installations.",
+} as const;
+
 export const chargingOfferings = {
   routeHub: {
-    eyebrow: "Route charging hubs",
+    eyebrow: "Highway charging",
     image: "/images/charging-route-hub.png",
     imageAlt:
       "Electric intercity bus charging at a DC fast charger under a solar canopy with battery storage cabinets beside the highway",
@@ -9,18 +16,18 @@ export const chargingOfferings = {
   hubAnatomy: {
     image: "/images/charging-route-hub.png",
     imageAlt:
-      "Route charging hub with solar canopy, DC fast charger and battery storage serving an electric bus on an intercity route",
+      "Route charging hub with solar canopy, DC fast charger and battery storage serving an electric car on a Kenyan highway corridor",
     caption:
-      "Energy supply, fast charging, passenger dwell and operations — integrated in one dependable stop.",
+      "Energy supply, Corridor DC, dwell and operations — integrated in one dependable stop for your EV.",
   },
   home: {
-    eyebrow: "Private house charging",
+    eyebrow: "Home charging",
     image: "/images/charging-private-house-hybrid.png",
     imageAlt:
       "Grid-connected and hybrid private house EV charging — wall DC charger, rooftop solar, home battery storage and electric SUV at a Kenyan residence, installed to the same engineering standard as Precifarm route hubs",
   },
   privateSite: {
-    eyebrow: "Private in-house stations",
+    eyebrow: "Fleet charging",
     image: "/images/charging-private-site.png",
     imageAlt:
       "Row of charging pedestals under a solar canopy serving electric vans and a shuttle bus at a campus car park",
@@ -29,21 +36,21 @@ export const chargingOfferings = {
 
 export const chargingCategories = [
   {
-    title: "Route charging hubs",
-    text: "DC fast charging, solar and storage on key intercity routes with reserved windows for scheduled buses and fleets.",
-    image: chargingOfferings.routeHub.image,
-    imageAlt: chargingOfferings.routeHub.imageAlt,
-  },
-  {
-    title: "Private house charging",
-    text: "House-based DC charging on your private property — survey, install, optional Neura Pod solar and five-year support.",
+    title: "Home charging",
+    text: "Pulse charger from KES 79,000, Pod energy storage for weak-grid evenings, Spark charger in the boot — a typical home charging day about KES 140.",
     image: chargingOfferings.home.image,
     imageAlt: chargingOfferings.home.imageAlt,
   },
   {
-    title: "Private in-house stations",
-    text: "Dedicated charging infrastructure for schools, estates, campuses and industrial sites on private land.",
+    title: "Fleet charging",
+    text: "Depot charging station adds 40+ kWh in about 120 minutes while vehicles are parked. Boda Hub swaps a fresh battery in under 5 minutes.",
     image: chargingOfferings.privateSite.image,
     imageAlt: chargingOfferings.privateSite.imageAlt,
+  },
+  {
+    title: "Highway charging",
+    text: "Corridor charging adds about 60 kWh in 30 minutes at highway hubs. Find live sites on the Charging Hub and pay with M-Pesa.",
+    image: chargingOfferings.routeHub.image,
+    imageAlt: chargingOfferings.routeHub.imageAlt,
   },
 ] as const;

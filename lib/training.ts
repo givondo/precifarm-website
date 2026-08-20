@@ -39,14 +39,14 @@ export const trainingIntro = {
   eyebrow: "Training",
   title: "EV charging training — T1, T2 and T3",
   description:
-    "Precifarm trains hub staff, partner operators and field engineers to work safely on DC fast charging, solar-backed hubs and fleet charging across Kenya.",
+    "Precifarm trains hub staff, partner operators and field engineers to work safely on Pulse, Pod, Depot and Corridor charging across Kenya.",
   lead:
-    "Our three-tier programme builds competence in a clear sequence: safe awareness (T1), routine field maintenance (T2), then commissioning and advanced diagnostics (T3). Every module is mapped to the chargers, CSMS and hub layouts we operate on live intercity routes — not generic classroom theory.",
+    "Our three-tier programme builds competence in a clear sequence: safe awareness (T1), routine field maintenance (T2), then commissioning and advanced diagnostics (T3). Every module is mapped to the chargers, CSMS and hub layouts we operate from home charging to highway charging — not generic classroom theory.",
   whoShouldAttend: [
     "Hub operators and site hosts on Nairobi–Kisumu and partner locations",
-    "Partner bus operators, fleet managers and front-line depot staff",
+    "Home installation crews commissioning Pulse charger and Pod energy storage",
+    "Fleet managers, depot staff and boda operators using Depot charging and Boda Hub",
     "Field engineers, electricians and maintenance teams installing or servicing chargers",
-    "Precifarm partner cohorts — operators, financiers and OEM field teams on request",
   ],
 } as const;
 
@@ -166,35 +166,35 @@ export const trainingProgression = [
 export const evChargingTracks: EvChargingTrack[] = [
   {
     id: "route-hub",
-    title: "Route hub charging",
+    title: "Highway charging",
     description:
-      "DC fast charging under solar canopies on intercity corridors — the core of Nairobi–Kisumu operations.",
+      "Corridor charging at route hubs — CCS2 DC, live status and M-Pesa on the Charging Hub.",
     tiers: ["t1", "t2", "t3"],
     roles: "Hub operators, route engineers, partner depot leads",
     topics: [
-      "Reserved bus charging windows and fleet dwell",
-      "Multi-port load sharing and queue management",
-      "Uptime targets, MTTR and passenger communication",
+      "Corridor DC sessions and load sharing",
+      "Live status and M-Pesa session pay",
+      "Uptime targets and honest recovery",
     ],
   },
   {
     id: "home",
-    title: "Home EV charging",
+    title: "Home charging",
     description:
-      "Residential DC installs integrated with Neura Pod solar and storage — survey through five-year service.",
+      "Pulse charger and Pod energy storage installs — survey through three-year aftersale service, Lipa Pole Pole on M-Pesa.",
     tiers: ["t2", "t3"],
     roles: "Install engineers, survey teams, warranty service technicians",
     topics: [
       "Site survey, earthing and consumer protection",
-      "Wallbox / DC unit install and customer handover",
+      "Wallbox / DC unit installation and customer handover",
       "Remote monitoring and warranty service visits",
     ],
   },
   {
     id: "private-site",
-    title: "Private in-house stations",
+    title: "Fleet charging",
     description:
-      "Campus, estate and industrial sites with dedicated charging for fleets and staff vehicles.",
+      "Depot charging stations for yards, campuses and industrial sites — dedicated charging for fleets and staff vehicles.",
     tiers: ["t2", "t3"],
     roles: "Project engineers, estate facilities teams, fleet managers",
     topics: [
@@ -205,15 +205,15 @@ export const evChargingTracks: EvChargingTrack[] = [
   },
   {
     id: "fleet",
-    title: "Fleet & logistics charging",
+    title: "Boda Hub & last-mile",
     description:
-      "Contracted daytime charging for cargo vans and depot fleets on the same dependable hub network.",
+      "Battery swap and kerbside charge for electric bodas — under 5 minutes back on the road.",
     tiers: ["t1", "t2"],
-    roles: "Fleet dispatch, cargo partners, depot supervisors",
+    roles: "Boda operators, depot supervisors, last-mile partners",
     topics: [
-      "ET01 cargo van and mixed-fleet CCS2 compatibility",
-      "Depot overnight vs route-side daytime charging",
-      "Energy cost reporting for fleet operators",
+      "Swap cabinet and kerbside bay operations",
+      "M-Pesa session pay on every bay",
+      "Utilisation gates before expanding a site",
     ],
   },
 ];
@@ -228,32 +228,32 @@ export const trainingTrackMatrix: {
   note: string;
 }[] = [
   {
-    track: "Route hub charging",
+    track: "Highway charging",
     t1: "Required",
     t2: "Required",
     t3: "Required",
-    note: "All tiers needed for full hub operations on Nairobi–Kisumu",
+    note: "All tiers needed for Corridor hubs on Nairobi–Kisumu",
   },
   {
-    track: "Home EV charging",
+    track: "Home charging",
     t1: "—",
     t2: "Required",
     t3: "Recommended",
-    note: "T3 for lead installers and commissioning sign-off",
+    note: "T3 for lead installers and Pulse / Pod commissioning",
   },
   {
-    track: "Private in-house stations",
+    track: "Fleet charging",
     t1: "—",
     t2: "Required",
     t3: "Recommended",
-    note: "T3 for multi-bay sites with load management and BESS",
+    note: "T3 for Depot sites with load management and storage",
   },
   {
-    track: "Fleet & logistics charging",
+    track: "Boda Hub & last-mile",
     t1: "Required",
     t2: "Required",
     t3: "—",
-    note: "T1 for depot staff; T2 for fleet hub maintenance leads",
+    note: "T1 for bay staff; T2 for swap-cabinet maintenance leads",
   },
 ];
 
@@ -304,10 +304,10 @@ export function trainingEnquiryMailto(): string {
       "Team size:",
       "Current tier (if any): T1 / T2 / T3 / None",
       "Modules needed (tick all that apply):",
-      "  [ ] Route hub charging",
-      "  [ ] Home EV charging",
-      "  [ ] Private in-house stations",
-      "  [ ] Fleet & logistics",
+      "  [ ] Highway charging (Corridor)",
+      "  [ ] Home charging (Pulse / Pod)",
+      "  [ ] Fleet charging (Depot)",
+      "  [ ] Boda Hub & last-mile",
       "Preferred month or dates:",
       "",
       "Contact name & phone:",

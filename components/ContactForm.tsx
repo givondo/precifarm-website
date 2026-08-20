@@ -4,10 +4,11 @@ import { useState } from "react";
 import { getAnonymousId } from "@/lib/analytics";
 
 const interests = [
-  "Book Nairobi–Kisumu travel",
-  "Operate buses on a route",
+  "Home charger installation (Pulse charger or Pod energy storage)",
   "Host a charging hub site",
-  "Fleet or logistics charging",
+  "Fleet or depot charging",
+  "Boda swap or kerbside charging",
+  "Dealer or installation partnership",
   "Finance or OEM partnership",
   "General enquiry",
 ];

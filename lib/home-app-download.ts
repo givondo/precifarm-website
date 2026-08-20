@@ -1,29 +1,30 @@
-/** Homepage download app band — EV charging first */
+import { chargingHub } from "@/lib/charging-hub";
+
+/** Homepage download app band — driver + fleet layers */
 export const homeAppDownload = {
-  eyebrow: "EV charging app",
-  title: "Find hubs and charge on your phone",
-  description:
-    "The Precifarm Android app puts our Charge Map and hub network in your pocket — locate DC fast chargers on intercity routes, manage personal home charging and handle travel booking from one account.",
+  eyebrow: "App",
+  title: "Find charging on your phone.",
+  description: `Use the Android app to find a charger, request a home installation and pay with M-Pesa. iOS is not available yet.`,
   features: [
     {
-      title: "Charge Map",
-      text: "See Precifarm hub locations, live Nairobi–Kisumu route coverage and planned expansion sites across Kenya.",
+      title: "Driver",
+      text: "Find a hub, check power and status, start a session and pay with M-Pesa.",
     },
     {
-      title: "Route hub charging",
-      text: "DC fast charging with solar and storage at intercity hubs — reserved windows so buses leave on schedule.",
+      title: chargingHub.name,
+      text: "Precifarm hubs, partner chargers and planned sites — live labelled live.",
     },
     {
-      title: "Personal home charging",
-      text: "Manage your private house charger — monitor sessions, schedules and top-ups on your own property, on your meter.",
+      title: "Home charging",
+      text: "Request a Pulse charger or Pod energy storage survey and track installation on your own meter.",
     },
     {
-      title: "M-Pesa & travel",
-      text: "Pay with M-Pesa for charging and bookings. Same account, fares and SMS confirmations as the website.",
+      title: "Fleet layer",
+      text: "One dashboard for vehicles, chargers and kWh — in design, not live yet.",
     },
   ],
-  phoneTagline: "EV charging network",
-  phonePill: "Open Charge Map",
+  phoneTagline: "From home charging to highway charging",
+  phonePill: chargingHub.openLabel,
   primaryLabel: "Download for Android",
   iosLabel: "Download for iOS",
   iosUnavailableNote: "Not available yet",

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
+import FaqAccordion from "@/components/seo/FaqAccordion";
 import JsonLd from "@/components/seo/JsonLd";
 import SiteImage from "@/components/SiteImage";
 import CheckItem from "@/components/ui/CheckItem";
@@ -42,7 +43,7 @@ export default function PrivateHouseChargingPage() {
           items={[
             { name: "Home", href: "/" },
             { name: "Charging", href: "/charging" },
-            { name: "Private house charging", href: "/charging/private-house" },
+            { name: "Home charging", href: "/charging/private-house" },
           ]}
         />
 
@@ -70,8 +71,7 @@ export default function PrivateHouseChargingPage() {
               priority
             />
             <figcaption className="border-t border-border px-5 py-3 text-sm text-forest-600">
-              Grid-connected or hybrid DC charging at your house — same commissioning discipline as our
-              intercity route hubs.
+              Pulse charger or Pod energy storage at your house — same commissioning discipline as Corridor charging on the highway.
             </figcaption>
           </figure>
         </div>
@@ -82,8 +82,8 @@ export default function PrivateHouseChargingPage() {
           <div>
             <SectionHeader
               eyebrow="Compare"
-              title="House-based private vs other charging"
-              description="Three different products — make sure you are on the right page before you enquire."
+              title="Home, fleet or highway charging"
+              description="Three uses — Pulse charger and Pod energy storage at home, Depot and Boda Hub for fleets, Corridor charging on the highway."
             />
             <div className="training-table-shell mt-8">
               <div className="training-table-wrap">
@@ -126,9 +126,9 @@ export default function PrivateHouseChargingPage() {
 
           <div>
             <SectionHeader
-              eyebrow="Why private house"
-              title="Built for homeowners, not public sessions"
-              description="Dependable overnight charging without leaving your property."
+              eyebrow="Why home charging"
+              title="Built for homeowners, paid with M-Pesa"
+              description="A typical home charging day about KES 140 — Pulse charger from KES 79,000, Lipa Pole Pole on any phone."
             />
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {privateHouseChargingPage.benefits.map((item) => (
@@ -155,7 +155,7 @@ export default function PrivateHouseChargingPage() {
                 <div className="training-table-scroll">
                   <table className="training-table w-full text-left text-sm" style={{ minWidth: "720px" }}>
                     <caption className="training-table-caption">
-                      <span className="training-table-caption-label">Private house install process</span>
+                      <span className="training-table-caption-label">Private house installation process</span>
                     </caption>
                     <thead>
                       <tr>
@@ -184,8 +184,8 @@ export default function PrivateHouseChargingPage() {
           <div>
             <SectionHeader
               eyebrow="Packages"
-              title="Two setups for private houses"
-              description="Grid-connected DC for most homes; solar and storage when the house needs it."
+              title="Pulse charger or Pod energy storage"
+              description="Pulse charger for a typical one-day installation. Pod energy storage when you want backup for weak-grid evenings."
             />
             <div className="training-table-shell mt-8">
               <div className="training-table-wrap">
@@ -241,7 +241,7 @@ export default function PrivateHouseChargingPage() {
           <div>
             <SectionHeader
               eyebrow="Coverage"
-              title="Survey & install crews"
+              title="Survey & installation crews"
               description="Regional teams that also service our route hubs."
             />
             <ul className="mt-6 flex flex-wrap gap-2">
@@ -260,20 +260,19 @@ export default function PrivateHouseChargingPage() {
 
       <section className="section-pad bg-white">
         <div className="page-container max-w-3xl">
-          <SectionHeader eyebrow="FAQ" title="Private house charging questions" />
-          <dl className="mt-8 space-y-6">
-            {privateHouseChargingFaqs.map((faq) => (
-              <div key={faq.question} className="border-b border-border pb-6 last:border-0">
-                <dt className="font-semibold text-forest-900">{faq.question}</dt>
-                <dd className="mt-2 text-sm leading-relaxed text-forest-600">{faq.answer}</dd>
-              </div>
-            ))}
-          </dl>
+          <SectionHeader
+            eyebrow="FAQ"
+            title="Home charging costs and install"
+            description="Typical home charging day about KES 140 versus petrol, Pulse charger from KES 79,000, and what a house survey includes."
+          />
+          <div className="mt-8">
+            <FaqAccordion items={privateHouseChargingFaqs} />
+          </div>
         </div>
       </section>
 
       <PageCTA
-        title="Request a private house survey"
+        title="Request a home charging survey"
         description="Tell us your house location, EV and parking setup — we respond within one business day."
         primaryHref={privateHouseSurveyMailto()}
         primaryLabel="Email for a survey"

@@ -1,32 +1,23 @@
-import { nairobiKisumuRoute } from "@/lib/route";
-
-/**
- * Per-bus annual impact on Nairobi–Kisumu vs a diesel intercity bus:
- * 345 km × 2 × 250 operating days ≈ 172,500 km; ~34 L/100 km loaded ≈ 58,650 L diesel.
- */
-const dieselLitresPerCoachYear = 58_000;
-const co2TonnesPerCoachYear = 155;
-
-/** Homepage “Why it works” — impact metrics in the style of operational e-mobility leaders */
+/** Homepage impact metrics — electric mobility infrastructure */
 export const whyItWorksMetrics = [
   {
-    stat: nairobiKisumuRoute.distance,
-    label: "Nairobi–Kisumu electric intercity route",
+    stat: "120 kW",
+    label: "Corridor DC on the highway",
   },
   {
-    stat: "~50%",
-    label: "lower energy cost per km vs diesel buses",
+    stat: "KES 140",
+    label: "your daily fuel cost vs ~KES 1,000 diesel per day",
   },
   {
-    stat: `~${co2TonnesPerCoachYear} t`,
-    label: "CO₂ avoided per bus per year on route",
+    stat: "3 years",
+    label: "aftersale care on every home unit",
   },
   {
-    stat: `~${dieselLitresPerCoachYear.toLocaleString("en-KE")} L`,
-    label: "diesel not burned per bus per year on route",
+    stat: "1 day",
+    label: "Pulse charger installation. Paperwork included.",
   },
   {
-    stat: "Contracted",
-    label: "hub demand secured before capital is deployed",
+    stat: "M-Pesa",
+    label: "pay and finance on any phone — no bank account",
   },
 ] as const;

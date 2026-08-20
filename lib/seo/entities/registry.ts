@@ -1,9 +1,10 @@
 import { absoluteUrl, publicRoutes, siteConfig } from "@/lib/seo/config";
+import { chargingHub } from "@/lib/charging-hub";
 import type { KnowledgeEntity } from "@/lib/seo/types";
 
 /**
- * Seed knowledge graph — extensible to millions of entities via CMS.
- * Domain: electric transport, EV charging, renewable energy (Precifarm core).
+ * Seed knowledge graph — extensible via CMS.
+ * Domain: EV charging, energy, and electric transport (Precifarm).
  */
 export const entityRegistry: KnowledgeEntity[] = [
   {
@@ -12,27 +13,68 @@ export const entityRegistry: KnowledgeEntity[] = [
     type: "organization",
     name: "Precifarm",
     description:
-      "Kenyan company building charging hubs and operating network for intercity electric travel.",
+      "Kenyan electric mobility infrastructure company — charging, energy and operations for homes, fleets, buses and highways.",
     url: siteConfig.url,
-    relatedIds: ["route-nairobi-kisumu", "vehicle-yutong-u18", "service-bus-booking"],
+    relatedIds: ["service-charge-map", "service-home-charging", "product-pulse", "product-corridor"],
   },
   {
-    id: "route-nairobi-kisumu",
-    slug: "nairobi-kisumu",
-    type: "route",
-    name: "Nairobi – Kisumu",
-    description: "Live intercity electric bus route operated on the Precifarm network.",
-    url: absoluteUrl("/#book"),
-    metadata: { duration: "4h 45m", distance: "345 km", fare: 1550, currency: "KES" },
-    relatedIds: ["vehicle-yutong-u18", "service-bus-booking", "equipment-ev-charger"],
-  },
-  {
-    id: "vehicle-yutong-u18",
-    slug: "yutong-u18",
+    id: "product-pulse",
+    slug: "pulse",
     type: "equipment",
-    name: "Yutong U18",
-    description: "Electric intercity bus used on Nairobi–Kisumu scheduled service.",
-    relatedIds: ["route-nairobi-kisumu", "manufacturer-yutong"],
+    name: "Pulse charger",
+    description:
+      "7 kW home wallbox. A typical 60 km day refills in about 90 minutes. From KES 79,000 with Lipa Pole Pole on M-Pesa.",
+    url: absoluteUrl("/charging/private-house"),
+    relatedIds: ["service-home-charging", "equipment-ev-charger"],
+  },
+  {
+    id: "product-pod",
+    slug: "pod",
+    type: "equipment",
+    name: "Pod energy storage",
+    description:
+      "Home charger with 5 or 10 kWh storage for weak-grid evenings. From KES 295,000 with Lipa Pole Pole on M-Pesa.",
+    url: absoluteUrl("/charging/private-house"),
+    relatedIds: ["service-home-charging", "product-pulse"],
+  },
+  {
+    id: "product-spark",
+    slug: "spark",
+    type: "equipment",
+    name: "Spark charger",
+    description:
+      "Portable 3.3 kW charger for the boot. A typical 60 km day refills in about 180 minutes. From KES 25,000.",
+    url: absoluteUrl("/charging"),
+    relatedIds: ["service-home-charging", "product-pulse"],
+  },
+  {
+    id: "product-corridor",
+    slug: "corridor",
+    type: "equipment",
+    name: "Corridor charging",
+    description:
+      "120 kW+ highway DC. Adds about 60 kWh in 30 minutes. Public DC from KES 39/kWh, paid with M-Pesa.",
+    url: absoluteUrl("/charging"),
+    relatedIds: ["service-hub-charging", "equipment-ev-charger"],
+  },
+  {
+    id: "product-depot",
+    slug: "depot",
+    type: "equipment",
+    name: "Depot charging station",
+    description:
+      "22 kW AC pedestal for fleets. Adds 40+ kWh in about 120 minutes while vehicles are parked. Public DC from KES 39/kWh.",
+    url: absoluteUrl("/partners"),
+    relatedIds: ["service-fleet-charging", "product-corridor"],
+  },
+  {
+    id: "product-boda",
+    slug: "boda-hub",
+    type: "equipment",
+    name: "Boda Hub",
+    description: "Battery swap or kerbside charge for electric bodas. Back on the road in under 5 minutes.",
+    url: absoluteUrl("/partners"),
+    relatedIds: ["service-fleet-charging"],
   },
   {
     id: "vehicle-yutong-u12",
@@ -41,6 +83,14 @@ export const entityRegistry: KnowledgeEntity[] = [
     name: "Yutong U12",
     description: "Electric city bus operated by partner fleets on urban routes.",
     relatedIds: ["manufacturer-yutong", "service-fleet-charging"],
+  },
+  {
+    id: "vehicle-yutong-u18",
+    slug: "yutong-u18",
+    type: "equipment",
+    name: "Yutong U18",
+    description: "Electric intercity bus used on Nairobi–Kisumu scheduled service.",
+    relatedIds: ["manufacturer-yutong", "service-hub-charging"],
   },
   {
     id: "manufacturer-yutong",
@@ -83,20 +133,11 @@ export const entityRegistry: KnowledgeEntity[] = [
     relatedIds: ["service-hub-charging", "component-inverter", "component-battery"],
   },
   {
-    id: "service-bus-booking",
-    slug: "bus-booking",
-    type: "service",
-    name: "Bus Seat Booking",
-    description: "Online seat reservation with M-Pesa payment and SMS ticket delivery.",
-    url: absoluteUrl("/#book"),
-    relatedIds: ["route-nairobi-kisumu"],
-  },
-  {
     id: "service-hub-charging",
     slug: "hub-charging",
     type: "service",
-    name: "Route Hub Charging",
-    description: "Reserved fast-charging windows for partner operators at intercity hubs.",
+    name: "Highway charging",
+    description: "Corridor charging at Precifarm hubs — about 60 kWh in 30 minutes, paid with M-Pesa.",
     url: absoluteUrl("/charging"),
     relatedIds: ["equipment-ev-charger", "location-nairobi", "location-kisumu", "service-charge-map"],
   },
@@ -104,27 +145,29 @@ export const entityRegistry: KnowledgeEntity[] = [
     id: "service-charge-map",
     slug: "charge-map",
     type: "service",
-    name: "Charge Map",
-    description: "Interactive map of Precifarm EV charging hubs and Nairobi–Kisumu route coverage.",
+    name: chargingHub.name,
+    description: chargingHub.description,
+    aliases: ["Charge Map", "Hub Network"],
     url: absoluteUrl("/network"),
-    relatedIds: ["service-hub-charging", "service-private-house-charging", "location-nairobi", "location-kisumu"],
+    relatedIds: ["service-hub-charging", "service-home-charging", "location-nairobi", "location-kisumu"],
   },
   {
-    id: "service-private-house-charging",
-    slug: "private-house-charging",
+    id: "service-home-charging",
+    slug: "home-charging",
     type: "service",
-    name: "Private House Charging",
+    name: "Home charging",
     description:
-      "House-based private DC EV charging on the customer's property and meter, with optional solar and storage.",
+      "Pulse charger and Pod energy storage on private property. A home charging day costs about KES 140 versus ~KES 1,000 diesel per day.",
     url: absoluteUrl("/charging/private-house"),
-    relatedIds: ["service-hub-charging", "equipment-ev-charger"],
+    aliases: ["Private house charging", "Pulse charger", "Pod energy storage"],
+    relatedIds: ["service-hub-charging", "product-pulse", "product-pod"],
   },
   {
     id: "service-fleet-charging",
     slug: "fleet-charging",
     type: "service",
     name: "Fleet & Partner Charging",
-    description: "Energy services for fleet operators and logistics partners.",
+    description: "Energy services for fleet operators, site hosts and installation partners.",
     url: absoluteUrl("/partners"),
     relatedIds: ["vehicle-yutong-u12", "equipment-ev-charger"],
   },
@@ -134,25 +177,25 @@ export const entityRegistry: KnowledgeEntity[] = [
     type: "service",
     name: "Precifarm Mobile App",
     description:
-      "Android app for Charge Map, personal home charging management and Nairobi–Kisumu booking. iOS not available yet.",
+      "Android app for the Charging Hub, home charger installations and the Spark charger–Corridor charging product range. iOS not available yet.",
     url: absoluteUrl("/download"),
-    relatedIds: ["service-charge-map", "service-private-house-charging", "service-bus-booking"],
+    relatedIds: ["service-charge-map", "service-home-charging", "product-pulse"],
   },
   {
     id: "location-nairobi",
     slug: "nairobi",
     type: "location",
     name: "Nairobi",
-    description: "Origin city for Nairobi–Kisumu electric bus service.",
-    relatedIds: ["route-nairobi-kisumu"],
+    description: "Major Precifarm hub city with depot access and home charger installs.",
+    relatedIds: ["service-charge-map", "service-hub-charging"],
   },
   {
     id: "location-kisumu",
     slug: "kisumu",
     type: "location",
     name: "Kisumu",
-    description: "Destination city for Nairobi–Kisumu electric bus service.",
-    relatedIds: ["route-nairobi-kisumu"],
+    description: "Western Kenya hub city on the Precifarm Charging Hub.",
+    relatedIds: ["service-charge-map", "service-hub-charging"],
   },
 ];
 
@@ -191,34 +234,33 @@ export function internalLinksForPath(path: string): { href: string; label: strin
 
   switch (path) {
     case "/":
-      add("/network", "Charge Map", "View hub locations on the operating network");
-      add("/charging", "Charging services", "Hub, home and private-site charging");
-      add("/charging/private-house", "Private house charging", "Manage charging on your property");
+      add(chargingHub.path, chargingHub.label, "Find hubs and partner chargers");
+      add("/charging", "Charging", "Home, fleet and highway charging");
+      add("/charging/private-house", "Home charging", "Pulse charger and Pod energy storage chargers");
       add("/download", "Download app", "Android EV charging app");
-      add("/faq", "FAQ", "Booking and travel answers");
+      add("/faq", "FAQ", "Charging and installation answers");
       return links.slice(0, 5);
     case "/network":
-      add("/charging", "Charging services", "Energy infrastructure behind the map");
-      add("/charging/private-house", "Private house charging", "House-based private DC install");
-      add("/#book", "Book a seat", "Travel on Nairobi–Kisumu");
+      add("/charging", "Charging", "From home charging to highway charging");
+      add("/charging/private-house", "Home charging", "Pulse charger and Pod energy storage chargers");
       break;
     case "/charging":
-      add("/network", "Charge Map", "See hub locations");
-      add("/charging/private-house", "Private house charging", "On your property, your meter");
+      add(chargingHub.path, chargingHub.label, "See hub locations");
+      add("/charging/private-house", "Home charging", "Pulse charger and Pod energy storage on your property");
       add("/partners", "Fleet charging", "Partner operator services");
       break;
     case "/charging/private-house":
-      add("/charging", "All charging services", "Hubs, home and fleet");
+      add("/charging", "Charging", "Home, fleet and highway");
       add("/download", "Download app", "Manage home charging on Android");
-      add("/network", "Charge Map", "Route hub locations");
+      add(chargingHub.path, chargingHub.label, "Route hub locations");
       break;
     case "/download":
-      add("/network", "Charge Map", "Hubs and route coverage");
-      add("/charging/private-house", "Private house charging", "Home charger installs");
-      add("/#book", "Book a seat", "Nairobi–Kisumu on web or app");
+      add(chargingHub.path, chargingHub.label, "Hubs and route coverage");
+      add("/charging/private-house", "Home charging", "Pulse charger and Pod energy storage installs");
+      add("/charging", "Charging", "Spark charger to Corridor");
       break;
     case "/partners":
-      add("/charging", "Charging services", "Energy for partner fleets");
+      add("/charging", "Charging", "From home charging to highway charging");
       add("/about", "About Precifarm", "Mission and route-one proof");
       break;
     default:

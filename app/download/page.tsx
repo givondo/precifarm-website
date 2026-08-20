@@ -24,8 +24,8 @@ export default function DownloadPage() {
       <JsonLd data={pageJsonLd("/download")} />
       <PageHero
         eyebrow="Mobile app"
-        title="Book Nairobi–Kisumu on your Android phone"
-        description="Download the Precifarm app for seat selection, M-Pesa Express payment, cargo waybills and ticket lookup — powered by the same booking system as this website."
+        title="Precifarm charging on your Android phone"
+        description="Find chargers, browse Spark charger to Corridor charging and request Pulse charger or Pod energy storage installations — Lipa na M-Pesa on every flow."
       >
         <div className="flex flex-wrap items-center gap-3">
           <DownloadApkButton
@@ -37,10 +37,10 @@ export default function DownloadPage() {
             Download for Android
           </DownloadApkButton>
           <Link
-            href="/#book"
+            href="/charging"
             className="inline-flex items-center rounded-full border border-border px-6 py-3 text-sm font-semibold text-forest-900 transition-colors hover:bg-muted"
           >
-            Book on the web
+            Explore charging on web
           </Link>
         </div>
         <p className="mt-4 text-sm text-forest-600/75">
@@ -52,8 +52,8 @@ export default function DownloadPage() {
       <section className="section-pad page-container">
         <SectionHeader
           eyebrow="Features"
-          title="Everything you need for the route"
-          description="The app connects to our live ticketing CMS — same fares, seats and M-Pesa flow as the agent desk and website."
+          title="Built for EV charging in Kenya"
+          description="Find chargers, browse Spark charger to Corridor charging and request certified home installations from one app."
         />
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
           {appFeatures.map((f) => (
@@ -100,10 +100,10 @@ export default function DownloadPage() {
       </section>
 
       <PageCTA
-        title="Prefer booking in the browser?"
-        description="No install required — select seats and pay with M-Pesa Express on our website."
-        primaryHref="/#book"
-        primaryLabel="Book Now"
+        title="Prefer the website?"
+        description="Browse the full charging range and Charging Hub in your browser — no install required."
+        primaryHref="/charging"
+        primaryLabel="Explore charging"
         secondaryHref="/contact"
         secondaryLabel="Contact us"
       />

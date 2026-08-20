@@ -65,7 +65,7 @@ export default function GoogleConnectivityMap({
     for (const hub of hubs) {
       const selected = hub.id === selectedHubId;
       icons.set(hub.id, {
-        url: pinDataUrl(hub.availability, hub.operator, selected),
+        url: pinDataUrl(hub.availability, hub.operator, hub.siteKind, selected),
         scaledSize: new google.maps.Size(selected ? 36 : 28, selected ? 44 : 36),
         anchor: new google.maps.Point(selected ? 18 : 14, selected ? 44 : 36),
       });

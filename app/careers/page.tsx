@@ -159,7 +159,7 @@ export default function CareersPage() {
               <SectionHeader
                 eyebrow="What we offer"
                 title="Build on live infrastructure"
-                description="Small team, measurable outcomes on a route passengers use today."
+                description="Small team, measurable outcomes on charging people use today."
               />
               <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
                 {careersPerks.map((perk) => (
@@ -193,7 +193,7 @@ export default function CareersPage() {
         <div className="mx-auto max-w-2xl card-elevated px-6 py-10 text-center sm:px-10">
           <h2 className="text-lg font-semibold text-forest-900">General applications</h2>
           <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-forest-600/90">
-            Operators, engineers, designers and commercial talent — if electric intercity travel in
+            Operators, engineers, designers and commercial talent — if EV charging from home to highway in
             Kenya motivates you, introduce yourself with a short note and CV.
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3">

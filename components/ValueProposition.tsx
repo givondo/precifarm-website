@@ -1,219 +1,80 @@
 import Link from "next/link";
 import CheckItem from "@/components/ui/CheckItem";
 import SectionHeader from "@/components/ui/SectionHeader";
-import { whyItWorksMetrics } from "@/lib/metrics";
-
-const energyCostMetric = whyItWorksMetrics.find((m) =>
-  m.label.includes("energy cost"),
-);
-
-const problemPoints = [
-  "Electric vehicles are arriving faster than dependable intercity charging",
-  "Diesel buses cost more per kilometre and move with every fuel-price swing",
-  "Operators cannot run a timetable on occupied, offline or slow chargers",
-  "Passengers have no way to book a dependable electric journey between cities today",
-];
-
-const solutionPoints = [
-  "Charging hubs placed on routes where scheduled buses actually need energy",
-  "Reserved charging windows aligned to every departure — energy you can plan around",
-  "Timetables, M-Pesa tickets and live route data in one operating network",
-  "One proof route at a time — Nairobi–Kisumu live before we finance the next",
-];
-
-const offering = [
-  {
-    label: "Charging hubs",
-    title: "Dependable energy on intercity routes",
-    text: "Fast charging, solar and storage at the sites that matter — with reserved windows for scheduled buses and fleet partners.",
-  },
-  {
-    label: "Operating network",
-    title: "Schedules, tickets and payments",
-    text: "The software and service layer that turns charging into journeys passengers can book and operators can run to a timetable.",
-  },
-];
+import { problemSolution } from "@/lib/brand-messaging";
 
 const whyUs = [
-  {
-    stat: "Integrated",
-    title: "Energy and operations as one system",
-    text: "We are not a fleet company, a charger map, or a ticketing app alone — Precifarm connects hubs and the operating network end to end.",
-  },
-  {
-    stat: "Contracted",
-    title: "Demand before capital",
-    text: "Hubs are sized to binding passenger and fleet commitments — not vanity coverage on a map.",
-  },
-  {
-    stat: energyCostMetric?.stat ?? "~50%",
-    title: "Lower measured energy cost",
-    text: "On Nairobi–Kisumu we track energy cost per loaded kilometre against diesel — and publish what matters.",
-  },
-  {
-    stat: "One route",
-    title: "Proof before scale",
-    text: "Nairobi–Kisumu must earn its place through utilisation, uptime and partner returns before the next route is financed.",
-  },
+  { stat: "KES 140", title: "Home charging day", text: "Typical ~60 km in Nairobi vs ~KES 1,000 diesel per day." },
+  { stat: "1 day", title: "Home installation", text: "Certified Pulse charger installation including paperwork." },
+  { stat: "3 years", title: "Aftersale care", text: "On every home unit we commission." },
+  { stat: "M-Pesa", title: "Pay on any phone", text: "Lipa Pole Pole and session pay. No bank account." },
 ];
 
-const revenueStreams = [
-  {
-    audience: "Passengers",
-    title: "Bus fares",
-    text: "Seat sales on Nairobi–Kisumu with fixed pricing, M-Pesa checkout and SMS tickets.",
-    cta: { href: "#book", label: "Book a seat" },
-  },
-  {
-    audience: "Operators & fleets",
-    title: "Charging contracts",
-    text: "Reserved hub sessions, fleet energy and passenger demand through Precifarm booking channels.",
-    cta: { href: "/partners", label: "Partner as an operator" },
-  },
-  {
-    audience: "Site hosts & partners",
-    title: "Hub and charging services",
-    text: "Revenue share at route hubs, energy sales, and home or private-site install plus O&M.",
-    cta: { href: "/charging", label: "Explore charging services" },
-  },
-];
+type ValuePropositionProps = {
+  compact?: boolean;
+};
 
-export default function ValueProposition() {
+export default function ValueProposition({ compact = false }: ValuePropositionProps) {
   return (
     <section
       id="why-precifarm"
-      className="scroll-mt-20 border-b border-border bg-white section-pad"
+      className={`scroll-mt-20 border-b border-border bg-muted/20 ${compact ? "home-section" : "section-pad"}`}
     >
       <div className="page-container">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="text-eyebrow text-sm font-semibold uppercase tracking-widest text-forest-500">
-            What Precifarm does
-          </p>
-          <p className="text-subtitle mt-4 text-balance text-xl font-semibold leading-snug tracking-tight text-forest-900 sm:text-2xl">
-            We build the charging hubs and operating network that make electric
-            intercity travel in Kenya dependable and bookable — starting on
-            Nairobi–Kisumu.
-          </p>
-        </div>
+        <SectionHeader
+          eyebrow={problemSolution.eyebrow}
+          title={problemSolution.title}
+          centered
+          className="mx-auto max-w-3xl"
+        />
 
-        <div className="mt-12 grid gap-5 lg:grid-cols-2">
-          <div className="card p-6 sm:p-7">
+        <div className="home-section-grid grid gap-5 lg:grid-cols-2">
+          <div className="card p-6">
             <p className="text-eyebrow text-xs font-semibold uppercase tracking-widest text-forest-500">
               The problem
             </p>
-            <h3 className="mt-2 text-lg font-semibold text-forest-900">
-              EVs are here — dependable intercity travel is not
-            </h3>
-            <ul className="mt-5 space-y-3">
-              {problemPoints.map((pt) => (
+            <h3 className="mt-2 text-lg font-semibold text-forest-900">{problemSolution.problemTitle}</h3>
+            <ul className="mt-4 space-y-2.5">
+              {problemSolution.problemPoints.map((pt) => (
                 <CheckItem key={pt}>{pt}</CheckItem>
               ))}
             </ul>
           </div>
 
-          <div className="card border-forest-500/30 bg-forest-50 p-6 sm:p-7">
-            <p className="text-eyebrow text-xs font-semibold uppercase tracking-widest text-forest-600">
+          <div className="card border-charge-200/60 bg-charge-50/40 p-6">
+            <p className="text-eyebrow text-xs font-semibold uppercase tracking-widest text-charge-700">
               Our answer
             </p>
-            <h3 className="mt-2 text-lg font-semibold text-forest-900">
-              Hubs plus an operating network — not chargers alone
-            </h3>
-            <ul className="mt-5 space-y-3">
-              {solutionPoints.map((pt) => (
+            <h3 className="mt-2 text-lg font-semibold text-forest-900">{problemSolution.answerTitle}</h3>
+            <ul className="mt-4 space-y-2.5">
+              {problemSolution.answerPoints.map((pt) => (
                 <CheckItem key={pt}>{pt}</CheckItem>
               ))}
             </ul>
           </div>
         </div>
 
-        <div className="mt-14">
-          <SectionHeader
-            eyebrow="Core offering"
-            title="Two layers that only work together"
-            description="Charging without schedules leaves operators guessing. Booking without reserved energy breaks the timetable. Precifarm runs both."
-            centered
-            className="mx-auto"
-          />
-          <div className="mt-8 grid gap-4 sm:grid-cols-2">
-            {offering.map((item) => (
-              <div key={item.label} className="card p-6">
-                <span className="rounded-full bg-forest-50 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-forest-500">
-                  {item.label}
-                </span>
-                <h3 className="mt-3 text-lg font-semibold text-forest-900">
-                  {item.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-forest-600/80">
-                  {item.text}
-                </p>
-              </div>
-            ))}
-          </div>
-          <p className="mx-auto mt-6 max-w-2xl text-center text-sm leading-relaxed text-forest-600/85">
-            <span className="font-semibold text-forest-900">
-              What only Precifarm does:
-            </span>{" "}
-            licensed partners run the Yutong buses — we provide the energy,
-            passenger demand and operating standards so intercity electric travel
-            works as a connected system, not a pilot project.
+        <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {whyUs.map((item) => (
+            <div key={item.title} className="rounded-2xl border border-border bg-white p-4">
+              <p className="font-mono text-sm font-semibold text-charge-700">{item.stat}</p>
+              <h3 className="mt-1.5 font-semibold text-forest-900">{item.title}</h3>
+              <p className="mt-1 text-sm text-forest-600/80">{item.text}</p>
+            </div>
+          ))}
+        </div>
+
+        {!compact ? (
+          <p className="mt-8 text-center text-sm text-forest-600">
+            <Link href="/charging" className="text-link font-semibold">
+              Charging services
+            </Link>
+            <span className="mx-2 text-forest-300">·</span>
+            <Link href="/partners" className="text-link font-semibold">
+              Fleet systems
+            </Link>
           </p>
-        </div>
-
-        <div className="mt-14">
-          <SectionHeader
-            eyebrow="Why Precifarm"
-            title="How we win on every route we open"
-            description="We measure what matters on Nairobi–Kisumu before financing the network forward."
-            centered
-            className="mx-auto"
-          />
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {whyUs.map((item) => (
-              <div key={item.title} className="card p-5">
-                <p className="font-mono text-sm font-semibold text-forest-600">
-                  {item.stat}
-                </p>
-                <h3 className="mt-2 font-semibold text-forest-900">
-                  {item.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-forest-600/80">
-                  {item.text}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-14">
-          <SectionHeader
-            eyebrow="How the network sustains itself"
-            title="Three revenue streams on every route"
-            description="Passenger fares, operator charging contracts and hub partnerships fund the energy and bookings that keep each corridor running."
-            centered
-            className="mx-auto"
-          />
-          <div className="mt-8 grid gap-5 lg:grid-cols-3">
-            {revenueStreams.map((stream) => (
-              <div key={stream.audience} className="card flex flex-col p-6">
-                <p className="text-eyebrow text-xs font-semibold uppercase tracking-widest text-forest-500">
-                  {stream.audience}
-                </p>
-                <h3 className="mt-2 text-lg font-semibold text-forest-900">
-                  {stream.title}
-                </h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-forest-600/80">
-                  {stream.text}
-                </p>
-                <Link
-                  href={stream.cta.href}
-                  className="text-link mt-5 inline-flex text-sm font-semibold"
-                >
-                  {stream.cta.label} →
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
+        ) : null}
       </div>
     </section>
   );

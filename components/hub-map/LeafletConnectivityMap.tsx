@@ -91,7 +91,7 @@ export default function LeafletConnectivityMap({
       icons.set(
         hub.id,
         L.icon({
-          iconUrl: pinDataUrl(hub.availability, hub.operator, selected),
+          iconUrl: pinDataUrl(hub.availability, hub.operator, hub.siteKind, selected),
           iconSize: [selected ? 36 : 28, selected ? 44 : 36],
           iconAnchor: [selected ? 18 : 14, selected ? 44 : 36],
           popupAnchor: [0, -36],

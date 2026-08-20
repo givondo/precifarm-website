@@ -5,10 +5,11 @@ import JsonLd from "@/components/seo/JsonLd";
 import ContentIndexCard from "@/components/ui/ContentIndexCard";
 import PageCTA from "@/components/ui/PageCTA";
 import PageHero from "@/components/ui/PageHero";
+import { BOOKING_FAQ_SLUG, HOMEPAGE_FAQ_SLUG } from "@/lib/charging-faqs";
 import { absoluteUrl } from "@/lib/seo/config";
 import {
-  collectFaqItems,
   formatContentDate,
+  getFaqIndexItems,
   getPublishedFaqs,
 } from "@/lib/seo/cms-content";
 import { pageJsonLd, pageMetadata } from "@/lib/seo/pages/helpers";
@@ -20,9 +21,11 @@ export const metadata: Metadata = pageMetadata("/faq");
 
 export default async function FaqIndexPage() {
   const faqDocuments = await getPublishedFaqs();
-  const faqItems = collectFaqItems(faqDocuments);
+  const faqItems = await getFaqIndexItems();
+  const chargingTopics = faqDocuments.filter((item) => item.slug === HOMEPAGE_FAQ_SLUG);
+  const otherTopics = faqDocuments.filter((item) => item.slug !== HOMEPAGE_FAQ_SLUG);
   const pageSeo = pageJsonLd("/faq");
-  const listItems = faqDocuments.map((item) => ({
+  const listItems = [...chargingTopics, ...otherTopics].map((item) => ({
     name: item.title,
     url: absoluteUrl(`/faq/${item.slug}`),
   }));
@@ -34,7 +37,7 @@ export default async function FaqIndexPage() {
       ? [
           itemListSchema({
             name: "Precifarm FAQ",
-            description: "Frequently asked questions about Precifarm booking and electric travel in Kenya.",
+            description: "Frequently asked questions about Precifarm home charging, public DC and the Charging Hub in Kenya.",
             path: "/faq",
             items: listItems,
           }),
@@ -53,7 +56,7 @@ export default async function FaqIndexPage() {
       <PageHero
         eyebrow="FAQ"
         title="Frequently asked questions"
-        description="Booking, M-Pesa tickets, charging hubs and travel on the Nairobi–Kisumu route — synced from the CMS."
+        description="Answers on home charging — Pulse charger from KES 79,000, a typical day about KES 140, Lipa Pole Pole on M-Pesa, public DC from KES 39/kWh and the Charging Hub."
       />
       <section className="section-pad bg-white">
         <div className="page-container max-w-3xl">
@@ -65,17 +68,17 @@ export default async function FaqIndexPage() {
             </div>
           ) : (
             <p className="mt-6 text-sm text-forest-500">
-              FAQs will appear here once published from the CMS.
+              Charging FAQs will appear here once published.
             </p>
           )}
 
-          {faqDocuments.length > 1 && (
+          {chargingTopics.length > 0 || otherTopics.length > 0 ? (
             <div className="mt-10">
               <h2 className="text-sm font-semibold uppercase tracking-widest text-forest-500">
                 FAQ topics
               </h2>
               <div className="content-index-grid mt-4">
-                {faqDocuments.map((item) => (
+                {chargingTopics.map((item) => (
                   <ContentIndexCard
                     key={item.id}
                     href={`/faq/${item.slug}`}
@@ -84,25 +87,29 @@ export default async function FaqIndexPage() {
                     meta={formatContentDate(item.publishedAt ?? item.updatedAt)}
                   />
                 ))}
+                {otherTopics.map((item) => (
+                  <ContentIndexCard
+                    key={item.id}
+                    href={`/faq/${item.slug}`}
+                    title={item.slug === BOOKING_FAQ_SLUG ? "Travel booking" : item.title}
+                    description={
+                      item.slug === BOOKING_FAQ_SLUG
+                        ? "Nairobi–Kisumu seats, M-Pesa tickets and boarding — a companion surface, not the charging product."
+                        : item.description
+                    }
+                    meta={formatContentDate(item.publishedAt ?? item.updatedAt)}
+                  />
+                ))}
               </div>
             </div>
-          )}
-
-          {faqDocuments.length === 1 && faqItems.length > 0 && (
-            <p className="mt-6 text-sm text-forest-500">
-              Last updated {formatContentDate(faqDocuments[0].publishedAt ?? faqDocuments[0].updatedAt)}.
-              {" "}
-              <a href={`/faq/${faqDocuments[0].slug}`} className="text-link font-medium">
-                Open full FAQ page
-              </a>
-            </p>
-          )}
+          ) : null}
         </div>
       </section>
       <PageCTA
         title="Still have questions?"
-        description="Book a seat or reach out — we respond on phone, email and WhatsApp."
-        primaryLabel="Book now"
+        description="Request a house survey, check public DC rates or reach us on phone, email and WhatsApp."
+        primaryHref="/charging/private-house"
+        primaryLabel="Home charging"
         secondaryHref="/contact"
         secondaryLabel="Contact us"
       />

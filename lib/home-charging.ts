@@ -1,4 +1,5 @@
 import { chargingOfferings } from "@/lib/charging";
+import { privateHouseChargingFaqs as houseFaqs } from "@/lib/charging-faqs";
 import { contact } from "@/lib/contact";
 
 /** Homepage band — links to the dedicated private house charging page */
@@ -7,54 +8,54 @@ export const homeChargingHighlight = {
   title: "House-based private charging on your own property",
   paragraphs: [
     "A DC fast charger on your driveway or car port — sized to your EV, on your meter, with no public access or shared hub queues.",
-    "Optional Neura Pod solar and storage where you want dependable overnight top-up at home.",
-    "Survey, install and five-year support from the same Precifarm crews that commission our route hubs.",
+    "Optional Pod energy storage with solar and LiFePO₄ where you want dependable overnight top-up at home.",
+    "Survey, installation and three-year aftersale support from the same Precifarm crews that commission our route hubs.",
   ],
   primaryLabel: "Private house charging",
   primaryHref: "/charging/private-house",
   secondaryLabel: "All charging services",
   secondaryHref: "/charging",
-  tertiaryLabel: "Charge map",
+  tertiaryLabel: "Charging Hub",
   tertiaryHref: "/network",
 } as const;
 
 export const privateHouseChargingPage = {
   hero: {
-    eyebrow: "Private house charging",
-    title: "House-based private charging — on your property, your meter",
+    eyebrow: "Home charging",
+    title: "Pulse charger and Pod energy storage on your property",
     description:
-      "Precifarm installs DC fast chargers at private houses and townhouses — on your land, for your vehicle only. Not a public hub, not a shared commercial site.",
+      "Precifarm installs the Pulse charger or Pod energy storage at private houses — on your land, for your vehicle, paid with M-Pesa. Keep a Spark charger in the boot for top-ups away from home.",
   },
   lead:
-    "House-based private charging means a charger at your home that you control: your driveway or car port, your consumer unit, your overnight schedule. Precifarm surveys the site, installs and commissions the unit, and supports it for five years — with the same engineering discipline we use on intercity route hubs.",
+    "Start with the Pulse charger on your wall, add Pod energy storage when you want backup for weak-grid evenings, or keep the Spark charger in the boot. A home charging day costs about KES 140 instead of ~KES 1,000 in diesel per day. Precifarm surveys the site, installs and commissions the unit, and supports it for three years.",
   notThisPage:
-    "This page is for private residential properties. For public route hubs see the Charge Map. For schools, campuses and industrial private-site stations see Charging services.",
+    "This page is for private residential properties. For Depot and Boda Hub see Partners. For Corridor charging and public DC see the Charging Hub.",
   image: chargingOfferings.home,
   benefits: [
     {
       title: "Your property only",
-      text: "Charger on private land — no public access, no shared queues, no hub timetables.",
+      text: "Pulse charger or Pod energy storage on private land — no public access, no shared queues.",
     },
     {
-      title: "Sized to your EV",
-      text: "DC output matched to your battery and daily mileage at home, not an oversized public unit.",
+      title: "About 90 minutes",
+      text: "A typical 60 km Nairobi day on Pulse charger or Pod energy storage at home — paid with M-Pesa.",
     },
     {
-      title: "Same hub engineers",
-      text: "Regional Precifarm crews install and commission with route-hub checklists and monitoring.",
+      title: "Lipa Pole Pole",
+      text: "Pulse charger from KES 79,000. Instalments on M-Pesa — no bank account required.",
     },
     {
-      title: "Solar optional",
-      text: "Neura Pod solar and storage integration where you want lower grid cost or backup at home.",
+      title: "Pod energy storage when the grid is weak",
+      text: "5 or 10 kWh storage keeps a typical day charging when Kenya Power dips.",
     },
   ],
   included: [
     "Remote intake and private-property survey (earthing, consumer unit, cable route, parking)",
     "Written quote and single-line diagram for your house",
-    "DC charger supply and install on your property (CCS2 or Type 2 for your vehicle)",
+    "Pulse charger or Pod energy storage supply and installation on your property",
     "Commissioning, safety test and handover to the homeowner",
-    "Remote monitoring and five-year engineering support",
-    "Optional Neura Pod solar and LiFePO₄ storage at the house",
+    "Remote monitoring and three-year aftersale support",
+    "Optional Spark charger for top-ups away from home",
   ],
   propertyTypes: [
     "Detached house with private driveway or car port",
@@ -67,25 +68,25 @@ export const privateHouseChargingPage = {
 /** How house-based private charging differs from other Precifarm offerings */
 export const chargingTypeComparison = [
   {
-    type: "House-based private charging",
+    type: "Home charging",
     where: "Your private house or townhouse",
-    access: "Homeowner only — private property",
-    typical: "Overnight top-up, daily commute EV",
+    access: "Homeowner only — Pulse charger, Pod energy storage or Spark charger",
+    typical: "Typical 60 km day in about 90 minutes on Pulse charger",
     page: "/charging/private-house",
   },
   {
-    type: "Route charging hubs",
-    where: "Public intercity stops on Nairobi–Kisumu and partner routes",
-    access: "Buses, fleets and public sessions",
-    typical: "Scheduled bus windows and fleet dwell",
-    page: "/network",
+    type: "Fleet charging",
+    where: "Yards, campuses and boda stops",
+    access: "Depot charging station and Boda Hub",
+    typical: "About 120 minutes at the depot · under 5 minutes for a boda swap",
+    page: "/partners",
   },
   {
-    type: "Private in-house stations",
-    where: "Schools, campuses, estates and industrial sites",
-    access: "Organisation staff, fleet and visitors",
-    typical: "Multi-bay sites on private commercial land",
-    page: "/charging",
+    type: "Highway charging",
+    where: "Corridor hubs and partner sites",
+    access: "Public DC and contracted fleets",
+    typical: "About 60 kWh in 30 minutes · pay with M-Pesa",
+    page: "/network",
   },
 ] as const;
 
@@ -105,7 +106,7 @@ export const privateHouseChargingProcess = [
   {
     step: "3",
     stage: "Quote",
-    detail: "Fixed-scope quote and diagram for install on your private property.",
+    detail: "Fixed-scope quote and diagram for installation on your private property.",
     timing: "3–5 business days",
   },
   {
@@ -116,7 +117,7 @@ export const privateHouseChargingProcess = [
   },
   {
     step: "5",
-    stage: "Five-year support",
+    stage: "Three-year aftersale",
     detail: "Warranty visits and remote monitoring for the unit at your home.",
     timing: "Ongoing",
   },
@@ -124,47 +125,26 @@ export const privateHouseChargingProcess = [
 
 export const privateHouseChargingPackages = [
   {
-    name: "Grid-connected DC",
-    bestFor: "House with stable supply and private parking",
+    name: "Pulse charger",
+    bestFor: "House with stable supply — typical 60 km day in about 90 minutes",
     includes: [
-      "DC wallbox or pedestal on your property",
-      "Install from consumer unit to parking spot",
-      "Homeowner handover and monitoring",
+      "7 kW Pulse charger wallbox on your property",
+      "Installation from consumer unit to parking spot",
+      "Lipa Pole Pole on M-Pesa · from KES 79,000",
     ],
   },
   {
-    name: "Solar + storage at home",
-    bestFor: "Households cutting grid cost or needing backup",
+    name: "Pod energy storage",
+    bestFor: "Weak-grid evenings — storage keeps a typical day charging in about 90 minutes",
     includes: [
-      "Neura Pod solar and LiFePO₄ at the house",
-      "DC charger with load management",
-      "Private-property commissioning only",
+      "Pod energy storage with 5 or 10 kWh LiFePO₄ at the house",
+      "Optional rooftop solar",
+      "Lipa Pole Pole on M-Pesa · from KES 295,000",
     ],
   },
 ] as const;
 
-export const privateHouseChargingFaqs = [
-  {
-    question: "Is this different from a public charging hub?",
-    answer:
-      "Yes. House-based private charging is on your property for your vehicle only. Route hubs on the Charge Map serve scheduled buses and public sessions.",
-  },
-  {
-    question: "Can you install at an apartment?",
-    answer:
-      "Only where you have a dedicated private parking bay and written approval from the landlord or management. The charger serves your unit, not a shared public bay.",
-  },
-  {
-    question: "What about a whole estate or school?",
-    answer:
-      "Multi-bay private-site stations for organisations are covered under Private in-house stations on our Charging services page — not house-based private charging.",
-  },
-  {
-    question: "How long does a house install take?",
-    answer:
-      "Most single-house jobs finish in one to two days on site after survey and quote approval.",
-  },
-] as const;
+export const privateHouseChargingFaqs = houseFaqs;
 
 export function privateHouseSurveyMailto(): string {
   const subject = encodeURIComponent("Private house charging survey request");

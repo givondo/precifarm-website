@@ -1,4 +1,5 @@
 import { absoluteUrl, siteConfig } from "@/lib/seo/config";
+import { socialProfileUrls } from "@/lib/social";
 import type { BreadcrumbItem, FaqItem, JsonLd } from "@/lib/seo/types";
 
 const SCHEMA_CONTEXT = "https://schema.org";
@@ -19,12 +20,15 @@ export function organizationSchema(): JsonLd {
       name: "Kenya",
     },
     knowsAbout: [
-      "Electric vehicle charging",
-      "Intercity electric transport",
-      "Renewable energy infrastructure",
-      "Solar charging hubs",
+      "EV charging Kenya",
+      "Home charging",
+      "Highway charging",
+      "Pulse charger",
+      "Corridor charging",
+      "M-Pesa EV charging",
       "Fleet charging",
     ],
+    sameAs: socialProfileUrls,
   };
 }
 
@@ -101,7 +105,7 @@ export function softwareApplicationSchema(): JsonLd {
     "@context": SCHEMA_CONTEXT,
     "@type": "SoftwareApplication",
     name: app.name,
-    applicationCategory: "TravelApplication",
+    applicationCategory: "LifestyleApplication",
     operatingSystem: "Android",
     identifier: app.packageName,
     offers: {
@@ -114,21 +118,19 @@ export function softwareApplicationSchema(): JsonLd {
     publisher: { "@id": `${siteConfig.url}/#organization` },
     potentialAction: [
       {
-        "@type": "ReserveAction",
-        target: {
-          "@type": "EntryPoint",
-          urlTemplate: `${app.deepLinkScheme}://book?from={from}&to={to}`,
-          actionPlatform: [
-            "http://schema.org/MobileWebPlatform",
-            "http://schema.org/AndroidPlatform",
-          ],
-        },
-        name: "Book intercity bus",
+        "@type": "ViewAction",
+        target: absoluteUrl("/network"),
+        name: "Open Charging Hub",
       },
       {
         "@type": "ViewAction",
-        target: absoluteUrl("/book"),
-        name: "Open web booking",
+        target: absoluteUrl("/charging/private-house"),
+        name: "Request home charging",
+      },
+      {
+        "@type": "ViewAction",
+        target: `${app.deepLinkScheme}://charging`,
+        name: "Find chargers in the app",
       },
     ],
   };

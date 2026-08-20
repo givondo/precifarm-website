@@ -112,9 +112,12 @@ export default async function GuidePage({ params }: Props) {
         )}
 
         <PageCTA
-          title="Book Nairobi to Kisumu"
-          description="Choose a departure, pay with M-Pesa and receive your SMS ticket."
-          primaryLabel="Book now"
+          title="Ready to charge?"
+          description="Explore Pulse charger, Pod energy storage and Corridor charging — or open the Charging Hub to find public DC near you."
+          primaryHref="/charging"
+          primaryLabel="Explore charging"
+          secondaryHref="/network"
+          secondaryLabel="Open Charging Hub"
         />
       </article>
     </>

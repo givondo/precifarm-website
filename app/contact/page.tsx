@@ -37,13 +37,13 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Contact"
         title="Talk to the Precifarm team"
-        description="Whether you want to book Nairobi–Kisumu, host a charging hub, operate on the route or explore fleet charging, we are here to help. Choose the channel that suits you and we will respond within one business day."
+        description="Whether you want Pulse charger and Pod energy storage at home, a fleet depot, a highway hub or a site host partnership — we respond within one business day. M-Pesa on every product."
       >
         <a
-          href="/#book"
+          href="/charging"
           className="inline-flex rounded-full bg-charge-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-charge-500"
         >
-          Book Now
+          Explore charging
         </a>
       </PageHero>
 

@@ -3,11 +3,13 @@
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import {
+  chargingMapHubs,
   filterHubs,
-  liveRouteHubs,
   liveRoutePhases,
   LIVE_ROUTE_CENTER,
   LIVE_ROUTE_ZOOM,
+  NAIROBI_SWAP_CENTER,
+  NAIROBI_SWAP_ZOOM,
   sortHubsByDistance,
   type HubFilter,
 } from "@/lib/hub-locations";
@@ -35,14 +37,28 @@ const useGoogleMaps = Boolean(googleMapsApiKey);
 
 const DEFAULT_HUB_ID = "kisumu";
 
-function matchQuery(hub: { name: string; role: string; partnerName?: string }, q: string) {
+function matchQuery(
+  hub: { name: string; role: string; partnerName?: string; siteKind: string },
+  q: string,
+) {
   const needle = q.trim().toLowerCase();
   if (!needle) return true;
   return (
     hub.name.toLowerCase().includes(needle) ||
     hub.role.toLowerCase().includes(needle) ||
+    hub.siteKind.toLowerCase().includes(needle) ||
     (hub.partnerName?.toLowerCase().includes(needle) ?? false)
   );
+}
+
+function mapViewport(filter: HubFilter) {
+  if (filter === "swap") {
+    return { center: NAIROBI_SWAP_CENTER, zoom: NAIROBI_SWAP_ZOOM };
+  }
+  if (filter === "dc" || filter === "partners" || filter === "available") {
+    return { center: LIVE_ROUTE_CENTER, zoom: LIVE_ROUTE_ZOOM };
+  }
+  return { center: { lat: -0.85, lng: 36.15 }, zoom: 7 };
 }
 
 export default function HubConnectivityMap() {
@@ -56,7 +72,7 @@ export default function HubConnectivityMap() {
   const [geoError, setGeoError] = useState<string | null>(null);
 
   const filteredHubs = useMemo(() => {
-    const byFilter = filterHubs(liveRouteHubs, filter);
+    const byFilter = filterHubs(chargingMapHubs, filter);
     return byFilter.filter((h) => matchQuery(h, query));
   }, [filter, query]);
 
@@ -65,8 +81,8 @@ export default function HubConnectivityMap() {
     return sortHubsByDistance(filteredHubs, userLocation.lat, userLocation.lng);
   }, [filteredHubs, userLocation]);
 
-  const selectedHub =
-    hubsWithDistance.find((h) => h.id === selectedHubId) ?? null;
+  const selectedHub = hubsWithDistance.find((h) => h.id === selectedHubId) ?? null;
+  const viewport = mapViewport(filter);
 
   useEffect(() => {
     if (selectedHubId && !filteredHubs.some((h) => h.id === selectedHubId)) {
@@ -103,9 +119,9 @@ export default function HubConnectivityMap() {
 
   const mapProps = {
     hubs: filteredHubs,
-    routes: liveRoutePhases,
-    mapCenter: LIVE_ROUTE_CENTER,
-    mapZoom: LIVE_ROUTE_ZOOM,
+    routes: filter === "swap" ? [] : liveRoutePhases,
+    mapCenter: viewport.center,
+    mapZoom: viewport.zoom,
     selectedHubId,
     onSelectHub: handleSelectHub,
     userLocation,
@@ -114,7 +130,6 @@ export default function HubConnectivityMap() {
 
   return (
     <div className="hub-map-v2">
-
       <HubMapToolbar
         query={query}
         onQueryChange={setQuery}
@@ -160,7 +175,7 @@ export default function HubConnectivityMap() {
         </div>
       </div>
 
-      <HubMapFooter liveOnly />
+      <HubMapFooter />
 
       {geoError && <p className="hub-map-error">{geoError}</p>}
     </div>

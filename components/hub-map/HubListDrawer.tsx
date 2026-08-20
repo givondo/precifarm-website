@@ -1,6 +1,12 @@
 "use client";
 
-import { availabilityConfig, type ChargingHub, formatDistance } from "@/lib/hub-locations";
+import {
+  availabilityConfig,
+  hubCapacityLabel,
+  siteKindConfig,
+  type ChargingHub,
+  formatDistance,
+} from "@/lib/hub-locations";
 
 type HubListDrawerProps = {
   hubs: (ChargingHub & { distanceKm?: number })[];
@@ -20,7 +26,7 @@ export default function HubListDrawer({
       <button type="button" className="hub-drawer-backdrop" onClick={onClose} aria-label="Close list" />
       <aside className="hub-drawer">
         <div className="hub-drawer-head">
-          <h3 className="hub-drawer-title">All hubs</h3>
+          <h3 className="hub-drawer-title">All sites</h3>
           <button type="button" onClick={onClose} className="hub-drawer-close" aria-label="Close">
             ×
           </button>
@@ -28,6 +34,7 @@ export default function HubListDrawer({
         <ul className="hub-drawer-list">
           {hubs.map((hub) => {
             const avail = availabilityConfig[hub.availability];
+            const kind = siteKindConfig[hub.siteKind];
             const selected = hub.id === selectedHubId;
 
             return (
@@ -42,13 +49,13 @@ export default function HubListDrawer({
                 >
                   <span
                     className="hub-drawer-dot"
-                    style={{ backgroundColor: avail.color }}
+                    style={{ backgroundColor: hub.siteKind === "swap" ? kind.pinColor : avail.color }}
                     aria-hidden
                   />
                   <span className="min-w-0 flex-1 text-left">
                     <span className="hub-drawer-name">{hub.name}</span>
                     <span className="hub-drawer-meta">
-                      {hub.freeBays} free · {hub.operator === "partner" ? "Partner" : "Precifarm"}
+                      {kind.shortLabel} · {avail.label} · {hubCapacityLabel(hub)}
                       {hub.distanceKm != null && ` · ${formatDistance(hub.distanceKm)}`}
                     </span>
                   </span>

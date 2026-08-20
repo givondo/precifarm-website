@@ -129,8 +129,8 @@ export default async function FaqPage({ params }: Props) {
           description="Contact our team by phone, email or WhatsApp."
           primaryHref="/contact"
           primaryLabel="Contact support"
-          secondaryHref="/#book"
-          secondaryLabel="Book now"
+          secondaryHref="/charging"
+          secondaryLabel="Explore charging"
         />
       </article>
     </>

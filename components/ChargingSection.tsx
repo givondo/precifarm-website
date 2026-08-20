@@ -1,7 +1,29 @@
-import SiteImage from "@/components/SiteImage";
 import Link from "next/link";
+import SiteImage from "@/components/SiteImage";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { chargingOfferings } from "@/lib/charging";
+import { productNames } from "@/lib/home-products";
+
+const homePoints = [
+  `${productNames.pulse} — 7 kW wallbox, typical 60 km day in about 90 minutes, from KES 79,000`,
+  `${productNames.pod} — home charger plus storage for weak-grid evenings, from KES 295,000`,
+  `${productNames.spark} — 3.3 kW portable unit in the boot, typical day in about 180 minutes`,
+  "Lipa Pole Pole on M-Pesa for Pulse charger and Pod energy storage · three-year aftersale care",
+];
+
+const fleetPoints = [
+  `${productNames.depot} — 40+ kWh in about 120 minutes while vehicles are parked`,
+  `${productNames.boda} — battery swap or kerbside charge in under 5 minutes`,
+  "M-Pesa session pay and fleet billing on every bay",
+  "Site survey, solar and storage sized to the duty cycle",
+];
+
+const highwayPoints = [
+  `${productNames.corridor} — about 60 kWh in 30 minutes at highway hubs`,
+  "CCS2 DC, live status and M-Pesa on the Charging Hub",
+  "Grid, solar and LiFePO₄ storage behind the charger",
+  "Live sites labelled live; planned corridors stay labelled planned",
+];
 
 const hubStack = [
   {
@@ -9,38 +31,24 @@ const hubStack = [
     text: "E-mobility grid power, rooftop solar and LiFePO₄ batteries keep energy dependable and costs predictable.",
   },
   {
-    title: "DC fast charging",
-    text: "Modular CCS2 chargers with reserved windows for scheduled buses and contracted fleet demand.",
+    title: "Corridor DC",
+    text: "CCS2 chargers sized for highway dwell — about 60 kWh in 30 minutes, paid with M-Pesa.",
   },
   {
-    title: "Built for dwell",
-    text: "Safe passenger circulation, shade and amenities — a stop designed around a timetable, not a lone charger.",
+    title: "Built for the stop",
+    text: "Safe circulation, shade and amenities — a hub designed around the journey, not a lone charger.",
   },
   {
     title: "Monitored 24/7",
-    text: "Live availability, OCPP monitoring and honest recovery when something fails — because uptime is what passengers and operators depend on.",
+    text: "Live availability, OCPP monitoring and honest recovery when something fails.",
   },
 ];
 
 const hubOutcomes = [
-  { stat: "≤150 km", label: "planning guide between dependable charges" },
-  { stat: "24/7", label: "hub monitoring and status updates" },
-  { stat: "CCS2", label: "open fast-charging standard for any capable vehicle" },
-  { stat: "1 hub", label: "proves Nairobi–Kisumu before the next route is financed" },
-];
-
-const homeChargingPoints = [
-  "DC fast charging at your private house or townhouse — your land, your meter",
-  "Optional Neura Pod solar and LiFePO₄ storage at the home",
-  "Site survey, install and commissioning by the same regional crew that services our hubs",
-  "Five-year engineering support from Nairobi, Mombasa, Kisumu, Eldoret, Kitui and Nakuru",
-];
-
-const privateChargingPoints = [
-  "Dedicated in-house charging stations for schools, clinics, campuses and industrial sites",
-  "Multi-point DC charging sized to fleet, staff and visitor demand on private property",
-  "Solar, storage and grid integration designed in a written engineering assessment",
-  "O&M contract with monitoring, billing and uptime standards matched to your operation",
+  { stat: "30 min", label: "about 60 kWh on Corridor charging" },
+  { stat: "KES 39", label: "public DC from, per kWh" },
+  { stat: "CCS2", label: "highway DC standard" },
+  { stat: "M-Pesa", label: "session pay on every product" },
 ];
 
 function CheckList({ items }: { items: readonly string[] }) {
@@ -94,29 +102,75 @@ export default function ChargingSection() {
   return (
     <div className="page-container section-pad">
       <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-10">
+        <OfferingImage src={home.image} alt={home.imageAlt} priority />
         <div>
-          <SectionHeader
-            eyebrow={routeHub.eyebrow}
-            title="Precifarm hubs are the petrol stations of the electric age, designed around a reliable timetable"
-            description="Every Precifarm hub is an energy stop, not a lone charger. Grid power, solar, battery storage and DC fast charging come together with safe passenger dwell, live monitoring and reserved charging windows for scheduled departures."
-          />
-          <p className="mt-4 leading-relaxed text-forest-600/85">
-            We place hubs where intercity routes need them — sized to contracted
-            demand, approved on power and site control, and operated to keep
-            buses, vans and fleets moving on time.
+          <p className="text-eyebrow text-xs font-semibold uppercase tracking-widest text-forest-500">
+            {home.eyebrow}
           </p>
+          <h2 className="mt-2 text-xl font-semibold text-forest-900 sm:text-2xl">
+            Pulse charger, Pod energy storage and Spark charger at home
+          </h2>
+          <p className="mt-4 text-sm leading-relaxed text-forest-600/85">
+            Start with the Pulse charger on your wall, add Pod energy storage when you want
+            storage for weak-grid evenings, or keep the Spark charger in the boot. A home
+            charging day costs about KES 140 instead of ~KES 1,000 in diesel per day, paid with M-Pesa.
+          </p>
+          <CheckList items={homePoints} />
           <Link
-            href="/network"
-            className="mt-8 inline-flex rounded-full border border-forest-200 px-6 py-2.5 text-sm font-semibold text-forest-900 transition-colors hover:bg-forest-50"
+            href="/charging/private-house"
+            className="mt-6 inline-flex rounded-full bg-charge-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-charge-500"
           >
-            Explore the Charge Map
+            Explore home charging
           </Link>
         </div>
-        <OfferingImage
-          src={routeHub.image}
-          alt={routeHub.imageAlt}
-          priority
-        />
+      </div>
+
+      <div className="mt-16 grid items-center gap-8 lg:grid-cols-2 lg:gap-10">
+        <div>
+          <p className="text-eyebrow text-xs font-semibold uppercase tracking-widest text-forest-500">
+            {privateSite.eyebrow}
+          </p>
+          <h2 className="mt-2 text-xl font-semibold text-forest-900 sm:text-2xl">
+            Depot charging and Boda Hub for fleets
+          </h2>
+          <p className="mt-4 text-sm leading-relaxed text-forest-600/85">
+            Yards, campuses and last-mile operators get chargers sized to the duty cycle —
+            overnight AC at the depot, battery swap for bodas, M-Pesa billing and remote
+            monitoring from one partner.
+          </p>
+          <CheckList items={fleetPoints} />
+          <Link
+            href="/partners"
+            className="mt-6 inline-flex rounded-full border border-forest-200 px-6 py-2.5 text-sm font-semibold text-forest-900 transition-colors hover:bg-forest-50"
+          >
+            Explore fleet charging
+          </Link>
+        </div>
+        <OfferingImage src={privateSite.image} alt={privateSite.imageAlt} />
+      </div>
+
+      <div className="mt-16 grid items-center gap-8 lg:grid-cols-2 lg:gap-10">
+        <OfferingImage src={routeHub.image} alt={routeHub.imageAlt} />
+        <div>
+          <p className="text-eyebrow text-xs font-semibold uppercase tracking-widest text-forest-500">
+            {routeHub.eyebrow}
+          </p>
+          <h2 className="mt-2 text-xl font-semibold text-forest-900 sm:text-2xl">
+            Corridor charging on the highway
+          </h2>
+          <p className="mt-4 text-sm leading-relaxed text-forest-600/85">
+            Precifarm hubs put fast DC where the route needs it. Grid, solar and storage sit
+            behind Corridor charging so a typical highway stop adds about 60 kWh in 30
+            minutes — then you pay with M-Pesa.
+          </p>
+          <CheckList items={highwayPoints} />
+          <Link
+            href="/network"
+            className="mt-6 inline-flex rounded-full bg-charge-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-charge-500"
+          >
+            Open Charging Hub
+          </Link>
+        </div>
       </div>
 
       <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -137,54 +191,24 @@ export default function ChargingSection() {
         ))}
       </dl>
 
-      <div className="mt-16 grid items-center gap-8 lg:grid-cols-2 lg:gap-10">
-        <OfferingImage src={home.image} alt={home.imageAlt} />
-        <div>
-          <p className="text-eyebrow text-xs font-semibold uppercase tracking-widest text-forest-500">
-            Private house charging
-          </p>
-          <h2 className="mt-2 text-xl font-semibold text-forest-900 sm:text-2xl">
-            House-based private charging on your property
-          </h2>
-          <p className="mt-4 text-sm leading-relaxed text-forest-600/85">
-            A DC fast charger on your driveway or car port — your land, your meter, your
-            vehicle. Not a public hub and not a shared commercial site. Optional Neura Pod
-            solar and storage at the house.
-          </p>
-          <CheckList items={homeChargingPoints} />
-          <Link
-            href="/charging/private-house"
-            className="mt-6 inline-flex rounded-full bg-charge-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-charge-500"
-          >
-            Private house charging
-          </Link>
-        </div>
-      </div>
-
-      <div className="mt-16 grid items-center gap-8 lg:grid-cols-2 lg:gap-10">
-        <div className="lg:order-1">
-          <p className="text-eyebrow text-xs font-semibold uppercase tracking-widest text-forest-500">
-            {privateSite.eyebrow}
-          </p>
-          <h2 className="mt-2 text-xl font-semibold text-forest-900 sm:text-2xl">
-            In-house charging stations for schools, estates, campuses and industrial sites
-          </h2>
-          <p className="mt-4 text-sm leading-relaxed text-forest-600/85">
-            Private entities that run fleets, staff transport or visitor parking can
-            install dedicated in-house charging stations on their own land — sized in a
-            written engineering assessment and operated under a Precifarm O&M contract.
-          </p>
-          <CheckList items={privateChargingPoints} />
-          <Link
-            href="/contact"
-            className="mt-6 inline-flex rounded-full border border-forest-200 px-6 py-2.5 text-sm font-semibold text-forest-900 transition-colors hover:bg-forest-50"
-          >
-            Discuss a private charging station
-          </Link>
-        </div>
-        <div className="lg:order-2">
-          <OfferingImage src={privateSite.image} alt={privateSite.imageAlt} />
-        </div>
+      <div className="mt-16 rounded-2xl border border-border bg-muted/30 p-6 sm:p-8">
+        <p className="text-eyebrow text-xs font-semibold uppercase tracking-widest text-charge-600">
+          Engineering package
+        </p>
+        <h2 className="mt-2 text-xl font-semibold text-forest-900 sm:text-2xl">
+          Solar chargers and stations — design basis
+        </h2>
+        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-forest-600">
+          Energy model, typical site plan, Kenya Power hold points and a phased task sheet
+          for home hybrid, fleet depots and highway hubs. Concept reference — not construction
+          drawings.
+        </p>
+        <Link
+          href="/charging/engineering"
+          className="mt-6 inline-flex rounded-full bg-charge-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-charge-500"
+        >
+          Download the engineering package
+        </Link>
       </div>
     </div>
   );

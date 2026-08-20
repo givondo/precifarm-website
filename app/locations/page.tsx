@@ -52,7 +52,7 @@ export default async function LocationsIndexPage() {
       <PageHero
         eyebrow="Locations"
         title="EV hubs and cities we serve"
-        description="Local pages for Precifarm charging infrastructure and electric intercity travel across Kenya."
+        description="Local pages for Precifarm charging — Pulse charger and Pod energy storage at home, fleet Depot, and Corridor DC across Kenya."
       />
       <section className="section-pad bg-white">
         <div className="page-container max-w-3xl">
@@ -86,11 +86,11 @@ export default async function LocationsIndexPage() {
       </section>
       <PageCTA
         title="Find charging on your route"
-        description="Explore the charge map or book a seat on Nairobi–Kisumu."
+        description="Open the Charging Hub or browse Pulse charger, Pod energy storage and Depot charging."
         primaryHref="/network"
-        primaryLabel="View charge map"
-        secondaryHref="/#book"
-        secondaryLabel="Book now"
+        primaryLabel="View Charging Hub"
+        secondaryHref="/charging"
+        secondaryLabel="Explore charging"
       />
     </>
   );

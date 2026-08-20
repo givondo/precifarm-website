@@ -16,6 +16,7 @@ import {
   IconUsers,
 } from "@/components/header/mobile-nav-icons";
 import Logo from "@/components/Logo";
+import { headerCta, siteNavGroups } from "@/lib/brand-messaging";
 import { contact } from "@/lib/contact";
 
 type NavLink = { href: string; label: string; description?: string };
@@ -26,41 +27,17 @@ type NavGroup = {
   items: NavLink[];
 };
 
-const navGroups: NavGroup[] = [
-  {
-    label: "EV charging",
-    icon: <IconMap />,
-    items: [
-      { href: "/network", label: "Charge Map" },
-      { href: "/charging", label: "Charging" },
-      { href: "/charging/private-house", label: "Private house charging" },
-      { href: "/locations", label: "Locations" },
-    ],
-  },
-  {
-    label: "Partners",
-    icon: <IconUsers />,
-    items: [
-      { href: "/partners", label: "Partner with us" },
-      { href: "/training", label: "Training" },
-      { href: "/partners#hub-hosts", label: "Hub site hosts" },
-      { href: "/partners#fleet-logistics", label: "Fleet & logistics" },
-    ],
-  },
-  {
-    label: "Company",
-    icon: <IconGrid />,
-    items: [
-      { href: "/about", label: "About" },
-      { href: "/guides", label: "Guides" },
-      { href: "/faq", label: "FAQ" },
-      { href: "/careers", label: "Careers" },
-      { href: "/download", label: "Download app" },
-      { href: "/contact", label: "Contact" },
-      { href: "/sw", label: "Kiswahili" },
-    ],
-  },
-];
+const groupIcons: Record<(typeof siteNavGroups)[number]["title"], ReactNode> = {
+  Charge: <IconMap />,
+  Fleets: <IconUsers />,
+  Company: <IconGrid />,
+};
+
+const navGroups: NavGroup[] = siteNavGroups.map((group) => ({
+  label: group.title,
+  icon: groupIcons[group.title],
+  items: [...group.links],
+}));
 
 const DROPDOWN_OPEN_DELAY_MS = 60;
 const DROPDOWN_CLOSE_DELAY_MS = 160;
@@ -314,7 +291,7 @@ function MobileNavPanel({ pathname, onClose }: { pathname: string; onClose: () =
       <div className="mobile-nav-actions">
         <BookNowLink onClick={onClose} className="mobile-nav-book">
           <IconTicket className="h-4 w-4 shrink-0" />
-          Book now
+          {headerCta.label}
         </BookNowLink>
         <a href={contact.phoneHref} className="mobile-nav-icon-btn" aria-label="Call us" onClick={onClose}>
           <IconPhone />
@@ -416,7 +393,7 @@ export default function Header() {
               <IconPhone className="h-4 w-4 shrink-0" />
               <span className="hidden xl:inline">{contact.phone}</span>
             </a>
-            <BookNowLink className="site-header-cta">Book now</BookNowLink>
+            <BookNowLink className="site-header-cta">{headerCta.label}</BookNowLink>
           </div>
 
           <div className="site-header-mobile-actions">

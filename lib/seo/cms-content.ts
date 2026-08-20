@@ -1,4 +1,4 @@
-import { homepageAisoBlocks } from "@/lib/seo/aiso/blocks";
+import { HOMEPAGE_FAQ_SLUG, faqIndexChargingFaqs, homepageChargingFaqs } from "@/lib/charging-faqs";
 import {
   cmsListSeoContent,
   type CmsSeoContent,
@@ -89,19 +89,27 @@ export async function getPublishedFaqs(): Promise<CmsSeoContent[]> {
   return items.filter(isFaqContent).sort(sortByPublishedDesc);
 }
 
-export async function getHomepageFaqs(limit = 5): Promise<FaqItem[]> {
-  const faqs = await getPublishedFaqs();
-  const cmsItems = collectFaqItems(faqs);
-  if (cmsItems.length > 0) return cmsItems.slice(0, limit);
+function faqsFromChargingDocuments(faqs: CmsSeoContent[]): FaqItem[] {
+  const preferred = faqs.find((item) => item.slug === HOMEPAGE_FAQ_SLUG);
+  return preferred ? faqsFromCmsContent(preferred) : [];
+}
 
-  const fallback = homepageAisoBlocks.find((block) => block.type === "faq")?.items as FaqItem[] | undefined;
-  return (fallback ?? []).slice(0, limit);
+export async function getHomepageFaqs(limit = 6): Promise<FaqItem[]> {
+  const faqs = await getPublishedFaqs();
+  const cmsItems = faqsFromChargingDocuments(faqs);
+  const source = cmsItems.length > 0 ? cmsItems : homepageChargingFaqs;
+  return source.slice(0, limit);
 }
 
 export async function getHomepageFaqsForSchema(): Promise<FaqItem[]> {
   const faqs = await getPublishedFaqs();
-  const cmsItems = collectFaqItems(faqs);
+  const cmsItems = faqsFromChargingDocuments(faqs);
   if (cmsItems.length > 0) return cmsItems;
+  return homepageChargingFaqs;
+}
 
-  return (homepageAisoBlocks.find((block) => block.type === "faq")?.items ?? []) as FaqItem[];
+export async function getFaqIndexItems(): Promise<FaqItem[]> {
+  const faqs = await getPublishedFaqs();
+  const cmsItems = faqsFromChargingDocuments(faqs);
+  return cmsItems.length > 0 ? cmsItems : faqIndexChargingFaqs;
 }

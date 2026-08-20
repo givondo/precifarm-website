@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en-KE">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Precifarm — Solar Chargers &amp; Charging Stations · Engineering Design Doc &amp; Task Sheet</title>
+  <meta name="description" content="Engineering design basis and delivery task sheet for Precifarm solar-assisted DC charging hubs, campus stations and private house hybrid charging." />
+  <link rel="stylesheet" href="./precifarm-document-brand.css" />
+  <style>
+    :root {
+      --ink: var(--pf-ink, #0a0a0a);
+      --muted: var(--pf-muted, #404040);
+      --line: var(--pf-line, #e5e5e5);
+      --bg: var(--pf-bg, #ffffff);
+      --soft: var(--pf-soft, #f5f5f5);
+      --blue: var(--pf-charge, #2563eb);
+      --blue-soft: var(--pf-charge-soft, #eff6ff);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      line-height: 1.55;
+      font-size: 15px;
+    }
+    .sheet {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 1.25rem;
+      background: rgba(255,255,255,0.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(8px);
+    }
+    .toolbar a, .toolbar button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border-radius: 999px;
+      padding: 0.55rem 1rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      cursor: pointer;
+    }
+    .toolbar .primary {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+    }
+    h1 {
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.5rem;
+    }
+    h2 {
+      font-size: 1.25rem;
+      margin: 2.25rem 0 0.75rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--line);
+    }
+    h3 { font-size: 1.05rem; margin: 1.4rem 0 0.5rem; }
+    p, li { color: var(--muted); }
+    .meta {
+      display: grid;
+      gap: 0.35rem;
+      margin: 1rem 0 1.5rem;
+      padding: 1rem;
+      background: var(--soft);
+      border-radius: 12px;
+      font-size: 0.9rem;
+    }
+    .meta strong { color: var(--ink); }
+    .callout {
+      border-left: 4px solid var(--blue);
+      background: var(--blue-soft);
+      padding: 0.9rem 1rem;
+      border-radius: 0 10px 10px 0;
+      margin: 1rem 0;
+      color: var(--ink);
+    }
+    figure {
+      margin: 1.25rem 0;
+    }
+    figure img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      display: block;
+    }
+    figcaption {
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin: 0.75rem 0 1.25rem;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 0.55rem 0.65rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--soft); color: var(--ink); }
+    code, .mono {
+      font-family: ui-monospace, Consolas, monospace;
+      font-size: 0.86em;
+    }
+    .flow {
+      background: #0a0a0a;
+      color: #e5e5e5;
+      padding: 1rem 1.1rem;
+      border-radius: 12px;
+      overflow-x: auto;
+      font-family: ui-monospace, Consolas, monospace;
+      font-size: 0.8rem;
+      line-height: 1.45;
+      white-space: pre;
+    }
+    .check { width: 2.2rem; text-align: center; }
+    .idcol { width: 4.2rem; }
+    .phase {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--blue);
+      margin-bottom: 0.25rem;
+    }
+    footer.doc-foot {
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--line);
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    @media print {
+      .toolbar { display: none !important; }
+      .sheet { padding: 0; max-width: none; }
+      a { color: inherit; text-decoration: none; }
+      h2 { break-before: page; }
+      h2:first-of-type { break-before: avoid; }
+      figure { break-inside: avoid; }
+      table { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar no-print pf-doc-toolbar">
+    <div class="pf-doc-toolbar-brand">
+      <img src="./precifarm-logo-mark.svg" alt="" width="24" height="24" />
+      <span class="mono">PF-ENG-SOLAR-HUB-001 · v1.1</span>
+    </div>
+    <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
+      <button type="button" class="primary" onclick="window.print()">Print</button>
+      <a class="primary" href="/downloads/precifarm-solar-charger-stations-engineering.pdf" download>Download PDF</a>
+      <a href="/downloads/precifarm-solar-charger-stations-engineering.html" download>Download HTML</a>
+      <a href="/charging/engineering">Back to page</a>
+    </div>
+  </div>
+
+  <main class="sheet">
+    <header class="pf-doc-header">
+      <div class="pf-doc-brand">
+        <img src="./precifarm-logo-mark.svg" alt="" width="40" height="40" class="pf-doc-mark" />
+        <div class="pf-doc-brand-text">
+          <p class="pf-doc-wordmark">Precifarm</p>
+          <p class="pf-doc-brand-tagline">Electric mobility infrastructure for Africa</p>
+        </div>
+      </div>
+      <p class="pf-doc-header-id">PF-ENG-SOLAR-HUB-001 · v1.1</p>
+    </header>
+
+    <p class="phase">Engineering package</p>
+    <h1>Solar Chargers &amp; Charging Stations</h1>
+    <p style="font-size:1.05rem;color:var(--ink);margin-top:0">Design basis and engineering task sheet for Precifarm route hubs, campus stations and private house hybrid charging.</p>
+
+    <div class="meta">
+      <div><strong>Document ID:</strong> PF-ENG-SOLAR-HUB-001</div>
+      <div><strong>Version:</strong> 1.1 · 16 August 2026</div>
+      <div><strong>Owner:</strong> Precifarm Engineering</div>
+      <div><strong>Status:</strong> Concept / feasibility reference — not a construction drawing set</div>
+      <div><strong>Contact:</strong> sales@precifarm.com · +254 794 702 768</div>
+    </div>
+
+    <div class="callout">
+      Construction requires site surveys, Kenya Power connection studies, licensed Kenyan electrical design, and statutory approvals. Figures and costs are planning assumptions unless labelled otherwise. Solar and storage optimise cost and resilience; they do not replace a feeder study or a contracted demand case.
+    </div>
+
+    <h2>1. Purpose</h2>
+    <p>This package is the engineering design basis and single-site delivery task sheet for Precifarm solar-assisted DC charging stations.</p>
+    <table>
+      <thead><tr><th>Type</th><th>Role</th><th>Typical user</th></tr></thead>
+      <tbody>
+        <tr><td>Route charging hub</td><td>Reserved CCS2 windows for scheduled electric buses on Nairobi–Kisumu</td><td>Partner operator + Precifarm ops</td></tr>
+        <tr><td>Private campus / in-house</td><td>Multi-pedestal AC/DC on private land</td><td>Host organisation</td></tr>
+        <tr><td>Private house hybrid</td><td>Charger on the customer meter; optional rooftop solar + storage</td><td>Homeowner / estate</td></tr>
+      </tbody>
+    </table>
+    <h3>Governing design principles</h3>
+    <ul>
+      <li>Type 2 public AC · CCS2 public DC. CHAdeMO / GB/T only for defined fleets.</li>
+      <li>Contracted bus demand before speculative public capacity.</li>
+      <li>Modular shared-power cabinets; expand against measured utilisation.</li>
+      <li>Electrical safety and the site import limit stay local (edge clips cloud commands).</li>
+      <li>OCPP 2.0.1 greenfield baseline; OCPP 2.1 / ISO 15118-20 upgrade path.</li>
+      <li>KPIs: first-attempt charge success and delivered kWh — not heartbeat-only uptime.</li>
+      <li>Kenya Power connection study before land or charger commitments.</li>
+    </ul>
+
+    <h2>2. System concept</h2>
+    <div class="flow">Kenya Power (grid) → MV/LV transformer → site LV board (import limit)
+                    ↑
+          PV inverter / hybrid PCS ← solar canopy PV
+                    │
+          LiFePO₄ BESS → DC EVSE (CCS2) → electric bus
+                    │
+          edge gateway — OCPP 2.0.1 → CSMS
+          (Modbus: meter, inverter, BMS)</div>
+
+    <p>Dispatch order at the edge (cloud is advisory):</p>
+    <ol>
+      <li>Electrical safety, emergency stop, insulation and thermal interlocks</li>
+      <li>Declared site import limit (utility + transformer + switchboard)</li>
+      <li>Reserved bus windows (timetable energy before public or opportunistic load)</li>
+      <li>Tariff / demand-charge reduction</li>
+      <li>Solar self-consumption and BESS state-of-charge floors</li>
+    </ol>
+
+    <table>
+      <thead><tr><th>Layer</th><th>Function</th></tr></thead>
+      <tbody>
+        <tr><td>Energy supply</td><td>Grid import + canopy/rooftop PV + optional LiFePO₄ storage</td></tr>
+        <tr><td>Fast charging</td><td>Modular CCS2 DC (120–180 kW town/bus · 240–320 kW highway class)</td></tr>
+        <tr><td>Civil / canopy</td><td>Weather protection, PV mounting, bus approach, queue, dwell</td></tr>
+        <tr><td>Operations</td><td>OCPP 2.0.1 sessions, metering, reserved windows, remote monitoring</td></tr>
+      </tbody>
+    </table>
+
+    <figure>
+      <img src="/images/engineering/route-hub.png" alt="Route charging hub with solar canopy, DC chargers, battery storage and electric bus" width="1200" height="675" />
+      <figcaption>Figure 1 — Route hub concept: solar canopy, DC dispensers, storage cabinets, electric bus.</figcaption>
+    </figure>
+
+    <figure>
+      <img src="/images/engineering/system-architecture.png" alt="System architecture diagram of Kenya Power, solar, storage, CCS2 charger and CSMS" width="1200" height="675" />
+      <figcaption>Figure 2 — System architecture: Kenya Power · canopy PV · LiFePO₄ · CCS2 DC · OCPP edge / CSMS.</figcaption>
+    </figure>
+
+    <figure>
+      <img src="/images/engineering/site-plan.png" alt="Typical two-bay route hub site plan" width="1200" height="675" />
+      <figcaption>Figure 3 — Typical two-bay route hub plan: one-way bus circulation, solar canopy, separated electrical compound, dwell, expansion bay. Illustrative — not a surveyed layout.</figcaption>
+    </figure>
+
+    <figure>
+      <img src="/images/engineering/home-hybrid.png" alt="Private house hybrid EV charging with rooftop solar and wall charger" width="1200" height="900" />
+      <figcaption>Figure 4 — Private house hybrid: grid + rooftop solar + wall charger + home storage.</figcaption>
+    </figure>
+
+    <h2 class="photo-annex">2.1 Photo annex — stations, sites and vehicles</h2>
+    <p>Additional reference imagery used across Precifarm charging surfaces. Illustrative — not as-built photography.</p>
+
+    <figure>
+      <img src="/images/charging-route-hub.png" alt="Intercity route charging hub with solar canopy and electric bus at DC charger" width="1200" height="675" />
+      <figcaption>Figure 5 — Route charging hub (marketing reference): solar canopy, DC fast charger, electric bus.</figcaption>
+    </figure>
+
+    <figure>
+      <img src="/images/charging-hub-premium-kenya.png" alt="Premium Kenyan EV charging hub at golden hour with solar canopy" width="1200" height="675" />
+      <figcaption>Figure 6 — Premium corridor hub concept in Kenya landscape context.</figcaption>
+    </figure>
+
+    <figure>
+      <img src="/images/charging-private-site.png" alt="Private campus charging station with multiple pedestals under solar canopy" width="1200" height="675" />
+      <figcaption>Figure 7 — Private in-house / campus station: multi-pedestal solar canopy site.</figcaption>
+    </figure>
+
+    <figure>
+      <img src="/images/charging-private-house-hybrid.png" alt="Private house hybrid EV charging with solar and battery storage" width="1200" height="900" />
+      <figcaption>Figure 8 — Private house hybrid install: wall charger, rooftop solar, home storage.</figcaption>
+    </figure>
+
+    <figure>
+      <img src="/images/charging-home.png" alt="Residential home EV charging installation" width="1200" height="900" />
+      <figcaption>Figure 9 — Residential charging reference install.</figcaption>
+    </figure>
+
+    <figure>
+      <img src="/images/yutong-u18.png" alt="Yutong U18 electric intercity bus" width="1200" height="675" />
+      <figcaption>Figure 10 — Yutong U18 electric intercity bus (route vehicle reference).</figcaption>
+    </figure>
+
+    <figure>
+      <img src="/images/yutong-u12.png" alt="Yutong U12 electric city bus" width="1200" height="675" />
+      <figcaption>Figure 11 — Yutong U12 electric city bus (fleet / urban reference).</figcaption>
+    </figure>
+
+    <figure>
+      <img src="/images/precifarm-bus.jpg" alt="Precifarm electric bus on route" width="1200" height="675" />
+      <figcaption>Figure 12 — Electric bus on corridor service (brand reference).</figcaption>
+    </figure>
+
+    <h2>3. Design basis — route charging hub</h2>
+    <h3>3.1 Functional requirements</h3>
+    <table>
+      <thead><tr><th class="idcol">ID</th><th>Requirement</th></tr></thead>
+      <tbody>
+        <tr><td>R-01</td><td>Deliver reserved CCS2 DC energy so scheduled electric buses leave on timetable</td></tr>
+        <tr><td>R-02</td><td>Prefer Type 2 (AC) / CCS2 (DC) as Kenya public defaults</td></tr>
+        <tr><td>R-03</td><td>Modular shared-power cabinets; expand only against contracted demand</td></tr>
+        <tr><td>R-04</td><td>Integrate solar canopy where irradiance and structure allow</td></tr>
+        <tr><td>R-05</td><td>LiFePO₄ storage for peak shaving / weak-grid resilience (site-dependent)</td></tr>
+        <tr><td>R-06</td><td>OCPP 2.0.1 to CSMS; durable edge queue for offline recovery</td></tr>
+        <tr><td>R-07</td><td>First-attempt charge success and delivered kWh as primary KPIs</td></tr>
+        <tr><td>R-08</td><td>At least two operational DC ports at a corridor hub so one fault does not strand the route</td></tr>
+        <tr><td>R-09</td><td>Hard site-import clip from local metering — cloud setpoints cannot exceed the utility envelope</td></tr>
+        <tr><td>R-10</td><td>Identify the coach, start the reserved session, and write a metered session record for settlement</td></tr>
+      </tbody>
+    </table>
+
+    <h3>3.2 Nairobi–Kisumu site classes (planning)</h3>
+    <p>Route one is Nairobi–Kisumu (~345 km, ~4 h 45 m). Hubs exist to protect the timetable.</p>
+    <table>
+      <thead><tr><th>Site class</th><th>Planning role</th><th>Typical dwell</th><th>Equipment class</th></tr></thead>
+      <tbody>
+        <tr><td>Nairobi depot / terminus</td><td>Overnight and pre-departure top-up</td><td>Hours (managed)</td><td>120–180 kW DC + 11–22 kW AC</td></tr>
+        <tr><td>En-route (e.g. Nakuru)</td><td>Opportunity charge if remaining range is insufficient</td><td>20–40 min</td><td>120–180 kW; 240–320 kW if dwell is shorter</td></tr>
+        <tr><td>Kisumu terminus</td><td>Arrival recovery + next-day readiness</td><td>Hours / overnight</td><td>120–180 kW DC + AC as dwell allows</td></tr>
+      </tbody>
+    </table>
+
+    <h3>3.3 Energy model (planning assumption)</h3>
+    <table>
+      <thead><tr><th>Parameter</th><th>Planning value</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td>Specific consumption</td><td>1.2 kWh/km loaded</td><td>Replace with OEM / loaded test</td></tr>
+        <tr><td>Route distance</td><td>~345 km</td><td>Nairobi–Kisumu</td></tr>
+        <tr><td>Trip energy</td><td>~414 kWh</td><td>1.2 × 345</td></tr>
+        <tr><td>Beachhead departures</td><td>5/day</td><td>Canon planning assumption</td></tr>
+        <tr><td>Mid-route opportunity charge</td><td>80–150 kWh</td><td>20–40 min at 150–180 kW usable</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Worked example — one reserved window (illustrative):</strong> 120 kWh in 30 min → 240 kW at the vehicle. At 95% charger efficiency, AC input ≈ 253 kW. If the Kenya Power import limit is 180 kW, BESS must cover the gap: (253 − 180) × 0.5 ≈ 37 kWh plus reserve → usable BESS typically ≥ 80–100 kWh for that window.</p>
+    <p>A 40–80 kWp canopy in Kenya yields roughly 180–440 kWh/day. Against a 1,500 kWh/day hub, PV covers on the order of 12–30% of daily energy. Use it for cost, shade and resilience — not as a substitute for the feeder.</p>
+
+    <h3>3.4 Typical equipment class (planning)</h3>
+    <table>
+      <thead><tr><th>Element</th><th>Planning class</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>DC dispenser</td><td>120–180 kW (town/bus) · 240–320 kW (highway)</td><td>RFQ against Chinese charger shortlist</td></tr>
+        <tr><td>Architecture</td><td>Modular shared-power preferred</td><td>Add cabinets against utilisation</td></tr>
+        <tr><td>Connector</td><td>CCS2 dual-port at corridor hubs</td><td>CHAdeMO/GB/T only if fleet-specific</td></tr>
+        <tr><td>PV canopy</td><td>40–80 kWp typical two-bay</td><td>Export only with written utility approval</td></tr>
+        <tr><td>BESS</td><td>LiFePO₄, 100–250 kWh usable first site</td><td>Dispatch under import limit; fire separation</td></tr>
+        <tr><td>Transformer</td><td>Concept 315–500 kVA after diversity</td><td>Site study required</td></tr>
+        <tr><td>Communications</td><td>Dual path at critical hubs</td><td>Ethernet + cellular</td></tr>
+      </tbody>
+    </table>
+
+    <h3>3.5 Solar canopy sizing method</h3>
+    <ol>
+      <li>Structure first — canopy area is set by bus geometry, wind and seismic.</li>
+      <li>Module packing — planning ~160–200 Wp per m² of canopy plan area.</li>
+      <li>Yield — Kenya planning 4.5–5.5 kWh/kWp/day (site PVsyst later).</li>
+      <li>Self-consume into BESS and site load; export only if the connection offer allows it.</li>
+      <li>Anti-islanding — inverter/PCS trip on loss of mains.</li>
+    </ol>
+    <p>Illustrative two-bay canopy: 12 m × 24 m ≈ 288 m² → ~50 kWp → ~225–275 kWh/day.</p>
+
+    <h3>3.6 BESS sizing method</h3>
+    <p>Size storage to the binding constraint, then take the larger of: reserved-window gap, peak-shave to an affordable kVA, ride-through for one abort/restart, and SoC floors for the next contracted window. Chemistry: LiFePO₄ outdoor cabinets.</p>
+
+    <h3>3.7 Electrical design checklist</h3>
+    <table>
+      <thead><tr><th class="check">☐</th><th>Item</th></tr></thead>
+      <tbody>
+        <tr><td class="check">☐</td><td>Kenya Power connection study and declared POC voltage (LV or MV)</td></tr>
+        <tr><td class="check">☐</td><td>15-minute load profile: reserved windows, public, auxiliaries, PV, BESS</td></tr>
+        <tr><td class="check">☐</td><td>Transformer / switchboard sizing (IEC 61439 / 60947)</td></tr>
+        <tr><td class="check">☐</td><td>Cable ampacity, voltage drop, fault withstand</td></tr>
+        <tr><td class="check">☐</td><td>Protection coordination; Type B RCD / RDC-DD as required</td></tr>
+        <tr><td class="check">☐</td><td>Earthing, bonding, touch/step voltage</td></tr>
+        <tr><td class="check">☐</td><td>Lightning risk (IEC 62305) and coordinated SPDs</td></tr>
+        <tr><td class="check">☐</td><td>Harmonics, PF, flicker; PV/BESS anti-islanding and export approval</td></tr>
+        <tr><td class="check">☐</td><td>Thermal management for high-power DC cabinets</td></tr>
+        <tr><td class="check">☐</td><td>Emergency stop, isolation, and responder access independent of software</td></tr>
+      </tbody>
+    </table>
+
+    <h3>3.8 Civil &amp; site checklist</h3>
+    <table>
+      <thead><tr><th class="check">☐</th><th>Item</th></tr></thead>
+      <tbody>
+        <tr><td class="check">☐</td><td>Safe entry/exit and queue storage for 12 m-class buses (drive-through preferred)</td></tr>
+        <tr><td class="check">☐</td><td>Dispenser clearances, impact protection, cable management</td></tr>
+        <tr><td class="check">☐</td><td>Canopy wind/seismic loads; PV mounting integrity</td></tr>
+        <tr><td class="check">☐</td><td>Separated transformer, switchgear, charger and BESS compounds</td></tr>
+        <tr><td class="check">☐</td><td>Drainage away from energized equipment; lighting, CCTV, fire access</td></tr>
+        <tr><td class="check">☐</td><td>Passenger dwell offset from the electrical compound</td></tr>
+        <tr><td class="check">☐</td><td>Spare ducts, foundations and switchboard ways for one expansion bay</td></tr>
+      </tbody>
+    </table>
+
+    <h2>4. Design basis — private campus / in-house station</h2>
+    <table>
+      <thead><tr><th class="idcol">ID</th><th>Requirement</th></tr></thead>
+      <tbody>
+        <tr><td>C-01</td><td>Start from vehicle count, arrival SOC and dwell — not from a brochure kW</td></tr>
+        <tr><td>C-02</td><td>Prefer 11–22 kW Type 2 AC where vehicles park for hours; add DC only for short dwell</td></tr>
+        <tr><td>C-03</td><td>Building / estate import limit and landlord earthing govern charger count</td></tr>
+        <tr><td>C-04</td><td>Submetering for the host; OCPP if revenue-bearing or fleet-managed</td></tr>
+        <tr><td>C-05</td><td>Optional canopy PV + LiFePO₄ using the same sizing methods as route hubs</td></tr>
+        <tr><td>C-06</td><td>Fire access, impact protection and isolation — campus does not mean light duty</td></tr>
+      </tbody>
+    </table>
+
+    <h2>5. Design basis — private house hybrid</h2>
+    <table>
+      <thead><tr><th class="idcol">ID</th><th>Requirement</th></tr></thead>
+      <tbody>
+        <tr><td>H-01</td><td>Charger on customer property and meter — not a public hub</td></tr>
+        <tr><td>H-02</td><td>Start from duty cycle: typically 7.4 kW AC; DC only when justified</td></tr>
+        <tr><td>H-03</td><td>Optional solar + storage for overnight resilience</td></tr>
+        <tr><td>H-04</td><td>Same engineering discipline: survey, install, commissioning, support</td></tr>
+        <tr><td>H-05</td><td>App visibility for personal home charging when product supports it</td></tr>
+        <tr><td>H-06</td><td>Type A 30 mA plus 6 mA RDC-DD, or Type B, on a dedicated final circuit</td></tr>
+      </tbody>
+    </table>
+
+    <h2>6. Software &amp; cybersecurity (station)</h2>
+    <table>
+      <thead><tr><th>Topic</th><th>Baseline</th></tr></thead>
+      <tbody>
+        <tr><td>Charger protocol</td><td>OCPP 2.0.1 (greenfield)</td></tr>
+        <tr><td>Upgrade path</td><td>OCPP 2.1 / ISO 15118-20</td></tr>
+        <tr><td>Edge</td><td>Offline auth snapshot, durable session queue, local load management</td></tr>
+        <tr><td>Cloud</td><td>Sessions, billing hooks, fleet windows, OTA, fault management</td></tr>
+        <tr><td>Security</td><td>Segmented OT/IT, least privilege, signed firmware</td></tr>
+        <tr><td>Safety</td><td>Software cannot override hardware E-stop, insulation monitoring, or import-limit trip</td></tr>
+      </tbody>
+    </table>
+
+    <h2>7. Kenya approvals and hold points</h2>
+    <p>Hold capital and equipment orders until these are in the site pack (or explicitly waived in writing).</p>
+    <table>
+      <thead><tr><th>Gate</th><th>Owner</th><th>Evidence</th></tr></thead>
+      <tbody>
+        <tr><td>Contracted demand</td><td>Commercial</td><td>Operator window / kWh commitment</td></tr>
+        <tr><td>Site control</td><td>Commercial + legal</td><td>Host agreement, tenure, access</td></tr>
+        <tr><td>Kenya Power enquiry</td><td>Electrical</td><td>Feasibility / connection offer, tariff, export rules</td></tr>
+        <tr><td>Licensed design</td><td>EBK-registered engineer</td><td>SLD, protection, earthing</td></tr>
+        <tr><td>EPRA / Energy Act</td><td>PM</td><td>Charging-infrastructure guideline checklist</td></tr>
+        <tr><td>NEMA / EIA</td><td>HSE</td><td>Screening decision or licence as triggered</td></tr>
+        <tr><td>County / fire</td><td>Civil + HSE</td><td>Building, fire, BESS separation</td></tr>
+        <tr><td>KEBS / IEC equipment</td><td>Procurement</td><td>Certificates matching the shipped SKU</td></tr>
+        <tr><td>Commissioning</td><td>Field + software</td><td>Acceptance tests signed</td></tr>
+      </tbody>
+    </table>
+
+    <h2>8. Engineering task sheet</h2>
+    <p>Delivery tracker for a single site. Checkboxes are hold points.</p>
+
+    <h3>Phase A — Feasibility</h3>
+    <table>
+      <thead><tr><th class="check">☐</th><th class="idcol">ID</th><th>Task</th><th>Owner</th><th>Output</th></tr></thead>
+      <tbody>
+        <tr><td class="check">☐</td><td>A-01</td><td>Confirm contracted demand / duty cycle</td><td>Commercial + Eng</td><td>Demand note</td></tr>
+        <tr><td class="check">☐</td><td>A-02</td><td>Site walkover, photos, access, host constraints</td><td>Field eng</td><td>Site pack</td></tr>
+        <tr><td class="check">☐</td><td>A-03</td><td>Grid enquiry / connection study request</td><td>Electrical</td><td>Utility letter</td></tr>
+        <tr><td class="check">☐</td><td>A-04</td><td>Concept single-line diagram</td><td>Electrical</td><td>SLD v0</td></tr>
+        <tr><td class="check">☐</td><td>A-05</td><td>Concept layout (canopy, pedestals, storage, circulation)</td><td>Civil + Eng</td><td>Layout v0</td></tr>
+        <tr><td class="check">☐</td><td>A-06</td><td>Capex/opex planning estimate</td><td>Eng + Finance</td><td>Cost sheet</td></tr>
+        <tr><td class="check">☐</td><td>A-07</td><td>Capital gate: demand + site control + feeder path</td><td>PM</td><td>Go / no-go</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Phase B — Design</h3>
+    <table>
+      <thead><tr><th class="check">☐</th><th class="idcol">ID</th><th>Task</th><th>Owner</th><th>Output</th></tr></thead>
+      <tbody>
+        <tr><td class="check">☐</td><td>B-01</td><td>Detailed SLD and protection schedule</td><td>Licensed electrical</td><td>IFC pack</td></tr>
+        <tr><td class="check">☐</td><td>B-02</td><td>Cable schedule and earthing design</td><td>Electrical</td><td>Schedules</td></tr>
+        <tr><td class="check">☐</td><td>B-03</td><td>Canopy / PV structural design</td><td>Structural</td><td>Calcs + drawings</td></tr>
+        <tr><td class="check">☐</td><td>B-04</td><td>BESS integration and fire separation</td><td>Electrical + HSE</td><td>Spec</td></tr>
+        <tr><td class="check">☐</td><td>B-05</td><td>CSMS / OCPP configuration sheet</td><td>Software</td><td>Config pack</td></tr>
+        <tr><td class="check">☐</td><td>B-06</td><td>Civil drainage, lighting, CCTV</td><td>Civil</td><td>Drawings</td></tr>
+        <tr><td class="check">☐</td><td>B-07</td><td>Statutory submissions</td><td>PM</td><td>Approvals log</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Phase C — Procurement</h3>
+    <table>
+      <thead><tr><th class="check">☐</th><th class="idcol">ID</th><th>Task</th><th>Owner</th><th>Output</th></tr></thead>
+      <tbody>
+        <tr><td class="check">☐</td><td>C-01</td><td>RFQ against shortlist (bus/highway or house class)</td><td>Procurement</td><td>Vendor bids</td></tr>
+        <tr><td class="check">☐</td><td>C-02</td><td>Factory acceptance criteria + OCPP live test</td><td>Eng + Software</td><td>FAT checklist</td></tr>
+        <tr><td class="check">☐</td><td>C-03</td><td>Spares, warranty, local labour, ten-year parts</td><td>Procurement</td><td>Contract</td></tr>
+        <tr><td class="check">☐</td><td>C-04</td><td>Confirm Kenya SKU: CCS2, 50 Hz, OCPP 2.0.1, environmental rating</td><td>Eng</td><td>Conformity matrix</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Phase D — Construction &amp; commission</h3>
+    <table>
+      <thead><tr><th class="check">☐</th><th class="idcol">ID</th><th>Task</th><th>Owner</th><th>Output</th></tr></thead>
+      <tbody>
+        <tr><td class="check">☐</td><td>D-01</td><td>Civil and canopy install</td><td>Contractor</td><td>As-built</td></tr>
+        <tr><td class="check">☐</td><td>D-02</td><td>Electrical install and torque records</td><td>Contractor</td><td>QA pack</td></tr>
+        <tr><td class="check">☐</td><td>D-03</td><td>Charger / BESS / PV commissioning</td><td>Field eng</td><td>Commission report</td></tr>
+        <tr><td class="check">☐</td><td>D-04</td><td>OCPP end-to-end session test</td><td>Software + Field</td><td>Test log</td></tr>
+        <tr><td class="check">☐</td><td>D-05</td><td>Peak-load test against declared import limit</td><td>Electrical</td><td>Test sheet</td></tr>
+        <tr><td class="check">☐</td><td>D-06</td><td>Safety sign-off and handover</td><td>PM + HSE</td><td>Handover certificate</td></tr>
+        <tr><td class="check">☐</td><td>D-07</td><td>Operator training (T1–T3 as applicable)</td><td>Training</td><td>Attendance</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Phase E — Operate</h3>
+    <table>
+      <thead><tr><th class="check">☐</th><th class="idcol">ID</th><th>Task</th><th>Owner</th><th>Output</th></tr></thead>
+      <tbody>
+        <tr><td class="check">☐</td><td>E-01</td><td>Reserved window calendar live</td><td>Ops</td><td>Schedule</td></tr>
+        <tr><td class="check">☐</td><td>E-02</td><td>Uptime and delivered-kWh dashboard</td><td>Ops</td><td>KPI weekly</td></tr>
+        <tr><td class="check">☐</td><td>E-03</td><td>Preventive maintenance plan</td><td>Field</td><td>PM calendar</td></tr>
+        <tr><td class="check">☐</td><td>E-04</td><td>Incident / exception process</td><td>Ops</td><td>Runbook</td></tr>
+        <tr><td class="check">☐</td><td>E-05</td><td>Utilisation review before next cabinet / port</td><td>Eng + Finance</td><td>Expansion note</td></tr>
+      </tbody>
+    </table>
+
+    <h2>9. Acceptance criteria (route hub)</h2>
+    <p>A site is <strong>engineering-accepted</strong> when:</p>
+    <ol>
+      <li>Documented connection agreement and site import limit are respected under peak test load</li>
+      <li>At least one successful CCS2 session delivers metered energy to a representative vehicle</li>
+      <li>A reserved-window rehearsal completes the contracted kWh inside the timetable (or a documented exception path is proven)</li>
+      <li>OCPP session and meter values reconcile in CSMS</li>
+      <li>Emergency stop, isolation, and earthing verification are signed</li>
+      <li>PV anti-islanding and BESS fire/separation checks are signed where those systems are installed</li>
+      <li>As-built SLD and O&amp;M pack are filed</li>
+    </ol>
+    <p>Engineering acceptance is necessary; it is not traction. Commercial live-route proof remains a separate Canon proof gate.</p>
+
+    <h2>10. Related references</h2>
+    <ul>
+      <li>Precifarm Master EV Charging Engineering Handbook</li>
+      <li>Kenya Deployment Plan 2026–2040</li>
+      <li>Chinese Ready-Made EV Charger Shortlist</li>
+      <li>Software, Communications and Cybersecurity Architecture</li>
+      <li>Canon — Reserved Route Charging product boundaries</li>
+    </ul>
+
+    <footer class="doc-foot pf-doc-footer">
+      <div class="pf-doc-footer-brand">
+        <img src="./precifarm-logo-mark.svg" alt="" width="28" height="28" class="pf-doc-mark pf-doc-mark-sm" />
+        <span class="pf-doc-wordmark pf-doc-wordmark-sm">Precifarm</span>
+      </div>
+      <p class="pf-doc-footer-meta">© 2026 Precifarm · PF-ENG-SOLAR-HUB-001 v1.1 · 16 August 2026</p>
+      <p class="pf-doc-footer-contact">sales@precifarm.com · +254 794 702 768 · Nairobi, Kenya · precifarm.com</p>
+      <p class="pf-doc-footer-disclaimer">For engineering planning. Not a substitute for licensed design, Kenya Power studies or statutory approvals.</p>
+      <p class="pf-doc-footer-link">Live page: <a href="https://precifarm.com/charging/engineering">precifarm.com/charging/engineering</a></p>
+    </footer>
+  </main>
+</body>
+</html>

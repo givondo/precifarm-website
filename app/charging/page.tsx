@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import ChargingSection from "@/components/ChargingSection";
+import FaqAccordion from "@/components/seo/FaqAccordion";
 import JsonLd from "@/components/seo/JsonLd";
 import PageHero from "@/components/ui/PageHero";
+import SectionHeader from "@/components/ui/SectionHeader";
+import { chargingPage } from "@/lib/charging";
+import { chargingServicesFaqs } from "@/lib/charging-faqs";
 import { pageJsonLd, pageMetadata } from "@/lib/seo/pages/helpers";
 
 export const metadata: Metadata = pageMetadata("/charging");
@@ -11,12 +15,24 @@ export default function ChargingPage() {
     <>
       <JsonLd data={pageJsonLd("/charging")} />
       <PageHero
-        eyebrow="Charging"
-        title="Route hubs, private house charging and in-house stations for private entities"
-        description="Precifarm delivers dependable DC fast charging on intercity routes, at private houses and on commercial private sites — designed, installed and operated by the same regional engineering teams."
+        eyebrow={chargingPage.eyebrow}
+        title={chargingPage.title}
+        description={chargingPage.description}
       />
       <section className="border-b border-border bg-white">
         <ChargingSection />
+      </section>
+      <section className="section-pad bg-muted/20">
+        <div className="page-container max-w-3xl">
+          <SectionHeader
+            eyebrow="Charging economics"
+            title="What home charging and public DC cost"
+            description="Pulse charger from KES 79,000, a home charging day about KES 140, public DC from KES 39/kWh — session price is always shown before you charge."
+          />
+          <div className="mt-8">
+            <FaqAccordion items={chargingServicesFaqs} />
+          </div>
+        </div>
       </section>
     </>
   );

@@ -21,20 +21,20 @@ export const appDownload = {
 /** Full /download page features — EV charging first */
 export const appFeatures = [
   {
-    title: "Charge Map",
-    text: "See Precifarm hub locations, live Nairobi–Kisumu route coverage and planned expansion sites across Kenya.",
+    title: "Find chargers",
+    text: "See Precifarm, EVChaja, ChargeNet and partner sites across Kenya — filter by fast DC and navigate in maps.",
   },
   {
-    title: "Route hub charging",
-    text: "DC fast charging with solar and storage at intercity hubs — reserved windows so buses leave on schedule.",
+    title: "The charging range",
+    text: "Spark charger, Pulse charger, Pod energy storage, Boda Hub, Depot charging station and Corridor charging — specs and M-Pesa in one place.",
   },
   {
-    title: "Personal home charging",
-    text: "Manage your private house charger — monitor sessions, schedules and top-ups on your own property, on your meter.",
+    title: "Home installation quotes",
+    text: "Request a Pulse charger or Pod energy storage survey — certified installation, green halo status and three-year aftersale care on M-Pesa.",
   },
   {
-    title: "Book Nairobi–Kisumu",
-    text: "Pick your date, departure time and seats — same live timetable and M-Pesa checkout as the website.",
+    title: "Lipa Pole Pole on any phone",
+    text: "Pay deposit and monthly instalments via M-Pesa, USSD or SMS — no bank account required.",
   },
 ] as const;
 
@@ -42,5 +42,5 @@ export const installSteps = [
   "Tap **Download for Android** below.",
   "When prompted, allow downloads from your browser.",
   "Open the downloaded file. If Android blocks the install, go to Settings → Security and allow installs from your browser.",
-  "Tap Install, then open Precifarm and book your trip or open the Charge Map.",
+  "Tap Install, then open Precifarm to find chargers or explore the product range.",
 ] as const;

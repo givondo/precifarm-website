@@ -65,7 +65,7 @@ export default function AisoPageSections({
             Quick answers
           </p>
           <h2 className="heading-display mt-2 text-2xl sm:text-3xl">
-            Plan your trip and find what you need
+            Charging answers at a glance
           </h2>
         </div>
 
@@ -89,10 +89,10 @@ export default function AisoPageSections({
 
           {howToItems && howToItems.length > 0 && (
             <div className="aiso-section-panel">
-              <h3 className="aiso-panel-title">{howTo?.title ?? "How to book"}</h3>
+              <h3 className="aiso-panel-title">{howTo?.title ?? "How to charge"}</h3>
               <HowToSteps items={howToItems} />
-              <Link href="/#book" className="aiso-book-link">
-                Book now →
+              <Link href="/charging" className="aiso-book-link">
+                Explore charging →
               </Link>
             </div>
           )}

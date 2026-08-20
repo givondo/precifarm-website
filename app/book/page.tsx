@@ -20,5 +20,5 @@ export default async function BookPage({ searchParams }: Props) {
     if (typeof value === "string") qs.set(key, value);
   }
 
-  redirect(`/?${qs.toString()}#book`);
+  redirect(`/charging?${qs.toString()}`);
 }

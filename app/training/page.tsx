@@ -135,7 +135,7 @@ export default function TrainingPage() {
           <TrainingTableSection
             eyebrow="EV charging tracks"
             title="Which tier for which product?"
-            description="Use this matrix when scoping a cohort — route hub, home, private site or fleet charging."
+            description="Use this matrix when scoping a cohort — home Pulse charger and Pod energy storage, fleet Depot, or highway Corridor."
           >
             <TrainingTrackMatrixTable />
           </TrainingTableSection>
@@ -155,7 +155,7 @@ export default function TrainingPage() {
             </Link>
             ,{" "}
             <Link href="/network" className="text-link font-medium">
-              charge map
+              charging hub
             </Link>
             ,{" "}
             <Link href="/partners" className="text-link font-medium">
@@ -199,7 +199,7 @@ export default function TrainingPage() {
                 {[
                   "Organisation name and number of participants",
                   "Current tier held (T1, T2, T3 or none)",
-                  "Tracks needed: route hub, home, private site or fleet",
+                  "Tracks needed: home, fleet or highway charging",
                   "Preferred month and a contact name and phone",
                 ].map((item) => (
                   <CheckItem key={item}>{item}</CheckItem>

@@ -2,39 +2,32 @@ import SectionHeader from "@/components/ui/SectionHeader";
 
 export const routeRoles = [
   {
+    layer: "Home charging",
+    precifarm:
+      "Precifarm surveys, installs and supports Pulse charger, Pod energy storage and Spark charger at private houses — Lipa Pole Pole on M-Pesa and three-year aftersale care.",
+    partners:
+      "Homeowners provide site access and approve the installation scope. Precifarm delivers hardware, commissioning and ongoing support.",
+  },
+  {
     layer: "Charging hubs",
     precifarm:
-      "Precifarm builds, owns and operates charging hubs on key routes, sells energy and guarantees uptime.",
+      "Precifarm builds, owns and operates Corridor charging on key routes, sells energy and guarantees uptime on commissioned sites.",
     partners:
       "Site hosts provide land or location rights, and may co-invest where the economics fit.",
   },
   {
-    layer: "Operating network",
+    layer: "Fleet charging",
     precifarm:
-      "Precifarm manages the brand, timetable, tickets, booking, payments and passenger service data.",
+      "Precifarm designs Depot charging stations and Boda Hub swaps, with M-Pesa billing and remote monitoring.",
     partners:
-      "Bus operators provide vehicles, drivers, PSV licences and passenger insurance on the published schedule.",
+      "Fleet and boda operators keep vehicles, riders and dispatch. Precifarm owns the energy layer.",
   },
   {
-    layer: "Partner mobility",
+    layer: "Highway operations",
     precifarm:
-      "Precifarm aggregates passenger demand, coordinates charging windows and sets the service standards passengers book against.",
+      "Precifarm publishes live hub status, session metering and M-Pesa. Passenger booking on Nairobi–Kisumu is a companion surface, not the charging product.",
     partners:
-      "Licensed operators own and maintain Yutong U12 city buses and U18 intercity buses, delivering the in-cabin experience on each departure.",
-  },
-  {
-    layer: "Fleet and cargo",
-    precifarm:
-      "Precifarm coordinates ET01 fleet charging, daytime hub access and fleet invoicing on the same network as passenger routes.",
-    partners:
-      "Logistics partners operate ET01 electric cargo vans and retain dispatch and cargo operations while Precifarm provides dependable hub energy.",
-  },
-  {
-    layer: "EV home charging",
-    precifarm:
-      "Precifarm surveys, designs and installs residential DC fast chargers, integrated with Neura Pod solar and storage where required, and services every system through our regional engineering teams.",
-    partners:
-      "Homeowners and estates provide site access and approve the installation scope; Precifarm delivers hardware, commissioning and ongoing O&M.",
+      "Licensed operators own buses, employ drivers and hold PSV licences and passenger insurance.",
   },
 ] as const;
 
@@ -43,8 +36,8 @@ export default function RouteRolesTable() {
     <div>
       <SectionHeader
         eyebrow="Roles"
-        title="Who does what on the route"
-        description="Clear responsibilities help passengers get a dependable journey and help partners earn on the route."
+        title="Who does what"
+        description="Clear responsibilities from the home wallbox to the highway hub — partners run vehicles, Precifarm runs charging."
         className="mb-8"
       />
       <div className="overflow-hidden rounded-2xl border border-border shadow-sm">

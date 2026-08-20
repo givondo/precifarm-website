@@ -4,7 +4,7 @@ import HubSchematic from "@/components/HubSchematic";
 const links = [
   {
     title: "Operators & fleets",
-    text: "Reserved hub charging, timetables and passenger demand on the network.",
+    text: "Depot pedestals, Corridor DC and fleet billing via Lipa Pole Pole.",
     href: "/partners",
     cta: "Partner with us",
   },
@@ -29,15 +29,15 @@ export default function HomeHubSpotlight() {
         <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-14">
           <div className="order-2 lg:order-1">
             <p className="text-eyebrow text-sm font-semibold uppercase tracking-widest text-forest-500">
-              Beyond passengers
+              For partners
             </p>
             <h2 className="heading-display mt-3 text-2xl sm:text-3xl">
-              Hubs that power operators, fleets and partners
+              Infrastructure for fleets, site hosts and installers
             </h2>
             <p className="mt-4 text-base leading-relaxed text-forest-600">
-              Precifarm is not only a booking site — we build the charging infrastructure
-              and operating network that keeps intercity electric travel running to a
-              timetable.
+              Precifarm builds the charging infrastructure and Lipa Pole Pole financing that
+              keep EV fleets, site hosts and home installations running — from Pulse charger
+              wallboxes to 120 kW Corridor DC.
             </p>
             <ul className="mt-8 space-y-4">
               {links.map((item) => (
