@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ProductPhoto from "@/components/ProductPhoto";
 import CheckItem from "@/components/ui/CheckItem";
 import JsonLd from "@/components/seo/JsonLd";
 import PageCTA from "@/components/ui/PageCTA";
@@ -10,6 +11,7 @@ import {
   partnerHighlights,
   partnerProcess,
   partnerProductFit,
+  partnersPage,
   partnerTypes,
 } from "@/lib/partners";
 import { pageJsonLd, pageMetadata } from "@/lib/seo/pages/helpers";
@@ -17,26 +19,28 @@ import { pageJsonLd, pageMetadata } from "@/lib/seo/pages/helpers";
 export const metadata: Metadata = pageMetadata("/partners");
 
 export default function PartnersPage() {
+  const hero = partnersPage.hero;
+
   return (
     <>
       <JsonLd data={pageJsonLd("/partners")} />
       <PageHero
-        eyebrow="Partners"
-        title="Electrify a fleet, host a hub, or sell home charging"
-        description="Precifarm designs, installs, finances and operates chargers from Pulse charger and Pod energy storage at home to Corridor DC on the highway. Partners host sites, run fleets or sell installations — each organisation does what it does best."
+        eyebrow={hero.eyebrow}
+        title={hero.title}
+        description={hero.description}
       >
         <div className="flex flex-wrap gap-3">
           <Link
-            href="/contact"
+            href={hero.primaryHref}
             className="inline-flex rounded-full bg-charge-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-charge-500"
           >
-            Talk to the team
+            {hero.primaryLabel}
           </Link>
           <Link
-            href="/charging"
+            href={hero.secondaryHref}
             className="inline-flex rounded-full border border-border px-6 py-3 text-sm font-semibold text-forest-900 transition-colors hover:bg-muted"
           >
-            Explore charging range
+            {hero.secondaryLabel}
           </Link>
         </div>
       </PageHero>
@@ -113,6 +117,20 @@ export default function PartnersPage() {
           title="Which Precifarm charger fits your partnership?"
           description="Spark charger to Corridor charging with Lipa Pole Pole financing — M-Pesa and remote monitoring on every unit we commission."
         />
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          {partnerProductFit.map((row) => (
+            <div key={row.product} className="overflow-hidden rounded-2xl border border-border bg-muted/20 p-3">
+              <ProductPhoto
+                src={row.image}
+                alt={row.imageAlt}
+                sizes="(max-width: 640px) 50vw, 15vw"
+                className="mx-auto aspect-[4/3] w-full object-contain"
+              />
+              <p className="mt-3 text-center text-sm font-semibold text-forest-900">{row.product}</p>
+              <p className="mt-1 text-center text-xs text-forest-500">{row.power}</p>
+            </div>
+          ))}
+        </div>
         <div className="mt-8 overflow-hidden rounded-2xl border border-border">
           <div className="overflow-x-auto">
             <table className="min-w-full text-left text-sm">

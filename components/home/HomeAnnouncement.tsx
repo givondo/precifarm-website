@@ -8,7 +8,7 @@ export default function HomeAnnouncement() {
         <p className="text-xs font-medium tracking-wide text-white/85 sm:text-sm">{announcementBar.text}</p>
         <Link
           href={announcementBar.href}
-          className="text-xs font-semibold text-charge-300 transition-colors hover:text-white"
+          className="link-touch text-xs font-semibold text-charge-300 transition-colors hover:text-white"
         >
           {announcementBar.label} →
         </Link>

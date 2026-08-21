@@ -8,7 +8,7 @@ import { chargingHub } from "@/lib/charging-hub";
 import { socialHandles, socialProfileUrls } from "@/lib/social";
 
 /** Browser tab title for the homepage — keep in sync with layout metadata */
-export const defaultSiteTitle = "Precifarm · EV charging in Kenya" as const;
+export const defaultSiteTitle = "Precifarm | EV Charging Infrastructure in Kenya" as const;
 
 export const siteConfig = {
   name: "Precifarm",
@@ -22,7 +22,7 @@ export const siteConfig = {
   region: "KE",
   timezone: "Africa/Nairobi",
   defaultDescription:
-    "Precifarm installs, finances and runs EV charging in Kenya — from home charging to highway charging, paid with M-Pesa.",
+    "Precifarm designs, finances, installs and operates EV charging infrastructure in Kenya — from home charging to fleet and high-power corridor stations, with M-Pesa payments.",
   defaultKeywords: [
     "EV charging Kenya",
     "home charging Kenya",
@@ -62,6 +62,7 @@ export const publicRoutes = [
   { path: chargingHub.path, label: chargingHub.label, changefreq: "weekly" as const, priority: 0.9 },
   { path: "/charging", label: "Charging", changefreq: "monthly" as const, priority: 0.95 },
   { path: "/charging/private-house", label: "Home charging", changefreq: "monthly" as const, priority: 0.82 },
+  { path: "/evs", label: "Kenya EV guide", changefreq: "weekly" as const, priority: 0.84 },
   { path: "/charging/engineering", label: "Engineering Design Package", changefreq: "monthly" as const, priority: 0.8 },
   { path: "/partners", label: "Partners", changefreq: "monthly" as const, priority: 0.8 },
   { path: "/training", label: "Training", changefreq: "monthly" as const, priority: 0.76 },

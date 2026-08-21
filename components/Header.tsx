@@ -329,6 +329,15 @@ export default function Header() {
 
   useEffect(() => {
     if (!mobileOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [mobileOpen]);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
 
     const enableOutside = window.setTimeout(() => {
       ignoreOutsideRef.current = false;
@@ -366,9 +375,23 @@ export default function Header() {
 
   const mobileMenu =
     mobileOpen && mounted ? (
-      <div ref={panelRef} className="mobile-nav-shell">
-        <MobileNavPanel pathname={pathname} onClose={closeMobile} />
-      </div>
+      <>
+        <button
+          type="button"
+          className="mobile-nav-backdrop"
+          aria-label="Close menu"
+          onClick={closeMobile}
+        />
+        <div
+          ref={panelRef}
+          className="mobile-nav-shell"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile menu"
+        >
+          <MobileNavPanel pathname={pathname} onClose={closeMobile} />
+        </div>
+      </>
     ) : null;
 
   return (

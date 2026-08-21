@@ -1,6 +1,20 @@
 /** Partners page content — EV charging partnerships */
 
 import { chargingHub } from "@/lib/charging-hub";
+import { productImages } from "@/lib/product-images";
+
+export const partnersPage = {
+  hero: {
+    eyebrow: "Partners",
+    title: "Electrify a fleet, host a hub, or sell home charging",
+    description:
+      "Precifarm designs, installs, finances and operates chargers from Pulse charger and Pod energy storage at home to Corridor DC on the highway. Lipa Pole Pole from KES 3,300/month on M-Pesa for home installs. Partners host sites, run fleets or sell installations — each organisation does what it does best.",
+    primaryHref: "/contact",
+    primaryLabel: "Talk to the team",
+    secondaryHref: "/charging",
+    secondaryLabel: "Explore charging range",
+  },
+} as const;
 
 export const partnerHighlights = [
   { stat: "Spark–Corridor", label: "from home charging to highway charging" },
@@ -143,25 +157,40 @@ export const partnerProductFit = [
     product: "Pulse & Pod",
     power: "7 kW home · Pod with storage",
     bestFor: "Residential installs, dealer networks",
+    image: productImages.pulse.src,
+    imageAlt: productImages.pulse.alt,
+    brand: productImages.pulse.brand,
   },
   {
     product: "Spark",
     power: "3.3 kW portable",
     bestFor: "Boot top-ups, last-mile and backup charge",
+    image: productImages.spark.src,
+    imageAlt: productImages.spark.alt,
+    brand: productImages.spark.brand,
   },
   {
     product: "Depot",
     power: "22 kW AC pedestal",
     bestFor: "Fleet yards, workplaces, campus car parks",
+    image: productImages.depot.src,
+    imageAlt: productImages.depot.alt,
+    brand: productImages.depot.brand,
   },
   {
     product: "Boda Hub",
     power: "Swap & kerbside",
     bestFor: "Last-mile operators, high-turnover boda fleets",
+    image: productImages.boda.src,
+    imageAlt: productImages.boda.alt,
+    brand: productImages.boda.brand,
   },
   {
     product: "Corridor",
     power: "120 kW+ DC",
     bestFor: "Highway stops, intercity corridors",
+    image: productImages.corridor.src,
+    imageAlt: productImages.corridor.alt,
+    brand: productImages.corridor.brand,
   },
 ] as const;

@@ -46,8 +46,9 @@ export const homepageAisoBlocks: AisoContentBlock[] = [
 
 export const homepageRelatedLinks = [
   { href: "/charging", label: "Charging", reason: "Home, fleet and highway charging" },
+  { href: "/charging/private-house", label: "Home EV charging", reason: "Pulse charger and Pod energy storage" },
   { href: chargingHub.path, label: chargingHub.label, reason: "Find public chargers in Kenya" },
-  { href: "/charging/private-house", label: "Home charging", reason: "Pulse charger and Pod energy storage" },
-  { href: "/download", label: "Download app", reason: "Find chargers and request installs on Android" },
+  { href: "/evs", label: "Kenya EV guide", reason: "Compare EVs and charging fit" },
+  { href: "/training", label: "Training", reason: "EV charging technician certification" },
   { href: "/faq", label: "FAQ", reason: "Charging and installation answers" },
 ] as const;

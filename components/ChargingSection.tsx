@@ -1,5 +1,6 @@
 import Link from "next/link";
-import SiteImage from "@/components/SiteImage";
+import ProductPhoto from "@/components/ProductPhoto";
+import ProductShowcaseRow from "@/components/ProductShowcaseRow";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { chargingOfferings } from "@/lib/charging";
 import { productNames } from "@/lib/home-products";
@@ -8,7 +9,7 @@ const homePoints = [
   `${productNames.pulse} — 7 kW wallbox, typical 60 km day in about 90 minutes, from KES 79,000`,
   `${productNames.pod} — home charger plus storage for weak-grid evenings, from KES 295,000`,
   `${productNames.spark} — 3.3 kW portable unit in the boot, typical day in about 180 minutes`,
-  "Lipa Pole Pole on M-Pesa for Pulse charger and Pod energy storage · three-year aftersale care",
+  "Lipa Pole Pole from KES 3,300/month on M-Pesa for Pulse charger and Pod energy storage · three-year aftersale care",
 ];
 
 const fleetPoints = [
@@ -72,27 +73,23 @@ function CheckList({ items }: { items: readonly string[] }) {
   );
 }
 
-function OfferingImage({
-  src,
-  alt,
-  priority = false,
+function OfferingProducts({
+  products,
 }: {
-  src: string;
-  alt: string;
-  priority?: boolean;
+  products: readonly {
+    id: string;
+    src: string;
+    alt: string;
+  }[];
 }) {
   return (
-    <div className="overflow-hidden rounded-2xl border border-border shadow-xl">
-      <SiteImage
-        src={src}
-        alt={alt}
-        width={1200}
-        height={900}
-        sizes="(max-width: 1024px) 100vw, 50vw"
-        className="aspect-[4/3] w-full object-cover"
-        priority={priority}
-      />
-    </div>
+    <ProductShowcaseRow
+      products={products.map((item) => ({
+        src: item.src,
+        alt: item.alt,
+        label: productNames[item.id as keyof typeof productNames],
+      }))}
+    />
   );
 }
 
@@ -102,7 +99,7 @@ export default function ChargingSection() {
   return (
     <div className="page-container section-pad">
       <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-10">
-        <OfferingImage src={home.image} alt={home.imageAlt} priority />
+        <OfferingProducts products={home.products} />
         <div>
           <p className="text-eyebrow text-xs font-semibold uppercase tracking-widest text-forest-500">
             {home.eyebrow}
@@ -146,11 +143,19 @@ export default function ChargingSection() {
             Explore fleet charging
           </Link>
         </div>
-        <OfferingImage src={privateSite.image} alt={privateSite.imageAlt} />
+        <OfferingProducts products={privateSite.products} />
       </div>
 
       <div className="mt-16 grid items-center gap-8 lg:grid-cols-2 lg:gap-10">
-        <OfferingImage src={routeHub.image} alt={routeHub.imageAlt} />
+        <div className="overflow-hidden rounded-2xl border border-border bg-white p-4 shadow-xl">
+          <ProductPhoto
+            src={routeHub.image}
+            alt={routeHub.imageAlt}
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            className="mx-auto aspect-[4/3] w-full object-contain"
+            priority
+          />
+        </div>
         <div>
           <p className="text-eyebrow text-xs font-semibold uppercase tracking-widest text-forest-500">
             {routeHub.eyebrow}

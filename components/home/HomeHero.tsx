@@ -18,7 +18,7 @@ export default function HomeHero() {
               <Link href={homeHero.primaryCta.href} className="btn-primary rounded-full px-6 py-3 text-sm">
                 {homeHero.primaryCta.label}
               </Link>
-              <Link href={homeHero.secondaryCta.href} className="text-sm font-medium">
+              <Link href={homeHero.secondaryCta.href} className="link-touch text-sm font-medium">
                 {homeHero.secondaryCta.label} ›
               </Link>
             </div>

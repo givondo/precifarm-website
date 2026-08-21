@@ -460,6 +460,26 @@ export const liveRouteHubs = chargingHubs.filter(isLiveRouteHub);
 export const chargingMapHubs = chargingHubs.filter(isChargingMapHub);
 export const bodaSwapHubs = chargingHubs.filter((h) => h.siteKind === "swap" && h.phase === "live");
 
+export function getChargingHubDirectory() {
+  const precifarmDc = chargingHubs.filter(
+    (h) => h.siteKind === "dc" && h.operator === "precifarm",
+  );
+  const partners = chargingHubs.filter((h) => h.operator === "partner");
+  return {
+    corridor: precifarmDc,
+    boda: bodaSwapHubs,
+    partners,
+  };
+}
+
+export function hubPhaseDisplay(hub: ChargingHub): { label: string; tone: "live" | "next" | "planned" } {
+  if (hub.phase === "live") return { label: "Live", tone: "live" };
+  if (hub.phase === "next") return { label: "Next corridor", tone: "next" };
+  if (hub.phase === "planned") return { label: "Planned", tone: "planned" };
+  if (hub.operator === "partner") return { label: "Partner", tone: "live" };
+  return { label: "Listed", tone: "planned" };
+}
+
 export function getChargingMapStats() {
   const onMap = chargingMapHubs;
   return {

@@ -73,10 +73,17 @@ body {
   color: var(--foreground);
   line-height: 1.6;
   text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+html {
+  overflow-x: clip;
 }
 
 .page-container {
   @apply mx-auto w-full max-w-5xl px-4 sm:px-6;
+  padding-left: max(1rem, env(safe-area-inset-left));
+  padding-right: max(1rem, env(safe-area-inset-right));
 }
 
 .page-container-narrow {
@@ -200,11 +207,31 @@ body {
   @apply flex h-11 w-11 touch-manipulation items-center justify-center rounded-xl text-forest-900 transition-colors hover:bg-muted active:bg-muted/80;
 }
 
-/* Mobile nav — fixed below header (outside backdrop-blur); page stays scrollable */
+.link-touch {
+  @apply inline-flex min-h-11 touch-manipulation items-center;
+}
+
+.filter-tab {
+  @apply inline-flex min-h-11 touch-manipulation items-center rounded-full border px-4 py-2 text-sm font-medium transition-colors;
+}
+
+.table-scroll-hint {
+  @apply mb-2 text-center text-xs text-forest-500 sm:hidden;
+}
+
+.table-scroll-panel {
+  @apply overflow-x-auto overscroll-x-contain [-webkit-overflow-scrolling:touch];
+}
+
+/* Mobile nav — fixed below header with backdrop dimming */
+.mobile-nav-backdrop {
+  @apply fixed inset-0 z-[140] bg-black/40 touch-none lg:hidden;
+  top: var(--site-header-height);
+}
+
 .mobile-nav-shell {
   @apply fixed inset-x-0 z-[150] px-3 pt-1 sm:px-4 lg:hidden;
   top: var(--site-header-height);
-  pointer-events: none;
   padding-bottom: max(0.25rem, env(safe-area-inset-bottom));
 }
 
@@ -220,7 +247,7 @@ body {
 }
 
 .mobile-nav-link {
-  @apply flex min-h-[42px] touch-manipulation items-center gap-2.5 rounded-lg px-2.5 py-2 text-sm font-medium text-forest-800 transition-colors active:bg-muted/80;
+  @apply flex min-h-11 touch-manipulation items-center gap-2.5 rounded-lg px-2.5 py-2 text-sm font-medium text-forest-800 transition-colors active:bg-muted/80;
 }
 
 .mobile-nav-link-active {
@@ -240,7 +267,7 @@ body {
 }
 
 .mobile-nav-summary {
-  @apply flex min-h-[42px] cursor-pointer list-none touch-manipulation items-center justify-between gap-3 px-2.5 py-2 text-sm font-medium text-forest-900 transition-colors active:bg-muted/60;
+  @apply flex min-h-11 cursor-pointer list-none touch-manipulation items-center justify-between gap-3 px-2.5 py-2 text-sm font-medium text-forest-900 transition-colors active:bg-muted/60;
 }
 
 .mobile-nav-summary::-webkit-details-marker {
@@ -264,7 +291,7 @@ body {
 }
 
 .mobile-nav-sublist .mobile-nav-link {
-  @apply min-h-[36px] py-1.5 pl-0 text-[13px] font-normal text-forest-700;
+  @apply min-h-11 py-2 pl-0 text-[13px] font-normal text-forest-700;
 }
 
 .mobile-nav-actions {
@@ -272,11 +299,11 @@ body {
 }
 
 .mobile-nav-book {
-  @apply inline-flex min-h-[40px] flex-1 items-center justify-center gap-2 rounded-lg bg-charge-600 px-3 text-sm font-semibold text-white transition-colors active:bg-charge-500;
+  @apply inline-flex min-h-11 flex-1 touch-manipulation items-center justify-center gap-2 rounded-lg bg-charge-600 px-3 text-sm font-semibold text-white transition-colors active:bg-charge-500;
 }
 
 .mobile-nav-icon-btn {
-  @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-border text-forest-700 transition-colors active:bg-muted;
+  @apply flex h-11 w-11 shrink-0 touch-manipulation items-center justify-center rounded-lg border border-border text-forest-700 transition-colors active:bg-muted;
 }
 
 .careers-highlight-card {
@@ -469,7 +496,7 @@ body {
 }
 
 .aiso-faq-question {
-  @apply cursor-pointer list-none px-4 py-3.5 text-sm font-medium text-forest-900;
+  @apply flex min-h-11 cursor-pointer list-none touch-manipulation items-center px-4 py-3.5 text-sm font-medium text-forest-900;
 }
 
 .aiso-faq-question::-webkit-details-marker {
@@ -656,7 +683,7 @@ body {
 }
 
 .site-footer-mobile-group .site-footer-links a {
-  @apply min-h-[36px] py-0.5 text-[13px];
+  @apply inline-flex min-h-11 touch-manipulation items-center py-0.5 text-[13px];
 }
 
 .site-footer-heading {
@@ -1527,7 +1554,7 @@ button,
 }
 
 .hub-map-toolbar-pill {
-  @apply rounded-full border border-border bg-white px-3 py-1.5 text-xs font-semibold text-forest-600 transition hover:border-charge-200 hover:text-forest-900;
+  @apply inline-flex min-h-11 touch-manipulation items-center rounded-full border border-border bg-white px-3 py-2 text-xs font-semibold text-forest-600 transition hover:border-charge-200 hover:text-forest-900 lg:min-h-0 lg:py-1.5;
 }
 
 .hub-map-toolbar-pill-active {
@@ -1539,7 +1566,7 @@ button,
 }
 
 .hub-map-toolbar-btn {
-  @apply rounded-xl border border-border bg-white px-3 py-2 text-xs font-semibold text-forest-700 transition hover:border-charge-200 hover:text-charge-700 disabled:opacity-60;
+  @apply inline-flex min-h-11 touch-manipulation items-center rounded-xl border border-border bg-white px-3 py-2 text-xs font-semibold text-forest-700 transition hover:border-charge-200 hover:text-charge-700 disabled:opacity-60 lg:min-h-0;
 }
 
 .hub-map-toolbar-btn-active {
@@ -1551,7 +1578,7 @@ button,
 }
 
 .hub-map-v2-stage {
-  @apply relative h-[min(62vh,560px)] min-h-[380px] lg:h-[min(72vh,620px)] lg:min-h-[520px];
+  @apply relative h-[min(50vh,360px)] min-h-[280px] lg:h-[min(72vh,620px)] lg:min-h-[520px];
 }
 
 .hub-map-loading {
@@ -1708,11 +1735,12 @@ button,
 }
 
 .hub-sheet-close-float {
-  @apply absolute right-3 top-3 z-10 flex h-8 w-8 items-center justify-center rounded-lg bg-white/90 text-xl leading-none text-forest-400 shadow-sm transition hover:bg-white hover:text-forest-700;
+  @apply absolute right-3 top-3 z-10 flex h-11 w-11 touch-manipulation items-center justify-center rounded-lg bg-white/90 text-xl leading-none text-forest-400 shadow-sm transition hover:bg-white hover:text-forest-700;
 }
 
 .hub-sheet {
   @apply relative absolute inset-x-3 bottom-3 z-[1100] rounded-2xl border border-border bg-white p-4 shadow-xl;
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
 }
 
 .hub-sheet-handle {
@@ -1732,7 +1760,7 @@ button,
 }
 
 .hub-sheet-close {
-  @apply flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-xl leading-none text-forest-400 transition hover:bg-muted hover:text-forest-700;
+  @apply flex h-11 w-11 shrink-0 touch-manipulation items-center justify-center rounded-lg text-xl leading-none text-forest-400 transition hover:bg-muted hover:text-forest-700;
 }
 
 .hub-sheet-body {
@@ -1760,15 +1788,16 @@ button,
 }
 
 .hub-drawer-close {
-  @apply flex h-8 w-8 items-center justify-center rounded-lg text-xl text-forest-400 transition hover:bg-muted hover:text-forest-700;
+  @apply flex h-11 w-11 touch-manipulation items-center justify-center rounded-lg text-xl text-forest-400 transition hover:bg-muted hover:text-forest-700;
 }
 
 .hub-drawer-list {
   @apply flex-1 overflow-y-auto p-2;
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
 }
 
 .hub-drawer-item {
-  @apply flex w-full items-start gap-2.5 rounded-xl px-3 py-2.5 text-left transition hover:bg-muted/60;
+  @apply flex min-h-11 w-full touch-manipulation items-start gap-2.5 rounded-xl px-3 py-2.5 text-left transition hover:bg-muted/60;
 }
 
 .hub-drawer-item-active {

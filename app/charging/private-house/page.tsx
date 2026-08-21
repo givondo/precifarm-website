@@ -3,6 +3,8 @@ import Link from "next/link";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import FaqAccordion from "@/components/seo/FaqAccordion";
 import JsonLd from "@/components/seo/JsonLd";
+import HomeSurveyForm from "@/components/HomeSurveyForm";
+import ProductPhoto from "@/components/ProductPhoto";
 import SiteImage from "@/components/SiteImage";
 import CheckItem from "@/components/ui/CheckItem";
 import PageCTA from "@/components/ui/PageCTA";
@@ -15,7 +17,6 @@ import {
   privateHouseChargingPackages,
   privateHouseChargingPage,
   privateHouseChargingProcess,
-  privateHouseSurveyMailto,
 } from "@/lib/home-charging";
 import { pageJsonLd, pageMetadata } from "@/lib/seo/pages/helpers";
 
@@ -31,7 +32,7 @@ export default function PrivateHouseChargingPage() {
         description={privateHouseChargingPage.hero.description}
       >
         <a
-          href={privateHouseSurveyMailto()}
+          href="#survey"
           className="inline-flex rounded-full bg-charge-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-charge-500"
         >
           Request a house survey
@@ -61,15 +62,15 @@ export default function PrivateHouseChargingPage() {
           </div>
 
           <figure className="overflow-hidden rounded-2xl border border-border bg-white shadow-lg">
-            <SiteImage
-              src={privateHouseChargingPage.image.image}
-              alt={privateHouseChargingPage.image.imageAlt}
-              width={1200}
-              height={900}
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="aspect-[4/3] w-full object-cover"
-              priority
-            />
+            <div className="bg-muted/30 px-6 pt-6">
+              <ProductPhoto
+                src={privateHouseChargingPage.image.image}
+                alt={privateHouseChargingPage.image.imageAlt}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="mx-auto aspect-[4/3] w-full max-w-lg object-contain"
+                priority
+              />
+            </div>
             <figcaption className="border-t border-border px-5 py-3 text-sm text-forest-600">
               Pulse charger or Pod energy storage at your house — same commissioning discipline as Corridor charging on the highway.
             </figcaption>
@@ -187,6 +188,27 @@ export default function PrivateHouseChargingPage() {
               title="Pulse charger or Pod energy storage"
               description="Pulse charger for a typical one-day installation. Pod energy storage when you want backup for weak-grid evenings."
             />
+            <div className="mt-8 grid gap-6 sm:grid-cols-2">
+              {privateHouseChargingPackages.map((pkg) => (
+                <article
+                  key={pkg.name}
+                  className="overflow-hidden rounded-2xl border border-border bg-white shadow-sm"
+                >
+                  <div className="bg-muted/30 p-5">
+                    <ProductPhoto
+                      src={pkg.image}
+                      alt={pkg.imageAlt}
+                      sizes="(max-width: 640px) 100vw, 40vw"
+                      className="mx-auto aspect-[4/3] w-full max-w-xs object-contain"
+                    />
+                  </div>
+                  <div className="border-t border-border px-5 py-4">
+                    <h3 className="font-semibold text-forest-900">{pkg.name}</h3>
+                    <p className="mt-1 text-sm text-forest-600">{pkg.bestFor}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
             <div className="training-table-shell mt-8">
               <div className="training-table-wrap">
                 <div className="training-table-scroll">
@@ -263,7 +285,7 @@ export default function PrivateHouseChargingPage() {
           <SectionHeader
             eyebrow="FAQ"
             title="Home charging costs and install"
-            description="Typical home charging day about KES 140 versus petrol, Pulse charger from KES 79,000, and what a house survey includes."
+            description="Typical home charging day about KES 140 versus ~KES 1,000 diesel per day, Pulse charger from KES 79,000, Lipa Pole Pole from KES 3,300/month, and what a house survey includes."
           />
           <div className="mt-8">
             <FaqAccordion items={privateHouseChargingFaqs} />
@@ -271,13 +293,19 @@ export default function PrivateHouseChargingPage() {
         </div>
       </section>
 
+      <section className="section-pad bg-muted/30">
+        <div className="page-container max-w-2xl">
+          <HomeSurveyForm />
+        </div>
+      </section>
+
       <PageCTA
-        title="Request a home charging survey"
-        description="Tell us your house location, EV and parking setup — we respond within one business day."
-        primaryHref={privateHouseSurveyMailto()}
-        primaryLabel="Email for a survey"
-        secondaryHref={contact.phoneHref}
-        secondaryLabel={`Call ${contact.phone}`}
+        title="Prefer to talk first?"
+        description="Call or WhatsApp our installation team — same crews that commission Corridor and Depot chargers."
+        primaryHref={contact.phoneHref}
+        primaryLabel={`Call ${contact.phone}`}
+        secondaryHref={contact.whatsapp}
+        secondaryLabel="WhatsApp us"
       />
     </>
   );

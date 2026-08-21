@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import DownloadApkButton from "@/components/DownloadApkButton";
+import ProductPhoto from "@/components/ProductPhoto";
 import JsonLd from "@/components/seo/JsonLd";
 import PageCTA from "@/components/ui/PageCTA";
 import PageHero from "@/components/ui/PageHero";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { appDownload, appFeatures, installSteps } from "@/lib/app-download";
+import { downloadPage } from "@/lib/download-page";
+import { productImages } from "@/lib/product-images";
 import { pageJsonLd, pageMetadata } from "@/lib/seo/pages/helpers";
 
 export const metadata: Metadata = pageMetadata("/download");
@@ -19,13 +22,15 @@ function AndroidIcon({ className }: { className?: string }) {
 }
 
 export default function DownloadPage() {
+  const page = downloadPage;
+
   return (
     <>
       <JsonLd data={pageJsonLd("/download")} />
       <PageHero
-        eyebrow="Mobile app"
-        title="Precifarm charging on your Android phone"
-        description="Find chargers, browse Spark charger to Corridor charging and request Pulse charger or Pod energy storage installations — Lipa na M-Pesa on every flow."
+        eyebrow={page.hero.eyebrow}
+        title={page.hero.title}
+        description={page.hero.description}
       >
         <div className="flex flex-wrap items-center gap-3">
           <DownloadApkButton
@@ -49,11 +54,40 @@ export default function DownloadPage() {
         </p>
       </PageHero>
 
+      <section className="border-b border-border bg-muted/20 py-8">
+        <div className="page-container">
+          <p className="text-center text-xs font-semibold uppercase tracking-widest text-forest-500">
+            Product range in the app
+          </p>
+          <div className="mt-6 grid grid-cols-3 gap-3 sm:grid-cols-6 sm:gap-4">
+            {(
+              [
+                productImages.spark,
+                productImages.pulse,
+                productImages.pod,
+                productImages.boda,
+                productImages.depot,
+                productImages.corridor,
+              ] as const
+            ).map((item) => (
+              <div key={item.src} className="rounded-xl border border-border bg-white p-2">
+                <ProductPhoto
+                  src={item.src}
+                  alt={item.alt}
+                  sizes="(max-width: 640px) 33vw, 12vw"
+                  className="mx-auto aspect-square w-full object-contain"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="section-pad page-container">
         <SectionHeader
-          eyebrow="Features"
-          title="Built for EV charging in Kenya"
-          description="Find chargers, browse Spark charger to Corridor charging and request certified home installations from one app."
+          eyebrow={page.featuresSection.eyebrow}
+          title={page.featuresSection.title}
+          description={page.featuresSection.description}
         />
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
           {appFeatures.map((f) => (
@@ -68,9 +102,9 @@ export default function DownloadPage() {
       <section className="border-y border-border bg-white section-pad">
         <div className="page-container">
           <SectionHeader
-            eyebrow="Install"
-            title="How to install the APK"
-            description="Precifarm is not on the Play Store yet. Install directly from this page — safe when downloaded from precifarm.com."
+            eyebrow={page.installSection.eyebrow}
+            title={page.installSection.title}
+            description={page.installSection.description}
           />
           <ol className="mt-8 max-w-2xl space-y-4">
             {installSteps.map((step, i) => (
@@ -100,12 +134,12 @@ export default function DownloadPage() {
       </section>
 
       <PageCTA
-        title="Prefer the website?"
-        description="Browse the full charging range and Charging Hub in your browser — no install required."
-        primaryHref="/charging"
-        primaryLabel="Explore charging"
-        secondaryHref="/contact"
-        secondaryLabel="Contact us"
+        title={page.cta.title}
+        description={page.cta.description}
+        primaryHref={page.cta.primaryHref}
+        primaryLabel={page.cta.primaryLabel}
+        secondaryHref={page.cta.secondaryHref}
+        secondaryLabel={page.cta.secondaryLabel}
       />
     </>
   );

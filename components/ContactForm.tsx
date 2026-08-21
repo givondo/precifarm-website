@@ -13,8 +13,13 @@ const interests = [
   "General enquiry",
 ];
 
-export default function ContactForm() {
+type ContactFormProps = {
+  defaultInterest?: string;
+};
+
+export default function ContactForm({ defaultInterest }: ContactFormProps) {
   const [submitted, setSubmitted] = useState(false);
+  const [installReference, setInstallReference] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -42,11 +47,15 @@ export default function ContactForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      const json = await res.json();
+      const json = (await res.json()) as {
+        error?: string;
+        installOrder?: { reference?: string } | null;
+      };
       if (!res.ok) {
         setError(typeof json.error === "string" ? json.error : "Could not send message.");
         return;
       }
+      setInstallReference(json.installOrder?.reference ?? null);
       setSubmitted(true);
     } catch {
       setError("Network error. Please try again or email us directly.");
@@ -72,6 +81,13 @@ export default function ContactForm() {
         <h2 className="mt-5 text-xl font-semibold text-forest-900">Message sent</h2>
         <p className="mt-2 max-w-sm text-sm leading-relaxed text-forest-600/80">
           Thank you for getting in touch. We will reply within one business day.
+          {installReference ? (
+            <>
+              {" "}
+              Your home survey reference is{" "}
+              <span className="font-mono font-medium text-forest-800">{installReference}</span>.
+            </>
+          ) : null}
         </p>
       </div>
     );
@@ -81,8 +97,8 @@ export default function ContactForm() {
     <form className="card p-6" onSubmit={handleSubmit}>
       <h2 className="text-lg font-semibold text-forest-900">Send us a message</h2>
       <p className="mt-2 text-sm leading-relaxed text-forest-600/80">
-        Tell us whether you want to travel, partner or host a site and we will
-        direct your enquiry to the right team.
+        Home charger, hub hosting, fleet depot, Boda swap or partnership — we route your enquiry
+        to the right Precifarm team.
       </p>
 
       {error ? (
@@ -128,6 +144,7 @@ export default function ContactForm() {
         <span className="text-sm font-medium text-forest-900">I am enquiring about</span>
         <select
           name="interest"
+          defaultValue={defaultInterest ?? interests[0]}
           className="mt-2 w-full rounded-xl border border-border bg-muted px-4 py-3 text-sm outline-none focus:border-forest-500"
         >
           {interests.map((i) => (
@@ -143,7 +160,7 @@ export default function ContactForm() {
           required
           rows={5}
           className="mt-2 w-full resize-y rounded-xl border border-border bg-muted px-4 py-3 text-sm outline-none focus:border-forest-500"
-          placeholder="Tell us about your route, site, fleet or travel plans…"
+          placeholder="Tell us about your house, site, fleet or partnership idea…"
         />
       </label>
 

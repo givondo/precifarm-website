@@ -11,7 +11,7 @@ export default function HomeFinalCta() {
           <Link href={finalCta.primary.href} className="btn-primary rounded-full px-6 py-3 text-sm">
             {finalCta.primary.label}
           </Link>
-          <Link href={finalCta.secondary.href} className="text-sm font-medium">
+          <Link href={finalCta.secondary.href} className="link-touch text-sm font-medium">
             {finalCta.secondary.label} ›
           </Link>
         </div>

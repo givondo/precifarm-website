@@ -1,13 +1,13 @@
-import { chargingOfferings } from "@/lib/charging";
 import { privateHouseChargingFaqs as houseFaqs } from "@/lib/charging-faqs";
 import { contact } from "@/lib/contact";
+import { productImages } from "@/lib/product-images";
 
 /** Homepage band — links to the dedicated private house charging page */
 export const homeChargingHighlight = {
   eyebrow: "Private house charging",
   title: "House-based private charging on your own property",
   paragraphs: [
-    "A DC fast charger on your driveway or car port — sized to your EV, on your meter, with no public access or shared hub queues.",
+    "A 7 kW Pulse charger on your driveway or car port — sized to your EV, on your meter, with no public access or shared hub queues.",
     "Optional Pod energy storage with solar and LiFePO₄ where you want dependable overnight top-up at home.",
     "Survey, installation and three-year aftersale support from the same Precifarm crews that commission our route hubs.",
   ],
@@ -24,13 +24,17 @@ export const privateHouseChargingPage = {
     eyebrow: "Home charging",
     title: "Pulse charger and Pod energy storage on your property",
     description:
-      "Precifarm installs the Pulse charger or Pod energy storage at private houses — on your land, for your vehicle, paid with M-Pesa. Keep a Spark charger in the boot for top-ups away from home.",
+      "Precifarm installs the Pulse charger or Pod energy storage at private houses — on your land, for your vehicle. A home day about KES 140 vs ~KES 1,000 diesel. Lipa Pole Pole from KES 3,300/month on M-Pesa.",
   },
   lead:
     "Start with the Pulse charger on your wall, add Pod energy storage when you want backup for weak-grid evenings, or keep the Spark charger in the boot. A home charging day costs about KES 140 instead of ~KES 1,000 in diesel per day. Precifarm surveys the site, installs and commissions the unit, and supports it for three years.",
   notThisPage:
     "This page is for private residential properties. For Depot and Boda Hub see Partners. For Corridor charging and public DC see the Charging Hub.",
-  image: chargingOfferings.home,
+  image: {
+    image: productImages.pulse.src,
+    imageAlt: productImages.pulse.alt,
+    brand: productImages.pulse.brand,
+  },
   benefits: [
     {
       title: "Your property only",
@@ -42,7 +46,7 @@ export const privateHouseChargingPage = {
     },
     {
       title: "Lipa Pole Pole",
-      text: "Pulse charger from KES 79,000. Instalments on M-Pesa — no bank account required.",
+      text: "Pulse charger from KES 79,000. Lipa Pole Pole from KES 3,300/month on M-Pesa — no bank account required.",
     },
     {
       title: "Pod energy storage when the grid is weak",
@@ -112,7 +116,7 @@ export const privateHouseChargingProcess = [
   {
     step: "4",
     stage: "Install",
-    detail: "DC charger mounted at your house, tested and connected to monitoring.",
+    detail: "Pulse charger or Pod energy storage mounted at your house, tested and connected to monitoring.",
     timing: "1–2 days",
   },
   {
@@ -132,6 +136,9 @@ export const privateHouseChargingPackages = [
       "Installation from consumer unit to parking spot",
       "Lipa Pole Pole on M-Pesa · from KES 79,000",
     ],
+    image: productImages.pulse.src,
+    imageAlt: productImages.pulse.alt,
+    brand: productImages.pulse.brand,
   },
   {
     name: "Pod energy storage",
@@ -141,6 +148,9 @@ export const privateHouseChargingPackages = [
       "Optional rooftop solar",
       "Lipa Pole Pole on M-Pesa · from KES 295,000",
     ],
+    image: productImages.pod.src,
+    imageAlt: productImages.pod.alt,
+    brand: productImages.pod.brand,
   },
 ] as const;
 
@@ -158,7 +168,7 @@ export function privateHouseSurveyMailto(): string {
       "Property type (detached / townhouse / gated community house):",
       "Vehicle make and model:",
       "Private parking (driveway / car port / dedicated bay):",
-      "Interest: Grid-connected DC / Solar + storage at home",
+      "Interest: Pulse charger / Pod energy storage / optional rooftop solar",
       "Contact phone:",
       "",
       "Additional notes:",

@@ -235,32 +235,56 @@ export function internalLinksForPath(path: string): { href: string; label: strin
   switch (path) {
     case "/":
       add(chargingHub.path, chargingHub.label, "Find hubs and partner chargers");
-      add("/charging", "Charging", "Home, fleet and highway charging");
-      add("/charging/private-house", "Home charging", "Pulse charger and Pod energy storage chargers");
-      add("/download", "Download app", "Android EV charging app");
+      add("/charging", "EV charging", "Home, fleet and highway charging");
+      add("/charging/private-house", "Home EV charging", "Pulse charger and Pod energy storage");
+      add("/evs", "Kenya EV guide", "Compare EVs and charging fit");
       add("/faq", "FAQ", "Charging and installation answers");
       return links.slice(0, 5);
     case "/network":
-      add("/charging", "Charging", "From home charging to highway charging");
-      add("/charging/private-house", "Home charging", "Pulse charger and Pod energy storage chargers");
+      add("/charging", "EV charging", "From home charging to highway charging");
+      add("/charging/private-house", "Home EV charging", "Pulse charger and Pod energy storage");
+      add("/locations", "Locations", "City guides across Kenya");
       break;
     case "/charging":
       add(chargingHub.path, chargingHub.label, "See hub locations");
-      add("/charging/private-house", "Home charging", "Pulse charger and Pod energy storage on your property");
-      add("/partners", "Fleet charging", "Partner operator services");
+      add("/charging/private-house", "Home EV charging", "Pulse charger and Pod energy storage");
+      add("/partners", "Fleet EV charging", "Partner operator services");
+      add("/evs", "Kenya EV guide", "Which charger fits your EV");
       break;
     case "/charging/private-house":
-      add("/charging", "Charging", "Home, fleet and highway");
-      add("/download", "Download app", "Manage home charging on Android");
+      add("/charging", "EV charging", "Home, fleet and highway");
+      add("/guides", "Guides", "Home charger installation guides");
       add(chargingHub.path, chargingHub.label, "Route hub locations");
+      break;
+    case "/evs":
+      add("/charging/private-house", "Home EV charging", "Daily top-up at home");
+      add(chargingHub.path, chargingHub.label, "Public DC charging");
+      add("/faq", "FAQ", "Charging economics in Kenya");
+      break;
+    case "/locations":
+      add(chargingHub.path, chargingHub.label, "Charging Hub directory");
+      add("/charging/private-house", "Home EV charging", "Install in your city");
+      break;
+    case "/training":
+      add("/charging/engineering", "Engineering package", "Hub design basis");
+      add("/partners", "Partners", "Fleet and hub operations");
+      break;
+    case "/about":
+      add("/charging", "EV charging", "Products and services");
+      add("/contact", "Contact", "Talk to the team");
+      break;
+    case "/contact":
+      add("/charging/private-house", "Home EV charging", "Request a survey");
+      add("/partners", "Partners", "Fleet and hub hosting");
       break;
     case "/download":
       add(chargingHub.path, chargingHub.label, "Hubs and route coverage");
-      add("/charging/private-house", "Home charging", "Pulse charger and Pod energy storage installs");
-      add("/charging", "Charging", "Spark charger to Corridor");
+      add("/charging/private-house", "Home EV charging", "Pulse charger and Pod energy storage installs");
+      add("/charging", "EV charging", "Spark charger to Corridor");
       break;
     case "/partners":
-      add("/charging", "Charging", "From home charging to highway charging");
+      add("/charging", "EV charging", "From home charging to highway charging");
+      add("/training", "Training", "Technician certification");
       add("/about", "About Precifarm", "Mission and route-one proof");
       break;
     default:

@@ -1,5 +1,7 @@
 /** Homepage home energy section — compact packages and copy */
 
+import { productImages } from "@/lib/product-images";
+
 export const homeEnergyPricingDisclaimer =
   "Indicative pricing — your final quote follows a site survey." as const;
 
@@ -18,8 +20,8 @@ export const homeEnergySection = {
       priceFrom: "KES 120,000",
       bestFor: "Reliable home EV charging on the grid",
       points: ["7–11 kW AC wallbox", "Full installation and commissioning", "No solar or battery included"],
-      image: "/images/products/pulse.png",
-      imageAlt: "Precifarm Pulse 7 kW home wallbox",
+      image: productImages.pulse.src,
+      imageAlt: productImages.pulse.alt,
       href: "/charging/private-house",
       cta: "Get a Charge quote",
     },
@@ -42,8 +44,8 @@ export const homeEnergySection = {
       priceFrom: "KES 650,000",
       bestFor: "Solar, EV charging and backup in one installation",
       points: ["~5 kWp solar + 5–10 kWh battery", "7–11 kW AC charger", "Essential backup circuits"],
-      image: "/images/charging-private-house-hybrid.png",
-      imageAlt: "Hybrid home installation with solar, storage and Pulse charger",
+      image: productImages.pod.src,
+      imageAlt: productImages.pod.alt,
       href: "/charging/private-house",
       cta: "Design my home energy system",
     },

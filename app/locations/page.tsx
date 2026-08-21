@@ -1,11 +1,21 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import {
+  LocationsCorridorsNote,
+  LocationsDirectory,
+  LocationsServices,
+} from "@/components/locations/LocationsPageSections";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import JsonLd from "@/components/seo/JsonLd";
-import ContentIndexCard from "@/components/ui/ContentIndexCard";
 import PageCTA from "@/components/ui/PageCTA";
 import PageHero from "@/components/ui/PageHero";
 import { absoluteUrl } from "@/lib/seo/config";
-import { cmsListSeoEntities, cmsListLocalContent } from "@/lib/seo/cms-client";
+import { cmsListLocalContent, cmsListSeoEntities } from "@/lib/seo/cms-client";
+import {
+  enrichLocationsFromCms,
+  fallbackLocations,
+  locationsPage,
+} from "@/lib/locations-page";
 import { pageJsonLd, pageMetadata } from "@/lib/seo/pages/helpers";
 import { itemListSchema } from "@/lib/seo/schema";
 
@@ -14,18 +24,21 @@ export const revalidate = 3600;
 export const metadata: Metadata = pageMetadata("/locations");
 
 export default async function LocationsIndexPage() {
-  const [locations, localPages] = await Promise.all([
+  const [cmsLocations, localPages] = await Promise.all([
     cmsListSeoEntities("location"),
     cmsListLocalContent(),
   ]);
 
-  const localBySlug = new Map(localPages.map((p) => [p.slug, p]));
+  const localPageSlugs = new Set(localPages.map((p) => p.slug));
+  const locations =
+    cmsLocations.length > 0
+      ? enrichLocationsFromCms(cmsLocations, localPageSlugs)
+      : fallbackLocations(localPageSlugs);
 
-  const listItems = locations.map((loc) => {
-    const localSlug = `ev-charging-${loc.slug}`;
-    const path = localBySlug.has(localSlug) ? `/locations/${localSlug}` : `/locations/${loc.slug}`;
-    return { name: loc.name, url: absoluteUrl(path) };
-  });
+  const listItems = locations.map((loc) => ({
+    name: loc.name,
+    url: absoluteUrl(loc.href),
+  }));
 
   const jsonLd = [
     ...pageJsonLd("/locations"),
@@ -33,7 +46,8 @@ export default async function LocationsIndexPage() {
       ? [
           itemListSchema({
             name: "Precifarm Locations",
-            description: "EV charging hubs and cities served by Precifarm across Kenya.",
+            description:
+              "City guides for Precifarm EV charging across Kenya — home, corridor DC and Boda Hub.",
             path: "/locations",
             items: listItems,
           }),
@@ -41,56 +55,53 @@ export default async function LocationsIndexPage() {
       : []),
   ];
 
-  const breadcrumbs = [
-    { name: "Home", href: "/" },
-    { name: "Locations", href: "/locations" },
-  ];
+  const { hero, cta } = locationsPage;
 
   return (
     <>
       <JsonLd data={jsonLd} />
-      <PageHero
-        eyebrow="Locations"
-        title="EV hubs and cities we serve"
-        description="Local pages for Precifarm charging — Pulse charger and Pod energy storage at home, fleet Depot, and Corridor DC across Kenya."
-      />
-      <section className="section-pad bg-white">
-        <div className="page-container max-w-3xl">
-          <Breadcrumbs items={breadcrumbs} />
-          <div className="content-index-grid">
-            {locations.map((loc) => {
-              const localSlug = `ev-charging-${loc.slug}`;
-              const href = localBySlug.has(localSlug)
-                ? `/locations/${localSlug}`
-                : `/locations/${loc.slug}`;
-              const county = String(loc.metadata.county ?? loc.metadata.region ?? "");
-
-              return (
-                <ContentIndexCard
-                  key={loc.slug}
-                  href={href}
-                  title={loc.name}
-                  description={loc.description}
-                  meta={county || undefined}
-                />
-              );
-            })}
-
-            {locations.length === 0 && (
-              <p className="text-sm text-forest-600">
-                Location data will appear when the CMS is connected and seeded.
-              </p>
-            )}
-          </div>
+      <PageHero eyebrow={hero.eyebrow} title={hero.title} description={hero.description}>
+        <div className="flex flex-wrap gap-3">
+          <Link
+            href={hero.primaryHref}
+            className="inline-flex rounded-full bg-charge-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-charge-500"
+          >
+            {hero.primaryLabel}
+          </Link>
+          <Link
+            href={hero.secondaryHref}
+            className="inline-flex rounded-full border border-border px-6 py-3 text-sm font-semibold text-forest-900 transition-colors hover:bg-muted"
+          >
+            {hero.secondaryLabel}
+          </Link>
         </div>
+        <p className="mt-4">
+          <Link href={hero.tertiaryHref} className="text-sm font-medium text-forest-600 hover:text-forest-900">
+            {hero.tertiaryLabel} ›
+          </Link>
+        </p>
+      </PageHero>
+
+      <section className="page-container pb-4 pt-6 sm:pb-6">
+        <Breadcrumbs
+          items={[
+            { name: "Home", href: "/" },
+            { name: "Locations", href: "/locations" },
+          ]}
+        />
       </section>
+
+      <LocationsServices />
+      <LocationsDirectory locations={locations} />
+      <LocationsCorridorsNote />
+
       <PageCTA
-        title="Find charging on your route"
-        description="Open the Charging Hub or browse Pulse charger, Pod energy storage and Depot charging."
-        primaryHref="/network"
-        primaryLabel="View Charging Hub"
-        secondaryHref="/charging"
-        secondaryLabel="Explore charging"
+        title={cta.title}
+        description={cta.description}
+        primaryHref={cta.primaryHref}
+        primaryLabel={cta.primaryLabel}
+        secondaryHref={cta.secondaryHref}
+        secondaryLabel={cta.secondaryLabel}
       />
     </>
   );

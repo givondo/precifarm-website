@@ -14,7 +14,8 @@ export default function HomeEvCarsComparison() {
           <p className="mt-3 text-base leading-relaxed text-forest-500">{description}</p>
         </div>
 
-        <div className="home-section-grid mt-8 overflow-x-auto rounded-2xl border border-border">
+        <p className="table-scroll-hint mt-8">Swipe to compare models →</p>
+        <div className="home-section-grid table-scroll-panel rounded-2xl border border-border">
           <table className="w-full min-w-[520px] border-collapse text-left text-sm">
             <thead>
               <tr className="border-b border-border bg-muted/40">
@@ -55,7 +56,7 @@ export default function HomeEvCarsComparison() {
         <p className="mx-auto mt-3 max-w-2xl text-center text-xs leading-relaxed text-forest-400">{footnote}</p>
 
         <div className="mt-6 flex justify-center">
-          <Link href={fullGuideCta.href} className="text-sm font-medium text-forest-900 hover:text-charge-600">
+          <Link href={fullGuideCta.href} className="link-touch text-sm font-medium text-forest-900 hover:text-charge-600">
             {fullGuideCta.label} ›
           </Link>
         </div>

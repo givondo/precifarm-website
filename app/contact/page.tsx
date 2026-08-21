@@ -37,7 +37,7 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Contact"
         title="Talk to the Precifarm team"
-        description="Whether you want Pulse charger and Pod energy storage at home, a fleet depot, a highway hub or a site host partnership — we respond within one business day. M-Pesa on every product."
+        description="Whether you want Pulse charger and Pod energy storage at home, a fleet depot, a highway hub, Boda Hub swap or a site host partnership — we respond within one business day. M-Pesa on every product."
       >
         <a
           href="/charging"

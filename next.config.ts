@@ -16,6 +16,21 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      { source: "/learn", destination: "/guides", permanent: true },
+      { source: "/learn/:path*", destination: "/guides/:path*", permanent: true },
+      { source: "/electric-vehicles/kenya", destination: "/evs", permanent: true },
+      { source: "/ev-charging", destination: "/charging", permanent: true },
+      { source: "/ev-charging/kenya", destination: "/charging", permanent: true },
+      { source: "/ev-charging/nairobi", destination: "/locations", permanent: true },
+      { source: "/ev-charging/home", destination: "/charging/private-house", permanent: true },
+      { source: "/ev-charging/private-house", destination: "/charging/private-house", permanent: true },
+      { source: "/ev-charging/fleet", destination: "/partners", permanent: true },
+      { source: "/ev-charging/dc-fast-charging", destination: "/charging", permanent: true },
+      { source: "/ev-charging/m-pesa", destination: "/charging/private-house", permanent: true },
+    ];
+  },
   async headers() {
     return [
       {

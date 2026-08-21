@@ -7,32 +7,86 @@ export const chargingHub = {
   /** Mid-sentence, lowercase */
   nameLower: "charging hub",
   description:
-    "Map Precifarm DC chargers, Boda Hub swap stations and partner sites across Kenya — check live status, get directions and pay with M-Pesa.",
+    "Corridor DC on the highway, Boda Hub battery swap in the city and partner retail stops across Kenya — find sites in the Precifarm app, navigate and pay with M-Pesa.",
   url: "https://precifarm.com/network",
 } as const;
 
 export const chargingHubPage = {
   hero: {
-    title: "Find EV charging across Kenya.",
+    title: "Find EV charging across Kenya",
     description: chargingHub.description,
+    primaryHref: "/download",
+    primaryLabel: "Download the Android app",
+    secondaryHref: "/contact",
+    secondaryLabel: "Host a hub site",
+    tertiaryHref: "/charging",
+    tertiaryLabel: "Explore charging range",
   },
-  map: {
-    eyebrow: "Live network",
-    liveBadge: "Live",
-    title: "DC charging & Boda swap map",
+  siteTypes: {
+    eyebrow: "What you'll find",
+    title: "Three ways to charge on the go",
     description:
-      "Corridor DC on Nairobi–Kisumu, seven Boda Hub swap stations in Nairobi, Kisumu and Nakuru, plus partner retail stops. Filter by DC charge, Boda swap or availability.",
-    stats: [
-      { key: "dcLive", label: "Live DC sites", suffix: "" },
-      { key: "swapLive", label: "Boda swap stations", suffix: "" },
-      { key: "available", label: "Available now", suffix: "" },
+      "Precifarm runs Corridor DC on intercity routes, Boda Hub swap for e-motorcycles and lists partner chargers — all searchable in one place.",
+    types: [
+      {
+        id: "corridor",
+        title: "Corridor DC",
+        stat: "120 kW+",
+        detail: "About 60 kWh in 30 minutes at highway hubs. CCS2 and CHAdeMO where listed. From KES 39/kWh on M-Pesa.",
+        imageKey: "corridor" as const,
+        href: "/charging",
+      },
+      {
+        id: "boda",
+        title: "Boda Hub swap",
+        stat: "<5 min",
+        detail: "Fresh battery for Roam Air and compatible e-bodas in Nairobi, Kisumu and Nakuru — swap or kerbside charge.",
+        imageKey: "boda" as const,
+        href: "/partners#boda-operators",
+      },
+      {
+        id: "partners",
+        title: "Partner chargers",
+        stat: "Retail & malls",
+        detail: "Shell, Total, Naivas, malls and campuses — DC stops along the routes you already drive.",
+        imageKey: "depot" as const,
+        href: "/partners",
+      },
+    ],
+  },
+  howItWorks: {
+    eyebrow: "How it works",
+    title: "Open the app, pick a site, pay with M-Pesa",
+    description:
+      "The Charging Hub lives in the Precifarm Android app today. Filter by DC, Boda swap or partner — then navigate and pay.",
+    steps: [
+      {
+        step: "01",
+        title: "Download Precifarm",
+        text: "Install the Android app from precifarm.com — no Play Store required.",
+      },
+      {
+        step: "02",
+        title: "Open Charging Hub",
+        text: "Filter Corridor DC, Boda Hub swap or partner sites. Live and planned labels stay honest.",
+      },
+      {
+        step: "03",
+        title: "Navigate",
+        text: "Open directions in Google Maps — see connector type and site notes before you leave.",
+      },
+      {
+        step: "04",
+        title: "Pay with M-Pesa",
+        text: "Session price is shown before you charge. History and receipts in the app.",
+      },
     ],
   },
   anatomy: {
     eyebrow: "Hub anatomy",
     title: "More than a charger on a car park",
     description:
-      "Every Precifarm hub combines dependable energy, fast DC or Boda battery swap, a comfortable stop and live operations — built for Kenyan EV drivers and e-boda operators.",
+      "Every Precifarm hub combines dependable energy, fast DC or Boda battery swap, a comfortable stop and monitored operations — built for Kenyan EV drivers and e-boda operators.",
     imageEyebrow: "Four layers, one hub",
     imageCaption:
       "Energy supply, Corridor DC, dwell and operations — integrated in one dependable stop for your EV.",
@@ -55,24 +109,24 @@ export const chargingHubPage = {
       {
         step: "04",
         title: "Operations",
-        text: "Live status in the app, M-Pesa payments, session history and honest recovery when something fails.",
+        text: "Remote monitoring, M-Pesa payments, session history and honest recovery when something fails.",
       },
     ],
   },
-  rollout: {
-    eyebrow: "Corridor rollout",
-    title: "New routes follow proven driver demand",
+  corridors: {
+    eyebrow: "Corridor coverage",
+    title: "Highway routes we are building",
     description:
-      "We finance the next corridor only when the current one shows real session volume, uptime and partner returns — so every hub on the map earns its place.",
+      "We open the next corridor only when the current one shows real session volume, uptime and partner returns — every hub earns its place.",
     exploreHref: "/charging",
-    exploreLabel: "Explore charging →",
+    exploreLabel: "Explore Corridor charging →",
     phases: [
       {
         phase: "A",
         route: "Nairobi – Kisumu",
         hubs: "Kisumu terminus, Nakuru en-route and Nairobi hub access",
         purpose:
-          "Western corridor — live DC for EV drivers between Nairobi and Kisumu, with partner retail stops along the route.",
+          "Western corridor — DC for EV drivers between Nairobi and Kisumu, with partner retail stops along the route.",
         active: true,
         status: "First" as const,
       },
@@ -81,7 +135,7 @@ export const chargingHubPage = {
         route: "Nairobi – Mombasa",
         hubs: "Mtito Andei, Voi and Mombasa hubs with Nairobi hub access",
         purpose:
-          "Coast corridor — dependable Nairobi–Mombasa DC added once the western route hits utilisation and uptime targets.",
+          "Coast corridor — dependable Nairobi–Mombasa DC once the western route hits utilisation and uptime targets.",
         active: false,
         status: "Next" as const,
       },
@@ -90,10 +144,21 @@ export const chargingHubPage = {
         route: "Nairobi – Garissa",
         hubs: "En-route charging along the eastern route, with Garissa as the terminus hub",
         purpose:
-          "Eastern reach to northeastern Kenya — opened only after western and Mombasa corridors pass demand and financeability gates.",
+          "Eastern reach to northeastern Kenya — opened after western and Mombasa corridors pass demand gates.",
         active: false,
         status: "Planned" as const,
       },
+    ],
+  },
+  locations: {
+    eyebrow: "Sites directory",
+    title: "Precifarm, Boda Hub and partner locations",
+    description:
+      "Reference list of sites on the Charging Hub. Open the app for filters and directions — availability is not shown on this page.",
+    groups: [
+      { id: "corridor" as const, label: "Corridor DC" },
+      { id: "boda" as const, label: "Boda Hub swap" },
+      { id: "partners" as const, label: "Partner DC" },
     ],
   },
   siteSelection: {
@@ -125,13 +190,13 @@ export const chargingHubPage = {
     ],
   },
   cta: {
-    title: "Have a site on a busy route?",
+    title: "Find charging in the Precifarm app",
     description:
-      "Fuel stations, malls and parking lots make strong Charging Hub hosts. Share the location and we will assess traffic, power and dwell fit.",
-    primaryHref: "/contact",
-    primaryLabel: "Talk to us about hosting",
-    secondaryHref: "/charging",
-    secondaryLabel: "Explore charging",
+      "Download the Android app for the full Charging Hub — filters, directions and M-Pesa on every session. Have a site on a busy route? Talk to us about hosting.",
+    primaryHref: "/download",
+    primaryLabel: "Download the app",
+    secondaryHref: "/contact",
+    secondaryLabel: "Host a hub site",
   },
 } as const;
 
@@ -139,4 +204,10 @@ export const chargingHubPhaseStyles = {
   First: "bg-forest-100 text-forest-700 border-forest-500/25",
   Next: "bg-muted text-forest-600 border-border",
   Planned: "bg-muted text-forest-500 border-border",
+} as const;
+
+export const chargingHubSitePhaseStyles = {
+  live: "bg-green-50 text-green-800 border-green-200",
+  next: "bg-amber-50 text-amber-800 border-amber-200",
+  planned: "bg-muted text-forest-500 border-border",
 } as const;

@@ -1,3 +1,4 @@
+import { engineeringSection } from "@/lib/brand-messaging";
 import { documentBrand } from "@/lib/document-brand";
 
 /** Engineering design package — solar chargers & stations */
@@ -5,10 +6,10 @@ export const engineeringDoc = {
   id: "PF-ENG-SOLAR-HUB-001",
   version: "1.1",
   date: "16 August 2026",
-  title: "Solar chargers & charging stations",
-  subtitle: "Engineering design document and delivery task sheet",
+  title: engineeringSection.title,
+  subtitle: "Solar-assisted charging design basis and delivery task sheet",
   description:
-    "Design basis for Precifarm route hubs, campus stations and private house hybrid charging — energy model, solar/storage sizing, Kenya Power hold points, and a phased site task sheet. Concept reference, not construction drawings.",
+    "Design basis for Precifarm home hybrid charging, fleet depots, route hubs and partner sites — energy model, solar and LiFePO₄ sizing, Kenya Power hold points, and a phased site task sheet. Concept reference, not construction drawings.",
   brandCssHref: documentBrand.cssPath,
   logoMarkHref: documentBrand.logoMarkPath,
   downloadHref: "/downloads/precifarm-solar-charger-stations-engineering.pdf",
@@ -39,23 +40,24 @@ export const engineeringDoc = {
   ],
   highlights: [
     {
-      title: "Route hubs",
-      text: "Reserved CCS2 windows for Nairobi–Kisumu buses. Solar and LiFePO₄ cut cost and cover import-limit gaps — they do not replace a Kenya Power study.",
+      title: "Home & hybrid",
+      text: "Pulse charger and Pod energy storage on the customer meter — optional rooftop solar and storage for weak-grid evenings. Sized to daily mileage, not speculative public capacity.",
     },
     {
-      title: "Campus & house",
-      text: "Private stations follow duty cycle: AC where vehicles park for hours; DC only when justified. House charging stays on the customer meter.",
+      title: "Highway & fleet hubs",
+      text: "Corridor DC, Depot AC and Boda Hub swap follow duty cycle: AC where vehicles park for hours, DC where justified. Solar and LiFePO₄ cut cost — they do not replace a Kenya Power study.",
     },
     {
-      title: "Task sheet",
-      text: "A-01 to E-05: feasibility through operate, with a capital go/no-go before equipment orders.",
+      title: "Reserved route windows",
+      text: "Design basis for contracted bus charging on Nairobi–Kisumu — designed, not yet commissioned. Public sessions do not displace a reserved window.",
     },
   ],
   contents: [
-    "Nairobi–Kisumu energy model and reserved-window worked example",
+    "Home hybrid and private-house design bases",
     "Solar canopy and LiFePO₄ sizing methods (planning assumptions)",
     "Concept single-line and typical two-bay site plan",
-    "Campus and private-house design bases",
+    "Fleet depot and campus station design bases",
+    "Nairobi–Kisumu reserved-window worked example (design-stage)",
     "Kenya Power, EPRA, NEMA and fire hold points",
     "Phased task sheet with owners, outputs and acceptance tests",
   ],

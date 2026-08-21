@@ -20,7 +20,7 @@ const OG_IMAGE_HEIGHT = 630;
 function buildTitle(title: string, path?: string): string {
   if (path === "/") return siteConfig.defaultTitle;
   if (title.includes("Precifarm")) return title;
-  return `${title} · ${siteConfig.name}`;
+  return `${title} | ${siteConfig.name}`;
 }
 
 export function createPageSeo(input: PageSeoInput): GeneratedPageSeo {
@@ -108,9 +108,22 @@ export function createPageSeo(input: PageSeoInput): GeneratedPageSeo {
 }
 
 export function rootLayoutMetadata(): Metadata {
-  return createPageSeo({
+  const base = createPageSeo({
     title: siteConfig.defaultTitle,
     description: siteConfig.defaultDescription,
     path: "/",
   }).metadata;
+
+  const verificationToken =
+    process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ??
+    process.env.GOOGLE_SITE_VERIFICATION;
+
+  if (!verificationToken) return base;
+
+  return {
+    ...base,
+    verification: {
+      google: verificationToken,
+    },
+  };
 }

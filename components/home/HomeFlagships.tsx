@@ -2,22 +2,32 @@ import Link from "next/link";
 import SiteImage from "@/components/SiteImage";
 import { productRangeSection } from "@/lib/brand-messaging";
 import { flagshipIds, categoryLabels, homeProducts, type HomeProduct } from "@/lib/home-products";
+import { productImages } from "@/lib/product-images";
 
-function FlagshipCard({ product }: { product: HomeProduct }) {
+function flagshipImage(product: HomeProduct) {
+  const shot = productImages[product.id as keyof typeof productImages];
+  return shot ? { src: shot.src, alt: shot.alt } : { src: product.image, alt: product.imageAlt };
+}
+
+function FlagshipCard({ product, priority = false }: { product: HomeProduct; priority?: boolean }) {
+  const image = flagshipImage(product);
+
   return (
     <Link
       href={product.href}
       className="home-flagship-card group flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-border bg-white transition-shadow hover:shadow-lg hover:shadow-black/[0.06]"
     >
-      <div className="relative bg-muted/40 px-6 pb-2 pt-8 sm:px-8 sm:pt-10">
-        <SiteImage
-          src={product.image}
-          alt={product.imageAlt}
-          width={800}
-          height={600}
-          sizes="(max-width: 640px) 100vw, 25vw"
-          className="mx-auto aspect-[4/3] w-full max-w-[220px] object-contain transition-transform duration-300 group-hover:scale-[1.02]"
-        />
+      <div className="flex min-h-[200px] items-center justify-center bg-muted/25 px-5 pb-3 pt-7 sm:min-h-[240px] sm:px-6 sm:pt-9">
+        <div className="relative mx-auto aspect-[4/3] w-full max-w-[260px] sm:max-w-[280px]">
+          <SiteImage
+            src={image.src}
+            alt={image.alt}
+            fill
+            sizes="(max-width: 640px) 45vw, 25vw"
+            priority={priority}
+            className="object-contain p-1 transition-transform duration-300 group-hover:scale-[1.03]"
+          />
+        </div>
       </div>
       <div className="flex flex-1 flex-col px-6 pb-8 pt-4 sm:px-8">
         <p className="text-[11px] font-semibold uppercase tracking-widest text-forest-400">
@@ -51,8 +61,8 @@ export default function HomeFlagships() {
         </div>
 
         <div className="home-section-grid grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
-          {products.map((product) => (
-            <FlagshipCard key={product.id} product={product} />
+          {products.map((product, index) => (
+            <FlagshipCard key={product.id} product={product} priority={index < 2} />
           ))}
         </div>
       </div>

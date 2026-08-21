@@ -56,7 +56,7 @@ export default async function FaqIndexPage() {
       <PageHero
         eyebrow="FAQ"
         title="Frequently asked questions"
-        description="Answers on home charging — Pulse charger from KES 79,000, a typical day about KES 140, Lipa Pole Pole on M-Pesa, public DC from KES 39/kWh and the Charging Hub."
+        description="Answers on home charging — Pulse charger from KES 79,000, a typical day about KES 140, Lipa Pole Pole from KES 3,300/month, public DC in under 30 minutes and the Charging Hub."
       />
       <section className="section-pad bg-white">
         <div className="page-container max-w-3xl">

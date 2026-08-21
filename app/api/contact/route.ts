@@ -18,7 +18,11 @@ export async function POST(request: Request) {
   }
 
   try {
-    const data = await cmsFetch<{ id: string; received: boolean }>("/contact", {
+    const data = await cmsFetch<{
+      id: string;
+      received: boolean;
+      installOrder?: { reference?: string; product?: string; stage?: string; duplicate?: boolean } | null;
+    }>("/contact", {
       method: "POST",
       body: JSON.stringify(body),
     });

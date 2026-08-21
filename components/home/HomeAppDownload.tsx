@@ -32,7 +32,7 @@ export default function HomeAppDownload() {
           >
             {primaryLabel}
           </DownloadApkButton>
-          <Link href={secondaryHref} className="text-sm font-medium">
+          <Link href={secondaryHref} className="link-touch text-sm font-medium">
             {secondaryLabel} ›
           </Link>
         </div>

@@ -51,7 +51,7 @@ export default async function GuidesIndexPage() {
       <PageHero
         eyebrow="Guides"
         title="How-to guides"
-        description="Step-by-step guides for Pulse charger and Pod energy storage home charging, public DC on the highway and the Precifarm Android app."
+        description="Step-by-step guides for Pulse charger and Pod energy storage home charging, public DC on the highway, the Charging Hub and the Precifarm Android app."
       />
       <section className="section-pad bg-white">
         <div className="page-container max-w-3xl">

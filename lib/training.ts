@@ -39,7 +39,7 @@ export const trainingIntro = {
   eyebrow: "Training",
   title: "EV charging training — T1, T2 and T3",
   description:
-    "Precifarm trains hub staff, partner operators and field engineers to work safely on Pulse, Pod, Depot and Corridor charging across Kenya.",
+    "Precifarm trains hub staff, partner operators and field engineers on Pulse, Pod, Depot, Boda Hub and Corridor charging across Kenya — from home installs to highway DC.",
   lead:
     "Our three-tier programme builds competence in a clear sequence: safe awareness (T1), routine field maintenance (T2), then commissioning and advanced diagnostics (T3). Every module is mapped to the chargers, CSMS and hub layouts we operate from home charging to highway charging — not generic classroom theory.",
   whoShouldAttend: [

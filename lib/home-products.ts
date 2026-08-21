@@ -1,6 +1,7 @@
 /** Homepage product range — aligned with mobile app / catalogue 2026 */
 
 import { homeNetworkTeaser } from "@/lib/brand-messaging";
+import { productImages } from "@/lib/product-images";
 
 export const productNames = {
   spark: "Spark charger",
@@ -34,6 +35,7 @@ export type HomeProduct = {
   href: string;
   image: string;
   imageAlt: string;
+  imageBrand?: "corridor" | "pulse" | "spark" | "pod" | "none";
 };
 
 export const homeProducts: HomeProduct[] = [
@@ -46,8 +48,9 @@ export const homeProducts: HomeProduct[] = [
     category: "portable",
     priceLabel: "From KES 25,000",
     href: "/charging",
-    image: "/images/products/spark.png",
-    imageAlt: "Precifarm Spark portable 3.3 kW EV charger with green halo status bar",
+    image: productImages.spark.src,
+    imageAlt: productImages.spark.alt,
+    imageBrand: productImages.spark.brand,
   },
   {
     id: "pulse",
@@ -58,8 +61,9 @@ export const homeProducts: HomeProduct[] = [
     category: "home",
     priceLabel: "KES 79,000 · Lipa Pole Pole",
     href: "/charging/private-house",
-    image: "/images/products/pulse.png",
-    imageAlt: "Precifarm Pulse 7 kW home wallbox at a Kenyan residence",
+    image: productImages.pulse.src,
+    imageAlt: productImages.pulse.alt,
+    imageBrand: productImages.pulse.brand,
   },
   {
     id: "pod",
@@ -70,8 +74,9 @@ export const homeProducts: HomeProduct[] = [
     category: "home",
     priceLabel: "From KES 295,000 · Lipa Pole Pole",
     href: "/charging/private-house",
-    image: "/images/products/pod.png",
-    imageAlt: "Precifarm Pod home wallbox with solar and battery storage",
+    image: productImages.pod.src,
+    imageAlt: productImages.pod.alt,
+    imageBrand: productImages.pod.brand,
   },
   {
     id: "boda",
@@ -81,8 +86,9 @@ export const homeProducts: HomeProduct[] = [
     category: "boda",
     priceLabel: "Fleet pricing",
     href: "/partners#boda-operators",
-    image: "/images/products/boda.png",
-    imageAlt: "Precifarm Boda battery swap cabinet for electric motorcycles",
+    image: productImages.boda.src,
+    imageAlt: productImages.boda.alt,
+    imageBrand: productImages.boda.brand,
   },
   {
     id: "depot",
@@ -93,8 +99,9 @@ export const homeProducts: HomeProduct[] = [
     category: "commercial",
     priceLabel: "KES 39/kWh",
     href: "/network",
-    image: "/images/products/depot.png",
-    imageAlt: "Precifarm Depot 22 kW AC charging pedestals at a fleet site",
+    image: productImages.depot.src,
+    imageAlt: productImages.depot.alt,
+    imageBrand: productImages.depot.brand,
   },
   {
     id: "corridor",
@@ -105,8 +112,9 @@ export const homeProducts: HomeProduct[] = [
     category: "highway",
     priceLabel: "KES 39/kWh",
     href: "/network",
-    image: "/images/products/corridor.png",
-    imageAlt: "Precifarm Corridor 120 kW DC fast charger at a highway hub",
+    image: productImages.corridor.src,
+    imageAlt: productImages.corridor.alt,
+    imageBrand: productImages.corridor.brand,
   },
   {
     id: "financing",
@@ -116,8 +124,9 @@ export const homeProducts: HomeProduct[] = [
     category: "financing",
     priceLabel: "From KES 3,300/month",
     href: "/charging/private-house",
-    image: "/images/products/financing.png",
-    imageAlt: "Lipa Pole Pole M-Pesa instalments for Precifarm home charging",
+    image: productImages.financing.src,
+    imageAlt: productImages.financing.alt,
+    imageBrand: productImages.financing.brand,
   },
 ];
 

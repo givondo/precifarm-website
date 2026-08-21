@@ -18,7 +18,7 @@ type ChargingFaq = FaqItem & { id: string };
 export const chargingHubFaq: ChargingFaq = {
   id: "charging-hub",
   question: "What is the Charging Hub?",
-  answer: `The Charging Hub at precifarm.com/network is Precifarm's map of route charging hubs, partner chargers (including EVChaja and ChargeNet) and planned corridor sites across Kenya. Filter DC fast chargers, check status and navigate to a site. Live sites are labelled live, and planned sites stay labelled planned.`,
+  answer: `The Charging Hub at precifarm.com/network is Precifarm's map of DC fast chargers, Boda Hub battery swap stations, partner sites and planned corridor locations across Kenya. Filter by site type, check availability and navigate to a site. Live sites are labelled live; planned sites stay labelled planned.`,
 };
 
 function pickFaqs(ids: readonly string[], pool: ChargingFaq[]): FaqItem[] {
@@ -54,13 +54,13 @@ export const consumerChargingFaqs: ChargingFaq[] = [
     id: "home-vs-public",
     question: "Why is home charging cheaper than public DC?",
     answer:
-      "At home you pay your household electricity tariff on your own meter. Public Depot charging stations and Corridor charging sites recover charger hardware, Kenya Power demand, monitoring and uptime — so the published public rate starts from KES 39/kWh, still typically far below petrol for the same kilometres.",
+      "At home you pay your household electricity tariff on your own meter. Public Depot charging stations and Corridor charging sites recover charger hardware, Kenya Power demand, monitoring and uptime — so the published public rate starts from KES 39/kWh, still typically far below diesel for the same kilometres.",
   },
   {
     id: "lipa-pole-pole",
     question: "What is Lipa Pole Pole?",
     answer:
-      "Lipa Pole Pole is Precifarm instalment financing on M-Pesa. Pay a deposit and spread the balance on any phone — no bank account required. It applies to Pulse charger and Pod energy storage installations.",
+      "Lipa Pole Pole is Precifarm instalment financing on M-Pesa — from KES 3,300/month. Pay a deposit and spread the balance on any phone — no bank account required. It applies to Pulse charger and Pod energy storage installations, not to public charging sessions.",
   },
   {
     id: "get-home-charger",
@@ -72,7 +72,7 @@ export const consumerChargingFaqs: ChargingFaq[] = [
     id: "house-installation-includes",
     question: "What is included in a private house installation?",
     answer:
-      "Remote intake and property survey, a written quote and single-line diagram, charger supply and installation (CCS2 or Type 2 for your vehicle), commissioning, handover, remote monitoring and three-year aftersale support. Optional Pod energy storage with solar and LiFePO₄ storage. Kenya Power service upgrades and unusual civil works are not included unless they appear on the quote.",
+      "Remote intake and property survey, a written quote and single-line diagram, Pulse charger or Pod energy storage supply and installation (Type 2 AC for your vehicle), commissioning, handover, remote monitoring and three-year aftersale support. Optional Pod energy storage with solar and LiFePO₄ storage. Kenya Power service upgrades and unusual civil works are not included unless they appear on the quote.",
   },
   {
     id: "pulse-vs-pod",
@@ -208,6 +208,11 @@ export const chargingServicesFaqs: FaqItem[] = [
 ];
 
 export const hubEngineeringFaqs: FaqItem[] = [
+  {
+    question: "Who is the engineering package for?",
+    answer:
+      "Homeowners considering Pulse charger or Pod energy storage with solar, fleet and property partners sizing Depot or Boda Hub sites, and highway hosts planning Corridor DC. Reserved bus windows on Nairobi–Kisumu are included as a design-stage reference — not live commercial product yet.",
+  },
   {
     question: "Does solar power a reserved bus window in real time?",
     answer:
