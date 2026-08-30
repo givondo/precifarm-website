@@ -14,6 +14,7 @@ import {
   partnersPage,
   partnerTypes,
 } from "@/lib/partners";
+import { chargingHubPage } from "@/lib/charging-hub";
 import { pageJsonLd, pageMetadata } from "@/lib/seo/pages/helpers";
 
 export const metadata: Metadata = pageMetadata("/partners");
@@ -114,8 +115,8 @@ export default function PartnersPage() {
       <section className="section-pad page-container">
         <SectionHeader
           eyebrow="Product fit"
-          title="Which Precifarm charger fits your partnership?"
-          description="Spark charger to Corridor charging with Lipa Pole Pole financing — M-Pesa and remote monitoring on every unit we commission."
+          title="Which charger fits your partnership?"
+          description="Spark through Corridor — M-Pesa and remote monitoring on every unit we commission."
         />
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {partnerProductFit.map((row) => (
@@ -128,45 +129,42 @@ export default function PartnersPage() {
               />
               <p className="mt-3 text-center text-sm font-semibold text-forest-900">{row.product}</p>
               <p className="mt-1 text-center text-xs text-forest-500">{row.power}</p>
+              <p className="mt-2 text-center text-xs leading-relaxed text-forest-600">{row.bestFor}</p>
             </div>
           ))}
         </div>
-        <div className="mt-8 overflow-hidden rounded-2xl border border-border">
-          <div className="overflow-x-auto">
-            <table className="min-w-full text-left text-sm">
-              <thead className="border-b border-border bg-muted/60">
-                <tr>
-                  <th className="px-5 py-3 font-semibold text-forest-900">Product</th>
-                  <th className="px-5 py-3 font-semibold text-forest-900">Spec</th>
-                  <th className="px-5 py-3 font-semibold text-forest-900">Best for</th>
-                </tr>
-              </thead>
-              <tbody>
-                {partnerProductFit.map((row, i) => (
-                  <tr
-                    key={row.product}
-                    className={i % 2 === 0 ? "bg-white" : "bg-muted/30"}
-                  >
-                    <td className="px-5 py-4 font-semibold text-forest-900">{row.product}</td>
-                    <td className="px-5 py-4 text-forest-600/85">{row.power}</td>
-                    <td className="px-5 py-4 text-forest-600/85">{row.bestFor}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
         <p className="mt-6 text-sm text-forest-600/80">
-          See full product detail on the{" "}
+          Product detail on{" "}
           <Link href="/charging" className="text-link font-semibold">
-            charging services page
+            charging
           </Link>{" "}
-          or the{" "}
+          and live sites on the{" "}
           <Link href="/network" className="text-link font-semibold">
             Charging Hub
           </Link>
           .
         </p>
+      </section>
+
+      <section className="border-y border-border bg-muted/20 section-pad">
+        <div className="page-container">
+          <SectionHeader
+            eyebrow={chargingHubPage.siteSelection.eyebrow}
+            title={chargingHubPage.siteSelection.title}
+            description={chargingHubPage.siteSelection.description}
+          />
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {chargingHubPage.siteSelection.criteria.map((c, i) => (
+              <div key={c.title} className="card p-5">
+                <span className="font-mono text-xs font-semibold text-forest-600">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-2 font-semibold text-forest-900">{c.title}</h3>
+                <p className="mt-1 text-sm leading-relaxed text-forest-600/80">{c.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section className="border-y border-border bg-white section-pad">

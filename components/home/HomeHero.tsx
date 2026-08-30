@@ -1,6 +1,7 @@
 import Link from "next/link";
-import HubImage from "@/components/HubImage";
+import SiteImage from "@/components/SiteImage";
 import { heroStats, homeHero } from "@/lib/brand-messaging";
+import { productImages } from "@/lib/product-images";
 
 export default function HomeHero() {
   return (
@@ -36,11 +37,14 @@ export default function HomeHero() {
           </div>
 
           <div className="home-hero-visual">
-            <HubImage
-              variant="homeSolar"
-              aspectClass="aspect-[4/3] lg:aspect-[5/4]"
+            <SiteImage
+              src={productImages.chargingEcosystemHero.src}
+              alt={productImages.chargingEcosystemHero.alt}
+              width={1600}
+              height={1200}
               priority
               sizes="(max-width: 1024px) 100vw, 44vw"
+              className="aspect-[4/3] h-full w-full object-contain"
             />
           </div>
         </div>

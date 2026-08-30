@@ -8,11 +8,11 @@ export const partnersPage = {
     eyebrow: "Partners",
     title: "Electrify a fleet, host a hub, or sell home charging",
     description:
-      "Precifarm designs, installs, finances and operates chargers from Pulse charger and Pod energy storage at home to Corridor DC on the highway. Lipa Pole Pole from KES 3,300/month on M-Pesa for home installs. Partners host sites, run fleets or sell installations — each organisation does what it does best.",
+      "Precifarm designs, installs and operates chargers from home wallboxes to highway DC. You bring the site, fleet or sales channel — we own the energy layer.",
     primaryHref: "/contact",
     primaryLabel: "Talk to the team",
     secondaryHref: "/charging",
-    secondaryLabel: "Explore charging range",
+    secondaryLabel: "Explore charging",
   },
 } as const;
 

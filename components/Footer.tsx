@@ -104,6 +104,7 @@ export default function Footer() {
                 <Logo size="footer" variant="onDark" />
               </div>
               <p className="site-footer-tagline">{footerSection.tagline}</p>
+              <p className="mt-2 text-xs leading-relaxed text-white/55">{footerSection.productLine}</p>
               <FooterSocialLinks />
             </div>
           </div>
@@ -127,11 +128,6 @@ export default function Footer() {
         <div className="site-footer-bottom">
           <div className="site-footer-bottom-start">
             <p>&copy; {year} Precifarm</p>
-            <nav className="site-footer-bottom-links" aria-label="Footer shortcuts">
-              {footerSection.bottomLinks.map((link) => (
-                <FooterLinkItem key={link.href} link={link} />
-              ))}
-            </nav>
           </div>
           <p className="site-footer-bottom-meta">{footerSection.meta}</p>
         </div>

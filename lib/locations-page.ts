@@ -12,59 +12,27 @@ export const locationsPage = {
     eyebrow: "Locations",
     title: "EV charging where Kenya drives",
     description:
-      "Precifarm installs Pulse charger and Pod energy storage at home, runs Corridor DC on intercity routes and Boda Hub swap in major cities — starting Nairobi, Kisumu and the western corridor.",
-    primaryHref: "/charging/private-house",
-    primaryLabel: "Request home charging",
-    secondaryHref: "/network",
-    secondaryLabel: "Charging Hub",
-    tertiaryHref: "/contact",
-    tertiaryLabel: "Talk to the team",
-  },
-  services: {
-    eyebrow: "In every city we serve",
-    title: "Home, fleet, highway and boda",
-    description: "The same Precifarm team commissions wallboxes at home and corridor hubs on the highway.",
-    items: [
-      {
-        title: "Home charging",
-        detail: "Pulse charger from KES 79,000 · Lipa Pole Pole from KES 3,300/month",
-        href: "/charging/private-house",
-      },
-      {
-        title: "Corridor DC",
-        detail: "Highway fast charge on Nairobi–Kisumu — about 60 kWh in 30 minutes",
-        href: "/network",
-      },
-      {
-        title: "Boda Hub swap",
-        detail: "Battery swap for e-motorcycles in under 5 minutes",
-        href: "/partners#boda-operators",
-      },
-      {
-        title: "Fleet Depot",
-        detail: "22 kW AC pedestals for yards and campuses",
-        href: "/partners",
-      },
-    ],
+      "City guides for home installs, corridor DC and Boda Hub swap — starting Nairobi, Kisumu and the western route.",
+    primaryHref: "/network",
+    primaryLabel: "Charging Hub",
+    secondaryHref: "/charging/private-house",
+    secondaryLabel: "Home charging",
   },
   directory: {
     eyebrow: "City pages",
-    title: "Local guides and network pages",
-    description:
-      "Each city page covers what Precifarm installs locally, corridor access and how to charge with M-Pesa. Open a city for the full guide.",
+    title: "Local guides",
+    description: "What Precifarm installs in each city and how to charge with M-Pesa.",
   },
   corridors: {
-    eyebrow: "Corridor context",
-    title: "Cities connect to highway routes",
-    description:
-      "Nairobi–Kisumu is first. Mombasa and Garissa corridors follow once session volume and uptime prove the model — see the Charging Hub for the full site list.",
+    eyebrow: "Highway context",
+    title: "Cities connect to corridors",
+    description: "Nairobi–Kisumu is live. Mombasa and Garissa follow proven demand — see the Charging Hub for sites.",
     href: "/network",
     label: "View corridor coverage →",
   },
   cta: {
-    title: "Not sure which product fits your city?",
-    description:
-      "Tell us where you drive and park — we recommend home charging, a fleet depot or the nearest Corridor DC stop.",
+    title: "Not sure which product fits?",
+    description: "Tell us where you drive and park — we will point you to the right charger.",
     primaryHref: "/contact",
     primaryLabel: "Contact Precifarm",
     secondaryHref: "/download",
@@ -95,48 +63,42 @@ const cityMeta: Record<
     services: ["Home", "Corridor DC", "Boda Hub", "Depot", "Partners"],
     status: "live",
     county: "Nairobi County",
-    description:
-      "Capital hub — home installs, Boda Hub swap across the metro and corridor access to Kisumu and the coast.",
+    description: "Capital hub — home installs, Boda Hub swap and corridor access west and coast.",
   },
   kisumu: {
     region: "western",
     services: ["Corridor DC", "Boda Hub", "Home"],
     status: "live",
     county: "Kisumu County",
-    description:
-      "Western terminus on Nairobi–Kisumu — Corridor DC, lake-side Boda Hub swap and home charging surveys.",
+    description: "Western terminus on Nairobi–Kisumu — Corridor DC, Boda Hub and home surveys.",
   },
   nakuru: {
     region: "western",
     services: ["Corridor DC", "Boda Hub", "Home"],
     status: "live",
     county: "Nakuru County",
-    description:
-      "En-route stop between Nairobi and Kisumu — Corridor DC and Boda Hub on the Rift Valley corridor.",
+    description: "En-route stop between Nairobi and Kisumu.",
   },
   mombasa: {
     region: "coast",
     services: ["Home", "Corridor DC"],
     status: "next",
     county: "Mombasa County",
-    description:
-      "Coast corridor terminus (next phase) — home charging today; Nairobi–Mombasa DC follows western route proof.",
+    description: "Coast terminus (next phase) — home charging today; corridor DC follows western proof.",
   },
   eldoret: {
     region: "rift-eastern",
     services: ["Home", "Engineering"],
     status: "planned",
     county: "Uasin Gishu County",
-    description:
-      "Regional engineering and home charging — corridor expansion follows proven western demand.",
+    description: "Regional engineering and home charging.",
   },
   kitui: {
     region: "rift-eastern",
     services: ["Home", "Engineering"],
     status: "planned",
     county: "Kitui County",
-    description:
-      "Eastern Kenya home installs and engineering support — linked to future corridor planning.",
+    description: "Eastern Kenya home installs and engineering support.",
   },
 };
 
@@ -189,7 +151,6 @@ export function enrichLocationsFromCms(
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 
-/** Static city list when CMS is offline or empty */
 export function fallbackLocations(localPageSlugs: ReadonlySet<string>): EnrichedLocation[] {
   const names: Record<string, string> = {
     nairobi: "Nairobi",

@@ -1,11 +1,72 @@
 /** EV charger images — product photography in /public/images/products/ */
 import { productImages } from "@/lib/product-images";
+import { brand } from "@/lib/brand-messaging";
+import { siteCtas, sitePricing } from "@/lib/site-copy";
 
 export const chargingPage = {
   eyebrow: "Charging",
-  title: "From home charging to highway charging",
+  title: brand.promise,
   description:
-    "Pulse charger and Pod energy storage at home, Depot and Boda Hub for fleets, Corridor charging on the highway — M-Pesa on every product. Lipa Pole Pole from KES 3,300/month. Public DC in under 30 minutes from KES 39/kWh.",
+    "Home, fleet and highway — Pulse, Pod, Spark, Depot, Boda Hub and Corridor. M-Pesa on every product.",
+} as const;
+
+type CopyPart = string | { readonly bold: string };
+
+export const whereYouCharge = {
+  eyebrow: "Where you charge",
+  title: "Charge where your journey takes you.",
+  lead: "At home. At the depot. On the highway.",
+  description:
+    "Precifarm gives you the right charging solution for every part of the journey — with installation, financing, monitoring and M-Pesa built in.",
+  pillars: [
+    {
+      id: "home",
+      eyebrow: "Home",
+      title: "Wake up charged.",
+      body: [
+        "Charge overnight from your own driveway. ",
+        { bold: "Pulse" },
+        " handles daily charging, ",
+        { bold: "Pod" },
+        " adds energy storage and backup, while ",
+        { bold: "Spark" },
+        " keeps a portable charger in your boot.",
+      ] as const satisfies readonly CopyPart[],
+      products: "Pulse · Pod · Spark",
+      cta: siteCtas.homeCharging,
+      offeringsKey: "home" as const,
+    },
+    {
+      id: "fleet",
+      eyebrow: "Fleet",
+      title: "Charge while you work.",
+      body: [
+        "Keep vehicles moving without changing your operation. ",
+        { bold: "Depot" },
+        " charges vans and buses while parked, while ",
+        { bold: "Boda Hub" },
+        " enables fast battery swapping for electric two-wheelers.",
+      ] as const satisfies readonly CopyPart[],
+      products: "Depot · Boda Hub",
+      cta: siteCtas.fleetCharging,
+      offeringsKey: "privateSite" as const,
+    },
+    {
+      id: "highway",
+      eyebrow: "Highway",
+      title: "Charge fast. Keep moving.",
+      body: [
+        "Go beyond the city with ",
+        { bold: "Corridor" },
+        " DC fast charging. Add about ",
+        { bold: "60 kWh in 30 minutes" },
+        ", check availability and pay with M-Pesa.",
+      ] as const satisfies readonly CopyPart[],
+      products: `Corridor · 120 kW+ DC · From ${sitePricing.publicDcFrom}`,
+      cta: siteCtas.chargingHub,
+      offeringsKey: "routeHub" as const,
+    },
+  ],
 } as const;
 
 export const chargingOfferings = {
@@ -19,7 +80,7 @@ export const chargingOfferings = {
     image: productImages.corridor.src,
     imageAlt: productImages.corridor.alt,
     caption:
-      "Energy supply, Corridor DC, dwell and operations — integrated in one dependable stop for your EV.",
+      "Grid, T-canopy Corridor DC and dwell — integrated in one dependable stop for your EV.",
   },
   home: {
     eyebrow: "Home charging",
@@ -43,24 +104,3 @@ export const chargingOfferings = {
     ],
   },
 } as const;
-
-export const chargingCategories = [
-  {
-    title: "Home charging",
-    text: "Pulse charger from KES 79,000, Pod energy storage for weak-grid evenings, Spark charger in the boot — a typical home charging day about KES 140.",
-    image: productImages.pulse.src,
-    imageAlt: productImages.pulse.alt,
-  },
-  {
-    title: "Fleet charging",
-    text: "Depot charging station adds 40+ kWh in about 120 minutes while vehicles are parked. Boda Hub swaps a fresh battery in under 5 minutes.",
-    image: productImages.depot.src,
-    imageAlt: productImages.depot.alt,
-  },
-  {
-    title: "Highway charging",
-    text: "Corridor charging adds about 60 kWh in 30 minutes at highway hubs. Find live sites on the Charging Hub and pay with M-Pesa.",
-    image: productImages.corridor.src,
-    imageAlt: productImages.corridor.alt,
-  },
-] as const;

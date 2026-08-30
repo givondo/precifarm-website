@@ -19,8 +19,6 @@ export const chargingHubPage = {
     primaryLabel: "Download the Android app",
     secondaryHref: "/contact",
     secondaryLabel: "Host a hub site",
-    tertiaryHref: "/charging",
-    tertiaryLabel: "Explore charging range",
   },
   siteTypes: {
     eyebrow: "What you'll find",
@@ -32,7 +30,7 @@ export const chargingHubPage = {
         id: "corridor",
         title: "Corridor DC",
         stat: "120 kW+",
-        detail: "About 60 kWh in 30 minutes at highway hubs. CCS2 and CHAdeMO where listed. From KES 39/kWh on M-Pesa.",
+        detail: "T-canopy DC hub with overhead cables — about 60 kWh in 30 minutes. Dual CCS2 where listed. From KES 39/kWh on M-Pesa.",
         imageKey: "corridor" as const,
         href: "/charging",
       },
@@ -115,11 +113,10 @@ export const chargingHubPage = {
   },
   corridors: {
     eyebrow: "Corridor coverage",
-    title: "Highway routes we are building",
-    description:
-      "We open the next corridor only when the current one shows real session volume, uptime and partner returns — every hub earns its place.",
+    title: "Highway routes",
+    description: "Nairobi–Kisumu is first. The next corridor opens only when session volume and uptime prove the model.",
     exploreHref: "/charging",
-    exploreLabel: "Explore Corridor charging →",
+    exploreLabel: "Explore charging →",
     phases: [
       {
         phase: "A",
@@ -152,9 +149,8 @@ export const chargingHubPage = {
   },
   locations: {
     eyebrow: "Sites directory",
-    title: "Precifarm, Boda Hub and partner locations",
-    description:
-      "Reference list of sites on the Charging Hub. Open the app for filters and directions — availability is not shown on this page.",
+    title: "Corridor, Boda Hub and partner sites",
+    description: "Reference list below. Open the app for live filters, directions and M-Pesa pay.",
     groups: [
       { id: "corridor" as const, label: "Corridor DC" },
       { id: "boda" as const, label: "Boda Hub swap" },
@@ -190,9 +186,8 @@ export const chargingHubPage = {
     ],
   },
   cta: {
-    title: "Find charging in the Precifarm app",
-    description:
-      "Download the Android app for the full Charging Hub — filters, directions and M-Pesa on every session. Have a site on a busy route? Talk to us about hosting.",
+    title: "Open the Charging Hub in the app",
+    description: "Filters, directions and M-Pesa on every session. Have a site on a busy route? Talk to us about hosting.",
     primaryHref: "/download",
     primaryLabel: "Download the app",
     secondaryHref: "/contact",

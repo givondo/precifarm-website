@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  ChargingHubAnatomy,
   ChargingHubCorridors,
   ChargingHubHowItWorks,
   ChargingHubLocations,
-  ChargingHubSiteSelection,
   ChargingHubSiteTypes,
 } from "@/components/charging-hub/ChargingHubSections";
 import JsonLd from "@/components/seo/JsonLd";
@@ -37,19 +35,12 @@ export default function HubGridPage() {
             {hero.secondaryLabel}
           </Link>
         </div>
-        <p className="mt-4">
-          <Link href={hero.tertiaryHref} className="text-sm font-medium text-forest-600 hover:text-forest-900">
-            {hero.tertiaryLabel} ›
-          </Link>
-        </p>
       </PageHero>
 
       <ChargingHubSiteTypes />
       <ChargingHubHowItWorks />
-      <ChargingHubCorridors />
       <ChargingHubLocations />
-      <ChargingHubAnatomy />
-      <ChargingHubSiteSelection />
+      <ChargingHubCorridors />
 
       <PageCTA
         title={cta.title}

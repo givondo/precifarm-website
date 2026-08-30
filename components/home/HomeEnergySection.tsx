@@ -11,17 +11,16 @@ function PackageCard({ pkg }: { pkg: Package }) {
       id={`package-${pkg.id}`}
       className="group flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-border bg-white transition-shadow hover:shadow-lg hover:shadow-black/[0.06]"
     >
-      <div className="relative overflow-hidden bg-muted/30">
+      <div className="relative overflow-hidden bg-[#f5f5f7]">
         <SiteImage
           src={pkg.image}
           alt={pkg.imageAlt}
           width={960}
           height={600}
           sizes="(max-width: 1024px) 100vw, 33vw"
-          className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+          className="aspect-[16/10] w-full object-contain p-4 transition-transform duration-500 group-hover:scale-[1.02]"
         />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-forest-950/50 via-transparent to-transparent" />
-        <span className="absolute left-5 top-5 rounded-full border border-white/25 bg-white/90 px-3 py-1 text-[11px] font-semibold uppercase tracking-widest text-forest-800 backdrop-blur-sm">
+        <span className="absolute left-5 top-5 rounded-full border border-border bg-white/90 px-3 py-1 text-[11px] font-semibold uppercase tracking-widest text-forest-800 backdrop-blur-sm">
           {pkg.tag}
         </span>
       </div>

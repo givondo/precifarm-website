@@ -106,6 +106,58 @@ export const pageSeoRegistry: PageSeoInput[] = [
     ],
   },
   {
+    path: "/charging/modular-energy",
+    title: "Modular Energy — P1 Go, P2 Home and Pod for Kenya",
+    description:
+      "Precifarm modular energy platform: one 2.56 kWh Energy Module from portable P1 Go backup through P2 Home and outdoor Pod. Designed for weak-grid Kenya. Conceptual — not on sale yet.",
+    keywords: [
+      "home battery storage Kenya",
+      "modular energy platform",
+      "LiFePO4 home backup Kenya",
+      "Precifarm P1 Go P2 Home Pod",
+    ],
+    breadcrumbs: [
+      { name: "Home", href: "/" },
+      { name: "Modular energy", href: "/charging/modular-energy" },
+    ],
+  },
+  {
+    path: "/charging/modular-energy/p1-go",
+    title: "P1 Go — Portable Backup",
+    description:
+      "P1 Go is Precifarm’s portable backup unit: aluminum unibody, fold-flat handle and Type 2 trickle lead. Conceptual — not a daily EV charger, not on sale yet.",
+    keywords: ["P1 Go", "portable power station Kenya", "home backup battery Kenya"],
+    breadcrumbs: [
+      { name: "Home", href: "/" },
+      { name: "Modular energy", href: "/charging/modular-energy" },
+      { name: "P1 Go", href: "/charging/modular-energy/p1-go" },
+    ],
+  },
+  {
+    path: "/charging/modular-energy/p2-home",
+    title: "P2 Home — Home Backup Tower",
+    description:
+      "P2 Home stacks 1–4 Energy Modules beside the consumer board for essential-load backup in Kenyan homes. Conceptual — not certified for sale.",
+    keywords: ["P2 Home", "home battery storage Kenya", "LiFePO4 backup Kenya"],
+    breadcrumbs: [
+      { name: "Home", href: "/" },
+      { name: "Modular energy", href: "/charging/modular-energy" },
+      { name: "P2 Home", href: "/charging/modular-energy/p2-home" },
+    ],
+  },
+  {
+    path: "/charging/modular-energy/pod",
+    title: "Pod Enclosure — Shop and Outdoor Backup",
+    description:
+      "Precifarm Pod enclosure is the outdoor modular energy unit for SME sites — not Pod energy storage for home EV charging. Conceptual — not certified for sale.",
+    keywords: ["Precifarm Pod enclosure", "SME battery storage Kenya", "outdoor energy storage Kenya"],
+    breadcrumbs: [
+      { name: "Home", href: "/" },
+      { name: "Modular energy", href: "/charging/modular-energy" },
+      { name: "Pod enclosure", href: "/charging/modular-energy/pod" },
+    ],
+  },
+  {
     path: "/evs",
     title: "Electric Vehicles in Kenya",
     description:

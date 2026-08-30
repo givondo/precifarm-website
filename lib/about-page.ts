@@ -4,35 +4,34 @@ export const aboutPage = {
   hero: {
     eyebrow: "About Precifarm",
     title: brand.differentiator,
-    description:
-      "Precifarm installs, finances and runs EV charging in Kenya — from a Pulse charger at home to Corridor DC on the highway. A typical home charging day costs about KES 140 instead of ~KES 1,000 in diesel per day, paid with M-Pesa.",
+    description: brand.words50,
   },
   intro: {
     title: "Why we exist",
     paragraphs: [
-      "Electric vehicles are arriving in Kenya faster than dependable charging. Most drivers still pay ~KES 1,000 in diesel per day for a typical Nairobi commute — while the same kilometres at home on Pulse charger cost about KES 140 if the charger is installed, financed and kept online.",
-      "Precifarm closes that gap with Pulse charger and Pod energy storage at home, Depot and Boda Hub for fleets, and Corridor charging on the highway — Lipa Pole Pole from KES 3,300/month on M-Pesa, remote monitoring and honest live versus planned labels on the Charging Hub.",
+      problemSolution.problemTitle +
+        " Precifarm connects power, charging, storage and M-Pesa so drivers and operators can rely on the system — not hunt for a free charger.",
+      "We install and operate Pulse and Pod at home, Depot and Boda Hub for fleets, and Corridor on the highway. Licensed operators run the vehicles; we own the energy layer.",
       africaSection.description,
     ],
   },
   principlesSection: {
     eyebrow: "How we work",
     title: "One partner from the wallbox to the highway",
-    description:
-      "Precifarm connects power, charging, storage, software and financing so electric travel works as a system — not as isolated chargers.",
+    description: "Power, charging, storage, software and financing — engineered as one system.",
   },
   principles: [
     {
       title: brand.promise,
-      text: "Pulse charger and Pod energy storage at home, Depot and Boda Hub for fleets, Corridor charging on the highway — one engineering team and M-Pesa on every product.",
+      text: "Home, fleet and highway products under one team. M-Pesa on every surface.",
     },
     {
       title: "Partners run the vehicles",
-      text: "Precifarm is not a fleet company. Licensed operators own the buses and employ the drivers. We own the energy layer: survey, installation, uptime and settlement.",
+      text: "Precifarm is not a fleet company. We survey, install, monitor and settle energy.",
     },
     {
       title: "Uptime is the product",
-      text: "An offline charger breaks a home morning and a highway timetable. We monitor commissioned sites, recover quickly and label live versus planned honestly.",
+      text: "Live versus planned is labelled honestly. Offline hardware breaks a morning and a timetable.",
     },
     {
       title: africaSection.title,
@@ -40,9 +39,8 @@ export const aboutPage = {
     },
   ],
   cta: {
-    title: "Join us in building EV charging in Kenya",
-    description:
-      "Whether you want a Pulse charger at home, host a highway hub, operate a fleet or support a project as a partner, we respond within one business day.",
+    title: "Work with Precifarm",
+    description: "Home survey, fleet depot, highway hub or site host — we respond within one business day.",
     primaryHref: "/contact",
     primaryLabel: "Contact us",
     secondaryHref: "/charging",

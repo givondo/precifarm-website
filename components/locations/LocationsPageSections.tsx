@@ -120,35 +120,6 @@ export function LocationsDirectory({ locations }: Props) {
   );
 }
 
-export function LocationsServices() {
-  const { services } = locationsPage;
-
-  return (
-    <section className="border-b border-border bg-white section-pad">
-      <div className="page-container">
-        <SectionHeader
-          eyebrow={services.eyebrow}
-          title={services.title}
-          description={services.description}
-        />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {services.items.map((item) => (
-            <Link
-              key={item.title}
-              href={item.href}
-              className="group rounded-2xl border border-border bg-muted/20 p-5 transition-colors hover:border-forest-300 hover:bg-white"
-            >
-              <h3 className="font-semibold text-forest-900 group-hover:text-charge-700">{item.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-forest-600">{item.detail}</p>
-              <span className="mt-3 inline-block text-sm font-medium text-forest-900">Learn more ›</span>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export function LocationsCorridorsNote() {
   const { corridors } = locationsPage;
 

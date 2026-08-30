@@ -6,6 +6,7 @@ import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from 
 import { createPortal } from "react-dom";
 import BookNowLink from "@/components/BookNowLink";
 import {
+  IconBolt,
   IconChevron,
   IconClose,
   IconGrid,
@@ -13,7 +14,6 @@ import {
   IconMenu,
   IconPhone,
   IconTicket,
-  IconUsers,
 } from "@/components/header/mobile-nav-icons";
 import Logo from "@/components/Logo";
 import { headerCta, siteNavGroups } from "@/lib/brand-messaging";
@@ -29,7 +29,7 @@ type NavGroup = {
 
 const groupIcons: Record<(typeof siteNavGroups)[number]["title"], ReactNode> = {
   Charge: <IconMap />,
-  Fleets: <IconUsers />,
+  "Modular energy": <IconBolt />,
   Company: <IconGrid />,
 };
 

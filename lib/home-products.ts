@@ -42,9 +42,9 @@ export const homeProducts: HomeProduct[] = [
   {
     id: "spark",
     name: productNames.spark,
-    summary: "Fits in the boot — charge wherever you find a socket.",
+    summary: "Keep one in the boot for days away from home — office, visit, upcountry, anywhere with a socket.",
     tagline:
-      "The Spark charger travels with you — top up at a friend's house, the office car park or any suitable outlet.",
+      "Spark is the portable lead for when you are not at your own wallbox. Small enough to carry, simple enough to use.",
     category: "portable",
     priceLabel: "From KES 25,000",
     href: "/charging",
@@ -55,9 +55,9 @@ export const homeProducts: HomeProduct[] = [
   {
     id: "pulse",
     name: productNames.pulse,
-    summary: "Plug in at home overnight — start every morning with a full battery.",
+    summary: "Plug in when you get home. By morning the car is ready — petrol stops being part of the weekday.",
     tagline:
-      "The Pulse charger mounts on your wall so you charge while you sleep — no petrol station stops on the daily commute.",
+      "Pulse is the wallbox most homeowners start with. We install it, you charge overnight, Lipa Pole Pole if you want to spread the cost.",
     category: "home",
     priceLabel: "KES 79,000 · Lipa Pole Pole",
     href: "/charging/private-house",
@@ -68,9 +68,9 @@ export const homeProducts: HomeProduct[] = [
   {
     id: "pod",
     name: productNames.pod,
-    summary: "Home charging that keeps going when the grid dips — plus backup for the house.",
+    summary: "When Kenya Power dips, Pod keeps the car charging and the essentials running at home.",
     tagline:
-      "Pod energy storage adds battery backup so you still wake up charged after a weak-grid evening or short outage.",
+      "Pod is for streets where the grid cannot be trusted — home charging plus storage so one outage does not ruin the evening.",
     category: "home",
     priceLabel: "From KES 295,000 · Lipa Pole Pole",
     href: "/charging/private-house",
@@ -106,9 +106,9 @@ export const homeProducts: HomeProduct[] = [
   {
     id: "corridor",
     name: productNames.corridor,
-    summary: "Fast highway top-up in the time of a coffee stop — pay with M-Pesa.",
+    summary: "On Nairobi–Kisumu, pull in, top up fast, pay with M-Pesa, and carry on.",
     tagline:
-      "Corridor charging adds enough range for the next leg of your trip while you take a break — no hours at a petrol station.",
+      "Corridor is a T-canopy highway DC hub — cables from overhead, 120 kW+ to the car, dual CCS2 for two bays.",
     category: "highway",
     priceLabel: "KES 39/kWh",
     href: "/network",
@@ -140,6 +140,76 @@ export const categoryLabels: Record<HomeProduct["category"], string> = {
 };
 
 export const flagshipIds = ["pulse", "pod", "corridor", "spark"] as const;
+
+export type FlagshipProductId = (typeof flagshipIds)[number];
+
+export type FlagshipProductDetail = {
+  id: FlagshipProductId;
+  shortName: string;
+  headline: string;
+  hook: string;
+  description: string;
+  priceLabel: string;
+  specs: readonly string[];
+  bestFor: string;
+  ctaLabel: string;
+  href: string;
+};
+
+export const flagshipProductDetails: Record<FlagshipProductId, FlagshipProductDetail> = {
+  pulse: {
+    id: "pulse",
+    shortName: "Pulse",
+    headline: "7 kW Home Charger",
+    hook: "Charge at home. Wake up ready.",
+    description:
+      "Your everyday EV charger. Plug in at night and start every morning with a full battery — without depending on public chargers.",
+    priceLabel: "KES 79,000 · From KES 3,300/month",
+    specs: ["7 kW AC", "Type 2", "Home"],
+    bestFor: "Daily drivers",
+    ctaLabel: "Get Pulse",
+    href: "/charging/private-house",
+  },
+  pod: {
+    id: "pod",
+    shortName: "Pod",
+    headline: "Modular Home Energy + EV Charging",
+    hook: "Charge your car. Power your home.",
+    description:
+      "EV charging meets backup power. Pod stores energy for your car and essential home loads — keeping you moving when the grid goes down.",
+    priceLabel: "From KES 295,000 · Lipa Pole Pole",
+    specs: ["Battery", "EV charging", "Backup", "Modular"],
+    bestFor: "Energy independence",
+    ctaLabel: "Get Pod",
+    href: "/charging/private-house",
+  },
+  corridor: {
+    id: "corridor",
+    shortName: "Corridor",
+    headline: "120 kW+ DC Fast Charging",
+    hook: "Charge fast. Keep moving.",
+    description:
+      "Built for Kenya's highways. A BYD-style T-canopy with overhead cables and dual CCS2 — add range in minutes, pay with M-Pesa and keep moving.",
+    priceLabel: "KES 39/kWh",
+    specs: ["120 kW+ DC", "T-canopy", "Highway", "M-Pesa"],
+    bestFor: "Long-distance driving & fleets",
+    ctaLabel: "Find a charger",
+    href: "/network",
+  },
+  spark: {
+    id: "spark",
+    shortName: "Spark",
+    headline: "3.3 kW Portable EV Charger",
+    hook: "Your charger. In your boot.",
+    description:
+      "No wallbox? No problem. Take Spark to work, upcountry or anywhere you have a suitable socket.",
+    priceLabel: "From KES 25,000",
+    specs: ["3.3 kW", "Portable", "Type 2"],
+    bestFor: "Charging on the go",
+    ctaLabel: "Get Spark",
+    href: "/charging",
+  },
+};
 
 export const compactRangeIds = ["boda", "depot"] as const;
 

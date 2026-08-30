@@ -1,9 +1,9 @@
 export const downloadPage = {
   hero: {
     eyebrow: "Mobile app",
-    title: "Precifarm charging on your Android phone",
+    title: "Precifarm on Android",
     description:
-      "Open the Charging Hub, browse Spark charger to Corridor charging and request Pulse charger or Pod energy storage installations — M-Pesa on every flow. Android available now; iOS not yet.",
+      "Charging Hub, product browse and home install requests — M-Pesa on every flow. iOS not yet.",
   },
   featuresSection: {
     eyebrow: "Features",

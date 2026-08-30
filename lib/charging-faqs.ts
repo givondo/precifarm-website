@@ -173,19 +173,7 @@ export const privateHouseScopeFaqs: FaqItem[] = [
 ];
 
 export const privateHouseChargingFaqs: FaqItem[] = [
-  ...pickFaqs(
-    [
-      "home-day-cost",
-      "home-charge-time",
-      "pulse-price",
-      "pulse-vs-pod",
-      "home-vs-public",
-      "lipa-pole-pole",
-      "house-installation-includes",
-      "solar-vs-grid",
-    ],
-    consumerChargingFaqs,
-  ),
+  ...pickFaqs(["pulse-vs-pod", "house-installation-includes"], consumerChargingFaqs),
   ...privateHouseScopeFaqs,
 ];
 
@@ -195,17 +183,10 @@ export const reservedWindowFaq: FaqItem = {
     "A contracted slot so a scheduled electric bus receives energy in time to leave. Public sessions do not displace a reserved window. This product is designed, not yet commissioned. Hubs are approved on contracted kWh and window reliability, not on solar yield alone.",
 };
 
-export const chargingServicesFaqs: FaqItem[] = [
-  ...pickFaqs(
-    ["public-dc-price", "home-day-cost", "pulse-price", "spark", "pay-public"],
-    consumerChargingFaqs,
-  ),
-  {
-    question: "Who is each charging product for?",
-    answer:
-      "The Pulse charger and Pod energy storage are private-house units — a typical day in about 90 minutes at home. The Spark charger is the portable unit for the boot — about 180 minutes for a typical day from a normal socket. The Depot charging station adds 40+ kWh in about 120 minutes for fleets. Corridor charging adds about 60 kWh in 30 minutes on the highway (from KES 39/kWh). Boda Hub swaps a fresh battery in under 5 minutes. Lipa Pole Pole finances home installations on M-Pesa.",
-  },
-];
+export const chargingServicesFaqs: FaqItem[] = pickFaqs(
+  ["home-day-cost", "pulse-price", "pay-public", "lipa-pole-pole"],
+  consumerChargingFaqs,
+);
 
 export const hubEngineeringFaqs: FaqItem[] = [
   {

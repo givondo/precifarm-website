@@ -1,6 +1,7 @@
 import { privateHouseChargingFaqs as houseFaqs } from "@/lib/charging-faqs";
 import { contact } from "@/lib/contact";
 import { productImages } from "@/lib/product-images";
+import { sitePricing } from "@/lib/site-copy";
 
 /** Homepage band — links to the dedicated private house charging page */
 export const homeChargingHighlight = {
@@ -22,14 +23,14 @@ export const homeChargingHighlight = {
 export const privateHouseChargingPage = {
   hero: {
     eyebrow: "Home charging",
-    title: "Pulse charger and Pod energy storage on your property",
+    title: "Pulse and Pod on your property",
     description:
-      "Precifarm installs the Pulse charger or Pod energy storage at private houses — on your land, for your vehicle. A home day about KES 140 vs ~KES 1,000 diesel. Lipa Pole Pole from KES 3,300/month on M-Pesa.",
+      "Wallbox or storage on your land, for your car — survey, install and three-year care from one team. Lipa Pole Pole on M-Pesa.",
   },
   lead:
-    "Start with the Pulse charger on your wall, add Pod energy storage when you want backup for weak-grid evenings, or keep the Spark charger in the boot. A home charging day costs about KES 140 instead of ~KES 1,000 in diesel per day. Precifarm surveys the site, installs and commissions the unit, and supports it for three years.",
+    "We size the unit to your EV and your meter, install on your parking spot, and keep it online. Optional Spark for top-ups away from home.",
   notThisPage:
-    "This page is for private residential properties. For Depot and Boda Hub see Partners. For Corridor charging and public DC see the Charging Hub.",
+    "Residential only. Fleet depots → Partners. Public DC → Charging Hub.",
   image: {
     image: productImages.pulse.src,
     imageAlt: productImages.pulse.alt,
@@ -38,19 +39,19 @@ export const privateHouseChargingPage = {
   benefits: [
     {
       title: "Your property only",
-      text: "Pulse charger or Pod energy storage on private land — no public access, no shared queues.",
+      text: "Private parking — no public access or shared queues.",
     },
     {
-      title: "About 90 minutes",
-      text: "A typical 60 km Nairobi day on Pulse charger or Pod energy storage at home — paid with M-Pesa.",
+      title: "Typical day in ~90 min",
+      text: "About 60 km on Pulse or Pod at home.",
     },
     {
       title: "Lipa Pole Pole",
-      text: "Pulse charger from KES 79,000. Lipa Pole Pole from KES 3,300/month on M-Pesa — no bank account required.",
+      text: `Pulse from ${sitePricing.pulseFrom}. Instalments from ${sitePricing.lipaFrom} on M-Pesa.`,
     },
     {
-      title: "Pod energy storage when the grid is weak",
-      text: "5 or 10 kWh storage keeps a typical day charging when Kenya Power dips.",
+      title: "Weak grid cover",
+      text: "Pod adds 5 or 10 kWh when Kenya Power dips.",
     },
   ],
   included: [
@@ -68,31 +69,6 @@ export const privateHouseChargingPage = {
   ],
   serviceAreas: contact.hubs,
 } as const;
-
-/** How house-based private charging differs from other Precifarm offerings */
-export const chargingTypeComparison = [
-  {
-    type: "Home charging",
-    where: "Your private house or townhouse",
-    access: "Homeowner only — Pulse charger, Pod energy storage or Spark charger",
-    typical: "Typical 60 km day in about 90 minutes on Pulse charger",
-    page: "/charging/private-house",
-  },
-  {
-    type: "Fleet charging",
-    where: "Yards, campuses and boda stops",
-    access: "Depot charging station and Boda Hub",
-    typical: "About 120 minutes at the depot · under 5 minutes for a boda swap",
-    page: "/partners",
-  },
-  {
-    type: "Highway charging",
-    where: "Corridor hubs and partner sites",
-    access: "Public DC and contracted fleets",
-    typical: "About 60 kWh in 30 minutes · pay with M-Pesa",
-    page: "/network",
-  },
-] as const;
 
 export const privateHouseChargingProcess = [
   {

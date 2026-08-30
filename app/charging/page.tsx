@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import ChargingProductGallery from "@/components/ChargingProductGallery";
-import ChargingSection from "@/components/ChargingSection";
+import Link from "next/link";
 import FaqAccordion from "@/components/seo/FaqAccordion";
 import JsonLd from "@/components/seo/JsonLd";
 import PageHero from "@/components/ui/PageHero";
-import SectionHeader from "@/components/ui/SectionHeader";
+import ChargingSection from "@/components/ChargingSection";
 import { chargingPage } from "@/lib/charging";
 import { chargingServicesFaqs } from "@/lib/charging-faqs";
+import { siteCtas } from "@/lib/site-copy";
 import { pageJsonLd, pageMetadata } from "@/lib/seo/pages/helpers";
 
 export const metadata: Metadata = pageMetadata("/charging");
@@ -23,14 +23,15 @@ export default function ChargingPage() {
       <section className="border-b border-border bg-white">
         <ChargingSection />
       </section>
-      <ChargingProductGallery />
       <section className="section-pad bg-muted/20">
         <div className="page-container max-w-3xl">
-          <SectionHeader
-            eyebrow="Charging economics"
-            title="What home charging and public DC cost"
-            description="Pulse charger from KES 79,000, a home charging day about KES 140 vs ~KES 1,000 diesel, public DC in under 30 minutes from KES 39/kWh — session price is always shown before you charge."
-          />
+          <h2 className="text-2xl font-semibold tracking-tight text-forest-900">Common questions</h2>
+          <p className="mt-3 text-sm leading-relaxed text-forest-600">
+            Pricing, Lipa Pole Pole and which product fits your day.{" "}
+            <Link href={siteCtas.allFaq.href} className="font-medium text-forest-900 hover:text-charge-600">
+              {siteCtas.allFaq.label} →
+            </Link>
+          </p>
           <div className="mt-8">
             <FaqAccordion items={chargingServicesFaqs} />
           </div>

@@ -1,36 +1,41 @@
 /**
- * Product photography — supplier reference hardware in /public/images/products/
+ * Product photography — conceptual industrial-design renders in /public/images/products/
  */
 
 export const productImages = {
+  chargingEcosystemHero: {
+    src: "/images/charging-ecosystem-hero-v11.png",
+    alt: "Precifarm charging family — Pulse, Spark, P1 Go, Pod, Corridor T-canopy, Depot, Boda Hub with e-motorbike and white EV",
+    brand: "none" as const,
+  },
   spark: {
-    src: "/images/products/spark.png",
-    alt: "Precifarm Spark portable EV charger with Type 2 connector, LCD display and five adjustable charge rates from 8A to 32A",
+    src: "/images/products/spark-v2.png",
+    alt: "Precifarm Spark portable 3.3 kW EV charger",
     brand: "spark" as const,
   },
   pulse: {
     src: "/images/products/pulse.png",
-    alt: "Precifarm Pulse 7 kW Type 2 home wallbox with holster and Precifarm branding",
+    alt: "Precifarm Pulse 7 kW home wallbox",
     brand: "pulse" as const,
   },
   pod: {
     src: "/images/products/pod.png",
-    alt: "Precifarm Pod modular LiFePO₄ energy storage — stackable 5–10 kWh home battery tower with wall control unit",
+    alt: "Precifarm Pod home battery and charger",
     brand: "pod" as const,
   },
   boda: {
     src: "/images/products/boda.png",
-    alt: "Precifarm Boda Hub battery swap cabinet for electric motorcycles",
+    alt: "Precifarm Boda Hub battery swap cabinet — matte white aluminum with glass status strip for electric motorcycles",
     brand: "none" as const,
   },
   depot: {
     src: "/images/products/depot.png",
-    alt: "Precifarm Depot 22 kW AC charging pedestals under solar canopy at a fleet yard",
+    alt: "Precifarm Depot 22 kW AC charging pedestal — fleet yard Type 2 charger in unified Precifarm industrial design",
     brand: "none" as const,
   },
   corridor: {
-    src: "/images/products/corridor.png",
-    alt: "Precifarm Corridor 120 kW integrated DC fast charger with dual CCS2 cables and M-Pesa checkout",
+    src: "/images/products/corridor-v4.png",
+    alt: "Precifarm Corridor DC fast charger — T-canopy with overhead cables and dual CCS2 holsters",
     brand: "corridor" as const,
   },
   corridorSafety: {

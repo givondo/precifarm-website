@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" width="1200" height="760" font-family="'Segoe UI',system-ui,sans-serif" data-pf-theme="v2">
+<style>
+.t{fill:#0a0a0a}.s{fill:#737373}
+.bx{fill:#fff;stroke:#0a0a0a;stroke-width:1.4}
+.bxs{fill:#f5f5f5;stroke:#d4d4d4;stroke-width:1.2}
+.hd{font-size:16px;font-weight:700;fill:#0a0a0a}
+.sub{font-size:11.5px;fill:#525252}
+.tiny{font-size:10px;fill:#737373}
+.num{font-size:22px;font-weight:700;fill:#2563eb}
+.stage{font-size:10.5px;font-weight:700;letter-spacing:.12em;fill:#2563eb}
+.fl{stroke:#2563eb;stroke-width:2.2;fill:none}
+.dev{fill:url(#dev-body);stroke:#262626;stroke-width:1.6}
+.scr{fill:#0a0a0a}
+.acc{fill:#2563eb}
+
+.pf-accent{fill:#2563eb}
+.pf-frame{fill:none;stroke:#e2e8f0;stroke-width:1}
+.bx,.dev{filter:url(#pf-shadow-sm)}
+.bxb{filter:url(#pf-shadow);fill:#f8fbff}
+
+</style>
+<defs>
+<linearGradient id="pf-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+  <stop offset="0%" stop-color="#f8fafc"/>
+  <stop offset="55%" stop-color="#ffffff"/>
+  <stop offset="100%" stop-color="#f1f5f9"/>
+</linearGradient>
+<pattern id="pf-grid" width="28" height="28" patternUnits="userSpaceOnUse">
+  <circle cx="1.5" cy="1.5" r="0.75" fill="#e2e8f0"/>
+</pattern>
+<linearGradient id="pf-blue" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" stop-color="#3b82f6"/>
+  <stop offset="100%" stop-color="#1d4ed8"/>
+</linearGradient>
+<linearGradient id="pf-blue-soft" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" stop-color="#eff6ff"/>
+  <stop offset="100%" stop-color="#dbeafe"/>
+</linearGradient>
+<filter id="pf-shadow" x="-8%" y="-8%" width="116%" height="120%">
+  <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.07"/>
+</filter>
+<filter id="pf-shadow-sm" x="-6%" y="-6%" width="112%" height="114%">
+  <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#0f172a" flood-opacity="0.06"/>
+</filter><linearGradient id="dev-body" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#f1f5f9"/></linearGradient><marker id="ab" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker></defs>
+
+
+<g id="pf-background" aria-hidden="true">
+  <rect width="1200" height="760" fill="url(#pf-bg)"/>
+  <rect width="1200" height="760" fill="url(#pf-grid)" opacity="0.45"/>
+  <rect x="0" y="0" width="5" height="760" fill="#2563eb" rx="0"/>
+</g><text x="40" y="42" class="t" font-size="20" font-weight="700">The Precifarm product family</text>
+<text x="40" y="64" class="s" font-size="12.5">One industrial-design language &#183; one Energy Module &#183; one Energy OS &#183; one customer account. Conceptual &#8212; not to scale.</text>
+
+
+<!-- Progression band -->
+<rect x="40" y="100" width="1120" height="34" rx="17" fill="url(#pf-blue-soft)" stroke="#2563eb" stroke-width="1.2"/>
+<text x="600" y="123" text-anchor="middle" font-size="13.5" font-weight="700" fill="#2563eb" letter-spacing=".14em">PLUG &#8594; CARRY &#8594; ROLL &#8594; STACK &#8594; INSTALL &#8594; DRIVE</text>
+
+<!-- device pedestals -->
+<ellipse cx="74" cy="318" rx="58" ry="8" fill="#0f172a" opacity="0.06"/>
+<ellipse cx="364" cy="318" rx="72" ry="8" fill="#0f172a" opacity="0.06"/>
+<ellipse cx="650" cy="318" rx="68" ry="8" fill="#0f172a" opacity="0.06"/>
+<ellipse cx="998" cy="318" rx="78" ry="8" fill="#0f172a" opacity="0.06"/>
+
+<!-- ============ P1 GO ============ -->
+<g transform="translate(60,180)">
+<text x="0" y="0" class="stage">01 &#183; CARRY</text>
+<text x="0" y="24" class="hd">P1 Go</text>
+<text x="0" y="44" class="sub">Portable &#183; ~1.0 kWh &#183; 1.0 kW</text>
+<!-- device: aluminum brick on mini stand with top handle -->
+<rect x="4" y="78" width="140" height="88" rx="10" class="dev" fill="url(#dev-body)"/>
+<rect x="4" y="166" width="140" height="10" rx="2" fill="#e2e8f0" stroke="#94a3b8" stroke-width=".8"/>
+<!-- raised top carry handle -->
+<path d="M36 78 q34 -26 68 0" fill="none" stroke="#64748b" stroke-width="5" stroke-linecap="round"/>
+<path d="M36 78 q34 -18 68 0" fill="none" stroke="#cbd5e1" stroke-width="2.5" stroke-linecap="round"/>
+<rect x="18" y="72" width="8" height="8" rx="2" fill="#94a3b8"/><rect x="122" y="72" width="8" height="8" rx="2" fill="#94a3b8"/>
+<rect x="22" y="92" width="76" height="30" rx="4" class="scr"/>
+<text x="30" y="110" font-size="11" font-weight="700" fill="#fff">86%</text><text x="30" y="122" font-size="8" fill="#a3a3a3">7 h left</text>
+<circle cx="124" cy="100" r="3" class="acc"/>
+<g fill="none" stroke="#525252" stroke-width="1.2">
+<circle cx="34" cy="148" r="7"/><circle cx="54" cy="148" r="7"/>
+<rect x="72" y="144" width="12" height="8" rx="1.5"/><rect x="88" y="144" width="12" height="8" rx="1.5"/>
+</g>
+<text x="8" y="188" class="tiny">Top handle &#183; stand dock &#183; lifts for backup</text>
+<text x="8" y="202" class="tiny">2 &#215; 230 V &#183; USB &#183; 12 V &#183; solar &#183; EV lead</text>
+</g>
+<path class="fl" d="M212 300 H 268" marker-end="url(#ab)"/>
+
+<!-- ============ P2 HOME ============ -->
+<g transform="translate(290,180)">
+<text x="0" y="0" class="stage">02 &#183; ROLL</text>
+<text x="0" y="24" class="hd">P2 Home</text>
+<text x="0" y="44" class="sub">Wheeled &#183; 2.56 &#8594; 10.24 kWh &#183; 2.4 / 4.8 kW</text>
+<!-- device: tall wheeled cabinet -->
+<rect x="14" y="60" width="150" height="188" rx="9" class="dev"/>
+<path d="M164 76 q26 6 26 34 v40" fill="none" stroke="#262626" stroke-width="4" stroke-linecap="round"/>
+<!-- power core zone -->
+<rect x="24" y="70" width="130" height="52" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+<text x="32" y="88" font-size="9" font-weight="700" fill="#2563eb">POWER CORE</text>
+<rect x="32" y="94" width="62" height="20" rx="3" class="scr"/><text x="38" y="106" font-size="7.5" font-weight="700" fill="#fff">2.4 kW</text><text x="38" y="116" font-size="6.5" fill="#a3a3a3">base SKU</text>
+<text x="98" y="108" font-size="8" font-weight="700" fill="#2563eb">4.8 kW max</text>
+<g stroke="#2563eb" stroke-width="1" fill="none"><path d="M104 96 h42"/><path d="M104 102 h42"/><path d="M104 108 h42"/><path d="M104 114 h42"/></g>
+<!-- module bays -->
+<g>
+<rect x="24" y="128" width="130" height="26" rx="3" fill="#dbeafe" stroke="#2563eb" stroke-width="1"/><text x="89" y="146" font-size="9.5" font-weight="700" fill="#1d4ed8" text-anchor="middle">MODULE 1 &#183; 2.56 kWh</text>
+<rect x="24" y="158" width="130" height="26" rx="3" fill="#dbeafe" stroke="#2563eb" stroke-width="1"/><text x="89" y="176" font-size="9.5" font-weight="700" fill="#1d4ed8" text-anchor="middle">MODULE 2 &#183; 2.56 kWh</text>
+<rect x="24" y="188" width="130" height="26" rx="3" fill="#fff" stroke="#a3a3a3" stroke-width="1" stroke-dasharray="3 2"/><text x="89" y="206" font-size="9.5" fill="#737373" text-anchor="middle">BAY 3 &#8212; EMPTY</text>
+<rect x="24" y="218" width="130" height="26" rx="3" fill="#fff" stroke="#a3a3a3" stroke-width="1" stroke-dasharray="3 2"/><text x="89" y="236" font-size="9.5" fill="#737373" text-anchor="middle">BAY 4 &#8212; EMPTY</text>
+</g>
+<circle cx="42" cy="256" r="10" fill="#404040"/><circle cx="42" cy="256" r="4" fill="#a3a3a3"/>
+<circle cx="136" cy="256" r="10" fill="#404040"/><circle cx="136" cy="256" r="4" fill="#a3a3a3"/>
+<text x="14" y="288" class="tiny">4 bays &#183; customer grows capacity over time</text>
+<text x="14" y="302" class="tiny">PV 1.2&#8211;2.0 kWp &#183; &#8804;20 ms backup transfer</text>
+</g>
+<path class="fl" d="M500 300 H 556" marker-end="url(#ab)"/>
+
+<!-- ============ ENERGY MODULE ============ -->
+<g transform="translate(578,180)">
+<text x="0" y="0" class="stage">03 &#183; STACK</text>
+<text x="0" y="24" class="hd">Energy Module</text>
+<text x="0" y="44" class="sub">2.56 kWh &#183; 51.2 V &#183; 50 Ah LiFePO&#8324;</text>
+<!-- isometric-ish module -->
+<g>
+<path d="M18 96 L150 96 L176 74 L44 74 Z" fill="#e5e5e5" stroke="#262626" stroke-width="1.5"/>
+<path d="M150 96 L176 74 L176 168 L150 190 Z" fill="#d4d4d4" stroke="#262626" stroke-width="1.5"/>
+<rect x="18" y="96" width="132" height="94" rx="3" class="dev"/>
+<!-- handles -->
+<rect x="30" y="106" width="34" height="7" rx="3.5" fill="#525252"/>
+<rect x="104" y="106" width="34" height="7" rx="3.5" fill="#525252"/>
+<!-- status -->
+<rect x="30" y="128" width="80" height="16" rx="3" class="scr"/><text x="36" y="140" font-size="8.5" font-weight="700" fill="#fff">2.56 kWh</text>
+<circle cx="126" cy="136" r="5" class="acc"/>
+<!-- NFC/QR -->
+<rect x="30" y="152" width="20" height="20" rx="2" fill="#fff" stroke="#262626" stroke-width="1"/>
+<g fill="#262626"><rect x="33" y="155" width="5" height="5"/><rect x="42" y="155" width="5" height="5"/><rect x="33" y="164" width="5" height="5"/><rect x="42" y="164" width="5" height="5"/></g>
+<text x="56" y="163" class="tiny">NFC + QR</text><text x="56" y="174" class="tiny">serial identity</text>
+<!-- connectors -->
+<rect x="152" y="120" width="22" height="18" rx="2" fill="#404040"/><text x="163" y="133" font-size="7" fill="#fff" text-anchor="middle">DC</text>
+<rect x="152" y="146" width="22" height="14" rx="2" fill="#2563eb"/><text x="163" y="157" font-size="6.5" fill="#fff" text-anchor="middle">CAN</text>
+</g>
+<text x="18" y="212" class="tiny">Blind-mate &#183; positive latch &#183; touch-safe unmated</text>
+<text x="18" y="226" class="tiny">Generation keying prevents mixed strings</text>
+<text x="18" y="248" font-size="11" font-weight="700" fill="#2563eb">The only storage unit Precifarm designs</text>
+<text x="18" y="266" class="tiny">One BOM &#183; one spare part &#183; one service procedure</text>
+</g>
+<path class="fl" d="M788 300 H 844" marker-end="url(#ab)"/>
+
+<!-- ============ POD ============ -->
+<g transform="translate(866,180)">
+<text x="0" y="0" class="stage">04 &#183; INSTALL</text>
+<text x="0" y="24" class="hd">Precifarm Pod</text>
+<text x="0" y="44" class="sub">Installed &#183; 5.12 &#8594; 51.2 kWh &#183; 5 &#8594; 30 kW</text>
+<!-- sun shield -->
+<path d="M6 62 L246 62 L232 74 L20 74 Z" fill="#d97706" opacity=".85"/>
+<text x="126" y="58" font-size="8.5" font-weight="700" fill="#d97706" text-anchor="middle">SUN SHIELD &#183; MANDATORY OUTDOORS</text>
+<rect x="20" y="76" width="212" height="180" rx="8" class="dev"/>
+<!-- power unit -->
+<rect x="30" y="86" width="192" height="44" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+<text x="38" y="102" font-size="9" font-weight="700" fill="#2563eb">POWER UNIT</text>
+<text x="38" y="120" font-size="10" fill="#404040">PCS &#183; MPPT &#183; protection &#183; comms</text>
+<!-- rack -->
+<g>
+<rect x="30" y="136" width="192" height="20" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width=".9"/><text x="126" y="150" font-size="9" fill="#1d4ed8" text-anchor="middle" font-weight="600">ENERGY MODULE</text>
+<rect x="30" y="159" width="192" height="20" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width=".9"/><text x="126" y="173" font-size="9" fill="#1d4ed8" text-anchor="middle" font-weight="600">ENERGY MODULE</text>
+<rect x="30" y="182" width="192" height="20" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width=".9"/><text x="126" y="196" font-size="9" fill="#1d4ed8" text-anchor="middle" font-weight="600">ENERGY MODULE</text>
+<rect x="30" y="205" width="192" height="20" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width=".9"/><text x="126" y="219" font-size="9" fill="#1d4ed8" text-anchor="middle" font-weight="600">ENERGY MODULE</text>
+<rect x="30" y="228" width="192" height="18" rx="2" fill="#fff" stroke="#a3a3a3" stroke-width=".9" stroke-dasharray="3 2"/><text x="126" y="241" font-size="9" fill="#737373" text-anchor="middle">+ N   (HV-S above 4 modules)</text>
+</g>
+<!-- airflow arrows -->
+<g stroke="#0891b2" stroke-width="1.4" fill="none" opacity=".8">
+<path d="M14 240 h-8 v-90 h8"/><path d="M238 150 h8 v90 h-8"/>
+</g>
+<text x="6" y="128" font-size="8" fill="#0891b2">AIR IN</text><text x="240" y="128" font-size="8" fill="#0891b2">OUT</text>
+<text x="20" y="276" class="tiny">IP55 target &#183; filtered forced air &#183; front service access</text>
+<text x="20" y="290" class="tiny">Grid &#183; solar &#183; home &#183; future EV connections</text>
+</g>
+
+<!-- Bottom: what it serves -->
+<line x1="40" y1="530" x2="1160" y2="530" stroke="#e5e5e5"/>
+<text x="40" y="558" class="stage">05 &#183; DRIVE  &#8212;  WHAT THE PLATFORM SERVES</text>
+<g>
+<rect x="40" y="574" width="196" height="70" rx="8" class="bxs" filter="url(#pf-shadow-sm)"/>
+<text x="68" y="602" font-size="18" fill="#2563eb">&#9728;</text><text x="138" y="600" class="hd" font-size="14" text-anchor="middle">Solar</text><text x="138" y="620" class="tiny" text-anchor="middle">0.6 &#8211; 4.1 kWp typical</text><text x="138" y="634" class="tiny" text-anchor="middle">3.5 kWh/kWp/day basis</text>
+<rect x="256" y="574" width="196" height="70" rx="6" class="bxs"/>
+<text x="354" y="600" class="hd" font-size="14" text-anchor="middle">Home</text><text x="354" y="620" class="tiny" text-anchor="middle">1.4 &#8211; 3.8 kWh/day</text><text x="354" y="634" class="tiny" text-anchor="middle">essential or whole-home</text>
+<rect x="472" y="574" width="196" height="70" rx="6" class="bxs"/>
+<text x="570" y="600" class="hd" font-size="14" text-anchor="middle">Business</text><text x="570" y="620" class="tiny" text-anchor="middle">shop &#183; cold chain &#183; office</text><text x="570" y="634" class="tiny" text-anchor="middle">20 &#8211; 51 kWh Pod</text>
+<rect x="688" y="574" width="196" height="70" rx="6" class="bxs"/>
+<text x="786" y="600" class="hd" font-size="14" text-anchor="middle">EV</text><text x="786" y="620" class="tiny" text-anchor="middle">Phase A: 3.7 kW AC charge</text><text x="786" y="634" class="tiny" text-anchor="middle">from own solar surplus</text>
+<rect x="904" y="574" width="256" height="70" rx="6" fill="#fff" stroke="#a3a3a3" stroke-width="1.2" stroke-dasharray="5 3"/>
+<text x="1032" y="596" class="hd" font-size="14" text-anchor="middle" fill="#737373">V2X</text>
+<text x="1032" y="614" class="tiny" text-anchor="middle">FUTURE &#8212; requires bidirectional hardware,</text>
+<text x="1032" y="628" class="tiny" text-anchor="middle">vehicle support and regulatory approval.</text>
+<text x="1032" y="642" class="tiny" text-anchor="middle" font-weight="700" fill="#dc2626">NOT AVAILABLE TODAY</text>
+</g>
+
+<line x1="40" y1="676" x2="1160" y2="676" stroke="#e5e5e5"/>
+<text x="40" y="700" class="s" font-size="11">Figure 2 &#8212; Product family progression. All products are CONCEPTUAL. Energy and power figures are engineering targets subject to prototype validation (&#167;16).</text>
+<text x="40" y="718" class="s" font-size="11">Module count, architecture and power ratings per &#167;16.4. P2 SKU ratings revised per ERN-01 (&#167;5.2). Pod &#8805;5 modules requires HV-S architecture per ERN-03 (&#167;7.2).</text>
+</svg>

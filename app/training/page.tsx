@@ -8,10 +8,8 @@ import {
   TrainingDeliveryTable,
   TrainingProgressionTable,
   TrainingTableSection,
-  TrainingTierDetailTable,
   TrainingTierOverviewTable,
   TrainingTrackMatrixTable,
-  TrainingTracksDetailTable,
 } from "@/components/training/TrainingTables";
 import CheckItem from "@/components/ui/CheckItem";
 import PageHero from "@/components/ui/PageHero";
@@ -91,9 +89,6 @@ export default function TrainingPage() {
                 priority
               />
             </div>
-            <figcaption className="border-t border-border px-5 py-4 text-sm leading-relaxed text-forest-600">
-              {trainingHeroImage.caption}
-            </figcaption>
           </figure>
         </div>
       </section>
@@ -103,104 +98,79 @@ export default function TrainingPage() {
           <TrainingTableSection
             eyebrow="Overview"
             title="Tiers at a glance"
-            description="Start here — duration, format, audience and certificate for each level."
+            description="Duration, format, audience and certificate for each level."
           >
             <TrainingTierOverviewTable />
           </TrainingTableSection>
 
           <TrainingTableSection
-            eyebrow="Full specification"
-            title="T1, T2 and T3 compared"
-            description="Side-by-side detail on assessment, certification and what each graduate can do on site."
-          >
-            <TrainingTierDetailTable />
-          </TrainingTableSection>
-        </div>
-      </section>
-
-      <section className="section-pad bg-white" id="tiers">
-        <div className="page-container">
-          <TrainingTableSection
             eyebrow="Curriculum"
-            title="Modules and outcomes by tier"
-            description="One row per tier — left column is the level, then modules taught and skills assessed before certification."
+            title="Modules by tier"
+            description="What each cohort covers before certification."
           >
             <TrainingCurriculumTable />
           </TrainingTableSection>
         </div>
       </section>
 
-      <section className="border-y border-border bg-muted/20 section-pad" id="ev-charging">
-        <div className="page-container space-y-14">
+      <section className="section-pad bg-white" id="ev-charging">
+        <div className="page-container">
           <TrainingTableSection
-            eyebrow="EV charging tracks"
-            title="Which tier for which product?"
-            description="Use this matrix when scoping a cohort — home Pulse charger and Pod energy storage, fleet Depot, or highway Corridor."
+            eyebrow="Product tracks"
+            title="Which tier for which charger?"
+            description="Home Pulse and Pod, fleet Depot, highway Corridor."
           >
             <TrainingTrackMatrixTable />
           </TrainingTableSection>
-
-          <TrainingTableSection
-            eyebrow="Track detail"
-            title="EV charging tracks explained"
-            description="Roles, topics and tier requirements for each deployment type Precifarm operates."
-          >
-            <TrainingTracksDetailTable />
-          </TrainingTableSection>
-
-          <p className="text-sm text-forest-600">
+          <p className="mt-6 text-sm text-forest-600">
             Related:{" "}
             <Link href="/charging" className="text-link font-medium">
-              charging services
-            </Link>
-            ,{" "}
-            <Link href="/network" className="text-link font-medium">
-              charging hub
+              charging
             </Link>
             ,{" "}
             <Link href="/partners" className="text-link font-medium">
-              partner programme
+              partners
             </Link>
             .
           </p>
         </div>
       </section>
 
-      <section className="section-pad bg-white">
+      <section className="section-pad border-t border-border bg-muted/20">
         <div className="page-container grid gap-14 lg:grid-cols-2">
           <TrainingTableSection
             eyebrow="Progression"
-            title="How to move between tiers"
-            description="Sequential path unless Precifarm engineering approves equivalence for experienced teams."
+            title="Moving between tiers"
+            description="Sequential path unless engineering approves equivalence."
           >
             <TrainingProgressionTable />
           </TrainingTableSection>
 
           <TrainingTableSection
             eyebrow="Delivery"
-            title="How training is run"
-            description="Venue, cohort size and certificate timing — plan team cover before you book."
+            title="How cohorts run"
+            description="Venue, size and certificate timing."
           >
             <TrainingDeliveryTable />
           </TrainingTableSection>
         </div>
       </section>
 
-      <section className="training-enquiry section-pad border-t border-border bg-muted/20">
+      <section className="training-enquiry section-pad border-t border-border bg-white">
         <div className="page-container">
           <div className="training-enquiry-grid">
             <div className="training-enquiry-copy">
               <SectionHeader
-                eyebrow="Enrol a cohort"
-                title="Book a training cohort"
-                description="Email us with your team size, current tier and the EV charging tracks you need. We confirm dates, venue and modules within one business day."
+                eyebrow="Enrol"
+                title="Book a cohort"
+                description="Email team size, current tier and tracks needed. We confirm within one business day."
               />
               <ul className="mt-6 space-y-2.5">
                 {[
                   "Organisation name and number of participants",
-                  "Current tier held (T1, T2, T3 or none)",
-                  "Tracks needed: home, fleet or highway charging",
-                  "Preferred month and a contact name and phone",
+                  "Current tier (T1, T2, T3 or none)",
+                  "Tracks: home, fleet or highway",
+                  "Preferred month and contact phone",
                 ].map((item) => (
                   <CheckItem key={item}>{item}</CheckItem>
                 ))}
@@ -217,34 +187,13 @@ export default function TrainingPage() {
               >
                 {contact.trainingEmail}
               </a>
-              <p className="mt-2 text-sm leading-relaxed text-forest-600">
-                Opens a pre-filled email template. You can edit it before sending.
-              </p>
-
               <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a href={trainingEnquiryMailto()} className="btn-primary rounded-full px-6 py-3 text-sm">
-                  Send training enquiry
+                  Send enquiry
                 </a>
                 <a href={contact.phoneHref} className="btn-secondary rounded-full px-6 py-3 text-sm">
                   Call {contact.phone}
                 </a>
-              </div>
-
-              <div className="mt-6 flex flex-wrap gap-x-4 gap-y-2 border-t border-border pt-5 text-sm">
-                <a
-                  href={contact.whatsapp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-link font-medium"
-                >
-                  WhatsApp
-                </a>
-                <Link href="/partners" className="text-link font-medium">
-                  Partner with us
-                </Link>
-                <Link href="/contact" className="text-link font-medium">
-                  Contact page
-                </Link>
               </div>
             </div>
           </div>
