@@ -1,4 +1,4 @@
-import { BOOKING_FAQ_SLUG, HOMEPAGE_FAQ_SLUG, faqIndexChargingFaqs, homepageChargingFaqs } from "@/lib/charging-faqs";
+import { BOOKING_FAQ_SLUG, faqIndexChargingFaqs, homepageChargingFaqs } from "@/lib/charging-faqs";
 import {
   cmsListSeoContent,
   type CmsSeoContent,
@@ -89,27 +89,14 @@ export async function getPublishedFaqs(): Promise<CmsSeoContent[]> {
   return items.filter(isFaqContent).filter((item) => item.slug !== BOOKING_FAQ_SLUG).sort(sortByPublishedDesc);
 }
 
-function faqsFromChargingDocuments(faqs: CmsSeoContent[]): FaqItem[] {
-  const preferred = faqs.find((item) => item.slug === HOMEPAGE_FAQ_SLUG);
-  return preferred ? faqsFromCmsContent(preferred) : [];
-}
-
 export async function getHomepageFaqs(limit = 6): Promise<FaqItem[]> {
-  const faqs = await getPublishedFaqs();
-  const cmsItems = faqsFromChargingDocuments(faqs);
-  const source = cmsItems.length > 0 ? cmsItems : homepageChargingFaqs;
-  return source.slice(0, limit);
+  return homepageChargingFaqs.slice(0, limit);
 }
 
 export async function getHomepageFaqsForSchema(): Promise<FaqItem[]> {
-  const faqs = await getPublishedFaqs();
-  const cmsItems = faqsFromChargingDocuments(faqs);
-  if (cmsItems.length > 0) return cmsItems;
   return homepageChargingFaqs;
 }
 
 export async function getFaqIndexItems(): Promise<FaqItem[]> {
-  const faqs = await getPublishedFaqs();
-  const cmsItems = faqsFromChargingDocuments(faqs);
-  return cmsItems.length > 0 ? cmsItems : faqIndexChargingFaqs;
+  return faqIndexChargingFaqs;
 }

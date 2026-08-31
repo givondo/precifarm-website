@@ -1,5 +1,6 @@
 import {
   chargingServicesFaqs,
+  faqIndexChargingFaqs,
   privateHouseChargingFaqs,
 } from "@/lib/charging-faqs";
 import { engineeringPageFaqs } from "@/lib/engineering-page";
@@ -294,7 +295,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
       {
         question: "How do I request a home EV charger in Kenya?",
         answer:
-          "Visit precifarm.com/charging/private-house or contact Precifarm to request a Pulse charger or Pod energy storage survey. Lipa Pole Pole instalments are available on M-Pesa.",
+          "Visit precifarm.com/charging/private-house, open the Precifarm AI companion, or contact Precifarm to request a Pulse charger or Pod energy storage survey. Lipa Pole Pole instalments are available on M-Pesa.",
       },
     ],
     breadcrumbs: [
@@ -306,7 +307,8 @@ export const pageSeoRegistry: PageSeoInput[] = [
     path: "/faq",
     title: "FAQ — EV charging in Kenya",
     description:
-      "FAQs on Precifarm charging — Pulse charger from KES 79,000, a home day about KES 140 vs ~KES 1,000 diesel, Lipa Pole Pole from KES 3,300/month, public DC in under 30 minutes and the Charging Hub.",
+      "FAQs on Precifarm charging — Pulse from KES 79,000, a home day about KES 140, Lipa Pole Pole, public DC, the Charging Hub and the AI companion.",
+    faqs: faqIndexChargingFaqs,
     keywords: [
       "Precifarm FAQ",
       "EV charging Kenya cost",

@@ -40,6 +40,7 @@ export const homepageAisoBlocks: AisoContentBlock[] = [
     "A home charging day of ~60 km ≈ KES 140 vs ~KES 1,000 diesel per day",
     "Pulse charger or Pod energy storage: typical day in about 90 minutes. Corridor: fast highway top-up in 30 minutes.",
     "Certified home installation typically in one day · three-year aftersale care",
+    "Precifarm AI companion on Android — find hubs, size home energy, pay with M-Pesa. iOS not yet.",
   ]),
   buildGeoFaqSet("EV charging", homepageChargingFaqs),
 ];

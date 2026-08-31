@@ -236,7 +236,7 @@ export const energySection = {
   layers: [
     { name: "Grid", text: "Kenya Power connection and e-mobility tariff first.", status: "Available" },
     { name: "Solar", text: "Canopy or rooftop PV for cost, shade and daytime yield.", status: "Available" },
-    { name: "Storage", text: "LiFePO₄ to peak-shave and hold a reserved bus window.", status: "Available" },
+    { name: "Storage", text: "LiFePO₄ to peak-shave and cover weak-grid evenings.", status: "Available" },
     { name: "Charging", text: "CCS2 DC and Type 2 AC sized to the duty cycle.", status: "Available" },
     { name: "Software", text: "OCPP monitoring, status and session records.", status: "In service" },
     { name: "Energy OS", text: "Full grid + solar + battery optimisation as Precifarm OS.", status: "In design" },

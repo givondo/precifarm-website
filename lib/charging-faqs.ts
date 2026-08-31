@@ -18,7 +18,7 @@ type ChargingFaq = FaqItem & { id: string };
 export const chargingHubFaq: ChargingFaq = {
   id: "charging-hub",
   question: "What is the Charging Hub?",
-  answer: `The Charging Hub at precifarm.com/network is Precifarm's map of DC fast chargers, Boda Hub battery swap stations, partner sites and planned corridor locations across Kenya. Filter by site type, check availability and navigate to a site. Live sites are labelled live; planned sites stay labelled planned.`,
+  answer: `The Charging Hub at precifarm.com/network is Precifarm's map of DC fast chargers, Boda Hub battery swap stations, partner sites and planned corridor locations across Kenya. Open it on the web or in the AI companion. Live sites are labelled live; planned sites stay labelled planned.`,
 };
 
 function pickFaqs(ids: readonly string[], pool: ChargingFaq[]): FaqItem[] {
@@ -121,12 +121,42 @@ export const consumerChargingFaqs: ChargingFaq[] = [
     answer:
       "Precifarm is Kenya's electric mobility infrastructure company. We design, finance, install and operate charging and energy systems for homes, fleets and highway corridors, with M-Pesa on every product.",
   },
+  {
+    id: "ai-companion",
+    question: "What is the Precifarm AI companion?",
+    answer:
+      "It is Precifarm's Android companion for charging in Kenya. Find a hub, size Pulse charger or Pod energy storage, and pay with M-Pesa. It is not a live chatbot. Download the APK from precifarm.com/download — not on the Play Store yet. iOS is not available yet.",
+  },
+  {
+    id: "depot",
+    question: "What is a Depot charging station?",
+    answer:
+      "Depot is a 22 kW AC pedestal for fleets that park for hours — vans, shuttles and yard vehicles. It adds 40+ kWh in about 120 minutes. Public DC at Depot and Corridor sites is from KES 39/kWh on M-Pesa. See Partners for fleet electrification.",
+  },
+  {
+    id: "boda-hub",
+    question: "What is Boda Hub?",
+    answer:
+      "Boda Hub is battery swap or kerbside charge for electric motorcycles. A rider is back on the road in under five minutes. Sites are listed on the Charging Hub. Compatible e-bodas include Roam Air and other listed models.",
+  },
+  {
+    id: "modular-energy",
+    question: "What is Precifarm modular energy?",
+    answer:
+      "P1 Go, P2 Home and the Pod enclosure are a conceptual energy-storage family — portable backup, a home tower and outdoor SME backup. They are not on sale yet and the Pod enclosure is not Pod energy storage (the home charger + battery on the home charging page). See precifarm.com/charging/modular-energy.",
+  },
+  {
+    id: "training",
+    question: "Do you train technicians on Precifarm chargers?",
+    answer:
+      "Yes. T1 site safety, T2 field technician and T3 commissioning programmes map to Pulse, Pod, Depot, Boda Hub and Corridor. Nairobi classroom plus field modules on live hubs. Enquire at precifarm.com/training.",
+  },
 ];
 
 const chargingFaqPool: ChargingFaq[] = [...consumerChargingFaqs, chargingHubFaq];
 
 export const homepageChargingFaqs: FaqItem[] = pickFaqs(
-  ["home-day-cost", "pulse-price", "public-dc-price", "lipa-pole-pole", "get-home-charger", "charging-hub"],
+  ["home-day-cost", "pulse-price", "public-dc-price", "lipa-pole-pole", "ai-companion", "charging-hub"],
   chargingFaqPool,
 );
 
@@ -140,8 +170,13 @@ export const faqIndexChargingFaqs: FaqItem[] = pickFaqs(
     "get-home-charger",
     "pulse-vs-pod",
     "spark",
+    "ai-companion",
     "pay-public",
     "charging-hub",
+    "depot",
+    "boda-hub",
+    "modular-energy",
+    "training",
     "solar-vs-grid",
     "payment-methods",
     "what-is-precifarm",
@@ -180,11 +215,11 @@ export const privateHouseChargingFaqs: FaqItem[] = [
 export const reservedWindowFaq: FaqItem = {
   question: "What is a reserved charging window?",
   answer:
-    "A contracted slot so a scheduled electric bus receives energy in time to leave. Public sessions do not displace a reserved window. This product is designed, not yet commissioned. Hubs are approved on contracted kWh and window reliability, not on solar yield alone.",
+    "A contracted slot so a fleet vehicle receives energy in time to leave. Public sessions do not displace a reserved window. This product is designed, not yet commissioned. Hubs are approved on contracted kWh and window reliability, not on solar yield alone.",
 };
 
 export const chargingServicesFaqs: FaqItem[] = pickFaqs(
-  ["home-day-cost", "pulse-price", "pay-public", "lipa-pole-pole"],
+  ["home-day-cost", "pulse-price", "pay-public", "ai-companion", "lipa-pole-pole"],
   consumerChargingFaqs,
 );
 
@@ -192,10 +227,10 @@ export const hubEngineeringFaqs: FaqItem[] = [
   {
     question: "Who is the engineering package for?",
     answer:
-      "Homeowners considering Pulse charger or Pod energy storage with solar, fleet and property partners sizing Depot or Boda Hub sites, and highway hosts planning Corridor DC. Reserved bus windows on Nairobi–Kisumu are included as a design-stage reference — not live commercial product yet.",
+      "Homeowners considering Pulse charger or Pod energy storage with solar, fleet and property partners sizing Depot or Boda Hub sites, and highway hosts planning Corridor DC. Reserved charging windows for fleets on Nairobi–Kisumu are a design-stage reference — not live commercial product yet.",
   },
   {
-    question: "Does solar power a reserved bus window in real time?",
+    question: "Does solar power a reserved charging window in real time?",
     answer:
       "No. Solar does not power the window as it happens. A 40–80 kWp canopy in Kenya yields roughly 180–440 kWh/day. Against an illustrative 1,500 kWh/day hub, PV covers about 12–30% of daily energy. Use it for cost, shade and resilience — not as a substitute for the Kenya Power feeder. Planning assumption.",
   },

@@ -31,7 +31,7 @@ export const aboutPage = {
     },
     {
       title: "Uptime is the product",
-      text: "Live versus planned is labelled honestly. Offline hardware breaks a morning and a timetable.",
+      text: "Live versus planned is labelled honestly. A charger that is down is a missed morning.",
     },
     {
       title: africaSection.title,

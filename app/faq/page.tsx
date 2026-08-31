@@ -37,7 +37,7 @@ export default async function FaqIndexPage() {
       ? [
           itemListSchema({
             name: "Precifarm FAQ",
-            description: "Frequently asked questions about Precifarm home charging, public DC and the Charging Hub in Kenya.",
+            description: "Frequently asked questions about Precifarm home charging, public DC, the Charging Hub and the AI companion in Kenya.",
             path: "/faq",
             items: listItems,
           }),
@@ -56,7 +56,7 @@ export default async function FaqIndexPage() {
       <PageHero
         eyebrow="FAQ"
         title="Frequently asked questions"
-        description="Answers on home charging — Pulse charger from KES 79,000, a typical day about KES 140, Lipa Pole Pole from KES 3,300/month, public DC in under 30 minutes and the Charging Hub."
+        description="Answers on home charging, public DC, Lipa Pole Pole, the Charging Hub and the Precifarm AI companion."
       />
       <section className="section-pad bg-white">
         <div className="page-container max-w-3xl">
@@ -103,11 +103,11 @@ export default async function FaqIndexPage() {
       </section>
       <PageCTA
         title="Still have questions?"
-        description="Request a house survey, check public DC rates or reach us on phone, email and WhatsApp."
+        description="Request a house survey, get the AI companion, or reach us on phone, email and WhatsApp."
         primaryHref="/charging/private-house"
         primaryLabel="Home charging"
-        secondaryHref="/contact"
-        secondaryLabel="Contact us"
+        secondaryHref="/download"
+        secondaryLabel="AI companion"
       />
     </>
   );

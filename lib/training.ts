@@ -60,21 +60,21 @@ export const trainingTiers: TrainingTier[] = [
     format: "Classroom (4 hrs) + guided hub walkthrough (4 hrs)",
     audience: "Hub staff, drivers, site hosts, partner front-line teams",
     summary:
-      "Understand EV charging fundamentals, high-voltage safety and Precifarm hub protocols before working near energized equipment or passenger areas.",
+      "Understand EV charging fundamentals, high-voltage safety and Precifarm hub protocols before working near energized equipment or public bays.",
     assessment: "Written safety quiz + observed hub walkthrough checklist",
     certificate: "Precifarm T1 — EV charging site safety (valid 24 months)",
     canDoAfter:
-      "Work safely near chargers, support passenger dwell, report faults and follow emergency procedures — without opening enclosures or performing live repairs.",
+      "Work safely near chargers, support drivers during a session, report faults and follow emergency procedures — without opening enclosures or performing live repairs.",
     outcomes: [
       "Identify DC charger components, CCS2 connectors and isolation points",
       "Follow lock-out / tag-out and emergency stop procedures",
       "Escalate faults correctly without attempting live repairs",
-      "Support passengers and fleet dwell safely during charging windows",
+      "Keep drivers and site users clear of live bays during charging windows",
     ],
     modules: [
-      "EV and battery basics for intercity buses and fleet vehicles",
+      "EV and battery basics for cars, vans and fleet vehicles",
       "High-voltage awareness and PPE requirements",
-      "Hub layout: chargers, solar canopy, storage and passenger zones",
+      "Hub layout: chargers, solar canopy, storage and public dwell areas",
       "Incident reporting, CCTV and emergency contact escalation",
     ],
   },

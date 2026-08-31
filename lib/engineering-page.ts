@@ -135,11 +135,11 @@ export const engineeringPageFaqs = [
     id: "who-for",
     question: "Who is the engineering package for?",
     answer:
-      "Homeowners sizing Pulse or Pod with solar, fleet partners planning Depot or Boda Hub yards, and highway hosts scoping Corridor T-canopy DC. Reserved bus windows on Nairobi–Kisumu are design-stage reference only — not live commercial product yet.",
+      "Homeowners sizing Pulse or Pod with solar, fleet partners planning Depot or Boda Hub yards, and highway hosts scoping Corridor T-canopy DC. Reserved charging windows for fleets on Nairobi–Kisumu are design-stage reference only — not live commercial product yet.",
   },
   {
     id: "solar-window",
-    question: "Does solar power a reserved bus window in real time?",
+    question: "Does solar power a reserved charging window in real time?",
     answer:
       "No. A 40–80 kWp canopy in Kenya yields roughly 180–440 kWh/day. Against an illustrative 1,500 kWh/day hub, PV covers about 12–30% of daily energy. Use solar for cost, shade and resilience — not as a substitute for the Kenya Power feeder. Planning assumption.",
   },

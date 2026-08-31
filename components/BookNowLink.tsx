@@ -1,15 +1,16 @@
+import { headerCta } from "@/lib/brand-messaging";
 import type { ComponentProps } from "react";
 
-type BookNowLinkProps = Omit<ComponentProps<"a">, "href">;
+type HubCtaLinkProps = Omit<ComponentProps<"a">, "href">;
 
-/** Primary charging CTA — replaces legacy bus booking anchor. */
+/** Primary header CTA — Charging Hub. */
 export default function BookNowLink({
   className,
   children,
   ...rest
-}: BookNowLinkProps) {
+}: HubCtaLinkProps) {
   return (
-    <a href="/network" className={className} {...rest}>
+    <a href={headerCta.href} className={className} {...rest}>
       {children}
     </a>
   );

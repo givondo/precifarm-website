@@ -39,7 +39,7 @@ export const trainingPage = {
       },
       {
         title: "Clear scope of work",
-        text: "Each certificate states what the holder may do — from safe passenger support at T1 to commissioning sign-off at T3 — so partners know who can open an enclosure.",
+        text: "Each certificate states what the holder may do — from safe bay support at T1 to commissioning sign-off at T3 — so partners know who can open an enclosure.",
       },
     ],
   },

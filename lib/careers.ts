@@ -53,8 +53,8 @@ export const careerOpenings: CareerOpening[] = [
     summary:
       "Run day-to-day hub activity — Corridor sessions, partner coordination and honest status updates when plans change.",
     points: [
-      "Operations or transport background; calm under timetable pressure",
-      "Clear communication with drivers, partners and passengers",
+      "Operations or transport background; calm when sessions queue and plans change.",
+      "Clear communication with drivers, partners and site hosts.",
       "Data-minded: sessions, dwell and incident logs matter",
     ],
   },

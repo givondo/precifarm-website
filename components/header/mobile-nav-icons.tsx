@@ -80,13 +80,3 @@ export function IconPhone({ className = "h-[18px] w-[18px]" }: { className?: str
     </svg>
   );
 }
-
-export function IconTicket({ className = "h-[18px] w-[18px]" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden>
-      <path d="M3 9a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v1H3V9Z" />
-      <path d="M3 11h18v4a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3v-4Z" />
-      <path d="M12 8v8" strokeLinecap="round" strokeDasharray="2 2" />
-    </svg>
-  );
-}
