@@ -23,11 +23,11 @@ export const routeRoles = [
       "Fleet and boda operators keep vehicles, riders and dispatch. Precifarm owns the energy layer.",
   },
   {
-    layer: "Highway operations",
+    layer: "Highway charging",
     precifarm:
-      "Precifarm publishes live hub status, session metering and M-Pesa. Passenger booking on Nairobi–Kisumu is a companion surface, not the charging product.",
+      "Precifarm publishes live hub status, session metering and M-Pesa on Corridor sites.",
     partners:
-      "Licensed operators own buses, employ drivers and hold PSV licences and passenger insurance.",
+      "Drivers and fleet operators use the Charging Hub for availability, navigation and session pay.",
   },
 ] as const;
 

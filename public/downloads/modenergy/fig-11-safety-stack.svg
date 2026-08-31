@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 780" width="1200" height="780" font-family="'Segoe UI',system-ui,sans-serif" data-pf-theme="v2">
+<style>
+.t{fill:#0a0a0a}.s{fill:#737373}
+.lbl{font-size:12.5px;font-weight:700;fill:#0a0a0a}
+.tiny{font-size:9.5px;fill:#737373}
+.hd{font-size:10.5px;font-weight:700;letter-spacing:.1em}
+.stp{font-size:10px;font-weight:600;fill:#0a0a0a}
+
+.pf-accent{fill:#2563eb}
+.pf-frame{fill:none;stroke:#e2e8f0;stroke-width:1}
+.bx,.dev{filter:url(#pf-shadow-sm)}
+.bxb{filter:url(#pf-shadow);fill:#f8fbff}
+
+</style>
+<defs>
+<linearGradient id="pf-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+  <stop offset="0%" stop-color="#f8fafc"/>
+  <stop offset="55%" stop-color="#ffffff"/>
+  <stop offset="100%" stop-color="#f1f5f9"/>
+</linearGradient>
+<pattern id="pf-grid" width="28" height="28" patternUnits="userSpaceOnUse">
+  <circle cx="1.5" cy="1.5" r="0.75" fill="#e2e8f0"/>
+</pattern>
+<linearGradient id="pf-blue" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" stop-color="#3b82f6"/>
+  <stop offset="100%" stop-color="#1d4ed8"/>
+</linearGradient>
+<linearGradient id="pf-blue-soft" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" stop-color="#eff6ff"/>
+  <stop offset="100%" stop-color="#dbeafe"/>
+</linearGradient>
+<filter id="pf-shadow" x="-8%" y="-8%" width="116%" height="120%">
+  <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.07"/>
+</filter>
+<filter id="pf-shadow-sm" x="-6%" y="-6%" width="112%" height="114%">
+  <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#0f172a" flood-opacity="0.06"/>
+</filter>
+<marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker>
+<marker id="ak" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#404040"/></marker>
+</defs>
+
+<g id="pf-background" aria-hidden="true">
+  <rect width="1200" height="780" fill="url(#pf-bg)"/>
+  <rect width="1200" height="780" fill="url(#pf-grid)" opacity="0.45"/>
+  <rect x="0" y="0" width="5" height="780" fill="#2563eb" rx="0"/>
+</g><text x="40" y="42" class="t" font-size="20" font-weight="700">Safety architecture</text>
+<text x="40" y="64" class="s" font-size="12.5">Nine layers, so that no single failure reaches the customer. Each layer acts on its own authority &#8212; none waits for a decision from above.</text>
+
+
+<!-- ===== LEFT: safety stack ===== -->
+<text x="40" y="112" class="hd" fill="#0a0a0a">THE SAFETY STACK  &#183;  INNERMOST AT THE BOTTOM</text>
+<g transform="translate(40,124)">
+<!-- 9 layers, widest at bottom -->
+<g>
+<rect x="150" y="0" width="300" height="42" rx="4" fill="#f5f5f5" stroke="#a3a3a3" stroke-width="1.2"/>
+<text x="164" y="19" class="lbl" font-size="11.5">9 &#183; MONITORING</text><text x="164" y="34" class="tiny">Energy OS fleet fault detection, trend alerts, service dispatch</text>
+<rect x="135" y="46" width="330" height="42" rx="4" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2"/>
+<text x="149" y="65" class="lbl" font-size="11.5" fill="#991b1b">8 &#183; SITE PROTECTION</text><text x="149" y="80" class="tiny">RCD &#183; MCB &#183; SPD &#183; earthing &#183; enclosure &#183; signage &#8212; CERT, installer</text>
+<rect x="120" y="92" width="360" height="42" rx="4" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2"/>
+<text x="134" y="111" class="lbl" font-size="11.5" fill="#991b1b">7 &#183; SYSTEM PROTECTION</text><text x="134" y="126" class="tiny">Anti-islanding &#183; statutory export limit &#183; insulation monitor &#8212; CERT</text>
+<rect x="105" y="138" width="390" height="42" rx="4" fill="#fff7ed" stroke="#ea580c" stroke-width="1.2"/>
+<text x="119" y="157" class="lbl" font-size="11.5" fill="#9a3412">6 &#183; POWER-ELECTRONICS PROTECTION</text><text x="119" y="172" class="tiny">Inverter over-current, over-voltage, over-temperature; DC bus fuse</text>
+<rect x="90" y="184" width="420" height="42" rx="4" fill="#fffbeb" stroke="#d97706" stroke-width="1.2"/>
+<text x="104" y="203" class="lbl" font-size="11.5" fill="#b45309">5 &#183; ISOLATION</text><text x="104" y="218" class="tiny">Galvanic isolation, creepage and clearance &#8212; rated to architecture (ERN-08)</text>
+<rect x="75" y="230" width="450" height="42" rx="4" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+<text x="89" y="249" class="lbl" font-size="11.5" fill="#1d4ed8">4 &#183; FUSE</text><text x="89" y="264" class="tiny">Module DC fuse, coordinated with bus fuse &#8212; study TO VALIDATE</text>
+<rect x="60" y="276" width="480" height="42" rx="4" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+<text x="74" y="295" class="lbl" font-size="11.5" fill="#1d4ed8">3 &#183; CONTACTOR</text><text x="74" y="310" class="tiny">Module disconnect with weld detection; pre-charge before close</text>
+<rect x="45" y="322" width="510" height="42" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="59" y="341" class="lbl" font-size="11.5" fill="#1d4ed8">2 &#183; BMS SAFETY</text><text x="59" y="356" class="tiny">Over/under voltage &#183; over-current &#183; short circuit &#183; over/under temperature &#183; imbalance</text>
+<rect x="30" y="368" width="540" height="42" rx="4" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="1.6"/>
+<text x="44" y="387" class="lbl" font-size="11.5" fill="#1e3a8a">1 &#183; CELL SAFETY</text><text x="44" y="402" class="tiny">LiFePO&#8324; chemistry &#183; cobalt-free &#183; compression control &#183; cell venting path</text>
+</g>
+<!-- authority arrow -->
+<path d="M596 400 V 20" stroke="#404040" stroke-width="1.6" marker-end="url(#ak)" fill="none"/>
+<text x="612" y="220" class="tiny" font-size="10" transform="rotate(90 612 220)" text-anchor="middle">EACH LAYER ACTS WITHOUT WAITING FOR THE ONE ABOVE</text>
+</g>
+
+<!-- principle box -->
+<g transform="translate(40,556)">
+<rect x="0" y="0" width="600" height="88" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2"/>
+<text x="16" y="22" font-size="11" font-weight="700" fill="#991b1b">TWO ABSOLUTE RULES</text>
+<text x="16" y="44" font-size="10.5" fill="#7f1d1d">1 &#183; No cloud command may raise a current, voltage or temperature limit. The cloud may only</text>
+<text x="16" y="58" font-size="10.5" fill="#7f1d1d">    request operation within limits already asserted locally by the device.</text>
+<text x="16" y="78" font-size="10.5" fill="#7f1d1d">2 &#183; PAYGO state can never affect a protection function or a safe shutdown (&#167;22.4).</text>
+</g>
+
+<!-- ===== RIGHT: fault response ===== -->
+<text x="680" y="112" class="hd" fill="#dc2626">FAULT RESPONSE  &#183;  THREE REPRESENTATIVE PATHS</text>
+
+<!-- over temperature -->
+<g transform="translate(680,124)">
+<text x="0" y="0" class="lbl" font-size="12">OVER TEMPERATURE</text>
+<g>
+<rect x="0" y="10" width="88" height="34" rx="4" fill="#fef3c7" stroke="#d97706" stroke-width="1.2"/><text x="44" y="31" class="stp" text-anchor="middle" fill="#b45309">DETECT</text>
+<path d="M88 27 H 104" stroke="#dc2626" stroke-width="1.6" marker-end="url(#ar)"/>
+<rect x="104" y="10" width="88" height="34" rx="4" fill="#fed7aa" stroke="#ea580c" stroke-width="1.2"/><text x="148" y="31" class="stp" text-anchor="middle" fill="#9a3412">DERATE</text>
+<path d="M192 27 H 208" stroke="#dc2626" stroke-width="1.6" marker-end="url(#ar)"/>
+<rect x="208" y="10" width="98" height="34" rx="4" fill="#fee2e2" stroke="#dc2626" stroke-width="1.2"/><text x="257" y="31" class="stp" text-anchor="middle" fill="#991b1b">DISCONNECT</text>
+<path d="M306 27 H 322" stroke="#dc2626" stroke-width="1.6" marker-end="url(#ar)"/>
+<rect x="322" y="10" width="62" height="34" rx="4" fill="#f5f5f5" stroke="#a3a3a3" stroke-width="1.2"/><text x="353" y="31" class="stp" text-anchor="middle">LOG</text>
+<path d="M384 27 H 400" stroke="#dc2626" stroke-width="1.6" marker-end="url(#ar)"/>
+<rect x="400" y="10" width="62" height="34" rx="4" fill="#f5f5f5" stroke="#a3a3a3" stroke-width="1.2"/><text x="431" y="31" class="stp" text-anchor="middle">ALERT</text>
+</g>
+<text x="0" y="62" class="tiny">Derate first, disconnect only if temperature keeps rising. The customer is told</text>
+<text x="0" y="75" class="tiny">"Paused to protect your battery" &#8212; not an error code.</text>
+</g>
+
+<!-- ground fault -->
+<g transform="translate(680,238)">
+<text x="0" y="0" class="lbl" font-size="12">GROUND FAULT</text>
+<g>
+<rect x="0" y="10" width="88" height="34" rx="4" fill="#fee2e2" stroke="#dc2626" stroke-width="1.2"/><text x="44" y="31" class="stp" text-anchor="middle" fill="#991b1b">DETECT</text>
+<path d="M88 27 H 104" stroke="#dc2626" stroke-width="1.6" marker-end="url(#ar)"/>
+<rect x="104" y="10" width="88" height="34" rx="4" fill="#fecaca" stroke="#dc2626" stroke-width="1.4"/><text x="148" y="31" class="stp" text-anchor="middle" fill="#991b1b">TRIP</text>
+<path d="M192 27 H 208" stroke="#dc2626" stroke-width="1.6" marker-end="url(#ar)"/>
+<rect x="208" y="10" width="98" height="34" rx="4" fill="#fecaca" stroke="#dc2626" stroke-width="1.4"/><text x="257" y="31" class="stp" text-anchor="middle" fill="#991b1b">SAFE STATE</text>
+<path d="M306 27 H 322" stroke="#dc2626" stroke-width="1.6" marker-end="url(#ar)"/>
+<rect x="322" y="10" width="62" height="34" rx="4" fill="#f5f5f5" stroke="#a3a3a3" stroke-width="1.2"/><text x="353" y="31" class="stp" text-anchor="middle">LOG</text>
+<path d="M384 27 H 400" stroke="#dc2626" stroke-width="1.6" marker-end="url(#ar)"/>
+<rect x="400" y="10" width="86" height="34" rx="4" fill="#0a0a0a"/><text x="443" y="31" class="stp" text-anchor="middle" fill="#fff">LOCK OUT</text>
+</g>
+<text x="0" y="62" class="tiny">No derate step and no automatic retry. A ground fault is a hard service lock &#8212;</text>
+<text x="0" y="75" class="tiny">clearance requires a technician. Customer sees "Service required &#8212; system safe".</text>
+</g>
+
+<!-- CAN failure -->
+<g transform="translate(680,352)">
+<text x="0" y="0" class="lbl" font-size="12">CAN COMMUNICATION FAILURE</text>
+<g>
+<rect x="0" y="10" width="88" height="34" rx="4" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2"/><text x="44" y="31" class="stp" text-anchor="middle" fill="#5b21b6">TIMEOUT</text>
+<path d="M88 27 H 104" stroke="#dc2626" stroke-width="1.6" marker-end="url(#ar)"/>
+<rect x="104" y="10" width="130" height="34" rx="4" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.2"/><text x="169" y="31" class="stp" text-anchor="middle" fill="#5b21b6">ISOLATE MODULE</text>
+<path d="M234 27 H 250" stroke="#dc2626" stroke-width="1.6" marker-end="url(#ar)"/>
+<rect x="250" y="10" width="140" height="34" rx="4" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/><text x="320" y="31" class="stp" text-anchor="middle" fill="#1d4ed8">CONTINUE REDUCED</text>
+<path d="M390 27 H 406" stroke="#dc2626" stroke-width="1.6" marker-end="url(#ar)"/>
+<rect x="406" y="10" width="80" height="34" rx="4" fill="#f5f5f5" stroke="#a3a3a3" stroke-width="1.2"/><text x="446" y="31" class="stp" text-anchor="middle">ALERT</text>
+</g>
+<text x="0" y="62" class="tiny">Three missed heartbeats isolate one module. The system does not shut down &#8212;</text>
+<text x="0" y="75" class="tiny">it runs on the remaining modules and says "One battery offline &#8212; reduced capacity".</text>
+</g>
+
+<!-- full matrix summary -->
+<g transform="translate(680,450)">
+<rect x="0" y="0" width="480" height="194" rx="6" fill="#fafafa" stroke="#e5e5e5"/>
+<text x="16" y="22" class="hd" fill="#404040">DESIGN PATTERN ACROSS ALL FAULTS</text>
+<line x1="16" y1="32" x2="464" y2="32" stroke="#e5e5e5"/>
+<g font-size="10.5">
+<text x="16" y="52" font-weight="700" fill="#0a0a0a">Reversible faults derate before they disconnect.</text>
+<text x="16" y="68" fill="#404040">Thermal, over-current and inverter over-temperature all reduce capability first.</text>
+<text x="16" y="92" font-weight="700" fill="#0a0a0a">Integrity faults never auto-retry.</text>
+<text x="16" y="108" fill="#404040">Ground fault, contactor weld and insulation failure go straight to a service lock.</text>
+<text x="16" y="132" font-weight="700" fill="#0a0a0a">Partial failures degrade, they do not cascade.</text>
+<text x="16" y="148" fill="#404040">One bad module reduces capacity; it does not take the site down.</text>
+<text x="16" y="172" font-weight="700" fill="#dc2626">Every fault has a code, and every code has a documented technician action (&#167;21.4).</text>
+</g>
+</g>
+
+<line x1="40" y1="720" x2="1160" y2="720" stroke="#e5e5e5"/>
+<text x="40" y="742" class="s" font-size="11">Figure 11 &#8212; Safety stack and fault-response paths. Layers 5, 7 and 8 require certification (KS IEC 62619, KS IEC 62109, IEC 61000) &#8212; none held at date of issue.</text>
+<text x="40" y="760" class="s" font-size="11">Fuse coordination (layer 4) requires a per-configuration study by a licensed Kenyan electrical designer and is explicitly out of scope of this document.</text>
+</svg>

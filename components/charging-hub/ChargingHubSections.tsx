@@ -144,7 +144,7 @@ export function ChargingHubHowItWorks() {
             href="/download"
             className="inline-flex rounded-full bg-charge-500 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-charge-400"
           >
-            Download the Android app
+            Get the AI companion
           </Link>
           <Link
             href="/guides/download-precifarm-android-app"
@@ -255,7 +255,7 @@ export function ChargingHubLocations() {
         <p className="mt-6 text-sm text-forest-500">
           For filters, session pay and the full list —{" "}
           <Link href="/download" className="font-medium text-charge-700 hover:text-charge-600">
-            download the Precifarm Android app
+            download the Precifarm AI companion
           </Link>
           .
         </p>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 860" width="1200" height="860" font-family="'Segoe UI',system-ui,sans-serif" data-pf-theme="v2">
+<defs>
+<linearGradient id="pf-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+  <stop offset="0%" stop-color="#f8fafc"/>
+  <stop offset="55%" stop-color="#ffffff"/>
+  <stop offset="100%" stop-color="#f1f5f9"/>
+</linearGradient>
+<pattern id="pf-grid" width="28" height="28" patternUnits="userSpaceOnUse">
+  <circle cx="1.5" cy="1.5" r="0.75" fill="#e2e8f0"/>
+</pattern>
+<linearGradient id="pf-blue" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" stop-color="#3b82f6"/>
+  <stop offset="100%" stop-color="#1d4ed8"/>
+</linearGradient>
+<linearGradient id="pf-blue-soft" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" stop-color="#eff6ff"/>
+  <stop offset="100%" stop-color="#dbeafe"/>
+</linearGradient>
+<filter id="pf-shadow" x="-8%" y="-8%" width="116%" height="120%">
+  <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.07"/>
+</filter>
+<filter id="pf-shadow-sm" x="-6%" y="-6%" width="112%" height="114%">
+  <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#0f172a" flood-opacity="0.06"/>
+</filter></defs>
+<style>
+.t{fill:#0a0a0a}.s{fill:#737373}
+.cal{stroke:#737373;stroke-width:.9;fill:none}
+.n{font-size:11px;font-weight:700;fill:#fff}
+.lb{font-size:12px;font-weight:600;fill:#0a0a0a}
+.ld{font-size:10px;fill:#737373}
+.tag{font-size:9px;font-weight:700;fill:#d97706}
+
+.pf-accent{fill:#2563eb}
+.pf-frame{fill:none;stroke:#e2e8f0;stroke-width:1}
+.bx,.dev{filter:url(#pf-shadow-sm)}
+.bxb{filter:url(#pf-shadow);fill:#f8fbff}
+
+</style>
+
+<g id="pf-background" aria-hidden="true">
+  <rect width="1200" height="860" fill="url(#pf-bg)"/>
+  <rect width="1200" height="860" fill="url(#pf-grid)" opacity="0.45"/>
+  <rect x="0" y="0" width="5" height="860" fill="#2563eb" rx="0"/>
+</g><text x="40" y="42" class="t" font-size="20" font-weight="700">Energy Module &#8212; exploded architecture</text>
+<text x="40" y="64" class="s" font-size="12.5">2.56 kWh &#183; 51.2 V &#183; 50 Ah LiFePO&#8324;. Internal arrangement, part counts and all dimensions are CONCEPTUAL and TBD pending prototype (P0).</text>
+
+
+<!-- warning band -->
+<rect x="40" y="96" width="1120" height="26" rx="4" fill="#fffbeb" stroke="#d97706" stroke-width="1"/>
+<text x="54" y="114" font-size="11" font-weight="700" fill="#b45309">CONCEPTUAL &#183; TBD &#183; VALIDATE IN PROTOTYPE &#8212; no internal dimension in this figure has been engineered. Cell count is nominal 16s; arrangement is illustrative only.</text>
+
+<!-- exploded stack, isometric, exploded upward along Y -->
+<g transform="translate(300,150)">
+
+<!-- 1 top cover + gasket -->
+<g transform="translate(0,0)">
+<path d="M0 40 L300 40 L360 0 L60 0 Z" fill="#e5e5e5" stroke="#262626" stroke-width="1.4"/>
+<path d="M8 34 L292 34 L348 6 L64 6 Z" fill="none" stroke="#dc2626" stroke-width="1.6" stroke-dasharray="5 3"/>
+<circle cx="150" cy="20" r="0" />
+</g>
+<line class="cal" x1="0" y1="30" x2="-150" y2="18"/><circle cx="-160" cy="16" r="11" fill="#0a0a0a"/><text x="-160" y="20" class="n" text-anchor="middle">1</text>
+<line class="cal" x1="300" y1="26" x2="440" y2="8"/><circle cx="452" cy="6" r="11" fill="#0a0a0a"/><text x="452" y="10" class="n" text-anchor="middle">2</text>
+
+<!-- 3+4 boards -->
+<g transform="translate(0,90)">
+<path d="M20 34 L280 34 L336 6 L76 6 Z" fill="#065f46" stroke="#262626" stroke-width="1.2"/>
+<g fill="#a7f3d0"><rect x="60" y="16" width="40" height="10"/><rect x="120" y="14" width="30" height="10"/><rect x="180" y="12" width="46" height="9"/></g>
+<path d="M200 60 L300 60 L340 40 L240 40 Z" fill="#1e3a8a" stroke="#262626" stroke-width="1.2"/>
+</g>
+<line class="cal" x1="20" y1="118" x2="-150" y2="106"/><circle cx="-160" cy="104" r="11" fill="#0a0a0a"/><text x="-160" y="108" class="n" text-anchor="middle">3</text>
+<line class="cal" x1="340" y1="132" x2="440" y2="120"/><circle cx="452" cy="118" r="11" fill="#0a0a0a"/><text x="452" y="122" class="n" text-anchor="middle">4</text>
+
+<!-- 5,6,7 protection tray -->
+<g transform="translate(0,180)">
+<path d="M20 44 L280 44 L336 12 L76 12 Z" fill="#f5f5f5" stroke="#262626" stroke-width="1.2"/>
+<rect x="52" y="20" width="46" height="20" rx="2" fill="#404040"/>
+<rect x="120" y="18" width="26" height="20" rx="2" fill="#d97706"/>
+<rect x="170" y="16" width="52" height="18" rx="2" fill="#7f1d1d"/>
+<rect x="242" y="14" width="36" height="18" rx="2" fill="#525252"/>
+</g>
+<line class="cal" x1="52" y1="212" x2="-150" y2="196"/><circle cx="-160" cy="194" r="11" fill="#0a0a0a"/><text x="-160" y="198" class="n" text-anchor="middle">5</text>
+<line class="cal" x1="133" y1="200" x2="-150" y2="234"/><circle cx="-160" cy="236" r="11" fill="#0a0a0a"/><text x="-160" y="240" class="n" text-anchor="middle">6</text>
+<line class="cal" x1="196" y1="196" x2="440" y2="200"/><circle cx="452" cy="198" r="11" fill="#0a0a0a"/><text x="452" y="202" class="n" text-anchor="middle">7</text>
+
+<!-- 8 busbars -->
+<g transform="translate(0,258)">
+<path d="M24 40 L276 40 L330 12 L78 12 Z" fill="none" stroke="#262626" stroke-width="1"/>
+<g fill="#b45309" stroke="#78350f" stroke-width=".8">
+<path d="M40 34 L250 34 L258 28 L48 28 Z"/><path d="M52 26 L262 26 L270 20 L60 20 Z"/>
+</g>
+</g>
+<line class="cal" x1="270" y1="282" x2="440" y2="276"/><circle cx="452" cy="274" r="11" fill="#0a0a0a"/><text x="452" y="278" class="n" text-anchor="middle">8</text>
+
+<!-- 9 cells 16s -->
+<g transform="translate(0,320)">
+<path d="M20 130 L280 130 L336 96 L76 96 Z" fill="none" stroke="#262626" stroke-width="1"/>
+<g>
+<!-- draw 16 prismatic cells in 2 rows of 8, iso -->
+<g fill="#93c5fd" stroke="#1e40af" stroke-width="1">
+<path d="M34 118 L64 118 L82 96 L52 96 Z"/><path d="M64 118 L64 62 L82 40 L82 96 Z" fill="#60a5fa"/><path d="M34 118 L34 62 L64 62 L64 118 Z" fill="#bfdbfe"/>
+<path d="M64 118 L94 118 L112 96 L82 96 Z"/><path d="M94 118 L94 62 L112 40 L112 96 Z" fill="#60a5fa"/><path d="M64 118 L64 62 L94 62 L94 118 Z" fill="#bfdbfe"/>
+<path d="M94 118 L124 118 L142 96 L112 96 Z"/><path d="M124 118 L124 62 L142 40 L142 96 Z" fill="#60a5fa"/><path d="M94 118 L94 62 L124 62 L124 118 Z" fill="#bfdbfe"/>
+<path d="M124 118 L154 118 L172 96 L142 96 Z"/><path d="M154 118 L154 62 L172 40 L172 96 Z" fill="#60a5fa"/><path d="M124 118 L124 62 L154 62 L154 118 Z" fill="#bfdbfe"/>
+<path d="M154 118 L184 118 L202 96 L172 96 Z"/><path d="M184 118 L184 62 L202 40 L202 96 Z" fill="#60a5fa"/><path d="M154 118 L154 62 L184 62 L184 118 Z" fill="#bfdbfe"/>
+<path d="M184 118 L214 118 L232 96 L202 96 Z"/><path d="M214 118 L214 62 L232 40 L232 96 Z" fill="#60a5fa"/><path d="M184 118 L184 62 L214 62 L214 118 Z" fill="#bfdbfe"/>
+<path d="M214 118 L244 118 L262 96 L232 96 Z"/><path d="M244 118 L244 62 L262 40 L262 96 Z" fill="#60a5fa"/><path d="M214 118 L214 62 L244 62 L244 118 Z" fill="#bfdbfe"/>
+<path d="M244 118 L274 118 L292 96 L262 96 Z"/><path d="M274 118 L274 62 L292 40 L292 96 Z" fill="#60a5fa"/><path d="M244 118 L244 62 L274 62 L274 118 Z" fill="#bfdbfe"/>
+</g>
+<text x="156" y="146" font-size="10.5" font-weight="700" fill="#1e40af" text-anchor="middle">16s PRISMATIC LiFePO&#8324; &#183; 51.2 V &#183; 50 Ah</text>
+<text x="156" y="160" font-size="9.5" fill="#737373" text-anchor="middle">arrangement illustrative &#183; cell format per decision E-01</text>
+</g>
+<!-- 10 compression -->
+<g stroke="#404040" stroke-width="3" fill="none">
+<path d="M26 118 L26 58"/><path d="M282 90 L282 30"/>
+</g>
+</g>
+<line class="cal" x1="120" y1="440" x2="-150" y2="330"/><circle cx="-160" cy="328" r="11" fill="#0a0a0a"/><text x="-160" y="332" class="n" text-anchor="middle">9</text>
+<line class="cal" x1="284" y1="380" x2="440" y2="350"/><circle cx="452" cy="348" r="11" fill="#0a0a0a"/><text x="452" y="352" class="n" text-anchor="middle">10</text>
+
+<!-- 11 sensors + 12 TIM -->
+<g transform="translate(0,506)">
+<path d="M20 40 L280 40 L336 8 L76 8 Z" fill="#fef3c7" stroke="#262626" stroke-width="1.1"/>
+<g fill="#dc2626"><circle cx="60" cy="30" r="4"/><circle cx="130" cy="26" r="4"/><circle cx="200" cy="22" r="4"/><circle cx="268" cy="18" r="4"/></g>
+<g stroke="#dc2626" stroke-width=".8" fill="none"><path d="M60 30 L130 26 L200 22 L268 18"/></g>
+</g>
+<line class="cal" x1="60" y1="536" x2="-150" y2="430"/><circle cx="-160" cy="428" r="11" fill="#0a0a0a"/><text x="-160" y="432" class="n" text-anchor="middle">11</text>
+<line class="cal" x1="300" y1="530" x2="440" y2="424"/><circle cx="452" cy="422" r="11" fill="#0a0a0a"/><text x="452" y="426" class="n" text-anchor="middle">12</text>
+
+<!-- 13 outer enclosure + 14 connectors + 15 rails -->
+<g transform="translate(0,556)">
+<path d="M0 60 L300 60 L360 20 L60 20 Z" fill="#e5e5e5" stroke="#262626" stroke-width="1.4"/>
+<path d="M0 60 L0 128 L300 128 L300 60 Z" fill="#fafafa" stroke="#262626" stroke-width="1.4"/>
+<path d="M300 60 L360 20 L360 88 L300 128 Z" fill="#d4d4d4" stroke="#262626" stroke-width="1.4"/>
+<!-- handles -->
+<rect x="34" y="76" width="60" height="10" rx="5" fill="#525252"/>
+<rect x="206" y="76" width="60" height="10" rx="5" fill="#525252"/>
+<!-- connectors on side face -->
+<path d="M306 74 L346 46 L346 66 L306 94 Z" fill="#404040"/><text x="326" y="76" font-size="8" fill="#fff" text-anchor="middle" transform="rotate(-35 326 72)">DC</text>
+<path d="M306 104 L346 76 L346 90 L306 118 Z" fill="#2563eb"/>
+<!-- rails -->
+<g stroke="#0a0a0a" stroke-width="2.5" fill="none"><path d="M-14 66 L-14 122"/><path d="M314 40 L314 96"/></g>
+</g>
+<line class="cal" x1="0" y1="660" x2="-150" y2="520"/><circle cx="-160" cy="518" r="11" fill="#0a0a0a"/><text x="-160" y="522" class="n" text-anchor="middle">13</text>
+<line class="cal" x1="346" y1="640" x2="440" y2="498"/><circle cx="452" cy="496" r="11" fill="#0a0a0a"/><text x="452" y="500" class="n" text-anchor="middle">14</text>
+<line class="cal" x1="-14" y1="700" x2="-150" y2="574"/><circle cx="-160" cy="572" r="11" fill="#0a0a0a"/><text x="-160" y="576" class="n" text-anchor="middle">15</text>
+</g>
+
+<!-- Legend -->
+<g transform="translate(790,150)">
+<rect x="0" y="0" width="370" height="620" rx="8" fill="#fafafa" stroke="#e5e5e5"/>
+<text x="18" y="28" font-size="12" font-weight="700" fill="#0a0a0a" letter-spacing=".06em">COMPONENT LEGEND</text>
+<line x1="18" y1="38" x2="352" y2="38" stroke="#e5e5e5"/>
+<g>
+<text x="18" y="60" class="lb">1 &#183; Top cover + gasket</text><text x="18" y="74" class="ld">Ingress protection, service access. <tspan class="tag">SEAL CLASS TBD</tspan></text>
+<text x="18" y="98" class="lb">2 &#183; Status indicator + NFC / QR</text><text x="18" y="112" class="ld">Customer status; service identity; anti-clone signature.</text>
+<text x="18" y="136" class="lb">3 &#183; BMS main PCB</text><text x="18" y="150" class="ld">Protection, SOC/SOH, CAN. Dual-bank signed firmware.</text>
+<text x="18" y="174" class="lb">4 &#183; Communication / isolation board</text><text x="18" y="188" class="ld">CAN transceiver + galvanic isolation. <tspan class="tag">CERT REQUIRED</tspan></text>
+<text x="18" y="212" class="lb">5 &#183; Contactor assembly</text><text x="18" y="226" class="ld">Load disconnect. Weld detection mandatory.</text>
+<text x="18" y="250" class="lb">6 &#183; Pre-charge resistor + relay</text><text x="18" y="264" class="ld">Hot-plug inrush limiting; timeout fault.</text>
+<text x="18" y="288" class="lb">7 &#183; DC fuse</text><text x="18" y="302" class="ld">Short-circuit protection. <tspan class="tag">COORDINATION STUDY TBD</tspan></text>
+<text x="18" y="326" class="lb">8 &#183; Busbars + interconnects</text><text x="18" y="340" class="ld">Current path. <tspan class="tag">TORQUE SPEC TO VALIDATE</tspan></text>
+<text x="18" y="364" class="lb">9 &#183; Prismatic LiFePO&#8324; cells, 16s</text><text x="18" y="378" class="ld">Energy storage. Multi-source mandatory before P4.</text>
+<text x="18" y="402" class="lb">10 &#183; Cell compression frame</text><text x="18" y="416" class="ld">Swelling control, structural. Prismatic-specific.</text>
+<text x="18" y="440" class="lb">11 &#183; NTC temperature sensor array</text><text x="18" y="454" class="ld">&#8805; 4 points. <tspan class="tag">COUNT + PLACEMENT TO VALIDATE</tspan></text>
+<text x="18" y="478" class="lb">12 &#183; Thermal interface / spreader</text><text x="18" y="492" class="ld">Conduction path to enclosure (&#167;11.3).</text>
+<text x="18" y="516" class="lb">13 &#183; Outer enclosure</text><text x="18" y="530" class="ld">Structure, EMC, handling. <tspan class="tag">MASS &#8212; SEE ERN-06</tspan></text>
+<text x="18" y="554" class="lb">14 &#183; Power + CAN connector block</text><text x="18" y="568" class="ld">Blind-mate; touch-safe unmated; polarity keyed.</text>
+<text x="18" y="592" class="lb">15 &#183; Guide rails + positive latch</text><text x="18" y="606" class="ld">Insertion, retention, generation keying.</text>
+</g>
+</g>
+
+<line x1="40" y1="800" x2="1160" y2="800" stroke="#e5e5e5"/>
+<text x="40" y="822" class="s" font-size="11">Figure 3 &#8212; Energy Module exploded view. CONCEPTUAL. Cell format subject to decision E-01; module mass subject to ERN-06 and decision E-04 (&#167;25).</text>
+<text x="40" y="840" class="s" font-size="11">Benchmark context: a comparable 2.56 kWh LFP module in the market weighs approximately 38 kg (&#167;18.1). Handling strategy must be resolved before prototype release.</text>
+</svg>

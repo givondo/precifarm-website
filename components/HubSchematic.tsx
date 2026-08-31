@@ -77,7 +77,7 @@ export default function HubSchematic({ className = "" }: { className?: string })
         <circle cx="312" cy="356" r="10" fill="#404040" />
         <path d="M266 340 L266 310" stroke="#171717" strokeWidth="3" />
         <text x="240" y="292" textAnchor="middle" className="hub-schematic-label">
-          Yutong U18 · CCS2
+          EV · CCS2
         </text>
 
         <rect x="480" y="300" width="120" height="56" fill="#fff" stroke="#d4d4d4" strokeWidth="1.5" rx="6" strokeDasharray="4 3" />

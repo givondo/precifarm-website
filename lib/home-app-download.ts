@@ -1,18 +1,18 @@
 import { chargingHub } from "@/lib/charging-hub";
 
-/** Homepage download app band — driver + fleet layers */
+/** Homepage AI companion band — driver + fleet layers */
 export const homeAppDownload = {
-  eyebrow: "App",
-  title: "Find charging on your phone.",
-  description: `Use the Android app to find a charger, request a home installation and pay with M-Pesa. iOS is not available yet.`,
+  eyebrow: "AI companion",
+  title: "Your charging companion.",
+  description: `The Precifarm AI companion on Android finds live hubs, sizes Pulse charger and Pod energy storage, and pays with M-Pesa. iOS is not available yet.`,
   features: [
     {
-      title: "Driver",
-      text: "Find a hub, check power and status, start a session and pay with M-Pesa.",
+      title: "AI companion",
+      text: "Find a hub, size home energy and pay with M-Pesa — one companion for how you actually drive.",
     },
     {
       title: chargingHub.name,
-      text: "Precifarm hubs, partner chargers and planned sites — live labelled live.",
+      text: "Precifarm hubs, partner chargers and planned sites — live labelled honestly.",
     },
     {
       title: "Home charging",
@@ -25,7 +25,7 @@ export const homeAppDownload = {
   ],
   phoneTagline: "From home charging to highway charging",
   phonePill: chargingHub.openLabel,
-  primaryLabel: "Download for Android",
+  primaryLabel: "Get the AI companion",
   iosLabel: "Download for iOS",
   iosUnavailableNote: "Not available yet",
   secondaryLabel: "Install guide & details",

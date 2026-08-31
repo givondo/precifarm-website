@@ -127,8 +127,8 @@ export const modularEnergyProducts: Record<
     title: "Essential power you can carry — solar in the box.",
     description:
       "Aluminum unibody, fold-flat handle, glass display, a Type 2 trickle lead and a foldable solar panel in the box. Top up from grid, car 12 V or unfold the panel outdoors — designed for a blackout bag or a trip, not as your daily EV charger.",
-    image: "/images/modular-energy/render-p1-go-v2.png",
-    imageAlt: "P1 Go portable energy unit on a tilt stand with foldable solar panel, glass display and Type 2 lead",
+    image: "/images/modular-energy/render-p1-go-v4.png",
+    imageAlt: "P1 Go portable energy unit on a tilt stand with foldable solar panel and glass display",
     specColumns: ["Item", "Target"],
     specs: [
       ["Role", "Portable backup"],

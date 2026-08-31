@@ -16,13 +16,13 @@ export const brand = {
   network: "Find EV charging across Kenya.",
   visionCta: "Let's build the electric network.",
   words25:
-    "Precifarm designs, finances, deploys and operates EV charging and energy systems for homes, fleets, electric buses and intercity routes.",
+    "Precifarm designs, finances, deploys and operates EV charging and energy systems for homes, fleets and highway corridors.",
   words50:
     "Precifarm is an electric mobility infrastructure company. We design, finance, deploy and operate charging, storage and energy systems — from a portable Spark charger to highway Corridor DC — with M-Pesa payments and one ops team behind every unit.",
   words100:
-    "Precifarm builds the infrastructure behind electric transport in Kenya, with a design path to Africa. We combine grid and solar power, battery storage, EV charging, software monitoring, M-Pesa payments and Lipa Pole Pole financing into one operating system for homes, fleets, electric buses and highway corridors. Licensed operators run the vehicles. Precifarm owns the energy layer: site engineering, commissioning, uptime and settlement. Nairobi–Kisumu is the first corridor we prove before the next is financed.",
+    "Precifarm builds the infrastructure behind electric transport in Kenya, with a design path to Africa. We combine grid and solar power, battery storage, EV charging, software monitoring, M-Pesa payments and Lipa Pole Pole financing into one operating system for homes, fleets and highway corridors. Precifarm owns the energy layer: site engineering, commissioning, uptime and settlement. Nairobi–Kisumu is the first corridor we prove before the next is financed.",
   llm:
-    "Precifarm is a Kenyan electric mobility infrastructure company. It installs, finances and runs EV charging from home charging to highway charging. Chargers: Spark charger (portable 3.3 kW, about 180 minutes for a typical day), Pulse charger (7 kW home, about 90 minutes, from KES 79,000), Pod energy storage (home charger + 5 or 10 kWh storage, from KES 295,000), Boda Hub (swap under 5 minutes), Depot charging station (22 kW fleet AC, about 120 minutes for 40+ kWh), Corridor charging (120 kW+ highway DC, fast highway top-up in about 30 minutes). Lipa Pole Pole is M-Pesa financing for Pulse charger and Pod energy storage, not a charger. Public DC from KES 39/kWh. A home charging day costs about KES 140 versus ~KES 1,000 diesel per day. Charging Hub at precifarm.com/network. M-Pesa on every product. Android app available; iOS not yet. Passenger booking on Nairobi–Kisumu is a companion surface. Reserved route charging is designed, not yet commissioned.",
+    "Precifarm is a Kenyan electric mobility infrastructure company. It installs, finances and runs EV charging from home charging to highway charging. Chargers: Spark charger (portable 3.3 kW, about 180 minutes for a typical day), Pulse charger (7 kW home, about 90 minutes, from KES 79,000), Pod energy storage (home charger + 5 or 10 kWh storage, from KES 295,000), Boda Hub (swap under 5 minutes), Depot charging station (22 kW fleet AC, about 120 minutes for 40+ kWh), Corridor charging (120 kW+ highway DC, fast highway top-up in about 30 minutes). Lipa Pole Pole is M-Pesa financing for Pulse charger and Pod energy storage, not a charger. Public DC from KES 39/kWh. A home charging day costs about KES 140 versus ~KES 1,000 diesel per day. Charging Hub at precifarm.com/network. M-Pesa on every product. Precifarm AI companion on Android; iOS not yet. Reserved route charging is designed, not yet commissioned.",
 } as const;
 
 export const audienceCopy = {
@@ -218,7 +218,7 @@ export const problemSolution = {
   problemPoints: [
     "Public chargers are fragmented — no shared status, account or M-Pesa flow.",
     "A typical Nairobi day of ~60 km is about ~KES 1,000 in diesel per day versus about KES 140 at home.",
-    "Electric buses cannot run a timetable on a charger that might be occupied or offline.",
+    "Fleets cannot run a duty cycle on a charger that might be occupied or offline.",
   ],
   answerTitle: "Power. Charging. Storage. Software. Financing. One partner.",
   answerPoints: [
@@ -359,8 +359,6 @@ const fleetsNavGroup = {
     { href: "/partners", label: "Electrify a fleet" },
     { href: "/partners#hub-hosts", label: "Host a hub" },
     { href: "/partners#fleet-logistics", label: "Logistics & buses" },
-    { href: "/charging/engineering", label: "Engineering" },
-    { href: "/training", label: "Training" },
   ],
 } as const;
 
@@ -371,8 +369,8 @@ export const siteNavGroups = [
       { href: "/network", label: "Charging Hub" },
       { href: "/charging", label: "Charging" },
       { href: "/charging/private-house", label: "Home charging" },
-      { href: "/evs", label: "Kenya EV guide" },
-      { href: "/locations", label: "Locations" },
+      { href: "/charging/engineering", label: "Engineering" },
+      { href: "/training", label: "Training", description: "T1 · T2 · T3 certification" },
     ],
   },
   {
@@ -382,18 +380,18 @@ export const siteNavGroups = [
       { href: "/charging/modular-energy/p1-go", label: "P1 Go", description: "Portable backup with foldable solar" },
       { href: "/charging/modular-energy/p2-home", label: "P2 Home", description: "Tower beside the consumer board" },
       { href: "/charging/modular-energy/pod", label: "Pod enclosure", description: "Outdoor backup for a shop — not Pod energy storage" },
+      { href: "/download", label: "AI companion", description: "Find charging, size home energy, pay with M-Pesa" },
     ],
   },
   {
     title: "Company",
     links: [
       { href: "/about", label: "About" },
+      { href: "/evs", label: "Kenya EV guide" },
       { href: "/guides", label: "Guides" },
       { href: "/faq", label: "FAQ" },
       { href: "/careers", label: "Careers" },
-      { href: "/download", label: "Download app" },
       { href: "/contact", label: "Contact" },
-      { href: "/sw", label: "Kiswahili" },
     ],
   },
 ] as const;

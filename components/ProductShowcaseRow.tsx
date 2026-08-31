@@ -16,7 +16,13 @@ export default function ProductShowcaseRow({ products, className = "" }: Props) 
   return (
     <div
       className={`grid gap-3 ${
-        products.length === 2 ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+        products.length === 2
+        ? "grid-cols-1 sm:grid-cols-2"
+        : products.length === 4
+          ? "grid-cols-2 lg:grid-cols-4"
+          : products.length === 6
+            ? "grid-cols-3 sm:grid-cols-6"
+            : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
       } ${className}`}
     >
       {products.map((product) => (

@@ -1,39 +1,8 @@
-export const vehicles = {
-  city: {
-    model: "Yutong U12",
-    role: "Within-city travel",
-    summary:
-      "Premium electric city service for dependable daily movement across Nairobi and other urban networks.",
-    image: "/images/yutong-u12.png",
-    imageAlt: "Yutong U12 electric city bus for within-city travel",
-  },
-  intercity: {
-    model: "Yutong U18",
-    role: "City-to-city travel",
-    summary:
-      "Long-distance electric bus for scheduled intercity routes such as Nairobi–Kisumu, with reserved charging and premium cabin comfort.",
-    image: "/images/yutong-u18.png",
-    imageAlt:
-      "Yutong U18 electric bus on the Nairobi–Kisumu route",
-  },
-  cargo: {
-    model: "ET01 electric cargo van",
-    role: "Fleet and logistics",
-    summary:
-      "Electric cargo van for last-mile and hub-linked freight — low-floor loading, 200 km range and contracted daytime charging at Precifarm hubs.",
-    image: "/images/et01.jpg",
-    imageAlt:
-      "ET01 electric cargo van for fleet and logistics on the Precifarm network",
-  },
-} as const;
-
 const routeHubImage = "/images/charging-route-hub.png";
 const fleetHubImage = "/images/charging-private-site.png";
-
 const routeHubAlt =
   "Precifarm intercity route charging hub with DC fast chargers, solar canopy and battery storage in Kenya";
 
-/** Hub photography — same ecosystem, different sites and angles */
 export const hubImages = {
   /** Home solar + storage + wall charging */
   homeSolar: {
@@ -45,7 +14,7 @@ export const hubImages = {
   /** Intercity route hub — bus at charger */
   intercityCharger: {
     image: routeHubImage,
-    imageAlt: "Electric bus charging at a Precifarm DC fast charger on an intercity route",
+    imageAlt: "Electric vehicles charging at a Precifarm DC fast charger on an intercity route",
     objectPosition: "object-[22%_58%]",
   },
   /** Fleet / private-site hub — solar canopy over multiple bays */
@@ -77,11 +46,9 @@ export const hubImageCrops = hubImages;
 
 export type HubImageCrop = HubImageKey;
 
-/** Vehicle images for mobility and intercity storytelling pages */
+/** Hub photography used on about, partners and charging pages */
 export const siteImages = {
-  bookingHero: hubImages.intercityCharger,
   about: hubImages.intercityWide,
   networkHub: hubImages.fleetCanopy,
-  routeShowcase: hubImages.showcasePremium,
   hubSpotlight: hubImages.fleetCanopy,
 } as const;

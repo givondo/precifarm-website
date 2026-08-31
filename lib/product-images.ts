@@ -4,7 +4,7 @@
 
 export const productImages = {
   chargingEcosystemHero: {
-    src: "/images/charging-ecosystem-hero-v11.png",
+    src: "/images/charging-ecosystem-hero-v16.png",
     alt: "Precifarm charging family — Pulse, Spark, P1 Go, Pod, Corridor T-canopy, Depot, Boda Hub with e-motorbike and white EV",
     brand: "none" as const,
   },
@@ -14,8 +14,8 @@ export const productImages = {
     brand: "spark" as const,
   },
   pulse: {
-    src: "/images/products/pulse.png",
-    alt: "Precifarm Pulse 7 kW home wallbox",
+    src: "/images/products/pulse-v5.png",
+    alt: "Precifarm Pulse 7 kW home wallbox — integrated Type 2 cable and holster on one unit",
     brand: "pulse" as const,
   },
   pod: {
@@ -23,14 +23,24 @@ export const productImages = {
     alt: "Precifarm Pod home battery and charger",
     brand: "pod" as const,
   },
+  podHomeHero: {
+    src: "/images/products/pod-home-hero-v2-garage-4x3.png",
+    alt: "Precifarm Pod and Pulse in a Kenyan home garage — modular storage charging an EV with solar and grid backup",
+    brand: "pod" as const,
+  },
+  podHomeHeroWide: {
+    src: "/images/products/pod-home-hero-v2-garage.png",
+    alt: "Precifarm Pod and Pulse in a Kenyan home garage — modular home energy and EV charging",
+    brand: "none" as const,
+  },
   boda: {
     src: "/images/products/boda.png",
     alt: "Precifarm Boda Hub battery swap cabinet — matte white aluminum with glass status strip for electric motorcycles",
     brand: "none" as const,
   },
   depot: {
-    src: "/images/products/depot.png",
-    alt: "Precifarm Depot 22 kW AC charging pedestal — fleet yard Type 2 charger in unified Precifarm industrial design",
+    src: "/images/products/depot-v4.png",
+    alt: "Precifarm Depot 22 kW AC charging pedestal — Type 2 cable integrated from body to holster",
     brand: "none" as const,
   },
   corridor: {

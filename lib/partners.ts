@@ -87,7 +87,7 @@ export const partnerTypes: PartnerType[] = [
     points: [
       "Survey-to-commission workflow with Precifarm-approved installation checklists",
       "Lipa Pole Pole M-Pesa instalments for Pulse charger and Pod energy storage — deposit, monthly and total shown upfront",
-      "Lead referral from precifarm.com and the Android app",
+      "Lead referral from precifarm.com and the AI companion",
       "Training tiers T1–T3 for field and hub operations",
     ],
     keeps:

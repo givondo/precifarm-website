@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="1200" height="700" font-family="'Segoe UI',system-ui,sans-serif" data-pf-theme="v2">
+<style>
+.t{fill:#0a0a0a}.s{fill:#737373}
+.tiny{font-size:10px;fill:#737373}
+.hd{font-size:10.5px;font-weight:700;letter-spacing:.1em}
+.it{font-size:10.5px;fill:#404040}
+
+.pf-accent{fill:#2563eb}
+.pf-frame{fill:none;stroke:#e2e8f0;stroke-width:1}
+.bx,.dev{filter:url(#pf-shadow-sm)}
+.bxb{filter:url(#pf-shadow);fill:#f8fbff}
+
+</style>
+<defs>
+<linearGradient id="pf-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+  <stop offset="0%" stop-color="#f8fafc"/>
+  <stop offset="55%" stop-color="#ffffff"/>
+  <stop offset="100%" stop-color="#f1f5f9"/>
+</linearGradient>
+<pattern id="pf-grid" width="28" height="28" patternUnits="userSpaceOnUse">
+  <circle cx="1.5" cy="1.5" r="0.75" fill="#e2e8f0"/>
+</pattern>
+<linearGradient id="pf-blue" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" stop-color="#3b82f6"/>
+  <stop offset="100%" stop-color="#1d4ed8"/>
+</linearGradient>
+<linearGradient id="pf-blue-soft" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" stop-color="#eff6ff"/>
+  <stop offset="100%" stop-color="#dbeafe"/>
+</linearGradient>
+<filter id="pf-shadow" x="-8%" y="-8%" width="116%" height="120%">
+  <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.07"/>
+</filter>
+<filter id="pf-shadow-sm" x="-6%" y="-6%" width="112%" height="114%">
+  <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#0f172a" flood-opacity="0.06"/>
+</filter><marker id="ab" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker></defs>
+
+<g id="pf-background" aria-hidden="true">
+  <rect width="1200" height="700" fill="url(#pf-bg)"/>
+  <rect width="1200" height="700" fill="url(#pf-grid)" opacity="0.45"/>
+  <rect x="0" y="0" width="5" height="700" fill="#2563eb" rx="0"/>
+</g><text x="40" y="42" class="t" font-size="20" font-weight="700">Tesla + BYD + African energy reality</text>
+<text x="40" y="64" class="s" font-size="12.5">Two companies proved two different things. Neither solved the problem Precifarm is solving. What Precifarm must not copy is as important as what it should.</text>
+
+
+<!-- three source columns -->
+<g transform="translate(40,104)">
+<!-- TESLA -->
+<g>
+<rect x="0" y="0" width="340" height="248" rx="8" fill="#fff" stroke="#0a0a0a" stroke-width="1.6"/>
+<rect x="0" y="0" width="340" height="34" rx="8" fill="#0a0a0a"/>
+<rect x="0" y="20" width="340" height="14" fill="#0a0a0a"/>
+<text x="18" y="23" font-size="13" font-weight="700" fill="#fff" letter-spacing=".1em">TESLA</text>
+<text x="322" y="23" font-size="9.5" fill="#a3a3a3" text-anchor="end">WHAT THEY PROVED</text>
+<text x="18" y="58" font-size="12.5" font-weight="700" fill="#0a0a0a">Integrated experience is the product</text>
+<g class="it">
+<text x="18" y="82">&#183; Powerwall 3: 13.5 kWh with the hybrid</text>
+<text x="18" y="96">  inverter built in &#8212; one box, one install</text>
+<text x="18" y="118">&#183; Expansion units are battery-only and</text>
+<text x="18" y="132">  share the leader unit's inverter</text>
+<text x="18" y="154">&#183; Up to 3 expansions &#8594; 54 kWh on one</text>
+<text x="18" y="168">  set of power electronics</text>
+<text x="18" y="190">&#183; ~97.5 % round-trip; up to 20 kW PV DC</text>
+<text x="18" y="212">&#183; One app, one account, OTA field fixes</text>
+</g>
+<text x="18" y="236" font-size="9.5" fill="#2563eb" font-weight="700">&#8594; Validates Precifarm's Power Core / Energy Module split</text>
+</g>
+<!-- BYD -->
+<g transform="translate(370,0)">
+<rect x="0" y="0" width="340" height="248" rx="8" fill="#fff" stroke="#0a0a0a" stroke-width="1.6"/>
+<rect x="0" y="0" width="340" height="34" rx="8" fill="#0a0a0a"/>
+<rect x="0" y="20" width="340" height="14" fill="#0a0a0a"/>
+<text x="18" y="23" font-size="13" font-weight="700" fill="#fff" letter-spacing=".1em">BYD</text>
+<text x="322" y="23" font-size="9.5" fill="#a3a3a3" text-anchor="end">WHAT THEY PROVED</text>
+<text x="18" y="58" font-size="12.5" font-weight="700" fill="#0a0a0a">Repetition of one module is the strategy</text>
+<g class="it">
+<text x="18" y="82">&#183; Battery-Box HVS module is </text><text x="200" y="82" font-weight="700" fill="#2563eb">2.56 kWh</text>
+<text x="18" y="96">  &#8212; the same energy as Precifarm's target</text>
+<text x="18" y="118">&#183; But at </text><text x="72" y="118" font-weight="700" fill="#dc2626">102.4 V</text><text x="128" y="118">, stacked in series</text>
+<text x="18" y="132">  to 512 V, holding current at 25 A/tower</text>
+<text x="18" y="154">&#183; Cobalt-free LiFePO&#8324; throughout</text>
+<text x="18" y="176">&#183; IP55, &#8722;10 to +50 &#176;C, &#8805; 96 % round-trip</text>
+<text x="18" y="198">&#183; VDE 2510-50 / IEC 62619 / CE / UN 38.3</text>
+<text x="18" y="220">&#183; Cost through repetition, not novelty</text>
+</g>
+<text x="18" y="240" font-size="9.5" fill="#dc2626" font-weight="700">&#8594; Exposes Precifarm's LV scaling ceiling (ERN-03)</text>
+</g>
+<!-- AFRICAN REALITY -->
+<g transform="translate(740,0)">
+<rect x="0" y="0" width="340" height="248" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<rect x="0" y="0" width="340" height="34" rx="8" fill="#2563eb"/>
+<rect x="0" y="20" width="340" height="14" fill="#2563eb" rx="3"/>
+<text x="18" y="23" font-size="13" font-weight="700" fill="#fff" letter-spacing=".1em">AFRICAN ENERGY REALITY</text>
+<text x="18" y="58" font-size="12.5" font-weight="700" fill="#1d4ed8">Neither company designed for this</text>
+<g class="it">
+<text x="18" y="82">&#183; Grid outages averaging ~8.4 h/month</text>
+<text x="18" y="96">  against a 1.5 h regulatory target</text>
+<text x="18" y="118">&#183; Grid energy at roughly KSh 20&#8211;28/kWh</text>
+<text x="18" y="140">&#183; M-Pesa is the default payment rail</text>
+<text x="18" y="162">&#183; Instalment energy purchase is normal</text>
+<text x="18" y="176">  consumer behaviour, not an experiment</text>
+<text x="18" y="198">&#183; Heat, dust and soiling cost real yield</text>
+<text x="18" y="220">&#183; Repair economics: fix a module, never</text>
+<text x="18" y="234">  replace a system</text>
+</g>
+</g>
+</g>
+
+<!-- synthesis arrows -->
+<g>
+<path d="M210 358 V 396" stroke="#2563eb" stroke-width="2.4" marker-end="url(#ab)" fill="none"/>
+<path d="M580 358 V 396" stroke="#2563eb" stroke-width="2.4" marker-end="url(#ab)" fill="none"/>
+<path d="M950 358 V 396" stroke="#2563eb" stroke-width="2.4" marker-end="url(#ab)" fill="none"/>
+</g>
+
+<!-- PRECIFARM -->
+<g transform="translate(40,398)">
+<rect x="0" y="0" width="1120" height="118" rx="8" fill="#0a0a0a"/>
+<text x="30" y="34" font-size="16" font-weight="700" fill="#fff" letter-spacing=".14em">PRECIFARM</text>
+<text x="30" y="54" font-size="10.5" fill="#a3a3a3">Tesla's system integration and software &#183; BYD's module repetition and LFP discipline &#183; designed around Kenyan energy economics from the first line</text>
+<g font-size="10.5" fill="#e5e5e5">
+<text x="30" y="82" font-weight="700" fill="#60a5fa">KEEP FROM TESLA</text>
+<text x="30" y="98">One integrated system &#183; battery-only expansion &#183; software-defined behaviour &#183; OTA &#183; one account</text>
+<text x="420" y="82" font-weight="700" fill="#60a5fa">KEEP FROM BYD</text>
+<text x="420" y="98">One repeated module &#183; LFP safety &#183; series voltage scaling &#183; certification rigour &#183; cost by repetition</text>
+<text x="810" y="82" font-weight="700" fill="#60a5fa">ADD THAT NEITHER HAS</text>
+<text x="810" y="98">M-Pesa &#183; ethical PAYGO &#183; Kenya localisation &#183; module-level service network</text>
+</g>
+</g>
+
+<!-- must not copy -->
+<g transform="translate(40,540)">
+<text x="0" y="0" class="hd" fill="#dc2626">WHAT PRECIFARM MUST NOT COPY</text>
+<line x1="0" y1="10" x2="1120" y2="10" stroke="#e5e5e5"/>
+<g font-size="10.5">
+<text x="0" y="32" font-weight="700" fill="#0a0a0a">Tesla's vertical cell manufacturing</text><text x="330" y="32" fill="#404040">Capital intensity with no African cost advantage. Precifarm buys cells.</text>
+<text x="0" y="54" font-weight="700" fill="#0a0a0a">Tesla's proprietary-ecosystem lock-in</text><text x="330" y="54" fill="#404040">Precifarm needs third-party inverter interoperability to reach the installed base (ERN-08).</text>
+<text x="0" y="76" font-weight="700" fill="#0a0a0a">BYD's gigafactory footprint</text><text x="330" y="76" fill="#404040">Precifarm assembles; it does not fabricate cells. Localisation starts with enclosures (&#167;20.2).</text>
+<text x="0" y="98" font-weight="700" fill="#0a0a0a">BYD's prismatic cell IP claims</text><text x="330" y="98" fill="#404040">Precifarm has none and must never imply otherwise.</text>
+<text x="0" y="120" font-weight="700" fill="#dc2626">Either company's certification claims</text><text x="330" y="120" fill="#404040">Precifarm holds no certification at the date of issue.</text>
+<text x="0" y="142" font-weight="700" fill="#0a0a0a">11.5 kW single-unit power targets</text><text x="330" y="142" fill="#404040">Kenya's domestic net-metering cap is 10 kW; most homes need 2.4&#8211;4.8 kW (&#167;16.7).</text>
+</g>
+</g>
+
+<text x="40" y="694" class="s" font-size="10.5">Figure 17 &#8212; Tesla / BYD / Precifarm synthesis. All competitor figures are BENCHMARK references from manufacturer documentation and market sources cited in &#167;28. Kenyan market figures are sourced in &#167;17.</text>
+</svg>

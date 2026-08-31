@@ -3,87 +3,178 @@ import Image from "next/image";
 import Link from "next/link";
 import JsonLd from "@/components/seo/JsonLd";
 import FaqAccordion from "@/components/seo/FaqAccordion";
+import ProductShowcaseRow from "@/components/ProductShowcaseRow";
+import PageCTA from "@/components/ui/PageCTA";
 import PageHero from "@/components/ui/PageHero";
-import { hubEngineeringFaqs } from "@/lib/charging-faqs";
+import SectionHeader from "@/components/ui/SectionHeader";
+import SpecTable from "@/components/modular-energy/SpecTable";
 import { engineeringDoc } from "@/lib/engineering-doc";
+import { engineeringPage, engineeringPageFaqs } from "@/lib/engineering-page";
+import { productNames } from "@/lib/home-products";
 import { pageJsonLd, pageMetadata } from "@/lib/seo/pages/helpers";
 
 export const metadata: Metadata = pageMetadata("/charging/engineering");
 
 export default function ChargingEngineeringPage() {
-  const doc = engineeringDoc;
+  const {
+    hero,
+    audience,
+    siteTypes,
+    energyStack,
+    productFit,
+    holdPoints,
+    process,
+    figures,
+    faqs,
+    download,
+    cta,
+  } = engineeringPage;
 
   return (
     <>
       <JsonLd data={pageJsonLd("/charging/engineering")} />
       <PageHero
-        eyebrow="Engineering"
-        title={doc.title}
-        description={doc.description}
+        eyebrow={hero.eyebrow}
+        title={hero.title}
+        description={hero.description}
         breadcrumbs={[
           { name: "Home", href: "/" },
           { name: "Charging", href: "/charging" },
-          { name: "Engineering package", href: "/charging/engineering" },
+          { name: "Engineering", href: "/charging/engineering" },
         ]}
       >
         <div className="flex flex-wrap items-center gap-3">
           <a
-            href={doc.downloadHref}
+            href={hero.primaryHref}
             download="precifarm-solar-charger-stations-engineering.pdf"
             className="inline-flex items-center justify-center rounded-full bg-charge-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-charge-500"
           >
-            {doc.downloadLabel}
+            {hero.primaryLabel}
           </a>
+          <Link
+            href={hero.secondaryHref}
+            className="inline-flex items-center justify-center rounded-full border border-border bg-white px-6 py-3 text-sm font-semibold text-forest-900 transition-colors hover:bg-muted"
+          >
+            {hero.secondaryLabel}
+          </Link>
           <a
-            href={doc.downloadHtmlHref}
+            href={engineeringDoc.downloadHtmlHref}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center rounded-full border border-border bg-white px-6 py-3 text-sm font-semibold text-forest-900 transition-colors hover:bg-muted"
           >
-            View HTML version
+            View HTML
           </a>
         </div>
-        <p className="mt-4 text-sm text-forest-500">
-          {doc.id} · v{doc.version} · {doc.date} · {doc.printHint}
-        </p>
+        <p className="mt-4 text-sm text-forest-500">{hero.meta}</p>
       </PageHero>
 
-      <section className="section-pad border-b border-border bg-white">
+      <section className="border-b border-border bg-muted/20 section-pad">
         <div className="page-container">
-          <div className="grid gap-5 sm:grid-cols-3">
-            {doc.highlights.map((item) => (
-              <div key={item.title} className="rounded-2xl border border-border bg-muted/30 p-5">
-                <h2 className="font-semibold text-forest-900">{item.title}</h2>
-                <p className="mt-2 text-sm leading-relaxed text-forest-600">{item.text}</p>
+          <SectionHeader eyebrow={audience.eyebrow} title={audience.title} />
+          <div className="mt-10 grid gap-5 sm:grid-cols-3">
+            {audience.cards.map((card) => (
+              <div key={card.title} className="rounded-2xl border border-border bg-white p-6 shadow-sm">
+                <h3 className="font-semibold text-forest-900">{card.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-forest-600">{card.text}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section-pad border-b border-border">
-        <div className="page-container">
-          <p className="text-eyebrow text-sm font-semibold uppercase tracking-widest text-charge-600">
-            Figures
-          </p>
-          <h2 className="heading-display mt-3 text-2xl sm:text-3xl">Visual design basis</h2>
-          <p className="mt-3 max-w-2xl text-base text-forest-600">
-            Concept imagery for the route hub, system architecture, typical two-bay site plan and
-            private house hybrid. Not construction drawings. The PDF includes the photo annex.
-          </p>
+      <section className="border-b border-border bg-white section-pad">
+        <div className="page-container space-y-14">
+          <div>
+            <SectionHeader eyebrow={siteTypes.eyebrow} title={siteTypes.title} />
+            <div className="mt-8">
+              <SpecTable
+                caption={siteTypes.caption}
+                columns={siteTypes.columns}
+                rows={siteTypes.rows}
+              />
+            </div>
+          </div>
 
-          <div className="mt-10 space-y-10">
-            {doc.figures.map((figure) => (
-              <figure key={figure.src} className="overflow-hidden rounded-2xl border border-border bg-white">
+          <div>
+            <SectionHeader
+              eyebrow={energyStack.eyebrow}
+              title={energyStack.title}
+              description={energyStack.description}
+            />
+            <div className="mt-8">
+              <SpecTable columns={energyStack.columns} rows={energyStack.rows} />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-border bg-muted/20 section-pad">
+        <div className="page-container">
+          <SectionHeader eyebrow={productFit.eyebrow} title={productFit.title} />
+          <div className="mt-8">
+            <ProductShowcaseRow
+              products={productFit.products.map((item) => ({
+                src: item.src,
+                alt: item.alt,
+                label: productNames[item.id as keyof typeof productNames],
+              }))}
+            />
+          </div>
+          <div className="mt-10">
+            <SpecTable columns={productFit.columns} rows={productFit.rows} />
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-border bg-white section-pad">
+        <div className="page-container grid gap-14 lg:grid-cols-2">
+          <div>
+            <SectionHeader eyebrow={holdPoints.eyebrow} title={holdPoints.title} />
+            <div className="mt-8">
+              <SpecTable
+                caption={holdPoints.caption}
+                columns={holdPoints.columns}
+                rows={holdPoints.rows}
+              />
+            </div>
+          </div>
+          <div>
+            <SectionHeader eyebrow={process.eyebrow} title={process.title} />
+            <ol className="mt-8 space-y-5">
+              {process.steps.map((item) => (
+                <li key={item.step} className="flex gap-4 rounded-2xl border border-border bg-muted/30 p-5">
+                  <span className="font-mono text-sm font-semibold text-charge-600">{item.step}</span>
+                  <div>
+                    <h3 className="font-semibold text-forest-900">{item.title}</h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-forest-600">{item.text}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-border bg-muted/20 section-pad">
+        <div className="page-container">
+          <SectionHeader
+            eyebrow={figures.eyebrow}
+            title={figures.title}
+            description={figures.description}
+          />
+          <div className="mt-10 grid gap-8 lg:grid-cols-2">
+            {figures.items.map((figure) => (
+              <figure key={figure.src} className="overflow-hidden rounded-2xl border border-border bg-white shadow-sm">
                 <Image
                   src={figure.src}
                   alt={figure.alt}
                   width={1200}
                   height={675}
                   className="h-auto w-full object-cover"
-                  sizes="(max-width: 1024px) 100vw, 880px"
+                  sizes="(max-width: 1024px) 100vw, 440px"
                 />
-                <figcaption className="border-t border-border px-5 py-3 text-sm text-forest-600">
+                <figcaption className="border-t border-border px-5 py-3 text-sm leading-relaxed text-forest-600">
                   {figure.caption}
                 </figcaption>
               </figure>
@@ -92,42 +183,36 @@ export default function ChargingEngineeringPage() {
         </div>
       </section>
 
-      <section className="section-pad border-b border-border bg-muted/20">
+      <section className="border-b border-border bg-white section-pad">
         <div className="page-container max-w-3xl">
-          <p className="text-eyebrow text-sm font-semibold uppercase tracking-widest text-charge-600">
-            Economics
-          </p>
-          <h2 className="heading-display mt-3 text-2xl sm:text-3xl">Hub energy and payback questions</h2>
-          <p className="mt-3 text-base text-forest-600">
-            Planning assumptions from the design basis — not quotations or live consumer tariffs.
-            Public DC is from KES 39/kWh; home Pulse charger starts from KES 79,000.
-          </p>
+          <SectionHeader
+            eyebrow={faqs.eyebrow}
+            title={faqs.title}
+            description={faqs.description}
+          />
           <div className="mt-8">
-            <FaqAccordion items={hubEngineeringFaqs} />
+            <FaqAccordion items={[...engineeringPageFaqs]} />
           </div>
         </div>
       </section>
 
       <section className="section-pad border-b border-border bg-charge-50/40">
         <div className="page-container max-w-3xl">
-          <p className="text-eyebrow text-sm font-semibold uppercase tracking-widest text-charge-600">
-            What&apos;s inside the download
-          </p>
-          <h2 className="heading-display mt-3 text-2xl sm:text-3xl">Design doc + task sheet</h2>
-          <ul className="mt-6 space-y-3 text-sm leading-relaxed text-forest-600">
-            {doc.contents.map((item) => (
+          <SectionHeader title={download.title} description={download.description} />
+          <ul className="mt-6 space-y-2.5 text-sm leading-relaxed text-forest-600">
+            {engineeringDoc.contents.map((item) => (
               <li key={item}>• {item}</li>
             ))}
           </ul>
           <div className="mt-8 flex flex-wrap gap-3">
             <a
-              href={doc.downloadHref}
+              href={engineeringDoc.downloadHref}
               download="precifarm-solar-charger-stations-engineering.pdf"
               className="inline-flex items-center justify-center rounded-full bg-charge-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-charge-500"
             >
-              {doc.downloadLabel}
+              {engineeringDoc.downloadLabel}
             </a>
-            {doc.related.map((link) => (
+            {download.related.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -139,6 +224,15 @@ export default function ChargingEngineeringPage() {
           </div>
         </div>
       </section>
+
+      <PageCTA
+        title={cta.title}
+        description={cta.description}
+        primaryHref={cta.primaryHref}
+        primaryLabel={cta.primaryLabel}
+        secondaryHref={cta.secondaryHref}
+        secondaryLabel={cta.secondaryLabel}
+      />
     </>
   );
 }

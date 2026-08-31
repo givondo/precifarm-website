@@ -21,7 +21,7 @@ export const chargingHowToBlock: AisoContentBlock = {
   type: "how_to",
   title: "How to get a Precifarm home charger",
   items: [
-    "Visit precifarm.com/charging/private-house or open the Precifarm app.",
+    "Visit precifarm.com/charging/private-house or open the Precifarm AI companion.",
     "Choose the Pulse charger or Pod energy storage and request a site survey.",
     "Pay the deposit via M-Pesa (Lipa Pole Pole instalments available).",
     "Precifarm installs and commissions your charger — typically within one day after survey approval.",

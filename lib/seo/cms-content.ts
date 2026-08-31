@@ -1,4 +1,4 @@
-import { HOMEPAGE_FAQ_SLUG, faqIndexChargingFaqs, homepageChargingFaqs } from "@/lib/charging-faqs";
+import { BOOKING_FAQ_SLUG, HOMEPAGE_FAQ_SLUG, faqIndexChargingFaqs, homepageChargingFaqs } from "@/lib/charging-faqs";
 import {
   cmsListSeoContent,
   type CmsSeoContent,
@@ -86,7 +86,7 @@ export async function getPublishedGuides(): Promise<CmsSeoContent[]> {
 
 export async function getPublishedFaqs(): Promise<CmsSeoContent[]> {
   const items = await cmsListSeoContent({ status: "published", locale: siteConfig.locale });
-  return items.filter(isFaqContent).sort(sortByPublishedDesc);
+  return items.filter(isFaqContent).filter((item) => item.slug !== BOOKING_FAQ_SLUG).sort(sortByPublishedDesc);
 }
 
 function faqsFromChargingDocuments(faqs: CmsSeoContent[]): FaqItem[] {

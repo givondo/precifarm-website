@@ -6,8 +6,8 @@ import type { FaqItem } from "@/lib/seo/types";
  * design basis. Handbook LCOC / payback figures stay on the engineering page
  * and are labelled planning / illustrative — never as live tariffs.
  *
- * Booking / Nairobi–Kisumu passenger FAQs live on the CMS slug
- * `precifarm-booking-faq` only — they must not appear on `/` or the main `/faq` list.
+ * Booking / Nairobi–Kisumu passenger FAQs are retired from the public site
+ * (`precifarm-booking-faq` 301s to `/faq`).
  */
 
 export const HOMEPAGE_FAQ_SLUG = "ev-charging-economics-faq";
@@ -48,7 +48,7 @@ export const consumerChargingFaqs: ChargingFaq[] = [
     id: "public-dc-price",
     question: "How much is public DC charging?",
     answer:
-      "Public DC at Precifarm Depot charging stations and Corridor charging sites is from KES 39/kWh. Corridor charging adds about 60 kWh in 30 minutes at 120 kW DC. The session price is shown in the app and at the charger before you start. Charging on your own home meter is usually cheaper per kWh than public DC.",
+      "Public DC at Precifarm Depot charging stations and Corridor charging sites is from KES 39/kWh. Corridor charging adds about 60 kWh in 30 minutes at 120 kW DC. The session price is shown in the AI companion and at the charger before you start. Charging on your own home meter is usually cheaper per kWh than public DC.",
   },
   {
     id: "home-vs-public",
@@ -66,7 +66,7 @@ export const consumerChargingFaqs: ChargingFaq[] = [
     id: "get-home-charger",
     question: "How do I get a home charger?",
     answer:
-      "Visit precifarm.com/charging/private-house or open the Precifarm app, request a Pulse charger or Pod energy storage survey, and pay the deposit via M-Pesa. Certified installation and commissioning typically take one day after survey approval. Three-year aftersale care is included on every home unit.",
+      "Visit precifarm.com/charging/private-house or open the Precifarm AI companion, request a Pulse charger or Pod energy storage survey, and pay the deposit via M-Pesa. Certified installation and commissioning typically take one day after survey approval. Three-year aftersale care is included on every home unit.",
   },
   {
     id: "house-installation-includes",
@@ -96,7 +96,7 @@ export const consumerChargingFaqs: ChargingFaq[] = [
     id: "pay-public",
     question: "How do I pay at a public charger?",
     answer:
-      "Start the session in the Precifarm Android app or at the charger and pay with M-Pesa. The price per kWh is shown before you start. Public DC at Depot charging stations and Corridor charging sites is from KES 39/kWh.",
+      "Start the session in the Precifarm AI companion or at the charger and pay with M-Pesa. The price per kWh is shown before you start. Public DC at Depot charging stations and Corridor charging sites is from KES 39/kWh.",
   },
   {
     id: "solar-vs-grid",

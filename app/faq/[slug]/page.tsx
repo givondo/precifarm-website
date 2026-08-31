@@ -5,6 +5,7 @@ import FaqAccordion from "@/components/seo/FaqAccordion";
 import JsonLd from "@/components/seo/JsonLd";
 import MarkdownContent from "@/components/seo/MarkdownContent";
 import TrustSignals from "@/components/seo/TrustSignals";
+import { BOOKING_FAQ_SLUG } from "@/lib/charging-faqs";
 import { faqsFromCmsContent } from "@/lib/seo/cms-content";
 import { cmsGetSeoContent, cmsListSeoContent, type CmsSeoContent } from "@/lib/seo/cms-client";
 import { siteConfig } from "@/lib/seo/config";
@@ -40,7 +41,9 @@ function buildSeo(slug: string, content: CmsSeoContent) {
 
 export async function generateStaticParams() {
   const items = await cmsListSeoContent({ status: "published", locale: siteConfig.locale });
-  return items.filter((item) => item.contentType === "faq").map((item) => ({ slug: item.slug }));
+  return items
+    .filter((item) => item.contentType === "faq" && item.slug !== BOOKING_FAQ_SLUG)
+    .map((item) => ({ slug: item.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -52,6 +55,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function FaqPage({ params }: Props) {
   const { slug } = await params;
+  if (slug === BOOKING_FAQ_SLUG) {
+    notFound();
+  }
   const content = await cmsGetSeoContent(slug);
   if (!content || content.contentType !== "faq") {
     notFound();

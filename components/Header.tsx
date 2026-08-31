@@ -13,7 +13,6 @@ import {
   IconMap,
   IconMenu,
   IconPhone,
-  IconTicket,
 } from "@/components/header/mobile-nav-icons";
 import Logo from "@/components/Logo";
 import { headerCta, siteNavGroups } from "@/lib/brand-messaging";
@@ -290,7 +289,6 @@ function MobileNavPanel({ pathname, onClose }: { pathname: string; onClose: () =
 
       <div className="mobile-nav-actions">
         <BookNowLink onClick={onClose} className="mobile-nav-book">
-          <IconTicket className="h-4 w-4 shrink-0" />
           {headerCta.label}
         </BookNowLink>
         <a href={contact.phoneHref} className="mobile-nav-icon-btn" aria-label="Call us" onClick={onClose}>

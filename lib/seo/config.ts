@@ -46,7 +46,7 @@ export const siteConfig = {
   },
   androidApp: {
     packageName: "com.precifarm.mobile",
-    name: "Precifarm",
+    name: "Precifarm AI companion",
     downloadPath: "/download",
     deepLinkScheme: "precifarm",
   },
@@ -72,13 +72,12 @@ export const publicRoutes = [
   { path: "/training", label: "Training", changefreq: "monthly" as const, priority: 0.76 },
   { path: "/about", label: "About", changefreq: "monthly" as const, priority: 0.75 },
   { path: "/careers", label: "Careers", changefreq: "monthly" as const, priority: 0.7 },
-  { path: "/download", label: "Download App", changefreq: "monthly" as const, priority: 0.7 },
+  { path: "/download", label: "AI companion", changefreq: "monthly" as const, priority: 0.7 },
   { path: "/contact", label: "Contact", changefreq: "yearly" as const, priority: 0.65 },
   { path: "/guides", label: "Guides", changefreq: "weekly" as const, priority: 0.8 },
   { path: "/faq", label: "FAQ", changefreq: "weekly" as const, priority: 0.75 },
   { path: "/locations", label: "Locations", changefreq: "weekly" as const, priority: 0.78 },
-  { path: "/book", label: "Charging", changefreq: "weekly" as const, priority: 0.5, sitemap: false as const },
-  { path: "/sw", label: "Kiswahili", changefreq: "weekly" as const, priority: 0.85 },
+  { path: "/sw", label: "Kiswahili", changefreq: "weekly" as const, priority: 0.6 },
 ] as const;
 
 export type PublicRoute = (typeof publicRoutes)[number];

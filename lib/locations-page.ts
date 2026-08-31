@@ -36,7 +36,7 @@ export const locationsPage = {
     primaryHref: "/contact",
     primaryLabel: "Contact Precifarm",
     secondaryHref: "/download",
-    secondaryLabel: "Download the app",
+    secondaryLabel: "Get the AI companion",
   },
 } as const;
 

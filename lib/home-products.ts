@@ -74,8 +74,8 @@ export const homeProducts: HomeProduct[] = [
     category: "home",
     priceLabel: "From KES 295,000 · Lipa Pole Pole",
     href: "/charging/private-house",
-    image: productImages.pod.src,
-    imageAlt: productImages.pod.alt,
+    image: productImages.podHomeHero.src,
+    imageAlt: productImages.podHomeHero.alt,
     imageBrand: productImages.pod.brand,
   },
   {
@@ -189,7 +189,7 @@ export const flagshipProductDetails: Record<FlagshipProductId, FlagshipProductDe
     headline: "120 kW+ DC Fast Charging",
     hook: "Charge fast. Keep moving.",
     description:
-      "Built for Kenya's highways. A BYD-style T-canopy with overhead cables and dual CCS2 — add range in minutes, pay with M-Pesa and keep moving.",
+      "Built for Kenya's highways. A T-canopy with overhead cables and dual CCS2 — add range in minutes, pay with M-Pesa and keep moving.",
     priceLabel: "KES 39/kWh",
     specs: ["120 kW+ DC", "T-canopy", "Highway", "M-Pesa"],
     bestFor: "Long-distance driving & fleets",

@@ -41,15 +41,15 @@ export const engineeringDoc = {
   highlights: [
     {
       title: "Home & hybrid",
-      text: "Pulse charger and Pod energy storage on the customer meter — optional rooftop solar and storage for weak-grid evenings. Sized to daily mileage, not speculative public capacity.",
+      text: "Pulse wallbox and Pod storage on the customer meter — optional rooftop solar for weak-grid evenings. Sized to daily mileage.",
     },
     {
-      title: "Highway & fleet hubs",
-      text: "Corridor DC, Depot AC and Boda Hub swap follow duty cycle: AC where vehicles park for hours, DC where justified. Solar and LiFePO₄ cut cost — they do not replace a Kenya Power study.",
+      title: "Fleet & depots",
+      text: "Depot AC and Boda Hub swap sized to duty cycle. Yard layout, import limit and M-Pesa billing in one pack.",
     },
     {
-      title: "Reserved route windows",
-      text: "Design basis for contracted bus charging on Nairobi–Kisumu — designed, not yet commissioned. Public sessions do not displace a reserved window.",
+      title: "Highway & route",
+      text: "Corridor T-canopy DC where intercity routes need it. Reserved bus windows on Nairobi–Kisumu are design-stage only.",
     },
   ],
   contents: [

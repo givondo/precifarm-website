@@ -124,8 +124,8 @@ export const privateHouseChargingPackages = [
       "Optional rooftop solar",
       "Lipa Pole Pole on M-Pesa · from KES 295,000",
     ],
-    image: productImages.pod.src,
-    imageAlt: productImages.pod.alt,
+    image: productImages.podHomeHero.src,
+    imageAlt: productImages.podHomeHero.alt,
     brand: productImages.pod.brand,
   },
 ] as const;

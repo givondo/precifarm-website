@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 780" width="1200" height="780" font-family="'Segoe UI',system-ui,sans-serif" data-pf-theme="v2">
+<style>
+.t{fill:#0a0a0a}.s{fill:#737373}
+.cal{stroke:#737373;stroke-width:.9;fill:none}
+.n{font-size:10.5px;font-weight:700;fill:#fff}
+.lb{font-size:11.5px;font-weight:600;fill:#0a0a0a}
+.ld{font-size:10px;fill:#737373}
+.ghost{fill:#fafafa;stroke:#262626;stroke-width:1.6}
+
+.pf-accent{fill:#2563eb}
+.pf-frame{fill:none;stroke:#e2e8f0;stroke-width:1}
+.bx,.dev{filter:url(#pf-shadow-sm)}
+.bxb{filter:url(#pf-shadow);fill:#f8fbff}
+
+</style>
+<defs>
+<linearGradient id="pf-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+  <stop offset="0%" stop-color="#f8fafc"/>
+  <stop offset="55%" stop-color="#ffffff"/>
+  <stop offset="100%" stop-color="#f1f5f9"/>
+</linearGradient>
+<pattern id="pf-grid" width="28" height="28" patternUnits="userSpaceOnUse">
+  <circle cx="1.5" cy="1.5" r="0.75" fill="#e2e8f0"/>
+</pattern>
+<linearGradient id="pf-blue" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" stop-color="#3b82f6"/>
+  <stop offset="100%" stop-color="#1d4ed8"/>
+</linearGradient>
+<linearGradient id="pf-blue-soft" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" stop-color="#eff6ff"/>
+  <stop offset="100%" stop-color="#dbeafe"/>
+</linearGradient>
+<filter id="pf-shadow" x="-8%" y="-8%" width="116%" height="120%">
+  <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.07"/>
+</filter>
+<filter id="pf-shadow-sm" x="-6%" y="-6%" width="112%" height="114%">
+  <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#0f172a" flood-opacity="0.06"/>
+</filter><marker id="ac" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0891b2"/></marker></defs>
+
+<g id="pf-background" aria-hidden="true">
+  <rect width="1200" height="780" fill="url(#pf-bg)"/>
+  <rect width="1200" height="780" fill="url(#pf-grid)" opacity="0.45"/>
+  <rect x="0" y="0" width="5" height="780" fill="#2563eb" rx="0"/>
+</g><text x="40" y="42" class="t" font-size="20" font-weight="700">P2 Home &#8212; cutaway</text>
+<text x="40" y="64" class="s" font-size="12.5">P2-4.8 SKU shown with two Energy Modules installed and two bays free. Transparent-shell view. CONCEPTUAL &#8212; no dimension engineered.</text>
+
+
+<g transform="translate(90,110)">
+<!-- shell -->
+<rect x="0" y="30" width="300" height="560" rx="16" class="ghost"/>
+<!-- telescoping handle -->
+<path d="M300 60 q46 8 46 52 v70" fill="none" stroke="#262626" stroke-width="8" stroke-linecap="round"/>
+<text x="352" y="46" font-size="9.5" fill="#737373">PULL HANDLE</text>
+
+<!-- ===== POWER CORE zone ===== -->
+<rect x="14" y="44" width="272" height="196" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="26" y="64" font-size="10" font-weight="700" fill="#2563eb" letter-spacing=".1em">POWER CORE &#8212; THE UNIT OF POWER</text>
+<!-- display -->
+<rect x="26" y="72" width="128" height="60" rx="5" fill="#0a0a0a"/>
+<text x="38" y="94" font-size="14" font-weight="700" fill="#fff">63%</text>
+<text x="38" y="108" font-size="8.5" fill="#a3a3a3">6 h 18 min left</text>
+<text x="38" y="124" font-size="8" fill="#22c55e">SOLAR CHARGING &#183; 1.2 kW</text>
+<!-- inverter block -->
+<rect x="162" y="72" width="112" height="36" rx="4" fill="#fff" stroke="#2563eb" stroke-width="1.1"/>
+<text x="218" y="88" font-size="9.5" font-weight="700" fill="#2563eb" text-anchor="middle">INVERTER /</text>
+<text x="218" y="100" font-size="9.5" font-weight="700" fill="#2563eb" text-anchor="middle">CHARGER 4.8 kW</text>
+<rect x="162" y="112" width="54" height="20" rx="3" fill="#fff" stroke="#2563eb" stroke-width="1.1"/><text x="189" y="126" font-size="8.5" fill="#2563eb" text-anchor="middle">MPPT</text>
+<rect x="220" y="112" width="54" height="20" rx="3" fill="#fff" stroke="#2563eb" stroke-width="1.1"/><text x="247" y="126" font-size="8.5" fill="#2563eb" text-anchor="middle">TRANSFER</text>
+<!-- heatsink + fan (dominant heat source) -->
+<rect x="26" y="142" width="128" height="46" rx="4" fill="#fef3c7" stroke="#d97706" stroke-width="1.2"/>
+<g stroke="#d97706" stroke-width="1.4"><path d="M36 148 v34"/><path d="M46 148 v34"/><path d="M56 148 v34"/><path d="M66 148 v34"/><path d="M76 148 v34"/><path d="M86 148 v34"/><path d="M96 148 v34"/><path d="M106 148 v34"/><path d="M116 148 v34"/><path d="M126 148 v34"/><path d="M136 148 v34"/><path d="M146 148 v34"/></g>
+<text x="90" y="200" font-size="8.5" font-weight="700" fill="#b45309" text-anchor="middle">HEATSINK &#183; 306 W LOSS AT RATED OUTPUT</text>
+<circle cx="222" cy="164" r="26" fill="#fff" stroke="#0891b2" stroke-width="1.4"/>
+<g stroke="#0891b2" stroke-width="1.4" fill="none"><path d="M222 142 q14 22 0 44"/><path d="M222 142 q-14 22 0 44"/><path d="M200 164 h44"/></g>
+<text x="222" y="204" font-size="8.5" fill="#0891b2" text-anchor="middle">DUCTED FAN</text>
+<!-- edge controller -->
+<rect x="162" y="212" width="112" height="22" rx="3" fill="#065f46"/>
+<text x="218" y="227" font-size="8.5" font-weight="700" fill="#a7f3d0" text-anchor="middle">EDGE CONTROLLER + RADIOS</text>
+<rect x="26" y="212" width="128" height="22" rx="3" fill="#fff" stroke="#2563eb" stroke-width="1"/>
+<text x="90" y="227" font-size="8.5" fill="#2563eb" text-anchor="middle">DC BUS &#183; FUSE &#183; SHUNT</text>
+
+<!-- ===== MODULE BAYS ===== -->
+<text x="26" y="264" font-size="10" font-weight="700" fill="#1d4ed8" letter-spacing=".1em">MODULE BAYS &#8212; THE UNIT OF ENERGY</text>
+<g>
+<!-- module 1 -->
+<rect x="14" y="272" width="272" height="66" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<rect x="26" y="282" width="30" height="7" rx="3.5" fill="#525252"/><rect x="244" y="282" width="30" height="7" rx="3.5" fill="#525252"/>
+<text x="150" y="306" font-size="12" font-weight="700" fill="#1d4ed8" text-anchor="middle">ENERGY MODULE 1 &#183; 2.56 kWh</text>
+<text x="150" y="322" font-size="9" fill="#1e40af" text-anchor="middle">16s LiFePO&#8324; &#183; BMS &#183; contactor &#183; fuse &#183; pre-charge</text>
+<circle cx="272" cy="330" r="4" fill="#22c55e"/>
+<!-- module 2 -->
+<rect x="14" y="344" width="272" height="66" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<rect x="26" y="354" width="30" height="7" rx="3.5" fill="#525252"/><rect x="244" y="354" width="30" height="7" rx="3.5" fill="#525252"/>
+<text x="150" y="378" font-size="12" font-weight="700" fill="#1d4ed8" text-anchor="middle">ENERGY MODULE 2 &#183; 2.56 kWh</text>
+<text x="150" y="394" font-size="9" fill="#1e40af" text-anchor="middle">identical part number &#183; hot-swappable</text>
+<circle cx="272" cy="402" r="4" fill="#22c55e"/>
+<!-- empty 3 -->
+<rect x="14" y="416" width="272" height="66" rx="5" fill="#fff" stroke="#a3a3a3" stroke-width="1.2" stroke-dasharray="5 3"/>
+<text x="150" y="446" font-size="11" fill="#737373" text-anchor="middle">BAY 3 &#8212; EMPTY</text>
+<text x="150" y="462" font-size="9" fill="#a3a3a3" text-anchor="middle">integrated lift rail (decision E-04)</text>
+<!-- empty 4 -->
+<rect x="14" y="488" width="272" height="66" rx="5" fill="#fff" stroke="#a3a3a3" stroke-width="1.2" stroke-dasharray="5 3"/>
+<text x="150" y="518" font-size="11" fill="#737373" text-anchor="middle">BAY 4 &#8212; EMPTY</text>
+<text x="150" y="534" font-size="9" fill="#a3a3a3" text-anchor="middle">max 10.24 kWh at 4 modules</text>
+</g>
+
+<!-- airflow path -->
+<g stroke="#0891b2" stroke-width="1.5" fill="none" opacity=".85">
+<path d="M-16 540 L-16 176 L 20 176" marker-end="url(#ac)"/>
+<path d="M280 176 L 316 176 L 316 120" marker-end="url(#ac)"/>
+</g>
+<text x="-42" y="560" font-size="8.5" fill="#0891b2">AIR IN</text>
+<text x="304" y="112" font-size="8.5" fill="#0891b2">AIR OUT</text>
+
+<!-- wheels + foot -->
+<circle cx="46" cy="600" r="22" fill="#404040"/><circle cx="46" cy="600" r="9" fill="#a3a3a3"/>
+<circle cx="252" cy="600" r="22" fill="#404040"/><circle cx="252" cy="600" r="9" fill="#a3a3a3"/>
+<text x="150" y="636" font-size="9" fill="#737373" text-anchor="middle">2 WHEELS + TILT AXIS &#183; ROLLS ROOM TO ROOM</text>
+
+<!-- terminal panel right side -->
+<g transform="translate(304,272)">
+<rect x="0" y="0" width="76" height="150" rx="4" fill="#f5f5f5" stroke="#a3a3a3"/>
+<text x="38" y="16" font-size="8" font-weight="700" fill="#404040" text-anchor="middle">SITE I/O</text>
+<rect x="10" y="24" width="56" height="18" rx="2" fill="#fff" stroke="#404040"/><text x="38" y="37" font-size="8" fill="#404040" text-anchor="middle">GRID IN</text>
+<rect x="10" y="48" width="56" height="18" rx="2" fill="#fff" stroke="#404040"/><text x="38" y="61" font-size="8" fill="#404040" text-anchor="middle">LOADS OUT</text>
+<rect x="10" y="72" width="56" height="18" rx="2" fill="#fff" stroke="#059669"/><text x="38" y="85" font-size="8" fill="#059669" text-anchor="middle">PV IN</text>
+<rect x="10" y="96" width="56" height="18" rx="2" fill="#fff" stroke="#404040"/><text x="38" y="109" font-size="8" fill="#404040" text-anchor="middle">EARTH</text>
+<rect x="10" y="120" width="56" height="18" rx="2" fill="#fff" stroke="#404040"/><text x="38" y="133" font-size="8" fill="#404040" text-anchor="middle">SERVICE</text>
+</g>
+</g>
+
+<!-- callouts -->
+<g>
+<line class="cal" x1="490" y1="270" x2="606" y2="180"/><circle cx="620" cy="178" r="11" fill="#0a0a0a"/><text x="620" y="182" class="n" text-anchor="middle">A</text>
+<line class="cal" x1="240" y1="290" x2="606" y2="252"/><circle cx="620" cy="250" r="11" fill="#0a0a0a"/><text x="620" y="254" class="n" text-anchor="middle">B</text>
+<line class="cal" x1="330" y1="450" x2="606" y2="344"/><circle cx="620" cy="342" r="11" fill="#0a0a0a"/><text x="620" y="346" class="n" text-anchor="middle">C</text>
+<line class="cal" x1="240" y1="590" x2="606" y2="440"/><circle cx="620" cy="438" r="11" fill="#0a0a0a"/><text x="620" y="442" class="n" text-anchor="middle">D</text>
+<line class="cal" x1="86" y1="700" x2="606" y2="536"/><circle cx="620" cy="534" r="11" fill="#0a0a0a"/><text x="620" y="538" class="n" text-anchor="middle">E</text>
+</g>
+
+<g transform="translate(648,158)">
+<text x="0" y="0" font-size="12" font-weight="700" fill="#0a0a0a" letter-spacing=".06em">CUTAWAY KEY</text>
+<line x1="0" y1="10" x2="500" y2="10" stroke="#e5e5e5"/>
+
+<text x="0" y="34" class="lb">A &#183; Power Core, top-mounted</text>
+<text x="0" y="50" class="ld">Inverter/charger, MPPT, transfer relay, DC bus protection and edge controller. Placed above the</text>
+<text x="0" y="64" class="ld">modules so its heat rises away from the cells rather than through them.</text>
+
+<text x="0" y="92" class="lb">B &#183; Ducted forced-air cooling &#8212; on the electronics, not the battery</text>
+<text x="0" y="108" class="ld">At rated output the Power Core dissipates ~306 W while each module dissipates only ~30 W at</text>
+<text x="0" y="122" class="ld">1.0 C (&#167;11.2). The heat problem is a power-electronics problem. Modules stay passive in P2.</text>
+<text x="0" y="136" class="ld">Filtered intake is mandatory: unfiltered airflow is a known failure path in dusty environments.</text>
+
+<text x="0" y="164" class="lb">C &#183; Four module bays &#8212; capacity follows the customer</text>
+<text x="0" y="180" class="ld">2.56 kWh per bay, 10.24 kWh at four modules. Bays are identical and hot-swappable. Firmware</text>
+<text x="0" y="194" class="ld">enumerates installed modules and limits continuous output accordingly (ERN-01, &#167;5.2):</text>
+<text x="0" y="212" class="ld" font-family="ui-monospace,Consolas,monospace">   1 module &#8594; 2.4 kW      2 modules &#8594; 4.8 kW      3&#8211;4 modules &#8594; Power Core is the limit</text>
+
+<text x="0" y="240" class="lb">D &#183; Two wheels and a tilt axis</text>
+<text x="0" y="256" class="ld">P2 rolls; it is not wall-mounted. With four modules installed the unit is far too heavy to hang on</text>
+<text x="0" y="270" class="ld">a residential wall &#8212; see decision E-10 (&#167;25).</text>
+
+<text x="0" y="298" class="lb">E &#183; Front service access</text>
+<text x="0" y="314" class="ld">One module can be replaced in &#8804; 30 min while the remaining modules continue to carry load.</text>
+<text x="0" y="328" class="ld">Repair the module &#8212; do not replace the system (&#167;21).</text>
+
+<rect x="0" y="350" width="500" height="86" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="1"/>
+<text x="14" y="370" font-size="10.5" font-weight="700" fill="#b45309">ENGINEERING REVIEW NOTE &#8212; ERN-01 (resolved in v2.0)</text>
+<text x="14" y="388" font-size="10" fill="#92400e">v1.0 paired a 4 kW inverter with a single 2.56 kW module. Delivering 4 kW AC from one module</text>
+<text x="14" y="402" font-size="10" fill="#92400e">would require 83.1 A &#8212; a 1.66 C discharge against a 1.00 C continuous limit.</text>
+<text x="14" y="420" font-size="10" fill="#92400e">Resolved by the two-tier SKU above, enforced in firmware rather than hardware.</text>
+
+<rect x="0" y="448" width="500" height="66" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="1"/>
+<text x="14" y="468" font-size="10.5" font-weight="700" fill="#b45309">ENGINEERING REVIEW NOTE &#8212; ERN-04</text>
+<text x="14" y="486" font-size="10" fill="#92400e">A single module accepts only 1.54 kW of charge (30 A &#215; 51.2 V). The P2-4.8 target PV input of</text>
+<text x="14" y="500" font-size="10" fill="#92400e">2.0 kWp exceeds this. Firmware clamps charge current and dispatches surplus to load first.</text>
+</g>
+
+<line x1="40" y1="740" x2="1160" y2="740" stroke="#e5e5e5"/>
+<text x="40" y="762" class="s" font-size="11">Figure 5 &#8212; P2 Home cutaway, P2-4.8 SKU. CONCEPTUAL. Thermal loss figures are calculated from stated assumptions (&#167;16.1) and require validation by test T-03 and T-28.</text>
+</svg>

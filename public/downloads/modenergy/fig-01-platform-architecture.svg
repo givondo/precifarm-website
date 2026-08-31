@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" width="1200" height="720" font-family="'Segoe UI',system-ui,sans-serif" data-pf-theme="v2">
+<style>
+.t{fill:#0a0a0a}.m{fill:#404040}.s{fill:#737373}
+.bx{fill:#fff;stroke:#0a0a0a;stroke-width:1.4}
+.bxs{fill:#f5f5f5;stroke:#d4d4d4;stroke-width:1.2}
+.bxb{fill:#eff6ff;stroke:#2563eb;stroke-width:1.4}
+.lbl{font-size:15px;font-weight:600;fill:#0a0a0a}
+.sub{font-size:12px;fill:#525252}
+.tiny{font-size:10.5px;fill:#737373}
+.lay{font-size:10.5px;font-weight:700;letter-spacing:.09em;fill:#2563eb}
+.fl{stroke:#0a0a0a;stroke-width:1.6;fill:none}
+.flb{stroke:#2563eb;stroke-width:2;fill:none}
+.fld{stroke:#a3a3a3;stroke-width:1.2;fill:none;stroke-dasharray:4 3}
+
+.pf-accent{fill:#2563eb}
+.pf-frame{fill:none;stroke:#e2e8f0;stroke-width:1}
+.bx,.dev{filter:url(#pf-shadow-sm)}
+.bxb{filter:url(#pf-shadow);fill:#f8fbff}
+
+</style>
+<defs>
+<linearGradient id="pf-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+  <stop offset="0%" stop-color="#f8fafc"/>
+  <stop offset="55%" stop-color="#ffffff"/>
+  <stop offset="100%" stop-color="#f1f5f9"/>
+</linearGradient>
+<pattern id="pf-grid" width="28" height="28" patternUnits="userSpaceOnUse">
+  <circle cx="1.5" cy="1.5" r="0.75" fill="#e2e8f0"/>
+</pattern>
+<linearGradient id="pf-blue" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" stop-color="#3b82f6"/>
+  <stop offset="100%" stop-color="#1d4ed8"/>
+</linearGradient>
+<linearGradient id="pf-blue-soft" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" stop-color="#eff6ff"/>
+  <stop offset="100%" stop-color="#dbeafe"/>
+</linearGradient>
+<filter id="pf-shadow" x="-8%" y="-8%" width="116%" height="120%">
+  <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.07"/>
+</filter>
+<filter id="pf-shadow-sm" x="-6%" y="-6%" width="112%" height="114%">
+  <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#0f172a" flood-opacity="0.06"/>
+</filter>
+<marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0a0a0a"/></marker>
+<marker id="ab" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+<marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a3a3a3"/></marker>
+</defs>
+
+
+<g id="pf-background" aria-hidden="true">
+  <rect width="1200" height="720" fill="url(#pf-bg)"/>
+  <rect width="1200" height="720" fill="url(#pf-grid)" opacity="0.45"/>
+  <rect x="0" y="0" width="5" height="720" fill="#2563eb" rx="0"/>
+</g><text x="40" y="42" class="t" font-size="20" font-weight="700">High-level platform architecture</text>
+<text x="40" y="64" class="s" font-size="12.5">Every layer degrades to a safe state without the layer above it. A device with no network runs correctly.</text>
+
+
+<!-- Layer bands -->
+<rect x="32" y="108" width="1136" height="92" rx="8" fill="#eff6ff" opacity="0.45"/>
+<rect x="32" y="228" width="1136" height="118" rx="8" fill="#dbeafe" opacity="0.35"/>
+<rect x="32" y="384" width="1136" height="98" rx="8" fill="#f8fafc" opacity="0.8"/>
+<rect x="32" y="528" width="1136" height="92" rx="8" fill="#f1f5f9" opacity="0.9"/>
+<rect x="32" y="652" width="1136" height="58" rx="8" fill="#eff6ff" opacity="0.5"/>
+
+<!-- Layer 1 customer -->
+<text x="40" y="118" class="lay">LAYER 1 &#183; CUSTOMER</text>
+<rect x="40" y="128" width="230" height="58" rx="6" class="bxb"/><text x="155" y="152" class="lbl" text-anchor="middle">Customer</text><text x="155" y="170" class="sub" text-anchor="middle">one account, all products</text>
+<rect x="300" y="128" width="180" height="58" rx="6" class="bx"/><text x="390" y="152" class="lbl" text-anchor="middle">Precifarm App</text><text x="390" y="170" class="tiny" text-anchor="middle">iOS &#183; Android</text>
+<rect x="500" y="128" width="150" height="58" rx="6" class="bx"/><text x="575" y="152" class="lbl" text-anchor="middle">SMS</text><text x="575" y="170" class="tiny" text-anchor="middle">no-smartphone path</text>
+<rect x="670" y="128" width="170" height="58" rx="6" class="bx"/><text x="755" y="152" class="lbl" text-anchor="middle">Agent / dealer</text><text x="755" y="170" class="tiny" text-anchor="middle">assisted service</text>
+<rect x="860" y="128" width="300" height="58" rx="6" class="bxs"/><text x="1010" y="152" class="lbl" text-anchor="middle">Precifarm CMS</text><text x="1010" y="170" class="tiny" text-anchor="middle">survey &#8594; quote &#8594; install &#8594; commission</text>
+
+<path class="flb" d="M155 186 V 216" marker-end="url(#ab)"/>
+<path class="fl" d="M390 186 V 216" marker-end="url(#a)"/>
+<path class="fl" d="M575 186 V 216" marker-end="url(#a)"/>
+<path class="fl" d="M755 186 V 216" marker-end="url(#a)"/>
+<path class="fl" d="M1010 186 V 216" marker-end="url(#a)"/>
+
+<!-- Layer 2 Energy OS -->
+<text x="40" y="240" class="lay">LAYER 2 &#183; ENERGY OS  (CLOUD &#8212; ADVISORY ONLY)</text>
+<rect x="40" y="250" width="1120" height="86" rx="6" class="bxb"/>
+<text x="60" y="276" class="lbl">Energy OS</text>
+<text x="60" y="294" class="sub">Fleet telemetry &#183; prediction &#183; optimisation &#183; diagnostics &#183; PAYGO &#183; service &#183; OTA orchestration</text>
+<g font-size="11.5" font-weight="600" fill="#2563eb">
+<rect x="470" y="300" width="98" height="24" rx="12" fill="#fff" stroke="#2563eb" stroke-width="1"/><text x="519" y="316" text-anchor="middle">MONITOR</text>
+<rect x="578" y="300" width="92" height="24" rx="12" fill="#fff" stroke="#2563eb" stroke-width="1"/><text x="624" y="316" text-anchor="middle">PREDICT</text>
+<rect x="680" y="300" width="96" height="24" rx="12" fill="#fff" stroke="#2563eb" stroke-width="1"/><text x="728" y="316" text-anchor="middle">OPTIMIZE</text>
+<rect x="786" y="300" width="98" height="24" rx="12" fill="#fff" stroke="#2563eb" stroke-width="1"/><text x="835" y="316" text-anchor="middle">DIAGNOSE</text>
+<rect x="894" y="300" width="106" height="24" rx="12" fill="#fff" stroke="#2563eb" stroke-width="1"/><text x="947" y="316" text-anchor="middle">AUTOMATE</text>
+<rect x="1010" y="300" width="90" height="24" rx="12" fill="#fff" stroke="#2563eb" stroke-width="1"/><text x="1055" y="316" text-anchor="middle">FINANCE</text>
+</g>
+<text x="60" y="318" class="tiny">Cloud may never raise a</text><text x="60" y="330" class="tiny">current, voltage or temp limit.</text>
+
+<path class="flb" d="M600 336 V 372" marker-end="url(#ab)"/>
+<text x="614" y="358" class="tiny">Wi-Fi / BLE / optional LTE &#183; store-and-forward buffer</text>
+
+<!-- Layer 3 Edge -->
+<text x="40" y="396" class="lay">LAYER 3 &#183; EDGE CONTROLLER  (DETERMINISTIC, LOCAL)</text>
+<rect x="40" y="406" width="1120" height="76" rx="6" class="bx"/>
+<text x="60" y="432" class="lbl">Edge controller</text>
+<text x="60" y="450" class="sub">CAN aggregation &#183; local rule engine &#183; deterministic control priority &#183; OTA agent &#183; telemetry buffer</text>
+<text x="60" y="470" class="tiny">Priority order: 1 safety interlocks &#8594; 2 module faults &#8594; 3 statutory export limit &#8594; 4 customer reserve floor &#8594; 5 PAYGO policy &#8594; 6 solar optimisation &#8594; 7 tariff schedule</text>
+
+<path class="fl" d="M600 482 V 516" marker-end="url(#a)"/>
+
+<!-- Layer 4 Power core -->
+<text x="40" y="540" class="lay">LAYER 4 &#183; POWER CORE / POWER UNIT  &#8212;  THE UNIT OF POWER (kW)</text>
+<rect x="40" y="550" width="1120" height="62" rx="6" class="bx"/>
+<g font-size="12" font-weight="600" fill="#0a0a0a">
+<rect x="58" y="566" width="150" height="30" rx="4" class="bxs"/><text x="133" y="586" text-anchor="middle">Inverter / charger</text>
+<rect x="218" y="566" width="110" height="30" rx="4" class="bxs"/><text x="273" y="586" text-anchor="middle">Solar MPPT</text>
+<rect x="338" y="566" width="150" height="30" rx="4" class="bxs"/><text x="413" y="586" text-anchor="middle">Transfer / bypass</text>
+<rect x="498" y="566" width="180" height="30" rx="4" class="bxs"/><text x="588" y="586" text-anchor="middle">System protection</text>
+<rect x="688" y="566" width="150" height="30" rx="4" class="bxs"/><text x="763" y="586" text-anchor="middle">Thermal control</text>
+<rect x="848" y="566" width="140" height="30" rx="4" class="bxs"/><text x="918" y="586" text-anchor="middle">DC bus + fuse</text>
+<rect x="998" y="566" width="144" height="30" rx="4" class="bxs"/><text x="1070" y="586" text-anchor="middle">OS gateway</text>
+</g>
+
+<path class="fl" d="M600 612 V 640" marker-end="url(#a)"/>
+<text x="614" y="632" class="tiny">CAN 2.0B &#183; 500 kbit/s &#183; 1 s heartbeat</text>
+
+<!-- Layer 5 modules -->
+<text x="40" y="664" class="lay">LAYER 5 &#183; ENERGY MODULES  &#8212;  THE UNIT OF ENERGY (kWh)</text>
+<g>
+<rect x="40" y="674" width="128" height="34" rx="4" class="bxb"/><text x="104" y="696" class="lbl" text-anchor="middle" font-size="13">2.56 kWh</text>
+<rect x="176" y="674" width="128" height="34" rx="4" class="bxb"/><text x="240" y="696" class="lbl" text-anchor="middle" font-size="13">2.56 kWh</text>
+<rect x="312" y="674" width="128" height="34" rx="4" class="bxb"/><text x="376" y="696" class="lbl" text-anchor="middle" font-size="13">2.56 kWh</text>
+<rect x="448" y="674" width="128" height="34" rx="4" class="bxb"/><text x="512" y="696" class="lbl" text-anchor="middle" font-size="13">2.56 kWh</text>
+<rect x="584" y="674" width="60" height="34" rx="4" fill="#fff" stroke="#a3a3a3" stroke-width="1.2" stroke-dasharray="4 3"/><text x="614" y="696" class="s" text-anchor="middle" font-size="13">+ N</text>
+</g>
+<text x="664" y="690" class="sub">Same module in P1 context, P2 bay and Pod rack.</text>
+<text x="664" y="706" class="tiny">Adding modules adds kWh &#8212; not kW. See Figure 22.</text>
+
+<!-- right side: loads and sources -->
+<rect x="880" y="660" width="280" height="48" rx="6" class="bxs"/>
+<text x="1020" y="680" class="lbl" text-anchor="middle" font-size="13">Loads &#183; Solar &#183; Grid &#183; EV</text>
+<text x="1020" y="698" class="tiny" text-anchor="middle">served through the Power Core, never directly</text>
+<path class="fld" d="M660 691 H 876" marker-end="url(#ag)"/>
+</svg>

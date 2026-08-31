@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en-KE">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Precifarm Modular Energy — Industrial Design Overview (PF-MODENERGY-DESIGN-001 v1.5)</title>
+<meta name="description" content="Three-page industrial design overview for Precifarm P1 Go, Energy Module, P2 Home and Pod — conceptual renders and Kenya installation context." />
+<link rel="stylesheet" href="./precifarm-document-brand.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #0a0a0a;
+    --muted: #404040;
+    --subtle: #737373;
+    --line: #e5e5e5;
+    --soft: #f5f5f7;
+    --blue: #2563eb;
+    --blue-soft: #eff6ff;
+    --font: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    color: var(--muted);
+    background: #fff;
+    font-family: var(--font);
+    font-size: 8.5pt;
+    line-height: 1.45;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .toolbar {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; justify-content: space-between;
+    padding: .7rem 1rem; background: rgba(255,255,255,.96);
+    border-bottom: 1px solid var(--line);
+  }
+  .toolbar .id { font-family: var(--mono); font-size: .78rem; color: var(--subtle); }
+  .toolbar a, .toolbar button {
+    display: inline-flex; align-items: center; border-radius: 999px;
+    padding: .5rem .95rem; font-size: .82rem; font-weight: 600; text-decoration: none;
+    border: 1px solid var(--line); background: #fff; color: var(--ink); cursor: pointer;
+  }
+  .toolbar .primary { background: var(--blue); border-color: var(--blue); color: #fff; }
+
+  .sheet { max-width: 210mm; margin: 0 auto; }
+
+  .page {
+    position: relative;
+    min-height: 277mm;
+    padding: 10mm 14mm 16mm;
+    break-after: page;
+    page-break-after: always;
+  }
+  .page:last-child { break-after: auto; page-break-after: auto; }
+
+  .page-head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 6mm; padding-bottom: 3mm; border-bottom: 2px solid var(--ink);
+  }
+  .brand { display: flex; align-items: center; gap: 2.5mm; }
+  .brand img { width: 8mm; height: 8mm; }
+  .brand-word { display: block; font-size: 7pt; font-weight: 700; letter-spacing: .14em; color: var(--ink); }
+  .brand-sub { display: block; font-size: 6.5pt; color: var(--subtle); }
+  .doc-id { font-family: var(--mono); font-size: 6.5pt; color: var(--subtle); text-align: right; line-height: 1.5; }
+
+  .page-cover { padding-top: 8mm; }
+  .cover-accent {
+    position: absolute; top: 0; left: 0; width: 5mm; height: 100%;
+    background: linear-gradient(180deg, var(--blue) 0%, var(--blue-soft) 100%);
+  }
+  .cover-eyebrow {
+    margin: 0 0 2mm; font-family: var(--mono); font-size: 6.8pt;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--blue);
+  }
+  .cover-title {
+    margin: 0 0 3mm; font-size: 26pt; font-weight: 700; line-height: 1.08;
+    letter-spacing: -.03em; color: var(--ink);
+  }
+  .cover-lead { margin: 0 0 5mm; max-width: 130mm; font-size: 10pt; color: var(--muted); }
+  .cover-pills { display: flex; flex-wrap: wrap; gap: 2mm; margin-bottom: 6mm; }
+  .cover-pills span {
+    padding: 1.5mm 4mm; border-radius: 999px; font-size: 6.5pt; font-weight: 600;
+    letter-spacing: .06em; background: var(--blue-soft); color: var(--blue);
+  }
+  .hero {
+    margin: 0; border-radius: 10px; overflow: hidden;
+    border: 1px solid var(--line); box-shadow: 0 12px 36px rgba(15,23,42,.1);
+    background: var(--soft);
+  }
+  .hero img { display: block; width: 100%; height: 118mm; object-fit: cover; object-position: center 42%; }
+  .hero figcaption {
+    padding: 3mm 4mm; font-size: 7pt; color: var(--subtle);
+    border-top: 1px solid var(--line); background: #fff;
+  }
+  .cover-foot {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm;
+    margin-top: 5mm; padding: 4mm; border-radius: 8px; background: var(--soft);
+    font-size: 7pt;
+  }
+  .cover-foot span { display: block; color: var(--subtle); font-size: 6pt; text-transform: uppercase; letter-spacing: .08em; }
+  .cover-foot strong { color: var(--ink); font-size: 7.5pt; }
+  .cover-note {
+    margin: 4mm 0 0; padding: 3mm 4mm; border-left: 2px solid var(--blue);
+    font-size: 6.8pt; color: var(--subtle); background: #fafafa; border-radius: 0 6px 6px 0;
+  }
+
+  .sec-title {
+    margin: 0 0 1mm; font-size: 14pt; font-weight: 700; letter-spacing: -.02em; color: var(--ink);
+  }
+  .sec-lead { margin: 0 0 5mm; font-size: 8.5pt; color: var(--subtle); max-width: 150mm; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+  .card {
+    margin: 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
+    background: #fff; box-shadow: 0 8px 24px rgba(15,23,42,.06);
+  }
+  .card-img { background: var(--soft); }
+  .card-img img { display: block; width: 100%; height: 52mm; object-fit: cover; object-position: center; }
+  .card figcaption { padding: 3mm 3.5mm 4mm; }
+  .card-name { display: block; font-size: 9.5pt; font-weight: 700; color: var(--ink); }
+  .card-tag {
+    display: inline-block; margin: 1mm 0 2mm; padding: .8mm 2.5mm; border-radius: 999px;
+    font-size: 6pt; font-weight: 600; letter-spacing: .04em;
+    background: var(--blue-soft); color: var(--blue);
+  }
+  .card-text { margin: 0; font-size: 7pt; line-height: 1.45; color: var(--subtle); }
+
+  .ctx-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3.5mm; margin-bottom: 5mm; }
+  .ctx {
+    margin: 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: #fff;
+    box-shadow: 0 8px 24px rgba(15,23,42,.06);
+  }
+  .ctx-img { background: var(--soft); }
+  .ctx-img img { display: block; width: 100%; height: 58mm; object-fit: cover; object-position: center; }
+  .ctx figcaption { padding: 3mm; }
+  .ctx strong { display: block; font-size: 8.5pt; color: var(--ink); margin-bottom: 1mm; }
+  .ctx p { margin: 0; font-size: 6.8pt; line-height: 1.42; color: var(--subtle); }
+
+  .lang-box {
+    padding: 4mm 5mm; border-radius: 10px; background: var(--soft); border: 1px solid var(--line);
+  }
+  .lang-box h3 { margin: 0 0 2mm; font-size: 9pt; color: var(--ink); }
+  .lang-list { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5mm 6mm; }
+  .lang-list li { font-size: 7pt; color: var(--muted); padding-left: 3mm; position: relative; }
+  .lang-list li::before {
+    content: ""; position: absolute; left: 0; top: .55em; width: 1.2mm; height: 1.2mm;
+    border-radius: 50%; background: var(--blue);
+  }
+  .page-foot {
+    margin-top: 4mm; padding-top: 3mm; border-top: 1px solid var(--line);
+    font-size: 6.5pt; color: var(--subtle); line-height: 1.5;
+  }
+
+  .sec-lead-tight { margin-bottom: 3mm; font-size: 7.5pt; }
+  .param-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5mm; margin-bottom: 3.5mm; }
+  .param-block { min-width: 0; }
+
+  .table-shell {
+    margin-bottom: 3.5mm;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(15, 23, 42, .05);
+  }
+  .table-caption {
+    padding: 2mm 3mm;
+    font-size: 7.2pt;
+    font-weight: 700;
+    letter-spacing: .01em;
+    color: var(--ink);
+    background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+    border-bottom: 1px solid #cbd5e1;
+  }
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+    font-size: 7pt;
+    line-height: 1.45;
+  }
+  .data-table thead th {
+    background: #1d4ed8;
+    color: #fff;
+    font-weight: 600;
+    font-size: 6.4pt;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    padding: 2.2mm 2.8mm;
+    text-align: left;
+    vertical-align: bottom;
+    border-right: 1px solid rgba(255,255,255,.12);
+  }
+  .data-table thead th:last-child { border-right: none; }
+  .data-table thead th.num { text-align: right; }
+  .data-table thead th.hl { background: #1e40af; }
+  .data-table .th-main { display: block; line-height: 1.25; }
+  .data-table .th-unit {
+    display: block;
+    margin-top: .4mm;
+    font-size: 5.8pt;
+    font-weight: 500;
+    letter-spacing: .02em;
+    text-transform: none;
+    opacity: .82;
+  }
+  .data-table tbody td {
+    padding: 2mm 2.8mm;
+    border-bottom: 1px solid #e2e8f0;
+    vertical-align: top;
+    color: var(--muted);
+  }
+  .data-table tbody tr:nth-child(even) td { background: #f8fafc; }
+  .data-table tbody tr:last-child td { border-bottom: none; }
+  .data-table tbody td.label {
+    font-weight: 600;
+    color: var(--ink);
+    background: #f1f5f9 !important;
+    width: 24%;
+  }
+  .data-table tbody td.num {
+    font-family: var(--mono);
+    font-size: 6.9pt;
+    font-weight: 500;
+    text-align: right;
+    white-space: nowrap;
+    color: #334155;
+  }
+  .data-table tbody td.hl {
+    background: #dbeafe !important;
+    color: #1e3a8a;
+    font-weight: 700;
+  }
+  .data-table tbody tr.row-total td {
+    font-weight: 700;
+    color: var(--ink);
+    background: #e2e8f0 !important;
+    border-top: 2px solid #94a3b8;
+  }
+  .callout {
+    margin-top: 2mm;
+    padding: 3mm 3.5mm;
+    border-radius: 8px;
+    font-size: 6.8pt;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+  .callout strong { color: var(--ink); }
+  .callout-blue {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-left: 3px solid var(--blue);
+  }
+
+  .ev-hero {
+    margin: 0 0 3mm; border-radius: 10px; overflow: hidden;
+    border: 1px solid var(--line); background: var(--soft);
+    box-shadow: 0 8px 24px rgba(15,23,42,.06);
+  }
+  .ev-hero img { display: block; width: 100%; height: 38mm; object-fit: cover; object-position: center; }
+  .ev-hero figcaption {
+    padding: 2mm 3mm; font-size: 6.5pt; color: var(--subtle);
+    border-top: 1px solid var(--line); background: #fff;
+  }
+
+  .ev-strip {
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 2mm; margin-bottom: 3mm;
+  }
+  .ev-thumb {
+    margin: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #fff;
+  }
+  .ev-thumb-img { background: var(--soft); padding: 1.5mm; }
+  .ev-thumb-img img { display: block; width: 100%; height: 22mm; object-fit: contain; object-position: center; }
+  .ev-thumb figcaption { padding: 1.5mm 2mm 2mm; text-align: center; }
+  .ev-thumb strong { display: block; font-size: 6pt; color: var(--ink); line-height: 1.2; }
+  .ev-thumb span { display: block; font-size: 5.5pt; color: var(--subtle); margin-top: .5mm; }
+
+  .print-footer { display: none; }
+  @page { size: A4; margin: 0; }
+  @media print {
+    .toolbar { display: none !important; }
+    .sheet { max-width: none; }
+    .page { min-height: 297mm; padding: 12mm 14mm 14mm; }
+    .print-footer {
+      display: flex; position: fixed; bottom: 8mm; left: 14mm; right: 14mm;
+      justify-content: space-between; font-family: var(--mono); font-size: 6.5pt; color: var(--subtle);
+      border-top: 1px solid var(--line); padding-top: 2mm;
+    }
+    .card, .ctx, .hero, .lang-box, .table-shell, .ev-thumb { break-inside: avoid; }
+    .data-table { font-size: 6.8pt; }
+    .data-table tbody td.num { font-size: 6.6pt; }
+  }
+</style>
+</head>
+<body>
+  <div class="print-footer" aria-hidden="true">
+    <span>PF-MODENERGY-DESIGN-001 · v1.5</span>
+    <span>Industrial Design Overview · PF-MODENERGY-002 v2.0</span>
+    <span>30 August 2026</span>
+  </div>
+
+  <div class="toolbar">
+    <div style="display:flex;align-items:center;gap:.6rem">
+      <img src="./precifarm-logo-mark.svg" alt="" width="22" height="22" />
+      <span class="id">PF-MODENERGY-DESIGN-001 · v1.5 · Industrial Design Overview</span>
+    </div>
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+      <button type="button" class="primary" onclick="window.print()">Print</button>
+      <a class="primary" href="./precifarm-modular-energy-design.pdf" download>Download PDF</a>
+      <a href="/charging/modular-energy">Back to modular energy</a>
+    </div>
+  </div>
+
+  <main class="sheet">
+    <section class="page page-cover">
+      <div class="cover-accent" aria-hidden="true"></div>
+      <header class="page-head">
+        <div class="brand">
+          <img src="./precifarm-logo-mark.svg" alt="" />
+          <div>
+            <span class="brand-word">PRECIFARM</span>
+            <span class="brand-sub">Modular Energy Platform</span>
+          </div>
+        </div>
+        <div class="doc-id">PF-MODENERGY-DESIGN-001<br />v1.5<br />30 August 2026</div>
+      </header>
+
+      <p class="cover-eyebrow">Industrial Design Overview · 5 pages</p>
+      <h1 class="cover-title">One module.<br />Three scales.</h1>
+      <p class="cover-lead">
+        Conceptual industrial design for P1 Go, Energy Module, P2 Home and Pod —
+        unified aluminum-and-glass language for Kenya homes and SMEs.
+      </p>
+      <div class="cover-pills">
+        <span>P1 GO</span><span>P2 HOME</span><span>POD</span><span>ENERGY OS</span><span>EV CHARGING</span>
+      </div>
+
+      <figure class="hero">
+        <img src="./modenergy-design/render-family-hero.jpg" alt="Precifarm modular energy product family" />
+        <figcaption>Render 1 — Product family. Seamless aluminum, glass UI strips, one repeated Energy Module. CONCEPTUAL.</figcaption>
+      </figure>
+
+      <div class="cover-foot">
+        <div><span>Document</span><strong>PF-MODENERGY-DESIGN-001</strong></div>
+        <div><span>Status</span><strong>Industrial Design Overview</strong></div>
+        <div><span>Companion</span><strong>PF-MODENERGY-002 v2.0</strong></div>
+      </div>
+      <p class="cover-note">
+        All renders are conceptual industrial-design visualisations. They communicate design and installation intent only —
+        not manufacturing models, dimensioned drawings or certified product specifications.
+      </p>
+    </section>
+
+    <section class="page page-products">
+      <header class="page-head">
+        <div class="brand">
+          <img src="./precifarm-logo-mark.svg" alt="" />
+          <div>
+            <span class="brand-word">PRECIFARM</span>
+            <span class="brand-sub">Product renders</span>
+          </div>
+        </div>
+        <div class="doc-id">PF-MODENERGY-DESIGN-001 · Page 2 of 5</div>
+      </header>
+
+      <h2 class="sec-title">Product family</h2>
+      <p class="sec-lead">
+        One standardised Energy Module is the unit of capacity. Power Core (or Pod Power Unit) is the unit of power.
+        The same module slides from portability to home backup to SME outdoor storage.
+      </p>
+
+      <div class="grid-2">
+        
+    <figure class="card">
+      <div class="card-img"><img src="./modenergy-design/render-p1-go.jpg" alt="P1 Go" /></div>
+      <figcaption>
+        <span class="card-name">P1 Go</span>
+        <span class="card-tag">Portable backup</span>
+        <p class="card-text">Aluminum unibody · fold-flat top handle · glass display · Precifarm wordmark · magnetic I/O · wireless pad · Type 2 EV trickle lead</p>
+      </figcaption>
+    </figure>
+    <figure class="card">
+      <div class="card-img"><img src="./modenergy-design/render-energy-module.jpg" alt="Energy Module" /></div>
+      <figcaption>
+        <span class="card-name">Energy Module</span>
+        <span class="card-tag">2.56 kWh block</span>
+        <p class="card-text">Recessed side handles · blind-mate power and comms · glass status strip · one module repeated everywhere</p>
+      </figcaption>
+    </figure>
+    <figure class="card">
+      <div class="card-img"><img src="./modenergy-design/render-p2-home.jpg" alt="P2 Home" /></div>
+      <figcaption>
+        <span class="card-name">P2 Home</span>
+        <span class="card-tag">Home backup</span>
+        <p class="card-text">Power Core above · four module bays · retractable handle · rear castors · essential-load sub-board ready</p>
+      </figcaption>
+    </figure>
+    <figure class="card">
+      <div class="card-img"><img src="./modenergy-design/render-pod.jpg" alt="Precifarm Pod" /></div>
+      <figcaption>
+        <span class="card-name">Precifarm Pod</span>
+        <span class="card-tag">SME / outdoor</span>
+        <p class="card-text">Power Unit · six-module rack · service door open · sun-shield canopy · plinth and cable entries</p>
+      </figcaption>
+    </figure>
+      </div>
+    </section>
+
+    
+    <section class="page page-params">
+      <header class="page-head">
+        <div class="brand">
+          <img src="./precifarm-logo-mark.svg" alt="" />
+          <div>
+            <span class="brand-word">PRECIFARM</span>
+            <span class="brand-sub">Energy & sizing parameters</span>
+          </div>
+        </div>
+        <div class="doc-id">PF-MODENERGY-DESIGN-001 · Page 3 of 5</div>
+      </header>
+
+      <h2 class="sec-title">Essential parameters</h2>
+      <p class="sec-lead sec-lead-tight">
+        Engineering targets from PF-MODENERGY-002. Usable AC = 90&nbsp;% SOC window × 94&nbsp;% conversion.
+        Not certified product specifications.
+      </p>
+
+      <div class="param-cols">
+        <div class="param-block">
+          
+    <div class="table-shell">
+      <div class="table-caption">Energy Module — building block</div>
+      <table class="data-table">
+        <thead><tr><th class=""><span class="th-main">Parameter</span></th><th class="num"><span class="th-main">Value</span></th></tr></thead>
+        <tbody><tr class=""><td class="">Nominal energy</td><td class="num">2.56 kWh</td></tr><tr class=""><td class="">Voltage / capacity</td><td class="num">51.2 V · 50 Ah</td></tr><tr class=""><td class="">Chemistry</td><td class="num">LiFePO₄ (LFP)</td></tr><tr class=""><td class="">Usable AC (backup)</td><td class="num">2.17 kWh / module</td></tr><tr class=""><td class="">Daily cycling AC</td><td class="num">1.68 kWh / module</td></tr><tr class=""><td class="">Max discharge</td><td class="num">50 A · 1.0 C</td></tr><tr class=""><td class="">Max charge</td><td class="num">30 A · 0.6 C</td></tr><tr class=""><td class="">Round-trip AC→AC</td><td class="num">90 %</td></tr><tr class=""><td class="">Backup reserve (default)</td><td class="num">20 % SOC</td></tr></tbody>
+      </table>
+    </div>
+        </div>
+        <div class="param-block">
+          
+    <div class="table-shell">
+      <div class="table-caption">Kenya design basis</div>
+      <table class="data-table">
+        <thead><tr><th class=""><span class="th-main">Parameter</span></th><th class="num"><span class="th-main">Value</span></th></tr></thead>
+        <tbody><tr class=""><td class="">Grid</td><td class="num">230 V · 50 Hz · Type G</td></tr><tr class=""><td class="">Design solar (Nairobi)</td><td class="num">4.7 PSH · 3.5 kWh/kWp/day yield</td></tr><tr class=""><td class="">Grid cost (all-in)</td><td class="num">KSh 20–28 / kWh</td></tr><tr class=""><td class="">Domestic net-metering cap</td><td class="num">10 kW</td></tr><tr class=""><td class="">Avg. monthly outage</td><td class="num">~8.4 h (reported)</td></tr><tr class=""><td class="">PV performance ratio</td><td class="num">0.75 planning · clean panels matter</td></tr></tbody>
+      </table>
+    </div>
+        </div>
+      </div>
+
+      
+    <div class="table-shell">
+      <div class="table-caption">Product lineup — energy vs power scale separately</div>
+      <table class="data-table">
+        <thead><tr><th class=""><span class="th-main">Product</span></th><th class="num"><span class="th-main">Energy</span></th><th class="num"><span class="th-main">Power</span></th><th class=""><span class="th-main">Typical use</span></th></tr></thead>
+        <tbody><tr class=""><td class="">P1 Go</td><td class="num">~1.0 kWh</td><td class="num">1.0 kW</td><td class="">Portable · lights, router, fan</td></tr><tr class=""><td class="">P2-2.4</td><td class="num">2.56 → 10.24 kWh</td><td class="num">2.4 kW</td><td class="">Home backup · 1–4 modules</td></tr><tr class=""><td class="">P2-4.8</td><td class="num">5.12 → 10.24 kWh</td><td class="num">4.8 kW</td><td class="">Home + pump · 2–4 modules</td></tr><tr class=""><td class="">Pod home</td><td class="num">5.12 → 10.24 kWh</td><td class="num">4.5–8 kW</td><td class="">Installed · solar + backup</td></tr><tr class=""><td class="">Pod SME</td><td class="num">20.48 → 51.2 kWh</td><td class="num">15–30 kW</td><td class="">Retail · cold chain</td></tr></tbody>
+      </table>
+    </div>
+
+      
+    <div class="table-shell">
+      <div class="table-caption">Nairobi sizing scenarios</div>
+      <table class="data-table">
+        <thead><tr><th class="num"><span class="th-main">ID</span></th><th class=""><span class="th-main">Profile</span></th><th class="num"><span class="th-main">Daily load</span><span class="th-unit">kWh/d</span></th><th class="num"><span class="th-main">Peak</span><span class="th-unit">kW</span></th><th class="num"><span class="th-main">Modules</span></th><th class=""><span class="th-main">Product</span></th><th class="num"><span class="th-main">Solar</span><span class="th-unit">kWp</span></th></tr></thead>
+        <tbody><tr class=""><td class="">A</td><td class="">Essential backup</td><td class="num">1.40</td><td class="num">0.21</td><td class="num">1</td><td class="">P1 Go / P2-2.4</td><td class="num">0.6</td></tr><tr class=""><td class="">B</td><td class="">Urban home</td><td class="num">3.77</td><td class="num">2.61</td><td class="num">3</td><td class="">P2-4.8</td><td class="num">1.6</td></tr><tr class=""><td class="">C</td><td class="">Home + EV</td><td class="num">11.0</td><td class="num">6.31</td><td class="num">8</td><td class="">Pod</td><td class="num">4.1</td></tr></tbody>
+      </table>
+    </div>
+
+      <div class="param-cols">
+        <div class="param-block">
+          
+    <div class="table-shell">
+      <div class="table-caption">Scenario A — essential loads</div>
+      <table class="data-table">
+        <thead><tr><th class=""><span class="th-main">Load</span></th><th class="num"><span class="th-main">Power</span><span class="th-unit">W</span></th><th class="num"><span class="th-main">Energy</span><span class="th-unit">Wh/d</span></th></tr></thead>
+        <tbody><tr class=""><td class="">LED lighting (8 × 9 W)</td><td class="num">72</td><td class="num">360</td></tr><tr class=""><td class="">Wi-Fi router</td><td class="num">10</td><td class="num">240</td></tr><tr class=""><td class="">Phone charging (2×)</td><td class="num">20</td><td class="num">60</td></tr><tr class=""><td class="">Television 32″</td><td class="num">50</td><td class="num">200</td></tr><tr class=""><td class="">Fan</td><td class="num">45</td><td class="num">180</td></tr><tr class=""><td class="">Security / gate standby</td><td class="num">15</td><td class="num">360</td></tr><tr class="row-total"><td class="">Daily total (Scenario A)</td><td class="num">—</td><td class="num">1,400</td></tr></tbody>
+      </table>
+    </div>
+        </div>
+        <div class="param-block">
+          
+    <div class="table-shell">
+      <div class="table-caption">Backup duration — usable AC energy</div>
+      <table class="data-table">
+        <thead><tr><th class="num"><span class="th-main">Load</span></th><th class="num"><span class="th-main">1 module</span><span class="th-unit">hours</span></th><th class="num"><span class="th-main">2 modules</span><span class="th-unit">hours</span></th><th class="num"><span class="th-main">4 modules</span><span class="th-unit">hours</span></th></tr></thead>
+        <tbody><tr class=""><td class="num">500 W</td><td class="num">4.3 h</td><td class="num">8.7 h</td><td class="num">17.3 h</td></tr><tr class=""><td class="num">1 kW</td><td class="num">2.2 h</td><td class="num">4.3 h</td><td class="num">8.7 h</td></tr><tr class=""><td class="num">2 kW</td><td class="num">1.1 h</td><td class="num">2.2 h</td><td class="num">4.3 h</td></tr></tbody>
+      </table>
+    </div>
+        </div>
+      </div>
+
+      <div class="callout callout-blue">
+        <strong>Key sizing rules</strong>
+        P1 Go ≈ 77&nbsp;% of one essential night · P2-2.4 (1 module) ≈ 2 nights · Scenario B needs 3 modules with reserve.
+        Quote <em>expected usable</em> kWh, not nameplate. Full math: PF-MODENERGY-002 §16.
+      </div>
+    </section>
+
+    <section class="page page-context">
+      <header class="page-head">
+        <div class="brand">
+          <img src="./precifarm-logo-mark.svg" alt="" />
+          <div>
+            <span class="brand-word">PRECIFARM</span>
+            <span class="brand-sub">Kenya installation context</span>
+          </div>
+        </div>
+        <div class="doc-id">PF-MODENERGY-DESIGN-001 · Page 4 of 5</div>
+      </header>
+
+      <h2 class="sec-title">Designed for real sites</h2>
+      <p class="sec-lead">
+        Installation context is part of the design brief — utility corners, SME refrigeration continuity,
+        and solar-to-EV loops on Nairobi suburban homes.
+      </p>
+
+      <div class="ctx-row">
+        
+    <figure class="ctx">
+      <div class="ctx-img"><img src="./modenergy-design/render-kenya-home.jpg" alt="Urban home" /></div>
+      <figcaption>
+        <strong>Urban home</strong>
+        <p>P2 beside consumer DB — tiled utility corner, spare module storage, living-space acceptable finish</p>
+      </figcaption>
+    </figure>
+    <figure class="ctx">
+      <div class="ctx-img"><img src="./modenergy-design/render-kenya-sme.jpg" alt="SME retail" /></div>
+      <figcaption>
+        <strong>SME retail</strong>
+        <p>Wall-shaded Pod for cold storage continuity — plinth mount, filtered louvres, rooftop PV</p>
+      </figcaption>
+    </figure>
+    <figure class="ctx">
+      <div class="ctx-img"><img src="./modenergy-design/render-solar-ev.jpg" alt="Solar + EV" /></div>
+      <figcaption>
+        <strong>Solar + EV</strong>
+        <p>Carport charging from customer solar surplus — Phase A home energy loop, Nairobi suburban context</p>
+      </figcaption>
+    </figure>
+      </div>
+
+      <div class="lang-box">
+        <h3>Design language</h3>
+        <ul class="lang-list">
+          <li>Seamless brushed aluminum and matte white enclosures</li>
+          <li>Glass UI strips — energy remaining, health, expansion</li>
+          <li>Fold-flat top handle and tilt stand (P1 Go)</li>
+          <li>Blind-mate module connectors — field service without rack tools</li>
+          <li>Living-space acceptable finish for urban utility rooms</li>
+          <li>Wall-shaded Pod placement with plinth and filtered airflow</li>
+        </ul>
+      </div>
+    </section>
+
+    
+    <section class="page page-ev">
+      <header class="page-head">
+        <div class="brand">
+          <img src="./precifarm-logo-mark.svg" alt="" />
+          <div>
+            <span class="brand-word">PRECIFARM</span>
+            <span class="brand-sub">EV charging portfolio</span>
+          </div>
+        </div>
+        <div class="doc-id">PF-MODENERGY-DESIGN-001 · Page 5 of 5</div>
+      </header>
+
+      <h2 class="sec-title">EV charging we design & operate</h2>
+      <p class="sec-lead sec-lead-tight">
+        From portable Spark charger and Pulse home wallbox through Depot fleet AC to Corridor DC on intercity routes —
+        CCS2 / Type 2 for Kenya. Unified industrial design: aluminum, glass UI, Precifarm wordmark on every product.
+      </p>
+
+      <figure class="ev-hero">
+        <img src="./modenergy-design/charging-ecosystem-hero.jpg" alt="Precifarm charging ecosystem" />
+        <figcaption>Spark · Pulse · Pod · Boda Hub · Depot · Corridor — one visual language from boot to highway.</figcaption>
+      </figure>
+
+      <div class="ev-strip">
+        
+    <figure class="ev-thumb">
+      <div class="ev-thumb-img"><img src="./modenergy-design/spark.jpg" alt="Spark charger" /></div>
+      <figcaption>
+        <strong>Spark charger</strong>
+        <span>3.3 kW AC · Portable</span>
+      </figcaption>
+    </figure>
+    <figure class="ev-thumb">
+      <div class="ev-thumb-img"><img src="./modenergy-design/pulse.jpg" alt="Pulse charger" /></div>
+      <figcaption>
+        <strong>Pulse charger</strong>
+        <span>7 kW AC · Home wallbox</span>
+      </figcaption>
+    </figure>
+    <figure class="ev-thumb">
+      <div class="ev-thumb-img"><img src="./modenergy-design/corridor.jpg" alt="Corridor DC" /></div>
+      <figcaption>
+        <strong>Corridor DC</strong>
+        <span>120 kW+ · Highway CCS2</span>
+      </figcaption>
+    </figure>
+    <figure class="ev-thumb">
+      <div class="ev-thumb-img"><img src="./modenergy-design/depot.jpg" alt="Depot station" /></div>
+      <figcaption>
+        <strong>Depot station</strong>
+        <span>22 kW AC · Fleet yard</span>
+      </figcaption>
+    </figure>
+    <figure class="ev-thumb">
+      <div class="ev-thumb-img"><img src="./modenergy-design/boda.jpg" alt="Boda Hub" /></div>
+      <figcaption>
+        <strong>Boda Hub</strong>
+        <span>Swap · <5 min</span>
+      </figcaption>
+    </figure>
+    <figure class="ev-thumb">
+      <div class="ev-thumb-img"><img src="./modenergy-design/pod.jpg" alt="Pod storage" /></div>
+      <figcaption>
+        <strong>Pod storage</strong>
+        <span>5–10 kWh · + home charger</span>
+      </figcaption>
+    </figure>
+      </div>
+
+      
+    <div class="table-shell">
+      <div class="table-caption">Precifarm EV charging hardware</div>
+      <table class="data-table">
+        <thead><tr><th class=""><span class="th-main">Product</span></th><th class="num"><span class="th-main">Power</span></th><th class="num"><span class="th-main">Connector</span></th><th class=""><span class="th-main">Role</span></th><th class="num"><span class="th-main">Typical session</span></th></tr></thead>
+        <tbody><tr class=""><td class="">Spark charger</td><td class="num">3.3 kW</td><td class="">Type 2</td><td class="">Portable top-up</td><td class="num">~180 min</td></tr><tr class=""><td class="">Pulse charger</td><td class="num">7 kW</td><td class="">Type 2</td><td class="">Home overnight</td><td class="num">~90 min</td></tr><tr class=""><td class="">Pod + charger</td><td class="num">7 kW + storage</td><td class="">Type 2</td><td class="">Weak-grid home</td><td class="num">5–10 kWh</td></tr><tr class=""><td class="">Depot station</td><td class="num">22 kW</td><td class="">Type 2</td><td class="">Fleet / campus</td><td class="num">~120 min</td></tr><tr class=""><td class="">Corridor DC</td><td class="num">120–320 kW</td><td class="">CCS2</td><td class="">Highway / hub</td><td class="num">~60 kWh / 30 min</td></tr><tr class=""><td class="">Boda Hub</td><td class="num">Swap</td><td class="">Pack swap</td><td class="">E-motorcycle</td><td class="num">&lt;5 min</td></tr><tr class=""><td class="">Route hub</td><td class="num">120–320 kW</td><td class="">CCS2 + BESS</td><td class="">Reserved bus</td><td class="num">120 kWh / 30 min</td></tr></tbody>
+      </table>
+    </div>
+
+      
+    <div class="table-shell">
+      <div class="table-caption">Fast DC benchmark — Tesla vs BYD vs Precifarm [BENCHMARK]</div>
+      <table class="data-table">
+        <thead><tr><th class=""><span class="th-main">Dimension</span></th><th class="num"><span class="th-main">Tesla Supercharger</span></th><th class="num"><span class="th-main">BYD Megawatt Flash</span></th><th class="num hl"><span class="th-main">Precifarm Corridor</span></th></tr></thead>
+        <tbody><tr class=""><td class="label">Peak power (post / vehicle)</td><td class="num">500 kW</td><td class="num">1,000 kW</td><td class="num hl">120–320 kW</td></tr><tr class=""><td class="label">Shared cabinet</td><td class="num">1.2 MW · 8 posts</td><td class="num">1,360 kW terminal</td><td class="num hl">Modular CCS2</td></tr><tr class=""><td class="label">Previous generation</td><td class="num">250 kW (V3)</td><td class="num">Dual-gun GB/T boost</td><td class="num hl">120 kW town class</td></tr><tr class=""><td class="label">DC voltage</td><td class="num">180–1,000 V</td><td class="num">1,000 V platform</td><td class="num hl">200–920 V CCS2</td></tr><tr class=""><td class="label">Connector</td><td class="num">NACS / CCS2</td><td class="num">GB/T / MW gun</td><td class="num hl">CCS2 + Type 2</td></tr><tr class=""><td class="label">Primary use</td><td class="num">Premium car network</td><td class="num">China flash charge</td><td class="num hl">Kenya bus + intercity</td></tr><tr class=""><td class="label">In Kenya today</td><td class="num">No network</td><td class="num">No network</td><td class="num hl">Designed · route hubs</td></tr></tbody>
+      </table>
+    </div>
+
+      
+    <div class="table-shell">
+      <div class="table-caption">Modular energy × EV integration (PF-MODENERGY-002 §15)</div>
+      <table class="data-table">
+        <thead><tr><th class=""><span class="th-main">Case</span></th><th class="num"><span class="th-main">Power / energy</span></th><th class="num"><span class="th-main">Hardware</span></th><th class=""><span class="th-main">Status</span></th></tr></thead>
+        <tbody><tr class=""><td class="">A · AC from solar surplus</td><td class="num">3.7 kW</td><td class="">Pod / P2 + Pulse</td><td class="">Type 2 · near-term</td></tr><tr class=""><td class="">P1 emergency trickle</td><td class="num">1.0 kW max</td><td class="">P1 Go + lead</td><td class="">Not daily EV use</td></tr><tr class=""><td class="">C · Home + EV load</td><td class="num">6.3 kW peak</td><td class="">8-module Pod</td><td class="">2.6 kW home + 3.7 kW EV</td></tr><tr class=""><td class="">40 km driving / day</td><td class="num">7.2 kWh</td><td class="">0.18 kWh/km</td><td class="">~2 h @ 3.7 kW</td></tr><tr class=""><td class="">B · EV visibility</td><td class="num">—</td><td class="">Energy OS</td><td class="">FUTURE</td></tr><tr class=""><td class="">C/D · V2H / V2G</td><td class="num">Bidirectional</td><td class="">Pod + approved EV</td><td class="">FUTURE</td></tr></tbody>
+      </table>
+    </div>
+
+      <div class="callout callout-blue">
+        <strong>Benchmark read (Aug 2026)</strong>
+        Tesla V4 reaches 500 kW per post; BYD targets 1 MW at 1,000 V in China. Standard CCS2 remains ~500 A class.
+        Precifarm targets <strong>120–320 kW CCS2</strong> corridor hubs with solar/BESS, reserved bus windows and M-Pesa —
+        right-sized for Kenya, not the megawatt race. Sources: §18–§19 · Tesla Supercharger for Business · BYD Super e-Platform.
+      </div>
+
+      <footer class="page-foot">
+        <strong>Precifarm Modular Energy + EV Charging — Design Overview</strong><br />
+        PF-MODENERGY-DESIGN-001 · v1.5 · 30 August 2026 · Engineering package: precifarm-solar-charger-stations-engineering.pdf<br />
+        Corridor DC and route hubs are designed, not universally commissioned. No megawatt or V2G claims without hardware and regulatory basis.
+      </footer>
+    </section>
+  </main>
+</body>
+</html>

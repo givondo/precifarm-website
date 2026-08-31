@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 660" width="1200" height="660" font-family="'Segoe UI',system-ui,sans-serif" data-pf-theme="v2">
+<defs>
+<linearGradient id="pf-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+  <stop offset="0%" stop-color="#f8fafc"/>
+  <stop offset="55%" stop-color="#ffffff"/>
+  <stop offset="100%" stop-color="#f1f5f9"/>
+</linearGradient>
+<pattern id="pf-grid" width="28" height="28" patternUnits="userSpaceOnUse">
+  <circle cx="1.5" cy="1.5" r="0.75" fill="#e2e8f0"/>
+</pattern>
+<linearGradient id="pf-blue" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" stop-color="#3b82f6"/>
+  <stop offset="100%" stop-color="#1d4ed8"/>
+</linearGradient>
+<linearGradient id="pf-blue-soft" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" stop-color="#eff6ff"/>
+  <stop offset="100%" stop-color="#dbeafe"/>
+</linearGradient>
+<filter id="pf-shadow" x="-8%" y="-8%" width="116%" height="120%">
+  <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.07"/>
+</filter>
+<filter id="pf-shadow-sm" x="-6%" y="-6%" width="112%" height="114%">
+  <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#0f172a" flood-opacity="0.06"/>
+</filter></defs>
+<style>
+.t{fill:#0a0a0a}.s{fill:#737373}
+.tiny{font-size:9.5px;fill:#737373}
+.hd{font-size:10.5px;font-weight:700;letter-spacing:.1em}
+.mono{font-size:10px;font-family:ui-monospace,Consolas,monospace;fill:#404040}
+.ax{stroke:#404040;stroke-width:1.4}
+.gr{stroke:#f0f0f0;stroke-width:1}
+
+.pf-accent{fill:#2563eb}
+.pf-frame{fill:none;stroke:#e2e8f0;stroke-width:1}
+.bx,.dev{filter:url(#pf-shadow-sm)}
+.bxb{filter:url(#pf-shadow);fill:#f8fbff}
+
+</style>
+
+<g id="pf-background" aria-hidden="true">
+  <rect width="1200" height="660" fill="url(#pf-bg)"/>
+  <rect width="1200" height="660" fill="url(#pf-grid)" opacity="0.45"/>
+  <rect x="0" y="0" width="5" height="660" fill="#2563eb" rx="0"/>
+</g><text x="40" y="42" class="t" font-size="20" font-weight="700">Solar sensitivity &#8212; Scenario B, 1.6 kWp in Nairobi</text>
+<text x="40" y="64" class="s" font-size="12.5">The same array against the same 3.77 kWh/day load, across four realistic day types. Sizing tools must show this range, not a single number.</text>
+
+
+<rect x="40" y="96" width="1120" height="42" rx="6" fill="#f5f5f5" stroke="#e5e5e5"/>
+<text x="56" y="114" class="hd" fill="#404040">GOVERNING RELATIONSHIP</text>
+<text x="56" y="131" class="mono" font-size="11">E_PV  =  P_array &#215; PSH &#215; PR                 P_array = 1.6 kWp        daily load = 3.77 kWh  (Scenario B, &#167;16.5)</text>
+
+<!-- chart -->
+<g transform="translate(110,170)">
+<line class="ax" x1="0" y1="300" x2="700" y2="300"/>
+<line class="ax" x1="0" y1="300" x2="0" y2="10"/>
+<g>
+<line class="gr" x1="0" y1="34" x2="700" y2="34"/><text x="-10" y="38" class="tiny" text-anchor="end">8 kWh</text>
+<line class="gr" x1="0" y1="100" x2="700" y2="100"/><text x="-10" y="104" class="tiny" text-anchor="end">6 kWh</text>
+<line class="gr" x1="0" y1="167" x2="700" y2="167"/><text x="-10" y="171" class="tiny" text-anchor="end">4 kWh</text>
+<line class="gr" x1="0" y1="234" x2="700" y2="234"/><text x="-10" y="238" class="tiny" text-anchor="end">2 kWh</text>
+<text x="-10" y="304" class="tiny" text-anchor="end">0</text>
+</g>
+<text x="-56" y="155" class="tiny" font-size="10.5" transform="rotate(-90 -56 155)" text-anchor="middle">DAILY ENERGY</text>
+
+<!-- load reference line -->
+<line x1="0" y1="174" x2="700" y2="174" stroke="#dc2626" stroke-width="2" stroke-dasharray="7 4"/>
+<rect x="560" y="152" width="140" height="20" rx="10" fill="#dc2626"/>
+<text x="630" y="166" font-size="10" font-weight="700" fill="#fff" text-anchor="middle">DAILY LOAD 3.77 kWh</text>
+
+<!-- bars -->
+<g>
+<!-- low solar -->
+<g transform="translate(50,0)">
+<rect x="0" y="184" width="90" height="116" fill="#94a3b8"/>
+<text x="45" y="176" font-size="13" font-weight="700" fill="#475569" text-anchor="middle">3.46</text>
+<text x="45" y="322" font-size="12" font-weight="700" fill="#0a0a0a" text-anchor="middle">LOW SOLAR</text>
+<text x="45" y="337" class="tiny" text-anchor="middle">overcast, Jun&#8211;Jul</text>
+<text x="45" y="350" class="mono" font-size="9" text-anchor="middle">3.0 PSH &#215; PR 0.72</text>
+<rect x="0" y="360" width="90" height="22" rx="4" fill="#fef2f2" stroke="#dc2626" stroke-width="1"/>
+<text x="45" y="375" font-size="9.5" font-weight="700" fill="#991b1b" text-anchor="middle">DEFICIT 0.31</text>
+</g>
+<!-- typical -->
+<g transform="translate(220,0)">
+<rect x="0" y="80" width="90" height="220" fill="#2563eb" rx="3"/>
+<text x="45" y="72" font-size="13" font-weight="700" fill="#1d4ed8" text-anchor="middle">6.60</text>
+<text x="45" y="322" font-size="12" font-weight="700" fill="#0a0a0a" text-anchor="middle">TYPICAL</text>
+<text x="45" y="337" class="tiny" text-anchor="middle">annual average</text>
+<text x="45" y="350" class="mono" font-size="9" text-anchor="middle">5.5 PSH &#215; PR 0.75</text>
+<rect x="0" y="360" width="90" height="22" rx="4" fill="#ecfdf5" stroke="#059669" stroke-width="1"/>
+<text x="45" y="375" font-size="9.5" font-weight="700" fill="#065f46" text-anchor="middle">SURPLUS 2.83</text>
+</g>
+<!-- high -->
+<g transform="translate(390,0)">
+<rect x="0" y="40" width="90" height="260" fill="#059669"/>
+<text x="45" y="32" font-size="13" font-weight="700" fill="#047857" text-anchor="middle">7.80</text>
+<text x="45" y="322" font-size="12" font-weight="700" fill="#0a0a0a" text-anchor="middle">HIGH SOLAR</text>
+<text x="45" y="337" class="tiny" text-anchor="middle">dry season</text>
+<text x="45" y="350" class="mono" font-size="9" text-anchor="middle">6.5 PSH &#215; PR 0.75</text>
+<rect x="0" y="360" width="90" height="22" rx="4" fill="#ecfdf5" stroke="#059669" stroke-width="1"/>
+<text x="45" y="375" font-size="9.5" font-weight="700" fill="#065f46" text-anchor="middle">SURPLUS 4.03</text>
+</g>
+<!-- dusty -->
+<g transform="translate(560,0)">
+<rect x="0" y="123" width="90" height="177" fill="#d97706"/>
+<text x="45" y="115" font-size="13" font-weight="700" fill="#b45309" text-anchor="middle">5.28</text>
+<text x="45" y="322" font-size="12" font-weight="700" fill="#0a0a0a" text-anchor="middle">DUSTY</text>
+<text x="45" y="337" class="tiny" text-anchor="middle">unmaintained panels</text>
+<text x="45" y="350" class="mono" font-size="9" text-anchor="middle">5.5 PSH &#215; PR 0.60</text>
+<rect x="0" y="360" width="90" height="22" rx="4" fill="#fffbeb" stroke="#d97706" stroke-width="1"/>
+<text x="45" y="375" font-size="9.5" font-weight="700" fill="#b45309" text-anchor="middle">SURPLUS 1.51</text>
+</g>
+</g>
+<!-- soiling annotation -->
+<path d="M650 123 L 500 60" stroke="#d97706" stroke-width="1.2" fill="none"/>
+<text x="500" y="52" font-size="10" font-weight="700" fill="#b45309" text-anchor="end">Soiling alone costs 1.32 kWh/day &#8212; 20 % of generation.</text>
+<text x="500" y="40" font-size="10" fill="#92400e" text-anchor="end">Panel cleaning is a service product, not an afterthought.</text>
+</g>
+
+<!-- consequence panel -->
+<g transform="translate(910,170)">
+<rect x="0" y="0" width="250" height="170" rx="7" fill="#fafafa" stroke="#e5e5e5"/>
+<text x="16" y="22" class="hd" fill="#404040">CONSEQUENCE</text>
+<line x1="16" y1="30" x2="234" y2="30" stroke="#e5e5e5"/>
+<text x="16" y="50" font-size="10" font-weight="700" fill="#991b1b">Low solar day</text>
+<text x="16" y="64" class="tiny">Battery ends the day below target;</text>
+<text x="16" y="76" class="tiny">grid import or reserve draw.</text>
+<text x="16" y="98" font-size="10" font-weight="700" fill="#065f46">Typical and high days</text>
+<text x="16" y="112" class="tiny">Surplus charges the battery, then</text>
+<text x="16" y="124" class="tiny">MPPT curtails unless export consent</text>
+<text x="16" y="136" class="tiny">is in place (&#167;9.3, &#167;17.4).</text>
+<text x="16" y="158" font-size="10" font-weight="700" fill="#b45309">Dusty case is the silent one.</text>
+</g>
+
+<!-- absorption checks -->
+<g transform="translate(910,352)">
+<rect x="0" y="0" width="250" height="106" rx="7" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+<text x="16" y="22" class="hd" fill="#1d4ed8">ABSORPTION CHECKS &#183; [CALC]</text>
+<text x="16" y="44" class="mono" font-size="9.5">Cycling window, 3 modules</text>
+<text x="16" y="58" class="mono" font-size="9.5">  = 5.04 kWh &#8805; 4.03 surplus &#10003;</text>
+<text x="16" y="78" class="mono" font-size="9.5">Charge acceptance, 3 modules</text>
+<text x="16" y="92" class="mono" font-size="9.5">  = 4.6 kW > 1.6 kWp array &#10003;</text>
+</g>
+
+<!-- design basis -->
+<g transform="translate(40,570)">
+<rect x="0" y="0" width="556" height="66" rx="6" fill="#f5f5f5" stroke="#e5e5e5"/>
+<text x="16" y="20" class="hd" fill="#404040">KENYA DESIGN BASIS  &#183;  [BENCHMARK]  &#183;  SOURCED &#167;28</text>
+<text x="16" y="38" class="mono" font-size="9.5">Nairobi 5.5 PSH annual &#183; 4.5 worst-month &#183; 4.7 recommended design basis</text>
+<text x="16" y="52" class="mono" font-size="9.5">Precifarm basis = 4.7 &#215; 0.75 = 3.53 &#183; adopted 3.5 kWh/kWp/day</text>
+</g>
+<g transform="translate(620,570)">
+<rect x="0" y="0" width="540" height="66" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="1.1"/>
+<text x="16" y="20" class="hd" fill="#b45309">ENGINEERING REVIEW NOTE &#8212; THE BASIS IS OPTIMISTIC</text>
+<text x="16" y="38" font-size="10" fill="#92400e">A measured 600 kWp Nairobi rooftop system delivered 1,225 kWh/kWp/year = 3.36 kWh/kWp/day at a</text>
+<text x="16" y="52" font-size="10" fill="#92400e">performance ratio of 57.4 % &#8212; below our 3.53 basis. Sizing tools shall offer a 3.0 pessimistic case.</text>
+</g>
+
+<text x="40" y="656" class="s" font-size="10.5">Figure 16 &#8212; Solar sensitivity. PSH and performance-ratio values for the four day types are ASSUMPTIONS bracketing the sourced annual and worst-month figures. Assumption A-07 requires 12 months of field monitoring at &#8805; 3 sites to validate (&#167;23.2).</text>
+</svg>

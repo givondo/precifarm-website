@@ -5,6 +5,9 @@ import { flagshipIds, flagshipProductDetails, type FlagshipProductId } from "@/l
 import { productImages } from "@/lib/product-images";
 
 function flagshipImage(id: FlagshipProductId) {
+  if (id === "pod") {
+    return { src: productImages.podHomeHero.src, alt: productImages.podHomeHero.alt };
+  }
   const shot = productImages[id];
   return { src: shot.src, alt: shot.alt };
 }
@@ -15,15 +18,15 @@ function FlagshipCard({ id, priority = false }: { id: FlagshipProductId; priorit
 
   return (
     <article className="home-flagship-card flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-border bg-white">
-      <div className="flex min-h-[200px] items-center justify-center bg-[#f5f5f7] px-5 pb-3 pt-7 sm:min-h-[240px] sm:px-6 sm:pt-9">
-        <div className="relative mx-auto aspect-[4/3] w-full max-w-[260px] sm:max-w-[280px]">
+      <div className={`flex min-h-[200px] items-center justify-center bg-[#f5f5f7] sm:min-h-[240px] ${id === "pod" ? "overflow-hidden p-0" : "px-5 pb-3 pt-7 sm:px-6 sm:pt-9"}`}>
+        <div className={`relative mx-auto w-full ${id === "pod" ? "aspect-[4/3] max-w-none" : "aspect-[4/3] max-w-[260px] sm:max-w-[280px]"}`}>
           <SiteImage
             src={image.src}
             alt={image.alt}
             fill
             sizes="(max-width: 640px) 45vw, 25vw"
             priority={priority}
-            className="object-contain p-1"
+            className={id === "pod" ? "object-cover" : "object-contain p-1"}
           />
         </div>
       </div>

@@ -29,6 +29,11 @@ const nextConfig: NextConfig = {
       { source: "/ev-charging/fleet", destination: "/partners", permanent: true },
       { source: "/ev-charging/dc-fast-charging", destination: "/charging", permanent: true },
       { source: "/ev-charging/m-pesa", destination: "/charging/private-house", permanent: true },
+      { source: "/book", destination: "/charging", permanent: true },
+      { source: "/book/:path*", destination: "/charging", permanent: true },
+      { source: "/charging/home", destination: "/charging/private-house", permanent: true },
+      { source: "/faq/precifarm-booking-faq", destination: "/faq", permanent: true },
+      { source: "/sw/faq/precifarm-booking-faq", destination: "/faq", permanent: true },
     ];
   },
   async headers() {

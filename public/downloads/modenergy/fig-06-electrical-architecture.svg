@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" font-family="'Segoe UI',system-ui,sans-serif" data-pf-theme="v2">
+<style>
+.t{fill:#0a0a0a}.s{fill:#737373}
+.bx{fill:#fff;stroke:#0a0a0a;stroke-width:1.4}
+.bxs{fill:#f5f5f5;stroke:#a3a3a3;stroke-width:1.2}
+.bxb{fill:#eff6ff;stroke:#2563eb;stroke-width:1.5}
+.bxg{fill:#ecfdf5;stroke:#059669;stroke-width:1.4}
+.bxc{fill:#fef2f2;stroke:#dc2626;stroke-width:1.4}
+.lbl{font-size:12.5px;font-weight:600;fill:#0a0a0a}
+.tiny{font-size:9.5px;fill:#737373}
+.eq{font-size:10.5px;font-family:ui-monospace,Consolas,monospace;fill:#404040}
+.ac{stroke:#0a0a0a;stroke-width:2;fill:none}
+.dc{stroke:#2563eb;stroke-width:2.4;fill:none}
+.pv{stroke:#059669;stroke-width:2.2;fill:none}
+.can{stroke:#7c3aed;stroke-width:1.5;fill:none;stroke-dasharray:5 3}
+.hd{font-size:10.5px;font-weight:700;letter-spacing:.1em}
+
+.pf-accent{fill:#2563eb}
+.pf-frame{fill:none;stroke:#e2e8f0;stroke-width:1}
+.bx,.dev{filter:url(#pf-shadow-sm)}
+.bxb{filter:url(#pf-shadow);fill:#f8fbff}
+
+</style>
+<defs>
+<linearGradient id="pf-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+  <stop offset="0%" stop-color="#f8fafc"/>
+  <stop offset="55%" stop-color="#ffffff"/>
+  <stop offset="100%" stop-color="#f1f5f9"/>
+</linearGradient>
+<pattern id="pf-grid" width="28" height="28" patternUnits="userSpaceOnUse">
+  <circle cx="1.5" cy="1.5" r="0.75" fill="#e2e8f0"/>
+</pattern>
+<linearGradient id="pf-blue" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" stop-color="#3b82f6"/>
+  <stop offset="100%" stop-color="#1d4ed8"/>
+</linearGradient>
+<linearGradient id="pf-blue-soft" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" stop-color="#eff6ff"/>
+  <stop offset="100%" stop-color="#dbeafe"/>
+</linearGradient>
+<filter id="pf-shadow" x="-8%" y="-8%" width="116%" height="120%">
+  <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.07"/>
+</filter>
+<filter id="pf-shadow-sm" x="-6%" y="-6%" width="112%" height="114%">
+  <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#0f172a" flood-opacity="0.06"/>
+</filter>
+<marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0a0a0a"/></marker>
+<marker id="ad" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+<marker id="ap" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#059669"/></marker>
+</defs>
+
+<g id="pf-background" aria-hidden="true">
+  <rect width="1200" height="800" fill="url(#pf-bg)"/>
+  <rect width="1200" height="800" fill="url(#pf-grid)" opacity="0.45"/>
+  <rect x="0" y="0" width="5" height="800" fill="#2563eb" rx="0"/>
+</g><text x="40" y="42" class="t" font-size="20" font-weight="700">Electrical architecture &#8212; conceptual single line</text>
+<text x="40" y="64" class="s" font-size="12.5">P2-4.8 / Pod LV-48 configuration. Protection coordination is site-specific and must be produced by a licensed Kenyan electrical designer. NOT ISSUED FOR CONSTRUCTION.</text>
+
+
+<!-- legend -->
+<g transform="translate(760,96)">
+<rect x="0" y="0" width="400" height="76" rx="6" fill="#fafafa" stroke="#e5e5e5"/>
+<text x="14" y="20" class="hd" fill="#404040">LEGEND</text>
+<line x1="14" y1="32" x2="46" y2="32" class="ac"/><text x="54" y="36" class="tiny">AC power path, 230 V / 50 Hz</text>
+<line x1="200" y1="32" x2="232" y2="32" class="dc"/><text x="240" y="36" class="tiny">DC power path, 51.2 V nominal</text>
+<line x1="14" y1="52" x2="46" y2="52" class="pv"/><text x="54" y="56" class="tiny">PV DC string</text>
+<line x1="200" y1="52" x2="232" y2="52" class="can"/><text x="240" y="56" class="tiny">CAN 2.0B, 500 kbit/s</text>
+<rect x="14" y="62" width="10" height="10" class="bxc"/><text x="30" y="71" class="tiny">certification / installer scope</text>
+</g>
+
+<!-- ============ GRID BRANCH ============ -->
+<text x="40" y="112" class="hd" fill="#0a0a0a">GRID INTERFACE</text>
+<rect x="40" y="124" width="150" height="44" rx="5" class="bxs"/><text x="115" y="146" class="lbl" text-anchor="middle">KPLC SUPPLY</text><text x="115" y="161" class="tiny" text-anchor="middle">230 V &#183; 50 Ph &#183; single-phase</text>
+<path class="ac" d="M115 168 V 196" marker-end="url(#a)"/>
+<rect x="40" y="196" width="150" height="38" rx="5" class="bxc"/><text x="115" y="214" class="lbl" text-anchor="middle" font-size="11.5">MAIN ISOLATOR</text><text x="115" y="228" class="tiny" text-anchor="middle">installer scope &#183; CERT</text>
+<path class="ac" d="M115 234 V 258" marker-end="url(#a)"/>
+<rect x="40" y="258" width="150" height="38" rx="5" class="bxc"/><text x="115" y="276" class="lbl" text-anchor="middle" font-size="11.5">RCD + MCB</text><text x="115" y="290" class="tiny" text-anchor="middle">statutory &#183; CERT</text>
+<path class="ac" d="M115 296 V 320" marker-end="url(#a)"/>
+<rect x="40" y="320" width="150" height="38" rx="5" class="bxc"/><text x="115" y="338" class="lbl" text-anchor="middle" font-size="11.5">SURGE (SPD)</text><text x="115" y="352" class="tiny" text-anchor="middle">weak-grid essential</text>
+<path class="ac" d="M115 358 V 392" marker-end="url(#a)"/>
+<text x="122" y="378" class="tiny">AC INPUT</text>
+
+<!-- ============ PV BRANCH ============ -->
+<text x="990" y="212" class="hd" fill="#059669" text-anchor="end">SOLAR INPUT</text>
+<rect x="840" y="224" width="150" height="44" rx="5" class="bxg"/><text x="915" y="246" class="lbl" text-anchor="middle" fill="#065f46">PV ARRAY</text><text x="915" y="261" class="tiny" text-anchor="middle">1.2 &#8211; 2.0 kWp</text>
+<path class="pv" d="M915 268 V 292" marker-end="url(#ap)"/>
+<rect x="840" y="292" width="150" height="38" rx="5" class="bxc"/><text x="915" y="310" class="lbl" text-anchor="middle" font-size="11.5">DC ISOLATOR + SPD</text><text x="915" y="324" class="tiny" text-anchor="middle">maintenance safety &#183; CERT</text>
+<path class="pv" d="M915 330 V 392" marker-end="url(#ap)"/>
+<rect x="840" y="392" width="150" height="44" rx="5" class="bxg"/><text x="915" y="412" class="lbl" text-anchor="middle" fill="#065f46">MPPT</text><text x="915" y="428" class="tiny" text-anchor="middle">clamped to module charge accept</text>
+<path class="dc" d="M840 414 H 700" marker-end="url(#ad)"/>
+
+<!-- ============ CENTRAL POWER CORE ============ -->
+<rect x="300" y="180" width="400" height="300" rx="10" class="bxb"/>
+<text x="316" y="204" class="hd" fill="#2563eb">POWER CORE  &#8212;  UNIT OF POWER (kW)</text>
+
+<rect x="320" y="216" width="170" height="52" rx="5" fill="#fff" stroke="#2563eb" stroke-width="1.2"/>
+<text x="405" y="236" class="lbl" text-anchor="middle" font-size="11.5">TRANSFER / BYPASS</text><text x="405" y="252" class="tiny" text-anchor="middle">&#8804; 20 ms &#183; anti-islanding</text><text x="405" y="264" class="tiny" text-anchor="middle" fill="#dc2626">CERT REQUIRED</text>
+
+<rect x="510" y="216" width="170" height="52" rx="5" fill="#fff" stroke="#2563eb" stroke-width="1.2"/>
+<text x="595" y="236" class="lbl" text-anchor="middle" font-size="11.5">SYSTEM PROTECTION</text><text x="595" y="252" class="tiny" text-anchor="middle">export limit &#183; insulation monitor</text><text x="595" y="264" class="tiny" text-anchor="middle" fill="#dc2626">CERT REQUIRED</text>
+
+<rect x="320" y="284" width="360" height="60" rx="5" fill="#fff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="500" y="308" class="lbl" text-anchor="middle" font-size="13">BIDIRECTIONAL INVERTER / CHARGER</text>
+<text x="500" y="326" class="eq" text-anchor="middle">P2-2.4 &#8594; 2.4 kW cont.    P2-4.8 &#8594; 4.8 kW cont.</text>
+<text x="500" y="339" class="tiny" text-anchor="middle">rating enforced in firmware against enumerated module count (ERN-01)</text>
+
+<path class="ac" d="M405 268 V 284"/>
+<path class="ac" d="M595 268 V 284"/>
+
+<!-- DC BUS -->
+<rect x="320" y="360" width="360" height="52" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6"/>
+<text x="500" y="380" class="lbl" text-anchor="middle" font-size="12.5">DC BUS &#183; 51.2 V NOMINAL (44.8 &#8211; 58.4 V)</text>
+<text x="500" y="398" class="tiny" text-anchor="middle">main fuse &#183; main contactor &#183; current shunt &#183; insulation monitor</text>
+<path class="dc" d="M500 344 V 360"/>
+
+<!-- edge controller -->
+<rect x="320" y="428" width="360" height="38" rx="5" fill="#065f46"/>
+<text x="500" y="446" font-size="11.5" font-weight="600" fill="#a7f3d0" text-anchor="middle">EDGE CONTROLLER &#183; deterministic local control priority</text>
+<text x="500" y="459" font-size="9" fill="#6ee7b7" text-anchor="middle">no cloud command may raise a current, voltage or temperature limit</text>
+
+<!-- ============ LOADS ============ -->
+<path class="ac" d="M490 242 H 200" marker-end="url(#a)"/>
+<text x="212" y="236" class="tiny">CRITICAL LOAD FEED</text>
+<rect x="40" y="418" width="230" height="62" rx="5" class="bxs"/>
+<text x="155" y="440" class="lbl" text-anchor="middle">CRITICAL LOAD SUBPANEL</text>
+<text x="155" y="456" class="tiny" text-anchor="middle">lighting &#183; router &#183; fridge &#183; phones &#183; security</text>
+<text x="155" y="470" class="tiny" text-anchor="middle">default scope &#8212; not whole-home</text>
+<path class="ac" d="M405 268 L 405 396 L 274 396 L 274 440 L 270 440" marker-end="url(#a)"/>
+
+<rect x="40" y="500" width="230" height="52" rx="5" fill="#fff" stroke="#a3a3a3" stroke-width="1.2" stroke-dasharray="5 3"/>
+<text x="155" y="520" class="lbl" text-anchor="middle" fill="#737373">NON-CRITICAL LOADS</text>
+<text x="155" y="536" class="tiny" text-anchor="middle">geyser &#183; iron &#183; AC &#8212; grid only during outage</text>
+
+<!-- ============ MODULE BUS ============ -->
+<path class="dc" d="M500 412 V 512" marker-end="url(#ad)"/>
+<text x="512" y="500" class="tiny">MODULE BUS</text>
+<text x="740" y="500" class="hd" fill="#1d4ed8">ENERGY MODULES  &#8212;  UNIT OF ENERGY (kWh)</text>
+<line x1="140" y1="512" x2="1060" y2="512" class="dc"/>
+
+<g>
+<!-- module blocks -->
+<g>
+<rect x="140" y="530" width="200" height="122" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+<text x="240" y="552" class="lbl" text-anchor="middle" fill="#1d4ed8">MODULE 1 &#183; 2.56 kWh</text>
+<rect x="152" y="562" width="176" height="20" rx="3" fill="#fff" stroke="#2563eb" stroke-width="1"/><text x="240" y="576" class="tiny" text-anchor="middle" fill="#1d4ed8">DC FUSE</text>
+<rect x="152" y="586" width="176" height="20" rx="3" fill="#fff" stroke="#2563eb" stroke-width="1"/><text x="240" y="600" class="tiny" text-anchor="middle" fill="#1d4ed8">CONTACTOR + WELD DETECT</text>
+<rect x="152" y="610" width="176" height="20" rx="3" fill="#fff" stroke="#2563eb" stroke-width="1"/><text x="240" y="624" class="tiny" text-anchor="middle" fill="#1d4ed8">PRE-CHARGE</text>
+<rect x="152" y="634" width="176" height="18" rx="3" fill="#065f46"/><text x="240" y="647" class="tiny" text-anchor="middle" fill="#a7f3d0">BMS &#183; 16s LiFePO&#8324;</text>
+</g>
+<g>
+<rect x="360" y="530" width="200" height="122" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+<text x="460" y="552" class="lbl" text-anchor="middle" fill="#1d4ed8">MODULE 2 &#183; 2.56 kWh</text>
+<rect x="372" y="562" width="176" height="20" rx="3" fill="#fff" stroke="#2563eb" stroke-width="1"/><text x="460" y="576" class="tiny" text-anchor="middle" fill="#1d4ed8">DC FUSE</text>
+<rect x="372" y="586" width="176" height="20" rx="3" fill="#fff" stroke="#2563eb" stroke-width="1"/><text x="460" y="600" class="tiny" text-anchor="middle" fill="#1d4ed8">CONTACTOR + WELD DETECT</text>
+<rect x="372" y="610" width="176" height="20" rx="3" fill="#fff" stroke="#2563eb" stroke-width="1"/><text x="460" y="624" class="tiny" text-anchor="middle" fill="#1d4ed8">PRE-CHARGE</text>
+<rect x="372" y="634" width="176" height="18" rx="3" fill="#065f46"/><text x="460" y="647" class="tiny" text-anchor="middle" fill="#a7f3d0">BMS &#183; 16s LiFePO&#8324;</text>
+</g>
+<g>
+<rect x="580" y="530" width="200" height="122" rx="6" fill="#fff" stroke="#a3a3a3" stroke-width="1.3" stroke-dasharray="5 3"/>
+<text x="680" y="552" class="lbl" text-anchor="middle" fill="#737373">MODULE 3 &#8212; BAY FREE</text>
+<text x="680" y="592" class="tiny" text-anchor="middle">identical part number</text>
+<text x="680" y="608" class="tiny" text-anchor="middle">hot-swappable under load (T-26)</text>
+</g>
+<g>
+<rect x="800" y="530" width="200" height="122" rx="6" fill="#fff" stroke="#a3a3a3" stroke-width="1.3" stroke-dasharray="5 3"/>
+<text x="900" y="552" class="lbl" text-anchor="middle" fill="#737373">MODULE 4 &#8212; BAY FREE</text>
+<text x="900" y="592" class="tiny" text-anchor="middle">LV-48 ceiling: 4 modules</text>
+<text x="900" y="608" class="tiny" text-anchor="middle">10.24 kWh at 200 A &#8212; see ERN-03</text>
+</g>
+</g>
+<path class="dc" d="M240 512 V 530"/><path class="dc" d="M460 512 V 530"/>
+<path class="dc" d="M680 512 V 530"/><path class="dc" d="M900 512 V 530"/>
+
+<!-- CAN bus -->
+<path class="can" d="M240 660 V 686 H 1060 V 466 H 684"/>
+<path class="can" d="M460 660 V 686"/><path class="can" d="M680 660 V 686"/><path class="can" d="M900 660 V 686"/>
+<text x="1072" y="580" font-size="9.5" fill="#7c3aed" transform="rotate(90 1072 580)">CAN 2.0B &#183; 500 kbit/s &#183; 1 s heartbeat &#183; 3 missed &#8594; isolate module</text>
+
+<!-- calculation box -->
+<g transform="translate(40,600)">
+<rect x="0" y="0" width="86" height="0" fill="none"/>
+</g>
+<g transform="translate(700,180)">
+<rect x="60" y="0" width="0" height="0"/>
+</g>
+
+<rect x="40" y="700" width="1120" height="54" rx="6" fill="#f5f5f5" stroke="#e5e5e5"/>
+<text x="56" y="720" class="hd" fill="#404040">CURRENT AND POWER RELATIONSHIPS ON THIS BUS  &#183;  [CALC]</text>
+<text x="56" y="738" class="eq">I_bus = N &#215; 50 A          P_DC = N &#215; 2.56 kW          P_AC = P_DC &#215; 0.94          N=1 &#8594; 50 A / 2.41 kW    N=2 &#8594; 100 A / 4.81 kW    N=4 &#8594; 200 A / 9.63 kW</text>
+<text x="56" y="751" class="tiny">Beyond 4 modules the LV-48 bus current becomes impractical (8 modules &#8594; 400 A; 20 modules &#8594; 1,000 A). Pod configurations of 5 or more modules use the HV-S series architecture &#8212; see &#167;7.2 and Figure 14.</text>
+
+<text x="40" y="782" class="s" font-size="11">Figure 6 &#8212; Electrical architecture. CONCEPTUAL single-line. Devices marked CERT are certification or licensed-installer scope. Protection coordination study is out of scope of this document.</text>
+</svg>

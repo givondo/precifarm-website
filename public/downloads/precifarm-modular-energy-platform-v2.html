@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en-KE">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Precifarm Modular Energy Platform — Product + Engineering Architecture (PF-MODENERGY-002 v2.0)</title>
+<meta name="description" content="Precifarm modular energy platform: P1 Go, P2 Home, Energy Module, Pod and Energy OS. Product and engineering architecture, sizing math, Kenya design basis, safety, thermal, manufacturing, prototype roadmap." />
+<link rel="stylesheet" href="./precifarm-document-brand.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #0a0a0a;
+    --muted: #404040;
+    --subtle: #737373;
+    --line: #e5e5e5;
+    --soft: #f7f7f7;
+    --blue: #2563eb;
+    --blue-soft: #eff6ff;
+    --blue-deep: #1d4ed8;
+    --font: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    color: var(--muted);
+    background: #fff;
+    font-family: var(--font);
+    font-size: 9.5pt;
+    line-height: 1.52;
+    font-variant-numeric: tabular-nums;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .sheet { max-width: 210mm; margin: 0 auto; padding: 0 14mm 22mm; }
+
+  /* --- screen toolbar (never printed) --- */
+  .toolbar {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; justify-content: space-between;
+    padding: .7rem 1rem; background: rgba(255,255,255,.96);
+    border-bottom: 1px solid var(--line); backdrop-filter: blur(8px);
+  }
+  .toolbar .id { font-family: ui-monospace, Consolas, monospace; font-size: .78rem; color: var(--subtle); letter-spacing: .04em; }
+  .toolbar a, .toolbar button {
+    display: inline-flex; align-items: center; gap: .35rem; border-radius: 999px;
+    padding: .5rem .95rem; font-size: .82rem; font-weight: 600; text-decoration: none;
+    border: 1px solid var(--line); background: #fff; color: var(--ink); cursor: pointer;
+  }
+  .toolbar .primary { background: var(--blue); border-color: var(--blue); color: #fff; }
+
+  /* --- cover --- */
+  .cover {
+    break-after: page; min-height: 255mm; max-height: 255mm; display: flex; flex-direction: column;
+    padding-top: 0; overflow: hidden; position: relative;
+  }
+  .cover-accent {
+    position: absolute; top: 0; left: 0; right: 0; height: 4mm;
+    background: linear-gradient(90deg, #1d4ed8 0%, #2563eb 50%, #3b82f6 100%);
+  }
+  .cover-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 8mm 0 4mm; border-bottom: 2px solid var(--ink); margin-top: 2mm;
+  }
+  .cover-brand { display: flex; align-items: center; gap: .75rem; }
+  .cover-word { display: block; font-size: 12pt; font-weight: 700; letter-spacing: .18em; color: var(--ink); }
+  .cover-sub { display: block; font-size: 8pt; font-weight: 500; letter-spacing: .06em; color: var(--subtle); margin-top: .5mm; }
+  .cover-doc { font-family: var(--mono); font-size: 8pt; color: var(--subtle); letter-spacing: .06em; text-align: right; line-height: 1.4; }
+  .cover-body { padding: 8mm 0 4mm; }
+  .cover-eyebrow { margin: 0 0 2.5mm; font-size: 8.2pt; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--blue); }
+  .cover-title { margin: 0; font-family: var(--font); font-size: 30pt; line-height: 1.04; letter-spacing: -.03em; font-weight: 700; color: var(--ink); }
+  .cover-lead { margin: 4mm 0 0; font-size: 10pt; line-height: 1.45; color: var(--muted); max-width: 130mm; }
+  .cover-pills { display: flex; flex-wrap: wrap; gap: 2mm; margin-top: 3.5mm; }
+  .cover-pills span {
+    padding: 1.2mm 3.5mm; border-radius: 999px; font-size: 7.2pt; font-weight: 700;
+    letter-spacing: .08em; color: var(--blue-deep); background: var(--blue-soft); border: 1px solid #bfdbfe;
+  }
+  .cover-plate { margin: 0 0 5mm; }
+  .cover-plate img {
+    width: 100%; height: 78mm; object-fit: cover; object-position: center 52%;
+    display: block; border: 1px solid var(--line); border-radius: 8px;
+    box-shadow: 0 12px 32px rgba(15,23,42,.1);
+  }
+  .cover-plate figcaption {
+    margin-top: 2.5mm; font-size: 7.2pt; letter-spacing: .08em; color: var(--subtle); text-transform: uppercase;
+  }
+  .cover-meta {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+  }
+  .cover-meta > div {
+    padding: 2.8mm 3.5mm; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  }
+  .cover-meta span { display: block; font-size: 6.8pt; letter-spacing: .14em; text-transform: uppercase; color: var(--subtle); }
+  .cover-meta strong { display: block; margin-top: .8mm; font-size: 8.6pt; line-height: 1.3; color: var(--ink); }
+  .cover-disclaimer {
+    margin: 3mm 0 0; padding: 3mm 4mm; background: var(--soft); border-left: 3px solid var(--ink);
+    font-size: 7.2pt; line-height: 1.45; color: var(--muted);
+  }
+
+  /* --- contents --- */
+  .toc { break-after: page; }
+  .toc-plates .plate-cols { margin-top: 2mm; }
+  .toc-plates .plate-cols-figures { grid-template-columns: 1fr 1fr 1fr; gap: 0 6mm; }
+  .toc-plates .plate-cols-renders { margin-top: 4mm; grid-template-columns: 1fr 1fr; gap: 0 8mm; align-items: start; }
+  .toc-plates .plate-index { font-size: 7pt; line-height: 1.28; }
+  .toc-plates .plate-index li { padding: .75mm 0; }
+  .toc-plates .idx-head { font-size: 7.2pt; margin-bottom: 1.5mm; }
+  .toc-plates .idx-note { margin-top: 2.5mm; padding: 2.5mm 3mm; font-size: 7pt; }
+  .toc-front { margin: 0 0 6mm; font-size: 8.6pt; color: var(--subtle); }
+  .toc-front a { color: var(--ink); font-weight: 600; text-decoration: none; }
+  .toc-front .dot { padding: 0 .5rem; color: var(--line); }
+  .toc-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0 10mm; }
+  .toc-list { list-style: none; margin: 0; padding: 0; }
+  .toc-list li { border-bottom: 1px solid var(--line); }
+  .toc-list a {
+    display: flex; gap: 4mm; align-items: baseline; padding: 2.1mm 0;
+    text-decoration: none; color: var(--ink); font-size: 9pt;
+  }
+  .toc-num { font-family: var(--mono); font-size: 8pt; color: var(--blue); min-width: 7mm; }
+  .plate-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0 10mm; margin-top: 9mm; }
+  .idx-head {
+    margin: 0 0 3mm; padding-bottom: 1.5mm; border-bottom: 1px solid var(--ink);
+    font-size: 8pt; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--ink);
+  }
+  .plate-index { list-style: none; margin: 0; padding: 0; font-size: 7.6pt; line-height: 1.35; }
+  .plate-index li { display: flex; gap: 3mm; padding: 1.1mm 0; border-bottom: 1px solid #f0f0f0; }
+  .pi-ref { min-width: 16mm; font-family: var(--mono); font-size: 7.4pt; color: var(--blue); }
+  .pi-alt { color: var(--muted); }
+  .idx-note {
+    margin-top: 4mm; padding: 3mm 3.5mm; background: var(--blue-soft); border-radius: 3px;
+    font-size: 7.6pt; color: var(--blue-deep);
+  }
+
+  /* --- sections --- */
+  .doc-section { break-before: page; }
+  .doc-front { break-before: page; }
+  .doc-front:first-of-type { break-before: auto; }
+  .exec-section .plate-render { max-height: 105mm; }
+  .exec-section .plate-render img { max-height: 100mm; object-fit: cover; object-position: center 40%; }
+  h2.sec {
+    display: flex; align-items: baseline; gap: 5mm; margin: 0 0 6mm; padding: 3mm 0 3mm 4mm;
+    border-bottom: 2px solid var(--ink); border-left: 4px solid var(--blue); break-after: avoid;
+  }
+  h2.sec .sec-num {
+    font-family: var(--mono); font-size: 14pt; font-weight: 600; color: var(--blue);
+  }
+  h2.sec .sec-title {
+    font-family: var(--font); font-size: 16pt; font-weight: 700; letter-spacing: -.015em; color: var(--ink);
+  }
+  h2.sec-plain { border-left-color: var(--ink); }
+  h2.sec-plain .sec-title { font-size: 15pt; }
+  h3 {
+    margin: 5.5mm 0 2mm; padding-left: 3mm; border-left: 2px solid #bfdbfe;
+    font-size: 10.4pt; font-weight: 700; color: var(--ink); break-after: avoid;
+  }
+  h4 { margin: 4mm 0 1.5mm; font-size: 9.6pt; font-weight: 700; color: var(--ink); break-after: avoid; }
+  p { margin: 0 0 2.6mm; }
+  strong { color: var(--ink); }
+  ul, ol { margin: 0 0 3mm; padding-left: 6mm; }
+  li { margin-bottom: 1.2mm; }
+  code {
+    font-family: var(--mono); font-size: .88em;
+    background: var(--soft); padding: .05em .3em; border-radius: 2px; color: var(--ink);
+  }
+  .arrow { color: var(--blue); font-weight: 600; }
+
+  /* --- labels --- */
+  .chip {
+    display: inline-block; padding: .08em .45em; border-radius: 3px; font-size: 7pt; font-weight: 700;
+    letter-spacing: .06em; vertical-align: baseline; white-space: nowrap;
+  }
+  .chip-target  { background: var(--blue-soft); color: var(--blue-deep); }
+  .chip-calc    { background: #ecfdf5; color: #065f46; }
+  .chip-assume  { background: #fffbeb; color: #b45309; }
+  .chip-bench   { background: #f5f5f5; color: #525252; }
+  .chip-future  { background: #f5f3ff; color: #5b21b6; }
+  .chip-validate{ background: #fff7ed; color: #9a3412; }
+  .chip-cert    { background: #fef2f2; color: #991b1b; }
+  .chip-concept { background: #f8fafc; color: #334155; border: 1px solid #e2e8f0; }
+  .chip-ern     { background: #fff; color: #991b1b; border: 1px solid #fca5a5; }
+
+  /* --- tables --- */
+  table { width: 100%; border-collapse: collapse; margin: 0 0 4mm; font-size: 8.2pt; }
+  table.grid { break-inside: auto; }
+  table.grid thead { display: table-header-group; }
+  table.grid tbody tr { break-inside: avoid; }
+  table.grid th, table.grid td { border: 1px solid var(--line); padding: 1.6mm 2mm; text-align: left; vertical-align: top; }
+  table.grid th {
+    background: var(--ink); color: #fff; font-weight: 700; font-size: 7.4pt;
+    letter-spacing: .06em; text-transform: uppercase;
+  }
+  table.grid tbody tr:nth-child(even) { background: #fbfbfb; }
+  table.kv { font-size: 8.6pt; }
+  table.kv td { border: none; border-bottom: 1px solid var(--line); padding: 1.6mm 2mm; }
+  table.kv td:first-child { width: 34mm; color: var(--subtle); }
+
+  /* --- code / calculations --- */
+  pre {
+    margin: 0 0 4mm; padding: 3mm 4mm; overflow-x: auto; break-inside: avoid;
+    font-family: ui-monospace, Consolas, "Courier New", monospace; white-space: pre;
+  }
+  pre.calc {
+    background: linear-gradient(180deg, #fbfcfd 0%, #fff 100%);
+    border: 1px solid var(--line); border-left: 3px solid var(--blue);
+    border-radius: 0 6px 6px 0; color: var(--ink); font-size: 7.8pt; line-height: 1.5;
+  }
+  pre.flow {
+    background: linear-gradient(180deg, #171717 0%, #0a0a0a 100%);
+    color: #e5e5e5; border-radius: 6px; font-size: 7.3pt; line-height: 1.45;
+    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+  }
+
+  /* --- taglines --- */
+  .tagline-band {
+    margin: 0 0 4mm; padding: 3.5mm 4.5mm; border-radius: 6px;
+    background: linear-gradient(135deg, #eff6ff 0%, #f8fafc 100%);
+    border: 1px solid #bfdbfe; break-inside: avoid;
+  }
+  .tagline-primary { background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%); border-color: #1e40af; }
+  .tagline-primary .tagline-line { color: #fff; }
+  .tagline-line { font-size: 8.6pt; font-weight: 700; letter-spacing: .1em; color: var(--blue-deep); line-height: 1.55; }
+  .tagline-sub { font-size: 7.6pt; font-weight: 600; letter-spacing: .08em; color: var(--muted); margin-top: 1mm; }
+  .tagline-primary .tagline-sub { color: rgba(255,255,255,.88); font-weight: 500; }
+
+  /* --- callouts and captions --- */
+  .callout {
+    margin: 0 0 4mm; padding: 3.5mm 4.5mm; background: var(--blue-soft);
+    border-left: 3px solid var(--blue); border-radius: 0 6px 6px 0; color: var(--ink);
+    font-size: 9.2pt; break-inside: avoid;
+  }
+  .plate { margin: 4mm 0 2mm; break-inside: avoid; position: relative; }
+  .plate-badge {
+    position: absolute; top: 3mm; left: 3mm; z-index: 2;
+    padding: 1mm 2.5mm; border-radius: 4px; font-family: var(--mono); font-size: 6.8pt; font-weight: 600;
+    letter-spacing: .04em; color: #fff; background: rgba(15,23,42,.72); backdrop-filter: blur(4px);
+  }
+  .plate img { width: 100%; display: block; }
+  .plate figcaption {
+    margin: 1.8mm 0 4mm; padding: 2mm 3mm; border-left: 2px solid var(--blue);
+    font-size: 7.7pt; line-height: 1.45; color: var(--subtle); background: #fafafa; border-radius: 0 4px 4px 0;
+  }
+  .plate figcaption .fig-ref {
+    font-family: var(--mono); font-size: 7pt; font-weight: 600;
+    color: var(--blue); margin-right: 1.5mm;
+  }
+  .plate-render img { border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 10px 28px rgba(15,23,42,.09); }
+  .plate-figure img { border: 1px solid var(--line); border-radius: 8px; background: #fff; box-shadow: 0 6px 20px rgba(15,23,42,.06); }
+  .caption {
+    margin: -1mm 0 5mm; padding: 2mm 3mm; border-left: 2px solid var(--blue);
+    font-size: 7.7pt; line-height: 1.5; color: var(--subtle); background: #fafafa; border-radius: 0 4px 4px 0;
+  }
+  .caption strong { color: var(--muted); }
+
+  /* --- closing --- */
+  .doc-foot {
+    break-before: page; margin-top: 0; padding: 8mm 5mm; border-top: 2px solid var(--ink);
+    font-size: 8pt; color: var(--subtle); background: var(--soft); border-radius: 6px;
+  }
+  .doc-foot strong { color: var(--ink); }
+
+  .print-footer {
+    display: none;
+  }
+  @page { size: A4; margin: 14mm 0 20mm; }
+  @media print {
+    .toolbar { display: none !important; }
+    .sheet { max-width: none; padding: 0 14mm 16mm; }
+    a { color: inherit; text-decoration: none; }
+    .plate, .callout, .tagline-band { break-inside: avoid; }
+    table.grid tbody tr { break-inside: avoid; }
+    h2, h3, h4 { break-after: avoid; }
+    .print-footer {
+      display: flex; position: fixed; bottom: 6mm; left: 14mm; right: 14mm;
+      justify-content: space-between; align-items: center;
+      padding-top: 2mm; border-top: 1px solid var(--line);
+      font-family: var(--mono); font-size: 6.8pt; color: var(--subtle); letter-spacing: .04em;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="print-footer" aria-hidden="true">
+    <span>PF-MODENERGY-002 · v2.0</span>
+    <span>Precifarm Modular Energy Platform</span>
+    <span>30 August 2026</span>
+  </div>
+  <div class="toolbar">
+    <div style="display:flex;align-items:center;gap:.6rem">
+      <img src="./precifarm-logo-mark.svg" alt="" width="22" height="22" />
+      <span class="id">PF-MODENERGY-002 · v2.0 · Product + Engineering Design Review</span>
+    </div>
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+      <button type="button" class="primary" onclick="window.print()">Print</button>
+      <a class="primary" href="./precifarm-modular-energy-platform-v2.pdf" download>Download PDF</a>
+      <a href="/charging">Back to charging</a>
+    </div>
+  </div>
+
+  <main class="sheet">
+    
+  <section class="cover">
+    <div class="cover-accent" aria-hidden="true"></div>
+    <header class="cover-head">
+      <div class="cover-brand">
+        <img src="./precifarm-logo-mark.svg" alt="" width="36" height="36" />
+        <div>
+          <span class="cover-word">PRECIFARM</span>
+          <span class="cover-sub">Modular Energy Platform</span>
+        </div>
+      </div>
+      <span class="cover-doc">PF-MODENERGY-002<br />v2.0</span>
+    </header>
+
+    <div class="cover-body">
+      <p class="cover-eyebrow">Product + Engineering Architecture</p>
+      <h1 class="cover-title">One platform.<br />Many scales.</h1>
+      <p class="cover-lead">Energy Module · Power Core · Energy OS · Kenya-first design basis</p>
+      <div class="cover-pills">
+        <span>P1 GO</span><span>P2 HOME</span><span>POD</span><span>ENERGY OS</span>
+      </div>
+    </div>
+
+    <figure class="cover-plate">
+      <img src="./modenergy/render-family-hero.png" alt="Precifarm product family: P1 Go, Energy Module, P2 Home and Pod" />
+      <figcaption>P1 GO · ENERGY MODULE · P2 HOME · PRECIFARM POD — conceptual industrial design</figcaption>
+    </figure>
+
+    <div class="cover-meta">
+      <div><span>Document</span><strong>PF-MODENERGY-002</strong></div>
+      <div><span>Version</span><strong>2.0</strong></div>
+      <div><span>Status</span><strong>Product + Engineering Design Review</strong></div>
+      <div><span>Date</span><strong>30 August 2026</strong></div>
+      <div><span>Supersedes</span><strong>PF-MODENERGY-001 v1.0</strong></div>
+      <div><span>Classification</span><strong>Internal / partner disclosure</strong></div>
+    </div>
+
+    <p class="cover-disclaimer">
+      Engineering targets and conceptual designs shown in this document are subject to prototype validation, supplier
+      qualification, third-party testing, certification and applicable Kenyan statutory requirements. This document is
+      not an issued-for-construction drawing, certified product specification, warranty or installation manual.
+    </p>
+  </section>
+    
+  <section class="toc toc-sections">
+    <h2 class="sec sec-plain"><span class="sec-title">Contents</span></h2>
+    <div class="toc-front"><a href="#how-to-read-this-document">HOW TO READ THIS DOCUMENT</a><span class="dot">·</span><a href="#executive-summary">EXECUTIVE SUMMARY</a><span class="dot">·</span><a href="#document-control">DOCUMENT CONTROL</a></div>
+    <div class="toc-cols"><ol class="toc-list"><li><a href="#01-the-energy-platform"><span class="toc-num">01</span><span class="toc-title">THE ENERGY PLATFORM</span></a></li><li><a href="#02-product-family"><span class="toc-num">02</span><span class="toc-title">PRODUCT FAMILY</span></a></li><li><a href="#03-energy-module"><span class="toc-num">03</span><span class="toc-title">ENERGY MODULE</span></a></li><li><a href="#04-p1-go"><span class="toc-num">04</span><span class="toc-title">P1 GO</span></a></li><li><a href="#05-p2-home"><span class="toc-num">05</span><span class="toc-title">P2 HOME</span></a></li><li><a href="#06-power-core"><span class="toc-num">06</span><span class="toc-title">POWER CORE</span></a></li><li><a href="#07-precifarm-pod"><span class="toc-num">07</span><span class="toc-title">PRECIFARM POD</span></a></li><li><a href="#08-system-architecture"><span class="toc-num">08</span><span class="toc-title">SYSTEM ARCHITECTURE</span></a></li><li><a href="#09-electrical-architecture"><span class="toc-num">09</span><span class="toc-title">ELECTRICAL ARCHITECTURE</span></a></li><li><a href="#10-battery-bms"><span class="toc-num">10</span><span class="toc-title">BATTERY + BMS</span></a></li><li><a href="#11-thermal-design"><span class="toc-num">11</span><span class="toc-title">THERMAL DESIGN</span></a></li><li><a href="#12-safety"><span class="toc-num">12</span><span class="toc-title">SAFETY</span></a></li><li><a href="#13-energy-os"><span class="toc-num">13</span><span class="toc-title">ENERGY OS</span></a></li><li><a href="#14-solar-home"><span class="toc-num">14</span><span class="toc-title">SOLAR + HOME</span></a></li><li><a href="#15-ev-v2x"><span class="toc-num">15</span><span class="toc-title">EV + V2X</span></a></li></ol><ol class="toc-list"><li><a href="#16-sizing-engineering-math"><span class="toc-num">16</span><span class="toc-title">SIZING + ENGINEERING MATH</span></a></li><li><a href="#17-kenya-design-conditions"><span class="toc-num">17</span><span class="toc-title">KENYA DESIGN CONDITIONS</span></a></li><li><a href="#18-tesla-byd-benchmark"><span class="toc-num">18</span><span class="toc-title">TESLA + BYD BENCHMARK</span></a></li><li><a href="#19-competitive-landscape"><span class="toc-num">19</span><span class="toc-title">COMPETITIVE LANDSCAPE</span></a></li><li><a href="#20-manufacturing"><span class="toc-num">20</span><span class="toc-title">MANUFACTURING</span></a></li><li><a href="#21-serviceability"><span class="toc-num">21</span><span class="toc-title">SERVICEABILITY</span></a></li><li><a href="#22-paygo-m-pesa"><span class="toc-num">22</span><span class="toc-title">PAYGO + M-PESA</span></a></li><li><a href="#23-test-validation"><span class="toc-num">23</span><span class="toc-title">TEST + VALIDATION</span></a></li><li><a href="#24-prototype-roadmap"><span class="toc-num">24</span><span class="toc-title">PROTOTYPE ROADMAP</span></a></li><li><a href="#25-open-engineering-decisions"><span class="toc-num">25</span><span class="toc-title">OPEN ENGINEERING DECISIONS</span></a></li><li><a href="#26-power-versus-energy"><span class="toc-num">26</span><span class="toc-title">POWER VERSUS ENERGY</span></a></li><li><a href="#27-appendix-calculation-reference"><span class="toc-num">27</span><span class="toc-title">APPENDIX: CALCULATION REFERENCE</span></a></li><li><a href="#28-risk-register"><span class="toc-num">28</span><span class="toc-title">RISK REGISTER</span></a></li><li><a href="#29-north-star"><span class="toc-num">29</span><span class="toc-title">NORTH STAR</span></a></li><li><a href="#30-research-design-references"><span class="toc-num">30</span><span class="toc-title">RESEARCH + DESIGN REFERENCES</span></a></li></ol></div>
+  </section>
+
+  <section class="toc toc-plates">
+    <h2 class="sec sec-plain"><span class="sec-title">List of Figures and Renders</span></h2>
+    <div class="plate-cols plate-cols-figures">
+      <div>
+        <h3 class="idx-head">Figures 1–8</h3>
+        <ul class="plate-index"><li><span class="pi-ref">Figure 1</span><span class="pi-alt">Platform architecture: customer, Energy OS, edge, power conversion, energy modules, and the loads and sources they serve.</span></li><li><span class="pi-ref">Figure 2</span><span class="pi-alt">Product family progression with consistent industrial-design language from P1 Go to Pod.</span></li><li><span class="pi-ref">Figure 3</span><span class="pi-alt">Energy Module exploded view. All internal arrangements are CONCEPTUAL; dimensions and part counts are TBD pending prototype.</span></li><li><span class="pi-ref">Figure 4</span><span class="pi-alt">P1 Go cutaway. Conceptual internal arrangement.</span></li><li><span class="pi-ref">Figure 5</span><span class="pi-alt">P2 Home cutaway showing Power Core above, module bays below, ducted airflow and service access.</span></li><li><span class="pi-ref">Figure 6</span><span class="pi-alt">Electrical architecture: grid, PV, DC bus, module bus and load paths with protection points.</span></li><li><span class="pi-ref">Figure 7</span><span class="pi-alt">Pod cutaway: Power Unit, module rack, airflow path, service access, and site connections.</span></li><li><span class="pi-ref">Figure 8</span><span class="pi-alt">Communication architecture from cell-level BMS to customer surfaces.</span></li></ul>
+      </div>
+      <div>
+        <h3 class="idx-head">Figures 9–16</h3>
+        <ul class="plate-index"><li><span class="pi-ref">Figure 9</span><span class="pi-alt">Data architecture: device telemetry to customer action.</span></li><li><span class="pi-ref">Figure 10</span><span class="pi-alt">Thermal architecture: generation, conduction path, enclosure and ambient, with derating bands.</span></li><li><span class="pi-ref">Figure 11</span><span class="pi-alt">Safety stack and fault-response paths.</span></li><li><span class="pi-ref">Figure 12</span><span class="pi-alt">Energy OS capability model and device relationship.</span></li><li><span class="pi-ref">Figure 13</span><span class="pi-alt">Energy OS application screens: energy remaining, solar, consumption, health, expansion, PAYGO, EV, and future V2H.</span></li><li><span class="pi-ref">Figure 14</span><span class="pi-alt">Module scaling: energy grows linearly; in a parallel LV architecture, current grows with it.</span></li><li><span class="pi-ref">Figure 15</span><span class="pi-alt">Backup duration versus load for 1, 2, 4 and 8 modules. Theoretical, engineering estimate and expected usable are distinguished.</span></li><li><span class="pi-ref">Figure 16</span><span class="pi-alt">Solar sensitivity: PV generation versus daily load across day types, with battery SOC consequence.</span></li></ul>
+      </div>
+      <div>
+        <h3 class="idx-head">Figures 17–24</h3>
+        <ul class="plate-index"><li><span class="pi-ref">Figure 17</span><span class="pi-alt">Tesla / BYD / Precifarm architecture synthesis.</span></li><li><span class="pi-ref">Figure 18</span><span class="pi-alt">Manufacturing localisation roadmap from import to regional scale.</span></li><li><span class="pi-ref">Figure 19</span><span class="pi-alt">Service architecture: identification, diagnosis, module replacement and closure.</span></li><li><span class="pi-ref">Figure 20</span><span class="pi-alt">PAYGO and M-Pesa financial-energy architecture with policy boundary.</span></li><li><span class="pi-ref">Figure 21</span><span class="pi-alt">Prototype-to-scale roadmap with exit gates.</span></li><li><span class="pi-ref">Figure 22</span><span class="pi-alt">Energy versus power: tank and pipe, and the module/Power Core mapping.</span></li><li><span class="pi-ref">Figure 23</span><span class="pi-alt">The Precifarm energy network: generation, storage at three scales, Energy OS, and the loads and vehicles it serves.</span></li><li><span class="pi-ref">Figure 24</span><span class="pi-alt">Customer journey and ownership progression from unboxing a portable unit to moving energy between a vehicle and a home.</span></li></ul>
+      </div>
+    </div>
+    <div class="plate-cols plate-cols-renders">
+      <div>
+        <h3 class="idx-head">Renders 1–4</h3>
+        <ul class="plate-index"><li><span class="pi-ref">Render 1</span><span class="pi-alt">The Precifarm product family: P1 Go, Energy Module, P2 Home and Pod. Conceptual industrial design; not a manufacturing model.</span></li><li><span class="pi-ref">Render 2</span><span class="pi-alt">Energy Module conceptual industrial design: recessed side handles, keyed blind-mate power and communication connectors, status indicator and identification tag.</span></li><li><span class="pi-ref">Render 3</span><span class="pi-alt">P1 Go on its home stand with raised top carry handle: aluminum unibody, fold-flat stainless bail handle, glass energy display, magnetic I/O bay, wireless pad, and coiled Type 2 emergency EV lead.</span></li><li><span class="pi-ref">Render 4</span><span class="pi-alt">P2 Home conceptual industrial design: Power Core above, four module bays below with two bays empty and their blind-mate connectors visible, retractable handle and rear castors.</span></li></ul>
+      </div>
+      <div>
+        <h3 class="idx-head">Renders 5–8</h3>
+        <ul class="plate-index"><li><span class="pi-ref">Render 5</span><span class="pi-alt">Precifarm Pod conceptual industrial design, service door open: Power Unit above, a rack of six identical Energy Modules, a separated protection section, sun-shield canopy and base cable entries.</span></li><li><span class="pi-ref">Render 6</span><span class="pi-alt">P2 Home installed in a modern Nairobi home utility area beside the consumer distribution board, with one spare Energy Module stored alongside.</span></li><li><span class="pi-ref">Render 7</span><span class="pi-alt">A Pod serving a small Kenyan retail and cold-storage business, wall-shaded, plinth-mounted, with rooftop PV above.</span></li><li><span class="pi-ref">Render 8</span><span class="pi-alt">Rooftop PV, a wall-shaded Pod and an EV charging in the carport of a Nairobi suburban home. Phase A: charging from the customer's own solar surplus.</span></li></ul>
+        <div class="idx-note">
+          Renders communicate design and installation intent. They are not manufacturing models and carry no
+          dimensional authority.
+        </div>
+      </div>
+    </div>
+  </section>
+    <section class="doc-front" id="how-to-read-this-document">
+<h2 class="sec sec-plain"><span class="sec-title">HOW TO READ THIS DOCUMENT</span></h2>
+<p>Every substantive claim carries a label. Nothing in this document should be read as an approved product specification unless it is labelled and cross-referenced to a released data sheet — and no data sheet has been released.</p>
+<table class="grid"><thead><tr><th>Label</th><th>Meaning</th></tr></thead><tbody><tr><td><span class="chip chip-target">TARGET</span></td><td>Existing Precifarm design target carried forward from v1.0</td></tr><tr><td><span class="chip chip-calc">CALC</span></td><td>Engineering calculation performed in this document; math shown</td></tr><tr><td><span class="chip chip-assume">ASSUMPTION</span></td><td>Engineering assumption; stated explicitly so it can be challenged</td></tr><tr><td><span class="chip chip-bench">BENCHMARK</span></td><td>External market or competitor reference; cited in §28</td></tr><tr><td><span class="chip chip-future">FUTURE</span></td><td>Future concept; no hardware, supplier or approval basis today</td></tr><tr><td><span class="chip chip-validate">VALIDATE</span></td><td>Requires prototype or laboratory validation before it can be quoted</td></tr><tr><td><span class="chip chip-cert">CERT</span></td><td>Requires certification, type approval or regulatory consent</td></tr><tr><td><span class="chip chip-concept">CONCEPTUAL</span></td><td>Industrial-design or layout intent only; not a manufacturing model or dimensioned drawing</td></tr><tr><td><strong>[ERN-nn]</strong></td><td><strong>Engineering Review Note</strong> — inconsistency or risk found in v1.0</td></tr></tbody></table>
+<p><strong>Figures and renders are numbered separately.</strong> <em>Figures</em> (1–24) are engineering diagrams, charts and calculations. <em>Renders</em> (1–8) are conceptual industrial-design visualisations — they communicate design intent and installation context, and carry no dimensional authority.</p>
+<p><strong>Nine Engineering Review Notes (ERN-01 … ERN-09) are raised against v1.0 and consolidated in §25.</strong> Three of them (ERN-01, ERN-03, ERN-06) are architecture-level and must be closed before prototype release.</p>
+</section>
+<section class="doc-front exec-section" id="executive-summary">
+<h2 class="sec sec-plain"><span class="sec-title">EXECUTIVE SUMMARY</span></h2>
+<p>Precifarm is building <strong>one modular energy platform</strong>, not a catalogue of unrelated batteries. A single standardised <strong>Energy Module</strong> is the unit of capacity; a separate <strong>Power Core</strong> (or Pod <strong>Power Unit</strong>) is the unit of power. One cloud layer — <strong>Energy OS</strong> — and one customer account span every product.</p>
+<h3 id="platform-at-a-glance">Platform at a glance</h3>
+<table class="grid"><thead><tr><th>Metric</th><th>Value</th></tr></thead><tbody><tr><td><strong>Energy building block</strong></td><td>2.56 kWh · 51.2 V · 50 Ah LiFePO₄ module <span class="chip chip-target">TARGET</span></td></tr><tr><td><strong>Usable AC energy (1 module)</strong></td><td>2.17 kWh per module; 1.68 kWh daily cycling AC <span class="chip chip-calc">CALC</span></td></tr><tr><td><strong>Physical forms</strong></td><td>P1 Go (~1 kWh) <span class="arrow">→</span> P2 Home (1–4 modules) <span class="arrow">→</span> Pod (2–20 modules)</td></tr><tr><td><strong>Software</strong></td><td>One Energy OS account across every product</td></tr><tr><td><strong>Kenya basis</strong></td><td>230 V / 50 Hz · 4.7 PSH design · KSh 20–28/kWh grid <span class="chip chip-bench">BENCHMARK</span></td></tr><tr><td><strong>Blocking ERNs</strong></td><td>ERN-01 inverter SKU · ERN-03 HV architecture · ERN-06 module handling</td></tr><tr><td><strong>First lawful sale</strong></td><td>P4 certification gate — <strong>no certification held today</strong> <span class="chip chip-cert">CERT</span></td></tr></tbody></table>
+<pre class="flow">ONE ENERGY PLATFORM.  MANY SCALES.  ONE ENERGY OS.  ONE CUSTOMER ACCOUNT.
+PLUG → CARRY → ROLL → STACK → INSTALL → DRIVE
+P1 GO → P2 HOME → ENERGY MODULE → POD → SOLAR → HOME → BUSINESS → EV → V2X</pre>
+<figure class="plate plate-render" id="render-1"><span class="plate-badge">Render 1</span><img src="./modenergy/render-family-hero.png" alt="Render 1 — The Precifarm product family: P1 Go, Energy Module, P2 Home and Pod. Conceptual industrial design; not a manufacturing model." /><figcaption><span class="fig-ref">Render 1</span> The Precifarm product family: P1 Go, Energy Module, P2 Home and Pod. Conceptual industrial design; not a manufacturing model.</figcaption></figure>
+<p class="caption">Render 1 — Product family. One design language, one module, four scales. <span class="chip chip-concept">CONCEPTUAL</span> — industrial-design intent only. Enclosure proportions, port arrangement, module count and internal layout are pre-prototype and subject to §24 validation.</p>
+<h3 id="what-changed-from-v1-0">What changed from v1.0</h3>
+<table class="grid"><thead><tr><th>No.</th><th>Change</th><th>Basis</th></tr></thead><tbody><tr><td>1</td><td><strong>Every number now shows its math.</strong> Energy, power, C-rate, runtime, usable energy, solar sizing and module count are derived, not asserted.</td><td>§16, §27</td></tr><tr><td>2</td><td><strong>P2 base SKU inverter rating corrected.</strong> v1.0 paired a 4 kW inverter with a single 2.56 kW module. Resolved by a two-tier SKU definition.</td><td><span class="chip chip-ern">ERN-01</span></td></tr><tr><td>3</td><td><strong>Two-architecture battery topology introduced.</strong> 51.2 V parallel LV for ≤4 modules; series HV string for Pod ≥5 modules. v1.0's implied 20-module parallel bus would require ~1,000 A DC.</td><td><span class="chip chip-ern">ERN-03</span>, benchmarked to BYD HVS/Tesla PW3</td></tr><tr><td>4</td><td><strong>Module mass and handling flagged.</strong> A 2.56 kWh LFP module benchmarks at ~38 kg — above single-person lifting guidance.</td><td><span class="chip chip-ern">ERN-06</span></td></tr><tr><td>5</td><td><strong>Third-party inverter interoperability added</strong> as a first-class requirement (CAN protocol emulation), not an afterthought.</td><td><span class="chip chip-ern">ERN-08</span></td></tr><tr><td>6</td><td><strong>Usable energy formally defined</strong> with SOC window, reserve and conversion efficiency. v1.0 quoted nominal energy only.</td><td><span class="chip chip-ern">ERN-09</span>, §16.3</td></tr><tr><td>7</td><td><strong>Kenya design basis sourced.</strong> Solar yield, tariff, net-metering caps, KEBS standards and grid reliability now carry citations.</td><td>§17, §28</td></tr><tr><td>8</td><td><strong>PAYGO redesigned around consumer-protection evidence</strong> — essential-load floor instead of hard cutoff.</td><td>§22</td></tr><tr><td>9</td><td><strong>Competitive position stated as ADVANTAGE / PARITY / GAP / OPPORTUNITY</strong>, not marketing claims.</td><td>§19</td></tr><tr><td>10</td><td><strong>Test matrix, risk register and decision gates</strong> expanded to prototype-programme depth.</td><td>§23–§25</td></tr></tbody></table>
+<h3 id="the-five-minute-version">The five-minute version</h3>
+<ol><li><strong>One module.</strong> 2.56 kWh LiFePO₄ at 51.2 V / 50 Ah <span class="chip chip-target">TARGET</span> — the only storage building block Precifarm designs.</li><li><strong>Energy and power scale separately.</strong> Adding modules adds kWh. Adding kW requires a larger Power Core. Conflating the two is the most common residential-storage sizing error (§26).</li><li><strong>Three physical forms.</strong> P1 Go carries ~1 kWh. P2 Home rolls and grows from 1 to 4 modules. Pod installs and scales from 2 modules to tens of kWh.</li><li><strong>One software layer.</strong> Energy OS owns monitoring, prediction, diagnostics, PAYGO and service — the defensible layer. Cells, power stages and connectors are bought.</li><li><strong>Kenya-first.</strong> 230 V / 50 Hz, ~4.7 peak-sun-hour worst-month design basis, KSh 20–28/kWh grid cost, 10 kW domestic net-metering cap, M-Pesa settlement, and a service model built to <strong>repair a module, not replace a system</strong>.</li></ol>
+<p>Tesla / BYD architectural synthesis and competitive positioning are developed in §18 and §19 — not repeated here.</p>
+</section>
+<section class="doc-section" id="01-the-energy-platform">
+<h2 class="sec"><span class="sec-num">01</span><span class="sec-title">THE ENERGY PLATFORM</span></h2>
+<h3 id="1-1-design-principle">1.1 Design principle</h3>
+<div class="callout">Energy storage should be a <strong>positive experience</strong> — simple to use, easy to move, easy to expand, and ready to connect to solar, home and electric mobility.</div>
+<h3 id="1-2-platform-definition">1.2 Platform definition</h3>
+<p>Precifarm designs <strong>one</strong> energy platform that takes different physical forms as the customer's needs grow. The platform is defined by four invariants:</p>
+<table class="grid"><thead><tr><th>Invariant</th><th>Definition</th><th>Why it matters</th></tr></thead><tbody><tr><td><strong>One Energy Module</strong></td><td>2.56 kWh LiFePO₄ class, common mechanical and electrical interface</td><td>One BOM, one spare part, one test fixture, one service procedure</td></tr><tr><td><strong>Separated power</strong></td><td>Conversion and control live in a Power Core / Power Unit, never in the module</td><td>Customer adds kWh without replacing electronics</td></tr><tr><td><strong>One Energy OS</strong></td><td>Same telemetry schema, same account, same app across P1 <span class="arrow">→</span> Pod</td><td>Fleet learning, one support surface, one finance rail</td></tr><tr><td><strong>One service model</strong></td><td>Module-level replacement; system stays installed</td><td>Field economics in Kenya depend on repair, not swap-out</td></tr></tbody></table>
+<h3 id="1-3-product-ladder">1.3 Product ladder</h3>
+<p>Physical forms share the same module and software stack. Energy scales by <strong>adding modules</strong>; power scales by <strong>choosing the right Power Core / Pod inverter tier</strong> — not by replacing what the customer already owns.</p>
+<table class="grid"><thead><tr><th>Form</th><th>Experience</th><th>Energy range</th><th>Role</th></tr></thead><tbody><tr><td><strong>P1 Go</strong></td><td>Carry</td><td>~1 kWh</td><td>Portable entry, off-grid light loads</td></tr><tr><td><strong>P2 Home</strong></td><td>Roll</td><td>2.56 <span class="arrow">→</span> 10.24 kWh</td><td>Modular home backup and solar self-consumption</td></tr><tr><td><strong>Precifarm Pod</strong></td><td>Install</td><td>5.12 <span class="arrow">→</span> 51.2 kWh</td><td>SME, multi-dwelling, fleet depot infrastructure</td></tr></tbody></table>
+<figure class="plate plate-figure" id="figure-1"><span class="plate-badge">Figure 1</span><img src="./modenergy/fig-01-platform-architecture.svg" alt="Figure 1 — Platform architecture: customer, Energy OS, edge, power conversion, energy modules, and the loads and sources they serve." /><figcaption><span class="fig-ref">Figure 1</span> Platform architecture: customer, Energy OS, edge, power conversion, energy modules, and the loads and sources they serve.</figcaption></figure>
+<p class="caption">Figure 1 — Five layers from customer to field hardware. Every layer degrades safely without the layer above it; a device with no network connection runs correctly.</p>
+<p>See §02 and Figure 2 for the full family definition and industrial-design progression.</p>
+</section>
+<section class="doc-section" id="02-product-family">
+<h2 class="sec"><span class="sec-num">02</span><span class="sec-title">PRODUCT FAMILY</span></h2>
+<h3 id="2-1-family-definition">2.1 Family definition</h3>
+<table class="grid"><thead><tr><th>Product</th><th>Energy target</th><th>Power target</th><th>Experience</th><th>Primary role</th><th>Status</th></tr></thead><tbody><tr><td><strong>P1 Go</strong></td><td>~1.0 kWh <span class="chip chip-target">TARGET</span></td><td>1.0 kW <span class="chip chip-target">TARGET</span></td><td>Carry</td><td>Portable energy, entry point</td><td>Concept</td></tr><tr><td><strong>P2 Home</strong></td><td>2.56 <span class="arrow">→</span> 10.24 kWh <span class="chip chip-calc">CALC</span></td><td>2.4 / 4.8 kW SKU <span class="chip chip-ern">ERN-01</span></td><td>Roll</td><td>Modular home energy</td><td>Concept</td></tr><tr><td><strong>Energy Module</strong></td><td>2.56 kWh <span class="chip chip-target">TARGET</span></td><td>2.56 kW DC <span class="chip chip-calc">CALC</span></td><td>Stack</td><td>Common building block</td><td>Concept</td></tr><tr><td><strong>Precifarm Pod</strong></td><td>5.12 <span class="arrow">→</span> 51.2 kWh <span class="chip chip-calc">CALC</span></td><td>5 <span class="arrow">→</span> 30 kW <span class="chip chip-target">TARGET</span></td><td>Install</td><td>Installed infrastructure</td><td>Concept</td></tr><tr><td><strong>EV interface</strong></td><td>Vehicle-dependent</td><td>Vehicle-dependent</td><td>Drive</td><td>Mobile energy resource</td><td><span class="chip chip-future">FUTURE</span></td></tr></tbody></table>
+<figure class="plate plate-figure" id="figure-2"><span class="plate-badge">Figure 2</span><img src="./modenergy/fig-02-product-family.svg" alt="Figure 2 — Product family progression with consistent industrial-design language from P1 Go to Pod." /><figcaption><span class="fig-ref">Figure 2</span> Product family progression with consistent industrial-design language from P1 Go to Pod.</figcaption></figure>
+<h3 id="2-2-entry-and-growth-path">2.2 Entry and growth path</h3>
+<p>The commercial principle is <strong>buy what you need today, add capability when your life changes</strong>. The engineering requirement that makes this possible is that <strong>no expansion step strands a prior purchase</strong>:</p>
+<table class="grid"><thead><tr><th>Step</th><th>Customer action</th><th>What is preserved</th></tr></thead><tbody><tr><td>P1 Go <span class="arrow">→</span> P2 Home</td><td>Buys P2; keeps P1 as portable/backup</td><td>Energy OS account, app, service history</td></tr><tr><td>P2 base <span class="arrow">→</span> P2 + modules</td><td>Adds Energy Modules to empty bays</td><td>Power Core, enclosure, install, warranty base</td></tr><tr><td>P2 <span class="arrow">→</span> Pod</td><td>Pod installed; P2 becomes mobile/secondary</td><td>Modules <strong>may</strong> transfer if architecture matches <span class="chip chip-validate">VALIDATE</span></td></tr><tr><td>Pod <span class="arrow">→</span> Pod + EV</td><td>Adds EV charging circuit</td><td>Entire Pod, all modules, all software</td></tr></tbody></table>
+<p><strong>ERN-05 (open):</strong> whether Energy Modules physically transfer between a 51.2 V P2 and a high-voltage Pod string depends on decision <strong>E-03</strong> (§25). If Pod moves to a series HV architecture, module <em>cells and enclosure</em> can be common but the <em>BMS configuration and connector keying</em> will differ. Do not market cross-product module transfer until E-03 closes.</p>
+<h3 id="2-3-customer-journey">2.3 Customer journey</h3>
+<p>The family exists to support a nine-step ownership progression. The defining commercial property is that <strong>a customer may stop at any step and still own a complete, working product</strong> — and the defining engineering constraint is that no later step strands an earlier purchase.</p>
+<figure class="plate plate-figure" id="figure-24"><span class="plate-badge">Figure 24</span><img src="./modenergy/fig-24-customer-journey.svg" alt="Figure 24 — Customer journey and ownership progression from unboxing a portable unit to moving energy between a vehicle and a home." /><figcaption><span class="fig-ref">Figure 24</span> Customer journey and ownership progression from unboxing a portable unit to moving energy between a vehicle and a home.</figcaption></figure>
+<table class="grid"><thead><tr><th>Step</th><th>Customer experience</th><th>Product</th><th>Philosophy</th><th>Status</th></tr></thead><tbody><tr><td>1 · Unbox</td><td>Arrives charged and usable within minutes</td><td>P1 Go</td><td>PLUG</td><td>Concept</td></tr><tr><td>2 · Charge</td><td>Grid, vehicle 12 V, or folding solar panel</td><td>P1 Go</td><td>PLUG</td><td>Concept</td></tr><tr><td>3 · Use</td><td>Lights, laptops, router and phones through an outage</td><td>P1 Go</td><td>CARRY</td><td>Concept</td></tr><tr><td>4 · Add energy</td><td>A second Energy Module goes into an empty bay</td><td>P2 Home</td><td>STACK</td><td>Concept</td></tr><tr><td>5 · Install</td><td>Technician wires the essential-load distribution board</td><td>P2 Home</td><td>ROLL</td><td><span class="chip chip-cert">CERT</span></td></tr><tr><td>6 · Connect solar</td><td>Rooftop PV feeds the same DC bus</td><td>P2 / Pod</td><td>INSTALL</td><td><span class="chip chip-cert">CERT</span></td></tr><tr><td>7 · Connect home</td><td>Whole-home or SME-scale coverage</td><td>Pod</td><td>INSTALL</td><td><span class="chip chip-cert">CERT</span></td></tr><tr><td>8 · Connect EV</td><td>Surplus solar charges the vehicle</td><td>Pod + EVSE</td><td>DRIVE</td><td><span class="chip chip-future">FUTURE</span> Phase A</td></tr><tr><td>9 · Move energy</td><td>The vehicle powers the home</td><td>Pod + V2X</td><td>DRIVE</td><td><span class="chip chip-future">FUTURE</span> Phase C/D</td></tr></tbody></table>
+<p><strong>Commercial discipline required.</strong> Steps 1–4 describe a product concept under development. Steps 5–7 cannot be offered commercially before the <strong>P4 certification gate</strong> (§24). Steps 8–9 must never be presented to a customer as an available feature — only as a platform direction with the dependencies stated in §15. All customer-facing material is bound by this table.</p>
+</section>
+<section class="doc-section" id="03-energy-module">
+<h2 class="sec"><span class="sec-num">03</span><span class="sec-title">ENERGY MODULE</span></h2>
+<h3 id="3-1-role">3.1 Role</h3>
+<p>The Energy Module is the only storage unit Precifarm designs. Everything else is a container for modules plus the electronics required to convert and control their energy.</p>
+<figure class="plate plate-render" id="render-2"><span class="plate-badge">Render 2</span><img src="./modenergy/render-energy-module.png" alt="Render 2 — Energy Module conceptual industrial design: recessed side handles, keyed blind-mate power and communication connectors, status indicator and identification tag." /><figcaption><span class="fig-ref">Render 2</span> Energy Module conceptual industrial design: recessed side handles, keyed blind-mate power and communication connectors, status indicator and identification tag.</figcaption></figure>
+<p class="caption">Render 2 — Energy Module. <span class="chip chip-concept">CONCEPTUAL</span> The visible features carry engineering intent — two recessed handles (<span class="chip chip-ern">ERN-06</span>), a keyed touch-safe blind-mate power block separated from a four-pin communication connector, a single-line status indicator, and an NFC/QR identity tag. Dimensions, latch geometry and connector selection are <span class="chip chip-validate">VALIDATE</span>.</p>
+<h3 id="3-2-target-specification">3.2 Target specification</h3>
+<table class="grid"><thead><tr><th>Parameter</th><th>Value</th><th>Label</th></tr></thead><tbody><tr><td>Nominal energy</td><td><strong>2.56 kWh</strong></td><td><span class="chip chip-target">TARGET</span></td></tr><tr><td>Nominal voltage</td><td><strong>51.2 V</strong> (16s LiFePO₄)</td><td><span class="chip chip-target">TARGET</span></td></tr><tr><td>Nominal capacity</td><td><strong>50 Ah</strong></td><td><span class="chip chip-target">TARGET</span></td></tr><tr><td>Chemistry</td><td>LiFePO₄ (LFP), cobalt-free</td><td><span class="chip chip-target">TARGET</span></td></tr><tr><td>Operating voltage window</td><td>44.8 – 58.4 V</td><td><span class="chip chip-target">TARGET</span></td></tr><tr><td>Max continuous discharge current</td><td>50 A (1.0 C)</td><td><span class="chip chip-target">TARGET</span></td></tr><tr><td>Max continuous charge current</td><td>30 A (0.6 C)</td><td><span class="chip chip-target">TARGET</span></td></tr><tr><td>Peak discharge current</td><td>100 A / 10 s</td><td><span class="chip chip-validate">VALIDATE</span></td></tr><tr><td>Operating temperature</td><td>−5 °C to +50 °C, derated above 40 °C</td><td><span class="chip chip-assume">ASSUMPTION</span>, <span class="chip chip-ern">ERN-07</span></td></tr><tr><td>Cycle life target</td><td>≥ 4,000 cycles to 80 % SOH @ 25 °C, 0.5 C</td><td><span class="chip chip-validate">VALIDATE</span></td></tr><tr><td>Enclosure rating</td><td>IP20 (P2 indoor bay) / IP55 (Pod rack)</td><td><span class="chip chip-cert">CERT</span></td></tr><tr><td>Communication</td><td>CAN 2.0B, 500 kbit/s + RS-485 fallback</td><td><span class="chip chip-target">TARGET</span>, revised — <span class="chip chip-ern">ERN-08</span></td></tr><tr><td>Mass</td><td>≤ 30 kg target; benchmark class ~38 kg</td><td><span class="chip chip-ern">ERN-06</span></td></tr></tbody></table>
+<h3 id="3-3-the-two-derivations-that-matter">3.3 The two derivations that matter</h3>
+<p><strong>Energy.</strong></p>
+<pre class="calc">E = V × Ah
+E = 51.2 V × 50 Ah
+E = 2,560 Wh
+E = 2.56 kWh                                            [CALC — confirms TARGET]</pre>
+<p><strong>Maximum continuous DC power.</strong></p>
+<pre class="calc">P = V × I
+P = 51.2 V × 50 A
+P = 2,560 W
+P = 2.56 kW                                             [CALC]</pre>
+<p><strong>ERN-02:</strong> v1.0 stated this figure as &quot;≈ 2.5 kW&quot;. The arithmetic result is <strong>2.56 kW</strong>. The discrepancy is immaterial to design but must not propagate into data sheets, where 2.56 kW nominal / de-rated values shall be quoted explicitly.</p>
+<p><strong>C-rates.</strong></p>
+<pre class="calc">C_discharge = I / Ah = 50 A / 50 Ah = 1.00 C            [CALC]
+C_charge    = I / Ah = 30 A / 50 Ah = 0.60 C            [CALC]</pre>
+<p>A 1.0 C continuous discharge on prismatic LFP is achievable but is <strong>thermally the binding constraint in Kenyan ambient conditions</strong> (§11). Cell selection must be qualified at 1.0 C and 40 °C ambient, not only at the 0.2 C / 25 °C conditions typical of published datasheets <span class="chip chip-validate">VALIDATE</span>.</p>
+<h3 id="3-4-exploded-architecture">3.4 Exploded architecture</h3>
+<figure class="plate plate-figure" id="figure-3"><span class="plate-badge">Figure 3</span><img src="./modenergy/fig-03-module-exploded.svg" alt="Figure 3 — Energy Module exploded view. All internal arrangements are CONCEPTUAL; dimensions and part counts are TBD pending prototype." /><figcaption><span class="fig-ref">Figure 3</span> Energy Module exploded view. All internal arrangements are CONCEPTUAL; dimensions and part counts are TBD pending prototype.</figcaption></figure>
+<table class="grid"><thead><tr><th>No.</th><th>Component</th><th>Function</th><th>Buy / Customize / Own</th><th>Note</th></tr></thead><tbody><tr><td>1</td><td>Top cover + gasket</td><td>Ingress protection, service access</td><td>Customize</td><td>Sealing class per §10</td></tr><tr><td>2</td><td>Status indicator + NFC/QR tag</td><td>Customer status, service identity</td><td>Buy + Own (schema)</td><td>Anti-clone signature</td></tr><tr><td>3</td><td>BMS main PCB</td><td>Protection, SOC/SOH, CAN</td><td>Buy (platform) + Own (firmware)</td><td>Dual-bank firmware</td></tr><tr><td>4</td><td>Communication / isolation board</td><td>CAN transceiver, galvanic isolation</td><td>Buy</td><td><span class="chip chip-cert">CERT</span></td></tr><tr><td>5</td><td>Contactor / relay assembly</td><td>Load disconnect</td><td>Buy</td><td>Weld detect required</td></tr><tr><td>6</td><td>Pre-charge resistor + relay</td><td>Hot-plug inrush limiting</td><td>Buy</td><td>Timeout fault</td></tr><tr><td>7</td><td>DC fuse</td><td>Short-circuit protection</td><td>Buy</td><td>Coordination study <span class="chip chip-validate">VALIDATE</span></td></tr><tr><td>8</td><td>Busbars + interconnects</td><td>Current path</td><td>Customize</td><td>Torque spec <span class="chip chip-validate">VALIDATE</span></td></tr><tr><td>9</td><td>Prismatic LFP cells (16s)</td><td>Energy storage</td><td><strong>Buy</strong></td><td>Multi-source required</td></tr><tr><td>10</td><td>Cell compression frame</td><td>Swelling control, structural</td><td>Customize</td><td>Prismatic-specific</td></tr><tr><td>11</td><td>NTC temperature sensor array</td><td>Thermal protection</td><td>Buy</td><td>≥ 4 points <span class="chip chip-validate">VALIDATE</span></td></tr><tr><td>12</td><td>Thermal interface / spreader</td><td>Heat path to enclosure</td><td>Customize</td><td>§11</td></tr><tr><td>13</td><td>Outer enclosure</td><td>Structure, EMC, handling</td><td>Customize</td><td>Handles per <span class="chip chip-ern">ERN-06</span></td></tr><tr><td>14</td><td>Power + CAN connector block</td><td>Blind-mate interface</td><td>Buy (contacts) + Customize (housing)</td><td>Touch-safe unmated</td></tr><tr><td>15</td><td>Guide rails + positive latch</td><td>Insertion, retention, keying</td><td>Customize</td><td>Mis-insertion prevention</td></tr></tbody></table>
+<h3 id="3-5-interface-definition">3.5 Interface definition</h3>
+<table class="grid"><thead><tr><th>Interface</th><th>Requirement</th><th>Label</th></tr></thead><tbody><tr><td><strong>Mechanical</strong></td><td>Guided blind-mate; single positive latch; generation keying prevents mixed-generation strings</td><td><span class="chip chip-target">TARGET</span></td></tr><tr><td><strong>Electrical</strong></td><td>Touch-safe when unmated; pre-charge before contactor close; reverse-polarity impossible by keying</td><td><span class="chip chip-target">TARGET</span></td></tr><tr><td><strong>Communication</strong></td><td>CAN 2.0B 500 kbit/s; address from serial; 1 s heartbeat</td><td>Revised <span class="chip chip-ern">ERN-08</span></td></tr><tr><td><strong>Identity</strong></td><td>Factory UUID + NFC/QR; cryptographic module signature</td><td><span class="chip chip-target">TARGET</span></td></tr><tr><td><strong>Thermal</strong></td><td>≥ 4 NTC points; conduction path to enclosure; forced-air compatible in Pod</td><td><span class="chip chip-validate">VALIDATE</span></td></tr><tr><td><strong>Service</strong></td><td>Field-replaceable without disturbing other modules or de-energising the site</td><td><span class="chip chip-target">TARGET</span></td></tr></tbody></table>
+<h3 id="3-6-bms-functional-requirements">3.6 BMS functional requirements</h3>
+<table class="grid"><thead><tr><th>Function</th><th>Requirement</th><th>Label</th></tr></thead><tbody><tr><td>Protection sampling</td><td>≥ 10 Hz cell V, I, T</td><td><span class="chip chip-target">TARGET</span></td></tr><tr><td>Telemetry</td><td>1 Hz internal, 1/60 Hz to cloud</td><td><span class="chip chip-target">TARGET</span></td></tr><tr><td>SOC</td><td>Coulomb counting + rest-OCV correction</td><td><span class="chip chip-target">TARGET</span></td></tr><tr><td>SOH</td><td>Capacity-fade model + cycle counter</td><td><span class="chip chip-validate">VALIDATE</span></td></tr><tr><td>Protections</td><td>OV, UV, OC, SC, OT, UT, cell imbalance</td><td><span class="chip chip-cert">CERT</span> IEC 62619</td></tr><tr><td>Contactor integrity</td><td>Weld detect; pre-charge timeout</td><td><span class="chip chip-target">TARGET</span></td></tr><tr><td>Balancing</td><td>Passive at top of charge; ≥ 100 mA</td><td><span class="chip chip-validate">VALIDATE</span></td></tr><tr><td>Firmware</td><td>Dual-bank A/B, signed, rollback</td><td><span class="chip chip-target">TARGET</span></td></tr><tr><td>Interop</td><td>Emulate at least one widely supported third-party battery CAN profile</td><td>New — <span class="chip chip-ern">ERN-08</span></td></tr></tbody></table>
+<h3 id="3-7-can-object-model-baseline">3.7 CAN object model (baseline)</h3>
+<table class="grid"><thead><tr><th>ID range</th><th>Content</th><th>Direction</th></tr></thead><tbody><tr><td><code>0x100–0x10F</code></td><td>Status: SOC, SOH, V, I, T_max, fault word</td><td>Module <span class="arrow">→</span> Core</td></tr><tr><td><code>0x110–0x11F</code></td><td>Limits: max charge / discharge current, temperature derate factor</td><td>Module <span class="arrow">→</span> Core</td></tr><tr><td><code>0x120–0x12F</code></td><td>Identity: serial, firmware, chemistry, cycle count</td><td>Module <span class="arrow">→</span> Core</td></tr><tr><td><code>0x200–0x20F</code></td><td>Commands: enable, current limit, clear fault, balance</td><td>Core <span class="arrow">→</span> Module</td></tr><tr><td><code>0x300–0x30F</code></td><td>Topology: bay/slot enumeration, string position</td><td>Bidirectional</td></tr><tr><td><code>0x600+</code></td><td>Third-party inverter emulation profile</td><td>Core <span class="arrow">→</span> Inverter</td></tr></tbody></table>
+<p>Full DBC to be released as <code>PF-ENG-DBC-001</code> at P1 gate <span class="chip chip-validate">VALIDATE</span>.</p>
+</section>
+<section class="doc-section" id="04-p1-go">
+<h2 class="sec"><span class="sec-num">04</span><span class="sec-title">P1 GO</span></h2>
+<h3 id="4-1-positioning">4.1 Positioning</h3>
+<p>P1 Go is the entry point: a premium portable energy appliance, not a battery in a box. It is <strong>intentionally integrated</strong> — it does not accept the 2.56 kWh Energy Module in Phase 1. It shares Energy OS, brand language and customer account only.</p>
+<p><strong>Design direction [CONCEPTUAL].</strong> P1 Go follows a <strong>lifestyle-appliance</strong> industrial-design language — closer to Apple HomePod / Mac Studio than to a toolbox generator. Research into premium portable power (Yoshino × fuseproject, Anker SOLIX) shows the category winning when products feel calm, portable and domestic rather than rugged and technical <span class="chip chip-bench">BENCHMARK</span>. Precifarm's P1 therefore targets:</p>
+<ul><li><strong>Monolithic aluminum unibody</strong> with soft radii, no visible fasteners, glass-front status display</li><li><strong>Detachable tilt stand</strong> for home desk / bedside / carport use — cable routing, rubber feet, EV lead storage</li><li><strong>Top carry handle</strong> — wide fold-flat brushed stainless bail across the crown; stows flush in a top recess for desk mode, raises for one-hand outage carry</li><li><strong>One-hand carry</strong> — unit lifts off the stand by the top handle alone; no side grips</li><li><strong>Single magnetic I/O bay</strong> — Type G, USB-C/A, 12 V, solar in — fewer sealing faces than a scattered port layout</li><li><strong>Wireless top-up pad</strong> on the crown for phones <span class="chip chip-target">TARGET</span></li></ul>
+<figure class="plate plate-render" id="render-3"><span class="plate-badge">Render 3</span><img src="./modenergy/render-p1-go.png" alt="Render 3 — P1 Go on its home stand with raised top carry handle: aluminum unibody, fold-flat stainless bail handle, glass energy display, magnetic I/O bay, wireless pad, and coiled Type 2 emergency EV lead." /><figcaption><span class="fig-ref">Render 3</span> P1 Go on its home stand with raised top carry handle: aluminum unibody, fold-flat stainless bail handle, glass energy display, magnetic I/O bay, wireless pad, and coiled Type 2 emergency EV lead.</figcaption></figure>
+<p class="caption">Render 3 — P1 Go. <span class="chip chip-concept">CONCEPTUAL</span> The <strong>top handle</strong> folds flush into the crown for docked/home use and raises for carry — the customer lifts the brick off the stand by this handle during an outage. Stand is for <strong>home / carport docked mode</strong>. Outlet type shown is generic; production must be <strong>Type G</strong> for Kenya (§17).</p>
+<h3 id="4-2-target-specification">4.2 Target specification</h3>
+<table class="grid"><thead><tr><th>Parameter</th><th>Target</th><th>Label</th><th>Benchmark</th></tr></thead><tbody><tr><td>Energy</td><td>~1.0 kWh LiFePO₄</td><td><span class="chip chip-target">TARGET</span></td><td>EcoFlow DELTA 3 Plus 1,024 Wh <span class="chip chip-bench">BENCHMARK</span></td></tr><tr><td>Continuous AC output</td><td>1.0 kW</td><td><span class="chip chip-target">TARGET</span></td><td>Class benchmark 1.8 kW <span class="chip chip-bench">BENCHMARK</span></td></tr><tr><td>Surge</td><td>2.0 kW / 10 s</td><td><span class="chip chip-validate">VALIDATE</span></td><td>Class benchmark 3.6 kW <span class="chip chip-bench">BENCHMARK</span></td></tr><tr><td>AC outlets</td><td>2 × 230 V Type G</td><td><span class="chip chip-target">TARGET</span></td><td>Kenya socket standard</td></tr><tr><td>DC outputs</td><td>2 × USB-C PD, 2 × USB-A, 1 × 12 V</td><td><span class="chip chip-target">TARGET</span></td><td>—</td></tr><tr><td>Vehicle 12 V input</td><td>Charge P1 from car/alternator while driving</td><td><span class="chip chip-target">TARGET</span></td><td>Customer journey step 2 <span class="chip chip-bench">BENCHMARK</span></td></tr><tr><td>EV emergency output</td><td>Portable Type 2 lead, <strong>1.0 kW max</strong> (~5–7 km/h on a compact EV)</td><td><span class="chip chip-future">FUTURE</span> accessory</td><td>Anker SOLIX EV port precedent <span class="chip chip-bench">BENCHMARK</span> — honest trickle only at 1 kWh scale</td></tr><tr><td>Home stand</td><td>Tilt dock, cable channel, EV lead storage; unit lifts off by top handle</td><td><span class="chip chip-concept">CONCEPTUAL</span></td><td>Enables carport/desk use without losing portability</td></tr><tr><td>Top carry handle</td><td>Fold-flat stainless bail across crown; stows flush, raises for carry</td><td><span class="chip chip-target">TARGET</span></td><td>Primary mobility interface — no side handles</td></tr><tr><td>Solar input</td><td>100 – 200 W MPPT</td><td><span class="chip chip-target">TARGET</span></td><td>Class benchmark up to 1,000 W <span class="chip chip-bench">BENCHMARK</span></td></tr><tr><td>UPS / pass-through</td><td>≤ 20 ms transfer</td><td><span class="chip chip-validate">VALIDATE</span></td><td>Class benchmark 10 ms <span class="chip chip-bench">BENCHMARK</span></td></tr><tr><td>Mass</td><td>≤ 12 kg</td><td><span class="chip chip-target">TARGET</span></td><td>Class 11.3 – 12.5 kg <span class="chip chip-bench">BENCHMARK</span> — target is realistic</td></tr><tr><td>Cycle life</td><td>≥ 3,000 cycles to 80 %</td><td><span class="chip chip-validate">VALIDATE</span></td><td>Class 3,000 – 4,000 <span class="chip chip-bench">BENCHMARK</span></td></tr><tr><td>Certification</td><td>IEC 62368-1 appliance class; KS IEC 62619 cells</td><td><span class="chip chip-cert">CERT</span></td><td>§10</td></tr></tbody></table>
+<p><strong>Engineering position.</strong> The 1 kW / 1 kWh target is deliberately below the 1.8 kW class benchmark. This is a defensible choice <strong>only if</strong> it lowers landed cost meaningfully for the Kenyan entry segment. If it does not, P1 is under-specified against imported competitors and should move to 1.5 kW. <strong>Decision E-06, §25.</strong></p>
+<h3 id="4-3-what-p1-go-actually-covers">4.3 What P1 Go actually covers</h3>
+<p>Using the Scenario A essential-load profile (§16.5):</p>
+<pre class="calc">E_usable_AC(P1) = 1.00 kWh × 0.90 (SOC window) × 0.94 (conversion)
+                = 0.846 kWh                                        [CALC]
+
+Scenario A overnight demand = 1.10 kWh                             [CALC, §16.5]
+
+Coverage = 0.846 / 1.10 = 77 %                                     [CALC]</pre>
+<p><strong>Honest statement for customer-facing copy:</strong> P1 Go covers a full evening of lights, router, phones and a fan, or most of a night including television. It does not run a refrigerator overnight. That requires P2 Home.</p>
+<p><strong>EV charging — what P1 can and cannot do.</strong></p>
+<pre class="calc">Charge P1 FROM vehicle (12 V input):     supported [TARGET]  — mobile top-up while driving
+Charge EV FROM P1 (Type 2 emergency):    1.0 kW max [FUTURE] — ~5–7 km range per hour on a
+                                           compact AC EV; NOT a substitute for Pod + EVSE (§15)</pre>
+<p>At 1.0 kWh / 1.0 kW, P1 is an <strong>emergency bridge</strong>, not a daily EV charger. Marketing must never imply parity with a 7 kW wallbox or a Pod installation.</p>
+<figure class="plate plate-figure" id="figure-4"><span class="plate-badge">Figure 4</span><img src="./modenergy/fig-04-p1-cutaway.svg" alt="Figure 4 — P1 Go cutaway. Conceptual internal arrangement." /><figcaption><span class="fig-ref">Figure 4</span> P1 Go cutaway. Conceptual internal arrangement.</figcaption></figure>
+</section>
+<section class="doc-section" id="05-p2-home">
+<h2 class="sec"><span class="sec-num">05</span><span class="sec-title">P2 HOME</span></h2>
+<h3 id="5-1-positioning">5.1 Positioning</h3>
+<p>P2 Home is the hero product and the bridge from portable power to installed infrastructure: a wheeled, expandable home energy appliance.</p>
+<figure class="plate plate-render" id="render-4"><span class="plate-badge">Render 4</span><img src="./modenergy/render-p2-home.png" alt="Render 4 — P2 Home conceptual industrial design: Power Core above, four module bays below with two bays empty and their blind-mate connectors visible, retractable handle and rear castors." /><figcaption><span class="fig-ref">Render 4</span> P2 Home conceptual industrial design: Power Core above, four module bays below with two bays empty and their blind-mate connectors visible, retractable handle and rear castors.</figcaption></figure>
+<p class="caption">Render 4 — P2 Home. <span class="chip chip-concept">CONCEPTUAL</span> The render shows the platform argument directly: the white upper section is the <strong>Power Core</strong> (power and control), the graphite sections below are <strong>Energy Module bays</strong>, and the two empty bays are the growth path — the customer buys kWh later without replacing electronics. Two modules are shown fitted, matching the <strong>P2-2.4</strong> entry SKU (§5.2). Wheel size, handle mechanism and bay retention are <span class="chip chip-validate">VALIDATE</span>.</p>
+<h3 id="5-2-ern-01-the-v1-0-inverter-module-mismatch">5.2 ERN-01 — the v1.0 inverter/module mismatch</h3>
+<p><strong>Finding.</strong> v1.0 specified a P2 base SKU with a <strong>4 kW continuous inverter</strong> and <strong>one 2.56 kWh module</strong>.</p>
+<pre class="calc">DC current required for 4 kW AC output:
+
+I_DC = P_AC / (η_inv × V_nom)
+I_DC = 4,000 W / (0.94 × 51.2 V)
+I_DC = 4,000 / 48.13
+I_DC = 83.1 A                                                      [CALC]
+
+C-rate demanded of a single module:
+C = 83.1 A / 50 Ah = 1.66 C                                        [CALC]
+
+Module continuous limit = 1.00 C (50 A)                            [TARGET]</pre>
+<p><strong>Conclusion.</strong> A single Energy Module <strong>cannot</strong> support a 4 kW continuous AC output. v1.0 is internally inconsistent.</p>
+<p><strong>Resolution — two-tier SKU definition [PROPOSED]:</strong></p>
+<table class="grid"><thead><tr><th>SKU</th><th>Modules</th><th>Max AC continuous</th><th>Derivation</th><th>Surge</th></tr></thead><tbody><tr><td><strong>P2-2.4</strong></td><td>1 (2.56 kWh)</td><td><strong>2.4 kW</strong></td><td>50 A × 51.2 V × 0.94 = 2.41 kW <span class="chip chip-calc">CALC</span></td><td>4.0 kW / 10 s <span class="chip chip-validate">VALIDATE</span></td></tr><tr><td><strong>P2-4.8</strong></td><td>2 (5.12 kWh) min</td><td><strong>4.8 kW</strong></td><td>100 A × 51.2 V × 0.94 = 4.81 kW <span class="chip chip-calc">CALC</span></td><td>7.0 kW / 10 s <span class="chip chip-validate">VALIDATE</span></td></tr></tbody></table>
+<p>The P2-4.8 Power Core may be installed with one module, but firmware <strong>shall</strong> limit continuous output to 2.4 kW until a second module is enumerated. This is an Energy OS rule, not a hardware change — capability follows installed capacity.</p>
+<h3 id="5-3-target-specification-revised">5.3 Target specification (revised)</h3>
+<table class="grid"><thead><tr><th>Parameter</th><th>P2-2.4</th><th>P2-4.8</th><th>Label</th></tr></thead><tbody><tr><td>Base energy</td><td>2.56 kWh</td><td>5.12 kWh</td><td><span class="chip chip-calc">CALC</span></td></tr><tr><td>Max energy</td><td>10.24 kWh (4 modules)</td><td>10.24 kWh (4 modules)</td><td><span class="chip chip-calc">CALC</span></td></tr><tr><td>Continuous AC</td><td>2.4 kW</td><td>4.8 kW</td><td><span class="chip chip-calc">CALC</span> revised</td></tr><tr><td>PV input</td><td>1.2 kWp, 1 MPPT</td><td>2.0 kWp, 1 MPPT</td><td><span class="chip chip-target">TARGET</span></td></tr><tr><td>Grid</td><td>230 V / 50 Hz single-phase</td><td>230 V / 50 Hz</td><td>Kenya <span class="chip chip-cert">CERT</span></td></tr><tr><td>Backup transfer</td><td>≤ 20 ms</td><td>≤ 20 ms</td><td><span class="chip chip-validate">VALIDATE</span></td></tr><tr><td>Module bays</td><td>4</td><td>4</td><td><span class="chip chip-target">TARGET</span></td></tr><tr><td>Enclosure</td><td>IP21 indoor</td><td>IP21 indoor</td><td><span class="chip chip-cert">CERT</span></td></tr><tr><td>Mobility</td><td>2 wheels + pull handle</td><td>2 wheels + pull handle</td><td><span class="chip chip-target">TARGET</span></td></tr></tbody></table>
+<h3 id="5-4-ern-04-pv-input-versus-module-charge-acceptance">5.4 ERN-04 — PV input versus module charge acceptance</h3>
+<pre class="flow">Module max charge power = 51.2 V × 30 A = 1,536 W ≈ 1.54 kW        [CALC]
+
+P2-2.4 PV input target = 1.2 kWp   → 1.2 kW &lt; 1.54 kW  ✓ compatible
+P2-4.8 PV input target = 2.0 kWp with 1 module = 2.0 kW &gt; 1.54 kW  ✗</pre>
+<p><strong>Resolution.</strong> With a single module installed, Energy OS <strong>shall</strong> clamp battery charge current to 30 A and divert surplus PV to load or curtail via MPPT. Surplus export requires net-metering consent (§17.4). With two modules, charge acceptance is 3.07 kW <span class="chip chip-calc">CALC</span> and 2.0 kWp is comfortably supported.</p>
+<h3 id="5-5-cutaway">5.5 Cutaway</h3>
+<figure class="plate plate-figure" id="figure-5"><span class="plate-badge">Figure 5</span><img src="./modenergy/fig-05-p2-cutaway.svg" alt="Figure 5 — P2 Home cutaway showing Power Core above, module bays below, ducted airflow and service access." /><figcaption><span class="fig-ref">Figure 5</span> P2 Home cutaway showing Power Core above, module bays below, ducted airflow and service access.</figcaption></figure>
+<h3 id="5-6-ern-06-module-handling-mass">5.6 ERN-06 — module handling mass</h3>
+<p>BYD's 2.56 kWh Battery-Box HVS module weighs <strong>38 kg</strong> <span class="chip chip-bench">BENCHMARK</span>. A Precifarm module of equal chemistry and energy will land in a similar range.</p>
+<table class="grid"><thead><tr><th>Reference</th><th>Value</th></tr></thead><tbody><tr><td>Benchmark 2.56 kWh LFP module mass</td><td>~38 kg <span class="chip chip-bench">BENCHMARK</span></td></tr><tr><td>Common single-person occasional lifting guidance</td><td>~23–25 kg <span class="chip chip-assume">ASSUMPTION</span></td></tr><tr><td>Precifarm target</td><td>≤ 30 kg <span class="chip chip-target">TARGET</span>, still above single-person guidance</td></tr></tbody></table>
+<p><strong>Required design response — choose one, at decision E-04 (§25):</strong></p>
+<table class="grid"><thead><tr><th>Option</th><th>Consequence</th></tr></thead><tbody><tr><td><strong>A</strong> Two-person handling, documented; module retains 2.56 kWh</td><td>Simplest; constrains &quot;customer adds energy&quot; marketing to technician-assisted</td></tr><tr><td><strong>B</strong> Sub-divide to 1.28 kWh half-modules</td><td>Single-person handling; doubles connector count, BMS count and cost per kWh</td></tr><tr><td><strong>C</strong> Mechanical aid — integrated slide/lift rail in P2 and Pod bays</td><td>Preserves 2.56 kWh and single-technician install; adds enclosure cost</td></tr></tbody></table>
+<p><strong>Recommendation: Option C for P2/Pod bays, Option A for transport.</strong> Marketing must not depict unassisted lifting until E-04 closes.</p>
+</section>
+<section class="doc-section" id="06-power-core">
+<h2 class="sec"><span class="sec-num">06</span><span class="sec-title">POWER CORE</span></h2>
+<h3 id="6-1-principle">6.1 Principle</h3>
+<p>The Power Core contains everything that converts, controls and protects energy. The Energy Module contains only energy. This separation is the platform's most important architectural decision.</p>
+<p><strong>External validation [BENCHMARK]:</strong> Tesla's Powerwall 3 Expansion unit is explicitly battery-only and relies on the leader unit's inverter, allowing capacity to scale to 54 kWh across one inverter. BYD's Battery-Box towers similarly require an external or top-mounted control unit and a compatible third-party inverter.</p>
+<h3 id="6-2-content-split">6.2 Content split</h3>
+<table class="grid"><thead><tr><th>Power Core (power + control)</th><th>Energy Module (energy only)</th></tr></thead><tbody><tr><td>Bidirectional inverter / charger</td><td>LiFePO₄ cells</td></tr><tr><td>Solar MPPT</td><td>Cell-level BMS</td></tr><tr><td>AC input, bypass, transfer relay</td><td>Temperature sensing</td></tr><tr><td>System protection, RCD interface</td><td>SOC / SOH estimation</td></tr><tr><td>Edge controller, radios</td><td>CAN interface</td></tr><tr><td>Energy OS gateway, OTA agent</td><td>Contactor + fuse + pre-charge</td></tr><tr><td>Thermal management (forced air)</td><td>Mechanical / electrical interface</td></tr></tbody></table>
+<h3 id="6-3-block-architecture">6.3 Block architecture</h3>
+<figure class="plate plate-figure" id="figure-6"><span class="plate-badge">Figure 6</span><img src="./modenergy/fig-06-electrical-architecture.svg" alt="Figure 6 — Electrical architecture: grid, PV, DC bus, module bus and load paths with protection points." /><figcaption><span class="fig-ref">Figure 6</span> Electrical architecture: grid, PV, DC bus, module bus and load paths with protection points.</figcaption></figure>
+<h3 id="6-4-deterministic-control-priority-edge-local">6.4 Deterministic control priority (edge, local)</h3>
+<p>Cloud is <strong>advisory only</strong>. The edge controller executes this order without network access:</p>
+<table class="grid"><thead><tr><th>Rank</th><th>Rule</th><th>Overridable by cloud?</th></tr></thead><tbody><tr><td>1</td><td>Safety interlocks, E-stop, insulation and thermal faults</td><td><strong>No</strong></td></tr><tr><td>2</td><td>Module fault aggregation <span class="arrow">→</span> derate or shut down</td><td><strong>No</strong></td></tr><tr><td>3</td><td>Statutory export / import limit</td><td><strong>No</strong> <span class="chip chip-cert">CERT</span></td></tr><tr><td>4</td><td>Customer backup reserve floor (default 20 % SOC)</td><td>Customer only</td></tr><tr><td>5</td><td>PAYGO essential-load policy (§22)</td><td>Signed service token only</td></tr><tr><td>6</td><td>Solar self-consumption optimisation</td><td>Yes</td></tr><tr><td>7</td><td>Tariff / time-of-use schedule</td><td>Yes</td></tr></tbody></table>
+<p><strong>Design rule:</strong> no cloud command may raise a current, voltage or temperature limit. Cloud may only request operation <em>within</em> limits already asserted locally.</p>
+</section>
+<section class="doc-section" id="07-precifarm-pod">
+<h2 class="sec"><span class="sec-num">07</span><span class="sec-title">PRECIFARM POD</span></h2>
+<h3 id="7-1-positioning">7.1 Positioning</h3>
+<p>The Pod applies BYD's repeat-the-block philosophy at building scale: a professionally installed cabinet containing a Power Unit and N Energy Modules.</p>
+<figure class="plate plate-render" id="render-5"><span class="plate-badge">Render 5</span><img src="./modenergy/render-pod.png" alt="Render 5 — Precifarm Pod conceptual industrial design, service door open: Power Unit above, a rack of six identical Energy Modules, a separated protection section, sun-shield canopy and base cable entries." /><figcaption><span class="fig-ref">Render 5</span> Precifarm Pod conceptual industrial design, service door open: Power Unit above, a rack of six identical Energy Modules, a separated protection section, sun-shield canopy and base cable entries.</figcaption></figure>
+<p class="caption">Render 5 — Precifarm Pod. <span class="chip chip-concept">CONCEPTUAL</span> Four engineering intentions are visible: the <strong>sun-shield canopy</strong> standing proud of the roof (§11 — it exists to keep direct solar gain off the enclosure skin), <strong>module repetition</strong> with even service clearance, a <strong>physically separated protection section</strong> so a technician can isolate before touching modules, and <strong>segregated base cable entries</strong> for PV, grid and load. Six modules are shown; module count depends on decision <strong>E-03</strong> (§7.2). Enclosure IP rating is <span class="chip chip-cert">CERT</span>.</p>
+<h3 id="7-2-ern-03-the-51-2-v-parallel-scaling-limit">7.2 ERN-03 — the 51.2 V parallel scaling limit</h3>
+<p><strong>Finding.</strong> v1.0 described a &quot;Pod Array&quot; of 10–51+ kWh while retaining a 51.2 V nominal architecture. At 51.2 V, capacity can only grow by paralleling modules, and current grows linearly.</p>
+<pre class="flow">Parallel LV architecture at 51.2 V nominal:
+
+N modules → I_max = N × 50 A,  P_max = N × 2.56 kW
+
+N = 4  → 200 A    → 10.24 kW      practical
+N = 8  → 400 A    → 20.48 kW      busbar/fuse cost rising steeply
+N = 20 → 1,000 A  → 51.20 kW      NOT ACCEPTABLE for this product class   [CALC]</pre>
+<p>A ~1,000 A DC bus in a residential or SME cabinet implies very large conductors, expensive high-breaking-capacity fusing, significant I²R loss and a difficult arc-flash case. <strong>Neither benchmark competitor does this.</strong> BYD scales the same 2.56 kWh module <strong>in series</strong> to 512 V while holding output current at 25 A per tower <span class="chip chip-bench">BENCHMARK</span>.</p>
+<p><strong>Resolution — dual architecture [PROPOSED], decision E-03 (§25):</strong></p>
+<table class="grid"><thead><tr><th>Architecture</th><th>Application</th><th>Topology</th><th>DC voltage</th><th>Current at max</th><th>Label</th></tr></thead><tbody><tr><td><strong>LV-48</strong></td><td>P1, P2, Pod ≤ 4 modules</td><td>Parallel modules</td><td>51.2 V nominal</td><td>≤ 200 A</td><td><span class="chip chip-target">PROPOSED</span></td></tr><tr><td><strong>HV-S</strong></td><td>Pod ≥ 5 modules</td><td>Series string, optional parallel strings</td><td>256 – 512 V nominal</td><td>≤ 100 A</td><td><span class="chip chip-target">PROPOSED</span></td></tr></tbody></table>
+<p><strong>HV-S worked example:</strong></p>
+<pre class="flow">10 modules in series:
+V = 10 × 51.2 V = 512 V
+Ah = 50 Ah (unchanged in series)
+E = 512 V × 50 Ah = 25,600 Wh = 25.6 kWh
+I_max = 50 A → P = 512 × 50 = 25.6 kW                              [CALC]
+
+51.2 kWh via 2 parallel strings of 10 series:
+V = 512 V,  Ah = 100 Ah,  E = 51.2 kWh,  I_max = 100 A             [CALC]</pre>
+<p>Current falls from 1,000 A to 100 A for the same energy and power — a <strong>10× reduction</strong> in conductor and protection duty.</p>
+<p><strong>Consequence:</strong> HV-S crosses into a higher electrical-safety class. Isolation, creepage/clearance, insulation monitoring, arc protection and installer competency all change. <span class="chip chip-cert">CERT</span> — this must be scoped with a Kenyan certification consultant before Pod pilot (§24, P3 gate).</p>
+<p><strong>ERN-08 addendum:</strong> v1.0's &quot;≥ 500 V DC isolation, module-to-chassis&quot; is adequate for LV-48 but <strong>insufficient</strong> for a 512 V string. HV-S modules require isolation rated for the full string voltage plus margin, not the module voltage.</p>
+<h3 id="7-3-pod-configuration-matrix">7.3 Pod configuration matrix</h3>
+<table class="grid"><thead><tr><th>Site class</th><th>Modules</th><th>Architecture</th><th>Energy</th><th>Usable AC</th><th>Power Unit target</th><th>Typical use</th></tr></thead><tbody><tr><td>Home base</td><td>2</td><td>LV-48</td><td>5.12 kWh</td><td>4.33 kWh</td><td>4.5 kW</td><td>Backup + solar</td></tr><tr><td>Home premium</td><td>4</td><td>LV-48</td><td>10.24 kWh</td><td>8.66 kWh</td><td>8 kW</td><td>Solar + EV AC</td></tr><tr><td>SME small</td><td>8</td><td>HV-S</td><td>20.48 kWh</td><td>17.33 kWh</td><td>15 kW</td><td>Shop, cold chain</td></tr><tr><td>SME large</td><td>20</td><td>HV-S (2×10)</td><td>51.20 kWh</td><td>43.32 kWh</td><td>30 kW</td><td>Multi-tenant, EV</td></tr></tbody></table>
+<p>Usable AC computed per §16.3. All Power Unit ratings <span class="chip chip-target">TARGET</span>, subject to §16.4 power-ceiling check.</p>
+<p><strong>ERN-09:</strong> v1.0 paired &quot;Pod base 5.12 kWh&quot; with a &quot;5 kW&quot; PCS. Two LV-48 modules deliver 4.81 kW AC <span class="chip chip-calc">CALC</span> — the 5 kW figure is marginally unsupportable at continuous rating. Corrected to <strong>4.5 kW</strong> continuous above, or specify 3 modules for a true 5 kW.</p>
+<h3 id="7-4-cutaway">7.4 Cutaway</h3>
+<figure class="plate plate-figure" id="figure-7"><span class="plate-badge">Figure 7</span><img src="./modenergy/fig-07-pod-cutaway.svg" alt="Figure 7 — Pod cutaway: Power Unit, module rack, airflow path, service access, and site connections." /><figcaption><span class="fig-ref">Figure 7</span> Pod cutaway: Power Unit, module rack, airflow path, service access, and site connections.</figcaption></figure>
+</section>
+<section class="doc-section" id="08-system-architecture">
+<h2 class="sec"><span class="sec-num">08</span><span class="sec-title">SYSTEM ARCHITECTURE</span></h2>
+<h3 id="8-1-layered-responsibility">8.1 Layered responsibility</h3>
+<table class="grid"><thead><tr><th>Layer</th><th>Owns</th><th>Fails how</th><th>Recovery</th></tr></thead><tbody><tr><td><strong>Energy Module</strong></td><td>Cell limits, SOC/SOH, local disconnect</td><td>Opens contactor, raises fault on CAN</td><td>Service reset or auto after cause clears</td></tr><tr><td><strong>Power Core / Unit</strong></td><td>Conversion, grid interface, protection</td><td>Trips to safe state, preserves isolation</td><td>Auto-restart with backoff</td></tr><tr><td><strong>Edge controller</strong></td><td>CAN aggregation, local rules, OTA agent</td><td>Modules idle; grid pass-through if wired</td><td>Watchdog reboot</td></tr><tr><td><strong>Energy OS</strong></td><td>Fleet telemetry, UX, PAYGO, service</td><td>Device continues locally, buffers telemetry</td><td>Reconnect and backfill</td></tr></tbody></table>
+<p><strong>Invariant:</strong> every layer degrades to a safe state without the layer above it. A device with no network runs correctly.</p>
+<h3 id="8-2-communication-architecture">8.2 Communication architecture</h3>
+<figure class="plate plate-figure" id="figure-8"><span class="plate-badge">Figure 8</span><img src="./modenergy/fig-08-comms-architecture.svg" alt="Figure 8 — Communication architecture from cell-level BMS to customer surfaces." /><figcaption><span class="fig-ref">Figure 8</span> Communication architecture from cell-level BMS to customer surfaces.</figcaption></figure>
+<table class="grid"><thead><tr><th>Segment</th><th>Medium</th><th>Rate</th><th>Failure policy</th></tr></thead><tbody><tr><td>Cell <span class="arrow">→</span> BMS</td><td>Internal harness</td><td>≥ 10 Hz</td><td>Fault latch</td></tr><tr><td>BMS <span class="arrow">→</span> Power Core</td><td>CAN 2.0B</td><td>500 kbit/s, 1 s heartbeat</td><td>3 missed beats <span class="arrow">→</span> isolate module</td></tr><tr><td>Power Core <span class="arrow">→</span> Edge</td><td>Internal serial / CAN</td><td>1 Hz</td><td>Local safe mode</td></tr><tr><td>Edge <span class="arrow">→</span> Energy OS</td><td>Wi-Fi / BLE / optional LTE</td><td>5 – 60 s</td><td>Store-and-forward buffer</td></tr><tr><td>Energy OS <span class="arrow">→</span> Customer</td><td>App, SMS, agent desk, CMS</td><td>Event-driven</td><td>SMS fallback</td></tr></tbody></table>
+<h3 id="8-3-ern-08-third-party-inverter-interoperability">8.3 ERN-08 — third-party inverter interoperability</h3>
+<p><strong>Finding.</strong> v1.0 defined a Precifarm-proprietary CAN object model only. In practice, the Kenyan market's hybrid inverters are supplied by third parties, and each expects a <em>specific</em> battery CAN protocol. A battery that speaks only its own dialect is commercially unusable outside Precifarm's own Power Core.</p>
+<p><strong>Requirement added:</strong> the Power Core <strong>shall</strong> expose, in addition to the native profile, at least one widely supported third-party battery CAN profile so Precifarm modules can be sold into installed third-party inverter bases. <span class="chip chip-target">TARGET</span> — target profile selection at decision <strong>E-07</strong> (§25); compatibility list to be published as <code>PF-ENG-INVCOMPAT-001</code> <span class="chip chip-validate">VALIDATE</span>.</p>
+<h3 id="8-4-data-architecture">8.4 Data architecture</h3>
+<figure class="plate plate-figure" id="figure-9"><span class="plate-badge">Figure 9</span><img src="./modenergy/fig-09-data-architecture.svg" alt="Figure 9 — Data architecture: device telemetry to customer action." /><figcaption><span class="fig-ref">Figure 9</span> Data architecture: device telemetry to customer action.</figcaption></figure>
+<table class="grid"><thead><tr><th>Stage</th><th>Content</th><th>Retention <span class="chip chip-assume">ASSUMPTION</span></th></tr></thead><tbody><tr><td>Device</td><td>Raw samples, faults, ring buffer</td><td>7 days local</td></tr><tr><td>Telemetry ingest</td><td>Normalised events, schema-versioned</td><td>Hot 90 days</td></tr><tr><td>Fleet platform</td><td>Per-device time series, module registry</td><td>10 years (warranty term)</td></tr><tr><td>Analytics</td><td>Cohort SOH, fault-rate, derate exposure</td><td>Aggregated indefinitely</td></tr><tr><td>Prediction</td><td>Runtime, solar forecast, capacity advice</td><td>Rolling</td></tr><tr><td>Customer action</td><td>Plain-language recommendation</td><td>Event log</td></tr></tbody></table>
+</section>
+<section class="doc-section" id="09-electrical-architecture">
+<h2 class="sec"><span class="sec-num">09</span><span class="sec-title">ELECTRICAL ARCHITECTURE</span></h2>
+<h3 id="9-1-conceptual-single-line-p2-4-8">9.1 Conceptual single-line (P2-4.8)</h3>
+<pre class="flow">KPLC 230 V / 50 Hz
+      │
+   [ MAIN ISOLATOR ]
+      │
+   [ RCD + MCB ]                          ← statutory, installer scope   [CERT]
+      │
+   [ SURGE PROTECTION ]
+      │
+   AC INPUT ──► [ BYPASS / TRANSFER RELAY ] ──► CRITICAL LOAD SUBPANEL
+      │                                              ▲
+      ▼                                              │
+   [ BIDIRECTIONAL INVERTER / CHARGER ] ─────────────┘
+      │  DC 51.2 V bus
+      ├──── [ PV MPPT ] ◄──── PV ARRAY  (string isolator, DC SPD)
+      │
+   [ DC BUS PROTECTION: fuse, contactor, shunt, insulation monitor ]
+      │
+   MODULE BUS ── [ MOD 1 ] [ MOD 2 ] [ MOD 3 ] [ MOD 4 ]
+                  each: BMS + pre-charge + contactor + fuse</pre>
+<h3 id="9-2-protection-coordination-targets">9.2 Protection coordination targets</h3>
+<table class="grid"><thead><tr><th>Location</th><th>Device</th><th>Purpose</th><th>Label</th></tr></thead><tbody><tr><td>Module internal</td><td>DC fuse</td><td>Cell-string short-circuit</td><td><span class="chip chip-validate">VALIDATE</span></td></tr><tr><td>Module internal</td><td>Contactor + pre-charge</td><td>Controlled connect/disconnect</td><td><span class="chip chip-target">TARGET</span></td></tr><tr><td>DC bus</td><td>Main fuse + contactor</td><td>Bus fault isolation</td><td><span class="chip chip-validate">VALIDATE</span></td></tr><tr><td>DC bus</td><td>Insulation monitor</td><td>Earth-fault detection</td><td><span class="chip chip-cert">CERT</span></td></tr><tr><td>PV string</td><td>DC isolator + SPD</td><td>Maintenance safety, surge</td><td><span class="chip chip-cert">CERT</span></td></tr><tr><td>AC input</td><td>RCD + MCB + SPD</td><td>Statutory installation</td><td><span class="chip chip-cert">CERT</span> installer scope</td></tr><tr><td>AC output</td><td>Transfer relay + anti-islanding</td><td>Grid safety in backup</td><td><span class="chip chip-cert">CERT</span></td></tr></tbody></table>
+<p><strong>Protection coordination study is out of scope of this document</strong> and must be produced per-configuration by a licensed Kenyan electrical designer before any Pod installation.</p>
+<h3 id="9-3-earthing-and-grid-interface">9.3 Earthing and grid interface</h3>
+<table class="grid"><thead><tr><th>Item</th><th>Requirement</th><th>Label</th></tr></thead><tbody><tr><td>Earthing</td><td>Per Kenyan installation requirements and site study</td><td><span class="chip chip-cert">CERT</span></td></tr><tr><td>Anti-islanding</td><td>Required for any grid-parallel operation</td><td><span class="chip chip-cert">CERT</span></td></tr><tr><td>Export</td><td>Only under net-metering consent; domestic systems capped at <strong>10 kW</strong></td><td><span class="chip chip-cert">CERT</span> — sourced §17.4</td></tr><tr><td>Metering</td><td>Bi-directional smart meter with two-way communication required for net metering</td><td><span class="chip chip-cert">CERT</span> — sourced §17.4</td></tr><tr><td>Default posture</td><td><strong>Zero-export</strong> unless net-metering agreement in place</td><td><span class="chip chip-target">PROPOSED</span> decision E-05</td></tr></tbody></table>
+</section>
+<section class="doc-section" id="10-battery-bms">
+<h2 class="sec"><span class="sec-num">10</span><span class="sec-title">BATTERY + BMS</span></h2>
+<h3 id="10-1-cell-selection-framework">10.1 Cell selection framework</h3>
+<table class="grid"><thead><tr><th>Criterion</th><th>Requirement</th><th>Weight</th></tr></thead><tbody><tr><td>Chemistry</td><td>LiFePO₄, cobalt-free</td><td>Mandatory</td></tr><tr><td>Format</td><td>Prismatic preferred (see E-01, §25)</td><td>High</td></tr><tr><td>Qualification</td><td>1.0 C continuous at 40 °C ambient <span class="chip chip-validate">VALIDATE</span></td><td>Mandatory</td></tr><tr><td>Cycle life</td><td>≥ 4,000 to 80 % SOH <span class="chip chip-validate">VALIDATE</span></td><td>High</td></tr><tr><td>Multi-source</td><td>≥ 2 qualified suppliers before P4</td><td>Mandatory</td></tr><tr><td>Documentation</td><td>UN 38.3 test summary, IEC 62619 cell data</td><td>Mandatory <span class="chip chip-cert">CERT</span></td></tr></tbody></table>
+<p><strong>Benchmark context [BENCHMARK]:</strong> both benchmark modular systems in this class use cobalt-free LiFePO₄ and quote an operating range of −10 °C to +50 °C with round-trip efficiency ≥ 95–96 % at DC level.</p>
+<h3 id="10-2-usable-energy-definition-ern-09-closure">10.2 Usable energy definition (ERN-09 closure)</h3>
+<p>v1.0 quoted nominal energy only. v2.0 defines three distinct figures which must never be interchanged:</p>
+<table class="grid"><thead><tr><th>Figure</th><th>Definition</th><th>1 module</th></tr></thead><tbody><tr><td><strong>Nominal energy</strong></td><td>V × Ah</td><td>2.56 kWh</td></tr><tr><td><strong>Usable DC energy</strong></td><td>Nominal × SOC window</td><td>2.30 kWh</td></tr><tr><td><strong>Usable AC energy</strong></td><td>Usable DC × conversion efficiency</td><td><strong>2.17 kWh</strong></td></tr><tr><td><strong>Daily cycling AC energy</strong></td><td>Nominal × (window − reserve) × conversion</td><td><strong>1.68 kWh</strong></td></tr></tbody></table>
+<p>Derivations in §16.3. <strong>Customer-facing material shall quote usable AC energy, not nominal.</strong></p>
+<h3 id="10-3-safety-relevant-bms-states">10.3 Safety-relevant BMS states</h3>
+<table class="grid"><thead><tr><th>State</th><th>Trigger</th><th>Action</th></tr></thead><tbody><tr><td>Normal</td><td>All parameters in band</td><td>Full capability</td></tr><tr><td>Derate</td><td>T &gt; 40 °C or T &lt; 5 °C, or cell imbalance rising</td><td>Reduce current limit; report factor</td></tr><tr><td>Warn</td><td>Approaching protection threshold</td><td>Notify Energy OS; log</td></tr><tr><td>Protect</td><td>Threshold exceeded</td><td>Open contactor; latch fault</td></tr><tr><td>Service lock</td><td>Repeated protect events, or integrity fault</td><td>Require technician clearance</td></tr></tbody></table>
+</section>
+<section class="doc-section" id="11-thermal-design">
+<h2 class="sec"><span class="sec-num">11</span><span class="sec-title">THERMAL DESIGN</span></h2>
+<h3 id="11-1-why-kenya-temperature-matters">11.1 Why Kenya temperature matters</h3>
+<p>Kenya is not a single thermal environment. Nairobi's highland climate is mild; coastal and northern deployments are materially hotter, and any roof-adjacent or outdoor cabinet sees solar gain far above shade ambient.</p>
+<table class="grid"><thead><tr><th>Location class</th><th>Shade ambient <span class="chip chip-assume">ASSUMPTION</span></th><th>Enclosure internal rise <span class="chip chip-assume">ASSUMPTION</span></th><th>Design worst case</th></tr></thead><tbody><tr><td>Nairobi indoor</td><td>18 – 28 °C</td><td>+5 °C</td><td>33 °C</td></tr><tr><td>Nairobi outdoor, shaded</td><td>12 – 30 °C</td><td>+8 °C</td><td>38 °C</td></tr><tr><td>Outdoor, sun-exposed, no shield</td><td>12 – 30 °C</td><td>+20 °C</td><td><strong>50 °C</strong></td></tr><tr><td>Coastal / northern outdoor</td><td>up to 38 °C</td><td>+12 °C with shield</td><td><strong>50 °C</strong></td></tr></tbody></table>
+<p><strong>Design conclusion:</strong> the platform must be qualified to <strong>50 °C internal</strong> with defined derating, and outdoor Pods <strong>shall</strong> include a sun shield and ventilation path. <strong>ERN-07:</strong> v1.0's &quot;operating 15–40 °C, derated at 45 °C&quot; understates the sun-exposed case; revised to <strong>−5 to +50 °C with derating above 40 °C</strong>.</p>
+<h3 id="11-2-heat-generation">11.2 Heat generation</h3>
+<pre class="calc">Module ohmic loss at maximum continuous discharge:
+
+P_loss = I² × R_internal
+Assume R_internal(module, 16s pack, incl. busbars) = 12 mΩ        [ASSUMPTION — VALIDATE]
+
+P_loss = (50 A)² × 0.012 Ω
+P_loss = 2,500 × 0.012
+P_loss = 30 W per module at 1.0 C                                 [CALC]
+
+As fraction of delivered DC power: 30 / 2,560 = 1.17 %            [CALC]</pre>
+<pre class="calc">Power Core loss at rated output (P2-4.8):
+
+P_loss = P_out × (1/η − 1)
+η = 0.94                                                          [ASSUMPTION]
+P_loss = 4,800 × (1/0.94 − 1) = 4,800 × 0.0638 = 306 W            [CALC]</pre>
+<p><strong>Engineering consequence:</strong> the Power Core, not the battery, is the dominant heat source at rated output. Forced-air cooling should be applied to the Power Core first; modules can remain passive in P2 <strong>[VALIDATE by thermal test]</strong>.</p>
+<h3 id="11-3-heat-path">11.3 Heat path</h3>
+<figure class="plate plate-figure" id="figure-10"><span class="plate-badge">Figure 10</span><img src="./modenergy/fig-10-thermal.svg" alt="Figure 10 — Thermal architecture: generation, conduction path, enclosure and ambient, with derating bands." /><figcaption><span class="fig-ref">Figure 10</span> Thermal architecture: generation, conduction path, enclosure and ambient, with derating bands.</figcaption></figure>
+<table class="grid"><thead><tr><th>Product</th><th>Module cooling</th><th>Electronics cooling</th><th>Rationale</th></tr></thead><tbody><tr><td><strong>P1 Go</strong></td><td>Passive, enclosure conduction</td><td>Passive + optional low-noise fan</td><td>Dust and noise ingress risk in Kenyan homes</td></tr><tr><td><strong>P2 Home</strong></td><td>Passive in bay</td><td><strong>Ducted forced air</strong> on Power Core</td><td>Follows §11.2 loss split</td></tr><tr><td><strong>Energy Module</strong></td><td>Passive in P2; forced-air compatible</td><td>—</td><td>One module design, two cooling contexts</td></tr><tr><td><strong>Pod</strong></td><td>Forced air through rack, filtered</td><td>Forced air, separate plenum</td><td>Higher density, outdoor</td></tr></tbody></table>
+<h3 id="11-4-derating-policy-proposed">11.4 Derating policy [PROPOSED]</h3>
+<table class="grid"><thead><tr><th>Internal temperature</th><th>Discharge current limit</th><th>Charge current limit</th><th>Customer message</th></tr></thead><tbody><tr><td>5 – 40 °C</td><td>100 % (50 A)</td><td>100 % (30 A)</td><td>Normal</td></tr><tr><td>40 – 45 °C</td><td>80 % (40 A)</td><td>70 % (21 A)</td><td>&quot;Working hard — output reduced slightly&quot;</td></tr><tr><td>45 – 50 °C</td><td>50 % (25 A)</td><td>40 % (12 A)</td><td>&quot;Cooling down — reduced output&quot;</td></tr><tr><td>&gt; 50 °C</td><td>0 %</td><td>0 %</td><td>&quot;Paused to protect your battery&quot;</td></tr><tr><td>0 – 5 °C</td><td>80 %</td><td>30 %</td><td>Charge limited (LFP low-temp)</td></tr><tr><td>&lt; 0 °C</td><td>50 %</td><td><strong>0 %</strong></td><td>No charge below 0 °C</td></tr></tbody></table>
+<p>All thresholds <span class="chip chip-validate">VALIDATE</span> by cell-supplier data and thermal chamber test (§23, T-03).</p>
+</section>
+<section class="doc-section" id="12-safety">
+<h2 class="sec"><span class="sec-num">12</span><span class="sec-title">SAFETY</span></h2>
+<h3 id="12-1-safety-stack">12.1 Safety stack</h3>
+<p>Safety is layered so that no single failure reaches the customer.</p>
+<figure class="plate plate-figure" id="figure-11"><span class="plate-badge">Figure 11</span><img src="./modenergy/fig-11-safety-stack.svg" alt="Figure 11 — Safety stack and fault-response paths." /><figcaption><span class="fig-ref">Figure 11</span> Safety stack and fault-response paths.</figcaption></figure>
+<pre class="calc">  9  MONITORING          Energy OS fleet fault detection, trend alerts
+  8  SITE PROTECTION     RCD, MCB, SPD, earthing, enclosure, signage      [CERT]
+  7  SYSTEM PROTECTION   anti-islanding, export limit, insulation monitor [CERT]
+  6  POWER ELECTRONICS   inverter OC/OV/OT, DC bus fuse, contactor
+  5  ISOLATION           galvanic isolation, creepage/clearance           [CERT]
+  4  FUSE                module DC fuse, coordinated                     [VALIDATE]
+  3  CONTACTOR           module disconnect + weld detect
+  2  BMS SAFETY          OV UV OC SC OT UT, imbalance, latch
+  1  CELL SAFETY         LiFePO₄ chemistry, compression, venting</pre>
+<h3 id="12-2-fault-response-matrix">12.2 Fault-response matrix</h3>
+<table class="grid"><thead><tr><th>Fault</th><th>Detection</th><th>Immediate</th><th>Then</th><th>Customer sees</th></tr></thead><tbody><tr><td><strong>Over-temperature</strong></td><td>BMS NTC &gt; threshold</td><td>Derate current</td><td>Open contactor if rising; log; alert</td><td>&quot;Paused to protect your battery&quot;</td></tr><tr><td><strong>Over-current</strong></td><td>BMS shunt</td><td>Limit, then open</td><td>Latch; retry with backoff</td><td>&quot;Too much load — reduce and retry&quot;</td></tr><tr><td><strong>Cell over-voltage</strong></td><td>BMS cell sense</td><td>Stop charge</td><td>Balance; log</td><td>&quot;Battery full&quot;</td></tr><tr><td><strong>Cell under-voltage</strong></td><td>BMS cell sense</td><td>Stop discharge</td><td>Reserve lock</td><td>&quot;Battery empty — charging needed&quot;</td></tr><tr><td><strong>Ground fault</strong></td><td>Insulation monitor / RCD</td><td><strong>Trip to safe state</strong></td><td>Lock out; service ticket</td><td>&quot;Service required — system safe&quot;</td></tr><tr><td><strong>CAN heartbeat loss</strong></td><td>3 missed beats</td><td>Isolate that module</td><td>Continue on remaining modules</td><td>&quot;One battery offline — reduced capacity&quot;</td></tr><tr><td><strong>Contactor weld</strong></td><td>Voltage mismatch on open</td><td>Inhibit charge and discharge</td><td>Hard service lock</td><td>&quot;Service required&quot;</td></tr><tr><td><strong>Pre-charge timeout</strong></td><td>Timer + voltage delta</td><td>Abort connect</td><td>Retry ×3, then lock</td><td>&quot;Battery not connecting&quot;</td></tr><tr><td><strong>Grid loss</strong></td><td>AC sense</td><td>Transfer to backup ≤ 20 ms</td><td>Manage reserve</td><td>&quot;Grid is off — running on battery&quot;</td></tr><tr><td><strong>Inverter over-temp</strong></td><td>Heatsink NTC</td><td>Derate</td><td>Shut down if rising</td><td>&quot;Output reduced — cooling&quot;</td></tr></tbody></table>
+<h3 id="12-3-certification-path">12.3 Certification path</h3>
+<table class="grid"><thead><tr><th>Domain</th><th>Standard</th><th>Kenya adoption</th><th>Status</th></tr></thead><tbody><tr><td>Li-ion battery safety (industrial/stationary)</td><td>IEC 62619</td><td><strong>KS IEC 62619</strong> <span class="chip chip-bench">BENCHMARK</span></td><td><span class="chip chip-cert">CERT</span> not started</td></tr><tr><td>Cell/battery transport</td><td>UN 38.3</td><td>Required for import/export</td><td><span class="chip chip-cert">CERT</span> not started</td></tr><tr><td>PV inverter safety</td><td>IEC 62109-1/-2</td><td><strong>KS IEC 62109</strong> <span class="chip chip-bench">BENCHMARK</span></td><td><span class="chip chip-cert">CERT</span> not started</td></tr><tr><td>PV module qualification / safety</td><td>IEC 61215 / 61730</td><td><strong>KS IEC 61215 / KS IEC 61730</strong> <span class="chip chip-bench">BENCHMARK</span></td><td>Supplier scope</td></tr><tr><td>EMC</td><td>IEC 61000 series</td><td>Applicable</td><td><span class="chip chip-cert">CERT</span> not started</td></tr><tr><td>Appliance safety (P1 class)</td><td>IEC 62368-1</td><td>Applicable</td><td><span class="chip chip-cert">CERT</span> not started</td></tr><tr><td>Off-grid solar home systems</td><td>KS 1800 (Kenya-specific) <span class="chip chip-bench">BENCHMARK</span></td><td>Applicable to P1-class kits</td><td>To assess</td></tr><tr><td>Installation</td><td>Kenyan installation requirements, licensed contractor</td><td>EPRA framework</td><td>Per-site <span class="chip chip-cert">CERT</span></td></tr></tbody></table>
+<p><strong>No Precifarm product holds any certification. Nothing in this document may be represented as certified.</strong></p>
+</section>
+<section class="doc-section" id="13-energy-os">
+<h2 class="sec"><span class="sec-num">13</span><span class="sec-title">ENERGY OS</span></h2>
+<h3 id="13-1-six-capabilities">13.1 Six capabilities</h3>
+<figure class="plate plate-figure" id="figure-12"><span class="plate-badge">Figure 12</span><img src="./modenergy/fig-12-energy-os.svg" alt="Figure 12 — Energy OS capability model and device relationship." /><figcaption><span class="fig-ref">Figure 12</span> Energy OS capability model and device relationship.</figcaption></figure>
+<table class="grid"><thead><tr><th>Capability</th><th>What it does</th><th>Owned</th></tr></thead><tbody><tr><td><strong>Monitor</strong></td><td>Real-time energy, power, SOC, solar, load</td><td>Own</td></tr><tr><td><strong>Predict</strong></td><td>Runtime remaining, solar forecast, deficit warning</td><td>Own</td></tr><tr><td><strong>Optimize</strong></td><td>Self-consumption, reserve, tariff, charge scheduling</td><td>Own</td></tr><tr><td><strong>Diagnose</strong></td><td>Fault codes, module-level health, remote triage</td><td>Own</td></tr><tr><td><strong>Automate</strong></td><td>Backup transitions, load priority, derate handling</td><td>Own</td></tr><tr><td><strong>Finance</strong></td><td>PAYGO state, M-Pesa reconciliation, credit signals</td><td>Own</td></tr></tbody></table>
+<h3 id="13-2-telemetry-contract-minimum">13.2 Telemetry contract (minimum)</h3>
+<table class="grid"><thead><tr><th>Field</th><th>Rate</th><th>Purpose</th></tr></thead><tbody><tr><td><code>soc_pct</code>, <code>soh_pct</code></td><td>60 s</td><td>Customer UX, warranty</td></tr><tr><td><code>power_w</code>, <code>voltage_v</code>, <code>current_a</code></td><td>5 s</td><td>Monitoring, diagnostics</td></tr><tr><td><code>pv_power_w</code>, <code>load_power_w</code>, <code>grid_power_w</code></td><td>5 s</td><td>Energy flow display</td></tr><tr><td><code>runtime_minutes_est</code></td><td>60 s</td><td>Plain-language UX</td></tr><tr><td><code>temp_max_c</code>, <code>derate_factor</code></td><td>60 s</td><td>Thermal exposure analytics</td></tr><tr><td><code>fault_code</code>, <code>fault_severity</code></td><td>On event</td><td>Service</td></tr><tr><td><code>module_count</code>, <code>module_slots</code>, <code>module_serials[]</code></td><td>On change</td><td>Expansion detection, anti-theft</td></tr><tr><td><code>paygo_state</code>, <code>credit_days_remaining</code></td><td>On change</td><td>Finance</td></tr><tr><td><code>firmware_version[]</code></td><td>24 h</td><td>OTA compliance</td></tr></tbody></table>
+<h3 id="13-3-ota-policy">13.3 OTA policy</h3>
+<table class="grid"><thead><tr><th>Rule</th><th>Requirement</th></tr></thead><tbody><tr><td>Banks</td><td>Dual-bank A/B with automatic rollback on boot failure</td></tr><tr><td>Signing</td><td>All images signed; device verifies chain before write</td></tr><tr><td>Module updates</td><td><strong>Only</strong> via Power Core proxy — never cloud-direct to a module</td></tr><tr><td>Rollout</td><td>Canary fleet <span class="arrow">→</span> region <span class="arrow">→</span> full, with hold gates</td></tr><tr><td>Abort</td><td>Automatic halt if fault rate exceeds baseline within 24 h</td></tr><tr><td>Safety</td><td>No OTA during discharge below reserve, or during grid outage</td></tr></tbody></table>
+<h3 id="13-4-customer-language">13.4 Customer language</h3>
+<p>Energy OS translates engineering state into decisions. This is a product requirement, not styling.</p>
+<table class="grid"><thead><tr><th>Engineering state</th><th>Customer surface</th></tr></thead><tbody><tr><td><code>soc = 63 %</code></td><td><strong>63 % battery · about 6 h 18 min left</strong></td></tr><tr><td><code>pv_power = 1.2 kW</code></td><td><strong>Solar is powering your home and charging your battery</strong></td></tr><tr><td><code>module_count 2 <span class="arrow">→</span> 3</code></td><td><strong>+2.56 kWh added · about 3 h more backup</strong></td></tr><tr><td><code>derate_factor = 0.8, temp 43 °C</code></td><td><strong>Working hard — output reduced slightly to protect your battery</strong></td></tr><tr><td><code>paygo_state = grace, 2 days</code></td><td><strong>2 days left on your plan · pay by M-Pesa to continue</strong></td></tr><tr><td><code>v2h_active = true</code> <span class="chip chip-future">FUTURE</span></td><td><strong>Your vehicle is helping power your home</strong></td></tr></tbody></table>
+<h3 id="13-5-application-screens">13.5 Application screens</h3>
+<figure class="plate plate-figure" id="figure-13"><span class="plate-badge">Figure 13</span><img src="./modenergy/fig-13-energy-os-ui.svg" alt="Figure 13 — Energy OS application screens: energy remaining, solar, consumption, health, expansion, PAYGO, EV, and future V2H." /><figcaption><span class="fig-ref">Figure 13</span> Energy OS application screens: energy remaining, solar, consumption, health, expansion, PAYGO, EV, and future V2H.</figcaption></figure>
+<h3 id="13-6-cms-integration">13.6 CMS integration</h3>
+<p>The existing Precifarm CMS install pipeline maps directly onto engineering gates:</p>
+<table class="grid"><thead><tr><th>CMS stage</th><th>Engineering deliverable</th></tr></thead><tbody><tr><td><code>survey_requested</code></td><td>Load questionnaire, photos, meter details</td></tr><tr><td><code>survey_scheduled</code></td><td>Site visit checklist, roof/space assessment</td></tr><tr><td><code>quoted</code></td><td>Module count, Power Core SKU, PV size, single-line sketch</td></tr><tr><td><code>deposit_paid</code></td><td>Procurement release, serial allocation</td></tr><tr><td><code>install_scheduled</code></td><td>Install pack, protection schedule, licensed contractor assigned</td></tr><tr><td><code>commissioned</code></td><td>Commissioning test sheet, Energy OS provisioning, warranty start</td></tr></tbody></table>
+</section>
+<section class="doc-section" id="14-solar-home">
+<h2 class="sec"><span class="sec-num">14</span><span class="sec-title">SOLAR + HOME</span></h2>
+<h3 id="14-1-solar-role-by-product">14.1 Solar role by product</h3>
+<table class="grid"><thead><tr><th>Product</th><th>Solar role</th><th>Input target</th></tr></thead><tbody><tr><td>P1 Go</td><td>Portable panel top-up</td><td>100 – 200 W</td></tr><tr><td>P2 Home</td><td>Rooftop self-consumption + storage</td><td>1.2 – 2.0 kWp</td></tr><tr><td>Pod</td><td>Hybrid solar, storage, grid, EV</td><td>Site-sized</td></tr></tbody></table>
+<h3 id="14-2-kenya-solar-design-basis">14.2 Kenya solar design basis</h3>
+<table class="grid"><thead><tr><th>Parameter</th><th>Value</th><th>Label</th></tr></thead><tbody><tr><td>Nairobi annual average peak sun hours</td><td><strong>5.5 PSH/day</strong></td><td><span class="chip chip-bench">BENCHMARK</span> sourced</td></tr><tr><td>Nairobi worst-month PSH (Jun–Jul)</td><td><strong>4.5 PSH/day</strong></td><td><span class="chip chip-bench">BENCHMARK</span> sourced</td></tr><tr><td>Nairobi recommended conservative design basis</td><td><strong>4.7 PSH/day</strong></td><td><span class="chip chip-bench">BENCHMARK</span> sourced</td></tr><tr><td>Kisumu annual average / design basis</td><td>5.0 / <strong>4.0 PSH/day</strong></td><td><span class="chip chip-bench">BENCHMARK</span> sourced</td></tr><tr><td>Measured specific yield, 600 kWp Nairobi rooftop</td><td><strong>1,225 kWh/kWp/year</strong> (PR 57.4 %)</td><td><span class="chip chip-bench">BENCHMARK</span> sourced</td></tr><tr><td>Precifarm planning performance ratio</td><td><strong>0.75</strong></td><td><span class="chip chip-assume">ASSUMPTION</span></td></tr><tr><td><strong>Precifarm effective daily yield basis</strong></td><td><strong>3.5 kWh/kWp/day</strong></td><td><span class="chip chip-calc">CALC</span> below</td></tr></tbody></table>
+<pre class="calc">Effective daily yield = PSH_design × PR
+                      = 4.7 × 0.75
+                      = 3.53 kWh/kWp/day
+Adopted basis = 3.5 kWh/kWp/day                                    [CALC]
+
+Cross-check against measured Kenyan rooftop data:
+1,225 kWh/kWp/year ÷ 365 = 3.36 kWh/kWp/day                        [CALC]</pre>
+<p><strong>Engineering note.</strong> The measured Nairobi figure (3.36) is <em>below</em> the theoretical basis (3.53), driven by a low measured performance ratio of 57.4 % — consistent with soiling, temperature and system losses. The adopted 3.5 kWh/kWp/day is therefore <strong>optimistic relative to one real Kenyan installation</strong>. Sizing tools should offer a 3.0 kWh/kWp/day pessimistic case for dusty or poorly maintained sites <span class="chip chip-assume">ASSUMPTION</span>.</p>
+<h3 id="14-3-home-integration">14.3 Home integration</h3>
+<pre class="flow">                     PV ARRAY
+                        │  DC
+                   [ MPPT ]
+                        │
+   KPLC ─── [ TRANSFER ] ─── [ INVERTER/CHARGER ] ─── CRITICAL LOADS
+                        │              │
+                        │         DC BUS
+                        │              │
+                   NON-CRITICAL    MODULES
+                     LOADS</pre>
+<table class="grid"><thead><tr><th>Decision</th><th>Options</th><th>Note</th></tr></thead><tbody><tr><td>Critical-load subpanel vs whole-home backup</td><td>Subpanel default</td><td>Whole-home requires transfer sized to full service <span class="chip chip-cert">CERT</span></td></tr><tr><td>Zero-export vs limited export</td><td>Zero-export default</td><td>Export requires net-metering consent (§17.4)</td></tr><tr><td>Generator interlock</td><td>Optional</td><td>Must never parallel with inverter output <span class="chip chip-cert">CERT</span></td></tr></tbody></table>
+</section>
+<section class="doc-section" id="15-ev-v2x">
+<h2 class="sec"><span class="sec-num">15</span><span class="sec-title">EV + V2X</span></h2>
+<h3 id="15-1-staged-roadmap">15.1 Staged roadmap</h3>
+<p>Precifarm does not block V2X. It <strong>sequences</strong> it and refuses to market unavailable capability.</p>
+<figure class="plate plate-render" id="render-8"><span class="plate-badge">Render 8</span><img src="./modenergy/render-solar-ev.png" alt="Render 8 — Rooftop PV, a wall-shaded Pod and an EV charging in the carport of a Nairobi suburban home. Phase A: charging from the customer's own solar surplus." /><figcaption><span class="fig-ref">Render 8</span> Rooftop PV, a wall-shaded Pod and an EV charging in the carport of a Nairobi suburban home. Phase A: charging from the customer's own solar surplus.</figcaption></figure>
+<p class="caption">Render 8 — Solar, storage and EV charging. <span class="chip chip-concept">CONCEPTUAL</span> This render depicts <strong>Phase A only</strong> — the vehicle is being charged from the customer's own generation and storage. It must never be captioned or presented as V2H or V2G: the energy in this image flows one way, into the vehicle. Bidirectional flow requires the hardware, vehicle and regulatory dependencies in §15.1.</p>
+<table class="grid"><thead><tr><th>Phase</th><th>Capability</th><th>Hardware dependency</th><th>Vehicle dependency</th><th>Regulatory</th><th>Status</th></tr></thead><tbody><tr><td><strong>A</strong></td><td>AC EV charging from PV/battery surplus</td><td>AC EVSE, load management</td><td>Any Type 2 AC-capable EV</td><td>Installation approval</td><td>Achievable near-term</td></tr><tr><td><strong>B</strong></td><td>EV state-of-charge visibility in Energy OS</td><td>None (API)</td><td>OEM API availability</td><td>Data consent</td><td><span class="chip chip-future">FUTURE</span></td></tr><tr><td><strong>C</strong></td><td>V2L / V2H — vehicle powers loads or home</td><td><strong>Bidirectional charger</strong></td><td>Vehicle must support bidirectional discharge</td><td>Anti-islanding, protection approval <span class="chip chip-cert">CERT</span></td><td><span class="chip chip-future">FUTURE</span></td></tr><tr><td><strong>D</strong></td><td>V2G — vehicle exports to grid</td><td>Bidirectional + grid interface</td><td>Vehicle + protocol support</td><td><strong>Utility programme + EPRA approval must exist</strong></td><td><span class="chip chip-future">FUTURE</span></td></tr></tbody></table>
+<h3 id="15-2-non-negotiable-communication-rules">15.2 Non-negotiable communication rules</h3>
+<table class="grid"><thead><tr><th>Rule</th><th>Statement</th></tr></thead><tbody><tr><td>No capability claim without hardware</td><td>V2H/V2L/V2G shall not appear in any customer-facing material as available</td></tr><tr><td>No capability claim without vehicle list</td><td>Any bidirectional claim requires a published compatible-vehicle list</td></tr><tr><td>No V2G without programme</td><td>V2G requires an actual utility programme and regulatory consent in Kenya</td></tr><tr><td>Phase A is the honest offer</td><td>&quot;Charge your EV from your own solar&quot; is deliverable and should be the marketed message</td></tr></tbody></table>
+<h3 id="15-3-phase-a-sizing-example">15.3 Phase A sizing example</h3>
+<pre class="calc">EV daily energy for 40 km:
+E_EV = 40 km × 0.18 kWh/km = 7.2 kWh/day                           [CALC, ASSUMPTION on 0.18]
+
+Single-phase AC charger at 16 A:
+P = 230 V × 16 A = 3,680 W ≈ 3.7 kW                                [CALC]
+
+Charging time from surplus:
+t = 7.2 kWh / 3.7 kW = 1.95 h                                      [CALC]</pre>
+<p>A 3.7 kW EV charger plus a 2.6 kW home load requires a <strong>6.3 kW</strong> Power Unit <span class="chip chip-calc">CALC</span> — see Scenario C, §16.7.</p>
+</section>
+<section class="doc-section" id="16-sizing-engineering-math">
+<h2 class="sec"><span class="sec-num">16</span><span class="sec-title">SIZING + ENGINEERING MATH</span></h2>
+<h3 id="16-1-assumption-register">16.1 Assumption register</h3>
+<p>Every calculation in this document uses only these assumptions. Change one and the results change.</p>
+<table class="grid"><thead><tr><th>ID</th><th>Assumption</th><th>Value</th><th>Basis</th></tr></thead><tbody><tr><td>A-01</td><td>Usable SOC window (LFP daily)</td><td>90 %</td><td><span class="chip chip-assume">ASSUMPTION</span></td></tr><tr><td>A-02</td><td>Battery<span class="arrow">→</span>AC one-way conversion efficiency</td><td>94 %</td><td><span class="chip chip-assume">ASSUMPTION</span></td></tr><tr><td>A-03</td><td>Battery round-trip (AC<span class="arrow">→</span>AC) efficiency</td><td>90 %</td><td><span class="chip chip-assume">ASSUMPTION</span>; DC-level benchmarks quote ≥ 95–96 % <span class="chip chip-bench">BENCHMARK</span></td></tr><tr><td>A-04</td><td>Backup reserve held (default)</td><td>20 % SOC</td><td><span class="chip chip-assume">ASSUMPTION</span>, customer-configurable</td></tr><tr><td>A-05</td><td>Nairobi design PSH</td><td>4.7 PSH/day</td><td><span class="chip chip-bench">BENCHMARK</span> sourced</td></tr><tr><td>A-06</td><td>Planning performance ratio</td><td>0.75</td><td><span class="chip chip-assume">ASSUMPTION</span>; measured Kenyan PR 57.4 % <span class="chip chip-bench">BENCHMARK</span></td></tr><tr><td>A-07</td><td>Effective PV yield basis</td><td>3.5 kWh/kWp/day</td><td><span class="chip chip-calc">CALC</span> from A-05, A-06</td></tr><tr><td>A-08</td><td>EV consumption</td><td>0.18 kWh/km</td><td><span class="chip chip-assume">ASSUMPTION</span></td></tr><tr><td>A-09</td><td>Module internal resistance</td><td>12 mΩ</td><td><strong>[ASSUMPTION — VALIDATE]</strong></td></tr></tbody></table>
+<h3 id="16-2-core-equations">16.2 Core equations</h3>
+<table class="grid"><thead><tr><th>Quantity</th><th>Equation</th></tr></thead><tbody><tr><td>Energy</td><td><code>E = V × Ah</code></td></tr><tr><td>Power</td><td><code>P = V × I</code></td></tr><tr><td>C-rate</td><td><code>C = I / Ah</code></td></tr><tr><td>Runtime</td><td><code>t = E_usable / P_load</code></td></tr><tr><td>Usable energy</td><td><code>E_usable = E_nominal × SOC_window × η_conversion</code></td></tr><tr><td>Module count</td><td><code>N = CEILING(E_required / E_module_effective)</code></td></tr><tr><td>Solar array</td><td><code>P_solar = E_daily / (yield × η_storage_path)</code></td></tr><tr><td>Ohmic loss</td><td><code>P_loss = I² × R</code></td></tr></tbody></table>
+<h3 id="16-3-usable-energy-derived">16.3 Usable energy, derived</h3>
+<pre class="calc">Nominal energy, one module:
+E_nom = 51.2 V × 50 Ah = 2,560 Wh = 2.56 kWh                       [CALC]
+
+Usable DC energy (A-01):
+E_DC = 2.56 kWh × 0.90 = 2.304 kWh                                 [CALC]
+
+Usable AC energy (A-02):
+E_AC = 2.304 kWh × 0.94 = 2.166 kWh ≈ 2.17 kWh                     [CALC]
+
+Daily cycling AC energy, holding 20 % backup reserve (A-04):
+window = 0.90 − 0.20 = 0.70
+E_cycle_AC = 2.56 kWh × 0.70 × 0.94 = 1.684 kWh ≈ 1.68 kWh         [CALC]</pre>
+<p><strong>These four numbers must be used consistently everywhere.</strong> Quoting 2.56 kWh where 1.68 kWh applies overstates daily capability by 52 %.</p>
+<h3 id="16-4-module-scaling-energy-current-and-power">16.4 Module scaling — energy, current and power</h3>
+<figure class="plate plate-figure" id="figure-14"><span class="plate-badge">Figure 14</span><img src="./modenergy/fig-14-scaling.svg" alt="Figure 14 — Module scaling: energy grows linearly; in a parallel LV architecture, current grows with it." /><figcaption><span class="fig-ref">Figure 14</span> Module scaling: energy grows linearly; in a parallel LV architecture, current grows with it.</figcaption></figure>
+<p><strong>LV-48 parallel architecture (51.2 V nominal)</strong></p>
+<table class="grid"><thead><tr><th>Modules</th><th>Nominal kWh</th><th>Usable AC kWh</th><th>Cycling AC kWh</th><th>Max DC current</th><th>Max DC kW</th><th>Max AC kW</th><th>Verdict</th></tr></thead><tbody><tr><td>1</td><td>2.56</td><td>2.17</td><td>1.68</td><td>50 A</td><td>2.56</td><td>2.41</td><td>OK</td></tr><tr><td>2</td><td>5.12</td><td>4.33</td><td>3.36</td><td>100 A</td><td>5.12</td><td>4.81</td><td>OK</td></tr><tr><td>3</td><td>7.68</td><td>6.50</td><td>5.04</td><td>150 A</td><td>7.68</td><td>7.22</td><td>OK</td></tr><tr><td>4</td><td>10.24</td><td>8.66</td><td>6.72</td><td>200 A</td><td>10.24</td><td>9.63</td><td><strong>LV practical ceiling</strong></td></tr><tr><td>8</td><td>20.48</td><td>17.33</td><td>13.44</td><td>400 A</td><td>20.48</td><td>19.25</td><td>Busbar/fuse cost severe</td></tr><tr><td>10</td><td>25.60</td><td>21.66</td><td>16.80</td><td>500 A</td><td>25.60</td><td>24.06</td><td>Not recommended</td></tr><tr><td>20</td><td>51.20</td><td>43.32</td><td>33.60</td><td><strong>1,000 A</strong></td><td>51.20</td><td>48.13</td><td><strong>Not acceptable — ERN-03</strong></td></tr></tbody></table>
+<p>All values <span class="chip chip-calc">CALC</span> from §16.3 method. Max AC = Max DC × 0.94 (A-02).</p>
+<p><strong>HV-S series architecture (recommended for ≥ 5 modules)</strong></p>
+<table class="grid"><thead><tr><th>Configuration</th><th>Nominal V</th><th>Ah</th><th>kWh</th><th>Max current</th><th>Max DC kW</th><th>Note</th></tr></thead><tbody><tr><td>5 s</td><td>256 V</td><td>50</td><td>12.80</td><td>50 A</td><td>12.80</td><td>Entry HV</td></tr><tr><td>8 s</td><td>409.6 V</td><td>50</td><td>20.48</td><td>50 A</td><td>20.48</td><td>SME small</td></tr><tr><td>10 s</td><td>512 V</td><td>50</td><td>25.60</td><td>50 A</td><td>25.60</td><td>SME</td></tr><tr><td>10 s × 2 p</td><td>512 V</td><td>100</td><td>51.20</td><td>100 A</td><td>51.20</td><td><strong>51.2 kWh at 100 A, not 1,000 A</strong></td></tr></tbody></table>
+<pre class="calc">Current reduction for 51.2 kWh:
+LV-48 parallel: 1,000 A
+HV-S 10s×2p:      100 A
+Reduction factor: 10×                                              [CALC]</pre>
+<p><strong>HV-S requires a higher electrical-safety class [CERT].</strong> See ERN-03 and decision E-03.</p>
+<h3 id="16-5-kenya-residential-load-calculations">16.5 Kenya residential load calculations</h3>
+<p><strong>Scenario A — Essential-load backup</strong></p>
+<table class="grid"><thead><tr><th>Load</th><th>Power (W)</th><th>Hours/day</th><th>Energy (Wh/day)</th></tr></thead><tbody><tr><td>LED lighting, 8 × 9 W</td><td>72</td><td>5</td><td>360</td></tr><tr><td>Wi-Fi router</td><td>10</td><td>24</td><td>240</td></tr><tr><td>Phone charging, 2 × 10 W</td><td>20</td><td>3</td><td>60</td></tr><tr><td>Television, 32&quot; LED</td><td>50</td><td>4</td><td>200</td></tr><tr><td>Fan</td><td>45</td><td>4</td><td>180</td></tr><tr><td>Security / gate controller standby</td><td>15</td><td>24</td><td>360</td></tr><tr><td><strong>Total</strong></td><td>—</td><td>—</td><td><strong>1,400</strong></td></tr></tbody></table>
+<pre class="calc">E_daily(A) = Σ(P × t) = 360+240+60+200+180+360 = 1,400 Wh = 1.40 kWh   [CALC]
+Peak simultaneous ≈ 212 W; gate motor surge ≈ 400 W                     [CALC]
+Overnight portion (evening + night only) ≈ 1,100 Wh = 1.10 kWh          [CALC]</pre>
+<p><strong>Scenario B — Typical Kenyan urban home</strong></p>
+<table class="grid"><thead><tr><th>Load</th><th>Power (W)</th><th>Hours/day</th><th>Energy (Wh/day)</th></tr></thead><tbody><tr><td>Scenario A subtotal</td><td>—</td><td>—</td><td>1,400</td></tr><tr><td>Refrigerator, 250 L (duty-cycle average)</td><td>45</td><td>24</td><td>1,080</td></tr><tr><td>Laptops, 2 × 45 W</td><td>90</td><td>4</td><td>360</td></tr><tr><td>Water pump, 0.75 kW</td><td>750</td><td>0.5</td><td>375</td></tr><tr><td>Kettle / microwave</td><td>1,500</td><td>0.2</td><td>300</td></tr><tr><td>Electric iron</td><td>1,000</td><td>0.25</td><td>250</td></tr><tr><td><strong>Total</strong></td><td>—</td><td>—</td><td><strong>3,765</strong></td></tr></tbody></table>
+<pre class="flow">E_daily(B) = 3,765 Wh = 3.77 kWh                                   [CALC]
+Peak coincident ≈ 212 + 150 + 750 + 1,500 = 2.61 kW                [CALC]
+Pump start surge (≈3×) → momentary ≈ 4.4 kW                        [CALC]</pre>
+<p><strong>Scenario C — Solar + home + EV</strong></p>
+<table class="grid"><thead><tr><th>Load</th><th>Energy (Wh/day)</th></tr></thead><tbody><tr><td>Scenario B total</td><td>3,765</td></tr><tr><td>EV, 40 km × 0.18 kWh/km (A-08)</td><td>7,200</td></tr><tr><td><strong>Total</strong></td><td><strong>10,965</strong></td></tr></tbody></table>
+<pre class="calc">E_daily(C) = 10,965 Wh ≈ 11.0 kWh                                  [CALC]
+Peak: home 2.61 kW + EV 3.7 kW = 6.31 kW                           [CALC]</pre>
+<h3 id="16-6-battery-inverter-and-solar-sizing-per-scenario">16.6 Battery, inverter and solar sizing per scenario</h3>
+<pre class="calc">Module count:  N = CEILING( E_required_AC / E_cycle_AC_per_module )
+               E_cycle_AC_per_module = 1.68 kWh                    (§16.3)
+
+Solar array:   P_solar = E_daily / (yield × η_storage_path)
+               yield = 3.5 kWh/kWp/day (A-07)
+               η_storage_path = 0.90 (A-03)</pre>
+<p><strong>Scenario A</strong></p>
+<pre class="flow">Backup use only — full 90 % window available, no daily cycling reserve:
+N = CEILING(1.10 kWh / 2.17 kWh) = CEILING(0.51) = 1 module        [CALC]
+Autonomy = 2.17 / 1.10 = 1.97 nights                               [CALC]
+Inverter: 212 W continuous, 400 W surge → 1.0 kW class sufficient  [CALC]
+Solar:  P = 1.40 / (3.5 × 0.90) = 0.44 kWp → specify 0.6 kWp       [CALC]</pre>
+<p><strong>Product answer:</strong> P1 Go covers 77 % of one night (§4.3). <strong>P2-2.4 with one module</strong> covers ~2 nights with margin.</p>
+<p><strong>Scenario B</strong></p>
+<pre class="flow">N = CEILING(3.77 kWh / 1.68 kWh) = CEILING(2.24) = 3 modules       [CALC]
+Installed energy = 3 × 2.56 = 7.68 kWh                             [CALC]
+Cycling capacity = 3 × 1.68 = 5.04 kWh ≥ 3.77 kWh  ✓               [CALC]
+Reserve retained = 3 × 2.56 × 0.20 × 0.94 = 1.44 kWh AC backup     [CALC]
+
+Inverter: 2.61 kW continuous, 4.4 kW surge → P2-4.8 SKU            [CALC]
+Check power ceiling: 3 modules → 7.22 kW AC available ≥ 4.8 kW  ✓   [CALC]
+
+Solar: P = 3.77 / (3.5 × 0.90) = 1.20 kWp
+       specify 1.6 kWp (4 × 410 W) for soiling and worst-month margin  [CALC]
+Charge acceptance check: 3 × 1.54 kW = 4.6 kW &gt; 1.6 kWp  ✓          [CALC]</pre>
+<p><strong>Scenario C</strong></p>
+<pre class="flow">N = CEILING(10.965 kWh / 1.68 kWh) = CEILING(6.53) = 7 modules
+   → specify 8 modules for rack symmetry = 20.48 kWh               [CALC]
+
+Architecture check: 8 modules → LV-48 would need 400 A
+   → HV-S 8s (409.6 V, 50 A) recommended            ERN-03, decision E-03
+
+Power Unit: 6.31 kW continuous → 8 kW class                        [CALC]
+Solar: P = 10.965 / (3.5 × 0.90) = 3.48 kWp
+       specify 4.1 kWp (10 × 410 W)                                [CALC]
+Net-metering check: 4.1 kWp &lt; 10 kW domestic cap  ✓                [CERT] §17.4</pre>
+<h3 id="16-7-configuration-summary">16.7 Configuration summary</h3>
+<table class="grid"><thead><tr><th></th><th>Scenario A</th><th>Scenario B</th><th>Scenario C</th></tr></thead><tbody><tr><td>Daily energy</td><td>1.40 kWh</td><td>3.77 kWh</td><td>11.0 kWh</td></tr><tr><td>Peak load</td><td>0.21 kW (0.4 surge)</td><td>2.61 kW (4.4 surge)</td><td>6.31 kW</td></tr><tr><td>Modules</td><td>1</td><td>3</td><td>8</td></tr><tr><td>Installed energy</td><td>2.56 kWh</td><td>7.68 kWh</td><td>20.48 kWh</td></tr><tr><td>Architecture</td><td>LV-48</td><td>LV-48</td><td>HV-S</td></tr><tr><td>Product</td><td>P1 Go or P2-2.4</td><td><strong>P2-4.8</strong></td><td><strong>Pod</strong></td></tr><tr><td>Power rating</td><td>1.0 kW</td><td>4.8 kW</td><td>8 kW</td></tr><tr><td>Solar</td><td>0.6 kWp</td><td>1.6 kWp</td><td>4.1 kWp</td></tr></tbody></table>
+<h3 id="16-8-backup-duration">16.8 Backup duration</h3>
+<pre class="calc">t = E_usable_AC / P_load</pre>
+<figure class="plate plate-figure" id="figure-15"><span class="plate-badge">Figure 15</span><img src="./modenergy/fig-15-backup-duration.svg" alt="Figure 15 — Backup duration versus load for 1, 2, 4 and 8 modules. Theoretical, engineering estimate and expected usable are distinguished." /><figcaption><span class="fig-ref">Figure 15</span> Backup duration versus load for 1, 2, 4 and 8 modules. Theoretical, engineering estimate and expected usable are distinguished.</figcaption></figure>
+<p><strong>Theoretical</strong> (nominal energy ÷ load — <strong>overstates reality, shown for contrast only</strong>)</p>
+<table class="grid"><thead><tr><th>Load</th><th>1 mod (2.56)</th><th>2 mod (5.12)</th><th>4 mod (10.24)</th><th>8 mod (20.48)</th></tr></thead><tbody><tr><td>500 W</td><td>5.12 h</td><td>10.24 h</td><td>20.48 h</td><td>40.96 h</td></tr><tr><td>1 kW</td><td>2.56 h</td><td>5.12 h</td><td>10.24 h</td><td>20.48 h</td></tr><tr><td>2 kW</td><td>1.28 h</td><td>2.56 h</td><td>5.12 h</td><td>10.24 h</td></tr><tr><td>3 kW</td><td>—</td><td>1.71 h</td><td>3.41 h</td><td>6.83 h</td></tr></tbody></table>
+<p><strong>Engineering estimate</strong> (usable AC energy ÷ load — the figure to use)</p>
+<table class="grid"><thead><tr><th>Load</th><th>1 mod (2.17)</th><th>2 mod (4.33)</th><th>4 mod (8.66)</th><th>8 mod (17.33)</th></tr></thead><tbody><tr><td>500 W</td><td><strong>4.33 h</strong></td><td>8.66 h</td><td>17.33 h</td><td>34.66 h</td></tr><tr><td>1 kW</td><td><strong>2.17 h</strong></td><td>4.33 h</td><td>8.66 h</td><td>17.33 h</td></tr><tr><td>2 kW</td><td><strong>1.08 h</strong></td><td>2.17 h</td><td>4.33 h</td><td>8.66 h</td></tr><tr><td>3 kW</td><td><strong>exceeds 1-module limit (2.41 kW)</strong></td><td>1.44 h</td><td>2.89 h</td><td>5.78 h</td></tr></tbody></table>
+<p><strong>Expected usable</strong> — apply reserve and derating; assume 20 % reserve retained and 5 % thermal derate allowance:</p>
+<pre class="calc">Example, 2 modules at 1 kW load:
+E_expected = 5.12 kWh × 0.70 × 0.94 × 0.95 = 3.20 kWh              [CALC]
+t = 3.20 / 1.0 = 3.20 h                                            [CALC]
+versus engineering estimate 4.33 h, theoretical 5.12 h</pre>
+<p><strong>Customer-facing rule:</strong> quote <strong>expected usable</strong>, never theoretical.</p>
+<h3 id="16-9-solar-sensitivity-scenario-b-1-6-kwp">16.9 Solar sensitivity — Scenario B, 1.6 kWp</h3>
+<pre class="calc">E_PV = P_array × PSH × PR</pre>
+<table class="grid"><thead><tr><th>Day type</th><th>PSH <span class="chip chip-assume">ASSUMPTION</span></th><th>PR</th><th>PV generation</th><th>Load 3.77 kWh</th><th>Result</th></tr></thead><tbody><tr><td>Low solar (overcast, Jun–Jul)</td><td>3.0</td><td>0.72</td><td><strong>3.46 kWh</strong> <span class="chip chip-calc">CALC</span></td><td>3.77</td><td>Deficit 0.31 kWh <span class="arrow">→</span> grid import or reserve draw</td></tr><tr><td>Typical (annual average)</td><td>5.5</td><td>0.75</td><td><strong>6.60 kWh</strong> <span class="chip chip-calc">CALC</span></td><td>3.77</td><td>Surplus 2.83 kWh <span class="arrow">→</span> battery charge</td></tr><tr><td>High solar (dry season)</td><td>6.5</td><td>0.75</td><td><strong>7.80 kWh</strong> <span class="chip chip-calc">CALC</span></td><td>3.77</td><td>Surplus 4.03 kWh <span class="arrow">→</span> charge then curtail/export</td></tr><tr><td>Dusty / unmaintained</td><td>5.5</td><td>0.60</td><td><strong>5.28 kWh</strong> <span class="chip chip-calc">CALC</span></td><td>3.77</td><td>Surplus 1.51 kWh — <strong>panel cleaning matters</strong></td></tr></tbody></table>
+<figure class="plate plate-figure" id="figure-16"><span class="plate-badge">Figure 16</span><img src="./modenergy/fig-16-solar-sensitivity.svg" alt="Figure 16 — Solar sensitivity: PV generation versus daily load across day types, with battery SOC consequence." /><figcaption><span class="fig-ref">Figure 16</span> Solar sensitivity: PV generation versus daily load across day types, with battery SOC consequence.</figcaption></figure>
+<p><strong>Surplus absorption check:</strong></p>
+<pre class="calc">Cycling window, 3 modules = 5.04 kWh AC ≥ 4.03 kWh surplus  ✓      [CALC]
+Charge acceptance, 3 modules = 4.6 kW &gt; 1.6 kWp array       ✓      [CALC]</pre>
+<h3 id="16-10-indicative-avoided-cost-calculation">16.10 Indicative avoided-cost calculation</h3>
+<p><span class="chip chip-calc">CALC</span> from sourced tariff data; not a financial projection.</p>
+<pre class="calc">Kenya domestic DC2 (&gt;100 kWh/month) all-in estimate = KSh 28.46/kWh    [BENCHMARK]
+Scenario B daily self-consumption = 3.77 kWh
+
+Daily avoided cost  = 3.77 × 28.46 = KSh 107.3                     [CALC]
+Monthly (30 d)      = KSh 3,220                                    [CALC]
+Annual              = KSh 39,160                                   [CALC]</pre>
+<p><strong>Caveats:</strong> tariffs include monthly pass-through adjustments (KSh 4.70/kWh in August 2026 <span class="chip chip-bench">BENCHMARK</span>) that change every month; households below 100 kWh/month sit on lower tiers; this ignores capital cost, financing, degradation and maintenance. <strong>Not an investment case.</strong></p>
+</section>
+<section class="doc-section" id="17-kenya-design-conditions">
+<h2 class="sec"><span class="sec-num">17</span><span class="sec-title">KENYA DESIGN CONDITIONS</span></h2>
+<h3 id="17-1-designed-for-african-operating-conditions">17.1 Designed for African operating conditions</h3>
+<p>The design language must communicate: <strong>robust, simple, serviceable, affordable, modular, digital, premium.</strong> Not &quot;rugged aid equipment&quot; and not a European product with a different label.</p>
+<figure class="plate plate-render" id="render-6"><span class="plate-badge">Render 6</span><img src="./modenergy/render-kenya-home.png" alt="Render 6 — P2 Home installed in a modern Nairobi home utility area beside the consumer distribution board, with one spare Energy Module stored alongside." /><figcaption><span class="fig-ref">Render 6</span> P2 Home installed in a modern Nairobi home utility area beside the consumer distribution board, with one spare Energy Module stored alongside.</figcaption></figure>
+<p class="caption">Render 6 — Urban residential installation, Nairobi. <span class="chip chip-concept">CONCEPTUAL</span> The install context is the real design brief: a tiled utility corner, a surface-mounted consumer unit, surface conduit, and a barred security window. Consequences visible here — the unit must look acceptable in a living space, it must sit near the distribution board because the <strong>essential-load sub-board</strong> is the intervention point (§14), and a spare module must be storable without a rack.</p>
+<figure class="plate plate-render" id="render-7"><span class="plate-badge">Render 7</span><img src="./modenergy/render-kenya-sme.png" alt="Render 7 — A Pod serving a small Kenyan retail and cold-storage business, wall-shaded, plinth-mounted, with rooftop PV above." /><figcaption><span class="fig-ref">Render 7</span> A Pod serving a small Kenyan retail and cold-storage business, wall-shaded, plinth-mounted, with rooftop PV above.</figcaption></figure>
+<p class="caption">Render 7 — SME installation, peri-urban Nairobi. <span class="chip chip-concept">CONCEPTUAL</span> For an SME the value is not tariff arbitrage — it is <strong>refrigeration that does not stop</strong>. The render shows the physical realities that drive §11 and §17.5: shaded wall placement, a raised plinth against surface water and dust, closed doors with filtered louvres, and cable entries segregated at the base.</p>
+<h3 id="17-2-electrical-environment">17.2 Electrical environment</h3>
+<table class="grid"><thead><tr><th>Parameter</th><th>Value</th><th>Design consequence</th><th>Label</th></tr></thead><tbody><tr><td>Voltage / frequency</td><td>230 V, 50 Hz single-phase domestic</td><td>Type G sockets; 50 Hz inverter</td><td><span class="chip chip-bench">BENCHMARK</span></td></tr><tr><td>Grid reliability</td><td>Reported average monthly outage duration ~8.4 h against a 1.5 h target</td><td>Backup is a <strong>primary</strong> function, not a bonus</td><td><span class="chip chip-bench">BENCHMARK</span></td></tr><tr><td>Grid quality</td><td>Voltage sag and brownout common <span class="chip chip-assume">ASSUMPTION</span></td><td>Wide AC input window; brownout ride-through <span class="chip chip-validate">VALIDATE</span></td></tr><tr><td>Domestic net-metering cap</td><td><strong>10 kW</strong></td><td>P2 and home Pod stay well below</td><td><span class="chip chip-bench">BENCHMARK</span> <span class="chip chip-cert">CERT</span></td></tr><tr><td>C&amp;I net-metering cap</td><td><strong>&lt; 1 MW</strong></td><td>SME Pod unconstrained</td><td><span class="chip chip-bench">BENCHMARK</span> <span class="chip chip-cert">CERT</span></td></tr><tr><td>Metering for export</td><td>Bi-directional smart meter, two-way communication, time-of-use capable</td><td>Export is a project, not a switch</td><td><span class="chip chip-bench">BENCHMARK</span> <span class="chip chip-cert">CERT</span></td></tr></tbody></table>
+<h3 id="17-3-cost-of-grid-energy">17.3 Cost of grid energy</h3>
+<table class="grid"><thead><tr><th>Tariff band</th><th>Base KSh/kWh</th><th>Est. all-in KSh/kWh</th><th>Label</th></tr></thead><tbody><tr><td>Domestic lifeline, 0–30 kWh/month</td><td>12.23</td><td>~20.1</td><td><span class="chip chip-bench">BENCHMARK</span></td></tr><tr><td>Domestic ordinary 1, 31–100 kWh/month</td><td>16.45</td><td>~25.3</td><td><span class="chip chip-bench">BENCHMARK</span></td></tr><tr><td>Domestic ordinary 2, &gt; 100 kWh/month</td><td>19.08</td><td>~28.5</td><td><span class="chip chip-bench">BENCHMARK</span></td></tr><tr><td>Monthly pass-through, August 2026</td><td>+4.70</td><td>included above</td><td><span class="chip chip-bench">BENCHMARK</span></td></tr></tbody></table>
+<p><strong>Product consequence:</strong> Precifarm's value proposition strengthens as household consumption rises past 100 kWh/month. Entry-tier households are served better by P1 Go and PAYGO affordability than by kWh arbitrage.</p>
+<h3 id="17-4-regulatory-framework">17.4 Regulatory framework</h3>
+<table class="grid"><thead><tr><th>Body</th><th>Role</th><th>What Precifarm must do</th></tr></thead><tbody><tr><td><strong>EPRA</strong></td><td>Energy sector regulator; licensing; net-metering framework</td><td>Confirm licensing perimeter for storage products; net-metering applications</td></tr><tr><td><strong>KEBS</strong></td><td>Standards; adopts IEC as KS IEC</td><td>Product conformity: KS IEC 62619 (Li-ion), KS IEC 62109 (inverter), KS 1800 (solar home systems)</td></tr><tr><td><strong>NEMA</strong></td><td>Environmental approval</td><td>Scope for any assembly facility</td></tr><tr><td>Licensed contractors</td><td>Installation</td><td>All fixed installations by authorised persons</td></tr></tbody></table>
+<p><strong>All items [CERT]. None started.</strong></p>
+<h3 id="17-5-physical-environment">17.5 Physical environment</h3>
+<table class="grid"><thead><tr><th>Condition</th><th>Design response</th></tr></thead><tbody><tr><td><strong>Dust</strong></td><td>Filtered forced air with serviceable filters; sealed module bays; no unfiltered fan paths</td></tr><tr><td><strong>Heat / solar gain</strong></td><td>Sun shield mandatory on outdoor Pod; 50 °C internal qualification (§11)</td></tr><tr><td><strong>Humidity (coastal)</strong></td><td>Conformal coating on PCBs; corrosion-resistant fasteners <span class="chip chip-validate">VALIDATE</span></td></tr><tr><td><strong>Rain</strong></td><td>IP55 target for outdoor Pod enclosure <span class="chip chip-cert">CERT</span></td></tr><tr><td><strong>Rodents / insects</strong></td><td>Screened vents; sealed cable entries</td></tr><tr><td><strong>Theft</strong></td><td>Module serial binding to account; Energy OS alert on unexpected removal</td></tr><tr><td><strong>Power quality</strong></td><td>Wide AC input; brownout ride-through; surge protection</td></tr></tbody></table>
+<h3 id="17-6-market-and-service-context">17.6 Market and service context</h3>
+<table class="grid"><thead><tr><th>Factor</th><th>Implication</th></tr></thead><tbody><tr><td>M-Pesa ubiquity</td><td>Payment and PAYGO rail already exists; no new payment infrastructure needed</td></tr><tr><td>PAYGO precedent</td><td>Instalment energy purchase is a familiar, proven consumer behaviour <span class="chip chip-bench">BENCHMARK</span></td></tr><tr><td>Technician availability</td><td>Module-level replacement must be teachable in days, not months</td></tr><tr><td>Spare-part logistics</td><td>One module SKU dramatically simplifies upcountry stocking</td></tr><tr><td>EV growth</td><td>Phase A EV charging is a credible near-term attach; V2X is not</td></tr></tbody></table>
+</section>
+<section class="doc-section" id="18-tesla-byd-benchmark">
+<h2 class="sec"><span class="sec-num">18</span><span class="sec-title">TESLA + BYD BENCHMARK</span></h2>
+<h3 id="18-1-what-each-company-actually-proved">18.1 What each company actually proved</h3>
+<table class="grid"><thead><tr><th></th><th><strong>Tesla</strong></th><th><strong>BYD</strong></th></tr></thead><tbody><tr><td>Core lesson</td><td>Integrated experience + software-defined energy</td><td>Repeatable module + LFP discipline</td></tr><tr><td>Storage architecture</td><td>Powerwall 3: 13.5 kWh with <strong>integrated</strong> hybrid inverter; up to 20 kW PV DC input; ~97.5 % round-trip <span class="chip chip-bench">BENCHMARK</span></td><td>Battery-Box: modular towers, external/compatible inverter <span class="chip chip-bench">BENCHMARK</span></td></tr><tr><td>Expansion model</td><td><strong>Battery-only Expansion units</strong> share the leader inverter; up to 3 per unit <span class="arrow">→</span> 54 kWh <span class="chip chip-bench">BENCHMARK</span></td><td>Add modules in <strong>series</strong> to raise voltage; HVS 2 <span class="arrow">→</span> 5 modules = 5.12 <span class="arrow">→</span> 12.8 kWh <span class="chip chip-bench">BENCHMARK</span></td></tr><tr><td>Module energy</td><td>13.5 kWh expansion unit <span class="chip chip-bench">BENCHMARK</span></td><td><strong>HVS 2.56 kWh @ 102.4 V</strong>; HVM 2.76 kWh @ 51.2 V; LVS 4.0 kWh @ 51.2 V <span class="chip chip-bench">BENCHMARK</span></td></tr><tr><td>Chemistry</td><td>Varies by product</td><td>Cobalt-free LiFePO₄ throughout <span class="chip chip-bench">BENCHMARK</span></td></tr><tr><td>Certification posture</td><td>Regional</td><td>VDE 2510-50 / IEC 62619 / CE / CEC / UN 38.3 <span class="chip chip-bench">BENCHMARK</span></td></tr><tr><td>Environmental</td><td>−20 °C to +50 °C class</td><td>−10 °C to +50 °C, IP55 <span class="chip chip-bench">BENCHMARK</span></td></tr><tr><td>Software</td><td>App, OTA, energy segment as high-margin business</td><td>Battery management unit; inverter-partner ecosystem</td></tr></tbody></table>
+<h3 id="18-2-the-single-most-important-finding">18.2 The single most important finding</h3>
+<p><strong>Precifarm's target module energy (2.56 kWh) is identical to BYD's Battery-Box HVS module energy — but at half the voltage.</strong></p>
+<table class="grid"><thead><tr><th></th><th>BYD HVS module</th><th>Precifarm module <span class="chip chip-target">TARGET</span></th></tr></thead><tbody><tr><td>Energy</td><td>2.56 kWh</td><td>2.56 kWh</td></tr><tr><td>Nominal voltage</td><td><strong>102.4 V</strong> (32s)</td><td><strong>51.2 V</strong> (16s)</td></tr><tr><td>Scaling method</td><td><strong>Series</strong> to 512 V</td><td>Parallel at 51.2 V (v1.0)</td></tr><tr><td>Max output current</td><td>25 A per tower</td><td>50 A per module</td></tr></tbody></table>
+<p><strong>Interpretation.</strong> BYD chose a higher module voltage specifically so that series stacking raises system voltage while holding current low. Precifarm's 51.2 V module is the right choice for P1/P2 (low-voltage safety, simple electronics, third-party 48 V inverter compatibility) but <strong>inherits a scaling ceiling</strong> at Pod scale. This is the evidentiary basis for <span class="chip chip-ern">ERN-03</span> and the dual LV-48 / HV-S architecture in §7.2.</p>
+<h3 id="18-3-the-synthesis">18.3 The synthesis</h3>
+<pre class="flow">   TESLA EXPERIENCE            BYD REPETITION           AFRICAN ENERGY REALITY
+   ─────────────────           ──────────────           ──────────────────────
+   integrated system       +   one repeated module   +  M-Pesa settlement
+   software-defined            LFP safety discipline     PAYGO affordability
+   battery-only expansion      series voltage scaling    weak grid, 8+ h outages
+   OTA field fixes             cost through repetition   heat, dust, soiling
+   one app, one account        certification rigour      repair, not replace
+                                        ║
+                                        ▼
+                                   P R E C I F A R M</pre>
+<figure class="plate plate-figure" id="figure-17"><span class="plate-badge">Figure 17</span><img src="./modenergy/fig-17-tesla-byd-synthesis.svg" alt="Figure 17 — Tesla / BYD / Precifarm architecture synthesis." /><figcaption><span class="fig-ref">Figure 17</span> Tesla / BYD / Precifarm architecture synthesis.</figcaption></figure>
+<h3 id="18-4-what-precifarm-must-not-copy">18.4 What Precifarm must NOT copy</h3>
+<table class="grid"><thead><tr><th>Do not copy</th><th>Why</th></tr></thead><tbody><tr><td>Tesla's vertical cell manufacturing</td><td>Capital intensity with no African cost advantage</td></tr><tr><td>Tesla's proprietary-ecosystem lock-in</td><td>Precifarm needs third-party inverter interoperability to reach installed base (<span class="chip chip-ern">ERN-08</span>)</td></tr><tr><td>Tesla's autonomy/robotaxi narrative</td><td>Irrelevant to energy storage; damages credibility</td></tr><tr><td>BYD's gigafactory footprint</td><td>Precifarm assembles; it does not fabricate cells</td></tr><tr><td>BYD's prismatic cell IP claims</td><td>Precifarm has none and must never imply it</td></tr><tr><td>Either company's certification claims</td><td>Precifarm holds no certification</td></tr><tr><td>11.5 kW single-unit power targets</td><td>Kenyan domestic net-metering cap is 10 kW; most homes need 2.4–4.8 kW</td></tr></tbody></table>
+</section>
+<section class="doc-section" id="19-competitive-landscape">
+<h2 class="sec"><span class="sec-num">19</span><span class="sec-title">COMPETITIVE LANDSCAPE</span></h2>
+<h3 id="19-1-position-matrix">19.1 Position matrix</h3>
+<p><strong>ADVANTAGE</strong> = defensible Precifarm edge · <strong>PARITY</strong> = comparable · <strong>GAP</strong> = competitor is ahead · <strong>OPPORTUNITY</strong> = unserved space Precifarm could take</p>
+<table class="grid"><thead><tr><th>Dimension</th><th>Tesla</th><th>BYD</th><th>EcoFlow</th><th>Bluetti</th><th>Jackery</th><th>Sungrow</th><th>Huawei</th><th><strong>Precifarm position</strong></th></tr></thead><tbody><tr><td>Portable entry point</td><td>✗</td><td>✗</td><td>✓✓</td><td>✓✓</td><td>✓✓</td><td>✗</td><td>✗</td><td><strong>GAP</strong> vs portable brands</td></tr><tr><td>Modular home storage</td><td>✓✓</td><td>✓✓</td><td>✓</td><td>✓</td><td>✗</td><td>✓✓</td><td>✓✓</td><td><strong>GAP</strong> — they ship, we concept</td></tr><tr><td>Commercial scale</td><td>✓✓</td><td>✓✓</td><td>✗</td><td>✗</td><td>✗</td><td>✓✓</td><td>✓✓</td><td><strong>GAP</strong></td></tr><tr><td>One module across portable<span class="arrow">→</span>installed</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td><strong>OPPORTUNITY</strong></td></tr><tr><td>Energy software / app</td><td>✓✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓✓</td><td><strong>PARITY</strong> achievable</td></tr><tr><td>Solar integration</td><td>✓✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓✓</td><td>✓✓</td><td><strong>PARITY</strong></td></tr><tr><td>EV integration</td><td>✓✓</td><td>✓✓</td><td>✓</td><td>✗</td><td>✗</td><td>✓</td><td>✓</td><td><strong>GAP</strong> (Phase A only)</td></tr><tr><td><strong>PAYGO / instalment energy</strong></td><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td><strong>ADVANTAGE</strong></td></tr><tr><td><strong>M-Pesa native settlement</strong></td><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td><strong>ADVANTAGE</strong></td></tr><tr><td><strong>Kenya localisation</strong> (tariff, PSH, KEBS, install)</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td><strong>ADVANTAGE</strong></td></tr><tr><td><strong>Local service network</strong></td><td>✗</td><td>Dealer</td><td>Retail</td><td>Retail</td><td>Retail</td><td>Dealer</td><td>Dealer</td><td><strong>ADVANTAGE</strong> (potential)</td></tr><tr><td><strong>Local assembly pathway</strong></td><td>✗</td><td>Regional</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td><strong>OPPORTUNITY</strong></td></tr><tr><td>Certification held</td><td>✓✓</td><td>✓✓</td><td>✓✓</td><td>✓✓</td><td>✓✓</td><td>✓✓</td><td>✓✓</td><td><strong>GAP — none held</strong></td></tr><tr><td>Manufacturing scale / unit cost</td><td>✓✓</td><td>✓✓</td><td>✓✓</td><td>✓</td><td>✓</td><td>✓✓</td><td>✓✓</td><td><strong>GAP</strong></td></tr><tr><td>Proven field reliability</td><td>✓✓</td><td>✓✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓✓</td><td>✓✓</td><td><strong>GAP — zero field hours</strong></td></tr></tbody></table>
+<h3 id="19-2-honest-reading">19.2 Honest reading</h3>
+<p>Precifarm's advantages are <strong>not</strong> in cells, power electronics or manufacturing cost — all of which are GAPs against every listed competitor. They are in <strong>distribution, finance, localisation and service</strong>: the layer around the hardware.</p>
+<p><strong>Strategic conclusion:</strong> compete on the <em>system and experience</em>, buy the commodity, and treat certification and field reliability as the two GAPs that must be closed before any volume claim.</p>
+<h3 id="19-3-portable-class-benchmark-detail">19.3 Portable-class benchmark detail</h3>
+<table class="grid"><thead><tr><th>Spec</th><th>EcoFlow DELTA 3 Plus <span class="chip chip-bench">BENCHMARK</span></th><th>Anker SOLIX C1000 <span class="chip chip-bench">BENCHMARK</span></th><th><strong>Precifarm P1 Go [TARGET]</strong></th></tr></thead><tbody><tr><td>Energy</td><td>1,024 Wh</td><td>1,056 Wh</td><td>~1,000 Wh</td></tr><tr><td>Expandable to</td><td>5,120 Wh</td><td>2,112 Wh (Gen 1)</td><td>Not in Phase 1</td></tr><tr><td>Continuous AC</td><td>1,800 W</td><td>1,800 W</td><td><strong>1,000 W</strong></td></tr><tr><td>Surge</td><td>3,600 W</td><td>2,400 W</td><td>2,000 W</td></tr><tr><td>Chemistry</td><td>LiFePO₄</td><td>LiFePO₄</td><td>LiFePO₄</td></tr><tr><td>Cycle life</td><td>4,000+</td><td>3,000+</td><td>≥ 3,000 <span class="chip chip-validate">VALIDATE</span></td></tr><tr><td>UPS transfer</td><td>10 ms</td><td>20 ms</td><td>≤ 20 ms <span class="chip chip-validate">VALIDATE</span></td></tr><tr><td>Mass</td><td>12.5 kg</td><td>11.3 kg</td><td>≤ 12 kg</td></tr></tbody></table>
+<p><strong>ENGINEERING REVIEW NOTE.</strong> P1 Go's 1.0 kW output is materially below the 1.8 kW class norm. This is only defensible if it delivers a meaningful Kenyan landed-price advantage. Otherwise P1 is a weaker product at a similar price. <strong>Decision E-06 (§25).</strong></p>
+</section>
+<section class="doc-section" id="20-manufacturing">
+<h2 class="sec"><span class="sec-num">20</span><span class="sec-title">MANUFACTURING</span></h2>
+<h3 id="20-1-buy-customize-own">20.1 Buy / Customize / Own</h3>
+<table class="grid"><thead><tr><th><strong>BUY</strong> — commodity, multi-source</th><th><strong>CUSTOMIZE</strong> — Precifarm mechanical + integration</th><th><strong>OWN</strong> — defensible</th></tr></thead><tbody><tr><td>LiFePO₄ cells</td><td>Module enclosure and compression frame</td><td>Energy OS platform</td></tr><tr><td>BMS hardware platform</td><td>P2 chassis, wheels, handle</td><td>CAN object model and DBC</td></tr><tr><td>Contactors, fuses, pre-charge</td><td>Pod rack and cabinet</td><td>PAYGO engine and policy</td></tr><tr><td>Inverter / MPPT power stages</td><td>Thermal paths, ducting, shields</td><td>Diagnostics and fault-code system</td></tr><tr><td>Connectors and contacts</td><td>Harnesses and busbars</td><td>Service platform and workflows</td></tr><tr><td>Displays, radios, MCUs</td><td>Connector housings and keying</td><td>Customer account and data</td></tr><tr><td>Sheet metal, plastics</td><td>Installation kit and mounting</td><td>Modular product architecture</td></tr><tr><td>Sensors</td><td>Labelling and service access</td><td>The customer energy experience</td></tr></tbody></table>
+<h3 id="20-2-manufacturing-roadmap">20.2 Manufacturing roadmap</h3>
+<figure class="plate plate-figure" id="figure-18"><span class="plate-badge">Figure 18</span><img src="./modenergy/fig-18-manufacturing-roadmap.svg" alt="Figure 18 — Manufacturing localisation roadmap from import to regional scale." /><figcaption><span class="fig-ref">Figure 18</span> Manufacturing localisation roadmap from import to regional scale.</figcaption></figure>
+<table class="grid"><thead><tr><th>Stage</th><th>Content</th><th>Gate to next stage</th><th>Status</th></tr></thead><tbody><tr><td><strong>1 — Import</strong></td><td>Fully assembled modules and Power Cores imported</td><td>Field reliability data from ≥ 100 units</td><td><strong>Current position</strong></td></tr><tr><td><strong>2 — SKD</strong></td><td>Enclosure, harness, final assembly and test in Kenya; cells and PCBs imported</td><td>Duty/logistics saving proven; local test capability</td><td><span class="chip chip-future">FUTURE</span></td></tr><tr><td><strong>3 — Local assembly</strong></td><td>Module assembly line, batch acceptance testing, local QA</td><td>Volume ≥ threshold; KEBS batch conformity route</td><td><span class="chip chip-future">FUTURE</span></td></tr><tr><td><strong>4 — Local value add</strong></td><td>Enclosure fabrication, harness manufacture, local supplier base</td><td>Local content economics positive</td><td><span class="chip chip-future">FUTURE</span></td></tr><tr><td><strong>5 — Regional scale</strong></td><td>Export to East African market</td><td>Regional certification recognition</td><td><span class="chip chip-future">FUTURE</span></td></tr></tbody></table>
+<p><strong>Precifarm has no manufacturing capability today.</strong> Nothing above may be represented as existing.</p>
+<h3 id="20-3-conceptual-bom-logic">20.3 Conceptual BOM logic</h3>
+<table class="grid"><thead><tr><th>No.</th><th>Item</th><th>Buy/Cust/Own</th><th>Cost driver</th><th>Supply risk</th><th>Localisation potential</th></tr></thead><tbody><tr><td>1</td><td>LiFePO₄ cells (16s)</td><td><strong>Buy</strong></td><td><strong>Dominant</strong> — largest single cost</td><td><strong>High</strong> — concentrated supply, FX exposure</td><td>None (Phase 1–4)</td></tr><tr><td>2</td><td>BMS PCB + firmware</td><td>Buy HW / <strong>Own</strong> FW</td><td>Medium</td><td>Medium</td><td>PCB assembly at Stage 4</td></tr><tr><td>3</td><td>Contactor</td><td>Buy</td><td>Medium</td><td>Medium — qualification lead time</td><td>None</td></tr><tr><td>4</td><td>DC fuse</td><td>Buy</td><td>Low</td><td>Low</td><td>None</td></tr><tr><td>5</td><td>Pre-charge assembly</td><td>Buy</td><td>Low</td><td>Low</td><td>None</td></tr><tr><td>6</td><td>Busbars / interconnects</td><td><strong>Customize</strong></td><td>Low–Medium</td><td>Low</td><td><strong>High</strong> — Stage 3</td></tr><tr><td>7</td><td>Module enclosure</td><td><strong>Customize</strong></td><td>Medium</td><td>Low</td><td><strong>High</strong> — Stage 2</td></tr><tr><td>8</td><td>Connectors (power + CAN)</td><td>Buy</td><td>Medium</td><td><strong>High</strong> — reliability-critical, single-source risk</td><td>None</td></tr><tr><td>9</td><td>Inverter power stage</td><td>Buy</td><td><strong>High</strong></td><td><strong>High</strong> — supplier dependency</td><td>None</td></tr><tr><td>10</td><td>MPPT</td><td>Buy</td><td>Medium</td><td>Medium</td><td>None</td></tr><tr><td>11</td><td>Edge controller / MCU</td><td>Buy</td><td>Low</td><td>Medium — obsolescence</td><td>None</td></tr><tr><td>12</td><td>Radios (Wi-Fi / BLE / LTE)</td><td>Buy</td><td>Low</td><td>Medium — certification per region</td><td>None</td></tr><tr><td>13</td><td>Sensors (NTC, shunt)</td><td>Buy</td><td>Low</td><td>Low</td><td>None</td></tr><tr><td>14</td><td>Thermal (fans, filters, TIM)</td><td>Buy + <strong>Customize</strong></td><td>Low</td><td>Low</td><td><strong>High</strong> — Stage 3</td></tr><tr><td>15</td><td>Mechanical hardware</td><td>Buy</td><td>Low</td><td>Low</td><td><strong>High</strong> — Stage 2</td></tr><tr><td>16</td><td>P2 chassis / Pod cabinet</td><td><strong>Customize</strong></td><td>Medium</td><td>Low</td><td><strong>High</strong> — Stage 2</td></tr><tr><td>17</td><td>Wheels, handle, latches</td><td>Buy + Customize</td><td>Low</td><td>Low</td><td>High</td></tr><tr><td>18</td><td>Install kit</td><td><strong>Customize</strong></td><td>Low</td><td>Low</td><td><strong>High</strong> — Stage 1</td></tr></tbody></table>
+<p><strong>Three structural conclusions:</strong> cells dominate cost and are not localisable near-term; connectors and the inverter stage are the highest supply risks; enclosure, thermal and installation are where local value can be captured first.</p>
+</section>
+<section class="doc-section" id="21-serviceability">
+<h2 class="sec"><span class="sec-num">21</span><span class="sec-title">SERVICEABILITY</span></h2>
+<h3 id="21-1-design-principle">21.1 Design principle</h3>
+<div class="callout"><strong>Repair the module. Do not replace the system.</strong></div>
+<p>African operating economics do not tolerate whole-system swap-outs. Every serviceable element must be replaceable by a trained technician with a hand tool, a phone and a spare module.</p>
+<figure class="plate plate-figure" id="figure-19"><span class="plate-badge">Figure 19</span><img src="./modenergy/fig-19-service-architecture.svg" alt="Figure 19 — Service architecture: identification, diagnosis, module replacement and closure." /><figcaption><span class="fig-ref">Figure 19</span> Service architecture: identification, diagnosis, module replacement and closure.</figcaption></figure>
+<h3 id="21-2-field-replaceable-units">21.2 Field-replaceable units</h3>
+<table class="grid"><thead><tr><th>FRU</th><th>Replaceable by</th><th>Downtime target <span class="chip chip-target">TARGET</span></th><th>System stays live?</th></tr></thead><tbody><tr><td>Energy Module</td><td>Trained technician</td><td>≤ 30 min</td><td>Yes — other modules carry load</td></tr><tr><td>Cooling fan / filter</td><td>Trained technician</td><td>≤ 20 min</td><td>Yes</td></tr><tr><td>Power Core (P2)</td><td>Certified technician</td><td>≤ 2 h</td><td>No</td></tr><tr><td>Pod Power Unit</td><td>Licensed contractor</td><td>≤ 4 h</td><td>No</td></tr><tr><td>Edge controller board</td><td>Certified technician</td><td>≤ 1 h</td><td>Local safe mode</td></tr><tr><td>Cells within a module</td><td><strong>Depot only</strong></td><td>—</td><td>Module returned</td></tr></tbody></table>
+<h3 id="21-3-technician-workflow">21.3 Technician workflow</h3>
+<table class="grid"><thead><tr><th>Step</th><th>Action</th><th>Tool</th></tr></thead><tbody><tr><td>1</td><td>Scan QR / tap NFC on unit</td><td>Precifarm technician app</td></tr><tr><td>2</td><td>Pull fault history and module-level SOH from Energy OS</td><td>App (works offline from cached record)</td></tr><tr><td>3</td><td>Confirm suspect FRU against fault-code decision tree</td><td>App</td></tr><tr><td>4</td><td>Isolate per procedure; verify de-energised</td><td>Multimeter, lockout</td></tr><tr><td>5</td><td>Replace FRU; scan new serial</td><td>App</td></tr><tr><td>6</td><td>Run commissioning self-test</td><td>App triggers device test</td></tr><tr><td>7</td><td>Energy OS re-provisions; warranty and account updated</td><td>Automatic</td></tr><tr><td>8</td><td>Customer notified in plain language</td><td>SMS + app</td></tr></tbody></table>
+<h3 id="21-4-diagnostics-requirements">21.4 Diagnostics requirements</h3>
+<table class="grid"><thead><tr><th>Requirement</th><th>Detail</th></tr></thead><tbody><tr><td>Every fault has a code</td><td>Stable, documented, human-readable fault catalogue</td></tr><tr><td>Every code has an action</td><td>Decision tree maps code <span class="arrow">→</span> likely FRU <span class="arrow">→</span> procedure</td></tr><tr><td>Module-level granularity</td><td>Fault must identify <em>which</em> module, by serial</td></tr><tr><td>Remote-first</td><td>≥ 60 % of faults triaged remotely before dispatch <span class="chip chip-target">TARGET</span></td></tr><tr><td>Offline capable</td><td>Technician app functions without connectivity</td></tr><tr><td>Anti-fraud</td><td>Module serial bound to account; unexpected serial raises alert</td></tr></tbody></table>
+</section>
+<section class="doc-section" id="22-paygo-m-pesa">
+<h2 class="sec"><span class="sec-num">22</span><span class="sec-title">PAYGO + M-PESA</span></h2>
+<h3 id="22-1-architecture">22.1 Architecture</h3>
+<figure class="plate plate-figure" id="figure-20"><span class="plate-badge">Figure 20</span><img src="./modenergy/fig-20-paygo.svg" alt="Figure 20 — PAYGO and M-Pesa financial-energy architecture with policy boundary." /><figcaption><span class="fig-ref">Figure 20</span> PAYGO and M-Pesa financial-energy architecture with policy boundary.</figcaption></figure>
+<pre class="flow">CUSTOMER
+   │  M-Pesa payment
+   ▼
+PRECIFARM ACCOUNT  ── reconciliation ──► CMS / ledger
+   │
+   ▼
+PAYGO ENGINE       ── credit state, grace, arrears
+   │
+   ▼
+ENERGY OS          ── policy evaluation, audit log
+   │
+   ▼
+DEVICE POLICY      ── essential-load floor enforcement (NOT a hard kill switch)</pre>
+<h3 id="22-2-the-ethical-and-legal-constraint">22.2 The ethical and legal constraint</h3>
+<p>Remote lockout technology is standard practice in African PAYGO solar, and Kenyan law does not currently contain a statute specifically regulating it <span class="chip chip-bench">BENCHMARK</span>. Academic and policy analysis recommends that remote lockout be <strong>limited but not prohibited</strong>, precisely because unrestricted lockout can remove access to light, water or refrigeration <span class="chip chip-bench">BENCHMARK</span>. The industry's voluntary GOGLA Consumer Protection Code sets minimum consumer-protection standards <span class="chip chip-bench">BENCHMARK</span>.</p>
+<p><strong>Design implication:</strong> Precifarm should not build a hard remote kill switch for a product that may be a household's only source of light or refrigeration.</p>
+<h3 id="22-3-paygo-policy-design-proposed">22.3 PAYGO policy design [PROPOSED]</h3>
+<table class="grid"><thead><tr><th>State</th><th>Trigger</th><th>Device behaviour</th><th>Customer communication</th></tr></thead><tbody><tr><td><strong>Active</strong></td><td>Paid up</td><td>Full capability</td><td>Normal</td></tr><tr><td><strong>Reminder</strong></td><td>5 days before due</td><td>Full capability</td><td>SMS + in-app</td></tr><tr><td><strong>Due</strong></td><td>Payment date</td><td>Full capability</td><td>SMS + in-app</td></tr><tr><td><strong>Grace</strong></td><td>1–7 days late</td><td>Full capability</td><td>Daily SMS with paybill</td></tr><tr><td><strong>Restricted</strong></td><td>8–21 days late</td><td><strong>Essential-load floor maintained</strong>: lighting, phone charging, router, refrigeration circuit remain powered; discretionary high-power loads and EV charging disabled</td><td>Clear explanation + how to restore</td></tr><tr><td><strong>Suspended</strong></td><td>&gt; 21 days late</td><td>Discretionary capability off; <strong>essential-load floor retained</strong>; solar self-consumption still permitted</td><td>Written notice + resolution path</td></tr><tr><td><strong>Recovery</strong></td><td>Field process</td><td>Physical process with notice, not remote bricking</td><td>Documented, auditable</td></tr></tbody></table>
+<h3 id="22-4-non-negotiable-rules">22.4 Non-negotiable rules</h3>
+<table class="grid"><thead><tr><th>Rule</th><th>Requirement</th></tr></thead><tbody><tr><td><strong>No hard cutoff</strong></td><td>An essential-load floor is retained at every arrears state</td></tr><tr><td><strong>Safety never gated</strong></td><td>PAYGO state can never affect a protection function or safe shutdown</td></tr><tr><td><strong>Solar never blocked</strong></td><td>A customer's own solar generation is not disabled by arrears</td></tr><tr><td><strong>Legal review mandatory</strong></td><td>Policy reviewed under Kenyan consumer-credit and data-protection law before launch <strong>[CERT-adjacent]</strong></td></tr><tr><td><strong>Transparency</strong></td><td>Terms, timings and thresholds published at point of sale</td></tr><tr><td><strong>Auditability</strong></td><td>Every state change logged with actor, reason, timestamp</td></tr><tr><td><strong>Manual override</strong></td><td>Documented hardship override with human authorisation</td></tr></tbody></table>
+<p><strong>Decision E-08 (§25):</strong> exact essential-load floor definition (W and circuits) requires legal sign-off.</p>
+</section>
+<section class="doc-section" id="23-test-validation">
+<h2 class="sec"><span class="sec-num">23</span><span class="sec-title">TEST + VALIDATION</span></h2>
+<h3 id="23-1-test-matrix">23.1 Test matrix</h3>
+<table class="grid"><thead><tr><th>ID</th><th>Test</th><th>Level</th><th>Certified lab?</th><th>Gate</th></tr></thead><tbody><tr><td>T-01</td><td>Capacity verification (0.2 C / 0.5 C / 1.0 C)</td><td>Module</td><td>No</td><td>P0</td></tr><tr><td>T-02</td><td>Cycle life (≥ 4,000 to 80 % SOH)</td><td>Cell + module</td><td>Partial</td><td>P1 <span class="arrow">→</span> ongoing</td></tr><tr><td>T-03</td><td>Thermal chamber: −5 / 25 / 40 / 50 °C with derating verification</td><td>Module + Power Core</td><td>No</td><td>P1</td></tr><tr><td>T-04</td><td>Overcharge abuse</td><td>Module</td><td><strong>Yes</strong> — IEC 62619</td><td>P4</td></tr><tr><td>T-05</td><td>Over-discharge abuse</td><td>Module</td><td><strong>Yes</strong> — IEC 62619</td><td>P4</td></tr><tr><td>T-06</td><td>External short circuit</td><td>Module</td><td><strong>Yes</strong> — IEC 62619</td><td>P4</td></tr><tr><td>T-07</td><td>Thermal abuse / propagation</td><td>Module</td><td><strong>Yes</strong> — IEC 62619</td><td>P4</td></tr><tr><td>T-08</td><td>Crush / mechanical abuse</td><td>Module</td><td><strong>Yes</strong> — IEC 62619</td><td>P4</td></tr><tr><td>T-09</td><td>Transport tests (altitude, thermal, vibration, shock, impact)</td><td>Module</td><td><strong>Yes</strong> — UN 38.3</td><td>P4</td></tr><tr><td>T-10</td><td>Contactor endurance + weld detection</td><td>Module</td><td>No</td><td>P1</td></tr><tr><td>T-11</td><td>Pre-charge sequence and fault timeout</td><td>Module</td><td>No</td><td>P0</td></tr><tr><td>T-12</td><td>CAN bus integrity, loss and recovery</td><td>System</td><td>No</td><td>P1</td></tr><tr><td>T-13</td><td>Third-party inverter interoperability</td><td>System</td><td>No</td><td>P2</td></tr><tr><td>T-14</td><td>EMC emissions and immunity</td><td>System</td><td><strong>Yes</strong> — IEC 61000</td><td>P4</td></tr><tr><td>T-15</td><td>Ingress protection (IP21 / IP55)</td><td>Enclosure</td><td><strong>Yes</strong></td><td>P4</td></tr><tr><td>T-16</td><td>Dust exposure, filtered airflow degradation</td><td>System</td><td>No</td><td>P2</td></tr><tr><td>T-17</td><td>Mechanical vibration (transport simulation)</td><td>Module + product</td><td>Partial</td><td>P3</td></tr><tr><td>T-18</td><td>Drop test (P1 portable class)</td><td>P1</td><td><strong>Yes</strong> — IEC 62368-1</td><td>P4</td></tr><tr><td>T-19</td><td>Communications loss behaviour (offline autonomy)</td><td>System</td><td>No</td><td>P1</td></tr><tr><td>T-20</td><td>Grid outage / backup transition timing</td><td>System</td><td>No</td><td>P2</td></tr><tr><td>T-21</td><td>Solar charging across irradiance profile</td><td>System</td><td>No</td><td>P2</td></tr><tr><td>T-22</td><td>Inverter overload and surge (motor start)</td><td>System</td><td>No</td><td>P2</td></tr><tr><td>T-23</td><td>Anti-islanding and grid protection</td><td>System</td><td><strong>Yes</strong> — IEC 62109</td><td>P4</td></tr><tr><td>T-24</td><td>OTA update, rollback and failure injection</td><td>System</td><td>No</td><td>P2</td></tr><tr><td>T-25</td><td>PAYGO state machine, including essential-load floor</td><td>System</td><td>No</td><td>P3</td></tr><tr><td>T-26</td><td>Module hot-swap under load</td><td>System</td><td>No</td><td>P2</td></tr><tr><td>T-27</td><td>Insulation resistance / hi-pot (production)</td><td>Module</td><td>No (in-line)</td><td>P3</td></tr><tr><td>T-28</td><td>Round-trip efficiency verification vs A-02 / A-03</td><td>System</td><td>No</td><td>P2</td></tr></tbody></table>
+<p><strong>Nine tests require certified laboratories (T-04 to T-09, T-14, T-15, T-18, T-23).</strong> Lab engagement is the long-lead item in the programme and should begin at P2, not P4.</p>
+<h3 id="23-2-validation-of-stated-assumptions">23.2 Validation of stated assumptions</h3>
+<table class="grid"><thead><tr><th>Assumption</th><th>Validated by</th></tr></thead><tbody><tr><td>A-01 usable SOC window 90 %</td><td>T-01, T-02</td></tr><tr><td>A-02 conversion efficiency 94 %</td><td>T-28</td></tr><tr><td>A-03 round-trip 90 %</td><td>T-28</td></tr><tr><td>A-07 PV yield 3.5 kWh/kWp/day</td><td>Field monitoring, 12 months, ≥ 3 sites</td></tr><tr><td>A-09 internal resistance 12 mΩ</td><td>T-01, T-03</td></tr><tr><td>Derating table (§11.4)</td><td>T-03</td></tr><tr><td>Module mass ≤ 30 kg (<span class="chip chip-ern">ERN-06</span>)</td><td>P0 physical build</td></tr></tbody></table>
+</section>
+<section class="doc-section" id="24-prototype-roadmap">
+<h2 class="sec"><span class="sec-num">24</span><span class="sec-title">PROTOTYPE ROADMAP</span></h2>
+<figure class="plate plate-figure" id="figure-21"><span class="plate-badge">Figure 21</span><img src="./modenergy/fig-21-roadmap.svg" alt="Figure 21 — Prototype-to-scale roadmap with exit gates." /><figcaption><span class="fig-ref">Figure 21</span> Prototype-to-scale roadmap with exit gates.</figcaption></figure>
+<table class="grid"><thead><tr><th>Phase</th><th>Objective</th><th>Hardware</th><th>Software</th><th>Tests</th><th>Pass criteria</th><th>Exit gate</th></tr></thead><tbody><tr><td><strong>P0</strong> Module breadboard</td><td>Prove module electrical concept</td><td>1× 16s cell assembly, dev BMS, bench harness</td><td>BMS firmware v0.1, CAN dev tools</td><td>T-01, T-11</td><td>E = 2.56 kWh ±3 %; 1.0 C sustained at 25 °C; pre-charge deterministic; <strong>mass measured</strong></td><td>ERN-06 and E-01 closed</td></tr><tr><td><strong>P1</strong> Engineering module</td><td>Producible module design</td><td>3× modules in target enclosure</td><td>BMS v0.5, DBC published</td><td>T-02 start, T-03, T-10, T-12, T-19</td><td>Derating table verified; contactor endurance ≥ 10k cycles; CAN loss handled</td><td>Module design frozen</td></tr><tr><td><strong>P2</strong> P2 Home alpha</td><td>Prove P2-4.8 system</td><td>Power Core + 2–4 modules</td><td>Energy OS alpha, OTA, app v0.5</td><td>T-13, T-16, T-20, T-21, T-22, T-24, T-26, T-28</td><td>Backup transfer ≤ 20 ms; efficiency within 2 % of A-02; 30-day internal dogfood no critical faults</td><td>Certified-lab engagement opened</td></tr><tr><td><strong>P3</strong> Pod pilot</td><td>Prove installed configuration and HV-S</td><td>4-module LV Pod + 8-module HV-S rack, 2 Nairobi sites</td><td>Energy OS beta, PAYGO simulation, technician app</td><td>T-17, T-25, T-27</td><td>Commissioning sheet passed; HV-S safety review accepted; service workflow executed</td><td><strong>E-03 architecture decision ratified</strong></td></tr><tr><td><strong>P4</strong> Certification</td><td>Achieve conformity</td><td>Certification samples</td><td>Frozen release candidate</td><td>T-04–T-09, T-14, T-15, T-18, T-23</td><td>KS IEC 62619, UN 38.3, IEC 62109, EMC, IP achieved</td><td><strong>First lawful sale possible</strong></td></tr><tr><td><strong>P5</strong> Paid pilot</td><td>Prove field reliability and economics</td><td>20× P2, 5× Pod paid installs</td><td>Energy OS 1.0, PAYGO live</td><td>Field monitoring</td><td>Fault rate below target; PAYGO reconciliation clean; NPS measured</td><td>Volume decision</td></tr><tr><td><strong>P6</strong> Local assembly</td><td>Evaluate SKD/local value</td><td>Assembly and test fixtures</td><td>MES integration</td><td>Batch acceptance</td><td>Duty/logistics benefit proven; local QA capable</td><td>Stage 3 investment</td></tr><tr><td><strong>P7</strong> Commercial scale</td><td>Regional growth</td><td>Volume tooling</td><td>Fleet analytics at scale</td><td>Ongoing</td><td>Unit economics at target</td><td>Regional expansion</td></tr></tbody></table>
+<p><strong>Durations are deliberately omitted.</strong> Certification and supplier qualification lead times dominate and cannot be responsibly estimated before P0 completes and lab quotations are held.</p>
+</section>
+<section class="doc-section" id="25-open-engineering-decisions">
+<h2 class="sec"><span class="sec-num">25</span><span class="sec-title">OPEN ENGINEERING DECISIONS</span></h2>
+<h3 id="25-1-engineering-review-notes-against-v1-0">25.1 Engineering Review Notes against v1.0</h3>
+<table class="grid"><thead><tr><th>ID</th><th>Finding</th><th>Severity</th><th>Resolution in v2.0</th><th>Section</th></tr></thead><tbody><tr><td><span class="chip chip-ern">ERN-01</span></td><td>4 kW P2 inverter paired with a single 2.56 kW module — requires 1.66 C</td><td><strong>Blocking</strong></td><td>Two-tier SKU: P2-2.4 (1 module) and P2-4.8 (2+ modules), firmware-enforced</td><td>§5.2</td></tr><tr><td><span class="chip chip-ern">ERN-02</span></td><td>Module DC power stated as &quot;≈2.5 kW&quot;; arithmetic gives 2.56 kW</td><td>Editorial</td><td>Corrected; derivation shown</td><td>§3.3</td></tr><tr><td><span class="chip chip-ern">ERN-03</span></td><td>51.2 V parallel scaling to 20 modules implies ~1,000 A DC bus</td><td><strong>Blocking</strong></td><td>Dual architecture: LV-48 ≤ 4 modules; HV-S series ≥ 5 modules</td><td>§7.2</td></tr><tr><td><span class="chip chip-ern">ERN-04</span></td><td>2.0 kWp PV input exceeds single-module 1.54 kW charge acceptance</td><td>Moderate</td><td>Firmware charge clamp + load-first dispatch; 2 modules for 2.0 kWp</td><td>§5.4</td></tr><tr><td><span class="chip chip-ern">ERN-05</span></td><td>Cross-product module transfer implied but not architecturally guaranteed</td><td>Moderate</td><td>Contingent on E-03; marketing restricted until closed</td><td>§2.2</td></tr><tr><td><span class="chip chip-ern">ERN-06</span></td><td>Module mass (~38 kg benchmark class) exceeds single-person lifting guidance</td><td><strong>Blocking</strong></td><td>Three options defined; recommendation is integrated lift rail</td><td>§5.6</td></tr><tr><td><span class="chip chip-ern">ERN-07</span></td><td>Thermal envelope 15–40 °C understates sun-exposed outdoor case</td><td>Moderate</td><td>Revised to −5 to +50 °C with published derating table</td><td>§11.1, §11.4</td></tr><tr><td><span class="chip chip-ern">ERN-08</span></td><td>Proprietary-only CAN; 500 V isolation inadequate for HV string</td><td>Moderate</td><td>Third-party profile mandated; isolation tied to architecture</td><td>§8.3, §7.2</td></tr><tr><td><span class="chip chip-ern">ERN-09</span></td><td>Usable energy never defined; nominal quoted as if usable</td><td>Moderate</td><td>Four-figure definition adopted platform-wide</td><td>§10.2, §16.3</td></tr></tbody></table>
+<h3 id="25-2-decision-register">25.2 Decision register</h3>
+<table class="grid"><thead><tr><th>ID</th><th>Decision</th><th>Options</th><th>Current preference</th><th>Why</th><th>Data required</th><th>Gate</th></tr></thead><tbody><tr><td><strong>E-01</strong></td><td>Cell format</td><td>Prismatic / cylindrical</td><td><strong>Prismatic</strong></td><td>Higher volumetric efficiency, simpler busbar, benchmark precedent</td><td>Supplier quotes ×3, 1.0 C @ 40 °C data</td><td>P0 exit</td></tr><tr><td><strong>E-02</strong></td><td>Module cooling in Pod</td><td>Passive / forced filtered air</td><td><strong>Forced filtered air</strong></td><td>Density and outdoor solar gain</td><td>T-03, T-16</td><td>P1</td></tr><tr><td><strong>E-03</strong></td><td>Pod battery architecture</td><td>LV-48 parallel / HV-S series / both</td><td><strong>Both (LV ≤4, HV-S ≥5)</strong></td><td>Current reduction 10× at 51.2 kWh; benchmark precedent</td><td>HV-S safety review, cert scoping, cost delta</td><td><strong>P3 — highest priority</strong></td></tr><tr><td><strong>E-04</strong></td><td>Module handling</td><td>Two-person / half-module / lift rail</td><td><strong>Lift rail in bays</strong></td><td>Preserves 2.56 kWh economics and single-technician service</td><td>P0 measured mass, ergonomics review</td><td>P0 exit</td></tr><tr><td><strong>E-05</strong></td><td>Grid export default</td><td>Zero-export / limited export</td><td><strong>Zero-export default</strong></td><td>Net metering is a per-site consent process, not a product feature</td><td>EPRA/KPLC process confirmation</td><td>P2</td></tr><tr><td><strong>E-06</strong></td><td>P1 Go power rating</td><td>1.0 kW / 1.5 kW</td><td><strong>Open</strong></td><td>1.0 kW is below class norm; only viable on clear price advantage</td><td>Landed-cost model vs benchmark retail</td><td>P1</td></tr><tr><td><strong>E-07</strong></td><td>Third-party inverter CAN profile</td><td>Which profile(s) to emulate</td><td><strong>Open</strong></td><td>Determines addressable installed base</td><td>Kenyan installed-inverter survey</td><td>P2</td></tr><tr><td><strong>E-08</strong></td><td>PAYGO essential-load floor</td><td>Circuits and wattage</td><td><strong>Open</strong></td><td>Requires legal position, not engineering preference</td><td>Kenyan legal opinion</td><td>P3</td></tr><tr><td><strong>E-09</strong></td><td>Connectivity SKU</td><td>Wi-Fi only / Wi-Fi + LTE</td><td><strong>Wi-Fi + optional LTE</strong></td><td>Home Wi-Fi unreliable; Pod needs assured link</td><td>Connectivity study, data cost model</td><td>P2</td></tr><tr><td><strong>E-10</strong></td><td>Mounting</td><td>Wall / floor / wheeled</td><td><strong>Wheeled P2, floor Pod</strong></td><td>Mass and expansion bays preclude wall mount</td><td>ERN-06 outcome</td><td>P1</td></tr><tr><td><strong>E-11</strong></td><td>Power conversion</td><td>Single inverter / modular PCS</td><td><strong>Single per SKU tier</strong></td><td>Complexity and cost at this scale</td><td>Supplier shortlist</td><td>P2</td></tr><tr><td><strong>E-12</strong></td><td>Warranty term</td><td>5 / 10 years</td><td><strong>Open</strong></td><td>Must follow measured cycle life, not marketing</td><td>T-02 interim data</td><td>P4</td></tr></tbody></table>
+</section>
+<section class="doc-section" id="26-power-versus-energy">
+<h2 class="sec"><span class="sec-num">26</span><span class="sec-title">POWER VERSUS ENERGY</span></h2>
+<p>This section exists because conflating kWh and kW is the single most common cause of mis-sold residential storage.</p>
+<h3 id="26-1-the-analogy">26.1 The analogy</h3>
+<pre class="calc">        ENERGY  =  TANK SIZE  (kWh)          how much you have
+        POWER   =  PIPE SIZE  (kW)           how fast you can use it</pre>
+<p>A bigger tank does not make water come out faster. <strong>Adding Energy Modules does not increase AC output power.</strong></p>
+<figure class="plate plate-figure" id="figure-22"><span class="plate-badge">Figure 22</span><img src="./modenergy/fig-22-power-vs-energy.svg" alt="Figure 22 — Energy versus power: tank and pipe, and the module/Power Core mapping." /><figcaption><span class="fig-ref">Figure 22</span> Energy versus power: tank and pipe, and the module/Power Core mapping.</figcaption></figure>
+<h3 id="26-2-worked-comparison">26.2 Worked comparison</h3>
+<table class="grid"><thead><tr><th>Configuration</th><th>Energy</th><th>Power</th><th>Runtime at 5 kW</th><th>What the customer notices</th></tr></thead><tbody><tr><td>10 kWh / 5 kW</td><td>10 kWh</td><td>5 kW</td><td>2.0 h <span class="chip chip-calc">CALC</span></td><td>Baseline</td></tr><tr><td><strong>20 kWh / 5 kW</strong></td><td>20 kWh</td><td>5 kW</td><td><strong>4.0 h</strong> <span class="chip chip-calc">CALC</span></td><td>Lasts twice as long; <strong>cannot run more appliances at once</strong></td></tr><tr><td><strong>10 kWh / 10 kW</strong></td><td>10 kWh</td><td>10 kW</td><td>1.0 h at 10 kW <span class="chip chip-calc">CALC</span></td><td>Runs twice as many appliances; <strong>for half as long</strong></td></tr></tbody></table>
+<h3 id="26-3-in-precifarm-terms">26.3 In Precifarm terms</h3>
+<pre class="flow">MORE MODULES        →  MORE ENERGY  (kWh)  →  longer runtime
+LARGER POWER CORE   →  MORE POWER   (kW)   →  more simultaneous load
+
+Both are required to increase both.</pre>
+<p><strong>The binding constraint changes with module count:</strong></p>
+<table class="grid"><thead><tr><th>Modules</th><th>Battery power ceiling (AC)</th><th>If Power Core is 4.8 kW</th><th>Binding constraint</th></tr></thead><tbody><tr><td>1</td><td>2.41 kW</td><td>Power Core over-specified</td><td><strong>Battery</strong></td></tr><tr><td>2</td><td>4.81 kW</td><td>Matched</td><td>Balanced</td></tr><tr><td>3</td><td>7.22 kW</td><td>Power Core limits</td><td><strong>Power Core</strong></td></tr><tr><td>4</td><td>9.63 kW</td><td>Power Core limits</td><td><strong>Power Core</strong></td></tr></tbody></table>
+<p>This table is the practical output of ERN-01 and should drive the sizing tool logic directly.</p>
+</section>
+<section class="doc-section" id="27-appendix-calculation-reference">
+<h2 class="sec"><span class="sec-num">27</span><span class="sec-title">APPENDIX: CALCULATION REFERENCE</span></h2>
+<h3 id="27-1-equation-set">27.1 Equation set</h3>
+<table class="grid"><thead><tr><th>Quantity</th><th>Equation</th><th>Units</th></tr></thead><tbody><tr><td>Energy</td><td><code>E = V × Ah</code></td><td>Wh</td></tr><tr><td>Power</td><td><code>P = V × I</code></td><td>W</td></tr><tr><td>C-rate</td><td><code>C = I / Ah</code></td><td>1/h</td></tr><tr><td>Runtime</td><td><code>t = E_usable / P_load</code></td><td>h</td></tr><tr><td>Usable energy</td><td><code>E_usable = E_nom × SOC_window × η</code></td><td>Wh</td></tr><tr><td>Cycling energy</td><td><code>E_cycle = E_nom × (window − reserve) × η</code></td><td>Wh</td></tr><tr><td>Module count</td><td><code>N = CEILING(E_required / E_module_effective)</code></td><td>—</td></tr><tr><td>Solar array</td><td><code>P_solar = E_daily / (yield × η_path)</code></td><td>kWp</td></tr><tr><td>PV generation</td><td><code>E_PV = P_array × PSH × PR</code></td><td>kWh</td></tr><tr><td>Ohmic loss</td><td><code>P_loss = I² × R</code></td><td>W</td></tr><tr><td>Converter loss</td><td><code>P_loss = P_out × (1/η − 1)</code></td><td>W</td></tr><tr><td>Series string</td><td><code>V_string = N × V_module</code>, <code>Ah</code> unchanged</td><td>V</td></tr><tr><td>Parallel bank</td><td><code>Ah_bank = N × Ah_module</code>, <code>V</code> unchanged</td><td>Ah</td></tr></tbody></table>
+<h3 id="27-2-reference-value-table">27.2 Reference value table</h3>
+<table class="grid"><thead><tr><th>Quantity</th><th>Value</th></tr></thead><tbody><tr><td>Module nominal energy</td><td>2.56 kWh</td></tr><tr><td>Module usable AC energy</td><td>2.17 kWh</td></tr><tr><td>Module daily cycling AC energy</td><td>1.68 kWh</td></tr><tr><td>Module max continuous DC power</td><td>2.56 kW</td></tr><tr><td>Module max continuous AC power</td><td>2.41 kW</td></tr><tr><td>Module max charge power</td><td>1.54 kW</td></tr><tr><td>Module discharge C-rate</td><td>1.00 C</td></tr><tr><td>Module charge C-rate</td><td>0.60 C</td></tr><tr><td>Module ohmic loss at 1.0 C</td><td>30 W</td></tr><tr><td>PV yield basis</td><td>3.5 kWh/kWp/day</td></tr></tbody></table>
+<h3 id="27-3-what-these-equations-deliberately-omit">27.3 What these equations deliberately omit</h3>
+<p>Real system design must additionally consider: cell temperature history and calendar ageing; actual depth-of-discharge distribution; inverter efficiency curve versus load (not a single figure); battery ageing over the warranty term; reserve policy interaction with outage statistics; inverter surge and motor-start behaviour; solar variability and soiling rate; the customer's real load profile rather than a daily total; site electrical constraints; and statutory export limits.</p>
+<p><strong>No sizing tool should present a single-number answer without a sensitivity range.</strong></p>
+</section>
+<section class="doc-section" id="28-risk-register">
+<h2 class="sec"><span class="sec-num">28</span><span class="sec-title">RISK REGISTER</span></h2>
+<table class="grid"><thead><tr><th>ID</th><th>Risk</th><th>Impact</th><th>Probability</th><th>Mitigation</th><th>Validation method</th></tr></thead><tbody><tr><td>R-01</td><td>Thermal derating in sun-exposed installs reduces delivered capability below quoted figures</td><td>High</td><td><strong>High</strong></td><td>Mandatory sun shield; 50 °C qualification; published derating; install guidance</td><td>T-03, T-16, field monitoring</td></tr><tr><td>R-02</td><td>LFP cell supply concentration and FX exposure</td><td>High</td><td><strong>High</strong></td><td>≥ 2 qualified suppliers before P4; FX-aware pricing</td><td>Supplier audit, dual-source qualification</td></tr><tr><td>R-03</td><td>Certification timeline exceeds commercial plan</td><td><strong>High</strong></td><td>Medium</td><td>Engage certified labs at P2; pre-compliance testing</td><td>Lab quotations, pre-compliance results</td></tr><tr><td>R-04</td><td>Inverter/power-stage supplier dependency</td><td>High</td><td>Medium</td><td>Shortlist ≥ 2; abstract firmware interface</td><td>Supplier qualification, T-13</td></tr><tr><td>R-05</td><td>BMS reliability — field failure of protection function</td><td><strong>Critical</strong></td><td>Low</td><td>Independent review; redundant protection paths; T-04–T-08</td><td>Certified abuse testing</td></tr><tr><td>R-06</td><td>Connector reliability under repeated hot-swap and dust</td><td>High</td><td>Medium</td><td>Qualified connector, mating-cycle test, sealed bays</td><td>T-26, T-16, mating-cycle test</td></tr><tr><td>R-07</td><td>PAYGO reputational or legal exposure from lockout</td><td><strong>High</strong></td><td>Medium</td><td>Essential-load floor; legal review; GOGLA-aligned transparency</td><td>Legal opinion, T-25</td></tr><tr><td>R-08</td><td>Grid-compliance failure (anti-islanding, export)</td><td>High</td><td>Medium</td><td>Design to KS IEC 62109; licensed installers; zero-export default</td><td>T-23, per-site sign-off</td></tr><tr><td>R-09</td><td>HV-S architecture introduces unbudgeted certification and installer cost</td><td>High</td><td><strong>High</strong></td><td>Scope HV-S cert at P3 before commitment</td><td>Cert consultant scoping, cost model</td></tr><tr><td>R-10</td><td>EV interoperability disappoints customers expecting V2X</td><td>Medium</td><td>Medium</td><td>Strict Phase A-only messaging; no V2X claims</td><td>Marketing review gate</td></tr><tr><td>R-11</td><td>Water ingress in outdoor Pod</td><td>High</td><td>Medium</td><td>IP55 target; drip loops; commissioning check</td><td>T-15, install audit</td></tr><tr><td>R-12</td><td>Dust degrades filtered airflow, causing progressive derating</td><td>Medium</td><td><strong>High</strong></td><td>Serviceable filters; Energy OS derate-trend alert</td><td>T-16, fleet analytics</td></tr><tr><td>R-13</td><td>Service capability does not scale with installed base</td><td>High</td><td><strong>High</strong></td><td>Module-level FRU design; technician app; ≥60 % remote triage</td><td>P5 field metrics</td></tr><tr><td>R-14</td><td>Cybersecurity — unauthorised command or telemetry exposure</td><td>High</td><td>Medium</td><td>Signed OTA; no cloud override of limits; least-privilege; data-protection compliance</td><td>Penetration test before P5</td></tr><tr><td>R-15</td><td>Component obsolescence (MCU, radio) mid-lifecycle</td><td>Medium</td><td>Medium</td><td>Second-source at design; abstraction layer; lifecycle monitoring</td><td>Supplier lifecycle statements</td></tr><tr><td>R-16</td><td>Module mass causes injury or damage in field</td><td>Medium</td><td>Medium</td><td>E-04 resolution; documented handling; lift aid</td><td>Ergonomics review, incident tracking</td></tr><tr><td>R-17</td><td>Assumed efficiency figures (A-02, A-03) not achieved, invalidating all sizing</td><td>High</td><td>Medium</td><td>Early T-28; publish measured values; update sizing tool</td><td>T-28</td></tr><tr><td>R-18</td><td>Theft of modules from installed systems</td><td>Medium</td><td>Medium</td><td>Serial-account binding; removal alerts; physical locking</td><td>Field pilot data</td></tr></tbody></table>
+</section>
+<section class="doc-section" id="29-north-star">
+<h2 class="sec"><span class="sec-num">29</span><span class="sec-title">NORTH STAR</span></h2>
+<figure class="plate plate-figure" id="figure-23"><span class="plate-badge">Figure 23</span><img src="./modenergy/fig-23-north-star.svg" alt="Figure 23 — The Precifarm energy network: generation, storage at three scales, Energy OS, and the loads and vehicles it serves." /><figcaption><span class="fig-ref">Figure 23</span> The Precifarm energy network: generation, storage at three scales, Energy OS, and the loads and vehicles it serves.</figcaption></figure>
+<pre class="flow">                              SOLAR
+                                ↓
+                            PRECIFARM
+                                ↓
+        P1 GO  →  P2 HOME  →  ENERGY MODULES  →  POD
+                                ↓
+                            ENERGY OS
+                                ↓
+                   HOME  ·  BUSINESS  ·  EV
+                                ↕
+                               V2X</pre>
+<div class="callout">## ONE PLATFORM. MANY SCALES. ### Energy that can grow with you.</div>
+<pre class="flow">PLUG → CARRY → ROLL → STACK → INSTALL → DRIVE</pre>
+</section>
+<section class="doc-section" id="30-research-design-references">
+<h2 class="sec"><span class="sec-num">30</span><span class="sec-title">RESEARCH + DESIGN REFERENCES</span></h2>
+<h3 id="30-1-benchmark-products">30.1 Benchmark products</h3>
+<ol><li><strong>Tesla Powerwall 3 — DC system sizing and inverter architecture.</strong> Tesla Energy Library. https://energylibrary.tesla.com/docs/Public/EnergyStorage/Powerwall/3/SystemDesign/en-us/GUID-E43D0BF8-6B91-469A-813A-C3EFC27D87DB.html</li><li><strong>Tesla Powerwall 3 — capacity, continuous output, round-trip efficiency, Expansion unit behaviour.</strong> Solar Electric Supply product documentation. https://www.solarelectricsupply.com/solar-battery-backup-systems/tesla-powerwall-3-battery-storage-system-review</li><li><strong>Tesla Powerwall 3 — expansion to 54 kWh, integrated inverter.</strong> Infinity Energy. https://www.infinity-energy.co.uk/residential/battery-storage/tesla-powerwall-3/</li><li><strong>BYD Battery-Box Premium HVS — datasheet (2.56 kWh module @ 102.4 V, series scaling to 512 V, 25 A output, IP55, IEC 62619 / UN 38.3 / VDE 2510-50).</strong> BYD. https://bydbatterybox.com/uploads/downloads/241212_Datasheet_Battery-Box%20HVS_V1.4_EN-675a34b4e7bfb.pdf</li><li><strong>BYD Battery-Box Premium HVS / HVM — datasheet (HVM 2.76 kWh @ 51.2 V, parallel tower scaling).</strong> BYD. https://www.bydbatterybox.com/uploads/downloads/220426%20BYD%20Battery-Box%20Premium%20HVS_HVM%20Datasheet%20V1.6%20EN-626901613c1a0.pdf</li><li><strong>BYD Battery-Box Premium LVS — datasheet (4 kWh @ 51.2 V modules, parallel to 256 kWh, rated DC power by module count).</strong> BYD. https://www.bydbatterybox.com/uploads/downloads/BYD%20Battery-Box%20Premium%20LVS%20Datasheet%20-AU%20V2.1-6262722fe7f17.pdf</li><li><strong>BYD Battery-Box range review — LFP chemistry rationale, BMU architecture.</strong> Clean Energy Reviews. https://www.cleanenergyreviews.info/blog/byd-battery-review</li><li><strong>EcoFlow DELTA 3 Plus vs Anker SOLIX C1000 — portable-class specifications, expandability, UPS transfer, cycle life.</strong> Solar Waypoint. https://www.solarwaypoint.com/ecoflow-delta-3-plus-vs-anker-solix-c1000/</li><li><strong>Anker SOLIX C1000 Gen 2 / Bluetti Elite 100 V2 / EcoFlow DELTA 3 Plus comparison — mass, output, chemistry.</strong> Solar Waypoint. https://www.solarwaypoint.com/compare-power-stations/anker-solix-c1000-gen2-vs-bluetti-elite-100-v2-vs-ecoflow-delta-3-plus/</li><li><strong>Portable power station expansion architectures — EcoFlow and Anker modular ceilings.</strong> Outdoor Tech Lab. https://www.outdoortechlab.com/ecoflow-vs-anker-power-station/</li></ol>
+<h3 id="30-2-standards-and-certification">30.2 Standards and certification</h3>
+<ol><li><strong>KEBS solar and storage equipment standards — KS IEC 61215, KS IEC 61730, KS IEC 62109, KS IEC 62619, KS 1800.</strong> SurgePV Kenya compliance guide. https://www.surgepv.com/solar-compliance/kenya/guides/kebs-standards</li><li><strong>Kenya electrical regulations index — National Building Code 2025, distribution grid code, KEBS adoption practice.</strong> Electrical Engineering in Kenya. https://www.eeekenya.com/kenya-electrical-regulations/</li><li><strong>Kenya solar manufacturing regulatory stack — EPRA, KEBS, NEMA roles.</strong> PVKnowHow. https://www.pvknowhow.com/countries/kenya/solar-panel-production-regulations-kenya/</li></ol>
+<h3 id="30-3-kenya-energy-market-and-regulation">30.3 Kenya energy market and regulation</h3>
+<ol><li><strong>The Energy (Net-Metering) Regulations, 2024 (Legal Notice 104 of 2024) — applicability below 1 MW, authorised-person installation, bi-directional smart metering requirements.</strong> https://dg-africa.net/wp-content/uploads/2025/06/The-Energy-NetMetering-Regulations-2024.pdf</li><li><strong>EPRA on net-metering caps — 10 kW domestic, 1 MW C&amp;I; battery-storage framework in development.</strong> Energy News Network. https://energy-news-network.com/industry-news/powering-kenyas-clean-energy-future-insights-from-epra/</li><li><strong>Kenya electricity tariffs 2025/26 — domestic base rates and all-in estimates.</strong> MEP Engineering / Reigai Solutions. https://reigaisolut.co.ke/understanding-the-cost-of-electricity-in-kenya/</li><li><strong>EPRA gazetted pass-through charges, August 2026 — KSh 4.7027/kWh combined (FCC, FERFA, WRMA).</strong> Kenyans.co.ke. https://www.kenyans.co.ke/news/126245-epra-announces-ksh470-kwh-electricity-charges-august</li><li><strong>EPRA August 2026 gazette notices detail (Nos. 13172–13174).</strong> Tuko. https://www.tuko.co.ke/business-economy/energy/636593-epra-announces-electricity-charges-august-fuel-levy-water-charges-rise/</li><li><strong>Kenya Power tiered domestic tariff structure.</strong> Contentgenics. https://contentgenics.com/kenya-power-tiered-tariff-system/</li></ol>
+<h3 id="30-4-kenya-solar-resource">30.4 Kenya solar resource</h3>
+<ol><li><strong>Kenya peak-sun-hour design basis by city — Nairobi 5.5 annual / 4.5 worst-month / 4.7 recommended; Kisumu 5.0 / 4.0.</strong> SurgePV C&amp;I Solar in Kenya guide. https://www.surgepv.com/solar-compliance/kenya/guides/ci-solar-kenya</li><li><strong>Peak sun hours by Kenyan county.</strong> Riisun Solar Energy. https://riisunsolarenergy.co.ke/average-peak-sun-hours-by-county/</li><li><strong>Measured performance of a 600 kWp grid-tied rooftop PV system, Strathmore University, Nairobi — 1,225 kWh/kWp/year specific yield, 57.4 % performance ratio, IEC 61724 indices.</strong> <em>Results in Engineering</em>. https://doi.org/10.1016/j.rineng.2023.101302</li><li><strong>Nairobi seasonal PV output modelling from NASA POWER data.</strong> profileSOLAR. https://profilesolar.com/locations/Kenya/Nairobi/</li></ol>
+<h3 id="30-5-paygo-consumer-protection-and-finance">30.5 PAYGO, consumer protection and finance</h3>
+<ol><li><strong>Remote Lockout Technology in PAYGo solar — regulatory dilemma and recommendation to limit rather than prohibit.</strong> NUS Law Research Blog. https://blog.nus.edu.sg/lawresearch/2025/11/17/remote-lockouts-in-paygo-solar-how-to-approach-the-regulatory-dilemma/</li><li><strong>&quot;When the Lights Go out: Remote Lockout Technology in Sustainable Pay-As-You-Go Products.&quot;</strong> Springer. https://doi.org/10.1007/978-3-032-02983-6_9</li><li><strong>GOGLA Consumer Protection Code — six consumer-protection principles and assessment framework.</strong> https://gogla.org/consumer-protection-standards/consumer-protection-code/</li><li><strong>Kenyan PAYGO default and lockout practice, and applicable consumer-complaint routes.</strong> Paybill KE. https://paybillke.com/guides/sun-king-default-what-happens-kenya</li></ol>
+<h3 id="30-6-internal-precifarm-sources">30.6 Internal Precifarm sources</h3>
+<ol><li><strong>PF-MODENERGY-001 v1.0</strong> — Precifarm Modular Energy Storage (baseline superseded by this document).</li><li><strong>Modular Energy Platform — Product Design</strong> (<code>docs/product/modular-energy-platform.md</code>).</li><li><strong>PF-ENG-SOLAR-HUB-001 v1.1</strong> — Solar Chargers &amp; Charging Stations Engineering Design Doc.</li><li><strong>Precifarm CANON</strong> (<code>docs/CANON.md</code>) — commercial scope boundary; consumer energy is a gated expansion surface.</li><li><strong>Precifarm CMS install pipeline</strong> — survey-to-commissioning stage model (§13.6).</li></ol>
+</section>
+<section class="doc-front" id="document-control">
+<h2 class="sec sec-plain"><span class="sec-title">DOCUMENT CONTROL</span></h2>
+<table class="grid"><thead><tr><th>Version</th><th>Date</th><th>Author</th><th>Change</th></tr></thead><tbody><tr><td>1.0</td><td>2026-08-30</td><td>Precifarm Engineering</td><td>Initial engineering design basis</td></tr><tr><td><strong>2.0</strong></td><td><strong>2026-08-30</strong></td><td><strong>Precifarm Engineering</strong></td><td><strong>Full product + engineering architecture review. Nine Engineering Review Notes raised and resolved. Derived math for all specifications. Dual battery architecture (LV-48 / HV-S) proposed. Kenya design basis sourced. PAYGO redesigned on consumer-protection evidence. Test matrix, risk register and decision gates expanded. 27 external references added.</strong></td></tr></tbody></table>
+<p><strong>Next review:</strong> at P0 exit, to close ERN-06 and decisions E-01 and E-04.</p>
+<p class="caption">PF-MODENERGY-002 v2.0 · Precifarm Engineering · 30 August 2026</p>
+<p class="caption">Engineering targets and conceptual designs in this document are subject to prototype validation, supplier qualification, third-party testing, certification and applicable Kenyan statutory requirements. This document is not an issued-for-construction drawing, certified product specification, warranty or installation manual. Precifarm holds no product certification at the date of issue.</p>
+</section>
+    <footer class="doc-foot">
+      <strong>Precifarm Modular Energy Platform — Product + Engineering Architecture</strong><br />
+      PF-MODENERGY-002 · v2.0 · 30 August 2026 · Supersedes PF-MODENERGY-001 v1.0<br /><br />
+      Every engineering claim in this document is either carried forward from PF-MODENERGY-001 v1.0, derived and shown
+      as a calculation, declared as an assumption, or cited to an external source in §30. No Precifarm product holds
+      any certification at the date of issue, and no product may be sold as a certified energy-storage system before
+      the P4 gate defined in §24.
+    </footer>
+  </main>
+</body>
+</html>

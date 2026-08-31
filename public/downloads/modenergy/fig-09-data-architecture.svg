@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" width="1200" height="480" font-family="'Segoe UI',system-ui,sans-serif" data-pf-theme="v2">
+<style>
+.t{fill:#0a0a0a}.s{fill:#737373}
+.lbl{font-size:12.5px;font-weight:700;fill:#0a0a0a}
+.tiny{font-size:9.5px;fill:#737373}
+.mono{font-size:9px;font-family:ui-monospace,Consolas,monospace;fill:#404040}
+
+.pf-accent{fill:#2563eb}
+.pf-frame{fill:none;stroke:#e2e8f0;stroke-width:1}
+.bx,.dev{filter:url(#pf-shadow-sm)}
+.bxb{filter:url(#pf-shadow);fill:#f8fbff}
+
+</style>
+<defs>
+<linearGradient id="pf-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+  <stop offset="0%" stop-color="#f8fafc"/>
+  <stop offset="55%" stop-color="#ffffff"/>
+  <stop offset="100%" stop-color="#f1f5f9"/>
+</linearGradient>
+<pattern id="pf-grid" width="28" height="28" patternUnits="userSpaceOnUse">
+  <circle cx="1.5" cy="1.5" r="0.75" fill="#e2e8f0"/>
+</pattern>
+<linearGradient id="pf-blue" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" stop-color="#3b82f6"/>
+  <stop offset="100%" stop-color="#1d4ed8"/>
+</linearGradient>
+<linearGradient id="pf-blue-soft" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" stop-color="#eff6ff"/>
+  <stop offset="100%" stop-color="#dbeafe"/>
+</linearGradient>
+<filter id="pf-shadow" x="-8%" y="-8%" width="116%" height="120%">
+  <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.07"/>
+</filter>
+<filter id="pf-shadow-sm" x="-6%" y="-6%" width="112%" height="114%">
+  <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#0f172a" flood-opacity="0.06"/>
+</filter>
+<marker id="ab" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+</defs>
+
+<g id="pf-background" aria-hidden="true">
+  <rect width="1200" height="480" fill="url(#pf-bg)"/>
+  <rect width="1200" height="480" fill="url(#pf-grid)" opacity="0.45"/>
+  <rect x="0" y="0" width="5" height="480" fill="#2563eb" rx="0"/>
+</g><text x="40" y="42" class="t" font-size="20" font-weight="700">Data architecture &#8212; device to decision</text>
+<text x="40" y="64" class="s" font-size="12.5">Telemetry only earns its cost if it ends in a customer action or a service action. Every stage below states what it produces and how long it is held.</text>
+
+
+<g transform="translate(40,110)">
+<!-- 7 stage chevrons -->
+<g>
+<path d="M0 0 L140 0 L166 44 L140 88 L0 88 L26 44 Z" fill="#eff6ff" stroke="#2563eb" stroke-width="1.4"/>
+<text x="80" y="38" class="lbl" text-anchor="middle" fill="#1d4ed8" font-size="12">DEVICE</text>
+<text x="80" y="56" class="tiny" text-anchor="middle">raw samples, faults</text>
+<text x="80" y="70" class="tiny" text-anchor="middle">7-day ring buffer</text>
+</g>
+<g transform="translate(158,0)">
+<path d="M0 0 L140 0 L166 44 L140 88 L0 88 L26 44 Z" fill="#eff6ff" stroke="#2563eb" stroke-width="1.4"/>
+<text x="80" y="38" class="lbl" text-anchor="middle" fill="#1d4ed8" font-size="12">TELEMETRY</text>
+<text x="80" y="56" class="tiny" text-anchor="middle">normalised events</text>
+<text x="80" y="70" class="tiny" text-anchor="middle">hot 90 days</text>
+</g>
+<g transform="translate(316,0)">
+<path d="M0 0 L140 0 L166 44 L140 88 L0 88 L26 44 Z" fill="#eff6ff" stroke="#2563eb" stroke-width="1.4"/>
+<text x="80" y="38" class="lbl" text-anchor="middle" fill="#1d4ed8" font-size="12">FLEET</text>
+<text x="80" y="56" class="tiny" text-anchor="middle">per-device series</text>
+<text x="80" y="70" class="tiny" text-anchor="middle">10 yr &#8212; warranty term</text>
+</g>
+<g transform="translate(474,0)">
+<path d="M0 0 L140 0 L166 44 L140 88 L0 88 L26 44 Z" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="80" y="38" class="lbl" text-anchor="middle" fill="#1d4ed8" font-size="12">ANALYTICS</text>
+<text x="80" y="56" class="tiny" text-anchor="middle">cohort SOH, fault rate</text>
+<text x="80" y="70" class="tiny" text-anchor="middle">derate exposure</text>
+</g>
+<g transform="translate(632,0)">
+<path d="M0 0 L140 0 L166 44 L140 88 L0 88 L26 44 Z" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="80" y="38" class="lbl" text-anchor="middle" fill="#1d4ed8" font-size="12">PREDICTION</text>
+<text x="80" y="56" class="tiny" text-anchor="middle">runtime, solar forecast</text>
+<text x="80" y="70" class="tiny" text-anchor="middle">deficit warning</text>
+</g>
+<g transform="translate(790,0)">
+<path d="M0 0 L140 0 L166 44 L140 88 L0 88 L26 44 Z" fill="#bfdbfe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="80" y="38" class="lbl" text-anchor="middle" fill="#1d4ed8" font-size="12">OPTIMIZATION</text>
+<text x="80" y="56" class="tiny" text-anchor="middle">self-consumption</text>
+<text x="80" y="70" class="tiny" text-anchor="middle">reserve, tariff</text>
+</g>
+<g transform="translate(948,0)">
+<path d="M0 0 L140 0 L166 44 L140 88 L0 88 L26 44 Z" fill="#2563eb" stroke="#1d4ed8" stroke-width="1.4"/>
+<text x="80" y="38" class="lbl" text-anchor="middle" fill="#fff" font-size="12">ACTION</text>
+<text x="80" y="56" font-size="9.5" fill="#dbeafe" text-anchor="middle">plain-language</text>
+<text x="80" y="70" font-size="9.5" fill="#dbeafe" text-anchor="middle">recommendation</text>
+</g>
+</g>
+
+<!-- Payload examples -->
+<g transform="translate(40,232)">
+<rect x="0" y="0" width="540" height="176" rx="7" fill="#fafafa" stroke="#e5e5e5"/>
+<text x="18" y="24" font-size="11" font-weight="700" fill="#404040" letter-spacing=".08em">MINIMUM TELEMETRY CONTRACT</text>
+<line x1="18" y1="34" x2="522" y2="34" stroke="#e5e5e5"/>
+<text x="18" y="54" class="mono">soc_pct, soh_pct                                60 s</text>
+<text x="18" y="70" class="mono">power_w, voltage_v, current_a                    5 s</text>
+<text x="18" y="86" class="mono">pv_power_w, load_power_w, grid_power_w           5 s</text>
+<text x="18" y="102" class="mono">runtime_minutes_est                             60 s</text>
+<text x="18" y="118" class="mono">temp_max_c, derate_factor                       60 s</text>
+<text x="18" y="134" class="mono">fault_code, fault_severity                  on event</text>
+<text x="18" y="150" class="mono">module_count, module_slots, module_serials[]  change</text>
+<text x="18" y="166" class="mono">paygo_state, credit_days_remaining            change</text>
+</g>
+
+<g transform="translate(608,232)">
+<rect x="0" y="0" width="552" height="176" rx="7" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+<text x="18" y="24" font-size="11" font-weight="700" fill="#1d4ed8" letter-spacing=".08em">WHAT EACH STAGE MUST EARN</text>
+<line x1="18" y1="34" x2="534" y2="34" stroke="#bfdbfe"/>
+<text x="18" y="56" font-size="10.5" fill="#0a0a0a" font-weight="600">Analytics must change the product.</text>
+<text x="18" y="72" font-size="10" fill="#404040">Cohort SOH and derate-exposure data feed the next module revision and</text>
+<text x="18" y="86" font-size="10" fill="#404040">the thermal design &#8212; not a dashboard nobody reads.</text>
+<text x="18" y="110" font-size="10.5" fill="#0a0a0a" font-weight="600">Prediction must change customer behaviour.</text>
+<text x="18" y="126" font-size="10" fill="#404040">"Tomorrow looks cloudy &#8212; your battery will not fully recharge" is worth</text>
+<text x="18" y="140" font-size="10" fill="#404040">more than any historical chart.</text>
+<text x="18" y="164" font-size="10.5" fill="#dc2626" font-weight="600">Optimization may never override a safety or statutory limit (&#167;6.4).</text>
+</g>
+
+<line x1="40" y1="436" x2="1160" y2="436" stroke="#e5e5e5"/>
+<text x="40" y="458" class="s" font-size="11">Figure 9 &#8212; Data architecture. Retention periods are engineering assumptions and must be reconciled with Kenyan data-protection obligations before P5.</text>
+</svg>

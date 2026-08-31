@@ -6,6 +6,7 @@ import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import JsonLd from "@/components/seo/JsonLd";
 import MarkdownContent from "@/components/seo/MarkdownContent";
 import TrustSignals from "@/components/seo/TrustSignals";
+import { BOOKING_FAQ_SLUG } from "@/lib/charging-faqs";
 import { cmsGetSeoContent, cmsListSeoContent } from "@/lib/seo/cms-client";
 import { createPageSeo } from "@/lib/seo/metadata";
 import { articleSchema, faqSchema } from "@/lib/seo/schema";
@@ -25,7 +26,9 @@ function faqsFromBlocks(blocks: AisoContentBlock[]): FaqItem[] {
 
 export async function generateStaticParams() {
   const items = await cmsListSeoContent({ status: "published", locale: LOCALE });
-  return items.filter((i) => i.contentType === "faq").map((i) => ({ slug: i.slug }));
+  return items
+    .filter((i) => i.contentType === "faq" && i.slug !== BOOKING_FAQ_SLUG)
+    .map((i) => ({ slug: i.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -49,6 +52,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function SwahiliFaqPage({ params }: Props) {
   const { slug } = await params;
+  if (slug === BOOKING_FAQ_SLUG) {
+    notFound();
+  }
   const content = await cmsGetSeoContent(slug, LOCALE);
   if (!content || content.contentType !== "faq") notFound();
 
@@ -84,7 +90,7 @@ export default async function SwahiliFaqPage({ params }: Props) {
               updatedAt={content.updatedAt}
               sources={content.sources}
             />
-            <Link href="/faq/precifarm-booking-faq" className="text-link mt-4 inline-block text-sm">
+            <Link href="/faq" className="text-link mt-4 inline-block text-sm">
               English version
             </Link>
           </div>

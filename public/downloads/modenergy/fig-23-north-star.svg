@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" width="1200" height="760" font-family="'Segoe UI',system-ui,sans-serif" data-pf-theme="v2">
+<style>
+.s{fill:#737373}
+.lbl{font-size:11px;font-weight:700}
+.sub{font-size:9px;fill:#737373}
+.hd{font-size:10px;font-weight:700;letter-spacing:.12em}
+
+.pf-accent{fill:#2563eb}
+.pf-frame{fill:none;stroke:#e2e8f0;stroke-width:1}
+.bx,.dev{filter:url(#pf-shadow-sm)}
+.bxb{filter:url(#pf-shadow);fill:#f8fbff}
+
+</style>
+<defs>
+<linearGradient id="pf-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+  <stop offset="0%" stop-color="#f8fafc"/>
+  <stop offset="55%" stop-color="#ffffff"/>
+  <stop offset="100%" stop-color="#f1f5f9"/>
+</linearGradient>
+<pattern id="pf-grid" width="28" height="28" patternUnits="userSpaceOnUse">
+  <circle cx="1.5" cy="1.5" r="0.75" fill="#e2e8f0"/>
+</pattern>
+<linearGradient id="pf-blue" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" stop-color="#3b82f6"/>
+  <stop offset="100%" stop-color="#1d4ed8"/>
+</linearGradient>
+<linearGradient id="pf-blue-soft" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" stop-color="#eff6ff"/>
+  <stop offset="100%" stop-color="#dbeafe"/>
+</linearGradient>
+<filter id="pf-shadow" x="-8%" y="-8%" width="116%" height="120%">
+  <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.07"/>
+</filter>
+<filter id="pf-shadow-sm" x="-6%" y="-6%" width="112%" height="114%">
+  <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#0f172a" flood-opacity="0.06"/>
+</filter>
+<marker id="n1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+<marker id="n2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d97706"/></marker>
+<marker id="n3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a3a3a3"/></marker>
+<marker id="n1s" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M10,0 L0,5 L10,10 z" fill="#2563eb"/></marker>
+</defs>
+
+
+<g id="pf-background" aria-hidden="true">
+  <rect width="1200" height="760" fill="url(#pf-bg)"/>
+  <rect width="1200" height="760" fill="url(#pf-grid)" opacity="0.45"/>
+  <rect x="0" y="0" width="5" height="760" fill="#2563eb" rx="0"/>
+</g><!-- title -->
+<text x="600" y="46" text-anchor="middle" font-size="22" font-weight="700" fill="#0a0a0a">ONE PLATFORM. MANY SCALES. ENERGY THAT CAN GROW WITH YOU.</text>
+<text x="600" y="70" text-anchor="middle" font-size="12" fill="#737373">The Precifarm energy network &#8212; generation, storage at three scales, one operating system, and the loads and vehicles it serves</text>
+
+<!-- SUN / SOLAR -->
+<g transform="translate(600,112)">
+<circle r="30" fill="#fffbeb" stroke="#d97706" stroke-width="1.6"/>
+<g stroke="#d97706" stroke-width="1.6" stroke-linecap="round">
+<line x1="0" y1="-38" x2="0" y2="-44"/><line x1="27" y1="-27" x2="31" y2="-31"/><line x1="38" y1="0" x2="44" y2="0"/>
+<line x1="27" y1="27" x2="31" y2="31"/><line x1="-27" y1="-27" x2="-31" y2="-31"/><line x1="-38" y1="0" x2="-44" y2="0"/>
+<line x1="-27" y1="27" x2="-31" y2="31"/>
+</g>
+<text y="-2" text-anchor="middle" font-size="11" font-weight="700" fill="#b45309">SOLAR</text>
+<text y="12" text-anchor="middle" font-size="8" fill="#b45309">PV array</text>
+</g>
+<path d="M600 156 V 194" stroke="#d97706" stroke-width="2.4" marker-end="url(#n2)" fill="none"/>
+<text x="614" y="180" font-size="9.5" fill="#b45309">DC generation &#183; MPPT</text>
+
+<!-- PRECIFARM band -->
+<g transform="translate(300,194)">
+<rect x="0" y="0" width="600" height="52" rx="8" fill="#0a0a0a"/>
+<text x="300" y="24" text-anchor="middle" font-size="15" font-weight="700" fill="#fff" letter-spacing=".14em">PRECIFARM</text>
+<text x="300" y="41" text-anchor="middle" font-size="9.5" fill="#a3a3a3">ONE ENERGY MODULE &#183; ONE POWER ARCHITECTURE &#183; ONE ACCOUNT</text>
+</g>
+<path d="M600 246 V 276" stroke="#2563eb" stroke-width="2.4" marker-end="url(#n1)" fill="none"/>
+
+<!-- three scales -->
+<g transform="translate(120,282)">
+<!-- P1 -->
+<g>
+<rect x="0" y="0" width="200" height="104" rx="8" fill="#fff" stroke="#e5e5e5" stroke-width="1.4"/>
+<rect x="0" y="0" width="200" height="4" rx="2" fill="#2563eb"/>
+<text x="16" y="30" class="lbl" fill="#0a0a0a">P1 GO</text>
+<text x="16" y="48" class="sub">~1.0 kWh &#183; 1.0 kW &#183; [TARGET]</text>
+<text x="16" y="70" font-size="10" fill="#404040">Portable entry point</text>
+<rect x="16" y="78" width="52" height="17" rx="8.5" fill="#eff6ff"/><text x="42" y="90" font-size="8.5" font-weight="700" fill="#1d4ed8" text-anchor="middle">CARRY</text>
+<g transform="translate(150,58)"><rect x="-18" y="-16" width="36" height="30" rx="4" fill="#f5f5f5" stroke="#a3a3a3"/><rect x="-9" y="-22" width="18" height="7" rx="3.5" fill="none" stroke="#a3a3a3" stroke-width="1.6"/><circle cx="0" cy="-2" r="3" fill="#2563eb"/></g>
+</g>
+<!-- arrow -->
+<path d="M204 52 H 236" stroke="#2563eb" stroke-width="2" marker-end="url(#n1)" fill="none"/>
+<text x="220" y="44" font-size="8" fill="#2563eb" text-anchor="middle">ADD</text>
+<!-- P2 -->
+<g transform="translate(240,0)">
+<rect x="0" y="0" width="200" height="104" rx="8" fill="#fff" stroke="#e5e5e5" stroke-width="1.4"/>
+<rect x="0" y="0" width="200" height="4" rx="2" fill="#2563eb"/>
+<text x="16" y="30" class="lbl" fill="#0a0a0a">P2 HOME</text>
+<text x="16" y="48" class="sub">2.56 &#8594; 10.24 kWh &#183; 2.4 / 4.8 kW</text>
+<text x="16" y="70" font-size="10" fill="#404040">Modular home energy</text>
+<rect x="16" y="78" width="46" height="17" rx="8.5" fill="#eff6ff"/><text x="39" y="90" font-size="8.5" font-weight="700" fill="#1d4ed8" text-anchor="middle">ROLL</text>
+<g transform="translate(152,56)"><rect x="-20" y="-24" width="40" height="44" rx="4" fill="#f5f5f5" stroke="#a3a3a3"/><line x1="-20" y1="-8" x2="20" y2="-8" stroke="#a3a3a3"/><line x1="-20" y1="4" x2="20" y2="4" stroke="#e5e5e5"/><circle cx="-12" cy="22" r="3" fill="#a3a3a3"/><circle cx="12" cy="22" r="3" fill="#a3a3a3"/></g>
+</g>
+<path d="M444 52 H 476" stroke="#2563eb" stroke-width="2" marker-end="url(#n1)" fill="none"/>
+<text x="460" y="44" font-size="8" fill="#2563eb" text-anchor="middle">ADD</text>
+<!-- POD -->
+<g transform="translate(480,0)">
+<rect x="0" y="0" width="200" height="104" rx="8" fill="#fff" stroke="#e5e5e5" stroke-width="1.4"/>
+<rect x="0" y="0" width="200" height="4" rx="2" fill="#2563eb"/>
+<text x="16" y="30" class="lbl" fill="#0a0a0a">PRECIFARM POD</text>
+<text x="16" y="48" class="sub">5.12 &#8594; 51.2 kWh &#183; 5 &#8594; 30 kW</text>
+<text x="16" y="70" font-size="10" fill="#404040">Installed infrastructure</text>
+<rect x="16" y="78" width="56" height="17" rx="8.5" fill="#eff6ff"/><text x="44" y="90" font-size="8.5" font-weight="700" fill="#1d4ed8" text-anchor="middle">INSTALL</text>
+<g transform="translate(152,54)"><rect x="-22" y="-26" width="44" height="50" rx="4" fill="#f5f5f5" stroke="#a3a3a3"/><line x1="-22" y1="-12" x2="22" y2="-12" stroke="#a3a3a3"/><line x1="-22" y1="-2" x2="22" y2="-2" stroke="#e5e5e5"/><line x1="-22" y1="8" x2="22" y2="8" stroke="#e5e5e5"/><line x1="-22" y1="18" x2="22" y2="18" stroke="#e5e5e5"/></g>
+</g>
+<!-- energy module underlay -->
+<text x="340" y="132" text-anchor="middle" font-size="10" fill="#737373">every one of them is built from the same part</text>
+<g transform="translate(240,142)">
+<rect x="0" y="0" width="200" height="34" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="1.6"/>
+<text x="100" y="22" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1d4ed8">ENERGY MODULE &#183; 2.56 kWh</text>
+</g>
+<path d="M100 108 C 100 150, 200 160, 236 160" stroke="#2563eb" stroke-width="1.4" stroke-dasharray="4 3" fill="none" marker-end="url(#n1)"/>
+<path d="M580 108 C 580 150, 480 160, 444 160" stroke="#2563eb" stroke-width="1.4" stroke-dasharray="4 3" fill="none" marker-end="url(#n1)"/>
+<path d="M340 108 V 138" stroke="#2563eb" stroke-width="1.4" stroke-dasharray="4 3" fill="none" marker-end="url(#n1)"/>
+</g>
+
+<!-- GRID (left in) -->
+<g transform="translate(40,306)">
+<rect x="0" y="0" width="60" height="56" rx="6" fill="#f5f5f5" stroke="#a3a3a3" stroke-width="1.3"/>
+<text x="30" y="26" text-anchor="middle" font-size="10" font-weight="700" fill="#404040">GRID</text>
+<text x="30" y="41" text-anchor="middle" font-size="8" fill="#737373">230 V</text>
+<text x="30" y="51" text-anchor="middle" font-size="8" fill="#737373">50 Hz</text>
+</g>
+<path d="M102 334 H 156" stroke="#a3a3a3" stroke-width="2" marker-end="url(#n3)" fill="none"/>
+
+<!-- Energy OS -->
+<path d="M600 470 V 500" stroke="#2563eb" stroke-width="2.4" marker-end="url(#n1)" fill="none"/>
+<g transform="translate(240,500)">
+<rect x="0" y="0" width="720" height="72" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="20" y="26" font-size="14" font-weight="700" fill="#1d4ed8" letter-spacing=".1em">ENERGY OS</text>
+<text x="146" y="26" font-size="10" fill="#1d4ed8">one account &#183; one app &#183; one telemetry schema &#183; one finance rail</text>
+<g font-size="9.5" font-weight="700" fill="#1d4ed8">
+<text x="20" y="52">MONITOR</text><text x="128" y="52">PREDICT</text><text x="228" y="52">OPTIMIZE</text><text x="336" y="52">DIAGNOSE</text><text x="450" y="52">AUTOMATE</text><text x="566" y="52">FINANCE</text>
+</g>
+<g font-size="8" fill="#60a5fa">
+<text x="20" y="64">what is happening</text><text x="128" y="64">what is next</text><text x="228" y="64">what is best</text><text x="336" y="64">what is wrong</text><text x="450" y="64">act without asking</text><text x="566" y="64">M-Pesa &#183; PAYGO</text>
+</g>
+</g>
+<path d="M600 572 V 604" stroke="#2563eb" stroke-width="2.4" marker-end="url(#n1)" fill="none"/>
+
+<!-- loads -->
+<g transform="translate(140,606)">
+<g><rect x="0" y="0" width="180" height="62" rx="8" fill="#fff" stroke="#e5e5e5" stroke-width="1.4"/>
+<text x="16" y="26" class="lbl" fill="#0a0a0a">HOME</text>
+<text x="16" y="44" class="sub">lighting &#183; refrigeration &#183; water &#183; Wi-Fi</text>
+<text x="16" y="56" class="sub" fill="#059669">essential-load floor always retained</text></g>
+<g transform="translate(200,0)"><rect x="0" y="0" width="180" height="62" rx="8" fill="#fff" stroke="#e5e5e5" stroke-width="1.4"/>
+<text x="16" y="26" class="lbl" fill="#0a0a0a">BUSINESS</text>
+<text x="16" y="44" class="sub">SME &#183; cold chain &#183; shops &#183; offices</text>
+<text x="16" y="56" class="sub">outage cost avoidance</text></g>
+<g transform="translate(400,0)"><rect x="0" y="0" width="180" height="62" rx="8" fill="#fff" stroke="#e5e5e5" stroke-width="1.4"/>
+<text x="16" y="26" class="lbl" fill="#0a0a0a">EV</text>
+<text x="16" y="44" class="sub">charge from surplus solar</text>
+<rect x="16" y="48" width="76" height="14" rx="7" fill="#f5f5f5"/><text x="54" y="58" font-size="8" font-weight="700" fill="#525252" text-anchor="middle">PHASE A / B</text></g>
+<g transform="translate(600,0)"><rect x="0" y="0" width="180" height="62" rx="8" fill="#fafafa" stroke="#a3a3a3" stroke-width="1.4" stroke-dasharray="5 3"/>
+<text x="16" y="26" class="lbl" fill="#525252">V2X</text>
+<text x="16" y="44" class="sub">the vehicle powers the home</text>
+<rect x="16" y="48" width="118" height="14" rx="7" fill="#fef2f2"/><text x="75" y="58" font-size="8" font-weight="700" fill="#991b1b" text-anchor="middle">FUTURE &#183; CERT REQUIRED</text></g>
+</g>
+<!-- bidirectional between EV and V2X -->
+<path d="M726 637 H 736" stroke="#2563eb" stroke-width="2" fill="none"/>
+<path d="M726 637 H 740" stroke="#2563eb" stroke-width="2" marker-start="url(#n1s)" marker-end="url(#n1)" fill="none"/>
+
+<!-- philosophy strip -->
+<g transform="translate(140,690)">
+<rect x="0" y="0" width="920" height="34" rx="17" fill="#0a0a0a"/>
+<g font-size="11.5" font-weight="700" fill="#fff" letter-spacing=".08em">
+<text x="52" y="22">PLUG</text><text x="176" y="22">CARRY</text><text x="316" y="22">ROLL</text><text x="440" y="22">STACK</text><text x="576" y="22">INSTALL</text><text x="736" y="22">DRIVE</text>
+</g>
+<g font-size="12" fill="#2563eb">
+<text x="120" y="22">&#8594;</text><text x="256" y="22">&#8594;</text><text x="384" y="22">&#8594;</text><text x="524" y="22">&#8594;</text><text x="684" y="22">&#8594;</text>
+</g>
+<text x="836" y="22" font-size="9.5" fill="#a3a3a3">one continuous experience</text>
+</g>
+
+<text x="40" y="752" class="s" font-size="10.5">Figure 23 &#8212; The Precifarm energy network. Conceptual system-level architecture. P1, P2, Module and Pod are pre-prototype concepts; EV integration is staged (&#167;15); V2X is a future capability requiring vehicle compatibility, standards conformity and EPRA approval.</text>
+</svg>

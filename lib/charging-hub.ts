@@ -7,7 +7,7 @@ export const chargingHub = {
   /** Mid-sentence, lowercase */
   nameLower: "charging hub",
   description:
-    "Corridor DC on the highway, Boda Hub battery swap in the city and partner retail stops across Kenya — find sites in the Precifarm app, navigate and pay with M-Pesa.",
+    "Corridor DC on the highway, Boda Hub battery swap in the city and partner retail stops across Kenya — find sites in the Precifarm AI companion, navigate and pay with M-Pesa.",
   url: "https://precifarm.com/network",
 } as const;
 
@@ -16,7 +16,7 @@ export const chargingHubPage = {
     title: "Find EV charging across Kenya",
     description: chargingHub.description,
     primaryHref: "/download",
-    primaryLabel: "Download the Android app",
+    primaryLabel: "Get the AI companion",
     secondaryHref: "/contact",
     secondaryLabel: "Host a hub site",
   },
@@ -54,14 +54,14 @@ export const chargingHubPage = {
   },
   howItWorks: {
     eyebrow: "How it works",
-    title: "Open the app, pick a site, pay with M-Pesa",
+    title: "Open the companion, pick a site, pay with M-Pesa",
     description:
-      "The Charging Hub lives in the Precifarm Android app today. Filter by DC, Boda swap or partner — then navigate and pay.",
+      "The Charging Hub lives in the Precifarm AI companion today. Filter by DC, Boda swap or partner — then navigate and pay.",
     steps: [
       {
         step: "01",
-        title: "Download Precifarm",
-        text: "Install the Android app from precifarm.com — no Play Store required.",
+        title: "Get the AI companion",
+        text: "Install from precifarm.com — Android APK, no Play Store required.",
       },
       {
         step: "02",
@@ -76,7 +76,7 @@ export const chargingHubPage = {
       {
         step: "04",
         title: "Pay with M-Pesa",
-        text: "Session price is shown before you charge. History and receipts in the app.",
+        text: "Session price is shown before you charge. History and receipts in the companion.",
       },
     ],
   },
@@ -150,7 +150,7 @@ export const chargingHubPage = {
   locations: {
     eyebrow: "Sites directory",
     title: "Corridor, Boda Hub and partner sites",
-    description: "Reference list below. Open the app for live filters, directions and M-Pesa pay.",
+    description: "Reference list below. Open the AI companion for live filters, directions and M-Pesa pay.",
     groups: [
       { id: "corridor" as const, label: "Corridor DC" },
       { id: "boda" as const, label: "Boda Hub swap" },
@@ -186,10 +186,10 @@ export const chargingHubPage = {
     ],
   },
   cta: {
-    title: "Open the Charging Hub in the app",
+    title: "Open the Charging Hub in the companion",
     description: "Filters, directions and M-Pesa on every session. Have a site on a busy route? Talk to us about hosting.",
     primaryHref: "/download",
-    primaryLabel: "Download the app",
+    primaryLabel: "Get the AI companion",
     secondaryHref: "/contact",
     secondaryLabel: "Host a hub site",
   },

@@ -5,7 +5,7 @@ import JsonLd from "@/components/seo/JsonLd";
 import ContentIndexCard from "@/components/ui/ContentIndexCard";
 import PageCTA from "@/components/ui/PageCTA";
 import PageHero from "@/components/ui/PageHero";
-import { BOOKING_FAQ_SLUG, HOMEPAGE_FAQ_SLUG } from "@/lib/charging-faqs";
+import { HOMEPAGE_FAQ_SLUG } from "@/lib/charging-faqs";
 import { absoluteUrl } from "@/lib/seo/config";
 import {
   formatContentDate,
@@ -91,12 +91,8 @@ export default async function FaqIndexPage() {
                   <ContentIndexCard
                     key={item.id}
                     href={`/faq/${item.slug}`}
-                    title={item.slug === BOOKING_FAQ_SLUG ? "Travel booking" : item.title}
-                    description={
-                      item.slug === BOOKING_FAQ_SLUG
-                        ? "Nairobi–Kisumu seats, M-Pesa tickets and boarding — a companion surface, not the charging product."
-                        : item.description
-                    }
+                    title={item.title}
+                    description={item.description}
                     meta={formatContentDate(item.publishedAt ?? item.updatedAt)}
                   />
                 ))}

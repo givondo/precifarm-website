@@ -14,7 +14,7 @@ export async function GET() {
     const data = await cmsGetHealth();
     return NextResponse.json({ ...data, cmsEnabled: true });
   } catch (err) {
-    const message = err instanceof CmsError ? err.message : "Could not reach booking server.";
+    const message = err instanceof CmsError ? err.message : "Could not reach CMS.";
     const status = err instanceof CmsError ? err.status : 502;
     return NextResponse.json({ error: message }, { status });
   }

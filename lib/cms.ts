@@ -1,6 +1,6 @@
 /**
- * Optional proxy to the Precifarm Ticketing & Payment CMS.
- * When CMS_API_URL is set, Next.js API routes forward to the CMS instead of the in-memory store.
+ * Optional proxy to the Precifarm CMS (SEO content, contact, survey).
+ * When CMS_API_URL is set, Next.js API routes forward to the CMS.
  */
 
 const CMS_API_URL = process.env.CMS_API_URL?.replace(/\/$/, "") ?? "";
@@ -53,7 +53,7 @@ export async function cmsFetch<T>(
   try {
     json = (await res.json()) as { data?: T } & CmsErrorBody;
   } catch {
-    throw new CmsError("Invalid response from booking server.", res.status);
+    throw new CmsError("Invalid response from CMS.", res.status);
   }
 
   if (!res.ok) {
@@ -61,30 +61,11 @@ export async function cmsFetch<T>(
     const message =
       typeof err === "string"
         ? err
-        : err?.message ?? "Booking server request failed.";
+        : err?.message ?? "CMS request failed.";
     throw new CmsError(message, res.status);
   }
 
   return json.data as T;
-}
-
-export async function cmsGetSeats(routeId: string, date: string, time: string): Promise<string[]> {
-  const data = await cmsFetch<{ bookedSeats: string[] }>(
-    `/routes/${encodeURIComponent(routeId)}/seats?date=${encodeURIComponent(date)}&time=${encodeURIComponent(time)}`
-  );
-  return data.bookedSeats ?? [];
-}
-
-export async function cmsCreateBooking(body: Record<string, unknown>) {
-  return cmsFetch<{
-    bookingId: string;
-    reference: string;
-    total: number;
-    status: string;
-  }>("/bookings", {
-    method: "POST",
-    body: JSON.stringify(body),
-  });
 }
 
 export async function cmsGetHealth() {
@@ -94,29 +75,4 @@ export async function cmsGetHealth() {
     mpesaEnvironment?: string;
     callbackHost?: string | null;
   }>("/health");
-}
-
-export async function cmsStkPayment(bookingId: string) {
-  return cmsFetch<{
-    status: string;
-    reference?: string;
-    mpesaReceipt?: string;
-    paidAt?: string;
-    demo?: boolean;
-    message?: string;
-    checkoutRequestId?: string;
-  }>("/payments/stk", {
-    method: "POST",
-    body: JSON.stringify({ bookingId }),
-  });
-}
-
-export async function cmsPaymentStatus(bookingId: string) {
-  return cmsFetch<{
-    bookingId: string;
-    reference: string;
-    paymentStatus: string;
-    bookingStatus: string;
-    mpesaReceipt?: string;
-  }>(`/payments/${encodeURIComponent(bookingId)}/status`);
 }

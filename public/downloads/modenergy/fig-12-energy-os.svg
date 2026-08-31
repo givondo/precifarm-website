@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" width="1200" height="560" font-family="'Segoe UI',system-ui,sans-serif" data-pf-theme="v2">
+<style>
+.t{fill:#0a0a0a}.s{fill:#737373}
+.tiny{font-size:9.5px;fill:#737373}
+.hd{font-size:10.5px;font-weight:700;letter-spacing:.1em}
+
+.pf-accent{fill:#2563eb}
+.pf-frame{fill:none;stroke:#e2e8f0;stroke-width:1}
+.bx,.dev{filter:url(#pf-shadow-sm)}
+.bxb{filter:url(#pf-shadow);fill:#f8fbff}
+
+</style>
+<defs>
+<linearGradient id="pf-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+  <stop offset="0%" stop-color="#f8fafc"/>
+  <stop offset="55%" stop-color="#ffffff"/>
+  <stop offset="100%" stop-color="#f1f5f9"/>
+</linearGradient>
+<pattern id="pf-grid" width="28" height="28" patternUnits="userSpaceOnUse">
+  <circle cx="1.5" cy="1.5" r="0.75" fill="#e2e8f0"/>
+</pattern>
+<linearGradient id="pf-blue" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" stop-color="#3b82f6"/>
+  <stop offset="100%" stop-color="#1d4ed8"/>
+</linearGradient>
+<linearGradient id="pf-blue-soft" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" stop-color="#eff6ff"/>
+  <stop offset="100%" stop-color="#dbeafe"/>
+</linearGradient>
+<filter id="pf-shadow" x="-8%" y="-8%" width="116%" height="120%">
+  <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.07"/>
+</filter>
+<filter id="pf-shadow-sm" x="-6%" y="-6%" width="112%" height="114%">
+  <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#0f172a" flood-opacity="0.06"/>
+</filter><marker id="ab" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker></defs>
+
+<g id="pf-background" aria-hidden="true">
+  <rect width="1200" height="560" fill="url(#pf-bg)"/>
+  <rect width="1200" height="560" fill="url(#pf-grid)" opacity="0.45"/>
+  <rect x="0" y="0" width="5" height="560" fill="#2563eb" rx="0"/>
+</g><text x="40" y="42" class="t" font-size="20" font-weight="700">Energy OS &#8212; the layer Precifarm owns</text>
+<text x="40" y="64" class="s" font-size="12.5">Cells, power stages and connectors are bought. This is the layer that is defensible, and the layer that turns identical hardware into a different product.</text>
+
+
+<!-- six capabilities -->
+<g transform="translate(40,104)">
+<g>
+<rect x="0" y="0" width="176" height="128" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<circle cx="30" cy="30" r="14" fill="#2563eb"/><path d="M23 30 h5 l3 -7 l4 14 l3 -7 h5" stroke="#fff" stroke-width="1.6" fill="none"/>
+<text x="56" y="35" font-size="14" font-weight="700" fill="#1d4ed8">MONITOR</text>
+<text x="16" y="62" class="tiny">Real-time energy, power, state of</text>
+<text x="16" y="76" class="tiny">charge, solar and load &#8212; per module,</text>
+<text x="16" y="90" class="tiny">by serial number.</text>
+<text x="16" y="114" font-size="9.5" font-weight="700" fill="#1d4ed8">Table stakes. Everyone has this.</text>
+</g>
+<g transform="translate(190,0)">
+<rect x="0" y="0" width="176" height="128" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<circle cx="30" cy="30" r="14" fill="#2563eb"/><path d="M22 36 q8 -16 16 -6 q4 4 8 -4" stroke="#fff" stroke-width="1.6" fill="none"/>
+<text x="56" y="35" font-size="14" font-weight="700" fill="#1d4ed8">PREDICT</text>
+<text x="16" y="62" class="tiny">Runtime remaining, solar forecast,</text>
+<text x="16" y="76" class="tiny">deficit warning before it happens.</text>
+<text x="16" y="114" font-size="9.5" font-weight="700" fill="#1d4ed8">Changes behaviour, not just display.</text>
+</g>
+<g transform="translate(380,0)">
+<rect x="0" y="0" width="176" height="128" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<circle cx="30" cy="30" r="14" fill="#2563eb"/><g stroke="#fff" stroke-width="1.6" fill="none"><path d="M23 26 h14"/><path d="M23 34 h14"/><circle cx="30" cy="26" r="2.5" fill="#2563eb"/><circle cx="34" cy="34" r="2.5" fill="#2563eb"/></g>
+<text x="56" y="35" font-size="14" font-weight="700" fill="#1d4ed8">OPTIMIZE</text>
+<text x="16" y="62" class="tiny">Self-consumption, backup reserve,</text>
+<text x="16" y="76" class="tiny">tariff and charge scheduling &#8212;</text>
+<text x="16" y="90" class="tiny">always within local limits.</text>
+<text x="16" y="114" font-size="9.5" font-weight="700" fill="#dc2626">Never overrides safety (&#167;6.4).</text>
+</g>
+<g transform="translate(570,0)">
+<rect x="0" y="0" width="176" height="128" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+<circle cx="30" cy="30" r="14" fill="#2563eb"/><g stroke="#fff" stroke-width="1.6" fill="none"><circle cx="28" cy="28" r="6"/><path d="M33 33 l5 5"/></g>
+<text x="56" y="35" font-size="14" font-weight="700" fill="#1d4ed8">DIAGNOSE</text>
+<text x="16" y="62" class="tiny">Fault codes, module-level health,</text>
+<text x="16" y="76" class="tiny">remote triage before dispatch.</text>
+<text x="16" y="114" font-size="9.5" font-weight="700" fill="#1d4ed8">Target: &#8805; 60 % triaged remotely.</text>
+</g>
+<g transform="translate(760,0)">
+<rect x="0" y="0" width="176" height="128" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+<circle cx="30" cy="30" r="14" fill="#2563eb"/><g stroke="#fff" stroke-width="1.6" fill="none"><path d="M23 30 h6 l3 -6 l4 12 l3 -6 h5"/></g>
+<text x="56" y="35" font-size="14" font-weight="700" fill="#1d4ed8">AUTOMATE</text>
+<text x="16" y="62" class="tiny">Backup transitions, load priority,</text>
+<text x="16" y="76" class="tiny">derate handling, expansion detection.</text>
+<text x="16" y="114" font-size="9.5" font-weight="700" fill="#1d4ed8">Executed at the edge, not the cloud.</text>
+</g>
+<g transform="translate(950,0)">
+<rect x="0" y="0" width="176" height="128" rx="8" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="1.8"/>
+<circle cx="30" cy="30" r="14" fill="#1d4ed8"/><text x="30" y="36" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">M</text>
+<text x="56" y="35" font-size="14" font-weight="700" fill="#1e3a8a">FINANCE</text>
+<text x="16" y="62" class="tiny">PAYGO state, M-Pesa reconciliation,</text>
+<text x="16" y="76" class="tiny">credit signals, essential-load policy.</text>
+<text x="16" y="114" font-size="9.5" font-weight="700" fill="#1e3a8a">No competitor in &#167;19 has this.</text>
+</g>
+</g>
+
+<!-- relationship to device -->
+<path d="M600 232 V 268" stroke="#2563eb" stroke-width="2.4" marker-end="url(#ab)" fill="none"/>
+<text x="614" y="254" class="tiny">advisory setpoints only</text>
+<path d="M560 268 V 232" stroke="#2563eb" stroke-width="2.4" marker-end="url(#ab)" fill="none"/>
+<text x="380" y="254" class="tiny" text-anchor="end">telemetry, faults, module inventory</text>
+
+<g transform="translate(40,268)">
+<rect x="0" y="0" width="1120" height="96" rx="8" fill="#fafafa" stroke="#e5e5e5"/>
+<text x="18" y="24" class="hd" fill="#404040">WHAT RUNS WHERE  &#8212;  THE SPLIT THAT MAKES THE PRODUCT SAFE</text>
+<line x1="18" y1="34" x2="1102" y2="34" stroke="#e5e5e5"/>
+<rect x="18" y="44" width="530" height="40" rx="5" fill="#065f46"/>
+<text x="34" y="60" font-size="10.5" font-weight="700" fill="#a7f3d0">ON THE DEVICE &#8212; DETERMINISTIC, WORKS OFFLINE</text>
+<text x="34" y="76" font-size="10" fill="#6ee7b7">Safety interlocks &#183; module fault handling &#183; statutory export limit &#183; reserve floor &#183; backup transfer &#183; derating</text>
+<rect x="572" y="44" width="530" height="40" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+<text x="588" y="60" font-size="10.5" font-weight="700" fill="#1d4ed8">IN THE CLOUD &#8212; ADVISORY, MAY BE ABSENT</text>
+<text x="588" y="76" font-size="10" fill="#404040">Forecasting &#183; optimisation setpoints &#183; fleet analytics &#183; PAYGO state &#183; OTA orchestration &#183; customer UX</text>
+</g>
+
+<!-- OTA policy -->
+<g transform="translate(40,388)">
+<text x="0" y="0" class="hd" fill="#404040">OTA POLICY  &#8212;  SIX NON-NEGOTIABLE RULES</text>
+<line x1="0" y1="10" x2="1120" y2="10" stroke="#e5e5e5"/>
+<g font-size="10">
+<text x="0" y="30" font-weight="700" fill="#0a0a0a">Dual-bank A/B</text><text x="160" y="30" fill="#404040">Automatic rollback on boot failure. A failed update must never brick a customer's power supply.</text>
+<text x="0" y="50" font-weight="700" fill="#0a0a0a">Signed images</text><text x="160" y="50" fill="#404040">Device verifies the signature chain before writing. Unsigned firmware is rejected at the device, not the server.</text>
+<text x="0" y="70" font-weight="700" fill="#0a0a0a">Module proxy only</text><text x="160" y="70" fill="#404040">Module firmware is only ever updated through the Power Core. The cloud never talks directly to a BMS.</text>
+<text x="0" y="90" font-weight="700" fill="#0a0a0a">Canary rollout</text><text x="160" y="90" fill="#404040">Canary fleet &#8594; region &#8594; full population, with hold gates between stages.</text>
+<text x="0" y="110" font-weight="700" fill="#0a0a0a">Automatic abort</text><text x="160" y="110" fill="#404040">Rollout halts automatically if fault rate exceeds the pre-update baseline within 24 hours.</text>
+<text x="0" y="130" font-weight="700" fill="#dc2626">Never at a bad time</text><text x="160" y="130" fill="#404040">No update during discharge below the reserve floor, and no update during a grid outage.</text>
+</g>
+</g>
+
+<line x1="40" y1="524" x2="1160" y2="524" stroke="#e5e5e5"/>
+<text x="40" y="546" class="s" font-size="11">Figure 12 &#8212; Energy OS capability model. All six capabilities are engineering targets; Energy OS 1.0 is a P5 deliverable (&#167;24). Cybersecurity penetration testing is required before P5 (R-14).</text>
+</svg>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" font-family="'Segoe UI',system-ui,sans-serif" data-pf-theme="v2">
+<style>
+.t{fill:#0a0a0a}.s{fill:#737373}
+.cal{stroke:#737373;stroke-width:.9;fill:none}
+.n{font-size:10.5px;font-weight:700;fill:#fff}
+.lb{font-size:11.5px;font-weight:600;fill:#0a0a0a}
+.ld{font-size:10px;fill:#737373}
+.ghost{fill:#fafafa;stroke:#262626;stroke-width:1.7}
+
+.pf-accent{fill:#2563eb}
+.pf-frame{fill:none;stroke:#e2e8f0;stroke-width:1}
+.bx,.dev{filter:url(#pf-shadow-sm)}
+.bxb{filter:url(#pf-shadow);fill:#f8fbff}
+
+</style>
+<defs>
+<linearGradient id="pf-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+  <stop offset="0%" stop-color="#f8fafc"/>
+  <stop offset="55%" stop-color="#ffffff"/>
+  <stop offset="100%" stop-color="#f1f5f9"/>
+</linearGradient>
+<pattern id="pf-grid" width="28" height="28" patternUnits="userSpaceOnUse">
+  <circle cx="1.5" cy="1.5" r="0.75" fill="#e2e8f0"/>
+</pattern>
+<linearGradient id="pf-blue" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" stop-color="#3b82f6"/>
+  <stop offset="100%" stop-color="#1d4ed8"/>
+</linearGradient>
+<linearGradient id="pf-blue-soft" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" stop-color="#eff6ff"/>
+  <stop offset="100%" stop-color="#dbeafe"/>
+</linearGradient>
+<filter id="pf-shadow" x="-8%" y="-8%" width="116%" height="120%">
+  <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.07"/>
+</filter>
+<filter id="pf-shadow-sm" x="-6%" y="-6%" width="112%" height="114%">
+  <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#0f172a" flood-opacity="0.06"/>
+</filter><marker id="ac" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0891b2"/></marker></defs>
+
+<g id="pf-background" aria-hidden="true">
+  <rect width="1200" height="800" fill="url(#pf-bg)"/>
+  <rect width="1200" height="800" fill="url(#pf-grid)" opacity="0.45"/>
+  <rect x="0" y="0" width="5" height="800" fill="#2563eb" rx="0"/>
+</g><text x="40" y="42" class="t" font-size="20" font-weight="700">Precifarm Pod &#8212; cutaway</text>
+<text x="40" y="64" class="s" font-size="12.5">Outdoor installed cabinet, 8-module HV-S configuration shown (20.48 kWh). CONCEPTUAL &#8212; enclosure rating, clearances and site requirements all require certification and site study.</text>
+
+
+<g transform="translate(80,116)">
+<!-- ground line -->
+<line x1="-30" y1="620" x2="480" y2="620" stroke="#404040" stroke-width="2.5"/>
+<g stroke="#a3a3a3" stroke-width="1"><path d="M-20 620 l-12 14"/><path d="M20 620 l-12 14"/><path d="M60 620 l-12 14"/><path d="M100 620 l-12 14"/><path d="M140 620 l-12 14"/><path d="M180 620 l-12 14"/><path d="M220 620 l-12 14"/><path d="M260 620 l-12 14"/><path d="M300 620 l-12 14"/><path d="M340 620 l-12 14"/><path d="M380 620 l-12 14"/><path d="M420 620 l-12 14"/><path d="M460 620 l-12 14"/></g>
+<text x="225" y="650" class="ld" text-anchor="middle">CONCRETE PLINTH &#183; RAISED ABOVE FLOOD/RUNOFF LEVEL</text>
+
+<!-- sun shield -->
+<path d="M-14 34 L444 34 L420 54 L10 54 Z" fill="#d97706"/>
+<path d="M-14 34 L444 34" stroke="#92400e" stroke-width="1.5"/>
+<text x="215" y="26" font-size="10" font-weight="700" fill="#b45309" text-anchor="middle">VENTILATED SUN SHIELD &#183; MANDATORY OUTDOORS (&#167;11.1)</text>
+<g stroke="#fbbf24" stroke-width="2" opacity=".9">
+<path d="M60 6 l0 20"/><path d="M120 2 l0 24"/><path d="M180 6 l0 20"/><path d="M240 2 l0 24"/><path d="M300 6 l0 20"/><path d="M360 2 l0 24"/>
+</g>
+<!-- air gap arrows -->
+<path d="M215 56 v14" stroke="#0891b2" stroke-width="1.4" marker-end="url(#ac)"/>
+<text x="228" y="68" font-size="8.5" fill="#0891b2">air gap &#8212; 20 &#176;C rise avoided</text>
+
+<!-- cabinet -->
+<rect x="10" y="76" width="410" height="544" rx="10" class="ghost"/>
+
+<!-- POWER UNIT -->
+<rect x="26" y="92" width="378" height="128" rx="7" fill="#eff6ff" stroke="#2563eb" stroke-width="1.6"/>
+<text x="40" y="112" font-size="10" font-weight="700" fill="#2563eb" letter-spacing=".1em">POWER UNIT &#183; SEPARATE THERMAL PLENUM</text>
+<rect x="40" y="122" width="120" height="46" rx="4" fill="#fff" stroke="#2563eb" stroke-width="1.2"/><text x="100" y="141" font-size="10" font-weight="700" fill="#2563eb" text-anchor="middle">PCS</text><text x="100" y="156" font-size="9" fill="#404040" text-anchor="middle">bidirectional, 15 kW</text>
+<rect x="168" y="122" width="110" height="46" rx="4" fill="#fff" stroke="#2563eb" stroke-width="1.2"/><text x="223" y="141" font-size="10" font-weight="700" fill="#2563eb" text-anchor="middle">MPPT</text><text x="223" y="156" font-size="9" fill="#404040" text-anchor="middle">multi-string</text>
+<rect x="286" y="122" width="106" height="46" rx="4" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2"/><text x="339" y="138" font-size="9.5" font-weight="700" fill="#dc2626" text-anchor="middle">PROTECTION</text><text x="339" y="151" font-size="8.5" fill="#991b1b" text-anchor="middle">anti-islanding</text><text x="339" y="162" font-size="8.5" fill="#991b1b" text-anchor="middle">insulation monitor</text>
+<rect x="40" y="176" width="238" height="34" rx="4" fill="#065f46"/><text x="159" y="192" font-size="9.5" font-weight="700" fill="#a7f3d0" text-anchor="middle">EDGE CONTROLLER &#183; CAN MASTER &#183; OS GATEWAY</text><text x="159" y="204" font-size="8.5" fill="#6ee7b7" text-anchor="middle">runs correctly with no network</text>
+<rect x="286" y="176" width="106" height="34" rx="4" fill="#fef3c7" stroke="#d97706" stroke-width="1.1"/>
+<g stroke="#d97706" stroke-width="1.2"><path d="M296 182 v22"/><path d="M304 182 v22"/><path d="M312 182 v22"/><path d="M320 182 v22"/><path d="M328 182 v22"/><path d="M336 182 v22"/><path d="M344 182 v22"/><path d="M352 182 v22"/><path d="M360 182 v22"/><path d="M368 182 v22"/><path d="M376 182 v22"/><path d="M384 182 v22"/></g>
+<text x="339" y="222" font-size="8" fill="#b45309" text-anchor="middle">HEATSINK</text>
+
+<!-- barrier -->
+<line x1="26" y1="232" x2="404" y2="232" stroke="#dc2626" stroke-width="2" stroke-dasharray="6 3"/>
+<text x="215" y="246" font-size="9" font-weight="700" fill="#dc2626" text-anchor="middle">THERMAL + ELECTRICAL BARRIER BETWEEN POWER AND ENERGY SECTIONS</text>
+
+<!-- MODULE RACK -->
+<text x="40" y="270" font-size="10" font-weight="700" fill="#1d4ed8" letter-spacing=".1em">ENERGY MODULE RACK &#183; HV-S SERIES STRING</text>
+<g>
+<rect x="26" y="278" width="378" height="34" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/><text x="215" y="299" font-size="10.5" font-weight="600" fill="#1d4ed8" text-anchor="middle">ENERGY MODULE 1 &#183; 2.56 kWh &#183; 51.2 V</text>
+<rect x="26" y="316" width="378" height="34" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/><text x="215" y="337" font-size="10.5" font-weight="600" fill="#1d4ed8" text-anchor="middle">ENERGY MODULE 2 &#183; 2.56 kWh &#183; 51.2 V</text>
+<rect x="26" y="354" width="378" height="34" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/><text x="215" y="375" font-size="10.5" font-weight="600" fill="#1d4ed8" text-anchor="middle">ENERGY MODULE 3 &#183; 2.56 kWh &#183; 51.2 V</text>
+<rect x="26" y="392" width="378" height="34" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/><text x="215" y="413" font-size="10.5" font-weight="600" fill="#1d4ed8" text-anchor="middle">ENERGY MODULE 4 &#183; 2.56 kWh &#183; 51.2 V</text>
+<rect x="26" y="430" width="378" height="34" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/><text x="215" y="451" font-size="10.5" font-weight="600" fill="#1d4ed8" text-anchor="middle">ENERGY MODULE 5 &#183; 2.56 kWh &#183; 51.2 V</text>
+<rect x="26" y="468" width="378" height="34" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/><text x="215" y="489" font-size="10.5" font-weight="600" fill="#1d4ed8" text-anchor="middle">ENERGY MODULE 6 &#183; 2.56 kWh &#183; 51.2 V</text>
+<rect x="26" y="506" width="378" height="34" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/><text x="215" y="527" font-size="10.5" font-weight="600" fill="#1d4ed8" text-anchor="middle">ENERGY MODULE 7 &#183; 2.56 kWh &#183; 51.2 V</text>
+<rect x="26" y="544" width="378" height="34" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/><text x="215" y="565" font-size="10.5" font-weight="600" fill="#1d4ed8" text-anchor="middle">ENERGY MODULE 8 &#183; 2.56 kWh &#183; 51.2 V</text>
+<rect x="26" y="582" width="378" height="26" rx="4" fill="#fff" stroke="#a3a3a3" stroke-width="1.1" stroke-dasharray="4 3"/><text x="215" y="599" font-size="10" fill="#737373" text-anchor="middle">RESERVED &#183; EXPANSION / SERVICE SPARE</text>
+</g>
+
+<!-- string voltage annotation -->
+<path d="M414 288 v290" stroke="#7c3aed" stroke-width="1.6" fill="none"/>
+<g stroke="#7c3aed" stroke-width="1.6"><path d="M410 288 h8"/><path d="M410 578 h8"/></g>
+<text x="428" y="420" font-size="10" font-weight="700" fill="#7c3aed" transform="rotate(90 428 420)">8s SERIES &#8594; 409.6 V &#183; 50 Ah &#183; 20.48 kWh &#183; 50 A</text>
+
+<!-- airflow -->
+<g stroke="#0891b2" stroke-width="1.7" fill="none" opacity=".85">
+<path d="M-8 600 L-8 264 L 22 264" marker-end="url(#ac)"/>
+<path d="M408 264 L 438 264 L 438 96" marker-end="url(#ac)"/>
+</g>
+<rect x="-24" y="576" width="32" height="40" rx="3" fill="#fff" stroke="#0891b2" stroke-width="1.2"/>
+<g stroke="#0891b2" stroke-width=".9"><path d="M-20 582 h24"/><path d="M-20 590 h24"/><path d="M-20 598 h24"/><path d="M-20 606 h24"/></g>
+<text x="-52" y="604" font-size="8.5" fill="#0891b2" text-anchor="middle" transform="rotate(-90 -52 604)">SERVICEABLE FILTER</text>
+<text x="452" y="150" font-size="8.5" fill="#0891b2">EXHAUST</text>
+
+<!-- site connections -->
+<g transform="translate(10,660)">
+<rect x="0" y="0" width="410" height="66" rx="6" fill="#f5f5f5" stroke="#a3a3a3"/>
+<text x="14" y="18" font-size="9" font-weight="700" fill="#404040" letter-spacing=".08em">SITE CONNECTIONS &#183; BOTTOM GLAND PLATE &#183; DRIP LOOPS REQUIRED</text>
+<rect x="14" y="26" width="86" height="28" rx="3" fill="#fff" stroke="#404040"/><text x="57" y="44" font-size="9" fill="#404040" text-anchor="middle">GRID</text>
+<rect x="108" y="26" width="86" height="28" rx="3" fill="#fff" stroke="#059669"/><text x="151" y="44" font-size="9" fill="#059669" text-anchor="middle">SOLAR</text>
+<rect x="202" y="26" width="86" height="28" rx="3" fill="#fff" stroke="#404040"/><text x="245" y="44" font-size="9" fill="#404040" text-anchor="middle">HOME / SITE</text>
+<rect x="296" y="26" width="100" height="28" rx="3" fill="#fff" stroke="#a3a3a3" stroke-dasharray="3 2"/><text x="346" y="40" font-size="8.5" fill="#737373" text-anchor="middle">EV (PHASE A)</text><text x="346" y="50" font-size="7.5" fill="#a3a3a3" text-anchor="middle">3.7 kW AC</text>
+</g>
+</g>
+
+<!-- callouts -->
+<g>
+<line class="cal" x1="580" y1="160" x2="640" y2="150"/><circle cx="654" cy="148" r="11" fill="#0a0a0a"/><text x="654" y="152" class="n" text-anchor="middle">A</text>
+<line class="cal" x1="500" y1="300" x2="640" y2="252"/><circle cx="654" cy="250" r="11" fill="#0a0a0a"/><text x="654" y="254" class="n" text-anchor="middle">B</text>
+<line class="cal" x1="560" y1="500" x2="640" y2="356"/><circle cx="654" cy="354" r="11" fill="#0a0a0a"/><text x="654" y="358" class="n" text-anchor="middle">C</text>
+<line class="cal" x1="90" y1="700" x2="640" y2="486"/><circle cx="654" cy="484" r="11" fill="#0a0a0a"/><text x="654" y="488" class="n" text-anchor="middle">D</text>
+<line class="cal" x1="300" y1="770" x2="640" y2="600"/><circle cx="654" cy="598" r="11" fill="#0a0a0a"/><text x="654" y="602" class="n" text-anchor="middle">E</text>
+</g>
+
+<g transform="translate(686,128)">
+<text x="0" y="0" font-size="12" font-weight="700" fill="#0a0a0a" letter-spacing=".06em">CUTAWAY KEY</text>
+<line x1="0" y1="10" x2="450" y2="10" stroke="#e5e5e5"/>
+
+<text x="0" y="34" class="lb">A &#183; Power Unit in its own thermal plenum</text>
+<text x="0" y="50" class="ld">The PCS is the dominant heat source. Isolating its airflow from the module rack prevents</text>
+<text x="0" y="64" class="ld">electronics heat from driving the cells into derating (&#167;11.2).</text>
+
+<text x="0" y="92" class="lb">B &#183; Thermal and electrical barrier</text>
+<text x="0" y="108" class="ld">Physical separation between the power section and the energy section. Required for safe</text>
+<text x="0" y="122" class="ld">module service while the site remains partially energised.</text>
+
+<text x="0" y="150" class="lb">C &#183; HV-S series string &#8212; the ERN-03 resolution</text>
+<text x="0" y="166" class="ld">Eight modules in series give 409.6 V at 50 Ah = 20.48 kWh, and the string current stays at</text>
+<text x="0" y="180" class="ld">50 A. The same 20.48 kWh in a 51.2 V parallel bank would demand 400 A.</text>
+<text x="0" y="198" class="ld" font-family="ui-monospace,Consolas,monospace">   51.2 kWh HV-S (10s &#215; 2p) &#8594; 100 A     versus     LV-48 parallel &#8594; 1,000 A</text>
+<text x="0" y="216" class="ld">A tenfold reduction in conductor and protection duty for the same energy and power.</text>
+
+<text x="0" y="244" class="lb">D &#183; Filtered forced air, bottom-in / top-out</text>
+<text x="0" y="260" class="ld">Filters are a customer-visible service item. Energy OS trends the derate factor and raises a</text>
+<text x="0" y="274" class="ld">cleaning alert before performance loss becomes noticeable (R-12).</text>
+
+<text x="0" y="302" class="lb">E &#183; Bottom gland plate with drip loops</text>
+<text x="0" y="318" class="ld">Grid, solar, site and future EV circuits enter from below. Cable entry from above is the most</text>
+<text x="0" y="332" class="ld">common water-ingress path in outdoor enclosures (R-11).</text>
+
+<rect x="0" y="354" width="450" height="122" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="1.1"/>
+<text x="14" y="376" font-size="10.5" font-weight="700" fill="#991b1b">HV-S CROSSES INTO A HIGHER ELECTRICAL-SAFETY CLASS</text>
+<text x="14" y="396" font-size="10" fill="#7f1d1d">A 409.6 V string is not a 51.2 V system with more boxes. Isolation, creepage and clearance,</text>
+<text x="14" y="410" font-size="10" fill="#7f1d1d">insulation monitoring, arc protection, labelling and installer competency all change.</text>
+<text x="14" y="430" font-size="10" fill="#7f1d1d">v1.0's "e 500 V DC isolation, module-to-chassis" is adequate for LV-48 but insufficient here</text>
+<text x="14" y="444" font-size="10" fill="#7f1d1d">&#8212; isolation must be rated for full string voltage plus margin (ERN-08).</text>
+<text x="14" y="466" font-size="10" font-weight="700" fill="#991b1b">CERTIFICATION SCOPING REQUIRED BEFORE POD PILOT &#183; DECISION E-03, GATE P3</text>
+</g>
+
+<line x1="40" y1="768" x2="1160" y2="768" stroke="#e5e5e5"/>
+<text x="40" y="788" class="s" font-size="11">Figure 7 &#8212; Pod cutaway, 8-module HV-S configuration. CONCEPTUAL. Enclosure rating, clearances, foundation and site protection require certification and a site-specific design by a licensed Kenyan electrical designer.</text>
+</svg>

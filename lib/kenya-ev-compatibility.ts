@@ -237,7 +237,7 @@ export const kenyaEvCompatibilityPage = {
   lead:
     "Compare Nissan Leaf, BYD, MG, Hyundai, Kia, Tesla, Volkswagen and electric motorcycles in Kenya — practical range, DC charging speed, daily top-up time and where Precifarm home, hub and corridor charging fit your vehicle.",
   vehicleAware:
-    "Precifarm is built for vehicle-aware EV charging in Kenya. Select or connect your car or e-boda in the app — Precifarm uses battery size, charging standard, state of charge and route to recommend where and when to charge. You should not need to decode charger specs first.",
+    "Precifarm is built for vehicle-aware EV charging in Kenya. Select or connect your car or e-boda in the AI companion — Precifarm uses battery size, charging standard, state of charge and route to recommend where and when to charge. You should not need to decode charger specs first.",
   dataLayer:
     "Practical range and charging times here are planning estimates for Kenyan roads — not manufacturer WLTP or NEDC guarantees. Over time, Precifarm session data can replace brochure figures with Kenya-specific range and charging insights.",
   marketContext:

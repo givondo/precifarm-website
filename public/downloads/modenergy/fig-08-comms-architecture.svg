@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" width="1200" height="640" font-family="'Segoe UI',system-ui,sans-serif" data-pf-theme="v2">
+<style>
+.t{fill:#0a0a0a}.s{fill:#737373}
+.bx{fill:#fff;stroke:#0a0a0a;stroke-width:1.4}
+.bxb{fill:#eff6ff;stroke:#2563eb;stroke-width:1.5}
+.bxg{fill:#ecfdf5;stroke:#059669;stroke-width:1.4}
+.bxp{fill:#f5f3ff;stroke:#7c3aed;stroke-width:1.4}
+.lbl{font-size:13px;font-weight:600;fill:#0a0a0a}
+.tiny{font-size:9.5px;fill:#737373}
+.mono{font-size:10px;font-family:ui-monospace,Consolas,monospace;fill:#404040}
+.hd{font-size:10px;font-weight:700;letter-spacing:.11em}
+.fl{stroke:#0a0a0a;stroke-width:1.8;fill:none}
+
+.pf-accent{fill:#2563eb}
+.pf-frame{fill:none;stroke:#e2e8f0;stroke-width:1}
+.bx,.dev{filter:url(#pf-shadow-sm)}
+.bxb{filter:url(#pf-shadow);fill:#f8fbff}
+
+</style>
+<defs>
+<linearGradient id="pf-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+  <stop offset="0%" stop-color="#f8fafc"/>
+  <stop offset="55%" stop-color="#ffffff"/>
+  <stop offset="100%" stop-color="#f1f5f9"/>
+</linearGradient>
+<pattern id="pf-grid" width="28" height="28" patternUnits="userSpaceOnUse">
+  <circle cx="1.5" cy="1.5" r="0.75" fill="#e2e8f0"/>
+</pattern>
+<linearGradient id="pf-blue" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" stop-color="#3b82f6"/>
+  <stop offset="100%" stop-color="#1d4ed8"/>
+</linearGradient>
+<linearGradient id="pf-blue-soft" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" stop-color="#eff6ff"/>
+  <stop offset="100%" stop-color="#dbeafe"/>
+</linearGradient>
+<filter id="pf-shadow" x="-8%" y="-8%" width="116%" height="120%">
+  <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.07"/>
+</filter>
+<filter id="pf-shadow-sm" x="-6%" y="-6%" width="112%" height="114%">
+  <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#0f172a" flood-opacity="0.06"/>
+</filter><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0a0a0a"/></marker></defs>
+
+<g id="pf-background" aria-hidden="true">
+  <rect width="1200" height="640" fill="url(#pf-bg)"/>
+  <rect width="1200" height="640" fill="url(#pf-grid)" opacity="0.45"/>
+  <rect x="0" y="0" width="5" height="640" fill="#2563eb" rx="0"/>
+</g><text x="40" y="42" class="t" font-size="20" font-weight="700">Communication architecture</text>
+<text x="40" y="64" class="s" font-size="12.5">From cell to customer. Each segment has a defined failure policy &#8212; the system never depends on the segment above it.</text>
+
+
+<!-- column headers -->
+<g class="hd" fill="#737373">
+<text x="60" y="106">SEGMENT</text>
+<text x="620" y="106">MEDIUM &amp; RATE</text>
+<text x="860" y="106">FAILURE POLICY</text>
+</g>
+<line x1="40" y1="114" x2="1160" y2="114" stroke="#e5e5e5"/>
+
+<!-- 1 cells -->
+<g transform="translate(0,130)">
+<rect x="60" y="0" width="480" height="56" rx="6" class="bx"/>
+<text x="78" y="24" class="lbl">Cells &#8594; BMS</text>
+<text x="78" y="42" class="tiny">Per-cell voltage, &#8805; 4 temperature points, pack current via shunt</text>
+<text x="620" y="24" class="mono">Internal harness</text><text x="620" y="40" class="mono">&#8805; 10 Hz sampling</text>
+<text x="860" y="24" class="tiny">Fault latch. Protection acts in hardware/firmware</text>
+<text x="860" y="40" class="tiny">without reference to any other layer.</text>
+</g>
+<path class="fl" d="M300 186 V 214" marker-end="url(#a)"/>
+
+<!-- 2 BMS -> power core -->
+<g transform="translate(0,214)">
+<rect x="60" y="0" width="480" height="72" rx="6" class="bxp"/>
+<text x="78" y="24" class="lbl" fill="#5b21b6">BMS &#8594; Power Core</text>
+<text x="78" y="42" class="tiny">Status (SOC, SOH, V, I, T_max, fault word) &#183; Limits (max charge / discharge</text>
+<text x="78" y="56" class="tiny">current, derate factor) &#183; Identity (serial, firmware, cycle count) &#183; Topology</text>
+<text x="620" y="24" class="mono" fill="#5b21b6">CAN 2.0B</text><text x="620" y="40" class="mono" fill="#5b21b6">500 kbit/s</text><text x="620" y="56" class="mono" fill="#5b21b6">1 s heartbeat</text>
+<text x="860" y="24" class="tiny">3 missed heartbeats &#8594; that module is isolated.</text>
+<text x="860" y="40" class="tiny">The system continues on remaining modules at</text>
+<text x="860" y="56" class="tiny">reduced capacity. Customer is told plainly.</text>
+</g>
+<path class="fl" d="M300 286 V 314" marker-end="url(#a)"/>
+
+<!-- 3 power core -> edge -->
+<g transform="translate(0,314)">
+<rect x="60" y="0" width="480" height="56" rx="6" class="bxb"/>
+<text x="78" y="24" class="lbl" fill="#1d4ed8">Power Core &#8594; Edge controller</text>
+<text x="78" y="42" class="tiny">Aggregated pack state, conversion state, protection state, grid state</text>
+<text x="620" y="24" class="mono" fill="#1d4ed8">Internal serial / CAN</text><text x="620" y="40" class="mono" fill="#1d4ed8">1 Hz</text>
+<text x="860" y="24" class="tiny">Local safe mode. Deterministic control priority</text>
+<text x="860" y="40" class="tiny">continues to execute without the cloud.</text>
+</g>
+<path class="fl" d="M300 370 V 398" marker-end="url(#a)"/>
+
+<!-- 4 edge -> cloud -->
+<g transform="translate(0,398)">
+<rect x="60" y="0" width="480" height="72" rx="6" class="bxg"/>
+<text x="78" y="24" class="lbl" fill="#065f46">Edge controller &#8594; Energy OS</text>
+<text x="78" y="42" class="tiny">Normalised, schema-versioned telemetry &#183; fault events &#183; firmware inventory</text>
+<text x="78" y="56" class="tiny">Downstream: advisory setpoints only &#8212; never a limit increase</text>
+<text x="620" y="24" class="mono" fill="#065f46">Wi-Fi / BLE</text><text x="620" y="40" class="mono" fill="#065f46">optional LTE (E-09)</text><text x="620" y="56" class="mono" fill="#065f46">5 &#8211; 60 s</text>
+<text x="860" y="24" class="tiny">Store-and-forward buffer, 7 days local ring.</text>
+<text x="860" y="40" class="tiny">Device operates normally offline; telemetry is</text>
+<text x="860" y="56" class="tiny">backfilled on reconnect.</text>
+</g>
+<path class="fl" d="M300 470 V 498" marker-end="url(#a)"/>
+
+<!-- 5 cloud -> customer -->
+<g transform="translate(0,498)">
+<rect x="60" y="0" width="480" height="56" rx="6" class="bx"/>
+<text x="78" y="24" class="lbl">Energy OS &#8594; Customer surfaces</text>
+<text x="78" y="42" class="tiny">App &#183; SMS &#183; agent / dealer desk &#183; Precifarm CMS install and service pipeline</text>
+<text x="620" y="24" class="mono">Event-driven</text><text x="620" y="40" class="mono">SMS fallback</text>
+<text x="860" y="24" class="tiny">SMS path covers customers without a</text>
+<text x="860" y="40" class="tiny">smartphone or reliable data.</text>
+</g>
+
+<!-- third-party interop side note -->
+<g transform="translate(60,576)">
+<rect x="0" y="0" width="1100" height="46" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="1"/>
+<text x="16" y="20" font-size="10.5" font-weight="700" fill="#b45309">ENGINEERING REVIEW NOTE &#8212; ERN-08 &#183; third-party inverter interoperability</text>
+<text x="16" y="36" font-size="10" fill="#92400e">v1.0 defined a Precifarm-only CAN object model. Kenyan hybrid inverters are supplied by third parties and each expects a specific battery protocol. The Power Core shall therefore expose at least one widely supported third-party battery CAN profile (`0x600+`) alongside the native profile &#8212; decision E-07, gate P2.</text>
+</g>
+
+<line x1="40" y1="0" x2="40" y2="0" stroke="none"/>
+<text x="40" y="632" class="s" font-size="11">Figure 8 &#8212; Communication architecture. Rates and thresholds are engineering targets; full DBC to be released as PF-ENG-DBC-001 at the P1 gate. TO VALIDATE by test T-12 and T-19.</text>
+</svg>

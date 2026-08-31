@@ -130,7 +130,7 @@ export function softwareApplicationSchema(): JsonLd {
       {
         "@type": "ViewAction",
         target: `${app.deepLinkScheme}://charging`,
-        name: "Find chargers in the app",
+        name: "Find chargers in the companion",
       },
     ],
   };

@@ -1,4 +1,9 @@
-/** Precifarm Android app — download metadata for the website. */
+/** Precifarm AI companion — download metadata for the website. APK filename stays precifarm.apk. */
+
+export const appBrand = {
+  shortName: "AI companion",
+  fullName: "Precifarm AI companion",
+} as const;
 
 export const appDownload = {
   /** Semantic version — keep in sync with mobile app.json */
@@ -17,30 +22,3 @@ export const appDownload = {
     minIos: "15.0",
   },
 } as const;
-
-/** Full /download page features — EV charging first */
-export const appFeatures = [
-  {
-    title: "Charging Hub",
-    text: "See Precifarm, EVChaja, ChargeNet and partner sites across Kenya — filter by fast DC, Boda swap and navigate in maps.",
-  },
-  {
-    title: "The charging range",
-    text: "Spark charger, Pulse charger, Pod energy storage, Boda Hub, Depot charging station and Corridor charging — specs and M-Pesa in one place.",
-  },
-  {
-    title: "Home installation quotes",
-    text: "Request a Pulse charger or Pod energy storage survey — certified installation, green halo status and three-year aftersale care on M-Pesa.",
-  },
-  {
-    title: "Lipa Pole Pole on any phone",
-    text: "Pay deposit and monthly instalments via M-Pesa, USSD or SMS — no bank account required.",
-  },
-] as const;
-
-export const installSteps = [
-  "Tap **Download for Android** below.",
-  "When prompted, allow downloads from your browser.",
-  "Open the downloaded file. If Android blocks the install, go to Settings → Security and allow installs from your browser.",
-  "Tap Install, then open Precifarm to use the Charging Hub or explore the product range.",
-] as const;

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" width="1200" height="620" font-family="'Segoe UI',system-ui,sans-serif" data-pf-theme="v2">
+<style>
+.s{fill:#737373}
+.tiny{font-size:9px;fill:#737373}
+.hd{font-size:10px;font-weight:700;letter-spacing:.12em}
+.step{font-size:11.5px;font-weight:700;fill:#0a0a0a}
+
+.pf-accent{fill:#2563eb}
+.pf-frame{fill:none;stroke:#e2e8f0;stroke-width:1}
+.bx,.dev{filter:url(#pf-shadow-sm)}
+.bxb{filter:url(#pf-shadow);fill:#f8fbff}
+
+</style>
+<defs>
+<linearGradient id="pf-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+  <stop offset="0%" stop-color="#f8fafc"/>
+  <stop offset="55%" stop-color="#ffffff"/>
+  <stop offset="100%" stop-color="#f1f5f9"/>
+</linearGradient>
+<pattern id="pf-grid" width="28" height="28" patternUnits="userSpaceOnUse">
+  <circle cx="1.5" cy="1.5" r="0.75" fill="#e2e8f0"/>
+</pattern>
+<linearGradient id="pf-blue" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" stop-color="#3b82f6"/>
+  <stop offset="100%" stop-color="#1d4ed8"/>
+</linearGradient>
+<linearGradient id="pf-blue-soft" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" stop-color="#eff6ff"/>
+  <stop offset="100%" stop-color="#dbeafe"/>
+</linearGradient>
+<filter id="pf-shadow" x="-8%" y="-8%" width="116%" height="120%">
+  <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.07"/>
+</filter>
+<filter id="pf-shadow-sm" x="-6%" y="-6%" width="112%" height="114%">
+  <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#0f172a" flood-opacity="0.06"/>
+</filter>
+<marker id="j" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+</defs>
+
+<g id="pf-background" aria-hidden="true">
+  <rect width="1200" height="620" fill="url(#pf-bg)"/>
+  <rect width="1200" height="620" fill="url(#pf-grid)" opacity="0.45"/>
+  <rect x="0" y="0" width="5" height="620" fill="#2563eb" rx="0"/>
+</g><text x="40" y="42" font-size="20" font-weight="700" fill="#0a0a0a">The customer journey &#8212; nine steps, one account, no stranded purchases</text>
+<text x="40" y="64" class="s" font-size="12.5">A customer may stop at any step and still own a complete, working product. That is the commercial reason for the architecture, and the constraint every engineering decision is measured against.</text>
+
+
+<!-- ownership bands -->
+<g transform="translate(40,100)">
+<rect x="0" y="0" width="330" height="20" rx="10" fill="#eff6ff"/>
+<text x="14" y="14" class="hd" fill="#1d4ed8">OWNS A PORTABLE PRODUCT</text>
+<rect x="342" y="0" width="430" height="20" rx="10" fill="#e0f2fe"/>
+<text x="356" y="14" class="hd" fill="#075985">OWNS A HOME ENERGY SYSTEM</text>
+<rect x="784" y="0" width="336" height="20" rx="10" fill="#f5f5f5"/>
+<text x="798" y="14" class="hd" fill="#525252">OWNS ENERGY INFRASTRUCTURE</text>
+</g>
+
+<!-- spine -->
+<line x1="70" y1="188" x2="1130" y2="188" stroke="#e5e5e5" stroke-width="2"/>
+<line x1="70" y1="188" x2="410" y2="188" stroke="#2563eb" stroke-width="2"/>
+
+<!-- steps -->
+<g>
+<!-- 1 UNBOX -->
+<g transform="translate(70,188)"><circle r="16" fill="#2563eb"/><text y="4" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">1</text></g>
+<g transform="translate(28,214)">
+<text x="42" y="16" class="step" text-anchor="middle">UNBOX</text>
+<text x="42" y="32" class="tiny" text-anchor="middle">P1 Go arrives charged</text>
+<text x="42" y="44" class="tiny" text-anchor="middle">and ready to use</text>
+</g>
+<!-- 2 CHARGE -->
+<g transform="translate(203,188)"><circle r="16" fill="#2563eb"/><text y="4" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">2</text></g>
+<g transform="translate(161,214)">
+<text x="42" y="16" class="step" text-anchor="middle">CHARGE</text>
+<text x="42" y="32" class="tiny" text-anchor="middle">Grid, car or a folding</text>
+<text x="42" y="44" class="tiny" text-anchor="middle">solar panel</text>
+</g>
+<!-- 3 USE -->
+<g transform="translate(336,188)"><circle r="16" fill="#2563eb"/><text y="4" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">3</text></g>
+<g transform="translate(294,214)">
+<text x="42" y="16" class="step" text-anchor="middle">USE</text>
+<text x="42" y="32" class="tiny" text-anchor="middle">Lights, laptops, router</text>
+<text x="42" y="44" class="tiny" text-anchor="middle">through an outage</text>
+</g>
+<!-- 4 ADD ENERGY -->
+<g transform="translate(469,188)"><circle r="16" fill="#fff" stroke="#2563eb" stroke-width="2.4"/><text y="4" font-size="11" font-weight="700" fill="#2563eb" text-anchor="middle">4</text></g>
+<g transform="translate(427,214)">
+<text x="42" y="16" class="step" text-anchor="middle">ADD ENERGY</text>
+<text x="42" y="32" class="tiny" text-anchor="middle">A second module goes</text>
+<text x="42" y="44" class="tiny" text-anchor="middle">into an empty bay</text>
+</g>
+<!-- 5 INSTALL -->
+<g transform="translate(602,188)"><circle r="16" fill="#fff" stroke="#2563eb" stroke-width="2.4"/><text y="4" font-size="11" font-weight="700" fill="#2563eb" text-anchor="middle">5</text></g>
+<g transform="translate(560,214)">
+<text x="42" y="16" class="step" text-anchor="middle">INSTALL</text>
+<text x="42" y="32" class="tiny" text-anchor="middle">A technician wires the</text>
+<text x="42" y="44" class="tiny" text-anchor="middle">essential-load board</text>
+</g>
+<!-- 6 CONNECT SOLAR -->
+<g transform="translate(735,188)"><circle r="16" fill="#fff" stroke="#d97706" stroke-width="2.4"/><text y="4" font-size="11" font-weight="700" fill="#b45309" text-anchor="middle">6</text></g>
+<g transform="translate(693,214)">
+<text x="42" y="16" class="step" text-anchor="middle">CONNECT SOLAR</text>
+<text x="42" y="32" class="tiny" text-anchor="middle">Rooftop PV feeds the</text>
+<text x="42" y="44" class="tiny" text-anchor="middle">same DC bus</text>
+</g>
+<!-- 7 CONNECT HOME -->
+<g transform="translate(868,188)"><circle r="16" fill="#fff" stroke="#a3a3a3" stroke-width="2.4"/><text y="4" font-size="11" font-weight="700" fill="#737373" text-anchor="middle">7</text></g>
+<g transform="translate(826,214)">
+<text x="42" y="16" class="step" text-anchor="middle">CONNECT HOME</text>
+<text x="42" y="32" class="tiny" text-anchor="middle">Whole-home or Pod</text>
+<text x="42" y="44" class="tiny" text-anchor="middle">scale coverage</text>
+</g>
+<!-- 8 CONNECT EV -->
+<g transform="translate(1001,188)"><circle r="16" fill="#fff" stroke="#a3a3a3" stroke-width="2.4" stroke-dasharray="4 2.5"/><text y="4" font-size="11" font-weight="700" fill="#737373" text-anchor="middle">8</text></g>
+<g transform="translate(959,214)">
+<text x="42" y="16" class="step" text-anchor="middle">CONNECT EV</text>
+<text x="42" y="32" class="tiny" text-anchor="middle">Surplus solar charges</text>
+<text x="42" y="44" class="tiny" text-anchor="middle">the vehicle</text>
+</g>
+<!-- 9 MOVE ENERGY -->
+<g transform="translate(1130,188)"><circle r="16" fill="#fff" stroke="#a3a3a3" stroke-width="2.4" stroke-dasharray="4 2.5"/><text y="4" font-size="11" font-weight="700" fill="#737373" text-anchor="middle">9</text></g>
+<g transform="translate(1052,214)">
+<text x="78" y="16" class="step" text-anchor="end">MOVE ENERGY</text>
+<text x="78" y="32" class="tiny" text-anchor="end">The vehicle powers the</text>
+<text x="78" y="44" class="tiny" text-anchor="end">home &#8212; V2H</text>
+</g>
+</g>
+
+<!-- philosophy mapping under steps -->
+<g transform="translate(40,282)">
+<line x1="0" y1="0" x2="1120" y2="0" stroke="#e5e5e5"/>
+<text x="0" y="18" class="hd" fill="#737373">PHILOSOPHY</text>
+<g font-size="10.5" font-weight="700" fill="#2563eb">
+<text x="163" y="18" text-anchor="middle">PLUG</text>
+<text x="296" y="18" text-anchor="middle">CARRY</text>
+<text x="429" y="18" text-anchor="middle">STACK</text>
+<text x="562" y="18" text-anchor="middle">ROLL</text>
+<text x="695" y="18" text-anchor="middle">INSTALL</text>
+<text x="961" y="18" text-anchor="middle">DRIVE</text>
+</g>
+</g>
+
+<!-- product row -->
+<g transform="translate(40,312)">
+<text x="0" y="18" class="hd" fill="#737373">PRODUCT</text>
+<g font-size="10" fill="#404040">
+<text x="163" y="18" text-anchor="middle">P1 Go</text>
+<text x="296" y="18" text-anchor="middle">P1 Go</text>
+<text x="429" y="18" text-anchor="middle">P2 Home</text>
+<text x="562" y="18" text-anchor="middle">P2 Home</text>
+<text x="695" y="18" text-anchor="middle">P2 / Pod</text>
+<text x="828" y="18" text-anchor="middle">Pod</text>
+<text x="961" y="18" text-anchor="middle">Pod + EVSE</text>
+<text x="1090" y="18" text-anchor="middle">Pod + V2X</text>
+</g>
+</g>
+
+<!-- status row -->
+<g transform="translate(40,340)">
+<text x="0" y="18" class="hd" fill="#737373">STATUS</text>
+<g font-size="8.5" font-weight="700">
+<g><rect x="130" y="4" width="66" height="17" rx="8.5" fill="#eff6ff"/><text x="163" y="16" fill="#1d4ed8" text-anchor="middle">CONCEPT</text></g>
+<g><rect x="263" y="4" width="66" height="17" rx="8.5" fill="#eff6ff"/><text x="296" y="16" fill="#1d4ed8" text-anchor="middle">CONCEPT</text></g>
+<g><rect x="396" y="4" width="66" height="17" rx="8.5" fill="#eff6ff"/><text x="429" y="16" fill="#1d4ed8" text-anchor="middle">CONCEPT</text></g>
+<g><rect x="521" y="4" width="82" height="17" rx="8.5" fill="#fef2f2"/><text x="562" y="16" fill="#991b1b" text-anchor="middle">CERT REQUIRED</text></g>
+<g><rect x="654" y="4" width="82" height="17" rx="8.5" fill="#fef2f2"/><text x="695" y="16" fill="#991b1b" text-anchor="middle">CERT REQUIRED</text></g>
+<g><rect x="787" y="4" width="82" height="17" rx="8.5" fill="#fef2f2"/><text x="828" y="16" fill="#991b1b" text-anchor="middle">CERT REQUIRED</text></g>
+<g><rect x="928" y="4" width="66" height="17" rx="8.5" fill="#f5f5f5"/><text x="961" y="16" fill="#525252" text-anchor="middle">PHASE A</text></g>
+<g><rect x="1049" y="4" width="82" height="17" rx="8.5" fill="#f5f5f5"/><text x="1090" y="16" fill="#525252" text-anchor="middle">FUTURE &#183; C/D</text></g>
+</g>
+</g>
+
+<!-- what is preserved -->
+<g transform="translate(40,392)">
+<rect x="0" y="0" width="546" height="120" rx="7" fill="#eff6ff" stroke="#2563eb" stroke-width="1.4"/>
+<text x="18" y="24" class="hd" fill="#1d4ed8">WHAT IS PRESERVED AT EVERY STEP</text>
+<line x1="18" y1="32" x2="528" y2="32" stroke="#bfdbfe"/>
+<g font-size="10.5" fill="#1e40af">
+<text x="18" y="52">&#183; One Precifarm account and one app from step 1 to step 9</text>
+<text x="18" y="70">&#183; One service history, one warranty relationship, one support surface</text>
+<text x="18" y="88">&#183; The Energy Module bought at step 4 is still useful at step 7</text>
+<text x="18" y="106">&#183; No expansion step requires discarding a prior purchase</text>
+</g>
+</g>
+
+<!-- what must be true -->
+<g transform="translate(614,392)">
+<rect x="0" y="0" width="546" height="120" rx="7" fill="#fffbeb" stroke="#d97706" stroke-width="1.4"/>
+<text x="18" y="24" class="hd" fill="#b45309">WHAT MUST BE TRUE FOR THE JOURNEY TO HOLD</text>
+<line x1="18" y1="32" x2="528" y2="32" stroke="#fde68a"/>
+<g font-size="10.5" fill="#92400e">
+<text x="18" y="52">&#183; Module interface frozen at P1 gate and never silently revised</text>
+<text x="18" y="70">&#183; Cross-product module transfer resolved &#8212; decision <tspan font-weight="700">E-03</tspan>, ERN-05</text>
+<text x="18" y="88">&#183; Steps 5&#8211;7 require a certified product and a licensed installer</text>
+<text x="18" y="106">&#183; Steps 8&#8211;9 depend on vehicle, standards and EPRA approval (&#167;15)</text>
+</g>
+</g>
+
+<!-- honesty note -->
+<g transform="translate(40,528)">
+<rect x="0" y="0" width="1120" height="40" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2"/>
+<text x="16" y="17" class="hd" fill="#991b1b">DO NOT SELL THE JOURNEY AHEAD OF THE PRODUCT</text>
+<text x="16" y="33" font-size="10" fill="#7f1d1d">Steps 1&#8211;4 describe a product concept. Steps 5&#8211;7 cannot be offered before the P4 certification gate. Steps 8&#8211;9 must never be presented to a customer as an available feature &#8212; only as a platform direction. Marketing copy is bound by this figure.</text>
+</g>
+
+<text x="40" y="600" class="s" font-size="10.5">Figure 24 &#8212; Customer journey and ownership progression. Steps map to the PLUG &#8594; CARRY &#8594; ROLL &#8594; STACK &#8594; INSTALL &#8594; DRIVE philosophy. Status labels are per &#167;2.1 and the roadmap gates in &#167;24.</text>
+</svg>

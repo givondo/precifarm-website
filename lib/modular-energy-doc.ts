@@ -24,7 +24,7 @@ export const modularEnergyDoc = {
         "Product family — seamless aluminum, glass UI strips, Precifarm wordmark and one repeated Energy Module.",
     },
     {
-      src: "/images/modular-energy/render-p1-go-v2.png",
+      src: "/images/modular-energy/render-p1-go-v4.png",
       alt: "P1 Go portable energy unit on tilt stand with foldable solar panel, glass display and Type 2 EV lead",
       caption:
         "P1 Go — aluminum unibody, fold-flat top handle, magnetic I/O bay, wireless pad, foldable solar panel in the box and emergency EV trickle lead.",

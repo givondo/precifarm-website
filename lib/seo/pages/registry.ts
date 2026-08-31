@@ -1,9 +1,11 @@
 import {
   chargingServicesFaqs,
-  hubEngineeringFaqs,
   privateHouseChargingFaqs,
 } from "@/lib/charging-faqs";
+import { engineeringPageFaqs } from "@/lib/engineering-page";
+import { trainingPageFaqs } from "@/lib/training-page";
 import { chargingHub } from "@/lib/charging-hub";
+import { downloadPageFaqs } from "@/lib/download-page";
 import { homepageAisoBlocks } from "@/lib/seo/aiso/blocks";
 import { defaultSiteTitle } from "@/lib/seo/config";
 import type { PageSeoInput } from "@/lib/seo/types";
@@ -39,12 +41,12 @@ export const pageSeoRegistry: PageSeoInput[] = [
       {
         question: "How do I find EV chargers in Kenya?",
         answer:
-          "Download the Precifarm Android app and open Charging Hub. Filter Corridor DC, Boda Hub swap or partner sites, get directions and pay with M-Pesa — live and planned sites are labelled honestly.",
+          "Get the Precifarm AI companion and open Charging Hub. Filter Corridor DC, Boda Hub swap or partner sites, get directions and pay with M-Pesa — live and planned sites are labelled honestly.",
       },
       {
         question: "Can I pay for EV charging with M-Pesa?",
         answer:
-          "Yes. Every Precifarm hub supports M-Pesa payment. Session price is shown before you charge; history and receipts stay in the app.",
+          "Yes. Every Precifarm hub supports M-Pesa payment. Session price is shown before you charge; history and receipts stay in the companion.",
       },
       {
         question: "Which EV charging corridor is live in Kenya?",
@@ -89,10 +91,10 @@ export const pageSeoRegistry: PageSeoInput[] = [
   },
   {
     path: "/charging/engineering",
-    title: "EV Charging Infrastructure Installation",
+    title: "EV charging site engineering — Kenya",
     description:
-      "Downloadable Precifarm engineering design basis for home hybrid charging, fleet depots, route hubs and partner sites — energy model, Kenya Power hold points and phased site task sheet.",
-    faqs: hubEngineeringFaqs,
+      "Precifarm engineering design basis for home, fleet and highway charging — grid, solar, LiFePO₄ storage, Corridor T-canopy DC, Kenya Power hold points and phased task sheet. PDF download.",
+    faqs: [...engineeringPageFaqs],
     keywords: [
       "EV charging station design Kenya",
       "solar EV charger engineering",
@@ -102,7 +104,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
     breadcrumbs: [
       { name: "Home", href: "/" },
       { name: "Charging", href: "/charging" },
-      { name: "Engineering package", href: "/charging/engineering" },
+      { name: "Engineering", href: "/charging/engineering" },
     ],
   },
   {
@@ -230,21 +232,17 @@ export const pageSeoRegistry: PageSeoInput[] = [
     title: "EV Charging Training in Kenya",
     description:
       "Precifarm EV charging training for hub staff and field engineers. T1 safety awareness, T2 field technician and T3 commissioning specialist certification in Kenya.",
-    faqs: [
-      {
-        question: "What EV charging training does Precifarm offer?",
-        answer:
-          "T1 safety awareness for hub staff, T2 field technician for installers and T3 commissioning specialist for DC hub commissioning — aligned to Precifarm hardware and M-Pesa operations.",
-      },
-    ],
+    faqs: [...trainingPageFaqs],
     keywords: [
       "EV charging training Kenya",
       "T1 T2 T3 technician certification",
       "DC fast charger training",
       "Precifarm training",
+      "EV charger commissioning course",
     ],
     breadcrumbs: [
       { name: "Home", href: "/" },
+      { name: "Charging", href: "/charging" },
       { name: "Training", href: "/training" },
     ],
   },
@@ -277,12 +275,14 @@ export const pageSeoRegistry: PageSeoInput[] = [
   },
   {
     path: "/download",
-    title: "Download App",
+    title: "Precifarm AI Companion for Android",
     description:
-      "Download the Precifarm Android app for the Charging Hub, the full charging range and home installation quotes — M-Pesa on every flow. iOS not yet available.",
+      "Get the Precifarm AI companion: find EV charging, size Pulse charger or Pod energy storage, and pay with M-Pesa. Android APK from precifarm.com — iOS not yet.",
+    faqs: downloadPageFaqs,
     breadcrumbs: [
       { name: "Home", href: "/" },
-      { name: "Download", href: "/download" },
+      { name: "Modular energy", href: "/charging/modular-energy" },
+      { name: "AI companion", href: "/download" },
     ],
   },
   {

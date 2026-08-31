@@ -1,33 +1,47 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import JsonLd from "@/components/seo/JsonLd";
-import SiteImage from "@/components/SiteImage";
-import {
-  TrainingCurriculumTable,
-  TrainingDeliveryTable,
-  TrainingProgressionTable,
-  TrainingTableSection,
-  TrainingTierOverviewTable,
-  TrainingTrackMatrixTable,
-} from "@/components/training/TrainingTables";
+import FaqAccordion from "@/components/seo/FaqAccordion";
+import ProductShowcaseRow from "@/components/ProductShowcaseRow";
+import SpecTable from "@/components/modular-energy/SpecTable";
 import CheckItem from "@/components/ui/CheckItem";
+import PageCTA from "@/components/ui/PageCTA";
 import PageHero from "@/components/ui/PageHero";
 import SectionHeader from "@/components/ui/SectionHeader";
+import SiteImage from "@/components/SiteImage";
 import { contact } from "@/lib/contact";
 import { absoluteUrl } from "@/lib/seo/config";
 import { pageJsonLd, pageMetadata } from "@/lib/seo/pages/helpers";
 import { itemListSchema } from "@/lib/seo/schema";
+import { trainingEnquiryMailto, trainingHeroImage, trainingTiers } from "@/lib/training";
 import {
-  trainingEnquiryMailto,
-  trainingHeroImage,
-  trainingIntro,
-  trainingTiers,
-} from "@/lib/training";
+  trainingComparisonRows,
+  trainingCurriculumRows,
+  trainingDeliveryRows,
+  trainingPage,
+  trainingPageFaqs,
+  trainingProgressionRows,
+  trainingTrackMatrixRows,
+} from "@/lib/training-page";
 
 export const metadata: Metadata = pageMetadata("/training");
 
 export default function TrainingPage() {
+  const {
+    hero,
+    stats,
+    why,
+    tiers,
+    comparison,
+    curriculum,
+    tracks,
+    progression,
+    delivery,
+    enrol,
+    faqs,
+    cta,
+  } = trainingPage;
+
   const jsonLd = [
     ...pageJsonLd("/training"),
     itemListSchema({
@@ -45,39 +59,58 @@ export default function TrainingPage() {
     <>
       <JsonLd data={jsonLd} />
       <PageHero
-        eyebrow={trainingIntro.eyebrow}
-        title={trainingIntro.title}
-        description={trainingIntro.description}
+        eyebrow={hero.eyebrow}
+        title={hero.title}
+        description={hero.description}
+        breadcrumbs={[
+          { name: "Home", href: "/" },
+          { name: "Charging", href: "/charging" },
+          { name: "Training", href: "/training" },
+        ]}
       >
-        <a
-          href={trainingEnquiryMailto()}
-          className="inline-flex rounded-full bg-charge-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-charge-500"
-        >
-          Enquire about training
-        </a>
+        <div className="flex flex-wrap items-center gap-3">
+          <a
+            href={trainingEnquiryMailto()}
+            className="inline-flex items-center justify-center rounded-full bg-charge-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-charge-500"
+          >
+            {hero.primaryLabel}
+          </a>
+          <Link
+            href={hero.secondaryHref}
+            className="inline-flex items-center justify-center rounded-full border border-border bg-white px-6 py-3 text-sm font-semibold text-forest-900 transition-colors hover:bg-muted"
+          >
+            {hero.secondaryLabel}
+          </Link>
+        </div>
+        <p className="mt-4 text-sm text-forest-500">{hero.meta}</p>
       </PageHero>
 
-      <section className="page-container pb-12 pt-6 sm:pb-14 sm:pt-8">
-        <Breadcrumbs
-          items={[
-            { name: "Home", href: "/" },
-            { name: "Training", href: "/training" },
-          ]}
-        />
+      <section className="border-b border-border bg-muted/20 section-pad">
+        <div className="page-container">
+          <div className="grid gap-6 sm:grid-cols-3">
+            {stats.map((item) => (
+              <div key={item.stat} className="rounded-2xl border border-border bg-white p-6 shadow-sm">
+                <p className="font-mono text-2xl font-semibold text-charge-600">{item.stat}</p>
+                <p className="mt-2 text-sm leading-relaxed text-forest-600">{item.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-        <div className="mt-8 grid items-start gap-10 lg:grid-cols-2 lg:gap-12">
+      <section className="border-b border-border bg-white section-pad">
+        <div className="page-container grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
           <div>
-            <p className="text-base leading-relaxed text-forest-600">{trainingIntro.lead}</p>
-            <div className="mt-8">
-              <h2 className="text-lg font-semibold text-forest-900">Who should attend</h2>
-              <ul className="mt-4 space-y-2.5">
-                {trainingIntro.whoShouldAttend.map((item) => (
-                  <CheckItem key={item}>{item}</CheckItem>
-                ))}
-              </ul>
+            <SectionHeader eyebrow={why.eyebrow} title={why.title} />
+            <div className="mt-8 space-y-5">
+              {why.cards.map((card) => (
+                <div key={card.title} className="rounded-2xl border border-border bg-muted/20 p-6">
+                  <h3 className="font-semibold text-forest-900">{card.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-forest-600">{card.text}</p>
+                </div>
+              ))}
             </div>
           </div>
-
           <figure className="overflow-hidden rounded-2xl border border-border bg-white shadow-lg">
             <div className="relative aspect-[4/3] w-full">
               <SiteImage
@@ -86,104 +119,201 @@ export default function TrainingPage() {
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
-                priority
               />
             </div>
+            <figcaption className="border-t border-border px-5 py-3 text-sm leading-relaxed text-forest-600">
+              {trainingHeroImage.caption}
+            </figcaption>
           </figure>
         </div>
       </section>
 
-      <section className="border-y border-border bg-muted/20 section-pad" id="overview">
+      <section className="border-b border-border bg-muted/20 section-pad" id="tiers">
         <div className="page-container space-y-14">
-          <TrainingTableSection
-            eyebrow="Overview"
-            title="Tiers at a glance"
-            description="Duration, format, audience and certificate for each level."
-          >
-            <TrainingTierOverviewTable />
-          </TrainingTableSection>
-
-          <TrainingTableSection
-            eyebrow="Curriculum"
-            title="Modules by tier"
-            description="What each cohort covers before certification."
-          >
-            <TrainingCurriculumTable />
-          </TrainingTableSection>
+          <SectionHeader
+            eyebrow={tiers.eyebrow}
+            title={tiers.title}
+            description={tiers.description}
+          />
+          <div className="grid gap-6 lg:grid-cols-3">
+            {trainingTiers.map((tier) => (
+              <article
+                key={tier.id}
+                id={tier.id}
+                className={`rounded-2xl border border-border border-l-4 bg-white p-6 shadow-sm ${tiers.accent[tier.id]}`}
+              >
+                <div className="flex items-baseline justify-between gap-3">
+                  <p className="font-mono text-sm font-semibold text-charge-600">{tier.code}</p>
+                  <span className="text-xs font-medium uppercase tracking-wide text-forest-500">
+                    {tier.subtitle}
+                  </span>
+                </div>
+                <h3 className="mt-2 text-lg font-semibold text-forest-900">{tier.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-forest-600">{tier.summary}</p>
+                <dl className="mt-5 space-y-3 text-sm">
+                  <div>
+                    <dt className="font-medium text-forest-900">Duration</dt>
+                    <dd className="text-forest-600">{tier.duration}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-medium text-forest-900">Format</dt>
+                    <dd className="text-forest-600">{tier.format}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-medium text-forest-900">Assessment</dt>
+                    <dd className="text-forest-600">{tier.assessment}</dd>
+                  </div>
+                </dl>
+                <p className="mt-5 rounded-xl bg-white/80 p-4 text-sm leading-relaxed text-forest-700 ring-1 ring-border">
+                  {tier.canDoAfter}
+                </p>
+              </article>
+            ))}
+          </div>
+          <div>
+            <SectionHeader eyebrow={comparison.eyebrow} title={comparison.title} />
+            <div className="mt-8">
+              <SpecTable
+                caption={comparison.caption}
+                columns={comparison.columns}
+                rows={trainingComparisonRows()}
+              />
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="section-pad bg-white" id="ev-charging">
+      <section className="border-b border-border bg-white section-pad">
         <div className="page-container">
-          <TrainingTableSection
-            eyebrow="Product tracks"
-            title="Which tier for which charger?"
-            description="Home Pulse and Pod, fleet Depot, highway Corridor."
-          >
-            <TrainingTrackMatrixTable />
-          </TrainingTableSection>
-          <p className="mt-6 text-sm text-forest-600">
-            Related:{" "}
-            <Link href="/charging" className="text-link font-medium">
-              charging
-            </Link>
-            ,{" "}
-            <Link href="/partners" className="text-link font-medium">
-              partners
-            </Link>
-            .
-          </p>
+          <SectionHeader
+            eyebrow={curriculum.eyebrow}
+            title={curriculum.title}
+            description={curriculum.description}
+          />
+          <div className="mt-8">
+            <SpecTable columns={curriculum.columns} rows={trainingCurriculumRows()} />
+          </div>
         </div>
       </section>
 
-      <section className="section-pad border-t border-border bg-muted/20">
+      <section className="border-b border-border bg-muted/20 section-pad" id="tracks">
+        <div className="page-container space-y-14">
+          <div>
+            <SectionHeader
+              eyebrow={tracks.eyebrow}
+              title={tracks.title}
+              description={tracks.description}
+            />
+            <div className="mt-8">
+              <ProductShowcaseRow
+                products={tracks.products.map((item) => ({
+                  src: item.src,
+                  alt: item.alt,
+                  label: item.label,
+                }))}
+              />
+            </div>
+            <div className="mt-10">
+              <SpecTable columns={tracks.matrixColumns} rows={trainingTrackMatrixRows()} />
+            </div>
+          </div>
+          <div className="grid gap-5 sm:grid-cols-2">
+            {tracks.trackCards.map((track) => (
+              <div key={track.id} className="rounded-2xl border border-border bg-white p-6 shadow-sm">
+                <div className="flex flex-wrap items-center gap-2">
+                  <h3 className="font-semibold text-forest-900">{track.title}</h3>
+                  {track.tiers.map((code) => (
+                    <span
+                      key={code}
+                      className="rounded-full bg-charge-100 px-2.5 py-0.5 font-mono text-xs font-semibold text-charge-700"
+                    >
+                      {code}
+                    </span>
+                  ))}
+                </div>
+                <p className="mt-3 text-sm leading-relaxed text-forest-600">{track.description}</p>
+                <p className="mt-3 text-xs font-medium uppercase tracking-wide text-forest-500">
+                  Typical roles
+                </p>
+                <p className="mt-1 text-sm text-forest-700">{track.roles}</p>
+                <ul className="mt-4 space-y-1.5 text-sm text-forest-600">
+                  {track.topics.map((topic) => (
+                    <li key={topic}>• {topic}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-border bg-white section-pad">
         <div className="page-container grid gap-14 lg:grid-cols-2">
-          <TrainingTableSection
-            eyebrow="Progression"
-            title="Moving between tiers"
-            description="Sequential path unless engineering approves equivalence."
-          >
-            <TrainingProgressionTable />
-          </TrainingTableSection>
-
-          <TrainingTableSection
-            eyebrow="Delivery"
-            title="How cohorts run"
-            description="Venue, size and certificate timing."
-          >
-            <TrainingDeliveryTable />
-          </TrainingTableSection>
+          <div>
+            <SectionHeader eyebrow={progression.eyebrow} title={progression.title} />
+            <div className="mt-8">
+              <SpecTable columns={progression.columns} rows={trainingProgressionRows()} />
+            </div>
+          </div>
+          <div>
+            <SectionHeader eyebrow={delivery.eyebrow} title={delivery.title} />
+            <div className="mt-8">
+              <SpecTable columns={delivery.columns} rows={trainingDeliveryRows()} />
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="training-enquiry section-pad border-t border-border bg-white">
+      <section className="border-b border-border bg-muted/20 section-pad">
+        <div className="page-container max-w-3xl">
+          <SectionHeader
+            eyebrow={faqs.eyebrow}
+            title={faqs.title}
+            description={faqs.description}
+          />
+          <div className="mt-8">
+            <FaqAccordion items={[...trainingPageFaqs]} />
+          </div>
+        </div>
+      </section>
+
+      <section className="section-pad border-b border-border bg-white">
         <div className="page-container">
-          <div className="training-enquiry-grid">
-            <div className="training-enquiry-copy">
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
+            <div>
               <SectionHeader
-                eyebrow="Enrol"
-                title="Book a cohort"
-                description="Email team size, current tier and tracks needed. We confirm within one business day."
+                eyebrow={enrol.eyebrow}
+                title={enrol.title}
+                description={enrol.description}
               />
               <ul className="mt-6 space-y-2.5">
-                {[
-                  "Organisation name and number of participants",
-                  "Current tier (T1, T2, T3 or none)",
-                  "Tracks: home, fleet or highway",
-                  "Preferred month and contact phone",
-                ].map((item) => (
+                {enrol.checklist.map((item) => (
                   <CheckItem key={item}>{item}</CheckItem>
                 ))}
               </ul>
+              <p className="mt-6 text-sm text-forest-600">
+                Related:{" "}
+                <Link href="/charging" className="text-link font-medium">
+                  charging
+                </Link>
+                ,{" "}
+                <Link href="/charging/engineering" className="text-link font-medium">
+                  engineering
+                </Link>
+                ,{" "}
+                <Link href="/partners" className="text-link font-medium">
+                  partners
+                </Link>
+                .
+              </p>
             </div>
-
-            <div className="training-enquiry-panel card p-6 sm:p-8">
+            <div className="rounded-2xl border border-border bg-charge-50/40 p-6 shadow-sm sm:p-8">
               <p className="text-xs font-semibold uppercase tracking-wide text-forest-500">
-                Training enquiries
+                {enrol.panelTitle}
               </p>
               <a
                 href={trainingEnquiryMailto()}
-                className="training-enquiry-email text-link mt-3 block break-all text-xl font-semibold text-forest-900 sm:text-2xl"
+                className="text-link mt-3 block break-all text-xl font-semibold text-forest-900 sm:text-2xl"
               >
                 {contact.trainingEmail}
               </a>
@@ -199,6 +329,15 @@ export default function TrainingPage() {
           </div>
         </div>
       </section>
+
+      <PageCTA
+        title={cta.title}
+        description={cta.description}
+        primaryHref={trainingEnquiryMailto()}
+        primaryLabel={cta.primaryLabel}
+        secondaryHref={cta.secondaryHref}
+        secondaryLabel={cta.secondaryLabel}
+      />
     </>
   );
 }

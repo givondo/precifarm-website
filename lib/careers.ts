@@ -65,7 +65,7 @@ export const careerOpenings: CareerOpening[] = [
     location: "Nairobi (hybrid)",
     type: "Full-time · Contract",
     summary:
-      "Extend the Charging Hub, website and Android app — M-Pesa sessions, Lipa Pole Pole, live hub status and the SEO knowledge layer behind precifarm.com.",
+      "Extend the Charging Hub, website and AI companion — M-Pesa sessions, Lipa Pole Pole, live hub status and the SEO knowledge layer behind precifarm.com.",
     points: [
       "TypeScript, React/Next.js or React Native experience",
       "Care about reliable M-Pesa flows and clear charging UX",

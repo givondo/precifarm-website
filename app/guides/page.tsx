@@ -32,7 +32,7 @@ export default async function GuidesIndexPage() {
       ? [
           itemListSchema({
             name: "Precifarm Guides",
-            description: "How-to guides for home charging, public DC and the Precifarm app.",
+            description: "How-to guides for home charging, public DC and the Precifarm AI companion.",
             path: "/guides",
             items: listItems,
           }),
@@ -51,7 +51,7 @@ export default async function GuidesIndexPage() {
       <PageHero
         eyebrow="Guides"
         title="How-to guides"
-        description="Step-by-step guides for Pulse charger and Pod energy storage home charging, public DC on the highway, the Charging Hub and the Precifarm Android app."
+        description="Step-by-step guides for Pulse charger and Pod energy storage home charging, public DC on the highway, the Charging Hub and the Precifarm AI companion."
       />
       <section className="section-pad bg-white">
         <div className="page-container max-w-3xl">

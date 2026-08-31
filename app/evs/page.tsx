@@ -107,12 +107,12 @@ export default function KenyaEvCompatibilityPage() {
             Plan EV charging in Kenya with Precifarm
           </h2>
           <p className="mt-3 text-base leading-relaxed text-forest-500">
-            Connect your vehicle in the app, find compatible chargers on the Charging Hub, pay with M-Pesa — or
+            Connect your vehicle in the AI companion, find compatible chargers on the Charging Hub, pay with M-Pesa — or
             book a home survey for Pulse charger or Pod energy storage.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
             <Link href="/download" className="btn-primary rounded-full px-6 py-3 text-sm">
-              Download the app
+              Get the AI companion
             </Link>
             <Link href="/charging/private-house" className="text-sm font-medium">
               Home charging ›

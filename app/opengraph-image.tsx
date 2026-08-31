@@ -31,7 +31,7 @@ export default function OpenGraphImage() {
             }}
           />
           <span style={{ fontSize: 22, fontWeight: 600, color: "#86efac" }}>
-            LIVE ROUTE · NAIROBI–KISUMU
+            EV CHARGING · ENERGY STORAGE
           </span>
         </div>
 
@@ -45,7 +45,7 @@ export default function OpenGraphImage() {
         </div>
 
         <div style={{ display: "flex", fontSize: 22, color: "#94a3b8" }}>
-          EV charging hubs · Electric buses · M-Pesa booking
+          Home charging · Fleet · Highway · M-Pesa
         </div>
       </div>
     ),
