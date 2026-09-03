@@ -67,7 +67,7 @@ export const partnerTypes: PartnerType[] = [
     id: "boda-operators",
     title: "Boda & last-mile",
     summary:
-      "Deploy kerbside racks and six-bay swap cabinets for electric bodas — same green halo design language as the rest of the range.",
+      "Deploy kerbside racks and twelve-bay swap cabinets for electric bodas — same design language as the rest of the range.",
     products: "Boda Hub",
     points: [
       "2 kW pack charging sized for high-turnover swap operations",

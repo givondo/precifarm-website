@@ -1,3 +1,4 @@
+import { aiCompanionDoc } from "@/lib/ai-companion-doc";
 import { appDownload } from "@/lib/app-download";
 import { engineeringDoc } from "@/lib/engineering-doc";
 
@@ -15,14 +16,25 @@ export const downloadRegistry = [
     pageHref: "/charging/engineering",
   },
   {
+    id: aiCompanionDoc.id,
+    kind: "document" as const,
+    title: aiCompanionDoc.title,
+    subtitle: aiCompanionDoc.subtitle,
+    version: aiCompanionDoc.version,
+    date: aiCompanionDoc.date,
+    pdfHref: aiCompanionDoc.downloadHref,
+    htmlHref: aiCompanionDoc.downloadHtmlHref,
+    pageHref: aiCompanionDoc.pageHref,
+  },
+  {
     id: "precifarm-android",
     kind: "app" as const,
     title: "Precifarm AI companion",
     subtitle: `v${appDownload.version} · ${appDownload.packageId}`,
     version: appDownload.version,
     date: null,
-    pdfHref: null,
-    htmlHref: null,
+    pdfHref: aiCompanionDoc.downloadHref,
+    htmlHref: aiCompanionDoc.downloadHtmlHref,
     pageHref: "/download",
     apkHref: appDownload.apkUrl,
     fileName: appDownload.fileName,

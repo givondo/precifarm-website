@@ -4,8 +4,8 @@
 
 export const productImages = {
   chargingEcosystemHero: {
-    src: "/images/charging-ecosystem-hero-v16.png",
-    alt: "Precifarm charging family — Pulse, Spark, P1 Go, Pod, Corridor T-canopy, Depot, Boda Hub with e-motorbike and white EV",
+    src: "/images/charging-ecosystem-hero-v18.png",
+    alt: "Precifarm charging family — Pulse, Spark, P1 Go, Pod, Corridor T-canopy, Depot, twelve-bay Boda Hub with e-motorbike and white EV",
     brand: "none" as const,
   },
   spark: {
@@ -14,8 +14,8 @@ export const productImages = {
     brand: "spark" as const,
   },
   pulse: {
-    src: "/images/products/pulse-v5.png",
-    alt: "Precifarm Pulse 7 kW home wallbox — integrated Type 2 cable and holster on one unit",
+    src: "/images/products/pulse-v7.png",
+    alt: "Precifarm Pulse 7 kW home wallbox — Type 2 cable from the body into an attached holster",
     brand: "pulse" as const,
   },
   pod: {
@@ -34,8 +34,8 @@ export const productImages = {
     brand: "none" as const,
   },
   boda: {
-    src: "/images/products/boda.png",
-    alt: "Precifarm Boda Hub battery swap cabinet — matte white aluminum with glass status strip for electric motorcycles",
+    src: "/images/products/boda-v2.png",
+    alt: "Precifarm Boda Hub twelve-bay battery swap cabinet — four rows of three dockets for electric motorcycles",
     brand: "none" as const,
   },
   depot: {

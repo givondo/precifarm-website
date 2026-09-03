@@ -18,6 +18,7 @@
     "pdf:modular-energy": "node scripts/generate-modular-energy-pdf.mjs",
     "pdf:modular-energy-v2": "node scripts/enhance-figure-design.mjs && node scripts/normalize-figure-svgs.mjs && node scripts/generate-modular-energy-v2-pdf.mjs",
     "pdf:modular-energy-design": "node scripts/generate-modular-energy-design-pdf.mjs",
+    "pdf:ai-companion": "node scripts/generate-ai-companion-pdf.mjs",
     "figures:enhance": "node scripts/enhance-figure-design.mjs && node scripts/normalize-figure-svgs.mjs"
   },
   "dependencies": {

@@ -133,10 +133,10 @@ const EV_ENERGY_INTEGRATION = [
 
 const CHARGING_IMAGE_FILES = [
   ["spark.jpg", "products/spark.png"],
-  ["pulse.jpg", "products/pulse.png"],
+  ["pulse.jpg", "products/pulse-v7.png"],
   ["corridor.jpg", "products/corridor.png"],
   ["depot.jpg", "products/depot.png"],
-  ["boda.jpg", "products/boda.png"],
+  ["boda.jpg", "products/boda-v2.png"],
   ["pod.jpg", "products/pod.png"],
 ];
 
@@ -528,7 +528,7 @@ function stageChargingAssets() {
     compressRender(from, join(assetDir, jpgName));
     count += 1;
   }
-  const heroSrc = join(root, "public", "images", "charging-ecosystem-hero.png");
+  const heroSrc = join(root, "public", "images", "charging-ecosystem-hero-v18.png");
   if (!existsSync(heroSrc)) throw new Error(`Missing charging ecosystem hero: ${heroSrc}`);
   compressRender(heroSrc, join(assetDir, "charging-ecosystem-hero.jpg"));
   count += 1;

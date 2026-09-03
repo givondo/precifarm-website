@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en-KE">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Precifarm AI companion — product sheet (PF-AI-COMPANION-001 v1.0)</title>
+<meta name="description" content="Precifarm AI companion for Android: find a Charging Hub, size Pulse charger or Pod energy storage, and pay with M-Pesa. Not a live chatbot." />
+<link rel="stylesheet" href="./precifarm-document-brand.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #0a0a0a;
+    --muted: #404040;
+    --subtle: #737373;
+    --line: #e5e5e5;
+    --soft: #f5f5f7;
+    --blue: #2563eb;
+    --blue-soft: #eff6ff;
+    --font: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    color: var(--muted);
+    background: #fff;
+    font-family: var(--font);
+    font-size: 8.6pt;
+    line-height: 1.45;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .toolbar {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; justify-content: space-between;
+    padding: .7rem 1rem; background: rgba(255,255,255,.96);
+    border-bottom: 1px solid var(--line);
+  }
+  .toolbar .id { font-family: var(--mono); font-size: .78rem; color: var(--subtle); }
+  .toolbar a, .toolbar button {
+    display: inline-flex; align-items: center; border-radius: 999px;
+    padding: .5rem .95rem; font-size: .82rem; font-weight: 600; text-decoration: none;
+    border: 1px solid var(--line); background: #fff; color: var(--ink); cursor: pointer;
+  }
+  .toolbar .primary { background: var(--blue); border-color: var(--blue); color: #fff; }
+  .sheet { max-width: 210mm; margin: 0 auto; }
+  .page {
+    position: relative;
+    min-height: 277mm;
+    padding: 10mm 14mm 16mm;
+    break-after: page;
+    page-break-after: always;
+  }
+  .page:last-child { break-after: auto; page-break-after: auto; }
+  .page-head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 5mm; padding-bottom: 3mm; border-bottom: 2px solid var(--ink);
+  }
+  .brand { display: flex; align-items: center; gap: 2.5mm; }
+  .brand img { width: 8mm; height: 8mm; }
+  .brand-word { display: block; font-size: 7pt; font-weight: 700; letter-spacing: .14em; color: var(--ink); }
+  .brand-sub { display: block; font-size: 6.5pt; color: var(--subtle); }
+  .doc-id { font-family: var(--mono); font-size: 6.5pt; color: var(--subtle); text-align: right; line-height: 1.5; }
+
+  .cover-accent {
+    position: absolute; top: 0; left: 0; width: 5mm; height: 100%;
+    background: linear-gradient(180deg, var(--blue) 0%, var(--blue-soft) 100%);
+  }
+  .cover-eyebrow {
+    margin: 0 0 2mm; font-family: var(--mono); font-size: 6.8pt;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--blue);
+  }
+  .cover-title {
+    margin: 0 0 3mm; font-size: 26pt; font-weight: 700; line-height: 1.08;
+    letter-spacing: -.03em; color: var(--ink);
+  }
+  .cover-lead { margin: 0 0 4mm; max-width: 155mm; font-size: 10pt; color: var(--muted); }
+  .pills { display: flex; flex-wrap: wrap; gap: 2mm; margin-bottom: 5mm; }
+  .pills span {
+    font-family: var(--mono); font-size: 6.4pt; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--blue); border: 1px solid #bfdbfe; background: var(--blue-soft);
+    border-radius: 999px; padding: 1.2mm 3mm; font-weight: 600;
+  }
+  .hero { margin: 0 0 4.5mm; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); background: var(--soft); }
+  .hero img { display: block; width: 100%; height: 48mm; object-fit: cover; object-position: center; }
+  .hero figcaption { padding: 2mm 3mm; font-size: 6.5pt; color: var(--subtle); border-top: 1px solid var(--line); background: #fff; }
+
+  .jobs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3mm; margin-bottom: 4mm; }
+  .job { margin: 0; padding: 3.5mm; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
+  .job-step { margin: 0 0 1.5mm; font-family: var(--mono); font-size: 7pt; font-weight: 600; letter-spacing: .12em; color: var(--blue); }
+  .job h3 { margin: 0 0 1.5mm; font-size: 10pt; color: var(--ink); }
+  .job p { margin: 0; font-size: 7.6pt; color: var(--muted); }
+
+  .meta-row {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3mm;
+    padding: 3.5mm; border-radius: 10px; background: var(--soft); border: 1px solid var(--line);
+  }
+  .meta-row span { display: block; font-size: 6.4pt; letter-spacing: .08em; text-transform: uppercase; color: var(--subtle); margin-bottom: 1mm; }
+  .meta-row strong { display: block; font-size: 8.4pt; color: var(--ink); font-weight: 600; }
+
+  .cover-note { margin: 3.5mm 0 0; font-size: 7pt; color: var(--subtle); }
+
+  .sec-title { margin: 0 0 2mm; font-size: 14pt; font-weight: 700; letter-spacing: -.02em; color: var(--ink); }
+  .sec-lead { margin: 0 0 4mm; font-size: 8.6pt; max-width: 170mm; }
+  .cols-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin-bottom: 4.5mm; }
+  .panel { padding: 3.5mm; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
+  .panel h3 { margin: 0 0 2mm; font-size: 9pt; color: var(--ink); }
+  .panel p { margin: 0 0 2mm; }
+  .panel p:last-child { margin-bottom: 0; }
+  .panel.blue { background: var(--blue-soft); border-color: #bfdbfe; }
+
+  .steps { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5mm; margin-bottom: 4.5mm; }
+  .step { display: flex; gap: 2.5mm; padding: 3mm; border: 1px solid var(--line); border-radius: 10px; }
+  .step span {
+    flex: 0 0 7mm; height: 7mm; border-radius: 999px; background: #0f172a; color: #fff;
+    font-family: var(--mono); font-size: 6.5pt; font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .step strong { display: block; font-size: 8.4pt; color: var(--ink); margin-bottom: .8mm; }
+  .step p { margin: 0; font-size: 7.5pt; }
+
+  .feats { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5mm; margin-bottom: 3mm; }
+  .feat { padding: 2.8mm; border: 1px solid var(--line); border-radius: 10px; background: var(--soft); }
+  .feat h3 { margin: 0 0 1.4mm; font-size: 9pt; color: var(--ink); }
+  .feat p { margin: 0; font-size: 7.6pt; }
+
+  .sites { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2.5mm; }
+  .site { padding: 3.2mm; border: 1px solid var(--line); border-radius: 10px; }
+  .site-stat { margin: 0 0 1mm; font-family: var(--mono); font-size: 11pt; font-weight: 600; color: var(--blue); }
+  .site h3 { margin: 0 0 1.4mm; font-size: 9pt; color: var(--ink); }
+  .site p { margin: 0; font-size: 7.4pt; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 7.2pt; margin: 0 0 4mm; }
+  th, td { border: 1px solid var(--line); padding: 2.1mm 2.4mm; text-align: left; vertical-align: top; }
+  th { background: var(--soft); color: var(--ink); font-weight: 600; font-size: 6.6pt; letter-spacing: .04em; text-transform: uppercase; }
+  td.label { color: var(--ink); font-weight: 600; }
+  td.hl { background: var(--blue-soft); color: var(--ink); }
+  td.num { font-family: var(--mono); font-size: 6.8pt; white-space: nowrap; }
+  caption, .table-caption { caption-side: top; text-align: left; font-size: 6.6pt; letter-spacing: .08em; text-transform: uppercase; color: var(--subtle); margin: 0 0 1.5mm; font-weight: 600; }
+
+  .thumbs { display: grid; grid-template-columns: repeat(6, 1fr); gap: 2mm; margin-bottom: 4mm; }
+  .thumb { margin: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #fff; }
+  .thumb-img { background: var(--soft); padding: 1.5mm; }
+  .thumb-img img { display: block; width: 100%; height: 22mm; object-fit: contain; }
+  .thumb figcaption { padding: 1.5mm 2mm 2mm; text-align: center; }
+  .thumb strong { display: block; font-size: 6.2pt; color: var(--ink); line-height: 1.2; }
+  .thumb span { display: block; font-size: 5.6pt; color: var(--subtle); margin-top: .5mm; }
+
+  .split { display: grid; grid-template-columns: 1.15fr .85fr; gap: 4mm; margin-bottom: 4mm; }
+  .status { padding: 3.5mm; border-radius: 10px; border: 1px solid var(--line); }
+  .status.live { background: #f0fdf4; border-color: #bbf7d0; }
+  .status.design { background: #fff; border-style: dashed; }
+  .status h3 { margin: 0 0 2mm; font-size: 8pt; letter-spacing: .08em; text-transform: uppercase; }
+  .status.live h3 { color: #166534; }
+  .status.design h3 { color: var(--subtle); }
+  .status ul { margin: 0; padding-left: 4mm; }
+  .status li { margin: 0 0 1.4mm; font-size: 7.6pt; }
+  .status li:last-child { margin-bottom: 0; }
+
+  .price-row { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 2.5mm; margin-bottom: 4mm; }
+  .price { padding: 3mm; border: 1px solid var(--line); border-radius: 10px; background: var(--soft); }
+  .price span { display: block; font-size: 6.2pt; letter-spacing: .06em; text-transform: uppercase; color: var(--subtle); margin-bottom: 1mm; }
+  .price strong { display: block; font-size: 10pt; color: var(--ink); }
+  .price em { display: block; font-style: normal; font-size: 6.6pt; color: var(--muted); margin-top: .8mm; }
+
+  .home-fig { margin: 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  .home-fig img { display: block; width: 100%; height: 42mm; object-fit: cover; object-position: center; }
+  .home-fig figcaption { padding: 2mm 3mm; font-size: 6.5pt; color: var(--subtle); }
+
+  .installs { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5mm; margin-bottom: 4mm; }
+  .install { display: flex; gap: 2.5mm; padding: 3mm; border: 1px solid var(--line); border-radius: 10px; }
+  .install span {
+    flex: 0 0 7mm; height: 7mm; border-radius: 999px; background: var(--blue); color: #fff;
+    font-weight: 700; font-size: 7.5pt; display: flex; align-items: center; justify-content: center;
+  }
+  .install strong { display: block; font-size: 8.4pt; color: var(--ink); margin-bottom: .6mm; }
+  .install p { margin: 0; font-size: 7.5pt; }
+
+  .spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-bottom: 4mm; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  .spec { padding: 2.6mm 3.2mm; border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); }
+  .spec:nth-child(2n) { border-right: 0; }
+  .spec:nth-last-child(-n+2) { border-bottom: 0; }
+  .spec span { display: block; font-size: 6.2pt; letter-spacing: .06em; text-transform: uppercase; color: var(--subtle); }
+  .spec strong { display: block; margin-top: .6mm; font-size: 8.2pt; color: var(--ink); font-family: var(--mono); font-weight: 600; }
+
+  .faqs { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5mm; margin-bottom: 4mm; }
+  .faq { padding: 3.2mm; border: 1px solid var(--line); border-radius: 10px; }
+  .faq h3 { margin: 0 0 1.4mm; font-size: 8.2pt; color: var(--ink); }
+  .faq p { margin: 0; font-size: 7.4pt; }
+
+  .cta {
+    display: grid; grid-template-columns: 1.4fr .8fr; gap: 4mm;
+    padding: 4mm; border-radius: 10px; background: #0f172a; color: #e2e8f0;
+  }
+  .cta h2 { margin: 0 0 1.5mm; font-size: 13pt; color: #fff; }
+  .cta p { margin: 0; font-size: 8pt; color: #cbd5e1; }
+  .cta-meta { font-family: var(--mono); font-size: 7.2pt; color: #93c5fd; line-height: 1.7; }
+  .cta-meta strong { color: #fff; }
+
+  .print-footer { display: none; }
+  @page { size: A4; margin: 0; }
+  @media print {
+    .toolbar { display: none !important; }
+    .sheet { max-width: none; }
+    .page { min-height: 297mm; padding: 12mm 14mm 14mm; }
+    .print-footer {
+      display: flex; position: fixed; bottom: 8mm; left: 14mm; right: 14mm;
+      justify-content: space-between; font-family: var(--mono); font-size: 6.5pt; color: var(--subtle);
+      border-top: 1px solid var(--line); padding-top: 2mm;
+    }
+    .job, .feat, .site, .thumb, .status, .faq, .hero, .home-fig, table { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+  <div class="print-footer" aria-hidden="true">
+    <span>PF-AI-COMPANION-001 · v1.0</span>
+    <span>Precifarm AI companion · Product sheet</span>
+    <span>31 August 2026</span>
+  </div>
+
+  <div class="toolbar">
+    <div style="display:flex;align-items:center;gap:.6rem">
+      <img src="./precifarm-logo-mark.svg" alt="" width="22" height="22" />
+      <span class="id">PF-AI-COMPANION-001 · v1.0 · Product sheet</span>
+    </div>
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+      <button type="button" class="primary" onclick="window.print()">Print</button>
+      <a class="primary" href="./precifarm-ai-companion.pdf" download>Download PDF</a>
+      <a href="/download">Back to AI companion</a>
+    </div>
+  </div>
+
+  <main class="sheet">
+    <section class="page page-cover">
+      <div class="cover-accent" aria-hidden="true"></div>
+      
+    <header class="page-head">
+      <div class="brand">
+        <img src="./precifarm-logo-mark.svg" alt="" />
+        <div>
+          <span class="brand-word">PRECIFARM</span>
+          <span class="brand-sub">AI companion · Kenya</span>
+        </div>
+      </div>
+      <div class="doc-id">PF-AI-COMPANION-001 · Page 1 of 4</div>
+    </header>
+
+      <p class="cover-eyebrow">Product sheet · Android companion · 4 pages</p>
+      <h1 class="cover-title">Your charging<br />companion for Kenya.</h1>
+      <p class="cover-lead">
+        Find a live hub, size Pulse charger or Pod energy storage, and pay with M-Pesa —
+        built around how you drive and park. Android only. Not a live chatbot.
+      </p>
+      <div class="pills">
+        <span>Find a hub</span>
+        <span>Size home energy</span>
+        <span>Pay with M-Pesa</span>
+        <span>Android 8.0+</span>
+      </div>
+
+      <figure class="hero">
+        <img src="./ai-companion/hero.png" alt="Precifarm charging family — Pulse, Spark, Pod, Corridor, Depot and Boda Hub" />
+        <figcaption>Same products we install. Same M-Pesa flows. The companion is the phone layer on top of Precifarm charging in Kenya.</figcaption>
+      </figure>
+
+      <div class="jobs">
+      <article class="job">
+        <p class="job-step">01</p>
+        <h3>Find a hub</h3>
+        <p>Open Charging Hub. Filter Corridor DC, Boda Hub swap or partner sites. Live and planned labels stay honest. Get directions before you leave.</p>
+      </article>
+      <article class="job">
+        <p class="job-step">02</p>
+        <h3>Size home energy</h3>
+        <p>See whether Pulse charger or Pod energy storage fits your wall, feeder and parking. Request a survey — we confirm the site before we quote.</p>
+      </article>
+      <article class="job">
+        <p class="job-step">03</p>
+        <h3>Pay with M-Pesa</h3>
+        <p>Pay a session or Lipa Pole Pole instalments on any phone. Deposit, monthly and total are shown before you confirm — no bank account required.</p>
+      </article></div>
+
+      <div class="meta-row">
+        <div><span>Platform</span><strong>Android 8.0+ · APK from precifarm.com</strong></div>
+        <div><span>Payments</span><strong>M-Pesa sessions and Lipa Pole Pole</strong></div>
+        <div><span>Map</span><strong>Charging Hub — Corridor, Boda Hub, partners</strong></div>
+      </div>
+      <p class="cover-note">
+        Direct APK from precifarm.com. Not on the Play Store yet. iOS is not available.
+        Live page: https://precifarm.com/download
+      </p>
+    </section>
+
+    <section class="page">
+      
+    <header class="page-head">
+      <div class="brand">
+        <img src="./precifarm-logo-mark.svg" alt="" />
+        <div>
+          <span class="brand-word">PRECIFARM</span>
+          <span class="brand-sub">Kenya charging context</span>
+        </div>
+      </div>
+      <div class="doc-id">PF-AI-COMPANION-001 · Page 2 of 4</div>
+    </header>
+      <h2 class="sec-title">Built for how Kenya actually charges.</h2>
+      <p class="sec-lead">
+        Public EV charging in Kenya is a mix of mall plugs, fuel-retailer partners, operator apps and Kenya Power sites —
+        not one national network. Apps that work here find a station, start a session and take M-Pesa, because most drivers
+        do not pay a charger with a bank card.
+      </p>
+
+      <div class="cols-2">
+        <div class="panel">
+          <h3>What Kenya charging apps already do</h3>
+          <p>Operator apps such as EVChaja, Kencharge and Kabisa-style networks typically let a driver locate stations, filter by connector or power, start or monitor a session, and pay with mobile money.</p>
+          <p>The Open Charge Alliance (2025) treats M-Pesa as the mobile-first payment for Kenyan EV charging — send and receive money on the phone, no bank account required. USSD still matters on feature phones.</p>
+        </div>
+        <div class="panel blue">
+          <h3>What Precifarm adds</h3>
+          <p>Most kilometres in Kenya still start at home. A map-only app leaves the driveway, the wallbox and Lipa Pole Pole to a separate sales call.</p>
+          <p>The Precifarm AI companion puts public Charging Hub, Pulse / Pod home surveys and M-Pesa pay on one Android account — the same products we install, with live and planned sites labelled honestly.</p>
+        </div>
+      </div>
+
+      <p class="table-caption">What Kenyan EV drivers need — typical operator app vs Precifarm companion</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Job</th>
+            <th>Typical Kenya charging app</th>
+            <th>Precifarm AI companion</th>
+          </tr>
+        </thead>
+        <tbody><tr><td class="label">Find a public charger</td><td>Operator map</td><td class="hl">Charging Hub: Precifarm + EVChaja + ChargeNet + partners</td></tr><tr><td class="label">Pay without a bank card</td><td>M-Pesa / mobile money</td><td class="hl">M-Pesa, USSD and SMS — price shown first</td></tr><tr><td class="label">Size a home wallbox</td><td>Usually a separate sales form</td><td class="hl">Pulse charger and Pod energy storage survey in-app</td></tr><tr><td class="label">Spread the hardware cost</td><td>Rarely in the same app</td><td class="hl">Lipa Pole Pole from KES 3,300/month on M-Pesa</td></tr><tr><td class="label">E-boda battery swap</td><td>Some operator apps</td><td class="hl">Boda Hub listed on the same map</td></tr><tr><td class="label">Honest live vs planned</td><td>Mixed</td><td class="hl">Live sites labelled live; planned stay planned</td></tr></tbody>
+      </table>
+
+      <div class="feats">
+      <article class="feat">
+        <h3>Charging Hub</h3>
+        <p>Precifarm, EVChaja, ChargeNet and partner sites — filter by fast DC or Boda swap, then navigate in maps.</p>
+      </article>
+      <article class="feat">
+        <h3>Home + storage</h3>
+        <p>Request a Pulse charger or Pod energy storage survey. Certified installation and three-year aftersale care on M-Pesa.</p>
+      </article>
+      <article class="feat">
+        <h3>Vehicle-aware</h3>
+        <p>Select your car or e-boda so recommendations follow battery size, connector and how far you actually drive.</p>
+      </article>
+      <article class="feat">
+        <h3>Lipa Pole Pole</h3>
+        <p>Pay deposit and monthly instalments via M-Pesa, USSD or SMS. Totals shown before you confirm.</p>
+      </article></div>
+      <div class="sites">
+      <article class="site">
+        <p class="site-stat">120 kW+</p>
+        <h3>Corridor DC</h3>
+        <p>T-canopy highway DC with overhead cables — about 60 kWh in 30 minutes. Dual CCS2 where listed. From KES 39/kWh on M-Pesa.</p>
+      </article>
+      <article class="site">
+        <p class="site-stat">&lt;5 min</p>
+        <h3>Boda Hub swap</h3>
+        <p>Fresh battery for Roam Air and compatible e-bodas in Nairobi, Kisumu and Nakuru — swap or kerbside charge.</p>
+      </article>
+      <article class="site">
+        <p class="site-stat">Retail &amp; malls</p>
+        <h3>Partner chargers</h3>
+        <p>Shell, Total, Naivas, malls and campuses — DC stops along the routes you already drive.</p>
+      </article></div>
+    </section>
+
+    <section class="page">
+      
+    <header class="page-head">
+      <div class="brand">
+        <img src="./precifarm-logo-mark.svg" alt="" />
+        <div>
+          <span class="brand-word">PRECIFARM</span>
+          <span class="brand-sub">Products and honesty</span>
+        </div>
+      </div>
+      <div class="doc-id">PF-AI-COMPANION-001 · Page 3 of 4</div>
+    </header>
+      <h2 class="sec-title">The same products we install.</h2>
+      <p class="sec-lead">Spark through Corridor — specs, fit and M-Pesa in the companion and on the website. A typical Nairobi day is about 60 km / 10 kWh.</p>
+
+      <div class="thumbs">
+      <figure class="thumb">
+        <div class="thumb-img"><img src="./ai-companion/spark.png" alt="Spark charger" /></div>
+        <figcaption>
+          <strong>Spark charger</strong>
+          <span>3.3 kW · Type 2</span>
+        </figcaption>
+      </figure>
+      <figure class="thumb">
+        <div class="thumb-img"><img src="./ai-companion/pulse.png" alt="Pulse charger" /></div>
+        <figcaption>
+          <strong>Pulse charger</strong>
+          <span>7 kW · Type 2</span>
+        </figcaption>
+      </figure>
+      <figure class="thumb">
+        <div class="thumb-img"><img src="./ai-companion/pod.png" alt="Pod energy storage" /></div>
+        <figcaption>
+          <strong>Pod energy storage</strong>
+          <span>7 kW + 5 / 10 kWh</span>
+        </figcaption>
+      </figure>
+      <figure class="thumb">
+        <div class="thumb-img"><img src="./ai-companion/boda.png" alt="Boda Hub" /></div>
+        <figcaption>
+          <strong>Boda Hub</strong>
+          <span>Pack swap</span>
+        </figcaption>
+      </figure>
+      <figure class="thumb">
+        <div class="thumb-img"><img src="./ai-companion/depot.png" alt="Depot station" /></div>
+        <figcaption>
+          <strong>Depot station</strong>
+          <span>22 kW AC</span>
+        </figcaption>
+      </figure>
+      <figure class="thumb">
+        <div class="thumb-img"><img src="./ai-companion/corridor.png" alt="Corridor charging" /></div>
+        <figcaption>
+          <strong>Corridor charging</strong>
+          <span>120 kW+ DC · CCS2</span>
+        </figcaption>
+      </figure></div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Power / energy</th>
+            <th>Role</th>
+            <th>Typical session</th>
+          </tr>
+        </thead>
+        <tbody><tr><td class="label">Spark charger</td><td class="num">3.3 kW · Type 2</td><td>Portable lead in the boot</td><td>~180 min for a typical day</td></tr><tr><td class="label">Pulse charger</td><td class="num">7 kW · Type 2</td><td>Home wallbox</td><td>~90 min for a typical day</td></tr><tr><td class="label">Pod energy storage</td><td class="num">7 kW + 5 / 10 kWh</td><td>Home charger + backup</td><td>Charge when Kenya Power dips</td></tr><tr><td class="label">Boda Hub</td><td class="num">Pack swap</td><td>E-motorcycle</td><td>Back on the road in &lt;5 min</td></tr><tr><td class="label">Depot station</td><td class="num">22 kW AC</td><td>Fleet yard</td><td>40+ kWh in ~120 min</td></tr><tr><td class="label">Corridor charging</td><td class="num">120 kW+ DC · CCS2</td><td>Highway T-canopy</td><td>~60 kWh in 30 min</td></tr></tbody>
+      </table>
+
+      <div class="price-row">
+        <div class="price"><span>Pulse charger</span><strong>From KES 79,000</strong><em>Lipa Pole Pole on M-Pesa</em></div>
+        <div class="price"><span>Instalments</span><strong>From KES 3,300/mo</strong><em>Pulse and Pod energy storage</em></div>
+        <div class="price"><span>Public DC</span><strong>From KES 39/kWh</strong><em>Depot and Corridor on M-Pesa</em></div>
+        <div class="price"><span>Home day vs diesel</span><strong>KES 140 vs ~1,000</strong><em>~60 km Nairobi driving day</em></div>
+      </div>
+
+      <div class="split">
+        <div>
+          <h2 class="sec-title">Honest about what you can do today.</h2>
+          <p class="sec-lead">Canon for Precifarm copy: live stays live. Planned stays planned. The companion is not a chatbot.</p>
+          <div class="cols-2" style="grid-template-columns:1fr 1fr;margin-bottom:0">
+            <div class="status live">
+              <h3>Live</h3>
+              <ul><li>Charging Hub map with live and planned labels</li><li>Home Pulse charger and Pod energy storage survey requests</li><li>M-Pesa session pay and Lipa Pole Pole instalments</li></ul>
+            </div>
+            <div class="status design">
+              <h3>In design</h3>
+              <ul><li>Fleet dashboard for vehicles, chargers and kWh — not live yet</li><li>iOS companion — not available yet</li><li>Play Store listing — install the APK from precifarm.com for now</li></ul>
+            </div>
+          </div>
+        </div>
+        <figure class="home-fig">
+          <img src="./ai-companion/pod-garage.png" alt="Precifarm Pod and Pulse in a Kenyan home garage" />
+          <figcaption>Size Pulse charger or Pod energy storage to your wall, feeder and parking — survey before quote.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="page">
+      
+    <header class="page-head">
+      <div class="brand">
+        <img src="./precifarm-logo-mark.svg" alt="" />
+        <div>
+          <span class="brand-word">PRECIFARM</span>
+          <span class="brand-sub">Install and FAQ</span>
+        </div>
+      </div>
+      <div class="doc-id">PF-AI-COMPANION-001 · Page 4 of 4</div>
+    </header>
+      <h2 class="sec-title">Install the APK from precifarm.com.</h2>
+      <p class="sec-lead">The Precifarm AI companion is not on the Play Store yet. Download is safe when it comes from precifarm.com. Package com.precifarm.mobile · v1.0.0.</p>
+
+      <div class="installs">
+      <article class="install">
+        <span>1</span>
+        <div>
+          <strong>Download</strong>
+          <p>Open precifarm.com/download and tap Get the AI companion.</p>
+        </div>
+      </article>
+      <article class="install">
+        <span>2</span>
+        <div>
+          <strong>Allow</strong>
+          <p>When prompted, allow downloads from your browser.</p>
+        </div>
+      </article>
+      <article class="install">
+        <span>3</span>
+        <div>
+          <strong>Open the file</strong>
+          <p>If Android blocks the install, go to Settings → Security and allow installs from your browser.</p>
+        </div>
+      </article>
+      <article class="install">
+        <span>4</span>
+        <div>
+          <strong>Install</strong>
+          <p>Tap Install, then open the Precifarm AI companion.</p>
+        </div>
+      </article></div>
+
+      <div class="spec-grid">
+        <div class="spec"><span>Name</span><strong>Precifarm AI companion</strong></div>
+        <div class="spec"><span>Package</span><strong>com.precifarm.mobile</strong></div>
+        <div class="spec"><span>Version</span><strong>1.0.0</strong></div>
+        <div class="spec"><span>Minimum OS</span><strong>Android 8.0+</strong></div>
+        <div class="spec"><span>File</span><strong>precifarm.apk</strong></div>
+        <div class="spec"><span>iOS / Play Store</span><strong>Not available yet</strong></div>
+        <div class="spec"><span>Payments</span><strong>M-Pesa · USSD · SMS</strong></div>
+        <div class="spec"><span>Web fallback</span><strong>precifarm.com/network</strong></div>
+      </div>
+
+      <h2 class="sec-title">Before you install.</h2>
+      <div class="faqs">
+      <article class="faq">
+        <h3>What is the Precifarm AI companion?</h3>
+        <p>It is Precifarm's Android companion for charging in Kenya. Use it to find a hub, size Pulse charger or Pod energy storage, and pay with M-Pesa. It is not a live chatbot.</p>
+      </article>
+      <article class="faq">
+        <h3>Is it on the Google Play Store?</h3>
+        <p>Not yet. Install the APK from precifarm.com/download. Allow installs from your browser if Android asks. iOS is not available yet.</p>
+      </article>
+      <article class="faq">
+        <h3>How do I pay in the companion?</h3>
+        <p>Charging sessions and Lipa Pole Pole instalments use M-Pesa. Session price, deposit, monthly and total are shown before you confirm. USSD and SMS work on phones without a bank account.</p>
+      </article>
+      <article class="faq">
+        <h3>Can I use Charging Hub without installing?</h3>
+        <p>Yes. Open Charging Hub on precifarm.com/network in your browser for the site list. Filters, directions and session pay live in the companion.</p>
+      </article></div>
+
+      <div class="cta">
+        <div>
+          <h2>Get the AI companion.</h2>
+          <p>Need charging without the install? Charging Hub and home surveys work in the browser. The companion adds filters, directions and M-Pesa on your phone.</p>
+        </div>
+        <div class="cta-meta">
+          <div><strong>APK</strong> https://precifarm.com/download</div>
+          <div><strong>Hub</strong> https://precifarm.com/network</div>
+          <div><strong>Sales</strong> sales@precifarm.com</div>
+          <div><strong>Phone</strong> +254 794 702 768 · Nairobi</div>
+        </div>
+      </div>
+      <p class="cover-note">
+        © 2026 Precifarm · PF-AI-COMPANION-001 v1.0 · 31 August 2026.
+        For driver and partner briefing. Not a substitute for a site survey, Kenya Power studies or statutory approvals.
+        Partner-network listings (EVChaja, ChargeNet and others) follow published Charging Hub copy — they are not a claim that every public plug in Kenya is Precifarm-operated.
+      </p>
+    </section>
+  </main>
+</body>
+</html>
