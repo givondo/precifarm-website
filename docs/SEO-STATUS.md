@@ -120,7 +120,7 @@ Remaining: hero image WebP conversion, font subsetting audit.
 1. Verify domain property in Google Search Console
 2. Submit `sitemap.xml` via `npm run seo:search-console`
 3. Fix www/non-www canonical at load balancer
-4. Request indexing for `/evs`, `/charging/private-house`, `/network`
+4. Request indexing for `/evs`, `/charging/home`, `/hub`
 5. Publish 3–5 CMS guides targeting home charging cost Kenya
 6. Publish Nairobi + Kisumu location pages via CMS
 7. Monitor `/api/seo/health` weekly
@@ -155,7 +155,7 @@ Remaining: hero image WebP conversion, font subsetting audit.
 | 1 | Search Console domain verification | **Pending** — add property at [Search Console](https://search.google.com/search-console/welcome). HTML tag: set `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` on Cloud Run and redeploy. DNS: TXT at Hostinger (recommended domain property). |
 | 2 | Submit sitemap | **Ready** — run `npm run seo:search-console` after step 1. Script fixed (gcloud auth). Enable `searchconsole.googleapis.com` on GCP. |
 | 3 | www → apex 301 | **Done** — `middleware.ts` deployed; `www.precifarm.com` returns 301 → `https://precifarm.com/` |
-| 4 | Request indexing for `/evs`, `/charging/private-house`, `/network` | **Script updated** — URL Inspection runs via API; manual “Request indexing” in Search Console UI still required for standard pages |
+| 4 | Request indexing for `/evs`, `/charging/home`, `/hub` | **Script updated** — URL Inspection runs via API; manual “Request indexing” in Search Console UI still required for standard pages |
 | 5 | Publish 3–5 CMS guides + weekly health monitor | **Content ready** — 5 guides added to `seed-seo.ts` (local seed OK). Production: run `scripts/seed-seo-production.ps1` after installing Cloud SQL Auth Proxy. Monitor: `npm run seo:health` |
 
 ## Deployment status

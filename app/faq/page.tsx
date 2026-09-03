@@ -104,7 +104,7 @@ export default async function FaqIndexPage() {
       <PageCTA
         title="Still have questions?"
         description="Request a house survey, get the AI companion, or reach us on phone, email and WhatsApp."
-        primaryHref="/charging/private-house"
+        primaryHref="/charging/home"
         primaryLabel="Home charging"
         secondaryHref="/download"
         secondaryLabel="AI companion"

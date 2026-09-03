@@ -7,8 +7,8 @@ $EncodedProperty = [uri]::EscapeDataString($Property)
 
 $priorityUrls = @(
   "https://precifarm.com/evs",
-  "https://precifarm.com/charging/private-house",
-  "https://precifarm.com/network",
+  "https://precifarm.com/charging/home",
+  "https://precifarm.com/hub",
   "https://precifarm.com/locations/ev-charging-nairobi",
   "https://precifarm.com/locations/ev-charging-kisumu",
   "https://precifarm.com/guides/home-ev-charging-cost-kenya",

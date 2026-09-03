@@ -10,15 +10,14 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import {
   modularEnergyNav,
   modularEnergyPage,
+  modularEnergyProductSlugs,
   modularEnergyProducts,
   type ModularEnergyProductSlug,
 } from "@/lib/modular-energy-page";
 import { pageJsonLd, pageMetadata } from "@/lib/seo/pages/helpers";
 
-const slugs = ["p1-go", "p2-home", "pod"] as const satisfies ModularEnergyProductSlug[];
-
 export function generateStaticParams() {
-  return slugs.map((slug) => ({ slug }));
+  return modularEnergyProductSlugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -27,7 +26,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  if (!slugs.includes(slug as ModularEnergyProductSlug)) return {};
+  if (!modularEnergyProductSlugs.includes(slug as ModularEnergyProductSlug)) return {};
   return pageMetadata(`/charging/modular-energy/${slug}`);
 }
 
@@ -37,8 +36,12 @@ export default async function ModularEnergyProductPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  if (!slugs.includes(slug as ModularEnergyProductSlug)) notFound();
+  if (!modularEnergyProductSlugs.includes(slug as ModularEnergyProductSlug)) notFound();
   const product = modularEnergyProducts[slug as ModularEnergyProductSlug];
+  const relatedLinks = [
+    ...modularEnergyNav.products.filter((item) => item.slug !== slug),
+    modularEnergyNav.megapack,
+  ];
 
   return (
     <>
@@ -49,7 +52,7 @@ export default async function ModularEnergyProductPage({
         description={product.description}
         breadcrumbs={[
           { name: "Home", href: "/" },
-          { name: "Modular energy", href: "/charging/modular-energy" },
+          { name: "Modular energy", href: modularEnergyNav.overview.href },
           { name: product.name, href: `/charging/modular-energy/${slug}` },
         ]}
       >
@@ -95,16 +98,14 @@ export default async function ModularEnergyProductPage({
           <SpecTable columns={product.useColumns} rows={product.uses} />
           <p className="mt-6 text-sm text-forest-500">
             Also see{" "}
-            {modularEnergyNav.products
-              .filter((item) => item.slug !== slug)
-              .map((item, i, arr) => (
-                <span key={item.href}>
-                  <Link href={item.href} className="font-medium text-forest-900 hover:text-charge-700">
-                    {item.label}
-                  </Link>
-                  {i < arr.length - 1 ? " · " : ""}
-                </span>
-              ))}
+            {relatedLinks.map((item, i, arr) => (
+              <span key={item.href}>
+                <Link href={item.href} className="font-medium text-forest-900 hover:text-charge-700">
+                  {item.label}
+                </Link>
+                {i < arr.length - 1 ? " · " : ""}
+              </span>
+            ))}
             .
           </p>
         </div>

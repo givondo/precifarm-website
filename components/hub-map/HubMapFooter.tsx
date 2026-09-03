@@ -10,6 +10,7 @@ export default function HubMapFooter() {
         <span className="hub-map-footer-live-label">{LIVE_ROUTE_LABEL}</span>
         <span className="hub-map-footer-live-badge">Live DC</span>
       </div>
+      <p className="hub-map-footer-note">Bay counts are a demonstration — not live telemetry.</p>
 
       <div className="hub-map-footer-legend" aria-label="Map legend">
         <span className="hub-map-footer-legend-item">

@@ -8,30 +8,32 @@ Read relevant guides in `node_modules/next/dist/docs/` before changing framework
 
 ## Read first
 
-**Passenger booking work:** [`../agents/passenger-booking/AGENTS.md`](../agents/passenger-booking/AGENTS.md)
-
-**Business rules:** [`../docs/CANON.md`](../docs/CANON.md)
+**Business rules:** [`../docs/CANON.md`](../docs/CANON.md) — EV charging + modular energy.
 
 **UI system:** [`docs/UI.md`](docs/UI.md)
 
+**Pivot inventory:** [`docs/PIVOT-CLEANUP.md`](docs/PIVOT-CLEANUP.md)
+
+Passenger-booking agent docs are **archived**. Do not restore `/book`, seat maps or booking APIs as live product.
+
 ## Scope
 
-Maintain Nairobi–Kisumu passenger booking:
+Maintain the public charging site:
 
-```text
-search → seats → passenger details → M-Pesa → PF confirmation
-```
-
-**Also maintained (marketing/education — not booking agent scope):** `/training`, `/charging/private-house`, CMS-backed `/guides`, `/faq`, `/locations`. These are public surfaces; product status is in [Canon](../docs/CANON.md).
-
-Do not add cargo, financing, or multiple routes without explicit instruction.
+- Charging Hub (`/hub`)
+- Home / fleet / highway products (`/charging`, `/charging/home`)
+- Modular energy conceptual pages
+- AI companion (`/download`)
+- Training, partners, SEO surfaces
 
 ## Source of truth
 
-- CMS mode: shared inventory through `CMS_API_URL`.
-- Demo mode: in-memory only; never describe as persistent.
-- Do not create a second production seat store.
-- Do not bypass CMS reconciliation flows.
+- Copy: `lib/brand-messaging.ts`, `lib/charging-hub.ts`, `lib/download-page.ts`, `lib/home-charging.ts`
+- CMS: SEO, contact, analytics when `CMS_API_URL` is set
+- Demo stores are not traction
+- Live vs planned hubs stay honest
+- Modular energy is not on sale
+- AI companion is not a chatbot
 
 ## Key files
 
@@ -39,37 +41,28 @@ Do not add cargo, financing, or multiple routes without explicit instruction.
 |---|---|
 | Layout + fonts | `app/layout.tsx` |
 | Design tokens | `app/globals.css` |
-| Hero + booking section | `components/BookingCTA.tsx` |
-| Booking wizard | `components/BookingPortal.tsx` |
-| Seats | `components/SeatMap.tsx` |
+| Homepage | `app/page.tsx`, `lib/brand-messaging.ts` |
+| Charging Hub | `lib/charging-hub.ts`, `lib/hub-locations.ts` |
+| AI companion | `app/download/`, `lib/download-page.ts` |
+| Home charging | `lib/home-charging.ts` |
 | Navigation | `components/Header.tsx` |
-| UI primitives | `components/ui/{Button,Input,Badge,StepIndicator,...}.tsx` |
-| API proxy | `app/api/{booking,payment,seats}/route.ts` |
 | CMS client | `lib/cms.ts` |
-| Validation | `lib/booking.ts` |
-| Demo | `lib/booking-store.ts` |
-| Route | `lib/route.ts` |
-
-## UI conventions
-
-- Headings: `.heading-display` (Plus Jakarta Sans)
-- Forms: `Input` / `.field-input`, actions: `Button`
-- Booking card: `.card-elevated`
-- Reuse `components/ui/*` — avoid one-off button/input Tailwind strings
+| SEO | `lib/seo/` |
 
 ## Copy
 
-- Route, not corridor
-- Book Now
-- Nairobi–Kisumu only
+- From home charging to highway charging
+- Full product names (Pulse charger, Pod energy storage, …)
+- Open Charging Hub — not Book Now
+- Nairobi–Kisumu is the first Corridor, not a live passenger timetable
 - Planning assumptions are not traction
 
 ## Deploy
 
-Production: **Google Cloud Run** (`europe-west1`). See [`docs/DEPLOY-GCP.md`](docs/DEPLOY-GCP.md). Netlify/Vercel deprecated.
+Production: **Google Cloud Run** (`europe-west1`). See [`docs/DEPLOY-GCP.md`](docs/DEPLOY-GCP.md).
 
-**Secrets:** copy [`.env.example`](.env.example) → `.env.local`; never commit credentials. See [`docs/infrastructure/environment.md`](../docs/infrastructure/environment.md).
+**Secrets:** copy [`.env.example`](.env.example) → `.env.local`. See [`docs/infrastructure/environment.md`](../docs/infrastructure/environment.md).
 
 ## Required checks
 
-Run lint and build. Test booking in demo and CMS mode when available. Confirm sold seats cannot be selected twice.
+Run lint and build. Confirm `/book` still redirects to `/charging`. Confirm `/download` does not claim a chatbot, Play Store or iOS.

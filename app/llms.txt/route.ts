@@ -29,9 +29,9 @@ Lipa Pole Pole is M-Pesa financing for Pulse charger and Pod energy storage, not
 
 ## Primary pages
 - Home: ${siteConfig.url}/
-- Charging Hub: ${siteConfig.url}/network
+- Charging Hub: ${siteConfig.url}/hub
 - Charging: ${siteConfig.url}/charging
-- Home charging: ${siteConfig.url}/charging/private-house
+- Home charging: ${siteConfig.url}/charging/home
 - Kenya EV guide: ${siteConfig.url}/evs
 - Engineering package: ${siteConfig.url}/charging/engineering
 - Partners: ${siteConfig.url}/partners

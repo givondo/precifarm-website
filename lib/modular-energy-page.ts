@@ -1,13 +1,31 @@
 /** Modular energy — overview tables and product pages */
 
+export const modularEnergyPaths = {
+  overview: "/charging/modular-energy",
+  p1Go: "/charging/modular-energy/p1-go",
+  p2Home: "/charging/modular-energy/p2-home",
+  pod: "/charging/modular-energy/pod",
+  megapack: "/charging/modular-energy/megapack",
+} as const;
+
+export type ModularEnergyProductSlug = "p1-go" | "p2-home" | "pod";
+
+/** Handled by app/charging/modular-energy/[slug]/page.tsx */
+export const modularEnergyProductSlugs = ["p1-go", "p2-home", "pod"] as const satisfies readonly ModularEnergyProductSlug[];
+
 export const modularEnergyNav = {
   title: "Modular energy",
-  overview: { href: "/charging/modular-energy", label: "Platform overview" },
+  overview: { href: modularEnergyPaths.overview, label: "Platform overview" },
   products: [
-    { href: "/charging/modular-energy/p1-go", label: "P1 Go", slug: "p1-go" },
-    { href: "/charging/modular-energy/p2-home", label: "P2 Home", slug: "p2-home" },
-    { href: "/charging/modular-energy/pod", label: "Pod enclosure", slug: "pod" },
+    { href: modularEnergyPaths.p1Go, label: "P1 Go", slug: "p1-go" as const },
+    { href: modularEnergyPaths.p2Home, label: "P2 Home", slug: "p2-home" as const },
+    { href: modularEnergyPaths.pod, label: "Pod enclosure", slug: "pod" as const },
   ],
+  megapack: {
+    href: modularEnergyPaths.megapack,
+    label: "MegaPack",
+    description: "Project-engineered BESS",
+  },
 } as const;
 
 export const modularEnergyPage = {
@@ -17,7 +35,7 @@ export const modularEnergyPage = {
     description:
       "A 2.56 kWh Energy Module you can carry, roll into a home tower, or stack in a shop. Same design language as Pulse and Corridor. Conceptual — not on sale yet.",
     primaryCta: { href: "/contact", label: "Talk to us about energy" },
-    secondaryCta: { href: "/charging/private-house", label: "Home charging today" },
+    secondaryCta: { href: "/charging/home", label: "Home charging today" },
     note: "Design targets and renders show intent, not a certified product.",
     image: {
       src: "/images/modular-energy/render-family-hero.png",
@@ -26,37 +44,45 @@ export const modularEnergyPage = {
   },
   familyTable: {
     eyebrow: "Family",
-    title: "Four pieces, one platform.",
-    caption: "Links open the product pages. Energy Module is the shared block inside each SKU.",
+    title: "From a handle to an energy plant.",
+    caption:
+      "P1 Go, P2 Home and the Pod enclosure share the Energy Module. MegaPack is a separate project-engineered BESS platform — not a stacked P1 SKU. All modular-energy pages are conceptual.",
     columns: ["Product", "Role", "Scale", "Best for"] as const,
     rows: [
       {
-        href: "/charging/modular-energy/p1-go",
+        href: modularEnergyPaths.p1Go,
         name: "P1 Go",
         role: "Portable backup",
         scale: "~1 kWh carry",
         bestFor: "Essentials off-grid — foldable solar in the box",
       },
       {
-        href: "/charging/modular-energy",
+        href: modularEnergyPaths.overview,
         name: "Energy Module",
         role: "Capacity block",
         scale: "2.56 kWh",
         bestFor: "The brick repeated from P1 through Pod",
       },
       {
-        href: "/charging/modular-energy/p2-home",
+        href: modularEnergyPaths.p2Home,
         name: "P2 Home",
         role: "Home tower",
         scale: "1–4 modules",
         bestFor: "Nairobi utility room, essential-load sub-board",
       },
       {
-        href: "/charging/modular-energy/pod",
+        href: modularEnergyPaths.pod,
         name: "Pod enclosure",
         role: "Shop / outdoor",
         scale: "2–6 modules",
         bestFor: "SME fridge, till and rooftop PV",
+      },
+      {
+        href: modularEnergyPaths.megapack,
+        name: "MegaPack",
+        role: "Project-engineered BESS",
+        scale: "Industrial to utility",
+        bestFor: "C&I, solar + storage, EV hubs, grid-connected plants",
       },
     ],
   },
@@ -68,6 +94,7 @@ export const modularEnergyPage = {
       ["Urban home", "P2 beside the consumer board", "Lights, router, TV, fan, security"],
       ["SME retail", "Wall-shaded Pod on a plinth", "Fridge, till, lights"],
       ["Solar + EV", "Pod or P2 + Pulse charger", "Household loop and solar surplus into the car"],
+      ["Charging hub / industrial", "MegaPack — project-engineered BESS", "Peak support and solar shifting, where specified"],
     ],
   },
   targetsTable: {
@@ -90,7 +117,7 @@ export const modularEnergyPage = {
     rows: [
       ["Pulse · 7 kW wallbox", "Daily EV charging on your meter. Add P2 or Pod for backup and solar self-use."],
       ["Spark · 3.3 kW portable", "Boot charger. P1 Go is backup with foldable solar in the box — not a Spark replacement."],
-      ["Corridor / Depot", "Public and fleet DC/AC. Modular energy is the home and shop layer, not the highway post."],
+      ["Corridor / Depot", "Public and fleet DC/AC. Modular energy is the home and shop layer; MegaPack is the project-engineered BESS for hubs that need storage."],
     ],
   },
   cta: {
@@ -99,12 +126,10 @@ export const modularEnergyPage = {
       "Tell us how you use power. We will say what we can install now — Pulse, storage, solar — and what is still on this platform roadmap.",
     primaryHref: "/contact",
     primaryLabel: "Contact Precifarm",
-    secondaryHref: "/charging/private-house",
+    secondaryHref: "/charging/home",
     secondaryLabel: "Request a house survey",
   },
 } as const;
-
-export type ModularEnergyProductSlug = "p1-go" | "p2-home" | "pod";
 
 export const modularEnergyProducts: Record<
   ModularEnergyProductSlug,

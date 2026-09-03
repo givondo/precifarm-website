@@ -18,7 +18,7 @@ type ChargingFaq = FaqItem & { id: string };
 export const chargingHubFaq: ChargingFaq = {
   id: "charging-hub",
   question: "What is the Charging Hub?",
-  answer: `The Charging Hub at precifarm.com/network is Precifarm's map of DC fast chargers, Boda Hub battery swap stations, partner sites and planned corridor locations across Kenya. Open it on the web or in the AI companion. Live sites are labelled live; planned sites stay labelled planned.`,
+  answer: `The Charging Hub at precifarm.com/hub is Precifarm's map of DC fast chargers, Boda Hub battery swap stations, partner sites and planned corridor locations across Kenya. Open it on the web or in the AI companion. Live sites are labelled live; planned sites stay labelled planned.`,
 };
 
 function pickFaqs(ids: readonly string[], pool: ChargingFaq[]): FaqItem[] {
@@ -66,7 +66,7 @@ export const consumerChargingFaqs: ChargingFaq[] = [
     id: "get-home-charger",
     question: "How do I get a home charger?",
     answer:
-      "Visit precifarm.com/charging/private-house or open the Precifarm AI companion, request a Pulse charger or Pod energy storage survey, and pay the deposit via M-Pesa. Certified installation and commissioning typically take one day after survey approval. Three-year aftersale care is included on every home unit.",
+      "Visit precifarm.com/charging/home or open the Precifarm AI companion, request a Pulse charger or Pod energy storage survey, and pay the deposit via M-Pesa. Certified installation and commissioning typically take one day after survey approval. Three-year aftersale care is included on every home unit.",
   },
   {
     id: "house-installation-includes",
@@ -113,7 +113,7 @@ export const consumerChargingFaqs: ChargingFaq[] = [
   {
     id: "public-locations",
     question: "Where are Precifarm public chargers?",
-    answer: `See the ${chargingHub.name} at precifarm.com/network for Precifarm hubs and partner networks including EVChaja and ChargeNet across Kenya.`,
+    answer: `See the ${chargingHub.name} at precifarm.com/hub for Precifarm hubs and partner sites including EVChaja and ChargeNet across Kenya.`,
   },
   {
     id: "what-is-precifarm",
@@ -221,6 +221,11 @@ export const reservedWindowFaq: FaqItem = {
 export const chargingServicesFaqs: FaqItem[] = pickFaqs(
   ["home-day-cost", "pulse-price", "pay-public", "ai-companion", "lipa-pole-pole"],
   consumerChargingFaqs,
+);
+
+export const hubPageFaqs: FaqItem[] = pickFaqs(
+  ["charging-hub", "public-locations", "pay-public", "boda-hub", "ai-companion"],
+  chargingFaqPool,
 );
 
 export const hubEngineeringFaqs: FaqItem[] = [

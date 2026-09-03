@@ -139,7 +139,7 @@ export default function PartnersPage() {
             charging
           </Link>{" "}
           and live sites on the{" "}
-          <Link href="/network" className="text-link font-semibold">
+          <Link href="/hub" className="text-link font-semibold">
             Charging Hub
           </Link>
           .

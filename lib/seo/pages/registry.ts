@@ -7,6 +7,7 @@ import { engineeringPageFaqs } from "@/lib/engineering-page";
 import { trainingPageFaqs } from "@/lib/training-page";
 import { chargingHub } from "@/lib/charging-hub";
 import { downloadPageFaqs } from "@/lib/download-page";
+import { megapackFaqs } from "@/lib/megapack-page";
 import { homepageAisoBlocks } from "@/lib/seo/aiso/blocks";
 import { defaultSiteTitle } from "@/lib/seo/config";
 import type { PageSeoInput } from "@/lib/seo/types";
@@ -42,7 +43,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
       {
         question: "How do I find EV chargers in Kenya?",
         answer:
-          "Get the Precifarm AI companion and open Charging Hub. Filter Corridor DC, Boda Hub swap or partner sites, get directions and pay with M-Pesa — live and planned sites are labelled honestly.",
+          "Open Charging Hub at precifarm.com/hub. Filter Corridor DC, Boda Hub swap or partner sites. Live sites are labelled live. Session pay is in the AI companion.",
       },
       {
         question: "Can I pay for EV charging with M-Pesa?",
@@ -73,7 +74,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
     ],
   },
   {
-    path: "/charging/private-house",
+    path: "/charging/home",
     title: "Home EV Charging in Kenya",
     description:
       "Home EV charger installation in Kenya — Pulse charger from KES 79,000, Pod energy storage, Lipa Pole Pole from KES 3,300/month on M-Pesa. Survey and three-year Precifarm aftersale support.",
@@ -87,7 +88,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
     breadcrumbs: [
       { name: "Home", href: "/" },
       { name: "Charging", href: "/charging" },
-      { name: "Home charging", href: "/charging/private-house" },
+      { name: "Home charging", href: "/charging/home" },
     ],
   },
   {
@@ -158,6 +159,31 @@ export const pageSeoRegistry: PageSeoInput[] = [
       { name: "Home", href: "/" },
       { name: "Modular energy", href: "/charging/modular-energy" },
       { name: "Pod enclosure", href: "/charging/modular-energy/pod" },
+    ],
+  },
+  {
+    path: "/charging/modular-energy/megapack",
+    title: "MegaPack | Project-Engineered BESS Kenya",
+    description:
+      "Precifarm MegaPack is project-engineered battery storage in Kenya — from industrial sites and EV charging hubs to grid-connected utility plants. Sized per site, not sold as a catalogue SKU.",
+    keywords: [
+      "battery energy storage Kenya",
+      "BESS Kenya",
+      "utility-scale battery storage Kenya",
+      "commercial battery storage Kenya",
+      "industrial energy storage Kenya",
+      "solar battery storage Kenya",
+      "EV charging battery storage Kenya",
+      "grid-scale BESS Africa",
+      "renewable energy storage Kenya",
+      "Precifarm MegaPack",
+    ],
+    ogImage: "/images/megapack-hero.png",
+    faqs: [...megapackFaqs],
+    breadcrumbs: [
+      { name: "Home", href: "/" },
+      { name: "Modular energy", href: "/charging/modular-energy" },
+      { name: "MegaPack", href: "/charging/modular-energy/megapack" },
     ],
   },
   {
@@ -295,7 +321,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
       {
         question: "How do I request a home EV charger in Kenya?",
         answer:
-          "Visit precifarm.com/charging/private-house, open the Precifarm AI companion, or contact Precifarm to request a Pulse charger or Pod energy storage survey. Lipa Pole Pole instalments are available on M-Pesa.",
+          "Visit precifarm.com/charging/home, open the Precifarm AI companion, or contact Precifarm to request a Pulse charger or Pod energy storage survey. Lipa Pole Pole instalments are available on M-Pesa.",
       },
     ],
     breadcrumbs: [

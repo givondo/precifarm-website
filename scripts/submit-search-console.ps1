@@ -123,8 +123,8 @@ try {
 # Step 4 - priority URLs (includes /evs from SEO roadmap)
 $priorityUrls = @(
   "https://precifarm.com/evs",
-  "https://precifarm.com/charging/private-house",
-  "https://precifarm.com/network",
+  "https://precifarm.com/charging/home",
+  "https://precifarm.com/hub",
   "https://precifarm.com/",
   "https://precifarm.com/guides",
   "https://precifarm.com/training"

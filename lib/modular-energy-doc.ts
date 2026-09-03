@@ -87,7 +87,7 @@ export const modularEnergyDoc = {
   ],
   related: [
     { href: "/charging", label: "Charging services" },
-    { href: "/charging/private-house", label: "Private house charging" },
+    { href: "/charging/home", label: "Home charging" },
     { href: "/charging/engineering", label: "Solar hub engineering" },
     { href: "/contact", label: "Partner inquiry" },
   ],

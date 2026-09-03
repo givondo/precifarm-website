@@ -15,10 +15,10 @@ const links = [
     cta: "Explore charging",
   },
   {
-    title: "Charge map",
-    text: "See hub locations, live route coverage and expansion targets.",
-    href: "/network",
-    cta: "View network",
+    title: "Charging Hub",
+    text: "See hub locations, live corridor coverage and expansion targets.",
+    href: "/hub",
+    cta: "Open Charging Hub",
   },
 ];
 

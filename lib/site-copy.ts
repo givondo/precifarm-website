@@ -9,10 +9,10 @@ export const sitePricing = {
 } as const;
 
 export const siteCtas = {
-  homeSurvey: { href: "/charging/private-house", label: "Request a house survey" },
-  homeCharging: { href: "/charging/private-house", label: "Explore home charging" },
+  homeSurvey: { href: "/charging/home", label: "Request a house survey" },
+  homeCharging: { href: "/charging/home", label: "Explore home charging" },
   fleetCharging: { href: "/partners", label: "Explore fleet charging" },
-  chargingHub: { href: "/network", label: "Find a charging hub" },
+  chargingHub: { href: "/hub", label: "Find a charging hub" },
   exploreCharging: { href: "/charging", label: "Explore charging" },
   allFaq: { href: "/faq", label: "All FAQ" },
   partners: { href: "/partners", label: "Fleet & partners" },

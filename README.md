@@ -1,12 +1,14 @@
-# PreciFarm Website
+# Precifarm Website
 
-Public passenger-booking channel for Nairobi–Kisumu.
+Public EV charging and modular-energy site for Kenya.
 
-**Production:** `https://precifarm.com` · `https://precifarm.com/#book`
+**Production:** `https://precifarm.com`
 
-**Core job:** publish departures, reserve seats, collect passenger details, initiate M-Pesa, and issue `PF-XXXXXX`.
+**Core job:** Charging Hub, home/fleet/highway products, Pulse/Pod surveys, AI companion APK, conceptual modular energy, training.
 
 **Stack:** Next.js 16 · React 19 · TypeScript · Tailwind CSS 4 · Plus Jakarta Sans (headings) · Geist Sans (body)
+
+Passenger booking was **removed** (31 August 2026). `/book` redirects to `/charging`.
 
 ## Start
 
@@ -16,56 +18,35 @@ npm install
 npm run dev
 ```
 
-Open <http://localhost:3000/#book>.
+Open <http://localhost:3000>.
 
 **Environment:** copy [`.env.example`](./.env.example) → `.env.local`. Full reference: [`docs/infrastructure/environment.md`](../docs/infrastructure/environment.md).
-
-## Passenger flow
-
-```text
-search → seat map → passenger details → M-Pesa → confirmation
-```
-
-Required passenger data: name, phone, National ID/passport.
-
-## Source of truth
-
-| Mode | Configuration | Use |
-|---|---|---|
-| CMS | `CMS_API_URL=http://localhost:3002/api` | Shared inventory with mobile and agent desk |
-| Demo | `CMS_API_URL` unset | In-memory store; resets on restart |
-
-CMS mode is required for shared or production-like testing.
-
-Production non-secret URLs are set on Cloud Run; secrets live in Secret Manager — see [environment.md](../docs/infrastructure/environment.md).
 
 ## Public routes
 
 | Route | Purpose |
 |---|---|
-| `/`, `/#book` | Home + booking |
-| `/training` | EV charging certification (T1–T3) |
-| `/charging`, `/charging/private-house` | Charging services + house-based private charging |
-| `/network` | Charge map |
-| `/guides`, `/faq`, `/locations` | CMS-backed SEO content (ISR) |
-| `/sw` | Kiswahili locale |
-| `/partners`, `/about`, `/contact`, `/careers`, `/download` | Marketing |
+| `/` | Home — charging + energy |
+| `/hub` | Charging Hub |
+| `/charging`, `/charging/home` | Products + home survey |
+| `/charging/modular-energy` | P1 Go / P2 Home / Pod enclosure / MegaPack (conceptual) |
+| `/charging/modular-energy/megapack` | MegaPack — project-engineered BESS (industrial to utility-scale) |
+| `/charging/engineering` | Design package PDF |
+| `/download` | AI companion APK + product sheet |
+| `/training` | T1–T3 |
+| `/evs`, `/guides`, `/faq`, `/locations` | SEO |
+| `/partners`, `/about`, `/contact`, `/careers` | Company / GTM |
 
-Full map: [Website channel doc](../docs/channels/website.md).
+Full map: [Website channel doc](../docs/channels/website.md) · [Pivot cleanup](./docs/PIVOT-CLEANUP.md).
 
 ## API routes
 
 | Route | Purpose |
 |---|---|
-| `GET /api/seats` | Seat availability |
-| `POST /api/booking` | Passenger booking |
-| `POST /api/payment` | M-Pesa initiation |
 | `POST /api/contact` | Contact form → CMS |
 | `POST /api/analytics/events` | Analytics proxy |
 | `GET /api/search` | CMS semantic search |
 | `GET /api/cms/health` | CMS connectivity |
-
-Booking routes proxy to CMS when `CMS_API_URL` is set.
 
 ## Key files
 
@@ -74,44 +55,29 @@ Booking routes proxy to CMS when `CMS_API_URL` is set.
 | Layout + fonts | `app/layout.tsx` |
 | Global styles / tokens | `app/globals.css` |
 | Homepage | `app/page.tsx` |
-| Booking | `components/BookingPortal.tsx`, `components/SeatMap.tsx` |
-| Training | `app/training/`, `lib/training.ts` |
-| Private house charging | `app/charging/private-house/`, `lib/home-charging.ts` |
+| Canonical copy | `lib/brand-messaging.ts` |
+| Charging Hub | `lib/charging-hub.ts`, `lib/hub-locations.ts` |
+| AI companion | `lib/download-page.ts`, `app/download/` |
+| Private house charging | `lib/home-charging.ts` |
+| Modular energy | `lib/modular-energy-page.ts` |
 | SEO | `lib/seo/`, `components/seo/` |
-| Analytics | `lib/analytics.ts`, `components/AnalyticsProvider.tsx` |
-| CMS client | `lib/cms.ts`, `lib/seo/cms-client.ts` |
-
-## Environment
-
-Copy [`.env.example`](./.env.example) → `.env.local`. **Do not commit `.env.local`.**
-
-| Variable | Purpose |
-|---|---|
-| `NEXT_PUBLIC_SITE_URL` | Canonical URL (SEO) |
-| `CMS_API_URL` | CMS base URL |
-| `DEMO_PAYMENT` | Demo vs live STK (website-only mode) |
-| `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` | Maps on `/network` (optional) |
-| `ANALYTICS_INGEST_KEY` | Analytics proxy key (must match CMS) |
-| `ANDROID_APP_SHA256` | Android App Links fingerprint |
-| `MPESA_*` | Daraja — **only when CMS is unset** |
-
-Full list and GCP Secret Manager mapping: [`docs/infrastructure/environment.md`](../docs/infrastructure/environment.md).
+| Analytics | `lib/analytics.ts` |
 
 ## Copy rules
 
-- Use **route**, not corridor.
-- Current route: **Nairobi–Kisumu**.
-- CTA: **Book Now**.
-- Do not present planning fares or departures as traction.
-- Do not expose gated expansion as current product.
+- **From home charging to highway charging.**
+- Full product names: Pulse charger, Pod energy storage, Spark charger, Corridor charging.
+- AI companion is **not a chatbot**.
+- Live vs planned hubs stay honest.
+- Modular energy is **conceptual, not on sale**. Pod enclosure ≠ Pod energy storage.
+- Do not present booking, seat maps or uncommissioned bus windows as live product.
+- Do not mention BYD on homepage or product pages.
 
 ## Status
 
-**Actual:** booking UI (2026-07 refresh), seat inventory, API routes, demo store, CMS proxy, M-Pesa hooks, GCP Cloud Run deploy.
+**Actual:** charging site, Charging Hub, AI companion page, Cloud Run at precifarm.com.
 
-**In progress:** custom domain SSL (`precifarm.com`), CMS Cloud SQL migrations.
-
-**Not proven:** paid production volume, conversion, live SMS delivery, shared production inventory, payment success.
+**Not proven as traction:** paid installs, public session volume.
 
 ## Commands
 
@@ -119,23 +85,21 @@ Full list and GCP Secret Manager mapping: [`docs/infrastructure/environment.md`]
 npm run lint
 npm run build
 npm run start
+npm run pdf:ai-companion
 ```
 
 ## Deploy
 
-Production hosting is **Google Cloud Run** (`europe-west1`). See [DEPLOY-GCP.md](./docs/DEPLOY-GCP.md).
+Google Cloud Run (`europe-west1`). See [DEPLOY-GCP.md](./docs/DEPLOY-GCP.md).
 
 ```powershell
 gcloud builds submit --config cloudbuild.yaml
 ```
 
-Netlify and Vercel are **deprecated**.
-
 ## Documentation
 
 - [Deploy to Google Cloud](./docs/DEPLOY-GCP.md)
-- [Workflows](../docs/infrastructure/workflows.md)
-- [Database / Supabase](../docs/infrastructure/database.md)
+- [Website Channel](../docs/channels/website.md)
+- [Canon](../docs/CANON.md)
 - [SEO architecture](./docs/SEO-AISO-ARCHITECTURE.md)
 - [UI design system](./docs/UI.md)
-- [Website Channel](../docs/channels/website.md)

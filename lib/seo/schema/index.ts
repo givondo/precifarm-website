@@ -119,12 +119,12 @@ export function softwareApplicationSchema(): JsonLd {
     potentialAction: [
       {
         "@type": "ViewAction",
-        target: absoluteUrl("/network"),
+        target: absoluteUrl("/hub"),
         name: "Open Charging Hub",
       },
       {
         "@type": "ViewAction",
-        target: absoluteUrl("/charging/private-house"),
+        target: absoluteUrl("/charging/home"),
         name: "Request home charging",
       },
       {

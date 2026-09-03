@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en-KE">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Precifarm — Modular Energy Storage · Product &amp; Engineering Design</title>
+  <meta name="description" content="Precifarm modular energy platform: P1 Go, P2 Home, Energy Module, Pod and Energy OS — product design and engineering design basis." />
+  <link rel="stylesheet" href="./precifarm-document-brand.css" />
+  <style>
+    :root {
+      --ink: var(--pf-ink, #0a0a0a);
+      --muted: var(--pf-muted, #404040);
+      --line: var(--pf-line, #e5e5e5);
+      --bg: var(--pf-bg, #ffffff);
+      --soft: var(--pf-soft, #f5f5f5);
+      --blue: var(--pf-charge, #2563eb);
+      --blue-soft: var(--pf-charge-soft, #eff6ff);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      line-height: 1.55;
+      font-size: 14px;
+    }
+    .sheet { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+    .toolbar {
+      position: sticky; top: 0; z-index: 10;
+      display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; justify-content: space-between;
+      padding: 0.85rem 1.25rem; background: rgba(255,255,255,0.96);
+      border-bottom: 1px solid var(--line); backdrop-filter: blur(8px);
+    }
+    .toolbar a, .toolbar button {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      border-radius: 999px; padding: 0.55rem 1rem; font-size: 0.875rem; font-weight: 600;
+      text-decoration: none; border: 1px solid var(--line); background: #fff; color: var(--ink); cursor: pointer;
+    }
+    .toolbar .primary { background: var(--blue); border-color: var(--blue); color: #fff; }
+    h1 { font-size: clamp(1.6rem, 3vw, 2.1rem); line-height: 1.2; letter-spacing: -0.02em; margin: 0 0 0.5rem; }
+    h2 { font-size: 1.2rem; margin: 2rem 0 0.65rem; padding-top: 0.5rem; border-top: 1px solid var(--line); }
+    h3 { font-size: 1.05rem; margin: 1.35rem 0 0.45rem; }
+    h4 { font-size: 0.98rem; margin: 1rem 0 0.35rem; }
+    p, li { color: var(--muted); }
+    .meta {
+      display: grid; gap: 0.35rem; margin: 1rem 0 1.5rem; padding: 1rem;
+      background: var(--soft); border-radius: 12px; font-size: 0.9rem;
+    }
+    .meta strong { color: var(--ink); }
+    .callout {
+      border-left: 4px solid var(--blue); background: var(--blue-soft);
+      padding: 0.9rem 1rem; border-radius: 0 10px 10px 0; margin: 1rem 0; color: var(--ink);
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin: 0.75rem 0 1.25rem; }
+    th, td { border: 1px solid var(--line); padding: 0.5rem 0.6rem; text-align: left; vertical-align: top; }
+    th { background: var(--soft); color: var(--ink); }
+    code { font-family: ui-monospace, Consolas, monospace; font-size: 0.86em; }
+    .flow {
+      background: #0a0a0a; color: #e5e5e5; padding: 0.85rem 1rem; border-radius: 12px;
+      overflow-x: auto; font-family: ui-monospace, Consolas, monospace;
+      font-size: 0.72rem; line-height: 1.4; white-space: pre; margin: 0.75rem 0 1rem;
+    }
+    .phase {
+      display: inline-block; font-size: 0.75rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.04em; color: var(--blue); margin-bottom: 0.25rem;
+    }
+    .part-ii { break-before: page; page-break-before: always; padding-top: 0.5rem; }
+    .cover-tagline { font-size: 1.05rem; color: var(--ink); margin-top: 0; max-width: 42rem; }
+    .footnote { font-size: 0.85rem; font-style: italic; color: var(--muted); }
+    footer.doc-foot {
+      margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid var(--line);
+      font-size: 0.85rem; color: var(--muted);
+    }
+    @media print {
+      .toolbar { display: none !important; }
+      .sheet { padding: 0; max-width: none; }
+      a { color: inherit; text-decoration: none; }
+      .part-ii { break-before: page; }
+      h2 { break-after: avoid; }
+      table, .flow { break-inside: avoid; }
+    }
+    @page { size: A4; margin: 12mm; }
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  </style>
+</head>
+<body>
+  <div class="toolbar no-print pf-doc-toolbar">
+    <div class="pf-doc-toolbar-brand">
+      <img src="./precifarm-logo-mark.svg" alt="" width="24" height="24" />
+      <span class="mono">PF-MODENERGY-001 · v1.0</span>
+    </div>
+    <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
+      <button type="button" class="primary" onclick="window.print()">Print</button>
+      <a class="primary" href="./precifarm-modular-energy-storage.pdf" download>Download PDF</a>
+      <a href="./precifarm-modular-energy-storage.html" download>Download HTML</a>
+      <a href="/charging">Back to charging</a>
+    </div>
+  </div>
+
+  <main class="sheet">
+    <header class="pf-doc-header">
+      <div class="pf-doc-brand">
+        <img src="./precifarm-logo-mark.svg" alt="" width="40" height="40" class="pf-doc-mark" />
+        <div class="pf-doc-brand-text">
+          <p class="pf-doc-wordmark">Precifarm</p>
+          <p class="pf-doc-brand-tagline">Modular energy storage for Africa</p>
+        </div>
+      </div>
+      <p class="pf-doc-header-id">PF-MODENERGY-001 · v1.0</p>
+    </header>
+
+    <p class="phase">Energy storage · Product &amp; engineering</p>
+    <h1>Modular Energy Storage</h1>
+    <p class="cover-tagline">One architecture from portable power to home energy — P1 Go, P2 Home, Energy Module, Pod and Energy OS. Tesla-grade experience integration. BYD-grade module repetition.</p>
+
+    <div class="meta">
+      <div><strong>Document ID:</strong> PF-MODENERGY-001</div>
+      <div><strong>Version:</strong> 1.0 · 30 August 2026</div>
+      <div><strong>Status:</strong> Product design foundation + engineering design basis (not issued-for-construction)</div>
+      <div><strong>Contents:</strong> Part I Product Design · Part II Engineering Design (Tesla/BYD architecture motivation)</div>
+    </div>
+
+    <div class="callout">
+      <strong>Design principle:</strong> Energy storage should be a positive experience — simple to use, easy to move, easy to expand, and ready to connect to solar, home and electric mobility.
+      <br /><br />
+      <strong>PLUG → CARRY → ROLL → STACK → INSTALL → DRIVE</strong>
+    </div>
+
+    
+      <section class="part part-i">
+        <p class="phase">Part I · Product Design</p>
+        <h3>One Architecture. From Portable Power to Home Energy.</h3>
+<p><strong>Document:</strong> Modular Energy Platform — Product Design Page   <strong>Version:</strong> 1.0   <strong>Status:</strong> Product Design Foundation   <strong>Placement:</strong> Immediately after product vision in the master strategy set   <strong>Related:</strong> Product Overview · Engineering Design · Master Document v2.5 · EV Charging index</p>
+<hr />
+<h3>Design principle</h3>
+<p>Energy storage should be a <strong>positive experience</strong> — simple to use, easy to move, easy to expand, and ready to connect to solar, home and electric mobility.</p>
+<p>The physical experience evolves through:</p>
+<p><strong>PLUG → CARRY → ROLL → STACK → INSTALL → DRIVE</strong></p>
+<hr />
+<h3>01. The modular energy principle</h3>
+<p>Precifarm does not design separate batteries for separate products.</p>
+<p>Precifarm designs <strong>one modular energy platform</strong> that can take different physical forms as the customer's energy needs grow.</p>
+<pre class="flow">                         PRECIFARM ENERGY
+                                │
+                     ONE ENERGY PLATFORM
+                                │
+          ┌─────────────────────┼─────────────────────┐
+          │                     │                     │
+       P1 GO                  P2 HOME              POD
+      ~1 kWh              2.56 kWh → 10+ kWh     5 → 51+ kWh
+          │                     │                     │
+        CARRY                  ROLL                INSTALL
+          │                     │                     │
+          └─────────────────────┼─────────────────────┘
+                                │
+                         ENERGY MODULE
+                            2.56 kWh
+                                │
+                                ▼
+                           ENERGY OS
+                                │
+                  ┌─────────────┼─────────────┐
+                  │             │             │
+                 HOME        SOLAR            EV
+                  │                           ⇅
+                  └──────────────────────── V2X</pre>
+<hr />
+<h3>02. One platform — many scales</h3>
+<p>The Precifarm portfolio should not be treated as a collection of unrelated batteries. It should be understood as a progression:</p>
+<table><thead><tr><th>Product</th><th>Target capacity</th><th>Physical experience</th><th>Primary role</th></tr></thead><tbody><tr><td><strong>P1 Go</strong></td><td>~1 kWh</td><td>Carry</td><td>Portable energy</td></tr><tr><td><strong>P2 Home</strong></td><td>2.56–10+ kWh</td><td>Roll</td><td>Modular home energy</td></tr><tr><td><strong>Energy Module</strong></td><td>2.56 kWh</td><td>Stack</td><td>Common energy building block</td></tr><tr><td><strong>Precifarm Pod</strong></td><td>5–51+ kWh</td><td>Install</td><td>Scalable energy infrastructure</td></tr><tr><td><strong>EV</strong></td><td>Vehicle-dependent</td><td>Drive</td><td>Mobile energy resource</td></tr></tbody></table>
+<p>The customer can enter at a small scale and progressively increase energy capacity and functionality.</p>
+<p><strong>Start small. Add energy. Grow into a complete energy system.</strong></p>
+<hr />
+<h3>03. The Precifarm Energy Module</h3>
+<p>The Energy Module is the foundation of the modular architecture.</p>
+<p><strong>Target module:</strong> 2.56 kWh LiFePO₄ · 51.2 V × 50 Ah</p>
+<pre class="flow">            ┌─────────────────────┐
+             │                     │
+             │      PRECIFARM      │
+             │                     │
+             │    ENERGY MODULE    │
+             │                     │
+             │      2.56 kWh       │
+             │      LiFePO₄        │
+             │                     │
+             │    ● STATUS         │
+             └─────────┬───────────┘
+                       │
+                 LOCK + CONNECT</pre>
+<p>The module should be designed as a standardized, serviceable energy building block.</p>
+<p><strong>Potential characteristics:</strong></p>
+<ul><li>LiFePO₄ chemistry</li><li>Integrated BMS</li><li>Cell monitoring</li><li>Temperature monitoring</li><li>SOC/SOH estimation</li><li>CAN communication</li><li>Mechanical locking</li><li>Electrical interlock</li><li>Protected high-current connection</li><li>Module identification</li><li>Service diagnostics</li><li>Integrated handling features</li></ul>
+<p>The customer should not need to understand the underlying electrical architecture.</p>
+<p>The customer should simply see:</p>
+<p><strong>ADD ENERGY</strong></p>
+<hr />
+<h3>04. One module — many systems</h3>
+<p>Where technically and economically feasible, the same Energy Module architecture should support multiple Precifarm products.</p>
+<pre class="flow">             PRECIFARM ENERGY MODULE
+                     2.56 kWh
+                         │
+        ┌────────────────┼────────────────┐
+        │                │                │
+       P2               POD         FUTURE PRODUCTS
+        │                │
+    EXPANDABLE        SCALABLE</pre>
+<p><strong>Example capacity progression</strong></p>
+<table><thead><tr><th>Configuration</th><th>Capacity</th><th>Experience</th></tr></thead><tbody><tr><td>P2</td><td>2.56 kWh</td><td>Start</td></tr><tr><td>P2 + 1 Module</td><td>5.12 kWh</td><td>Expand</td></tr><tr><td>P2 + 2 Modules</td><td>7.68 kWh</td><td>Grow</td></tr><tr><td>P2 + 3 Modules</td><td>10.24 kWh</td><td>Scale</td></tr><tr><td>Pod Base</td><td>5.12 kWh</td><td>Install</td></tr><tr><td>Pod Array</td><td>10–51+ kWh</td><td>Infrastructure</td></tr></tbody></table>
+<p>Final module count, voltage architecture, inverter topology and expansion limits remain engineering and certification decisions.</p>
+<hr />
+<h3>05. P1 Go — carry</h3>
+<p><strong>Portable Energy Station</strong> · Target capacity: ~1 kWh</p>
+<p>P1 Go is the entry point into the Precifarm energy ecosystem. It should be compact, premium and genuinely portable.</p>
+<pre class="flow">      ┌───────────────────┐
+       │     DISPLAY       │
+       │                   │
+       │    72%            │
+       │    6h 42m         │
+       │                   │
+       │      P1 GO        │
+       │                   │
+       ├───────────────────┤
+       │ AC │ USB-C │ DC   │
+       └───────────────────┘</pre>
+<p><strong>Core characteristics</strong></p>
+<ul><li>Integrated carry handle</li><li>Compact footprint</li><li>LiFePO₄ battery</li><li>AC output · USB-C · USB-A · DC output</li><li>Portable solar input · grid charging</li><li>UPS/pass-through capability</li><li>Wi-Fi · Bluetooth · energy monitoring</li><li>Precifarm Energy OS</li></ul>
+<p><strong>Customer experience:</strong> UNBOX → CHARGE → USE</p>
+<p>P1 Go should feel like a premium energy appliance, not a battery.</p>
+<hr />
+<h3>06. P2 Home — roll</h3>
+<p><strong>Expandable Mobile Home Energy</strong> · Target base capacity: 2.56 kWh</p>
+<p>P2 Home is the hero product and the bridge between portable power and installed energy infrastructure.</p>
+<pre class="flow">         ┌────────────────────┐
+          │      DISPLAY       │
+          │                    │
+          │      P2 HOME       │
+          │                    │
+          ├────────────────────┤
+          │     POWER CORE     │
+          ├────────────────────┤
+          │  2.56 kWh MODULE  │
+          ├────────────────────┤
+          │ + EXPANSION SPACE  │
+          └────────────────────┘
+              O            O
+            WHEEL        WHEEL</pre>
+<p>P2 should combine:</p>
+<ul><li>Integrated wheels · pull handle · secondary lifting handles</li><li>Low center of gravity · stable base · protected ventilation</li><li>Front-facing user interface</li><li>Modular battery architecture</li><li>Solar integration · grid charging · UPS capability</li><li>Remote monitoring · Energy OS</li><li>M-Pesa / PAYGO capability</li><li>Future EV integration</li></ul>
+<p><strong>Customer experience:</strong> PLUG → USE → ADD ENERGY</p>
+<p>P2 should be positioned as: <strong>Your mobile home energy system.</strong></p>
+<hr />
+<h3>07. Power Core + Energy Module</h3>
+<p>P2 should separate power electronics from expandable energy capacity.</p>
+<pre class="flow">            ┌────────────────────┐
+             │    P2 POWER CORE   │
+             │                    │
+             │ INVERTER           │
+             │ MPPT               │
+             │ ENERGY OS          │
+             │ COMMUNICATION      │
+             │ PROTECTION         │
+             └─────────┬──────────┘
+                       │
+                 QUICK CONNECT
+                       │
+             ┌─────────┴──────────┐
+             │                    │
+        ENERGY MODULE        ENERGY MODULE
+          2.56 kWh             2.56 kWh</pre>
+<p><strong>Power Core</strong> — systems required to convert, control and manage energy:</p>
+<p>Inverter · MPPT · AC charging · protection · communications · Energy OS gateway · system controller · thermal management</p>
+<p><strong>Energy Module</strong> — energy storage capacity:</p>
+<p>LiFePO₄ cells · BMS · temperature sensing · SOC/SOH monitoring · CAN communication · protection · mechanical and electrical interfaces</p>
+<p>This separation improves modularity, serviceability, upgradeability, manufacturing flexibility and product-family scalability.</p>
+<hr />
+<h3>08. Plug &amp; play</h3>
+<p>Precifarm modularity is not only about adding battery capacity. It is also about reducing installation complexity.</p>
+<table><thead><tr><th>Product</th><th>Journey</th><th>Experience</th></tr></thead><tbody><tr><td><strong>P1 Go</strong></td><td>UNBOX → CHARGE → USE</td><td>Plug-and-play portable energy</td></tr><tr><td><strong>P2 Home</strong></td><td>PLUG → USE → EXPAND</td><td>Plug-and-grow home energy</td></tr><tr><td><strong>Pod</strong></td><td>SURVEY → INSTALL → COMMISSION → EXPAND</td><td>Professionally engineered energy infrastructure</td></tr></tbody></table>
+<pre class="flow">P1          P2              POD
+PLUG &amp; PLAY → PLUG &amp; GROW → DESIGN &amp; SCALE</pre>
+<p>The product experience should become progressively more powerful without becoming unnecessarily complicated.</p>
+<hr />
+<h3>09. Solar integration</h3>
+<p>Solar should progressively increase in importance across the product family.</p>
+<table><thead><tr><th>Stage</th><th>Flow</th></tr></thead><tbody><tr><td><strong>P1 Go</strong></td><td>Portable solar charging — <code>SOLAR → P1</code></td></tr><tr><td><strong>P2 Home</strong></td><td>Home solar + storage — <code>SOLAR → P2 → HOME</code></td></tr><tr><td><strong>Pod</strong></td><td>Hybrid solar + storage + grid + EV infrastructure</td></tr></tbody></table>
+<pre class="flow">                   SOLAR
+                      │
+                      ▼
+                    POD
+                      ↕
+                    GRID
+                      ↕
+                    HOME
+                      ↕
+                     EV</pre>
+<p>The customer progressively moves from portable energy into a complete energy ecosystem.</p>
+<hr />
+<h3>10. Energy can move</h3>
+<p>Precifarm storage should not be treated as a static battery. Energy should be able to move between solar, grid, battery, home, business and EV.</p>
+<pre class="flow">                        SOLAR
+                           ↕
+                         HOME
+                           ↕
+GRID  ⇄  PRECIFARM ENERGY SYSTEM  ⇄  EV
+                           ↕
+                        BATTERY
+                           ↕
+                          V2X</pre>
+<p><strong>Future bidirectional applications may include:</strong></p>
+<table><thead><tr><th>Mode</th><th>Description</th></tr></thead><tbody><tr><td><strong>V2H</strong></td><td>Vehicle → Home</td></tr><tr><td><strong>V2L</strong></td><td>Vehicle → Load</td></tr><tr><td><strong>V2V</strong></td><td>Vehicle → Vehicle</td></tr><tr><td><strong>V2G</strong></td><td>Vehicle → Grid</td></tr></tbody></table>
+<p>Availability of each function will depend on compatible vehicles, bidirectional hardware, utility requirements, standards and regulation.</p>
+<hr />
+<h3>11. Precifarm Pod — install</h3>
+<p><strong>Modular Energy Infrastructure</strong> · Target base capacity: 5.12 kWh</p>
+<p>The Pod takes the same modular philosophy and converts it into a professionally installed energy system.</p>
+<pre class="flow">       ┌─────────────────────┐
+        │     POWER UNIT      │
+        ├─────────────────────┤
+        │   ENERGY MODULE     │
+        ├─────────────────────┤
+        │   ENERGY MODULE     │
+        ├─────────────────────┤
+        │   ENERGY MODULE     │
+        ├─────────────────────┤
+        │   ENERGY MODULE     │
+        ├─────────────────────┤
+        │        ...          │
+        └─────────────────────┘</pre>
+<p><strong>Potential applications:</strong> homes · SMEs · commercial buildings · solar-storage systems · EV charging · backup power · energy management · microgrids</p>
+<p>The Pod should be designed around modular capacity rather than one oversized battery.</p>
+<hr />
+<h3>12. Energy capacity + power capacity</h3>
+<p>Precifarm should deliberately separate <strong>energy capacity</strong> from <strong>power capacity</strong>. This allows the system to scale according to different customer requirements.</p>
+<pre class="flow">BATTERY CAPACITY          POWER CAPACITY
+5 → 10 → 20 → 30 → 50+ kWh    +    4 → 6 → 10 → 15 → 30+ kW</pre>
+<p>Example requirements: 10 kWh / 10 kW <strong>or</strong> 30 kWh / 10 kW</p>
+<p>The final architecture should allow appropriate combinations of storage capacity and power electronics.</p>
+<hr />
+<h3>13. Energy OS</h3>
+<p>Every Precifarm energy product should connect to the same digital layer.</p>
+<pre class="flow">                ENERGY OS
+                     │
+       ┌─────────────┼─────────────┐
+       │             │             │
+    MONITOR       PREDICT       OPTIMIZE
+       │             │             │
+       ├─────────────┼─────────────┤
+       │             │             │
+    DIAGNOSE      AUTOMATE      FINANCE
+       │             │             │
+       └─────────────┼─────────────┘
+                     │
+                  CUSTOMER</pre>
+<p><strong>Core capabilities</strong></p>
+<ul><li>Real-time monitoring · runtime prediction · solar forecasting · load optimization</li><li>Battery protection · remote diagnostics · automated energy management</li><li>PAYGO management · M-Pesa integration · service management</li><li>Capacity recommendations · EV energy management · V2X coordination</li></ul>
+<p>The customer sees:</p>
+<ul><li>How much energy do I have?</li><li>How long will it last?</li><li>Where is my energy coming from?</li><li>Where should it go?</li></ul>
+<p>The complexity stays underneath.</p>
+<hr />
+<h3>14. The positive energy experience</h3>
+<p>Precifarm should not make customers think about technical infrastructure unless they want to. The system should translate technical information into useful decisions.</p>
+<table><thead><tr><th>Instead of</th><th>Show</th></tr></thead><tbody><tr><td>Battery: 63%</td><td>6h 18m remaining</td></tr><tr><td>Solar input: 1.2 kW</td><td>Solar is powering your home and charging your battery.</td></tr><tr><td>Expansion battery detected</td><td>+2.56 kWh available</td></tr><tr><td>V2H active</td><td>Your vehicle is helping power your home.</td></tr></tbody></table>
+<p><strong>Goal:</strong> Make energy understandable, predictable and useful.</p>
+<hr />
+<h3>15. Energy should feel positive</h3>
+<p>Precifarm should differentiate itself from traditional battery and BESS companies through the experience it creates.</p>
+<p><strong>Traditional energy-storage language focuses on:</strong> battery capacity · inverter efficiency · peak shaving · backup duration · energy arbitrage · battery chemistry</p>
+<p><strong>Precifarm should translate these into customer outcomes:</strong></p>
+<ul><li>My home stays powered.</li><li>My solar charges my battery.</li><li>I can add more energy when I need it.</li><li>I can see where my energy is going.</li><li>My battery protects my home during an outage.</li><li>My vehicle can eventually help power my home.</li></ul>
+<p>The customer should experience capability, not complexity.</p>
+<hr />
+<h3>16. The customer journey</h3>
+<pre class="flow">                        START
+                           │
+                           ▼
+                        P1 GO
+                       ~1 kWh
+                           │
+                     NEED MORE?
+                           │
+                           ▼
+                       P2 HOME
+                      2.56 kWh
+                           │
+                       ADD ENERGY
+                           │
+                           ▼
+                 5.12 → 7.68 → 10.24+
+                           │
+                      NEED MORE?
+                           │
+                           ▼
+                    PRECIFARM POD
+                     5 → 51+ kWh
+                           │
+              ┌────────────┼────────────┐
+              ▼            ▼            ▼
+            SOLAR         HOME          EV
+                                        ⇅
+                                       V2X</pre>
+<p><strong>Commercial principle:</strong> Buy what you need today. Add capability when your life changes.</p>
+<hr />
+<h3>17. Product family design language</h3>
+<p>All Precifarm energy products should immediately look like members of the same family.</p>
+<p><strong>Shared design DNA</strong></p>
+<p>Common geometry · rounded industrial forms · consistent proportions · common materials · consistent typography · consistent iconography · consistent status indicators · consistent port markings · consistent connector philosophy · consistent Energy OS interface · common battery terminology · common service architecture</p>
+<p><strong>Product-specific characteristics</strong></p>
+<table><thead><tr><th>Product</th><th>Primary physical characteristic</th></tr></thead><tbody><tr><td>P1 Go</td><td>Compact + carryable</td></tr><tr><td>P2 Home</td><td>Wheeled + mobile</td></tr><tr><td>Energy Module</td><td>Stackable + serviceable</td></tr><tr><td>Pod</td><td>Fixed + scalable</td></tr><tr><td>EV Interface</td><td>Bidirectional + connected</td></tr></tbody></table>
+<p>The products should share DNA without becoming identical.</p>
+<hr />
+<h3>18. Physical experience</h3>
+<p>The product family should communicate its progression visually.</p>
+<pre class="flow">P1 GO  ──CARRY──▶  PORTABLE ENERGY
+                      │
+P2 HOME ──ROLL──▶  MODULAR ENERGY
+                      │
+POD    ──INSTALL─▶  HOME + SOLAR + BUSINESS + EV
+                      │
+EV     ──DRIVE───▶  MOBILE ENERGY</pre>
+<p>The complete physical progression is:</p>
+<p><strong>CARRY → ROLL → STACK → INSTALL → DRIVE</strong></p>
+<hr />
+<h3>19. The Precifarm energy network</h3>
+<p>The ultimate objective is not to create a collection of batteries. It is to create an energy network in which energy can be generated, stored, managed and moved.</p>
+<pre class="flow">                        PRECIFARM ENERGY
+
+                              GENERATE
+                                 │
+                               SOLAR
+                                 │
+                                 ▼
+                              STORE
+                                 │
+              ┌──────────────────┼──────────────────┐
+              │                  │                  │
+             P1                 P2                 POD
+          ~1 kWh            2.56 kWh+           5–51+ kWh
+              │                  │                  │
+            CARRY              ROLL              INSTALL
+              │                  │                  │
+              └──────────────────┼──────────────────┘
+                                 │
+                         ENERGY MODULES
+                              STACK
+                                 │
+                                 ▼
+                            ENERGY OS
+                                 │
+                  ┌──────────────┼──────────────┐
+                  │              │              │
+                 HOME         BUSINESS          EV
+                  │              │              │
+                  └──────────────┼──────────────┘
+                                 │
+                                V2X
+                         ┌───────┼───────┐
+                         │       │       │
+                        V2H     V2L     V2V</pre>
+<hr />
+<h3>20. Design moat</h3>
+<p>Precifarm does not need to manufacture every component.</p>
+<p><strong>Buy:</strong> LiFePO₄ cells · power electronics · inverter components · standard communication components · displays · connectors · protection components</p>
+<p><strong>Customize:</strong> Enclosures · mechanical architecture · Energy Modules · harnesses · thermal architecture · user interface · local installation architecture</p>
+<p><strong>Own:</strong> Energy OS · energy data · runtime algorithms · energy optimization · diagnostics · PAYGO platform · M-Pesa integration · customer account · service network · modular product architecture · customer energy experience</p>
+<p>The objective is to build defensibility around the system and experience, not necessarily around commodity components.</p>
+<hr />
+<h3>21. The master product story</h3>
+<p>Precifarm makes energy modular.</p>
+<p>Start with portable power. Expand into home energy. Add solar. Add storage. Scale into commercial energy infrastructure. Connect an EV. Eventually allow energy to move between vehicles, homes, businesses and the grid.</p>
+<p><strong>Precifarm makes energy modular, mobile and intelligent.</strong></p>
+<hr />
+<h3>22. The master design principle</h3>
+<h4>ONE PLATFORM. MANY SCALES.</h4>
+<p>Energy storage should be a positive experience.</p>
+<p>It should be easy to acquire. Easy to use. Easy to move. Easy to expand. Easy to understand.</p>
+<p>It should work with solar. It should support the home. It should connect to electric mobility.</p>
+<p>And, where technically and commercially possible, energy should be able to move wherever it creates the most value.</p>
+<pre class="flow">PRECIFARM
+PLUG → CARRY → ROLL → STACK → INSTALL → DRIVE
+P1 GO → P2 HOME → ENERGY MODULE → POD → EV
+ONE ENERGY OS. ONE CUSTOMER ACCOUNT. ONE MODULAR ENERGY PLATFORM.</pre>
+<hr />
+<p class="footnote">Engineering references for installed Pod and corridor systems: Modular Energy Engineering Design · EV Charging index. Route-infrastructure products: Product Overview. Historical strategy context: Master Document v2.5.</p>
+      </section>
+
+      <section class="part part-ii">
+        <p class="phase">Part II · Engineering Design</p>
+        <p><strong>Document ID:</strong> PF-ENG-MODENERGY-001   <strong>Version:</strong> 1.0 · 30 August 2026   <strong>Owner:</strong> Precifarm Engineering   <strong>Status:</strong> Engineering design basis — not issued-for-construction   <strong>Product design companion:</strong> Modular Energy Platform   <strong>Canon:</strong> Consumer/home energy is a <strong>gated expansion surface</strong>; route Reserved Route Charging remains the beachhead. See CANON.md.</p>
+<div class="callout">All electrical ratings, module counts, connector pinouts and certification claims in this document are <strong>engineering targets</strong> until validated by prototype test, third-party review and Kenya statutory approval. Do not quote as product specification in customer-facing material without an approved data sheet.</div>
+<hr />
+<h3>1. Purpose</h3>
+<p>This document translates the Modular Energy Platform product vision into an <strong>engineering architecture</strong> Precifarm can prototype, certify and manufacture through partners.</p>
+<p>It answers:</p>
+<ul><li>What is the common <strong>Energy Module</strong> electrical and mechanical interface?</li><li>How do <strong>P1 Go</strong>, <strong>P2 Home</strong> and <strong>Pod</strong> reuse that module without forking the BMS/CAN stack?</li><li>What do we <strong>buy</strong>, <strong>customize</strong> and <strong>own</strong> at the system level?</li><li>What safety, grid and Kenya regulatory envelopes apply?</li><li>What do <strong>Tesla</strong> and <strong>BYD</strong> teach — and what Precifarm should <strong>not</strong> copy?</li></ul>
+<h4>1.1 In scope</h4>
+<ul><li>Reference architecture, block diagrams, interface definitions</li><li>Target module specification (2.56 kWh LiFePO₄ class)</li><li>Power Core vs Energy Module separation (P2 / Pod)</li><li>Communications, Energy OS boundary, OTA and diagnostics</li><li>Thermal, protection, EMC and service architecture</li><li>Kenya installation classes (home plug-in vs fixed Pod)</li><li>Phased prototype → pilot → certification roadmap</li></ul>
+<h4>1.2 Out of scope</h4>
+<ul><li>Issued-for-construction wiring diagrams and protection coordination studies</li><li>Final cell supplier selection and UN38.3 / IEC 62619 test reports</li><li>Vehicle-side V2X hardware (referenced as future interface only)</li><li>Corridor DC hub design (see Solar Chargers &amp; Stations)</li></ul>
+<hr />
+<h3>2. Design motivation — Tesla and BYD (what to learn, what to reject)</h3>
+<p>Precifarm is not building a Tesla factory or a BYD gigafactory. The engineering goal is to <strong>import proven patterns</strong> into a Kenya-first, M-Pesa-native, modular home-energy line.</p>
+<h4>2.1 Tesla — system integration and the energy software layer</h4>
+<table><thead><tr><th>Tesla pattern</th><th>Engineering lesson for Precifarm</th><th>Precifarm application</th></tr></thead><tbody><tr><td><strong>Powerwall</strong> — wall-mounted pack + integrated inverter/gateway; stackable capacity over time</td><td>Separate <strong>energy</strong> from <strong>power conversion</strong>; customer adds kWh without replacing the inverter</td><td><strong>P2 Power Core</strong> fixed; <strong>Energy Modules</strong> stack under or beside</td></tr><tr><td><strong>Megapack</strong> — repeatable 3 MWh blocks in a shipping-container form factor</td><td>Standard module + repeated mechanical bay = factory and field scalability</td><td><strong>Pod</strong> = N × identical <strong>Energy Modules</strong> in a serviceable rack</td></tr><tr><td><strong>Energy segment economics</strong> — high-margin software + install network, not commodity cells</td><td>Own <strong>Energy OS</strong>, diagnostics, PAYGO and service — not cell chemistry</td><td>Energy OS owns runtime prediction, module inventory, remote fault codes</td></tr><tr><td><strong>Gateway / Powerwall Backup Switch</strong> — single customer-visible “energy brain”</td><td>One app account, one telemetry schema across P1 → P2 → Pod</td><td>Common device model in Energy OS; SKU-specific capability flags</td></tr><tr><td><strong>NACS / open charging network (post-2023)</strong></td><td>Open <strong>interfaces</strong> where they create adoption; own <strong>experience</strong> where it creates retention</td><td>Module mechanical/electrical interface documented for internal SKUs first; public OEM licensing only if volume justifies</td></tr><tr><td><strong>Over-the-air updates</strong></td><td>Field-fixable BMS parameters and inverter curves without truck roll for every bug</td><td>Signed OTA to Power Core and Pod controller; module firmware pinned and versioned</td></tr></tbody></table>
+<p><strong>Reject for Phase 1:</strong> proprietary vehicle lock-in, full vertical cell manufacturing, and marketing V2G before Kenya utility rules and bidirectional hardware exist.</p>
+<h4>2.2 BYD — modularity, LiFePO₄ and cost through repetition</h4>
+<table><thead><tr><th>BYD pattern</th><th>Engineering lesson for Precifarm</th><th>Precifarm application</th></tr></thead><tbody><tr><td><strong>Blade Battery</strong> — long prismatic LiFePO₄ cells, cell-to-pack, structural rigidity</td><td><strong>One cell format + one module footprint</strong> repeated across products reduces NRE and spare-parts SKU count</td><td>Standard <strong>2.56 kWh Energy Module</strong> built from one prismatic cell family</td></tr><tr><td><strong>CTB / modular pack philosophy</strong></td><td>Minimize unique pack designs; maximize shared BMS firmware and CAN objects</td><td>Single BMS application profile with product-specific limits (max charge C-rate, temp derating)</td></tr><tr><td><strong>Vertical integration (~30% cost leverage at OEM scale)</strong></td><td>Precifarm <strong>integrates</strong> at enclosure, harness, thermal and software — buys cells and power stages</td><td>BOM strategy §8; local assembly partner for Pod racks</td></tr><tr><td><strong>DM-i / range-bridge thinking</strong></td><td>In weak-grid markets, <strong>right-size storage + solar</strong> before oversizing inverter kW</td><td>P2 base: 2.56 kWh / ~3–5 kW inverter class; expand kWh before kW unless load study says otherwise</td></tr><tr><td><strong>Export via CKD / local assembly</strong></td><td>Pod <strong>rack + Power Unit</strong> suitable for Kenya SKD (cells imported, pack assembled locally when duty/logistics justify)</td><td>Phase C: local module assembly line tied to KEBS/UN38.3 batch testing</td></tr></tbody></table>
+<p><strong>Reject for Phase 1:</strong> claiming Blade-equivalent cell IP, owning prismatic cell R&amp;D, or sizing Pod arrays without per-site load and export-limit studies.</p>
+<h4>2.3 Synthesis — the Precifarm engineering thesis</h4>
+<pre class="flow">TESLA                          BYD                         PRECIFARM
+─────                          ───                         ─────────
+Integrated experience    +     Repeatable module      =    ONE Energy Module
+Software-defined energy  +     LiFePO₄ safety         =    Energy OS + PAYGO
+Stackable kWh            +     Cost via repetition    =    P2 expand / Pod scale
+Open where strategic     +     Local assembly path    =    Kenya SKD when gated</pre>
+<p><strong>North star:</strong> Tesla-grade <strong>customer-visible simplicity</strong> and BYD-grade <strong>module repetition</strong> — on African grid reality, M-Pesa rails and Precifarm service network.</p>
+<hr />
+<h3>3. System reference architecture</h3>
+<pre class="flow">                         CUSTOMER LAYER
+                    App · SMS · Agent desk
+                              │
+                         ENERGY OS (cloud)
+                    monitor · predict · PAYGO
+                              │  MQTT / HTTPS
+          ┌───────────────────┼───────────────────┐
+          │                   │                   │
+       P1 GO              P2 HOME               POD
+   (integrated)      Power Core + Module(s)   Power Unit + Array
+          │                   │                   │
+          └───────────────────┼───────────────────┘
+                              │
+                    ENERGY MODULE 2.56 kWh
+                     BMS · CAN · contactor
+                              │
+          ┌───────────────────┼───────────────────┐
+          │                   │                   │
+        GRID               SOLAR PV              EV
+     (Type G)            (MPPT input)      (future V2H/V2L)</pre>
+<h4>3.1 Layer definitions</h4>
+<table><thead><tr><th>Layer</th><th>Responsibility</th><th>Failure mode</th></tr></thead><tbody><tr><td><strong>Energy Module</strong></td><td>Store energy; report SOC/SOH; enforce cell limits; disconnect on fault</td><td>Module opens contactor; Power Core sees <code>MODULE_FAULT</code></td></tr><tr><td><strong>Power Core / Power Unit</strong></td><td>Invert/rectify; MPPT; grid sync; load/backup switching; system protection</td><td>Trip to safe state; preserve module isolation</td></tr><tr><td><strong>Edge controller</strong></td><td>CAN aggregation; Wi-Fi/LTE; local rules; OTA agent; tamper detect</td><td>Fail-safe: modules idle; passthrough grid if UPS path allows</td></tr><tr><td><strong>Energy OS</strong></td><td>Fleet telemetry; customer UX; PAYGO; service tickets; analytics</td><td>Device continues local safe operation offline</td></tr></tbody></table>
+<hr />
+<h3>4. Energy Module — target specification</h3>
+<p>The <strong>Energy Module</strong> is the shared building block across P2 and Pod (P1 Go uses a smaller integrated pack — see §6).</p>
+<h4>4.1 Electrical targets</h4>
+<table><thead><tr><th>Parameter</th><th>Target</th><th>Notes</th></tr></thead><tbody><tr><td>Nominal energy</td><td><strong>2.56 kWh</strong></td><td>Planning basis: 51.2 V × 50 Ah</td></tr><tr><td>Chemistry</td><td><strong>LiFePO₄</strong></td><td>Prismatic or cylindrical — cell choice is procurement, not architecture</td></tr><tr><td>Nominal voltage</td><td><strong>51.2 V</strong></td><td>16s LiFePO₄ class</td></tr><tr><td>Voltage range</td><td>44.8 – 58.4 V</td><td>BMS hard limits; firmware derating below/above</td></tr><tr><td>Max continuous discharge</td><td><strong>50 A</strong> (~2.5 kW)**</td><td>Product may derate P1; Pod aggregates modules</td></tr><tr><td>Max continuous charge</td><td><strong>30 A</strong> (~1.5 kW)**</td><td>C-rate tuned for cycle life in Kenya heat</td></tr><tr><td>Contactor</td><td>Dual redundant where cert requires</td><td>Precharge on hot-plug</td></tr><tr><td>Isolation</td><td>≥ 500 V DC isolation module-to-chassis</td><td>Hi-pot in production</td></tr></tbody></table>
+<p>\* Values subject to thermal derating above 45 °C ambient.</p>
+<h4>4.2 Mechanical and interface</h4>
+<pre class="flow">        ┌──────────────────────────────┐
+        │  HANDLE / LIFT POINTS        │
+        │  ┌────────────────────────┐  │
+        │  │  STATUS LED · NFC ID   │  │
+        │  └────────────────────────┘  │
+        │         CELL PACK            │
+        │         + BMS PCB            │
+        └──────────────┬───────────────┘
+                       │
+              ┌────────┴────────┐
+              │  POWER BAY      │
+              │  (+) (-) CAN    │
+              │  TEMP · ID EEPROM│
+              └─────────────────┘
+                 GUIDE + LATCH</pre>
+<table><thead><tr><th>Interface</th><th>Specification</th></tr></thead><tbody><tr><td><strong>Mechanical</strong></td><td>Stackable footprint; guided rail; positive latch; mis-insertion prevention</td></tr><tr><td><strong>Electrical</strong></td><td>Touch-safe until mated; precharge sequence; keying by module generation</td></tr><tr><td><strong>Communication</strong></td><td><strong>CAN 2.0B</strong> 250 kbit/s (baseline); device address from module serial</td></tr><tr><td><strong>Identification</strong></td><td>Factory-programmed UUID; QR/NFC for service; anti-cloning signature in BMS</td></tr><tr><td><strong>Thermal</strong></td><td>Module-level NTC grid; passive cooling Phase 1; forced air in Pod rack</td></tr></tbody></table>
+<h4>4.3 BMS functional requirements</h4>
+<ul><li>Cell voltage, temperature, current sampling ≥ 10 Hz for protection; 1 Hz for telemetry</li><li>SOC estimation (coulomb counting + OCV correction at rest)</li><li>SOH estimation (capacity fade model; cycle count)</li><li>Over/under-voltage, over-current, short-circuit, over-temperature, under-temperature</li><li>Contactor weld detect; precharge fail timeout</li><li>CAN heartbeat 1 s; fault latch with manual or service reset policy</li><li>Firmware image <strong>A/B</strong> with rollback; signed updates from Power Core only</li></ul>
+<h4>4.4 CAN object model (baseline)</h4>
+<table><thead><tr><th>PGN / ID range</th><th>Content</th></tr></thead><tbody><tr><td><code>0x100–0x10F</code></td><td>Module status: SOC, SOH, V, I, T_max, fault flags</td></tr><tr><td><code>0x110–0x11F</code></td><td>Module limits: max charge/discharge current</td></tr><tr><td><code>0x120–0x12F</code></td><td>Module identity: serial, firmware, chemistry code</td></tr><tr><td><code>0x200–0x20F</code></td><td>Power Core commands: enable, set current limit, reset fault</td></tr><tr><td><code>0x300+</code></td><td>Product-specific (P2 expansion bay enumeration, Pod rack slot)</td></tr></tbody></table>
+<p>Document full DBC in repository <code>docs/product/dbc/</code> when prototype locks (placeholder — not in v1.0).</p>
+<hr />
+<h3>5. Power Core (P2 Home) — engineering design</h3>
+<p>P2 separates <strong>conversion and control</strong> from <strong>storage</strong>.</p>
+<h4>5.1 Block diagram</h4>
+<pre class="flow">GRID (230 V) ──► EMI filter ──► AC charger / bypass relay
+                      │
+                 BI-DIRECTIONAL
+                   INVERTER/CHARGER
+                   (4–6 kW class target)
+                      │
+        ┌─────────────┼─────────────┐
+        │             │             │
+    AC OUT        DC BUS        MPPT PV
+   (loads)      (51.2 V)       (500 V max)
+        │             │
+        │      MODULE BUS (CAN + DC)
+        │             │
+        │      [Module] [Module] [Module]
+        │
+   EDGE CONTROLLER (Wi-Fi · BLE · optional LTE)
+        │
+   ENERGY OS</pre>
+<h4>5.2 Target ratings (P2 Home base SKU)</h4>
+<table><thead><tr><th>Parameter</th><th>Phase 1 target</th><th>Expansion notes</th></tr></thead><tbody><tr><td>Inverter continuous</td><td><strong>4 kW</strong></td><td>6 kW SKU via Power Core swap, not module swap</td></tr><tr><td>Surge / motor start</td><td><strong>7 kW / 10 s</strong></td><td>Load classification in Energy OS</td></tr><tr><td>PV input</td><td><strong>2 kWp</strong> MPPT</td><td>1× string; expand input on Pod class</td></tr><tr><td>Grid connection</td><td><strong>230 V single-phase</strong></td><td>Kenya domestic; export limit software-configurable</td></tr><tr><td>Backup mode</td><td>Critical loads panel or whole-home (site-dependent)</td><td>Transfer switch external or integrated SKU TBD</td></tr><tr><td>Module bays</td><td><strong>1 base + 3 expansion</strong></td><td>2.56 → 10.24 kWh without replacing Power Core</td></tr><tr><td>Wheels / enclosure</td><td>IP21 indoor; IP54 outdoor variant gated</td><td>Thermal derating table per enclosure</td></tr></tbody></table>
+<h4>5.3 Control logic (edge)</h4>
+<p>Priority order (local, deterministic):</p>
+<ol><li>Safety interlocks and emergency stop  </li><li>Module fault aggregation — reduce or shut down  </li><li>Customer backup reserve floor (e.g. 20% SOC unless grid down)  </li><li>PAYGO credit gate (if instalment active)  </li><li>Solar self-consumption optimization  </li><li>Grid import limit (customer setting)  </li><li>Cloud advisory schedule (Energy OS)</li></ol>
+<p>Cloud <strong>cannot</strong> override safety or PAYGO lockout without signed service token.</p>
+<hr />
+<h3>6. P1 Go — integrated portable SKU</h3>
+<p>P1 is intentionally <strong>integrated</strong> (Tesla Powerwall is wall-integrated; Jackery-class portables are fully integrated). It does <strong>not</strong> use the 2.56 kWh module in Phase 1 — it shares <strong>Energy OS</strong> and UX language only.</p>
+<table><thead><tr><th>Parameter</th><th>Target</th></tr></thead><tbody><tr><td>Energy</td><td><strong>~1 kWh</strong> LiFePO₄</td></tr><tr><td>Inverter</td><td><strong>600 W–1 kW</strong> pure sine</td></tr><tr><td>Ports</td><td>230 V AC · USB-C PD · USB-A · 12 V DC</td></tr><tr><td>Solar in</td><td><strong>100–200 W</strong> portable panel input</td></tr><tr><td>Comms</td><td>Wi-Fi + BLE</td></tr><tr><td>Mass target</td><td><strong>≤ 12 kg</strong> (carry comfort)</td></tr><tr><td>Cert path</td><td>IEC 62368-1 / local KEBS alignment for appliance class</td></tr></tbody></table>
+<p><strong>Engineering note:</strong> P1 firmware still reports to Energy OS using the same telemetry schema with <code>product_class=P1_GO</code> and reduced capability flags.</p>
+<hr />
+<h3>7. Pod — installed modular infrastructure</h3>
+<p>Pod applies the BYD <strong>repeat-the-block</strong> pattern at building scale.</p>
+<h4>7.1 Architecture</h4>
+<pre class="flow">GRID / GEN ──► MAIN PANEL ──► POD POWER UNIT
+                                  │
+                    ┌─────────────┼─────────────┐
+                    │   HYBRID PCS / INVERTER   │
+                    │   (kW sized per site)     │
+                    └─────────────┬─────────────┘
+                                  │
+                         DC MODULE BUS
+                                  │
+              ┌───────┬───────┬───┴───┬───────┐
+              │ Mod 1 │ Mod 2 │ Mod 3 │ Mod N │
+              └───────┴───────┴───────┴───────┘
+                                  │
+                            SOLAR MPPT
+                                  │
+                            EV AC/DC (future)</pre>
+<h4>7.2 Sizing method</h4>
+<ol><li><strong>Load study</strong> — peak kW, daily kWh, backup duration, EV add-on  </li><li><strong>Energy modules</strong> — round up to N × 2.56 kWh to meet kWh target + reserve  </li><li><strong>Power unit</strong> — size inverter/PCS to min(peak load, grid export limit, budget)  </li><li><strong>Solar</strong> — size to daily recharge of target SOC band; not oversized without export policy  </li><li><strong>Thermal</strong> — rack airflow model; module spacing; Nairobi 25–35 °C roof install derating  </li></ol>
+<p>Example planning matrix (not a product catalog):</p>
+<table><thead><tr><th>Site class</th><th>Modules</th><th>Energy</th><th>PCS target</th><th>Typical use</th></tr></thead><tbody><tr><td>Home base</td><td>2</td><td>5.12 kWh</td><td>5 kW</td><td>Backup + solar</td></tr><tr><td>Home premium</td><td>4–8</td><td>10–20 kWh</td><td>8–10 kW</td><td>Solar + EV AC</td></tr><tr><td>SME</td><td>8–20</td><td>20–51 kWh</td><td>15–30 kW</td><td>Shop + cold chain</td></tr></tbody></table>
+<h4>7.3 Installation envelope (Kenya)</h4>
+<ul><li>Licensed electrical contractor; EPRA-aligned workmanship  </li><li>Earth electrode and surge protection per site study  </li><li>Fire egress and battery compartment ventilation per manufacturer install manual  </li><li>Precifarm <strong>survey → design → install → commission → expand</strong> workflow mirrored in CMS install pipeline  </li></ul>
+<hr />
+<h3>8. BOM strategy — buy, customize, own</h3>
+<p>Aligned with Modular Energy Platform §20.</p>
+<table><thead><tr><th>Category</th><th>Strategy</th><th>Examples</th></tr></thead><tbody><tr><td><strong>Buy</strong></td><td>Commodity, multi-source</td><td>LiFePO₄ cells, contactors, fuses, MPPT ICs, Wi-Fi modules, displays</td></tr><tr><td><strong>Customize</strong></td><td>Precifarm mechanical + harness</td><td>Module enclosure, Pod rack, P2 chassis, thermal paths, labels</td></tr><tr><td><strong>Own</strong></td><td>Defensibility</td><td>Energy OS, CAN schema, PAYGO logic, diagnostics, service procedures</td></tr></tbody></table>
+<p><strong>Tesla lesson:</strong> integrate the experience. <strong>BYD lesson:</strong> don't integrate the mine — integrate the <strong>repeatable module</strong>.</p>
+<hr />
+<h3>9. Energy OS — engineering interface</h3>
+<h4>9.1 Device telemetry (minimum)</h4>
+<table><thead><tr><th>Field</th><th>Rate</th><th>Use</th></tr></thead><tbody><tr><td><code>soc_pct</code>, <code>soh_pct</code></td><td>60 s</td><td>Customer UX</td></tr><tr><td><code>power_w</code>, <code>voltage_v</code>, <code>current_a</code></td><td>5 s</td><td>Monitor</td></tr><tr><td><code>runtime_minutes_est</code></td><td>60 s</td><td>Positive UX copy</td></tr><tr><td><code>fault_code</code>, <code>fault_severity</code></td><td>on event</td><td>Service</td></tr><tr><td><code>module_count</code>, <code>module_slots</code></td><td>on change</td><td>Expansion detection</td></tr><tr><td><code>paygo_state</code></td><td>on change</td><td>Finance gate</td></tr><tr><td><code>firmware_version</code></td><td>24 h</td><td>OTA compliance</td></tr></tbody></table>
+<h4>9.2 OTA policy</h4>
+<ul><li>Dual-bank firmware on Power Core and Pod controller  </li><li>Modules updated only through Power Core proxy (never direct cloud-to-module in Phase 1)  </li><li>Staged rollout: canary fleet → region → full  </li><li>Rollback if fault rate &gt; threshold within 24 h  </li></ul>
+<h4>9.3 Integration with Precifarm CMS</h4>
+<p>Install pipeline stages (<code>survey_requested</code> → <code>commissioned</code>) map to engineering gates:</p>
+<table><thead><tr><th>CMS stage</th><th>Engineering deliverable</th></tr></thead><tbody><tr><td>Survey requested</td><td>Load questionnaire + photos</td></tr><tr><td>Survey scheduled</td><td>Site visit checklist</td></tr><tr><td>Quote sent</td><td>Module count + PCS sizing PDF</td></tr><tr><td>Deposit paid</td><td>Procurement release</td></tr><tr><td>Install scheduled</td><td>Install pack + SLD</td></tr><tr><td>Commissioned</td><td>Sign-off test sheet + Energy OS provisioning</td></tr></tbody></table>
+<hr />
+<h3>10. Safety, standards and certification path</h3>
+<h4>10.1 Target standard families</h4>
+<table><thead><tr><th>Domain</th><th>Reference standards</th><th>Application</th></tr></thead><tbody><tr><td>Battery safety</td><td>IEC 62619, UN 38.3</td><td>Module transport and stationary</td></tr><tr><td>BMS</td><td>IEC 61508 concepts (SIL goals TBD)</td><td>Fault handling</td></tr><tr><td>Inverter/grid</td><td>IEC 62040 / local grid code</td><td>Backup and export</td></tr><tr><td>EMC</td><td>IEC 61000 series</td><td>Residential</td></tr><tr><td>Appliance</td><td>IEC 62368-1</td><td>P1 portable class</td></tr></tbody></table>
+<p>Kenya <strong>KEBS</strong> conformity and <strong>EPRA</strong> electrical installation rules apply at deployment — engage local cert body before mass retail.</p>
+<h4>10.2 Failure modes and effects (summary)</h4>
+<table><thead><tr><th>Failure</th><th>Detection</th><th>Response</th></tr></thead><tbody><tr><td>Cell over-temp</td><td>BMS NTC</td><td>Derate → open contactor</td></tr><tr><td>Contactor weld</td><td>Voltage mismatch</td><td>Alarm; disable charge/discharge; service call</td></tr><tr><td>Ground fault</td><td>RCD / insulation monitor</td><td>Trip; log to Energy OS</td></tr><tr><td>CAN loss</td><td>Heartbeat timeout</td><td>Module idle; redundant polling</td></tr><tr><td>Grid loss</td><td>Voltage sag</td><td>Backup transition if configured</td></tr><tr><td>PAYGO default</td><td>Energy OS</td><td>Grace period → export limit / discharge limit policy (legal review)</td></tr></tbody></table>
+<hr />
+<h3>11. Thermal and environmental design</h3>
+<p>Kenya install ambient <strong>15–40 °C</strong> operating; design for <strong>45 °C</strong> derated performance.</p>
+<table><thead><tr><th>Product</th><th>Cooling strategy</th></tr></thead><tbody><tr><td>P1 Go</td><td>Passive fins; no fan if possible (dust/noise)</td></tr><tr><td>P2 Home</td><td>Passive base + ducted fan on inverter compartment</td></tr><tr><td>Energy Module</td><td>Passive in open bay; forced airflow in Pod rack</td></tr><tr><td>Pod outdoor</td><td>IP-rated enclosure; sun shield; minimum module spacing per CFD</td></tr></tbody></table>
+<p><strong>BYD lesson:</strong> large thermal mass and conservative C-rates beat chasing peak kW in hot climates.</p>
+<hr />
+<h3>12. EV integration (future interface)</h3>
+<p>Precifarm does not block V2X; it <strong>sequences</strong> it.</p>
+<table><thead><tr><th>Phase</th><th>Capability</th><th>Hardware</th></tr></thead><tbody><tr><td><strong>A</strong></td><td>AC EV charging from Pod/P2 surplus</td><td>Type 2 / Pulse charger integration</td></tr><tr><td><strong>B</strong></td><td>Monitoring EV SOC via OEM API where available</td><td>Energy OS only</td></tr><tr><td><strong>C</strong></td><td>V2H / V2L</td><td>Bidirectional charger + vehicle compatibility list</td></tr><tr><td><strong>D</strong></td><td>V2G</td><td>Utility programme + EPRA approval</td></tr></tbody></table>
+<p><strong>Tesla lesson:</strong> NACS succeeded because the <strong>connector and network</strong> reduced friction. Precifarm lesson: standardize <strong>module bay + CAN</strong> internally before chasing vehicle-side standards.</p>
+<hr />
+<h3>13. Prototype and validation roadmap</h3>
+<table><thead><tr><th>Phase</th><th>Duration</th><th>Deliverable</th><th>Gate</th></tr></thead><tbody><tr><td><strong>P0 — Module breadboard</strong></td><td>8–12 weeks</td><td>Single 2.56 kWh module + BMS + CAN dev harness</td><td>500 cycle lab test plan started</td></tr><tr><td><strong>P1 — P2 alpha</strong></td><td>12–16 weeks</td><td>Power Core + 1 module; backup + solar MPPT</td><td>Internal dogfood 30 days</td></tr><tr><td><strong>P2 — Pod pilot</strong></td><td>16–24 weeks</td><td>4-module rack; 2 home installs Nairobi</td><td>Commissioning checklist pass</td></tr><tr><td><strong>P3 — Cert + pilot retail</strong></td><td>6–9 months</td><td>KEBS path; 20 P2 + 5 Pod paid installs</td><td>Fault rate &lt; target; PAYGO working</td></tr><tr><td><strong>P4 — SKD evaluation</strong></td><td>gated</td><td>Local module assembly business case</td><td>Duty/logistics vs import</td></tr></tbody></table>
+<hr />
+<h3>14. Open engineering decisions</h3>
+<table><thead><tr><th>ID</th><th>Decision</th><th>Options</th><th>Target date</th></tr></thead><tbody><tr><td>E-01</td><td>Cell form factor</td><td>Prismatic vs cylindrical</td><td>P0 exit</td></tr><tr><td>E-02</td><td>P1 integration vs mini-module</td><td>Integrated only vs 0.64 kWh sub-module</td><td>P1 kickoff</td></tr><tr><td>E-03</td><td>Grid export policy default</td><td>Zero-export vs limited export</td><td>Legal + EPRA</td></tr><tr><td>E-04</td><td>PAYGO discharge limit ethics</td><td>Hard cutoff vs essential-load only</td><td>Product + legal</td></tr><tr><td>E-05</td><td>LTE vs Wi-Fi-only P2</td><td>SKU split</td><td>After Nairobi connectivity study</td></tr><tr><td>E-06</td><td>Pod PCS supplier</td><td>Hybrid inverter OEM shortlist</td><td>P2 parallel track</td></tr></tbody></table>
+<hr />
+<h3>15. Document control</h3>
+<table><thead><tr><th>Version</th><th>Date</th><th>Author</th><th>Change</th></tr></thead><tbody><tr><td>1.0</td><td>2026-08-30</td><td>Precifarm Engineering</td><td>Initial engineering design basis; Tesla/BYD motivation; module spec</td></tr></tbody></table>
+<p><strong>Related documents</strong></p>
+<ul><li>Modular Energy Platform — Product Design</li><li>Solar Chargers &amp; Stations Engineering</li><li>Software &amp; Cybersecurity Architecture</li><li>Precifarm EV Leadership Strategy</li></ul>
+<hr />
+<p class="footnote">Precifarm Modular Energy — engineering targets for prototype and certification planning. Not a product warranty or customer specification.</p>
+      </section>
+
+    <footer class="doc-foot">
+      Precifarm Modular Energy Storage — PF-MODENERGY-001 v1.0 · Generated from kenya-ebus-ecosystem/docs/product/
+      · Not a product warranty or customer specification · precifarm.com
+    </footer>
+  </main>
+</body>
+</html>

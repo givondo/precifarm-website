@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import { getAnonymousId } from "@/lib/analytics";
+import { megapackInterest } from "@/lib/megapack-page";
 
 const interests = [
   "Home charger installation (Pulse charger or Pod energy storage)",
+  megapackInterest,
   "Host a charging hub site",
   "Fleet or depot charging",
   "Boda swap or kerbside charging",

@@ -1,156 +1,148 @@
-/** Canonical public name for precifarm.com/network */
+/** Canonical public name and path for the Charging Hub */
 export const chargingHub = {
   name: "Charging Hub",
-  path: "/network" as const,
+  path: "/hub" as const,
   label: "Charging Hub",
   openLabel: "Open Charging Hub",
   /** Mid-sentence, lowercase */
   nameLower: "charging hub",
   description:
-    "Corridor DC on the highway, Boda Hub battery swap in the city and partner retail stops across Kenya — find sites in the Precifarm AI companion, navigate and pay with M-Pesa.",
-  url: "https://precifarm.com/network",
+    "Find Precifarm Corridor DC, Boda Hub swap and partner chargers in Kenya. Live sites are labelled live. Pay with M-Pesa in the AI companion.",
+  url: "https://precifarm.com/hub",
 } as const;
 
 export const chargingHubPage = {
   hero: {
-    title: "Find EV charging across Kenya",
-    description: chargingHub.description,
-    primaryHref: "/download",
-    primaryLabel: "Get the AI companion",
-    secondaryHref: "/contact",
-    secondaryLabel: "Host a hub site",
+    eyebrow: "Charging Hub",
+    title: "See where you can charge before you leave.",
+    description:
+      "Corridor DC on Nairobi–Kisumu, Boda Hub swap in town, and partner stops at fuel retail and malls. Use this page to pick a site. Use the AI companion to filter, get directions and pay with M-Pesa.",
+    pills: ["Live stays live", "Planned stays planned", "M-Pesa on sessions"],
+    primaryHref: "/hub#map",
+    primaryLabel: "Browse sites",
+    secondaryHref: "/download",
+    secondaryLabel: "Get the AI companion",
+  },
+  honesty: {
+    eyebrow: "How to read this page",
+    title: "Live is live. Planned is not open yet.",
+    items: [
+      {
+        title: "Live",
+        text: "A Live label means the site is listed as operating. Use it for a trip you are taking now.",
+      },
+      {
+        title: "Planned",
+        text: "Next corridor and planned pins are design-stage. They are not traction and not a promise you can charge there today.",
+      },
+      {
+        title: "Map bays",
+        text: "Free-bay and battery counts on the map are a demonstration, not live telemetry.",
+      },
+    ],
+  },
+  map: {
+    eyebrow: "Sites",
+    title: "Corridor DC, Boda Hub swap and partner chargers",
+    description:
+      "Filter the map, open a pin, get Google directions. Session price and M-Pesa pay live in the AI companion — this page does not take payment.",
   },
   siteTypes: {
-    eyebrow: "What you'll find",
-    title: "Three ways to charge on the go",
+    eyebrow: "What you can do",
+    title: "Three stops, one list.",
     description:
-      "Precifarm runs Corridor DC on intercity routes, Boda Hub swap for e-motorcycles and lists partner chargers — all searchable in one place.",
+      "Highway DC when you leave town. A fresh boda pack in under five minutes. Partner chargers at places you already stop.",
     types: [
       {
         id: "corridor",
         title: "Corridor DC",
-        stat: "120 kW+",
-        detail: "T-canopy DC hub with overhead cables — about 60 kWh in 30 minutes. Dual CCS2 where listed. From KES 39/kWh on M-Pesa.",
+        stat: "~60 kWh in 30 min",
+        detail:
+          "T-canopy highway charging on Nairobi–Kisumu first. Dual CCS2 where listed. From KES 39/kWh on M-Pesa.",
         imageKey: "corridor" as const,
-        href: "/charging",
+        href: "/hub#map",
       },
       {
         id: "boda",
         title: "Boda Hub swap",
-        stat: "<5 min",
-        detail: "Fresh battery for Roam Air and compatible e-bodas in Nairobi, Kisumu and Nakuru — swap or kerbside charge.",
+        stat: "Under 5 min",
+        detail:
+          "Swap a pack for Roam Air and compatible e-bodas in Nairobi, Kisumu and Nakuru — or kerbside charge where listed.",
         imageKey: "boda" as const,
-        href: "/partners#boda-operators",
+        href: "/hub#map",
       },
       {
         id: "partners",
         title: "Partner chargers",
         stat: "Retail & malls",
-        detail: "Shell, Total, Naivas, malls and campuses — DC stops along the routes you already drive.",
+        detail:
+          "EVChaja, ChargeNet, fuel retail and malls — DC along routes you already drive. Listed here; operated by the partner.",
         imageKey: "depot" as const,
-        href: "/partners",
+        href: "/hub#map",
       },
     ],
   },
   howItWorks: {
-    eyebrow: "How it works",
-    title: "Open the companion, pick a site, pay with M-Pesa",
+    eyebrow: "How to use it",
+    title: "This page finds a site. The companion starts a session.",
     description:
-      "The Charging Hub lives in the Precifarm AI companion today. Filter by DC, Boda swap or partner — then navigate and pay.",
+      "The web list works in any browser. Filters, session price and M-Pesa are in the Precifarm AI companion — Android APK from precifarm.com. Not a chatbot. Not on the Play Store. iOS is not available yet.",
     steps: [
       {
         step: "01",
-        title: "Get the AI companion",
-        text: "Install from precifarm.com — Android APK, no Play Store required.",
+        title: "Pick a site here",
+        text: "Filter Corridor DC, Boda Hub swap or partner. Live and planned labels stay honest.",
       },
       {
         step: "02",
-        title: "Open Charging Hub",
-        text: "Filter Corridor DC, Boda Hub swap or partner sites. Live and planned labels stay honest.",
+        title: "Get directions",
+        text: "Open Google Maps from the pin. Check connector notes before you leave.",
       },
       {
         step: "03",
-        title: "Navigate",
-        text: "Open directions in Google Maps — see connector type and site notes before you leave.",
-      },
-      {
-        step: "04",
-        title: "Pay with M-Pesa",
-        text: "Session price is shown before you charge. History and receipts in the companion.",
-      },
-    ],
-  },
-  anatomy: {
-    eyebrow: "Hub anatomy",
-    title: "More than a charger on a car park",
-    description:
-      "Every Precifarm hub combines dependable energy, fast DC or Boda battery swap, a comfortable stop and monitored operations — built for Kenyan EV drivers and e-boda operators.",
-    imageEyebrow: "Four layers, one hub",
-    imageCaption:
-      "Energy supply, Corridor DC, dwell and operations — integrated in one dependable stop for your EV.",
-    layers: [
-      {
-        step: "01",
-        title: "Energy supply",
-        text: "Grid power on an e-mobility tariff, rooftop solar and LiFePO₄ storage keep energy dependable and session costs predictable.",
-      },
-      {
-        step: "02",
-        title: "Fast charging",
-        text: "Modular CCS2 and CHAdeMO DC where listed — Corridor charging adds about 60 kWh in 30 minutes, paid with M-Pesa.",
-      },
-      {
-        step: "03",
-        title: "Comfortable stops",
-        text: "Safe parking, shade and amenities while your EV charges — not a lone plug at the edge of a car park.",
-      },
-      {
-        step: "04",
-        title: "Operations",
-        text: "Remote monitoring, M-Pesa payments, session history and honest recovery when something fails.",
+        title: "Pay in the companion",
+        text: "Session price is shown before you charge. Pay with M-Pesa. History stays on your phone.",
       },
     ],
   },
   corridors: {
-    eyebrow: "Corridor coverage",
-    title: "Highway routes",
-    description: "Nairobi–Kisumu is first. The next corridor opens only when session volume and uptime prove the model.",
+    eyebrow: "Highway",
+    title: "Nairobi–Kisumu is first.",
+    description:
+      "The next corridor opens only when session volume and uptime on the western route prove the model. That is a gate, not a launch calendar.",
     exploreHref: "/charging",
-    exploreLabel: "Explore charging →",
+    exploreLabel: "Corridor charging hardware →",
     phases: [
       {
-        phase: "A",
+        phase: "1",
         route: "Nairobi – Kisumu",
-        hubs: "Kisumu terminus, Nakuru en-route and Nairobi hub access",
-        purpose:
-          "Western corridor — DC for EV drivers between Nairobi and Kisumu, with partner retail stops along the route.",
+        hubs: "Kisumu terminus, Nakuru en-route, Nairobi access",
+        purpose: "Western highway DC for EV drivers, with partner retail stops along the route.",
         active: true,
         status: "First" as const,
       },
       {
-        phase: "B",
+        phase: "2",
         route: "Nairobi – Mombasa",
-        hubs: "Mtito Andei, Voi and Mombasa hubs with Nairobi hub access",
-        purpose:
-          "Coast corridor — dependable Nairobi–Mombasa DC once the western route hits utilisation and uptime targets.",
+        hubs: "Mtito Andei, Voi, Mombasa",
+        purpose: "Coast DC after the western route hits utilisation and uptime targets.",
         active: false,
         status: "Next" as const,
       },
       {
-        phase: "C",
+        phase: "3",
         route: "Nairobi – Garissa",
-        hubs: "En-route charging along the eastern route, with Garissa as the terminus hub",
-        purpose:
-          "Eastern reach to northeastern Kenya — opened after western and Mombasa corridors pass demand gates.",
+        hubs: "Eastern en-route sites, Garissa terminus",
+        purpose: "Opened after western and Mombasa corridors pass demand gates.",
         active: false,
         status: "Planned" as const,
       },
     ],
   },
   locations: {
-    eyebrow: "Sites directory",
-    title: "Corridor, Boda Hub and partner sites",
-    description: "Reference list below. Open the AI companion for live filters, directions and M-Pesa pay.",
+    eyebrow: "Directory",
+    title: "Every site on this page",
+    description: "Same list as the map, as cards. Open the companion when you need to pay.",
     groups: [
       { id: "corridor" as const, label: "Corridor DC" },
       { id: "boda" as const, label: "Boda Hub swap" },
@@ -186,12 +178,13 @@ export const chargingHubPage = {
     ],
   },
   cta: {
-    title: "Open the Charging Hub in the companion",
-    description: "Filters, directions and M-Pesa on every session. Have a site on a busy route? Talk to us about hosting.",
+    title: "Need to pay a session?",
+    description:
+      "Get the AI companion for filters, directions and M-Pesa. Have kerbside or highway land? Talk to us about hosting a hub.",
     primaryHref: "/download",
     primaryLabel: "Get the AI companion",
     secondaryHref: "/contact",
-    secondaryLabel: "Host a hub site",
+    secondaryLabel: "Host a hub",
   },
 } as const;
 

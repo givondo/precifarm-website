@@ -19,12 +19,12 @@ import {
 import { siteCtas } from "@/lib/site-copy";
 import { pageJsonLd, pageMetadata } from "@/lib/seo/pages/helpers";
 
-export const metadata: Metadata = pageMetadata("/charging/private-house");
+export const metadata: Metadata = pageMetadata("/charging/home");
 
-export default function PrivateHouseChargingPage() {
+export default function HomeChargingPage() {
   return (
     <>
-      <JsonLd data={pageJsonLd("/charging/private-house")} />
+      <JsonLd data={pageJsonLd("/charging/home")} />
       <PageHero
         eyebrow={privateHouseChargingPage.hero.eyebrow}
         title={privateHouseChargingPage.hero.title}
@@ -43,7 +43,7 @@ export default function PrivateHouseChargingPage() {
           items={[
             { name: "Home", href: "/" },
             { name: "Charging", href: "/charging" },
-            { name: "Home charging", href: "/charging/private-house" },
+            { name: "Home charging", href: "/charging/home" },
           ]}
         />
 
@@ -105,7 +105,7 @@ export default function PrivateHouseChargingPage() {
                 <div className="training-table-scroll">
                   <table className="training-table w-full text-left text-sm" style={{ minWidth: "720px" }}>
                     <caption className="training-table-caption">
-                      <span className="training-table-caption-label">Private house installation process</span>
+                      <span className="training-table-caption-label">Home charging installation process</span>
                     </caption>
                     <thead>
                       <tr>

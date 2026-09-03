@@ -13,9 +13,9 @@ export const locationsPage = {
     title: "EV charging where Kenya drives",
     description:
       "City guides for home installs, corridor DC and Boda Hub swap — starting Nairobi, Kisumu and the western route.",
-    primaryHref: "/network",
+    primaryHref: "/hub",
     primaryLabel: "Charging Hub",
-    secondaryHref: "/charging/private-house",
+    secondaryHref: "/charging/home",
     secondaryLabel: "Home charging",
   },
   directory: {
@@ -27,7 +27,7 @@ export const locationsPage = {
     eyebrow: "Highway context",
     title: "Cities connect to corridors",
     description: "Nairobi–Kisumu is live. Mombasa and Garissa follow proven demand — see the Charging Hub for sites.",
-    href: "/network",
+    href: "/hub",
     label: "View corridor coverage →",
   },
   cta: {
@@ -107,7 +107,7 @@ const defaultMeta = {
   services: ["Home"] as const,
   status: "planned" as const,
   county: "Kenya",
-  description: "Precifarm home charging and network expansion across Kenya.",
+  description: "Precifarm home charging and hub expansion across Kenya.",
 };
 
 export type EnrichedLocation = {

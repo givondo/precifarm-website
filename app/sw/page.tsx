@@ -24,10 +24,10 @@ export default function SwahiliHomePage() {
           <Link href="/charging" className="btn-primary rounded-full px-6 py-2.5 text-sm">
             {swahiliUi.bookCta}
           </Link>
-          <Link href="/network" className="btn-secondary rounded-full px-6 py-2.5 text-sm">
+          <Link href="/hub" className="btn-secondary rounded-full px-6 py-2.5 text-sm">
             {swahiliUi.chargingHubCta}
           </Link>
-          <Link href="/charging/private-house" className="btn-secondary rounded-full px-6 py-2.5 text-sm">
+          <Link href="/charging/home" className="btn-secondary rounded-full px-6 py-2.5 text-sm">
             Kuchaji nyumbani
           </Link>
         </div>

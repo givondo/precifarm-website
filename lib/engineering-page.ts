@@ -64,7 +64,7 @@ export const engineeringPage = {
     eyebrow: "Product fit",
     title: "Which charger for which job.",
     products: [
-      { id: "pulse", ...productImages.pulse, href: "/charging/private-house" },
+      { id: "pulse", ...productImages.pulse, href: "/charging/home" },
       { id: "corridor", ...productImages.corridor, href: "/charging" },
       { id: "depot", ...productImages.depot, href: "/partners" },
       { id: "boda", ...productImages.boda, href: "/partners#boda-operators" },

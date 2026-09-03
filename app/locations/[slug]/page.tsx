@@ -74,7 +74,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const title = slug.startsWith("ev-charging-")
     ? `EV charging in ${entity.name}, Kenya`
-    : `${entity.name} — Precifarm network`;
+    : `${entity.name} — Precifarm Charging Hub`;
   return buildSeo(slug, title, entity.description).metadata;
 }
 
@@ -92,7 +92,7 @@ export default async function LocationPage({ params }: Props) {
     notFound();
   }
 
-  const title = content?.title ?? `${entity!.name} — Precifarm network`;
+  const title = content?.title ?? `${entity!.name} — Precifarm Charging Hub`;
   const description = content?.description ?? entity!.description;
   const path = `/locations/${slug}`;
   const seo = buildSeo(slug, title, description);
@@ -185,7 +185,7 @@ export default async function LocationPage({ params }: Props) {
           description="Explore charging services or find public chargers on the Charging Hub."
           primaryHref="/charging"
           primaryLabel="Explore charging"
-          secondaryHref="/network"
+          secondaryHref="/hub"
           secondaryLabel="Charging Hub"
         />
       </article>

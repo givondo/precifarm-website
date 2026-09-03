@@ -13,11 +13,11 @@ export const homeChargingHighlight = {
     "Survey, installation and three-year aftersale support from the same Precifarm crews that commission our route hubs.",
   ],
   primaryLabel: "Private house charging",
-  primaryHref: "/charging/private-house",
+  primaryHref: "/charging/home",
   secondaryLabel: "All charging services",
   secondaryHref: "/charging",
   tertiaryLabel: "Charging Hub",
-  tertiaryHref: "/network",
+  tertiaryHref: "/hub",
 } as const;
 
 export const privateHouseChargingPage = {

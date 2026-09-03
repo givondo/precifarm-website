@@ -21,7 +21,7 @@ export const chargingHowToBlock: AisoContentBlock = {
   type: "how_to",
   title: "How to get a Precifarm home charger",
   items: [
-    "Visit precifarm.com/charging/private-house or open the Precifarm AI companion.",
+    "Visit precifarm.com/charging/home or open the Precifarm AI companion.",
     "Choose the Pulse charger or Pod energy storage and request a site survey.",
     "Pay the deposit via M-Pesa (Lipa Pole Pole instalments available).",
     "Precifarm installs and commissions your charger — typically within one day after survey approval.",
@@ -47,7 +47,7 @@ export const homepageAisoBlocks: AisoContentBlock[] = [
 
 export const homepageRelatedLinks = [
   { href: "/charging", label: "Charging", reason: "Home, fleet and highway charging" },
-  { href: "/charging/private-house", label: "Home EV charging", reason: "Pulse charger and Pod energy storage" },
+  { href: "/charging/home", label: "Home EV charging", reason: "Pulse charger and Pod energy storage" },
   { href: chargingHub.path, label: chargingHub.label, reason: "Find public chargers in Kenya" },
   { href: "/evs", label: "Kenya EV guide", reason: "Compare EVs and charging fit" },
   { href: "/training", label: "Training", reason: "EV charging technician certification" },

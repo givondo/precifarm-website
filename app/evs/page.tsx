@@ -114,10 +114,10 @@ export default function KenyaEvCompatibilityPage() {
             <Link href="/download" className="btn-primary rounded-full px-6 py-3 text-sm">
               Get the AI companion
             </Link>
-            <Link href="/charging/private-house" className="text-sm font-medium">
+            <Link href="/charging/home" className="text-sm font-medium">
               Home charging ›
             </Link>
-            <Link href="/network" className="text-sm font-medium">
+            <Link href="/hub" className="text-sm font-medium">
               Open Charging Hub ›
             </Link>
           </div>

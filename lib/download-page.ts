@@ -25,7 +25,7 @@ export const downloadPageFaqs: FaqItem[] = [
   {
     question: "Can I use Charging Hub without installing?",
     answer:
-      "Yes. Open Charging Hub on precifarm.com/network in your browser for the site list. Filters, directions and session pay live in the companion.",
+      "Yes. Open Charging Hub on precifarm.com/hub in your browser for the site list. Filters, directions and session pay live in the companion.",
   },
 ];
 
@@ -100,7 +100,7 @@ export const downloadPage = {
         step: "02",
         title: "Size home energy",
         text: "See whether Pulse charger or Pod energy storage fits your wall, feeder and parking. Request a survey — we confirm the site before we quote.",
-        href: "/charging/private-house",
+        href: "/charging/home",
         label: "Home charging",
         image: productImages.podHomeHero.src,
         imageAlt: productImages.podHomeHero.alt,
@@ -228,7 +228,7 @@ export const downloadPage = {
       "Charging Hub and home surveys work in the browser. The companion adds filters, directions and M-Pesa on your phone.",
     primaryHref: chargingHub.path,
     primaryLabel: chargingHub.openLabel,
-    secondaryHref: "/charging/private-house",
+    secondaryHref: "/charging/home",
     secondaryLabel: "Request a house survey",
   },
 } as const;

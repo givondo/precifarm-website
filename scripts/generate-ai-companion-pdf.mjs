@@ -24,7 +24,7 @@ const DOC = {
   date: "31 August 2026",
   pages: 4,
   liveUrl: "https://precifarm.com/download",
-  hubUrl: "https://precifarm.com/network",
+  hubUrl: "https://precifarm.com/hub",
   apk: "precifarm.apk",
   packageId: "com.precifarm.mobile",
   appVersion: "1.0.0",
@@ -145,7 +145,7 @@ const FAQS = [
   ],
   [
     "Can I use Charging Hub without installing?",
-    "Yes. Open Charging Hub on precifarm.com/network in your browser for the site list. Filters, directions and session pay live in the companion.",
+    "Yes. Open Charging Hub on precifarm.com/hub in your browser for the site list. Filters, directions and session pay live in the companion.",
   ],
 ];
 
@@ -635,7 +635,7 @@ function buildHtml() {
         <div class="spec"><span>File</span><strong>${DOC.apk}</strong></div>
         <div class="spec"><span>iOS / Play Store</span><strong>Not available yet</strong></div>
         <div class="spec"><span>Payments</span><strong>M-Pesa · USSD · SMS</strong></div>
-        <div class="spec"><span>Web fallback</span><strong>precifarm.com/network</strong></div>
+        <div class="spec"><span>Web fallback</span><strong>precifarm.com/hub</strong></div>
       </div>
 
       <h2 class="sec-title">Before you install.</h2>

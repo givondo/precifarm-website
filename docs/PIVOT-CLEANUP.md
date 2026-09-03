@@ -3,7 +3,7 @@
 **Scope:** `website/` (precifarm.com)  
 **Updated:** 31 August 2026 — after charging-only ship (`6d7b759`) and AI companion rebrand.
 
-This replaces the pre-cleanup audit. Booking UI, APIs and `/book` / `/charging/home` pages are **gone**. Redirects remain.
+This replaces the pre-cleanup audit. Booking UI, APIs and `/book` are **gone**. Redirects remain. Home charging lives at `/charging/home`.
 
 ---
 
@@ -30,19 +30,20 @@ This replaces the pre-cleanup audit. Booking UI, APIs and `/book` / `/charging/h
 | `/careers` | `app/careers/page.tsx` | Charging roles | **KEEP** |
 | `/charging` | `app/charging/page.tsx` | Spark / Pulse / Pod / Depot / Boda / Corridor hub | **KEEP** |
 | `/charging/engineering` | `app/charging/engineering/page.tsx` | Design basis, Kenya Power hold points, PDF | **KEEP** |
-| `/charging/home` | — | Page deleted. `next.config` 301 → `/charging/private-house` | **DONE** |
+| `/charging/home` | `app/charging/home/page.tsx` | Pulse / Pod home packages, Lipa Pole Pole, survey | **KEEP** |
 | `/charging/modular-energy` | `app/charging/modular-energy/page.tsx` | P1 Go / P2 Home / Pod enclosure — conceptual | **KEEP** |
 | `/charging/modular-energy/p1-go` | `[slug]` | Portable backup (conceptual) | **KEEP** |
 | `/charging/modular-energy/p2-home` | `[slug]` | Home tower (conceptual) | **KEEP** |
 | `/charging/modular-energy/pod` | `[slug]` | Outdoor SME enclosure — not home Pod energy storage | **KEEP** — naming still easy to confuse |
-| `/charging/private-house` | `app/charging/private-house/page.tsx` | Pulse / Pod home packages, Lipa Pole Pole, survey | **KEEP** |
+| `/charging/private-house` | — | 301 → `/charging/home` | **DONE** |
 | `/contact` | `app/contact/page.tsx` | Email, phone, WhatsApp, form | **KEEP** |
 | `/download` | `app/download/page.tsx` | **Precifarm AI companion** — jobs, live vs in-design, APK, FAQ | **KEEP** |
 | `/evs` | `app/evs/page.tsx` | Kenya EV comparison + charging fit | **LEAVE** (SEO) |
 | `/faq` | `app/faq/page.tsx` | Charging FAQ index; booking slug filtered | **KEEP** |
 | `/guides` | `app/guides/page.tsx` | CMS how-tos | **LEAVE** (SEO) |
-| `/locations` | `app/locations/page.tsx` | City SEO directory | **LEAVE** — overlaps `/network` |
-| `/network` | `app/network/page.tsx` | Charging Hub — site types, how-it-works, directory | **KEEP** |
+| `/locations` | `app/locations/page.tsx` | City SEO directory | **LEAVE** — overlaps `/hub` |
+| `/network` | — | 301 → `/hub` | **DONE** |
+| `/hub` | `app/hub/page.tsx` | Charging Hub — site types, how-it-works, directory | **KEEP** |
 | `/partners` | `app/partners/page.tsx` | Fleet, hosts, dealers | **KEEP** |
 | `/sw` | `app/sw/page.tsx` | Kiswahili landing; off header, still in sitemap | **LEAVE** |
 | `/training` | `app/training/page.tsx` | T1 / T2 / T3 certification | **KEEP** |
@@ -77,7 +78,7 @@ This replaces the pre-cleanup audit. Booking UI, APIs and `/book` / `/charging/h
 
 Kiswahili is **off the header**. Footer still has Charge + Modular energy + Fleets + Company.
 
-**Header CTA:** `headerCta` → `/network` · “Open Charging Hub” (`BookNowLink` now uses `headerCta.href`).
+**Header CTA:** `headerCta` → `/hub` · “Open Charging Hub” (`BookNowLink` now uses `headerCta.href`).
 
 ---
 
@@ -87,7 +88,7 @@ Kiswahili is **off the header**. Footer still has Charge + Modular energy + Flee
 |---|---|---|
 | Homepage | **KEEP** | Charging + energy. `HomePlatform` (bus section) is **not** mounted |
 | `/charging/*` except legacy `/home` | **KEEP** | |
-| `/network` | **KEEP** | |
+| `/hub` | **KEEP** | |
 | `/partners`, `/contact` | **KEEP** | |
 | `/about` | **KEEP** | RouteRolesTable is charging-only |
 | `/training` | **KEEP** | Passenger language removed |
@@ -97,7 +98,7 @@ Kiswahili is **off the header**. Footer still has Charge + Modular energy + Flee
 | `/locations` | **LEAVE** | City SEO vs hub directory — optional later merge |
 | `/sw` | **LEAVE** | Thin mirror; keep unless traffic is zero |
 | `/careers` | **KEEP** | Passenger / timetable phrasing removed |
-| `/book`, `/charging/home` | **DONE** | Redirects only |
+| `/book` | **DONE** | Redirects only |
 | Booking UI + APIs | **DONE** | Deleted |
 | `lib/route.ts`, `lib/booking.ts`, `lib/booking-store.ts`, `lib/mpesa.ts`, `lib/seats.ts` | **DONE** | Deleted |
 | `lib/vehicles.ts` | **REVIEW** | Now hub photography, not Yutong — filename is leftover |
@@ -112,7 +113,7 @@ Kiswahili is **off the header**. Footer still has Charge + Modular energy + Flee
 
 | Overlap | Note |
 |---|---|
-| `/locations` vs `/network` | City SEO vs live hub directory — keep both for now |
+| `/locations` vs `/hub` | City SEO vs live hub directory — keep both for now |
 | `/evs` vs `/guides` | Structured comparison vs CMS how-tos — keep both |
 | Pod enclosure vs Pod energy storage | Nav already disambiguates; keep copy explicit |
 | Homepage EV teaser vs `/evs` | Teaser links through — acceptable |
@@ -133,10 +134,10 @@ Registered static paths match live pages (no `/book`). `/download` title is **Pr
 | `/electric-vehicles/kenya` | `/evs` |
 | `/ev-charging` (+ kenya, dc-fast-charging) | `/charging` |
 | `/ev-charging/nairobi` | `/locations` |
-| `/ev-charging/home`, `/ev-charging/private-house`, `/ev-charging/m-pesa` | `/charging/private-house` |
+| `/ev-charging/home`, `/ev-charging/private-house`, `/ev-charging/m-pesa` | `/charging/home` |
 | `/ev-charging/fleet` | `/partners` |
 | `/book`, `/book/:path*` | `/charging` |
-| `/charging/home` | `/charging/private-house` |
+| `/charging/private-house` | `/charging/home` |
 | `/faq/precifarm-booking-faq`, `/sw/faq/precifarm-booking-faq` | `/faq` |
 
 Middleware: `www.precifarm.com` → `precifarm.com`.
@@ -145,7 +146,7 @@ Middleware: `www.precifarm.com` → `precifarm.com`.
 
 ## 7. Footer & announcement
 
-**Announcement:** Pulse from KES 79,000 · public DC &lt;30 min · Lipa Pole Pole → `/charging/private-house`  
+**Announcement:** Pulse from KES 79,000 · public DC &lt;30 min · Lipa Pole Pole → `/charging/home`  
 **Product line:** Pulse · Pod · Spark · Corridor · Boda Hub · Depot · P1 Go  
 
 ---
@@ -153,6 +154,6 @@ Middleware: `www.precifarm.com` → `precifarm.com`.
 ## Remaining work (small)
 
 1. Optional later: rename `lib/vehicles.ts` → hub images; delete unused `HomePlatform.tsx` and dead `busSection` / `homeSolarInstallSection` copy.
-2. Optional later: `/locations` ↔ `/network` consolidation.
+2. Optional later: `/locations` ↔ `/hub` consolidation.
 
 **Do not cut:** `/download`, modular energy family, `/evs`, `/guides`, `/faq`, `/locations`, `/sw` unless product strategy changes.

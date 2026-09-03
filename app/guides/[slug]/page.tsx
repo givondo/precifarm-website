@@ -116,7 +116,7 @@ export default async function GuidePage({ params }: Props) {
           description="Explore Pulse charger, Pod energy storage and Corridor charging — or open the Charging Hub to find public DC near you."
           primaryHref="/charging"
           primaryLabel="Explore charging"
-          secondaryHref="/network"
+          secondaryHref="/hub"
           secondaryLabel="Open Charging Hub"
         />
       </article>

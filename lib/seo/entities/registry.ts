@@ -24,7 +24,7 @@ export const entityRegistry: KnowledgeEntity[] = [
     name: "Pulse charger",
     description:
       "7 kW home wallbox. A typical 60 km day refills in about 90 minutes. From KES 79,000 with Lipa Pole Pole on M-Pesa.",
-    url: absoluteUrl("/charging/private-house"),
+    url: absoluteUrl("/charging/home"),
     relatedIds: ["service-home-charging", "equipment-ev-charger"],
   },
   {
@@ -34,7 +34,7 @@ export const entityRegistry: KnowledgeEntity[] = [
     name: "Pod energy storage",
     description:
       "Home charger with 5 or 10 kWh storage for weak-grid evenings. From KES 295,000 with Lipa Pole Pole on M-Pesa.",
-    url: absoluteUrl("/charging/private-house"),
+    url: absoluteUrl("/charging/home"),
     relatedIds: ["service-home-charging", "product-pulse"],
   },
   {
@@ -124,7 +124,7 @@ export const entityRegistry: KnowledgeEntity[] = [
     name: chargingHub.name,
     description: chargingHub.description,
     aliases: ["Charge Map", "Hub Network"],
-    url: absoluteUrl("/network"),
+    url: absoluteUrl("/hub"),
     relatedIds: ["service-hub-charging", "service-home-charging", "location-nairobi", "location-kisumu"],
   },
   {
@@ -134,7 +134,7 @@ export const entityRegistry: KnowledgeEntity[] = [
     name: "Home charging",
     description:
       "Pulse charger and Pod energy storage on private property. A home charging day costs about KES 140 versus ~KES 1,000 diesel per day.",
-    url: absoluteUrl("/charging/private-house"),
+    url: absoluteUrl("/charging/home"),
     aliases: ["Private house charging", "Pulse charger", "Pod energy storage"],
     relatedIds: ["service-hub-charging", "product-pulse", "product-pod"],
   },
@@ -212,34 +212,34 @@ export function internalLinksForPath(path: string): { href: string; label: strin
     case "/":
       add(chargingHub.path, chargingHub.label, "Find hubs and partner chargers");
       add("/charging", "EV charging", "Home, fleet and highway charging");
-      add("/charging/private-house", "Home EV charging", "Pulse charger and Pod energy storage");
+      add("/charging/home", "Home EV charging", "Pulse charger and Pod energy storage");
       add("/evs", "Kenya EV guide", "Compare EVs and charging fit");
       add("/faq", "FAQ", "Charging and installation answers");
       return links.slice(0, 5);
-    case "/network":
+    case "/hub":
       add("/charging", "EV charging", "From home charging to highway charging");
-      add("/charging/private-house", "Home EV charging", "Pulse charger and Pod energy storage");
+      add("/charging/home", "Home EV charging", "Pulse charger and Pod energy storage");
       add("/locations", "Locations", "City guides across Kenya");
       break;
     case "/charging":
       add(chargingHub.path, chargingHub.label, "See hub locations");
-      add("/charging/private-house", "Home EV charging", "Pulse charger and Pod energy storage");
+      add("/charging/home", "Home EV charging", "Pulse charger and Pod energy storage");
       add("/partners", "Fleet EV charging", "Partner operator services");
       add("/evs", "Kenya EV guide", "Which charger fits your EV");
       break;
-    case "/charging/private-house":
+    case "/charging/home":
       add("/charging", "EV charging", "Home, fleet and highway");
       add("/guides", "Guides", "Home charger installation guides");
       add(chargingHub.path, chargingHub.label, "Route hub locations");
       break;
     case "/evs":
-      add("/charging/private-house", "Home EV charging", "Daily top-up at home");
+      add("/charging/home", "Home EV charging", "Daily top-up at home");
       add(chargingHub.path, chargingHub.label, "Public DC charging");
       add("/faq", "FAQ", "Charging economics in Kenya");
       break;
     case "/locations":
       add(chargingHub.path, chargingHub.label, "Charging Hub directory");
-      add("/charging/private-house", "Home EV charging", "Install in your city");
+      add("/charging/home", "Home EV charging", "Install in your city");
       break;
     case "/training":
       add("/charging/engineering", "Engineering package", "Hub design basis");
@@ -250,12 +250,12 @@ export function internalLinksForPath(path: string): { href: string; label: strin
       add("/contact", "Contact", "Talk to the team");
       break;
     case "/contact":
-      add("/charging/private-house", "Home EV charging", "Request a survey");
+      add("/charging/home", "Home EV charging", "Request a survey");
       add("/partners", "Partners", "Fleet and hub hosting");
       break;
     case "/download":
       add(chargingHub.path, chargingHub.label, "Hubs and route coverage");
-      add("/charging/private-house", "Home EV charging", "Pulse charger and Pod energy storage installs");
+      add("/charging/home", "Home EV charging", "Pulse charger and Pod energy storage installs");
       add("/charging", "EV charging", "Spark charger to Corridor");
       break;
     case "/partners":

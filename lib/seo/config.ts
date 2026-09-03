@@ -5,6 +5,7 @@
 
 import { contact } from "@/lib/contact";
 import { chargingHub } from "@/lib/charging-hub";
+import { modularEnergyPaths } from "@/lib/modular-energy-page";
 import { socialHandles, socialProfileUrls } from "@/lib/social";
 
 /** Browser tab title for the homepage — keep in sync with layout metadata */
@@ -51,7 +52,7 @@ export const siteConfig = {
     deepLinkScheme: "precifarm",
   },
   cmsApiUrl: process.env.CMS_API_URL?.replace(/\/$/, ""),
-  searchPath: "/network",
+  searchPath: "/hub",
 } as const;
 
 export type SiteConfig = typeof siteConfig;
@@ -61,11 +62,12 @@ export const publicRoutes = [
   { path: "/", label: "Home", changefreq: "weekly" as const, priority: 1.0 },
   { path: chargingHub.path, label: chargingHub.label, changefreq: "weekly" as const, priority: 0.9 },
   { path: "/charging", label: "Charging", changefreq: "monthly" as const, priority: 0.95 },
-  { path: "/charging/private-house", label: "Home charging", changefreq: "monthly" as const, priority: 0.82 },
-  { path: "/charging/modular-energy", label: "Modular energy", changefreq: "monthly" as const, priority: 0.8 },
-  { path: "/charging/modular-energy/p1-go", label: "P1 Go", changefreq: "monthly" as const, priority: 0.72 },
-  { path: "/charging/modular-energy/p2-home", label: "P2 Home", changefreq: "monthly" as const, priority: 0.72 },
-  { path: "/charging/modular-energy/pod", label: "Pod", changefreq: "monthly" as const, priority: 0.72 },
+  { path: "/charging/home", label: "Home charging", changefreq: "monthly" as const, priority: 0.82 },
+  { path: modularEnergyPaths.overview, label: "Modular energy", changefreq: "monthly" as const, priority: 0.8 },
+  { path: modularEnergyPaths.p1Go, label: "P1 Go", changefreq: "monthly" as const, priority: 0.72 },
+  { path: modularEnergyPaths.p2Home, label: "P2 Home", changefreq: "monthly" as const, priority: 0.72 },
+  { path: modularEnergyPaths.pod, label: "Pod", changefreq: "monthly" as const, priority: 0.72 },
+  { path: modularEnergyPaths.megapack, label: "MegaPack", changefreq: "monthly" as const, priority: 0.78 },
   { path: "/evs", label: "Kenya EV guide", changefreq: "weekly" as const, priority: 0.84 },
   { path: "/charging/engineering", label: "Engineering Design Package", changefreq: "monthly" as const, priority: 0.8 },
   { path: "/partners", label: "Partners", changefreq: "monthly" as const, priority: 0.8 },

@@ -2,16 +2,16 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import HubGridMap from "@/components/HubGridMap";
 import ProductPhoto from "@/components/ProductPhoto";
 import SectionHeader from "@/components/ui/SectionHeader";
-import { chargingOfferings } from "@/lib/charging";
 import { chargingHubPage, chargingHubPhaseStyles, chargingHubSitePhaseStyles } from "@/lib/charging-hub";
 import {
-  type ChargingHub,
   getChargingHubDirectory,
   googleDirectionsUrl,
   hubPhaseDisplay,
   hubSiteTypeLabel,
+  type ChargingHub,
 } from "@/lib/hub-locations";
 import { productImages } from "@/lib/product-images";
 
@@ -20,20 +20,6 @@ const productImageByKey = {
   boda: productImages.boda,
   depot: productImages.depot,
 } as const;
-
-const layerIcons = [
-  <>
-    <circle cx="12" cy="12" r="4" />
-    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
-  </>,
-  <path d="M13 2 4.5 13.5H11L9.5 22 19 9.5h-6.5L13 2Z" />,
-  <>
-    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-    <circle cx="9" cy="7" r="4" />
-    <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
-  </>,
-  <path d="M22 12h-4l-3 9L9 3l-3 9H2" />,
-];
 
 type LocationGroup = "corridor" | "boda" | "partners";
 
@@ -54,12 +40,8 @@ function SiteCard({ hub }: { hub: ChargingHub }) {
         </span>
       </div>
       <p className="mt-3 flex-1 text-sm leading-relaxed text-forest-600">{hub.role}</p>
-      {hub.route ? (
-        <p className="mt-2 text-xs text-forest-500">{hub.route}</p>
-      ) : null}
-      {hub.swapTime ? (
-        <p className="mt-1 text-xs font-medium text-charge-700">Swap {hub.swapTime}</p>
-      ) : null}
+      {hub.route ? <p className="mt-2 text-xs text-forest-500">{hub.route}</p> : null}
+      {hub.swapTime ? <p className="mt-1 text-xs font-medium text-charge-700">Swap {hub.swapTime}</p> : null}
       <a
         href={googleDirectionsUrl(hub.lat, hub.lng)}
         target="_blank"
@@ -69,6 +51,41 @@ function SiteCard({ hub }: { hub: ChargingHub }) {
         Get directions →
       </a>
     </article>
+  );
+}
+
+export function ChargingHubHonesty() {
+  const { honesty } = chargingHubPage;
+
+  return (
+    <section className="border-b border-border bg-white">
+      <div className="page-container py-10 sm:py-12">
+        <SectionHeader eyebrow={honesty.eyebrow} title={honesty.title} />
+        <div className="mt-8 grid gap-4 sm:grid-cols-3">
+          {honesty.items.map((item) => (
+            <article key={item.title} className="rounded-2xl border border-border bg-muted/30 p-5">
+              <h3 className="text-sm font-semibold text-forest-900">{item.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-forest-600">{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function ChargingHubMap() {
+  const { map } = chargingHubPage;
+
+  return (
+    <section id="map" className="scroll-mt-24 border-b border-border bg-muted/20 section-pad">
+      <div className="page-container max-w-6xl">
+        <SectionHeader eyebrow={map.eyebrow} title={map.title} description={map.description} />
+        <div className="mt-8">
+          <HubGridMap />
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -87,7 +104,7 @@ export function ChargingHubSiteTypes() {
           {siteTypes.types.map((type) => {
             const image = productImageByKey[type.imageKey];
             return (
-              <Link
+              <a
                 key={type.id}
                 href={type.href}
                 className="group flex flex-col overflow-hidden rounded-[1.75rem] border border-border bg-muted/20 transition-all hover:border-forest-300 hover:bg-white hover:shadow-lg"
@@ -104,9 +121,9 @@ export function ChargingHubSiteTypes() {
                   <p className="font-mono text-sm font-bold text-charge-600">{type.stat}</p>
                   <h3 className="mt-1 text-xl font-semibold text-forest-900">{type.title}</h3>
                   <p className="mt-2 flex-1 text-sm leading-relaxed text-forest-600">{type.detail}</p>
-                  <span className="mt-4 text-sm font-medium text-forest-900">Learn more ›</span>
+                  <span className="mt-4 text-sm font-medium text-forest-900">See on the map ›</span>
                 </div>
-              </Link>
+              </a>
             );
           })}
         </div>
@@ -127,7 +144,7 @@ export function ChargingHubHowItWorks() {
           description={howItWorks.description}
           inverted
         />
-        <ol className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <ol className="mt-10 grid gap-4 sm:grid-cols-3">
           {howItWorks.steps.map((step) => (
             <li
               key={step.step}
@@ -219,11 +236,7 @@ export function ChargingHubLocations() {
           title={locations.title}
           description={locations.description}
         />
-        <div
-          role="tablist"
-          aria-label="Filter site directory"
-          className="mt-8 flex flex-wrap gap-2"
-        >
+        <div role="tablist" aria-label="Filter site directory" className="mt-8 flex flex-wrap gap-2">
           {locations.groups.map((item) => (
             <button
               key={item.id}
@@ -238,115 +251,22 @@ export function ChargingHubLocations() {
               }`}
             >
               {item.label}
-              <span className="ml-1.5 font-mono text-xs opacity-70">
-                ({directory[item.id].length})
-              </span>
+              <span className="ml-1.5 font-mono text-xs opacity-70">({directory[item.id].length})</span>
             </button>
           ))}
         </div>
-        <div
-          role="tabpanel"
-          className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
-        >
+        <div role="tabpanel" className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {hubs.map((hub) => (
             <SiteCard key={hub.id} hub={hub} />
           ))}
         </div>
         <p className="mt-6 text-sm text-forest-500">
-          For filters, session pay and the full list —{" "}
+          Session pay lives in the companion —{" "}
           <Link href="/download" className="font-medium text-charge-700 hover:text-charge-600">
             download the Precifarm AI companion
           </Link>
           .
         </p>
-      </div>
-    </section>
-  );
-}
-
-export function ChargingHubAnatomy() {
-  const { anatomy } = chargingHubPage;
-
-  return (
-    <section className="border-b border-border bg-white section-pad">
-      <div className="page-container">
-        <SectionHeader
-          eyebrow={anatomy.eyebrow}
-          title={anatomy.title}
-          description={anatomy.description}
-        />
-        <div className="mt-12 grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-12">
-          <div className="relative space-y-3">
-            {anatomy.layers.map((layer, index) => (
-              <article
-                key={layer.title}
-                className="group flex gap-4 rounded-2xl border border-border bg-white p-4 shadow-sm transition-all hover:border-forest-500/35 hover:shadow-md sm:gap-5 sm:p-5"
-              >
-                <div className="flex shrink-0 flex-col items-center gap-2">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-forest-700 transition-colors group-hover:bg-forest-600">
-                    <svg
-                      viewBox="0 0 24 24"
-                      className="h-5 w-5"
-                      fill="none"
-                      stroke="var(--color-forest-100)"
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      {layerIcons[index]}
-                    </svg>
-                  </span>
-                  <span className="font-mono text-[10px] font-semibold tracking-wider text-forest-600">
-                    {layer.step}
-                  </span>
-                </div>
-                <div className="min-w-0 flex-1 border-l border-forest-500/15 pl-4 sm:pl-5">
-                  <h3 className="text-base font-semibold text-forest-900 sm:text-lg">{layer.title}</h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-forest-600/80">{layer.text}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-          <div className="lg:sticky lg:top-8">
-            <div className="overflow-hidden rounded-2xl border border-border bg-white p-4 shadow-xl">
-              <ProductPhoto
-                src={chargingOfferings.hubAnatomy.image}
-                alt={chargingOfferings.hubAnatomy.imageAlt}
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="mx-auto aspect-[4/3] w-full object-contain"
-              />
-            </div>
-            <p className="mt-4 text-sm leading-relaxed text-forest-600">
-              <span className="font-semibold text-forest-900">{anatomy.imageEyebrow}. </span>
-              {anatomy.imageCaption}
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export function ChargingHubSiteSelection() {
-  const { siteSelection } = chargingHubPage;
-
-  return (
-    <section className="section-pad page-container">
-      <SectionHeader
-        eyebrow={siteSelection.eyebrow}
-        title={siteSelection.title}
-        description={siteSelection.description}
-      />
-      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {siteSelection.criteria.map((c, i) => (
-          <div key={c.title} className="card p-5">
-            <span className="font-mono text-xs font-semibold text-forest-600">
-              {String(i + 1).padStart(2, "0")}
-            </span>
-            <h3 className="mt-2 font-semibold text-forest-900">{c.title}</h3>
-            <p className="mt-1 text-sm leading-relaxed text-forest-600/80">{c.text}</p>
-          </div>
-        ))}
       </div>
     </section>
   );
