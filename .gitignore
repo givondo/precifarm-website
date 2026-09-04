@@ -22,34 +22,57 @@
 
 # misc
 .DS_Store
-*.pem
+Thumbs.db
+*~
 
 # debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+*.log
 
 # env files — commit .env.example only; never commit secrets
-.env
-.env.local
-.env.*.local
+.env*
 !.env.example
 
-# vercel
+# keys, certs, signing material
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+id_rsa
+id_rsa.*
+*.ppk
+
+# cloud / service credentials
+*-credentials.json
+*credentials*.json
+service-account*.json
+google-services.json
+GoogleService-Info.plist
+firebase-adminsdk*.json
+.gcp-domain-*.json
+
+# vercel / netlify local (may copy .env)
 .vercel
+.netlify
 
 # Android APK binaries (publish via mobile app script; do not commit large files)
 /public/downloads/*.apk
 /public/downloads/.engineering-pdf-source.html
 /public/downloads/.pdf-build/
 
+# draft downloads and PDF build output (may embed contact or unreleased copy)
+/public/downloads/_*
+.pdf-preview/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
 
-# Local Netlify folder
-.netlify
-
-# Local GCP domain mapping request files
-.gcp-domain-*.json
+# local IDE / agent state
+.cursor/
+.agent/
