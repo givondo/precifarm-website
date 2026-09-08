@@ -24,8 +24,8 @@ This replaces the pre-cleanup audit. Booking UI, APIs and `/book` are **gone**. 
 
 | Route | File | Purpose | Verdict |
 |---|---|---|---|
-| `/` | `app/page.tsx` | Homepage — charging scenarios, flagships, energy packages, EV teaser, AI companion, FAQ, CTA | **KEEP** |
-| `/about` | `app/about/page.tsx` | Company story, principles, who-does-what (home / hubs / fleets / highway) | **KEEP** — booking copy removed |
+| `/` | `app/page.tsx` | Homepage — charging scenarios, flagships, energy packages, EV teaser, Precifarm Agent, FAQ, CTA | **KEEP** |
+| `/about` | `app/about/page.tsx` | Company story — Charge + Store, operating model, who-does-what | **KEEP** |
 | `/book` | — | Page deleted. `next.config` 301 → `/charging` | **DONE** |
 | `/careers` | `app/careers/page.tsx` | Charging roles | **KEEP** |
 | `/charging` | `app/charging/page.tsx` | Spark / Pulse / Pod / Depot / Boda / Corridor hub | **KEEP** |
@@ -34,10 +34,10 @@ This replaces the pre-cleanup audit. Booking UI, APIs and `/book` are **gone**. 
 | `/charging/modular-energy` | `app/charging/modular-energy/page.tsx` | P1 Go / P2 Home / Pod enclosure — conceptual | **KEEP** |
 | `/charging/modular-energy/p1-go` | `[slug]` | Portable backup (conceptual) | **KEEP** |
 | `/charging/modular-energy/p2-home` | `[slug]` | Home tower (conceptual) | **KEEP** |
-| `/charging/modular-energy/pod` | `[slug]` | Outdoor SME enclosure — not home Pod energy storage | **KEEP** — naming still easy to confuse |
+| `/charging/modular-energy/pod-stack` | `[slug]` | Outdoor SME enclosure — not home Pod energy storage | **KEEP** — renamed from `/pod` (redirected) to reduce confusion |
 | `/charging/private-house` | — | 301 → `/charging/home` | **DONE** |
 | `/contact` | `app/contact/page.tsx` | Email, phone, WhatsApp, form | **KEEP** |
-| `/download` | `app/download/page.tsx` | **Precifarm AI companion** — jobs, live vs in-design, APK, FAQ | **KEEP** |
+| `/download` | `app/download/page.tsx` | **Precifarm Agent** — jobs, live vs in-design, APK, FAQ | **KEEP** |
 | `/evs` | `app/evs/page.tsx` | Kenya EV comparison + charging fit | **LEAVE** (SEO) |
 | `/faq` | `app/faq/page.tsx` | Charging FAQ index; booking slug filtered | **KEEP** |
 | `/guides` | `app/guides/page.tsx` | CMS how-tos | **LEAVE** (SEO) |
@@ -63,7 +63,7 @@ This replaces the pre-cleanup audit. Booking UI, APIs and `/book` are **gone**. 
 |---|---|
 | `/sitemap.xml` | Static `publicRoutes` + CMS (booking FAQ slug filtered) |
 | `/robots.txt` | Disallows `/api/` |
-| `/feed.xml`, `/llms.txt` | Charging-only copy; AI companion listed |
+| `/feed.xml`, `/llms.txt` | Charging-only copy; Precifarm Agent listed |
 | `/.well-known/assetlinks.json` | Android App Links for the companion |
 
 ---
@@ -72,7 +72,7 @@ This replaces the pre-cleanup audit. Booking UI, APIs and `/book` are **gone**. 
 
 **Charge:** Charging Hub · Charging · Home charging · Engineering · Training  
 
-**Modular energy:** Platform overview · P1 Go · P2 Home · Pod enclosure · **AI companion** (`/download`)
+**Modular energy:** Platform overview · P1 Go · P2 Home · Pod enclosure · **Precifarm Agent** (`/download`)
 
 **Company:** About · Kenya EV guide · Guides · FAQ · Careers · Contact  
 
@@ -92,7 +92,7 @@ Kiswahili is **off the header**. Footer still has Charge + Modular energy + Flee
 | `/partners`, `/contact` | **KEEP** | |
 | `/about` | **KEEP** | RouteRolesTable is charging-only |
 | `/training` | **KEEP** | Passenger language removed |
-| `/download` + homepage band | **KEEP** | Rebranded AI companion; not a chatbot |
+| `/download` + homepage band | **KEEP** | Precifarm Agent; not a chatbot |
 | `/evs`, `/guides`, `/faq` | **LEAVE** | Content layer; booking FAQ blocked |
 | `/faq/precifarm-booking-faq` | **DONE** | 301 → `/faq`; page `notFound()` |
 | `/locations` | **LEAVE** | City SEO vs hub directory — optional later merge |
@@ -103,7 +103,7 @@ Kiswahili is **off the header**. Footer still has Charge + Modular energy + Flee
 | `lib/route.ts`, `lib/booking.ts`, `lib/booking-store.ts`, `lib/mpesa.ts`, `lib/seats.ts` | **DONE** | Deleted |
 | `lib/vehicles.ts` | **REVIEW** | Now hub photography, not Yutong — filename is leftover |
 | OG image | **DONE** | “EV CHARGING · ENERGY STORAGE” |
-| Entity registry Yutong | **DONE** | Pulse / Pod / Spark / Corridor / Depot / Boda / AI companion |
+| Entity registry Yutong | **DONE** | Pulse / Pod / Spark / Corridor / Depot / Boda / Precifarm Agent |
 | `BookNowLink` / `IconTicket` | **DONE** | CTA uses `headerCta.href`; ticket icon removed |
 | `homeSolarInstallSection`, `busSection`, `HomePlatform.tsx` | **REVIEW** | Unused on live homepage |
 

@@ -135,6 +135,30 @@ footer.doc-foot.pf-doc-footer {
   text-decoration: underline;
 }
 
+.pf-doc-footer-title {
+  margin: 0.35rem 0 0;
+  font-size: 0.88rem;
+  color: var(--pf-ink);
+}
+
+.pf-doc-footer-social {
+  margin: 0.35rem 0 0;
+  font-size: 0.78rem;
+}
+
+.pf-doc-toolbar-id {
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.78rem;
+  color: var(--pf-subtle);
+  letter-spacing: 0.04em;
+}
+
+.pf-doc-toolbar-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
 /* Branded toolbar (screen only) */
 .pf-doc-toolbar {
   border-bottom-color: var(--pf-line);
@@ -165,7 +189,73 @@ footer.doc-foot.pf-doc-footer {
   border-color: var(--pf-charge-hover);
 }
 
+/* Fixed print band — appears on every PDF page */
+.pf-print-band {
+  display: none;
+}
+
 @media print {
+  @page {
+    size: A4;
+    margin: 12mm 12mm 24mm;
+  }
+
+  .pf-print-band {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2mm 12mm 3mm;
+    border-top: 1px solid var(--pf-line);
+    background: #fff;
+    font-size: 6pt;
+    line-height: 1.35;
+    color: var(--pf-muted);
+    z-index: 9999;
+  }
+
+  .pf-print-band-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem 0.6rem;
+    margin: 0 0 0.6mm;
+  }
+
+  .pf-print-band-row:last-child {
+    margin-bottom: 0;
+    justify-content: space-between;
+  }
+
+  .pf-print-band-brand strong {
+    color: var(--pf-ink);
+    font-size: 6.5pt;
+  }
+
+  .pf-print-band-brand img {
+    vertical-align: middle;
+    margin-right: 1mm;
+  }
+
+  .pf-print-band-muted,
+  .pf-print-band-contact,
+  .pf-print-band-social {
+    color: var(--pf-subtle);
+    font-size: 5.8pt;
+  }
+
+  .pf-print-band-social a {
+    color: var(--pf-muted);
+    text-decoration: none;
+  }
+
+  .pf-print-band-doc {
+    font-family: ui-monospace, Consolas, monospace;
+    font-size: 5.8pt;
+    color: var(--pf-subtle);
+  }
+
   .pf-doc-header {
     break-inside: avoid;
     page-break-inside: avoid;

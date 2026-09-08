@@ -74,8 +74,8 @@ export const homeProducts: HomeProduct[] = [
     category: "home",
     priceLabel: "From KES 295,000 · Lipa Pole Pole",
     href: "/charging/home",
-    image: productImages.podHomeHero.src,
-    imageAlt: productImages.podHomeHero.alt,
+    image: productImages.familyHero.src,
+    imageAlt: productImages.familyHero.alt,
     imageBrand: productImages.pod.brand,
   },
   {

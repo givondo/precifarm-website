@@ -1,8 +1,8 @@
-/** Precifarm AI companion — download metadata for the website. APK filename stays precifarm.apk. */
+/** Precifarm Agent — download metadata. APK filename stays precifarm.apk. */
 
 export const appBrand = {
-  shortName: "AI companion",
-  fullName: "Precifarm AI companion",
+  shortName: "Agent",
+  fullName: "Precifarm Agent",
 } as const;
 
 export const appDownload = {

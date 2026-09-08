@@ -1,6 +1,7 @@
 import Link from "next/link";
-import HubImage from "@/components/HubImage";
+import SiteImage from "@/components/SiteImage";
 import { homeNetworkTeaser } from "@/lib/brand-messaging";
+import { productImages } from "@/lib/product-images";
 
 export default function HomeNetworkTeaser() {
   const { eyebrow, title, description, stats, primaryHref, primaryLabel, secondaryHref, secondaryLabel } =
@@ -9,8 +10,15 @@ export default function HomeNetworkTeaser() {
   return (
     <section className="bg-muted/50 py-20 sm:py-28">
       <div className="page-container grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
-        <div className="overflow-hidden rounded-[1.75rem] bg-white">
-          <HubImage variant="intercityWide" aspectClass="aspect-[16/10]" sizes="(max-width: 1024px) 100vw, 50vw" />
+        <div className="overflow-hidden rounded-[1.75rem] bg-white p-6 sm:p-8">
+          <SiteImage
+            src={productImages.corridor.src}
+            alt={productImages.corridor.alt}
+            width={1200}
+            height={900}
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            className="aspect-[4/3] w-full object-contain"
+          />
         </div>
         <div>
           <p className="text-xs font-semibold uppercase tracking-widest text-forest-500">{eyebrow}</p>
@@ -27,7 +35,7 @@ export default function HomeNetworkTeaser() {
           </dl>
 
           <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2">
-            <Link href={primaryHref} className="btn-primary rounded-full px-6 py-3 text-sm">
+            <Link href={primaryHref} className="btn-primary">
               {primaryLabel}
             </Link>
             <Link href={secondaryHref} className="text-sm font-medium">

@@ -232,12 +232,12 @@ export const kenyaEvMarketCallouts = {
 
 export const kenyaEvCompatibilityPage = {
   path: "/evs",
-  eyebrow: "Kenya EV compatibility",
-  title: "Kenya EV guide — range, charging time and Precifarm fit",
+  eyebrow: "17 models · Kenya market",
+  title: "Leaf, BYD or Roam Air — how long to charge and where Precifarm fits",
   lead:
-    "Compare Nissan Leaf, BYD, MG, Hyundai, Kia, Tesla, Volkswagen and electric motorcycles in Kenya — practical range, DC charging speed, daily top-up time and where Precifarm home, hub and corridor charging fit your vehicle.",
+    "Compare practical range, DC speed and daily top-up time for the cars and e-bodas Kenyan drivers actually buy — then see whether home Pulse, Charging Hub, Corridor DC or Boda Hub swap matches your vehicle.",
   vehicleAware:
-    "Precifarm is built for vehicle-aware EV charging in Kenya. Select or connect your car or e-boda in the AI companion — Precifarm uses battery size, charging standard, state of charge and route to recommend where and when to charge. You should not need to decode charger specs first.",
+    "Precifarm is built for vehicle-aware charging in Kenya. Connect your car or e-boda in Precifarm Agent — battery size, plug type, state of charge and route drive where and when we suggest you charge. You should not need to decode charger specs first.",
   dataLayer:
     "Practical range and charging times here are planning estimates for Kenyan roads — not manufacturer WLTP or NEDC guarantees. Over time, Precifarm session data can replace brochure figures with Kenya-specific range and charging insights.",
   marketContext:
@@ -270,9 +270,9 @@ export const kenyaEvCompatibilityPage = {
 export const kenyaEvHomeSection = {
   id: "ev-cars-comparison",
   eyebrow: "Kenya EV guide",
-  title: "Which EV — and how Precifarm charges it.",
+  title: "Which EV you drive — and how long Precifarm takes to charge it",
   description:
-    "Practical range and charging time for the cars and motorcycles Kenyan drivers actually buy. Specs vary by import batch and trim.",
+    "Practical range and daily top-up for Leaf, BYD, MG and e-bodas on Kenyan roads. Specs vary by import batch and trim.",
   footnote:
     "* Illustrative planning figures — not manufacturer guarantees. Charging times = daily top-up. Full comparison on the guide page.",
   fullGuideCta: { href: "/evs", label: "View full Kenya EV guide" },

@@ -1,234 +1,134 @@
 import { aiCompanionDoc } from "@/lib/ai-companion-doc";
 import { appDownload } from "@/lib/app-download";
-import { chargingHub, chargingHubPage } from "@/lib/charging-hub";
-import { homeProducts } from "@/lib/home-products";
+import { chargingHub } from "@/lib/charging-hub";
 import { productImages } from "@/lib/product-images";
 import { sitePricing } from "@/lib/site-copy";
 import type { FaqItem } from "@/lib/seo/types";
 
+export type CopilotScreen = "hub" | "home" | "pay";
+
 export const downloadPageFaqs: FaqItem[] = [
   {
-    question: "What is the Precifarm AI companion?",
+    question: "What is Precifarm Agent?",
     answer:
-      "It is Precifarm's Android companion for charging in Kenya. Use it to find a hub, size Pulse charger or Pod energy storage, and pay with M-Pesa. It is not a live chatbot.",
+      "The Precifarm Android app for EV charging in Kenya — find a Charging Hub, request a Pulse charger or Pod energy storage survey, and pay with M-Pesa.",
+  },
+  {
+    question: "What works today vs what is coming?",
+    answer:
+      "Live now: Charging Hub with honest live and planned labels, home Pulse and Pod surveys, M-Pesa session pay and Lipa Pole Pole. Rolling out: smarter vehicle-aware hub suggestions and charging cost estimates. Roadmap: deeper home-energy features tied to Pod and modular energy.",
   },
   {
     question: "Is it on the Google Play Store?",
     answer:
-      "Not yet. Install the APK from this page on precifarm.com. Allow installs from your browser if Android asks. iOS is not available yet.",
+      "Not yet. Install the APK from precifarm.com/download. iOS is not available yet.",
   },
   {
-    question: "How do I pay in the companion?",
+    question: "Will Precifarm Agent spend M-Pesa without asking?",
     answer:
-      "Charging sessions and Lipa Pole Pole instalments use M-Pesa. Session price, deposit, monthly and total are shown before you confirm. USSD and SMS work on phones without a bank account.",
+      "No. Session price, deposit and instalment totals are shown before you confirm.",
   },
   {
     question: "Can I use Charging Hub without installing?",
-    answer:
-      "Yes. Open Charging Hub on precifarm.com/hub in your browser for the site list. Filters, directions and session pay live in the companion.",
+    answer: "Yes — precifarm.com/hub works in your browser. Filters, directions and session pay live in the Android app.",
   },
 ];
 
-function productCard(id: "spark" | "pulse" | "pod" | "boda" | "depot" | "corridor") {
-  const product = homeProducts.find((item) => item.id === id);
-  if (!product) {
-    throw new Error(`Missing home product: ${id}`);
-  }
-  const shot = productImages[id];
-  return {
-    id,
-    name: product.name,
-    summary: product.summary,
-    priceLabel: product.priceLabel,
-    href: product.href,
-    src: shot.src,
-    alt: shot.alt,
-  };
-}
-
 export const downloadPage = {
   hero: {
-    eyebrow: "AI companion · Kenya",
-    title: "Your charging companion for Kenya.",
-    description:
-      "Find a live hub, size Pulse charger or Pod energy storage, and pay with M-Pesa — built around how you drive and park. Android only. Not a live chatbot.",
-    primaryLabel: "Get the AI companion",
+    eyebrow: "Precifarm Agent · Android",
+    title: "Kenya's EV charging app.",
+    titleAccent: "Hub, home energy, M-Pesa.",
+    lead:
+      "One install for public Charging Hub, Pulse and Pod home surveys, and M-Pesa pay — the same Precifarm products we deploy across Kenya.",
+    tagline: "Charging Hub, home surveys and M-Pesa in one Android app.",
+    primaryLabel: "Download for Android",
     secondaryHref: chargingHub.path,
     secondaryLabel: chargingHub.openLabel,
     pdfHref: aiCompanionDoc.downloadHref,
     pdfLabel: aiCompanionDoc.downloadLabel,
-    meta: `Android ${appDownload.minAndroid}+ · Direct APK from precifarm.com · Not on Play Store yet · iOS not available`,
-    pills: [
-      `Android ${appDownload.minAndroid}+`,
-      "M-Pesa on every session",
-      "Not a chatbot",
-    ],
-    phoneCaption:
-      "Illustrative companion screens — Charging Hub, home survey and M-Pesa. Not a live chatbot.",
+    meta: `Android ${appDownload.minAndroid}+ · APK from precifarm.com · Play Store & iOS not yet`,
   },
   stats: [
+    { stat: sitePricing.publicDcFrom, label: "Public DC from" },
+    { stat: sitePricing.pulseFrom, label: "Pulse home charger" },
+    { stat: sitePricing.lipaFrom, label: "Lipa Pole Pole" },
+  ],
+  usps: [
     {
-      stat: `Android ${appDownload.minAndroid}+`,
-      label: "Companion APK from this site. iOS is not available yet.",
+      id: "honest",
+      title: "Honest hub map",
+      text: "Live, planned and partner sites labelled — no fake “open now”.",
     },
     {
-      stat: sitePricing.publicDcFrom,
-      label: "Public DC from this rate — price shown before you confirm.",
+      id: "unified",
+      title: "One Precifarm account",
+      text: "Public charge, home survey and M-Pesa history on the same login.",
     },
     {
-      stat: sitePricing.lipaFrom,
-      label: "Lipa Pole Pole on Pulse charger and Pod energy storage.",
+      id: "mpesa",
+      title: "M-Pesa before PIN",
+      text: "Session price and instalment totals shown before you confirm.",
     },
   ],
-  jobs: {
-    eyebrow: "What it does",
-    title: "Three jobs. One companion.",
-    description:
-      "The Precifarm AI companion is for charging in Kenya — not a generic charger catalogue, and not a live chatbot.",
-    items: [
-      {
-        step: "01",
-        title: "Find a hub",
-        text: "Open Charging Hub. Filter Corridor DC, Boda Hub swap or partner sites. Live and planned labels stay honest. Get directions before you leave.",
-        href: chargingHub.path,
-        label: "Open Charging Hub",
-        image: productImages.corridor.src,
-        imageAlt: productImages.corridor.alt,
-        kicker: "On the road",
-      },
-      {
-        step: "02",
-        title: "Size home energy",
-        text: "See whether Pulse charger or Pod energy storage fits your wall, feeder and parking. Request a survey — we confirm the site before we quote.",
-        href: "/charging/home",
-        label: "Home charging",
-        image: productImages.podHomeHero.src,
-        imageAlt: productImages.podHomeHero.alt,
-        kicker: "At home",
-      },
-      {
-        step: "03",
-        title: "Pay with M-Pesa",
-        text: "Pay a session or Lipa Pole Pole instalments on any phone. Deposit, monthly and total are shown before you confirm — no bank account required.",
-        href: "/charging",
-        label: "Charging & financing",
-        image: productImages.financing.src,
-        imageAlt: productImages.financing.alt,
-        kicker: "On M-Pesa",
-      },
-    ],
-  },
-  context: {
-    eyebrow: "Built for Kenya",
-    title: "A map-only app leaves the driveway to a sales call.",
-    lead: "Public EV charging here is a mix of mall plugs, fuel-retailer partners, operator apps and Kenya Power sites — not one national network. Apps that work find a station and take M-Pesa, because most drivers do not pay a charger with a bank card.",
-    typicalTitle: "Typical Kenya charging app",
-    typicalText:
-      "Locate stations, filter by connector, start a session, pay with mobile money. Home wallbox sizing and Lipa Pole Pole usually live on a separate form.",
-    oursTitle: "Precifarm AI companion",
-    oursText:
-      "Charging Hub, Pulse / Pod surveys and M-Pesa on one Android account — the same products we install, with live and planned sites labelled honestly.",
-    rows: [
-      ["Find a public charger", "Operator map", "Charging Hub — Precifarm, EVChaja, ChargeNet, partners"],
-      ["Pay without a bank card", "M-Pesa / mobile money", "M-Pesa, USSD and SMS — price shown first"],
-      ["Size a home wallbox", "Usually a separate sales form", "Pulse charger and Pod energy storage survey"],
-      ["Spread the hardware cost", "Rarely in the same app", `Lipa Pole Pole from ${sitePricing.lipaFrom}`],
-      ["E-boda battery swap", "Some operator apps", "Boda Hub on the same map"],
-      ["Honest live vs planned", "Mixed", "Live stays live. Planned stays planned."],
-    ] as const,
-  },
-  features: {
-    eyebrow: "In the companion",
-    title: "Charging, home energy and pay in one place.",
-    description:
-      "Same products we install. Same M-Pesa flows. Built for Kenyan roads, sockets and Kenya Power.",
-    cards: [
-      {
-        title: "Charging Hub",
-        text: "Precifarm, EVChaja, ChargeNet and partner sites — filter by fast DC or Boda swap, then navigate in maps.",
-      },
-      {
-        title: "Home + storage",
-        text: "Request a Pulse charger or Pod energy storage survey. Certified installation and three-year aftersale care on M-Pesa.",
-      },
-      {
-        title: "Vehicle-aware",
-        text: "Select your car or e-boda so recommendations follow battery size, connector and how far you actually drive.",
-      },
-      {
-        title: "Lipa Pole Pole",
-        text: "Pay deposit and monthly instalments via M-Pesa, USSD or SMS. Totals shown before you confirm.",
-      },
-    ],
-  },
-  siteTypes: chargingHubPage.siteTypes,
-  status: {
-    eyebrow: "What's live",
-    title: "Honest about what you can do today.",
-    liveEyebrow: "Live",
-    live: [
-      "Charging Hub map with live and planned labels",
-      "Home Pulse charger and Pod energy storage survey requests",
-      "M-Pesa session pay and Lipa Pole Pole instalments",
-    ],
-    designedEyebrow: "In design",
-    designed: [
-      "Fleet dashboard for vehicles, chargers and kWh — not live yet",
-      "iOS companion — not available yet",
-      "Play Store listing — install the APK from this page for now",
-    ],
-  },
-  products: {
-    eyebrow: "Works with",
-    title: "The same products we install.",
-    description: "Spark through Corridor — specs, fit and M-Pesa in the companion and on the website.",
-    items: [
-      productCard("spark"),
-      productCard("pulse"),
-      productCard("pod"),
-      productCard("boda"),
-      productCard("corridor"),
-      productCard("depot"),
-    ],
-  },
+  valueCards: [
+    {
+      id: "hub",
+      label: "Hub",
+      screen: "hub" as CopilotScreen,
+      eyebrow: "Charging Hub",
+      title: "Find where to charge",
+      headline: "Corridor DC, Boda swap and partners — before you leave.",
+      text: "Filter by connector and site type. Every pin shows live or planned status so you know what is actually open.",
+      image: productImages.corridor,
+      bullets: ["Corridor DC & Boda Hub swap", "Partner retail sites", "Directions in-app"],
+      href: chargingHub.path,
+      linkLabel: "Open Charging Hub",
+    },
+    {
+      id: "home",
+      label: "Home",
+      screen: "home" as CopilotScreen,
+      eyebrow: "Home energy",
+      title: "Size Pulse or Pod",
+      headline: "Survey your wall and feeder before we quote.",
+      text: "Request a Pulse charger or Pod energy storage install in the same app you use for public charging — not a separate sales form.",
+      image: productImages.podHomeHero,
+      bullets: ["Pulse from KES 79,000", "Pod from KES 295,000", "Certified install + 3yr care"],
+      href: "/charging/home",
+      linkLabel: "Home charging survey",
+    },
+    {
+      id: "pay",
+      label: "M-Pesa",
+      screen: "pay" as CopilotScreen,
+      eyebrow: "Pay",
+      title: "Price before PIN",
+      headline: "Sessions and Lipa Pole Pole on any phone.",
+      text: "Pay a public DC session or monthly instalment with M-Pesa, USSD or SMS. Totals are locked in before you enter your PIN.",
+      image: productImages.financing,
+      bullets: ["Public DC from " + sitePricing.publicDcFrom, "Lipa Pole Pole instalments", "No bank account required"],
+      href: "/charging/home",
+      linkLabel: "See Lipa Pole Pole",
+    },
+  ],
   install: {
-    eyebrow: "Install",
-    title: "Install the APK from this page.",
-    description:
-      "The Precifarm AI companion is not on the Play Store yet. Download is safe when it comes from precifarm.com.",
+    title: "Install on Android",
+    description: "Download only from precifarm.com · com.precifarm.mobile",
     apkLabel: `Download APK v${appDownload.version}`,
-    packageLine: `v${appDownload.version} · Android ${appDownload.minAndroid}+ · ${appDownload.packageId}`,
-    steps: [
-      {
-        title: "Download",
-        text: "Tap Get the AI companion on this page.",
-      },
-      {
-        title: "Allow",
-        text: "When prompted, allow downloads from your browser.",
-      },
-      {
-        title: "Open the file",
-        text: "If Android blocks the install, go to Settings → Security and allow installs from your browser.",
-      },
-      {
-        title: "Install",
-        text: "Tap Install, then open the Precifarm AI companion.",
-      },
-    ],
+    packageLine: `v${appDownload.version} · Android ${appDownload.minAndroid}+`,
+    steps: ["Download from this page", "Allow browser installs if asked", "Open APK · Install · Open Precifarm Agent"],
   },
   faqs: {
-    eyebrow: "FAQ",
-    title: "Before you install.",
+    title: "Questions",
     items: downloadPageFaqs,
   },
   cta: {
-    title: "Need charging without the install?",
-    description:
-      "Charging Hub and home surveys work in the browser. The companion adds filters, directions and M-Pesa on your phone.",
+    title: "Try Charging Hub first",
+    description: "No install required. Precifarm Agent adds home surveys and M-Pesa on your phone.",
     primaryHref: chargingHub.path,
     primaryLabel: chargingHub.openLabel,
     secondaryHref: "/charging/home",
-    secondaryLabel: "Request a house survey",
+    secondaryLabel: "Home charging survey",
   },
 } as const;

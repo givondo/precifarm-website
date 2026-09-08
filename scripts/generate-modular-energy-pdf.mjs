@@ -4,10 +4,16 @@
  *
  * Usage: node scripts/generate-modular-energy-pdf.mjs
  */
-import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
-import { fileURLToPath, pathToFileURL } from "node:url";
+import { fileURLToPath } from "node:url";
+import {
+  brandDocFooterHtml,
+  brandPrintCss,
+  brandPrintFooterHtml,
+  brandToolbarHtml,
+  printHtmlToPdf,
+} from "./lib/document-brand.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, "..");
@@ -15,6 +21,13 @@ const ecosystemDocs = join(root, "..", "docs", "product");
 const downloadsDir = join(root, "public", "downloads");
 const htmlOut = join(downloadsDir, "precifarm-modular-energy-storage.html");
 const pdfOut = join(downloadsDir, "precifarm-modular-energy-storage.pdf");
+
+const DOC = {
+  id: "PF-MODENERGY-001",
+  version: "1.0",
+  date: "30 August 2026",
+  title: "Modular Energy Storage — Product & Engineering Design",
+};
 
 const SOURCES = [
   {
@@ -270,23 +283,21 @@ function buildHtml() {
       h2 { break-after: avoid; }
       table, .flow { break-inside: avoid; }
     }
-    @page { size: A4; margin: 12mm; }
+    @page { size: A4; margin: 12mm 12mm 24mm; }
     body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    ${brandPrintCss()}
   </style>
 </head>
 <body>
-  <div class="toolbar no-print pf-doc-toolbar">
-    <div class="pf-doc-toolbar-brand">
-      <img src="./precifarm-logo-mark.svg" alt="" width="24" height="24" />
-      <span class="mono">PF-MODENERGY-001 · v1.0</span>
-    </div>
-    <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
-      <button type="button" class="primary" onclick="window.print()">Print</button>
-      <a class="primary" href="./precifarm-modular-energy-storage.pdf" download>Download PDF</a>
-      <a href="./precifarm-modular-energy-storage.html" download>Download HTML</a>
-      <a href="/charging">Back to charging</a>
-    </div>
-  </div>
+  ${brandPrintFooterHtml({ ...DOC, shortTitle: "Modular Energy v1" })}
+  ${brandToolbarHtml({
+    docId: DOC.id,
+    version: DOC.version,
+    status: "Legacy reference",
+    pdfFile: "precifarm-modular-energy-storage.pdf",
+    backHref: "/charging/modular-energy",
+    backLabel: "Modular energy",
+  })}
 
   <main class="sheet">
     <header class="pf-doc-header">
@@ -319,42 +330,17 @@ function buildHtml() {
 
     ${parts.join("\n")}
 
-    <footer class="doc-foot">
-      Precifarm Modular Energy Storage — PF-MODENERGY-001 v1.0 · Generated from kenya-ebus-ecosystem/docs/product/
-      · Not a product warranty or customer specification · precifarm.com
-    </footer>
+    ${brandDocFooterHtml(DOC, {
+      livePagePath: "/charging/modular-energy",
+      extraDisclaimer: "Legacy v1 reference — superseded by PF-MODENERGY-002. Not a product warranty or customer specification.",
+    })}
   </main>
 </body>
 </html>`;
 }
 
-function findBrowser() {
-  for (const candidate of browsers) {
-    if (candidate && existsSync(candidate)) return candidate;
-  }
-  return null;
-}
-
 function generatePdf(htmlPath) {
-  const browser = findBrowser();
-  if (!browser) {
-    throw new Error("Chrome or Edge not found. Install one to generate the PDF.");
-  }
-
-  const fileUrl = pathToFileURL(htmlPath).href;
-  execFileSync(
-    browser,
-    [
-      "--headless=new",
-      "--disable-gpu",
-      "--no-pdf-header-footer",
-      "--run-all-compositor-stages-before-draw",
-      "--virtual-time-budget=120000",
-      `--print-to-pdf=${pdfOut}`,
-      fileUrl,
-    ],
-    { stdio: "inherit", windowsHide: true },
-  );
+  printHtmlToPdf(htmlPath, pdfOut, { virtualTimeBudget: 120000 });
 
   if (!existsSync(pdfOut) || readFileSync(pdfOut).length < 1000) {
     throw new Error("PDF generation failed or file is empty.");

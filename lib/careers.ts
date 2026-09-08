@@ -13,12 +13,12 @@ export type CareerOpening = {
 };
 
 export const careersIntro = {
-  eyebrow: "Careers",
-  title: "Help build charging from home to highway",
+  eyebrow: "Careers · Kenya",
+  title: "Install chargers people rely on — from Pulse at home to Corridor on route one",
   description:
-    "Precifarm is growing the team that installs Pulse charger and Pod energy storage at home, runs Depot and Boda Hub for fleets, and keeps Corridor charging online — starting on Nairobi–Kisumu.",
+    "Join the team that commissions home wallboxes, keeps Boda Hub swap cabinets stocked, and restores Corridor sessions when a bay goes offline — starting on Nairobi–Kisumu.",
   lead:
-    "We hire for charging first: people who care about uptime, honest status and infrastructure that works in the field — not slide decks.",
+    "We hire for field outcomes: uptime, honest Charging Hub labels and hardware that survives Kenyan heat, dust and weak feeders — not slide decks.",
 } as const;
 
 export const careersHighlights = [
@@ -65,7 +65,7 @@ export const careerOpenings: CareerOpening[] = [
     location: "Nairobi (hybrid)",
     type: "Full-time · Contract",
     summary:
-      "Extend the Charging Hub, website and AI companion — M-Pesa sessions, Lipa Pole Pole, live hub status and the SEO knowledge layer behind precifarm.com.",
+      "Extend the Charging Hub, website and Precifarm Agent — M-Pesa sessions, Lipa Pole Pole, live hub status and the SEO knowledge layer behind precifarm.com.",
     points: [
       "TypeScript, React/Next.js or React Native experience",
       "Care about reliable M-Pesa flows and clear charging UX",
@@ -77,7 +77,7 @@ export const careerOpenings: CareerOpening[] = [
 export const careersValues = [
   "We prove one route properly before financing the next.",
   "Uptime and honest communication beat glossy decks.",
-  "Partners operate vehicles; we build the energy layer.",
+  "Partners operate vehicles; we survey, install and keep chargers online.",
   "Kenya-first engineering — hubs in the cities we serve.",
 ] as const;
 

@@ -1,8 +1,8 @@
 import Link from "next/link";
 import FaqAccordion from "@/components/seo/FaqAccordion";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import SiteImage from "@/components/SiteImage";
 import PageCTA from "@/components/ui/PageCTA";
-import PageHero from "@/components/ui/PageHero";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { modularEnergyPaths } from "@/lib/modular-energy-page";
 import { megapackDisclaimer, megapackPageContent, megapackStatusNote } from "@/lib/megapack-page";
@@ -134,70 +134,76 @@ export default function MegaPackView() {
 
   return (
     <>
-      <PageHero
-        eyebrow={hero.eyebrow}
-        title={hero.title}
-        description={hero.description}
-        breadcrumbs={[
-          { name: "Home", href: "/" },
-          { name: "Modular energy", href: modularEnergyPaths.overview },
-          { name: "MegaPack", href: modularEnergyPaths.megapack },
-        ]}
-      >
-        <div className="flex flex-wrap items-center gap-3">
-          <Link
-            href={hero.primaryCta.href}
-            className="inline-flex items-center justify-center rounded-full bg-charge-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-charge-500"
-          >
-            {hero.primaryCta.label}
-          </Link>
-          <a
-            href={hero.secondaryCta.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-full border border-border bg-white px-6 py-3 text-sm font-semibold text-forest-900 transition-colors hover:bg-muted"
-          >
-            {hero.secondaryCta.label}
-          </a>
+      {/* Hero with primary render */}
+      <section className="page-hero border-b border-border">
+        <div className="page-hero-split">
+          <Breadcrumbs
+            items={[
+              { name: "Home", href: "/" },
+              { name: "Modular energy", href: modularEnergyPaths.overview },
+              { name: "MegaPack", href: modularEnergyPaths.megapack },
+            ]}
+          />
+          <div className="mt-6 grid items-center gap-10 lg:grid-cols-[1fr_minmax(280px,460px)] lg:gap-14">
+            <div>
+              <p className="text-eyebrow">{hero.eyebrow}</p>
+              <h1 className="heading-display mt-3 text-[1.75rem] leading-[1.1] sm:text-3xl lg:text-4xl">
+                {hero.title}
+              </h1>
+              <p className="mt-4 max-w-xl text-base leading-relaxed text-forest-600">{hero.description}</p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <Link href={hero.primaryCta.href} className="btn-primary">
+                  {hero.primaryCta.label}
+                </Link>
+                <a
+                  href={hero.secondaryCta.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary"
+                >
+                  {hero.secondaryCta.label}
+                </a>
+              </div>
+              <p className="mt-4 text-sm text-forest-500">{megapackStatusNote}</p>
+            </div>
+            <figure className="visual-frame">
+              <SiteImage
+                src={hero.image.src}
+                alt={hero.image.alt}
+                width={1600}
+                height={900}
+                priority
+                sizes="(max-width: 1024px) 100vw, 42vw"
+                className="aspect-[16/10] w-full object-cover"
+              />
+            </figure>
+          </div>
         </div>
-        <p className="mt-4 text-sm text-forest-500">{megapackStatusNote}</p>
-      </PageHero>
+      </section>
 
+      {/* Lead + highlights + grid plant */}
       <section className="border-b border-border bg-white pb-12 sm:pb-16">
         <div className="page-container">
-          <figure className="overflow-hidden rounded-[1.75rem] border border-border bg-[#f5f5f7]">
+          <figure className="visual-frame-sm">
             <SiteImage
-              src={hero.image.src}
-              alt={hero.image.alt}
+              src={plantImage.src}
+              alt={plantImage.alt}
               width={1600}
               height={900}
-              priority
               sizes="100vw"
-              className="h-auto w-full object-cover"
+              className="aspect-[21/9] w-full object-cover"
             />
+            <figcaption className="border-t border-border bg-muted/30 px-5 py-4 text-sm leading-relaxed text-forest-600 sm:px-6">
+              {plantImage.caption}
+            </figcaption>
           </figure>
-          <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)] lg:items-start">
-            <div>
-              <p className="max-w-3xl text-base leading-relaxed text-forest-700">{lead}</p>
-              <div className="mt-8 grid gap-4 sm:grid-cols-3">
-                {highlights.map((item) => (
-                  <HighlightCard key={item.label} label={item.label} value={item.value} />
-                ))}
-              </div>
+          <div className="mt-10">
+            <p className="max-w-3xl text-base leading-relaxed text-forest-700">{lead}</p>
+            <div className="mt-8 grid gap-4 sm:grid-cols-3">
+              {highlights.map((item) => (
+                <HighlightCard key={item.label} label={item.label} value={item.value} />
+              ))}
             </div>
-            <figure className="overflow-hidden rounded-2xl border border-border bg-[#f5f5f7] shadow-sm">
-              <SiteImage
-                src={plantImage.src}
-                alt={plantImage.alt}
-                width={880}
-                height={495}
-                sizes="(min-width: 1024px) 22rem, 100vw"
-                className="aspect-[16/9] w-full object-cover"
-              />
-              <figcaption className="border-t border-border px-4 py-3 text-sm leading-relaxed text-forest-600">
-                {plantImage.caption}
-              </figcaption>
-            </figure>
           </div>
         </div>
       </section>
@@ -262,15 +268,15 @@ export default function MegaPackView() {
       <section className="section-pad border-b border-border bg-white">
         <div className="page-container">
           <SectionHeader eyebrow={evHub.eyebrow} title={evHub.title} className="mb-10" />
-          <div className="grid gap-8 overflow-hidden rounded-[1.75rem] border border-border bg-muted/20 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
-            <figure className="overflow-hidden bg-[#f5f5f7]">
+          <div className="grid gap-0 overflow-hidden rounded-[1.75rem] border border-border bg-white shadow-sm lg:grid-cols-[1.15fr_0.85fr]">
+            <figure className="relative min-h-[16rem] lg:min-h-[24rem]">
               <SiteImage
                 src={evHub.image.src}
                 alt={evHub.image.alt}
                 width={1200}
                 height={675}
-                sizes="(min-width: 1024px) 55vw, 100vw"
-                className="h-full min-h-[16rem] w-full object-cover lg:min-h-full"
+                sizes="(min-width: 1024px) 58vw, 100vw"
+                className="absolute inset-0 h-full w-full object-cover"
               />
             </figure>
             <div className="flex flex-col justify-center p-6 sm:p-8">
@@ -350,6 +356,24 @@ export default function MegaPackView() {
             className="mb-8"
           />
           <FaqAccordion items={[...faqs]} />
+        </div>
+      </section>
+
+      <section className="border-b border-border bg-forest-900 py-6 text-white">
+        <div className="page-container flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
+          <span className="font-semibold text-white/70">Home & shop scale</span>
+          <Link href={modularEnergyPaths.p1Go} className="font-medium hover:text-charge-300">
+            P1 Go
+          </Link>
+          <Link href={modularEnergyPaths.p2Home} className="font-medium hover:text-charge-300">
+            P2 Home
+          </Link>
+          <Link href={modularEnergyPaths.podStack} className="font-medium hover:text-charge-300">
+            Pod Stack
+          </Link>
+          <Link href={modularEnergyPaths.overview} className="font-medium hover:text-charge-300">
+            Platform overview
+          </Link>
         </div>
       </section>
 

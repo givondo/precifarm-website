@@ -21,13 +21,13 @@ export default function SwahiliHomePage() {
         description={page.hero.description}
       >
         <div className="flex flex-wrap gap-3">
-          <Link href="/charging" className="btn-primary rounded-full px-6 py-2.5 text-sm">
+          <Link href="/charging" className="btn-primary">
             {swahiliUi.bookCta}
           </Link>
-          <Link href="/hub" className="btn-secondary rounded-full px-6 py-2.5 text-sm">
+          <Link href="/hub" className="btn-secondary">
             {swahiliUi.chargingHubCta}
           </Link>
-          <Link href="/charging/home" className="btn-secondary rounded-full px-6 py-2.5 text-sm">
+          <Link href="/charging/home" className="btn-secondary">
             Kuchaji nyumbani
           </Link>
         </div>

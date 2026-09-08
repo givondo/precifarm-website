@@ -8,18 +8,18 @@ import { socialLinks } from "@/lib/social";
 type FooterLink = { href: string; label: string };
 
 function FooterLinkItem({ link }: { link: FooterLink }) {
-  if (link.href.includes("#")) {
+  if (link.href.includes("#") || link.href.startsWith("mailto:") || link.href.startsWith("tel:")) {
     return <a href={link.href}>{link.label}</a>;
   }
 
   return <Link href={link.href}>{link.label}</Link>;
 }
 
-function FooterLinkList({ links }: { links: readonly FooterLink[] }) {
+function FooterLinkList({ links, groupTitle }: { links: readonly FooterLink[]; groupTitle: string }) {
   return (
     <ul className="site-footer-links">
       {links.map((link) => (
-        <li key={link.href}>
+        <li key={`${groupTitle}-${link.label}`}>
           <FooterLinkItem link={link} />
         </li>
       ))}
@@ -38,12 +38,12 @@ function FooterNavGroup({
     <>
       <details className="site-footer-mobile-group sm:hidden">
         <summary className="site-footer-mobile-summary">{title}</summary>
-        <FooterLinkList links={links} />
+        <FooterLinkList links={links} groupTitle={title} />
       </details>
 
       <nav className="site-footer-segment hidden sm:block" aria-label={title}>
         <h3 className="site-footer-heading">{title}</h3>
-        <FooterLinkList links={links} />
+        <FooterLinkList links={links} groupTitle={title} />
       </nav>
     </>
   );
@@ -78,6 +78,9 @@ function FooterSocialLinks() {
 function FooterContactLinks() {
   return (
     <ul className="site-footer-links">
+      <li>
+        <Link href="/contact">Contact us</Link>
+      </li>
       <li>
         <a href={`mailto:${contact.email}`}>{contact.email}</a>
       </li>

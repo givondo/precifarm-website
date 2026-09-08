@@ -4,6 +4,7 @@ import JsonLd from "@/components/seo/JsonLd";
 import ContentIndexCard from "@/components/ui/ContentIndexCard";
 import PageCTA from "@/components/ui/PageCTA";
 import PageHero from "@/components/ui/PageHero";
+import { guidesPage } from "@/lib/company-pages";
 import { absoluteUrl } from "@/lib/seo/config";
 import {
   excerptFromMarkdown,
@@ -32,7 +33,7 @@ export default async function GuidesIndexPage() {
       ? [
           itemListSchema({
             name: "Precifarm Guides",
-            description: "How-to guides for home charging, public DC and the Precifarm AI companion.",
+            description: "How-to guides for home charging, public DC and Precifarm Agent.",
             path: "/guides",
             items: listItems,
           }),
@@ -49,9 +50,9 @@ export default async function GuidesIndexPage() {
     <>
       <JsonLd data={jsonLd} />
       <PageHero
-        eyebrow="Guides"
-        title="How-to guides"
-        description="Step-by-step guides for Pulse charger and Pod energy storage home charging, public DC on the highway, the Charging Hub and the Precifarm AI companion."
+        eyebrow={guidesPage.eyebrow}
+        title={guidesPage.title}
+        description={guidesPage.description}
       />
       <section className="section-pad bg-white">
         <div className="page-container max-w-3xl">
@@ -85,10 +86,12 @@ export default async function GuidesIndexPage() {
         </div>
       </section>
       <PageCTA
-        title="Ready to charge?"
-        description="Browse the charging range or find public chargers on the Charging Hub."
-        primaryHref="/charging"
-        primaryLabel="Explore charging"
+        title={guidesPage.cta.title}
+        description={guidesPage.cta.description}
+        primaryHref={guidesPage.cta.primaryHref}
+        primaryLabel={guidesPage.cta.primaryLabel}
+        secondaryHref={guidesPage.cta.secondaryHref}
+        secondaryLabel={guidesPage.cta.secondaryLabel}
       />
     </>
   );

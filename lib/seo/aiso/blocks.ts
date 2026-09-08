@@ -21,7 +21,7 @@ export const chargingHowToBlock: AisoContentBlock = {
   type: "how_to",
   title: "How to get a Precifarm home charger",
   items: [
-    "Visit precifarm.com/charging/home or open the Precifarm AI companion.",
+    "Visit precifarm.com/charging/home or open Precifarm Agent.",
     "Choose the Pulse charger or Pod energy storage and request a site survey.",
     "Pay the deposit via M-Pesa (Lipa Pole Pole instalments available).",
     "Precifarm installs and commissions your charger — typically within one day after survey approval.",
@@ -40,7 +40,7 @@ export const homepageAisoBlocks: AisoContentBlock[] = [
     "A home charging day of ~60 km ≈ KES 140 vs ~KES 1,000 diesel per day",
     "Pulse charger or Pod energy storage: typical day in about 90 minutes. Corridor: fast highway top-up in 30 minutes.",
     "Certified home installation typically in one day · three-year aftersale care",
-    "Precifarm AI companion on Android — find hubs, size home energy, pay with M-Pesa. iOS not yet.",
+    "Precifarm Agent on Android — find hubs, size home energy, pay with M-Pesa. iOS not yet.",
   ]),
   buildGeoFaqSet("EV charging", homepageChargingFaqs),
 ];

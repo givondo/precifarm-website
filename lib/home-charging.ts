@@ -132,6 +132,23 @@ export const privateHouseChargingPackages = [
 
 export const privateHouseChargingFaqs = houseFaqs;
 
+export const homeSurveyForm = {
+  title: "Request a home charging survey.",
+  description:
+    "Tell us about your house and vehicle. We visit the site, send a quote, and can start Lipa Pole Pole on M-Pesa after you approve.",
+  products: [
+    { id: "pulse", label: "Pulse charger — home charging" },
+    { id: "pod", label: "Pod energy storage — home charging plus backup" },
+    { id: "spark", label: "Spark portable charger" },
+    { id: "unsure", label: "Not sure yet" },
+  ],
+  propertyTypes: ["Detached house", "Townhouse", "Gated community", "Other"],
+  parkingTypes: ["Driveway", "Car port", "Dedicated parking bay", "Other"],
+  lipaLabel: "I want Lipa Pole Pole instalments on M-Pesa (from " + sitePricing.lipaFrom + ")",
+  successTitle: "We have your survey request.",
+  successText: "Our installation team will call within one business day to set a site visit.",
+} as const;
+
 export function privateHouseSurveyMailto(): string {
   const subject = encodeURIComponent("Private house charging survey request");
   const body = encodeURIComponent(

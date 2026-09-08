@@ -1,41 +1,41 @@
-const routeHubImage = "/images/charging-route-hub.png";
-const fleetHubImage = "/images/charging-private-site.png";
-const routeHubAlt =
-  "Precifarm intercity route charging hub with DC fast chargers, solar canopy and battery storage in Kenya";
+const homeSolarImage = "/images/charging-private-house-hybrid.png";
+const corridorImage = "/images/products/corridor-v5.png";
+const depotImage = "/images/products/depot-v5.png";
+const familyImage = "/images/charging-ecosystem-hero-v20.png";
 
 export const hubImages = {
-  /** Home solar + storage + wall charging */
+  /** Home solar + storage + wall charging — passenger EV, not a bus */
   homeSolar: {
-    image: "/images/charging-private-house-hybrid.png",
+    image: homeSolarImage,
     imageAlt:
       "Home with rooftop solar panels, battery storage and a wall charger powering an electric car",
     objectPosition: "object-[42%_48%]",
   },
-  /** Intercity route hub — bus at charger */
+  /** Corridor DC fast charger product */
   intercityCharger: {
-    image: routeHubImage,
-    imageAlt: "Electric vehicles charging at a Precifarm DC fast charger on an intercity route",
-    objectPosition: "object-[22%_58%]",
+    image: corridorImage,
+    imageAlt: "Precifarm Corridor 120 kW DC fast charger with dual CCS2 holsters and M-Pesa on the display",
+    objectPosition: "object-center",
   },
-  /** Fleet / private-site hub — solar canopy over multiple bays */
+  /** Fleet depot AC pedestal */
   fleetCanopy: {
-    image: fleetHubImage,
-    imageAlt:
-      "Electric vans and shuttle bus charging under a solar canopy at a Precifarm fleet hub",
-    objectPosition: "object-[48%_38%]",
+    image: depotImage,
+    imageAlt: "Precifarm Depot 22 kW AC charging pedestal with Type 2 cable in the holster",
+    objectPosition: "object-center",
   },
-  /** Balanced wide view of intercity hub */
+  /** Charging and energy product family */
   intercityWide: {
-    image: routeHubImage,
-    imageAlt: routeHubAlt,
-    objectPosition: "object-[45%_45%]",
-  },
-  /** Large-scale route hub — premium minimal showcase */
-  showcasePremium: {
-    image: "/images/charging-hub-premium-kenya.png",
+    image: familyImage,
     imageAlt:
-      "Large-scale Precifarm electric vehicle charging hub with solar canopy and DC fast chargers in Kenya",
-    objectPosition: "object-[50%_42%]",
+      "Precifarm charging and energy family — Pulse, Spark, P1 Go, Pod, Corridor, Depot and Boda Hub",
+    objectPosition: "object-center",
+  },
+  /** Highway DC product showcase */
+  showcasePremium: {
+    image: corridorImage,
+    imageAlt:
+      "Precifarm Corridor DC fast charger — T-canopy, dual CCS2 holsters and M-Pesa session pay",
+    objectPosition: "object-center",
   },
 } as const;
 
@@ -49,6 +49,6 @@ export type HubImageCrop = HubImageKey;
 /** Hub photography used on about, partners and charging pages */
 export const siteImages = {
   about: hubImages.intercityWide,
-  networkHub: hubImages.fleetCanopy,
-  hubSpotlight: hubImages.fleetCanopy,
+  networkHub: hubImages.intercityCharger,
+  hubSpotlight: hubImages.intercityCharger,
 } as const;

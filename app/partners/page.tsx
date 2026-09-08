@@ -33,7 +33,7 @@ export default function PartnersPage() {
         <div className="flex flex-wrap gap-3">
           <Link
             href={hero.primaryHref}
-            className="inline-flex rounded-full bg-charge-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-charge-500"
+            className="btn-primary"
           >
             {hero.primaryLabel}
           </Link>

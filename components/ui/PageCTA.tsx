@@ -49,11 +49,11 @@ export default function PageCTA({
           <h2 className="page-cta-title">{title}</h2>
           <p className="page-cta-description">{description}</p>
           <div className="page-cta-actions">
-            <CtaLink href={primaryHref} className="btn-primary rounded-full px-8 py-3 text-sm">
+            <CtaLink href={primaryHref} className="btn-primary">
               {primaryLabel}
             </CtaLink>
             {secondaryHref && secondaryLabel && (
-              <CtaLink href={secondaryHref} className="btn-secondary rounded-full px-6 py-3 text-sm">
+              <CtaLink href={secondaryHref} className="btn-secondary">
                 {secondaryLabel}
               </CtaLink>
             )}

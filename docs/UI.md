@@ -1,8 +1,10 @@
 # Website UI
 
-Design system reference for the PreciFarm booking website (`website/`).
+Design system reference for the Precifarm charging website (`website/`).
 
-**Last updated:** 2026-07-26 (UI refresh v2.8.0)
+**Last updated:** 2026-09-08 (Canon v3.2 — EV charging + modular energy)
+
+Passenger booking UI was **removed** 31 August 2026. Do not restore Book Now, seat maps or booking wizards as live product.
 
 ## Stack
 
@@ -77,8 +79,9 @@ No separate `tailwind.config.*` — design tokens live in `@theme inline` inside
 - Use `.heading-display` for H1/H2 marketing headings
 - Use `Button` and `field-input` / `Input` in new form UI — avoid one-off Tailwind strings
 - Booking portal uses `card-elevated` shell; compact mode for embedded use
-- CTA copy: **Book Now**; route: **Nairobi–Kisumu** only
-- Do not add cargo, multi-route, or gated expansion without explicit instruction
+- CTA copy: **Open Charging Hub** / **Explore charging**; first corridor: **Nairobi–Kisumu**
+- Modular energy pages stay labelled conceptual
+- Do not add bus-route booking, seat maps, or reserved bus windows as public product
 
 ## Related docs
 

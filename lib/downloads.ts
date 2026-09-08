@@ -29,7 +29,7 @@ export const downloadRegistry = [
   {
     id: "precifarm-android",
     kind: "app" as const,
-    title: "Precifarm AI companion",
+    title: "Precifarm Agent",
     subtitle: `v${appDownload.version} · ${appDownload.packageId}`,
     version: appDownload.version,
     date: null,

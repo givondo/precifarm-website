@@ -1,152 +1,141 @@
+import { productImages } from "@/lib/product-images";
+import { sitePricing } from "@/lib/site-copy";
+
 /** Canonical public name and path for the Charging Hub */
 export const chargingHub = {
   name: "Charging Hub",
   path: "/hub" as const,
   label: "Charging Hub",
   openLabel: "Open Charging Hub",
-  /** Mid-sentence, lowercase */
   nameLower: "charging hub",
   description:
-    "Find Precifarm Corridor DC, Boda Hub swap and partner chargers in Kenya. Live sites are labelled live. Pay with M-Pesa in the AI companion.",
+    "Charging Hub lists Precifarm fast chargers, boda battery swap and partner stops across Kenya — with honest open and coming-soon labels, and M-Pesa pay in the Android app.",
   url: "https://precifarm.com/hub",
 } as const;
 
 export const chargingHubPage = {
   hero: {
-    eyebrow: "Charging Hub",
-    title: "See where you can charge before you leave.",
+    eyebrow: "Kenya · live map",
+    title: "Highway DC, boda swap and partner stops — each one labelled open or coming soon",
     description:
-      "Corridor DC on Nairobi–Kisumu, Boda Hub swap in town, and partner stops at fuel retail and malls. Use this page to pick a site. Use the AI companion to filter, get directions and pay with M-Pesa.",
-    pills: ["Live stays live", "Planned stays planned", "M-Pesa on sessions"],
-    primaryHref: "/hub#map",
-    primaryLabel: "Browse sites",
-    secondaryHref: "/download",
-    secondaryLabel: "Get the AI companion",
+      "Browse free on the web. Check plug type, public DC from KES 39/kWh and whether the bay is live before you drive — then pay with M-Pesa in Precifarm Agent on Android.",
+    image: {
+      src: productImages.corridor.src,
+      alt: "Precifarm Charging Hub — highway DC, boda battery swap and partner charging stops across Kenya",
+    },
+    stopImages: [
+      {
+        src: productImages.corridor.src,
+        alt: "Precifarm Corridor DC fast charger under a T-canopy with dual CCS2 holsters",
+        label: "Highway DC",
+      },
+      {
+        src: productImages.boda.src,
+        alt: "Precifarm Boda Hub twelve-bay battery swap cabinet for electric motorcycles",
+        label: "Boda swap",
+      },
+      {
+        src: productImages.depot.src,
+        alt: "Precifarm Depot 22 kW AC charging pedestal at a fleet or partner site",
+        label: "Partner & fleet",
+      },
+    ] as const,
+    primaryHref: "/download",
+    primaryLabel: "Get the Android app",
+    secondaryHref: "/contact",
+    secondaryLabel: "Host a charger",
   },
-  honesty: {
-    eyebrow: "How to read this page",
-    title: "Live is live. Planned is not open yet.",
+  stats: [
+    { value: sitePricing.publicDcFrom, label: "Public fast charge from" },
+    { value: "Under 5 min", label: "Boda battery swap" },
+    { value: "M-Pesa", label: "Pay before you charge" },
+  ],
+  highlights: {
+    eyebrow: "What you get",
+    title: "A charging list you can trust",
     items: [
       {
-        title: "Live",
-        text: "A Live label means the site is listed as operating. Use it for a trip you are taking now.",
+        id: "honest",
+        title: "Open or coming soon",
+        text: "Every site is labelled honestly. Coming-soon sites are never shown as open.",
       },
       {
-        title: "Planned",
-        text: "Next corridor and planned pins are design-stage. They are not traction and not a promise you can charge there today.",
+        id: "pick",
+        title: "Pick what you need",
+        text: "Fast highway charge, boda battery swap, or a charger at a shop you already visit.",
       },
       {
-        title: "Map bays",
-        text: "Free-bay and battery counts on the map are a demonstration, not live telemetry.",
+        id: "price",
+        title: "Price before you pay",
+        text: "Session cost appears in the app before you enter your M-Pesa PIN.",
+      },
+      {
+        id: "maps",
+        title: "Directions in one tap",
+        text: "Open Google Maps from any site and see what plug it has before you drive.",
       },
     ],
   },
-  map: {
-    eyebrow: "Sites",
-    title: "Corridor DC, Boda Hub swap and partner chargers",
-    description:
-      "Filter the map, open a pin, get Google directions. Session price and M-Pesa pay live in the AI companion — this page does not take payment.",
-  },
   siteTypes: {
-    eyebrow: "What you can do",
-    title: "Three stops, one list.",
-    description:
-      "Highway DC when you leave town. A fresh boda pack in under five minutes. Partner chargers at places you already stop.",
+    eyebrow: "Where you can charge",
+    title: "Three kinds of stop",
     types: [
       {
-        id: "corridor",
-        title: "Corridor DC",
+        id: "highway",
+        title: "Highway fast charge",
         stat: "~60 kWh in 30 min",
-        detail:
-          "T-canopy highway charging on Nairobi–Kisumu first. Dual CCS2 where listed. From KES 39/kWh on M-Pesa.",
+        detail: "Fast top-up on major routes. From " + sitePricing.publicDcFrom + " on M-Pesa.",
         imageKey: "corridor" as const,
-        href: "/hub#map",
       },
       {
         id: "boda",
-        title: "Boda Hub swap",
+        title: "Boda battery swap",
         stat: "Under 5 min",
-        detail:
-          "Swap a pack for Roam Air and compatible e-bodas in Nairobi, Kisumu and Nakuru — or kerbside charge where listed.",
+        detail: "Drop a flat pack and pick up a charged one in Nairobi, Kisumu and Nakuru.",
         imageKey: "boda" as const,
-        href: "/hub#map",
       },
       {
-        id: "partners",
+        id: "partner",
         title: "Partner chargers",
-        stat: "Retail & malls",
-        detail:
-          "EVChaja, ChargeNet, fuel retail and malls — DC along routes you already drive. Listed here; operated by the partner.",
+        stat: "Shops & malls",
+        detail: "Chargers at fuel stations, malls and retail stops along routes you already drive.",
         imageKey: "depot" as const,
-        href: "/hub#map",
       },
     ],
   },
-  howItWorks: {
-    eyebrow: "How to use it",
-    title: "This page finds a site. The companion starts a session.",
-    description:
-      "The web list works in any browser. Filters, session price and M-Pesa are in the Precifarm AI companion — Android APK from precifarm.com. Not a chatbot. Not on the Play Store. iOS is not available yet.",
-    steps: [
+  steps: {
+    eyebrow: "How it works",
+    title: "Three steps to your next charge",
+    description: "Browse free on the web. Pay and keep history in Precifarm Agent on Android — free APK from precifarm.com.",
+    items: [
       {
-        step: "01",
-        title: "Pick a site here",
-        text: "Filter Corridor DC, Boda Hub swap or partner. Live and planned labels stay honest.",
+        step: "1",
+        title: "Open Charging Hub",
+        text: "Use precifarm.com/hub in your browser, or install Precifarm Agent on Android.",
       },
       {
-        step: "02",
-        title: "Get directions",
-        text: "Open Google Maps from the pin. Check connector notes before you leave.",
+        step: "2",
+        title: "Pick a site",
+        text: "Choose fast charge, boda swap or partner. Check the open or coming-soon label.",
       },
       {
-        step: "03",
-        title: "Pay in the companion",
-        text: "Session price is shown before you charge. Pay with M-Pesa. History stays on your phone.",
-      },
-    ],
-  },
-  corridors: {
-    eyebrow: "Highway",
-    title: "Nairobi–Kisumu is first.",
-    description:
-      "The next corridor opens only when session volume and uptime on the western route prove the model. That is a gate, not a launch calendar.",
-    exploreHref: "/charging",
-    exploreLabel: "Corridor charging hardware →",
-    phases: [
-      {
-        phase: "1",
-        route: "Nairobi – Kisumu",
-        hubs: "Kisumu terminus, Nakuru en-route, Nairobi access",
-        purpose: "Western highway DC for EV drivers, with partner retail stops along the route.",
-        active: true,
-        status: "First" as const,
-      },
-      {
-        phase: "2",
-        route: "Nairobi – Mombasa",
-        hubs: "Mtito Andei, Voi, Mombasa",
-        purpose: "Coast DC after the western route hits utilisation and uptime targets.",
-        active: false,
-        status: "Next" as const,
-      },
-      {
-        phase: "3",
-        route: "Nairobi – Garissa",
-        hubs: "Eastern en-route sites, Garissa terminus",
-        purpose: "Opened after western and Mombasa corridors pass demand gates.",
-        active: false,
-        status: "Planned" as const,
+        step: "3",
+        title: "Go and pay",
+        text: "Get directions in Maps, then start the session and pay with M-Pesa in the app.",
       },
     ],
+    appHref: "/download",
+    appLabel: "Download for Android",
+    guideHref: "/guides/download-precifarm-android-app",
+    guideLabel: "Install guide",
   },
-  locations: {
-    eyebrow: "Directory",
-    title: "Every site on this page",
-    description: "Same list as the map, as cards. Open the companion when you need to pay.",
-    groups: [
-      { id: "corridor" as const, label: "Corridor DC" },
-      { id: "boda" as const, label: "Boda Hub swap" },
-      { id: "partners" as const, label: "Partner DC" },
+  statusLabels: {
+    eyebrow: "Site labels",
+    title: "What the labels mean",
+    items: [
+      { label: "Open now", text: "You can charge here today." },
+      { label: "Coming soon", text: "Still being built — not open yet." },
+      { label: "Partner", text: "Run by the shop or station on site." },
     ],
   },
   siteSelection: {
@@ -177,21 +166,20 @@ export const chargingHubPage = {
       },
     ],
   },
-  cta: {
-    title: "Need to pay a session?",
-    description:
-      "Get the AI companion for filters, directions and M-Pesa. Have kerbside or highway land? Talk to us about hosting a hub.",
-    primaryHref: "/download",
-    primaryLabel: "Get the AI companion",
-    secondaryHref: "/contact",
-    secondaryLabel: "Host a hub",
+  faq: {
+    title: "Common questions",
+    lead: "Public charging and the Android app. Home Pulse and Pod installs are on ",
+    homeHref: "/charging/home",
+    homeLabel: "home charging",
   },
-} as const;
-
-export const chargingHubPhaseStyles = {
-  First: "bg-forest-100 text-forest-700 border-forest-500/25",
-  Next: "bg-muted text-forest-600 border-border",
-  Planned: "bg-muted text-forest-500 border-border",
+  cta: {
+    title: "Ready to charge?",
+    description: "Download Precifarm Agent for directions and M-Pesa pay. Have land for a charger? Talk to us.",
+    primaryHref: "/download",
+    primaryLabel: "Get the Android app",
+    secondaryHref: "/contact",
+    secondaryLabel: "Host a charger",
+  },
 } as const;
 
 export const chargingHubSitePhaseStyles = {

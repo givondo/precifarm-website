@@ -318,10 +318,10 @@ export default function TrainingPage() {
                 {contact.trainingEmail}
               </a>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <a href={trainingEnquiryMailto()} className="btn-primary rounded-full px-6 py-3 text-sm">
+                <a href={trainingEnquiryMailto()} className="btn-primary">
                   Send enquiry
                 </a>
-                <a href={contact.phoneHref} className="btn-secondary rounded-full px-6 py-3 text-sm">
+                <a href={contact.phoneHref} className="btn-secondary">
                   Call {contact.phone}
                 </a>
               </div>

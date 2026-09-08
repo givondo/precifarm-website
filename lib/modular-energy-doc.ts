@@ -18,16 +18,25 @@ export const modularEnergyDoc = {
     "PDF includes executive summary, platform architecture, sizing charts, PAYGO policy, test matrix and full figure annex.",
   figures: [
     {
-      src: "/images/modular-energy/render-family-hero.png",
-      alt: "Precifarm modular energy product family: P1 Go portable unit, Energy Module, P2 Home tower and Pod enclosure",
-      caption:
-        "Product family — seamless aluminum, glass UI strips, Precifarm wordmark and one repeated Energy Module.",
+      src: "/images/modular-energy/render-p1-go-v5.png",
+      alt: "P1 Go portable power station",
+      caption: "P1 Go · carried",
     },
     {
-      src: "/images/modular-energy/render-p1-go-v4.png",
-      alt: "P1 Go portable energy unit on tilt stand with foldable solar panel, glass display and Type 2 EV lead",
+      src: "/images/modular-energy/render-p2-stack-scale-v2.png",
+      alt: "P2 Home towers at two, three and four modules",
+      caption: "P2 Home · stacked beside the board",
+    },
+    {
+      src: "/images/modular-energy/render-pod.png",
+      alt: "Pod Stack outdoor enclosure with service door open",
+      caption: "Pod Stack · outdoor plinth for retail sites",
+    },
+    {
+      src: "/images/modular-energy/render-p1-go-v5.png",
+      alt: "P1 Go portable power station with foldable solar panel, glass display and Type 2 EV lead",
       caption:
-        "P1 Go — aluminum unibody, fold-flat top handle, magnetic I/O bay, wireless pad, foldable solar panel in the box and emergency EV trickle lead.",
+        "P1 Go — compact aluminum body, fold-flat handle, magnetic port bay, wireless pad, foldable solar panel in the box and emergency EV trickle lead.",
     },
     {
       src: "/images/modular-energy/render-energy-module.png",
@@ -35,9 +44,15 @@ export const modularEnergyDoc = {
       caption: "Energy Module — 2.56 kWh building block with blind-mate power and comms connectors.",
     },
     {
-      src: "/images/modular-energy/render-p2-home.png",
-      alt: "P2 Home backup tower with Power Core above four module bays",
-      caption: "P2 Home — Power Core above, four module bays, retractable handle and rear castors.",
+      src: "/images/modular-energy/render-energy-module-rack-v1.png",
+      alt: "Precifarm Energy Module rack in a test lab with modules extended on sliding rails",
+      caption:
+        "Service flow — spot the fault, pull the module, swap it in. Same rails in the lab and on site.",
+    },
+    {
+      src: "/images/modular-energy/render-p2-home-v2.png",
+      alt: "P2 Home backup tower with Power Core above four module bays — floor-standing, no wheels",
+      caption: "P2 Home — Power Core above, four module bays, floor-standing beside the board.",
     },
     {
       src: "/images/modular-energy/render-pod.png",
@@ -45,7 +60,7 @@ export const modularEnergyDoc = {
       caption: "Pod — outdoor SME enclosure with Power Unit, six-module rack and sun-shield canopy.",
     },
     {
-      src: "/images/modular-energy/render-kenya-home.png",
+      src: "/images/modular-energy/render-kenya-home-v2.png",
       alt: "P2 Home installed beside a Kenyan urban residence distribution board",
       caption: "Kenya urban home — P2 beside the consumer board with essential-load sub-board intervention.",
     },

@@ -4,7 +4,7 @@ Public EV charging and modular-energy site for Kenya.
 
 **Production:** `https://precifarm.com`
 
-**Core job:** Charging Hub, home/fleet/highway products, Pulse/Pod surveys, AI companion APK, conceptual modular energy, training.
+**Core job:** Charging Hub, home/fleet/highway products, Pulse/Pod surveys, Precifarm Agent APK, conceptual modular energy, sustainability, training.
 
 **Stack:** Next.js 16 · React 19 · TypeScript · Tailwind CSS 4 · Plus Jakarta Sans (headings) · Geist Sans (body)
 
@@ -29,10 +29,12 @@ Open <http://localhost:3000>.
 | `/` | Home — charging + energy |
 | `/hub` | Charging Hub |
 | `/charging`, `/charging/home` | Products + home survey |
-| `/charging/modular-energy` | P1 Go / P2 Home / Pod enclosure / MegaPack (conceptual) |
+| `/charging/modular-energy` | P1 Go / P2 Home / Pod Stack / MegaPack (conceptual) |
+| `/charging/modular-energy/pod-stack` | Pod Stack — outdoor SME backup (not Pod energy storage) |
 | `/charging/modular-energy/megapack` | MegaPack — project-engineered BESS (industrial to utility-scale) |
 | `/charging/engineering` | Design package PDF |
-| `/download` | AI companion APK + product sheet |
+| `/download` | Precifarm Agent APK + product sheet |
+| `/sustainability` | 2030 commitments and impact reporting |
 | `/training` | T1–T3 |
 | `/evs`, `/guides`, `/faq`, `/locations` | SEO |
 | `/partners`, `/about`, `/contact`, `/careers` | Company / GTM |
@@ -57,7 +59,7 @@ Full map: [Website channel doc](../docs/channels/website.md) · [Pivot cleanup](
 | Homepage | `app/page.tsx` |
 | Canonical copy | `lib/brand-messaging.ts` |
 | Charging Hub | `lib/charging-hub.ts`, `lib/hub-locations.ts` |
-| AI companion | `lib/download-page.ts`, `app/download/` |
+| Precifarm Agent | `lib/download-page.ts`, `app/download/` |
 | Private house charging | `lib/home-charging.ts` |
 | Modular energy | `lib/modular-energy-page.ts` |
 | SEO | `lib/seo/`, `components/seo/` |
@@ -65,17 +67,17 @@ Full map: [Website channel doc](../docs/channels/website.md) · [Pivot cleanup](
 
 ## Copy rules
 
-- **From home charging to highway charging.**
+- **From home charging to highway charging**, then store the energy that makes it dependable.
 - Full product names: Pulse charger, Pod energy storage, Spark charger, Corridor charging.
-- AI companion is **not a chatbot**.
+- Precifarm Agent is **not a chatbot**.
 - Live vs planned hubs stay honest.
-- Modular energy is **conceptual, not on sale**. Pod enclosure ≠ Pod energy storage.
-- Do not present booking, seat maps or uncommissioned bus windows as live product.
+- Modular energy is **conceptual, not on sale**. Pod Stack ≠ Pod energy storage.
+- Do not present booking, seat maps or bus-route charging as live or near-term product.
 - Do not mention BYD on homepage or product pages.
 
 ## Status
 
-**Actual:** charging site, Charging Hub, AI companion page, Cloud Run at precifarm.com.
+**Actual:** charging site, Charging Hub, Precifarm Agent page, sustainability, Cloud Run at precifarm.com.
 
 **Not proven as traction:** paid installs, public session volume.
 

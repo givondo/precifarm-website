@@ -80,23 +80,72 @@
       h2 { break-after: avoid; }
       table, .flow { break-inside: avoid; }
     }
-    @page { size: A4; margin: 12mm; }
+    @page { size: A4; margin: 12mm 12mm 24mm; }
     body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    
+.pf-doc-toolbar-id { font-family: ui-monospace, Consolas, monospace; font-size: .78rem; color: var(--pf-subtle, #737373); letter-spacing: .04em; }
+.pf-doc-toolbar-actions { display: flex; gap: .5rem; flex-wrap: wrap; }
+.pf-print-band { display: none; }
+.pf-doc-footer-title { margin: .5rem 0 0; font-size: .88rem; color: var(--pf-ink, #0a0a0a); }
+.pf-doc-footer-social a { color: var(--pf-charge, #2563eb); text-decoration: none; }
+@media print {
+  @page { size: A4; margin: 12mm 12mm 22mm; }
+  body { padding-bottom: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .pf-print-band {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2mm 12mm 3mm;
+    border-top: 1px solid var(--pf-line, #e5e5e5);
+    background: #fff;
+    font-size: 6pt;
+    line-height: 1.35;
+    color: var(--pf-muted, #404040);
+    z-index: 9999;
+  }
+  .pf-print-band-row { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem  .6rem; margin: 0 0 .6mm; }
+  .pf-print-band-row:last-child { margin-bottom: 0; justify-content: space-between; }
+  .pf-print-band-brand strong { color: var(--pf-ink, #0a0a0a); font-size: 6.5pt; }
+  .pf-print-band-brand img { vertical-align: middle; margin-right: 1mm; }
+  .pf-print-band-muted { color: var(--pf-subtle, #737373); }
+  .pf-print-band-contact, .pf-print-band-social { color: var(--pf-subtle, #737373); font-size: 5.8pt; }
+  .pf-print-band-social a { color: var(--pf-muted, #404040); text-decoration: none; }
+  .pf-print-band-doc { font-family: ui-monospace, Consolas, monospace; font-size: 5.8pt; color: var(--pf-subtle, #737373); }
+  .toolbar, .no-print { display: none !important; }
+  .pf-doc-footer a, .pf-print-band a { color: inherit; }
+}
   </style>
 </head>
 <body>
-  <div class="toolbar no-print pf-doc-toolbar">
-    <div class="pf-doc-toolbar-brand">
-      <img src="./precifarm-logo-mark.svg" alt="" width="24" height="24" />
-      <span class="mono">PF-MODENERGY-001 · v1.0</span>
-    </div>
-    <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
-      <button type="button" class="primary" onclick="window.print()">Print</button>
-      <a class="primary" href="./precifarm-modular-energy-storage.pdf" download>Download PDF</a>
-      <a href="./precifarm-modular-energy-storage.html" download>Download HTML</a>
-      <a href="/charging">Back to charging</a>
-    </div>
+  <div class="pf-print-band" aria-hidden="true">
+  <div class="pf-print-band-row pf-print-band-brand">
+    <img src="./precifarm-logo-mark.svg" alt="" width="14" height="14" />
+    <strong>Precifarm</strong>
+    <span class="pf-print-band-muted">Electric mobility infrastructure for Africa</span>
   </div>
+  <div class="pf-print-band-row pf-print-band-contact">
+    sales@precifarm.com · +254 794 702 768 · precifarm.com
+  </div>
+  <div class="pf-print-band-row pf-print-band-social"><a href="https://wa.me/254794702768">WhatsApp</a> · <a href="https://x.com/precifarm">X</a> · <a href="https://instagram.com/precifarm">Instagram</a> · <a href="https://linkedin.com/company/precifarm">LinkedIn</a> · <a href="https://facebook.com/precifarm">Facebook</a> · <a href="https://tiktok.com/@precifarm">TikTok</a></div>
+  <div class="pf-print-band-row pf-print-band-doc">
+    <span>PF-MODENERGY-001 · v1.0 · 30 August 2026</span>
+    <span>Modular Energy v1</span>
+    <span>© 2026 Precifarm</span>
+  </div>
+</div>
+  <div class="toolbar no-print pf-doc-toolbar">
+  <div class="pf-doc-toolbar-brand">
+    <img src="./precifarm-logo-mark.svg" alt="" width="24" height="24" />
+    <span class="pf-doc-toolbar-id">PF-MODENERGY-001 · v1.0 · Legacy reference</span>
+  </div>
+  <div class="pf-doc-toolbar-actions">
+    <button type="button" class="primary" onclick="window.print()">Print</button>
+    <a class="primary" href="./precifarm-modular-energy-storage.pdf" download>Download PDF</a>
+    <a href="/charging/modular-energy">Modular energy</a>
+  </div>
+</div>
 
   <main class="sheet">
     <header class="pf-doc-header">
@@ -131,7 +180,9 @@
       <section class="part part-i">
         <p class="phase">Part I · Product Design</p>
         <h3>One Architecture. From Portable Power to Home Energy.</h3>
-<p><strong>Document:</strong> Modular Energy Platform — Product Design Page   <strong>Version:</strong> 1.0   <strong>Status:</strong> Product Design Foundation   <strong>Placement:</strong> Immediately after product vision in the master strategy set   <strong>Related:</strong> Product Overview · Engineering Design · Master Document v2.5 · EV Charging index</p>
+<p><strong>Document:</strong> Modular Energy Platform — Product Design Page   <strong>Version:</strong> 1.0   <strong>Status:</strong> Product Design Foundation (companion to PF-MODENERGY-002)   <strong>Placement:</strong> Immediately after product vision in the master strategy set  </p>
+<div class="callout"><strong>Canonical engineering architecture:</strong> <strong>Modular Energy Architecture v2</strong> (PF-MODENERGY-002 v2.0) — derived math, ERNs, Kenya design basis, 24 figures, 8 renders, prototype roadmap.   <strong>PDF:</strong> precifarm-modular-energy-platform-v2.pdf · regenerate: <code>npm run pdf:modular-energy-v2</code> from <code>website/</code>.</div>
+<p><strong>Related:</strong> Architecture v2 · Product Overview · Engineering Design v1 · Master Document v2.5 · EV Charging index · Product doc index</p>
 <hr />
 <h3>Design principle</h3>
 <p>Energy storage should be a <strong>positive experience</strong> — simple to use, easy to move, easy to expand, and ready to connect to solar, home and electric mobility.</p>
@@ -481,13 +532,13 @@ PLUG → CARRY → ROLL → STACK → INSTALL → DRIVE
 P1 GO → P2 HOME → ENERGY MODULE → POD → EV
 ONE ENERGY OS. ONE CUSTOMER ACCOUNT. ONE MODULAR ENERGY PLATFORM.</pre>
 <hr />
-<p class="footnote">Engineering references for installed Pod and corridor systems: Modular Energy Engineering Design · EV Charging index. Route-infrastructure products: Product Overview. Historical strategy context: Master Document v2.5.</p>
+<p class="footnote">Engineering references: <strong>Modular Energy Architecture v2</strong> (primary) · Modular Energy Engineering Design v1 · EV Charging index. Route-infrastructure products: Product Overview. Historical strategy context: Master Document v2.5.</p>
       </section>
 
       <section class="part part-ii">
         <p class="phase">Part II · Engineering Design</p>
-        <p><strong>Document ID:</strong> PF-ENG-MODENERGY-001   <strong>Version:</strong> 1.0 · 30 August 2026   <strong>Owner:</strong> Precifarm Engineering   <strong>Status:</strong> Engineering design basis — not issued-for-construction   <strong>Product design companion:</strong> Modular Energy Platform   <strong>Canon:</strong> Consumer/home energy is a <strong>gated expansion surface</strong>; route Reserved Route Charging remains the beachhead. See CANON.md.</p>
-<div class="callout">All electrical ratings, module counts, connector pinouts and certification claims in this document are <strong>engineering targets</strong> until validated by prototype test, third-party review and Kenya statutory approval. Do not quote as product specification in customer-facing material without an approved data sheet.</div>
+        <p><strong>Document ID:</strong> PF-ENG-MODENERGY-001   <strong>Version:</strong> 1.0 · 30 August 2026   <strong>Owner:</strong> Precifarm Engineering   <strong>Status:</strong> Superseded for engineering targets and calculations — retained as historical basis   <strong>Superseded by:</strong> <strong>Modular Energy Architecture v2</strong> (PF-MODENERGY-002 v2.0)   <strong>Product design companion:</strong> Modular Energy Platform   <strong>Canon:</strong> Consumer/home energy is a <strong>gated expansion surface</strong>; route Reserved Route Charging remains the beachhead. See CANON.md.</p>
+<div class="callout"><strong>Use v2 for:</strong> module math, ERNs, dual architecture (LV-48 / HV-S), Kenya design basis, PAYGO policy, test matrix, risk register, and PDF export. This v1.0 file remains for early Tesla/BYD motivation and block-diagram history.</div>
 <hr />
 <h3>1. Purpose</h3>
 <p>This document translates the Modular Energy Platform product vision into an <strong>engineering architecture</strong> Precifarm can prototype, certify and manufacture through partners.</p>
@@ -664,17 +715,28 @@ Open where strategic     +     Local assembly path    =    Kenya SKD when gated<
 <table><thead><tr><th>ID</th><th>Decision</th><th>Options</th><th>Target date</th></tr></thead><tbody><tr><td>E-01</td><td>Cell form factor</td><td>Prismatic vs cylindrical</td><td>P0 exit</td></tr><tr><td>E-02</td><td>P1 integration vs mini-module</td><td>Integrated only vs 0.64 kWh sub-module</td><td>P1 kickoff</td></tr><tr><td>E-03</td><td>Grid export policy default</td><td>Zero-export vs limited export</td><td>Legal + EPRA</td></tr><tr><td>E-04</td><td>PAYGO discharge limit ethics</td><td>Hard cutoff vs essential-load only</td><td>Product + legal</td></tr><tr><td>E-05</td><td>LTE vs Wi-Fi-only P2</td><td>SKU split</td><td>After Nairobi connectivity study</td></tr><tr><td>E-06</td><td>Pod PCS supplier</td><td>Hybrid inverter OEM shortlist</td><td>P2 parallel track</td></tr></tbody></table>
 <hr />
 <h3>15. Document control</h3>
-<table><thead><tr><th>Version</th><th>Date</th><th>Author</th><th>Change</th></tr></thead><tbody><tr><td>1.0</td><td>2026-08-30</td><td>Precifarm Engineering</td><td>Initial engineering design basis; Tesla/BYD motivation; module spec</td></tr></tbody></table>
+<table><thead><tr><th>Version</th><th>Date</th><th>Author</th><th>Change</th></tr></thead><tbody><tr><td>1.0</td><td>2026-08-30</td><td>Precifarm Engineering</td><td>Initial engineering design basis; Tesla/BYD motivation; module spec</td></tr><tr><td>1.0-s</td><td>2026-08-30</td><td>Precifarm Engineering</td><td>Marked superseded by PF-MODENERGY-002 v2.0 — do not update targets here</td></tr></tbody></table>
 <p><strong>Related documents</strong></p>
-<ul><li>Modular Energy Platform — Product Design</li><li>Solar Chargers &amp; Stations Engineering</li><li>Software &amp; Cybersecurity Architecture</li><li>Precifarm EV Leadership Strategy</li></ul>
+<ul><li><strong>Modular Energy Architecture v2</strong> — PF-MODENERGY-002 (current)</li><li>Modular Energy Platform — Product Design</li><li>Solar Chargers &amp; Stations Engineering</li><li>Software &amp; Cybersecurity Architecture</li><li>Precifarm EV Leadership Strategy</li></ul>
 <hr />
 <p class="footnote">Precifarm Modular Energy — engineering targets for prototype and certification planning. Not a product warranty or customer specification.</p>
       </section>
 
-    <footer class="doc-foot">
-      Precifarm Modular Energy Storage — PF-MODENERGY-001 v1.0 · Generated from kenya-ebus-ecosystem/docs/product/
-      · Not a product warranty or customer specification · precifarm.com
-    </footer>
+    <footer class="doc-foot pf-doc-footer">
+  <div class="pf-doc-footer-brand">
+    <img src="./precifarm-logo-mark.svg" alt="" width="28" height="28" class="pf-doc-mark pf-doc-mark-sm" />
+    <div>
+      <p class="pf-doc-wordmark pf-doc-wordmark-sm">Precifarm</p>
+      <p class="pf-doc-brand-tagline">Electric mobility infrastructure for Africa</p>
+    </div>
+  </div>
+  <p class="pf-doc-footer-title"><strong>Modular Energy Storage — Product &amp; Engineering Design</strong></p>
+  <p class="pf-doc-footer-meta">© 2026 Precifarm · PF-MODENERGY-001 v1.0 · 30 August 2026</p>
+  <p class="pf-doc-footer-contact">sales@precifarm.com · +254 794 702 768 · Nairobi, Kenya · <a href="https://precifarm.com">precifarm.com</a></p>
+  <p class="pf-doc-footer-social"><a href="https://wa.me/254794702768">WhatsApp</a> · <a href="https://x.com/precifarm">X</a> · <a href="https://instagram.com/precifarm">Instagram</a> · <a href="https://linkedin.com/company/precifarm">LinkedIn</a> · <a href="https://facebook.com/precifarm">Facebook</a> · <a href="https://tiktok.com/@precifarm">TikTok</a></p>
+  <p class="pf-doc-footer-disclaimer">Legacy v1 reference — superseded by PF-MODENERGY-002. Not a product warranty or customer specification.</p>
+  <p class="pf-doc-footer-link"><a href="https://precifarm.com/charging/modular-energy">precifarm.com/charging/modular-energy</a></p>
+</footer>
   </main>
 </body>
 </html>

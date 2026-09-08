@@ -4,10 +4,16 @@
  *
  * Usage: node scripts/generate-modular-energy-design-pdf.mjs
  */
-import { execFileSync } from "node:child_process";
 import { copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
-import { fileURLToPath, pathToFileURL } from "node:url";
+import { fileURLToPath } from "node:url";
+import {
+  brandDocFooterHtml,
+  brandPrintCss,
+  brandPrintFooterHtml,
+  brandToolbarHtml,
+  printHtmlToPdf,
+} from "./lib/document-brand.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, "..");
@@ -133,7 +139,7 @@ const EV_ENERGY_INTEGRATION = [
 
 const CHARGING_IMAGE_FILES = [
   ["spark.jpg", "products/spark.png"],
-  ["pulse.jpg", "products/pulse-v7.png"],
+  ["pulse.jpg", "products/pulse-v8.png"],
   ["corridor.jpg", "products/corridor.png"],
   ["depot.jpg", "products/depot.png"],
   ["boda.jpg", "products/boda-v2.png"],
@@ -528,7 +534,7 @@ function stageChargingAssets() {
     compressRender(from, join(assetDir, jpgName));
     count += 1;
   }
-  const heroSrc = join(root, "public", "images", "charging-ecosystem-hero-v18.png");
+  const heroSrc = join(root, "public", "images", "charging-ecosystem-hero-v19.png");
   if (!existsSync(heroSrc)) throw new Error(`Missing charging ecosystem hero: ${heroSrc}`);
   compressRender(heroSrc, join(assetDir, "charging-ecosystem-hero.jpg"));
   count += 1;
@@ -848,36 +854,24 @@ function buildHtml() {
   @media print {
     .toolbar { display: none !important; }
     .sheet { max-width: none; }
-    .page { min-height: 297mm; padding: 12mm 14mm 14mm; }
-    .print-footer {
-      display: flex; position: fixed; bottom: 8mm; left: 14mm; right: 14mm;
-      justify-content: space-between; font-family: var(--mono); font-size: 6.5pt; color: var(--subtle);
-      border-top: 1px solid var(--line); padding-top: 2mm;
-    }
+    .page { min-height: 297mm; padding: 12mm 14mm 20mm; }
     .card, .ctx, .hero, .lang-box, .table-shell, .ev-thumb { break-inside: avoid; }
     .data-table { font-size: 6.8pt; }
     .data-table tbody td.num { font-size: 6.6pt; }
   }
+  ${brandPrintCss()}
 </style>
 </head>
 <body>
-  <div class="print-footer" aria-hidden="true">
-    <span>${DOC.id} · v${DOC.version}</span>
-    <span>Industrial Design Overview · ${DOC.companion}</span>
-    <span>${DOC.date}</span>
-  </div>
-
-  <div class="toolbar">
-    <div style="display:flex;align-items:center;gap:.6rem">
-      <img src="./precifarm-logo-mark.svg" alt="" width="22" height="22" />
-      <span class="id">${DOC.id} · v${DOC.version} · ${DOC.status}</span>
-    </div>
-    <div style="display:flex;gap:.5rem;flex-wrap:wrap">
-      <button type="button" class="primary" onclick="window.print()">Print</button>
-      <a class="primary" href="./precifarm-modular-energy-design.pdf" download>Download PDF</a>
-      <a href="/charging/modular-energy">Back to modular energy</a>
-    </div>
-  </div>
+  ${brandPrintFooterHtml({ id: DOC.id, version: DOC.version, date: DOC.date, shortTitle: "Modular Energy Design" })}
+  ${brandToolbarHtml({
+    docId: DOC.id,
+    version: DOC.version,
+    status: DOC.status,
+    pdfFile: "precifarm-modular-energy-design.pdf",
+    backHref: "/charging/modular-energy",
+    backLabel: "Modular energy",
+  })}
 
   <main class="sheet">
     <section class="page page-cover">
@@ -980,35 +974,21 @@ function buildHtml() {
     </section>
 
     ${buildEvChargingPage()}
+    ${brandDocFooterHtml(
+      { id: DOC.id, version: DOC.version, date: DOC.date, title: "Industrial Design Overview" },
+      {
+        livePagePath: "/charging/modular-energy",
+        extraDisclaimer:
+          "All renders are conceptual industrial-design visualisations — not manufacturing models, dimensioned drawings or certified product specifications.",
+      },
+    )}
   </main>
 </body>
 </html>`;
 }
 
-function findBrowser() {
-  for (const candidate of browsers) {
-    if (candidate && existsSync(candidate)) return candidate;
-  }
-  return null;
-}
-
 function generatePdf(htmlPath) {
-  const browser = findBrowser();
-  if (!browser) throw new Error("Chrome or Edge not found. Install one to generate the PDF.");
-
-  execFileSync(
-    browser,
-    [
-      "--headless=new",
-      "--disable-gpu",
-      "--no-pdf-header-footer",
-      "--run-all-compositor-stages-before-draw",
-      "--virtual-time-budget=60000",
-      `--print-to-pdf=${pdfOut}`,
-      pathToFileURL(htmlPath).href,
-    ],
-    { stdio: "inherit", windowsHide: true },
-  );
+  printHtmlToPdf(htmlPath, pdfOut);
 
   if (!existsSync(pdfOut) || readFileSync(pdfOut).length < 5000) {
     throw new Error("PDF generation failed or file is empty.");

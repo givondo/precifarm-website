@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { contactPage } from "@/lib/company-pages";
 import { contact } from "@/lib/contact";
 import ContactForm from "@/components/ContactForm";
 import JsonLd from "@/components/seo/JsonLd";
@@ -44,15 +45,12 @@ export default async function ContactPage({
     <>
       <JsonLd data={pageJsonLd("/contact")} />
       <PageHero
-        eyebrow="Contact"
-        title="Talk to the Precifarm team"
-        description="Home survey, fleet depot, highway hub or site host — we respond within one business day."
+        eyebrow={contactPage.eyebrow}
+        title={contactPage.title}
+        description={contactPage.description}
       >
-        <a
-          href="/charging"
-          className="inline-flex rounded-full bg-charge-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-charge-500"
-        >
-          Explore charging
+        <a href={contactPage.primaryCta.href} className="btn-primary">
+          {contactPage.primaryCta.label}
         </a>
       </PageHero>
 

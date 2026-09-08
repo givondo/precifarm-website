@@ -29,12 +29,12 @@ export const megapackDisclaimer =
 export const megapackPageContent = {
   hero: {
     eyebrow: "MegaPack · project-engineered BESS",
-    title: "Project-engineered battery storage from industrial sites to grid-connected plants",
+    title: "Battery storage from industrial sites to grid-connected plants",
     description:
       "Precifarm designs and integrates BESS for factories, EV charging hubs, solar + storage and utility-scale plants in Kenya. Power, energy and equipment are specified per site — not sold as a catalogue SKU.",
     image: {
-      src: "/images/megapack-hero.png",
-      alt: "Precifarm MegaPack site — storage, solar and EV charging in Kenya",
+      src: "/images/megapack-hero-v3.png",
+      alt: "Precifarm MegaPack utility-scale battery storage at golden hour",
     },
     primaryCta: { href: megapackPaths.contact, label: "Start a project" },
     secondaryCta: { href: megapackPaths.brief, label: "Project brief" },
@@ -47,9 +47,9 @@ export const megapackPageContent = {
     { label: "Kenya context", value: "Kenya Power, Grid Code and EPRA per project" },
   ] as const,
   plantImage: {
-    src: "/images/megapack-grid-hero.png",
-    alt: "Precifarm utility-scale storage plant with solar in Kenya",
-    caption: "Utility-scale plants are engineered from the grid connection inward.",
+    src: "/images/megapack-grid-hero-v2.png",
+    alt: "Precifarm grid-connected storage plant with solar in Kenya",
+    caption: "Solar and storage parks are engineered from the grid connection inward.",
   },
   applications: {
     eyebrow: "Applications",
@@ -108,8 +108,8 @@ export const megapackPageContent = {
       { label: "Chargers", value: "1–2 MW", note: "Vehicle mix dependent" },
     ] as const,
     image: {
-      src: "/images/megapack-ev-hub.png",
-      alt: "Illustrative Precifarm EV hub with storage and DC charging",
+      src: "/images/megapack-ev-hub-v2.png",
+      alt: "Precifarm EV charging hub with MegaPack storage and solar canopy",
     },
     note: "Illustrative only. Storage can reduce instantaneous grid demand. It does not remove interconnection studies or reinforcement.",
   },

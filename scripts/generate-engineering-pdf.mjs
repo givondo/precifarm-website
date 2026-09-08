@@ -5,17 +5,10 @@
  *
  * Usage: node scripts/generate-engineering-pdf.mjs
  */
-import { execFileSync } from "node:child_process";
-import {
-  cpSync,
-  existsSync,
-  mkdirSync,
-  readFileSync,
-  rmSync,
-  writeFileSync,
-} from "node:fs";
+import { cpSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
-import { fileURLToPath, pathToFileURL } from "node:url";
+import { fileURLToPath } from "node:url";
+import { brandPrintFooterHtml, printHtmlToPdf } from "./lib/document-brand.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, "..");
@@ -95,13 +88,20 @@ function prepareBuild() {
   html = html.replace(
     "</style>",
     `
-    @page { size: A4; margin: 12mm; }
+    @page { size: A4; margin: 12mm 12mm 24mm; }
     body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     figure { break-inside: avoid; page-break-inside: avoid; margin: 1.1rem 0 1.4rem; }
     figure img { max-height: 210mm; width: 100%; object-fit: contain; background: #fafafa; }
     h2.photo-annex { break-before: page; page-break-before: always; }
     </style>`,
   );
+
+  if (!html.includes("pf-print-band")) {
+    html = html.replace(
+      "<body>",
+      `<body>\n${brandPrintFooterHtml({ id: "PF-ENG-SOLAR-HUB-001", version: "1.1", date: "16 August 2026", shortTitle: "Solar Engineering" })}`,
+    );
+  }
 
   const outHtml = join(buildDir, "index.html");
   writeFileSync(outHtml, html, "utf8");
@@ -113,27 +113,8 @@ function generatePdf() {
     throw new Error(`Missing HTML source: ${htmlSrc}`);
   }
 
-  const browser = findBrowser();
-  if (!browser) {
-    throw new Error("Chrome or Edge not found. Install one to generate the PDF.");
-  }
-
   const printHtml = prepareBuild();
-  const fileUrl = pathToFileURL(printHtml).href;
-
-  execFileSync(
-    browser,
-    [
-      "--headless=new",
-      "--disable-gpu",
-      "--no-pdf-header-footer",
-      "--run-all-compositor-stages-before-draw",
-      "--virtual-time-budget=60000",
-      `--print-to-pdf=${pdfOut}`,
-      fileUrl,
-    ],
-    { stdio: "inherit", windowsHide: true },
-  );
+  printHtmlToPdf(printHtml, pdfOut, { virtualTimeBudget: 90000 });
 
   if (!existsSync(pdfOut) || readFileSync(pdfOut).length < 1000) {
     throw new Error("PDF generation failed or file is empty.");

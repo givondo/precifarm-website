@@ -40,6 +40,11 @@ const nextConfig: NextConfig = {
         destination: "/charging/modular-energy/megapack",
         permanent: true,
       },
+      {
+        source: "/charging/modular-energy/pod",
+        destination: "/charging/modular-energy/pod-stack",
+        permanent: true,
+      },
     ];
   },
   async headers() {

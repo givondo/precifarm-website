@@ -20,11 +20,7 @@ export default function SectionHeader({
       className={`max-w-2xl ${centered ? "mx-auto text-center" : ""} ${className}`}
     >
       {eyebrow && (
-        <p
-          className={`text-eyebrow text-xs font-semibold uppercase tracking-widest ${inverted ? "text-white/70" : "text-forest-500"}`}
-        >
-          {eyebrow}
-        </p>
+        <p className={inverted ? "text-eyebrow-inverted" : "text-eyebrow"}>{eyebrow}</p>
       )}
       <h2
         className={`heading-display ${eyebrow ? "mt-3" : ""} text-xl sm:text-2xl ${inverted ? "text-white" : ""}`}

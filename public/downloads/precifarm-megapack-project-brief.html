@@ -3,119 +3,159 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Precifarm MegaPack — project brief</title>
+    <title>Precifarm MegaPack — project brief (PF-MEGAPACK-001)</title>
+    <meta name="description" content="Project brief for Precifarm MegaPack — project-engineered battery energy storage from industrial sites to grid-connected plants in Kenya." />
+    <link rel="stylesheet" href="./precifarm-document-brand.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet" />
     <style>
-      :root {
-        --ink: #0a0a0a;
-        --muted: #525252;
-        --line: #e5e5e5;
-        --charge: #2563eb;
-        --paper: #fafafa;
-      }
-      body {
-        margin: 0;
-        color: var(--ink);
-        font: 16px/1.6 system-ui, sans-serif;
-        background: #fff;
-      }
-      main {
-        max-width: 44rem;
-        margin: 0 auto;
-        padding: 2.5rem 1.25rem 4rem;
-      }
-      h1 {
-        font-size: 1.75rem;
-        line-height: 1.2;
-        margin: 0.5rem 0 1rem;
-      }
-      h2 {
-        font-size: 1.15rem;
-        margin: 2rem 0 0.75rem;
-      }
-      p,
-      li {
-        color: var(--muted);
-      }
-      .eyebrow {
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        font-size: 0.7rem;
-        font-weight: 700;
-        color: var(--charge);
-      }
-      .note {
-        background: var(--paper);
-        border: 1px solid var(--line);
-        border-radius: 0.75rem;
-        padding: 1rem 1.1rem;
-        font-size: 0.9rem;
-      }
-      .meta {
-        font-size: 0.8rem;
-        color: #737373;
-      }
+      body { margin: 0; font-family: "Plus Jakarta Sans", system-ui, sans-serif; font-size: 10pt; line-height: 1.55; color: var(--pf-muted); }
+      .sheet { max-width: 210mm; margin: 0 auto; padding: 12mm 14mm 24mm; }
+      .page { break-after: page; page-break-after: always; min-height: 250mm; }
+      .page:last-child { break-after: auto; page-break-after: auto; }
+      h1 { font-size: 22pt; line-height: 1.12; letter-spacing: -0.02em; color: var(--pf-ink); margin: 0.5rem 0 1rem; }
+      h2 { font-size: 12pt; margin: 1.5rem 0 0.6rem; color: var(--pf-ink); border-top: 1px solid var(--pf-line); padding-top: 0.75rem; }
+      h2:first-of-type { border-top: 0; padding-top: 0; }
+      p, li { color: var(--pf-muted); }
+      .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 7pt; font-weight: 700; color: var(--pf-charge); margin: 0 0 0.5rem; }
+      .meta { display: grid; gap: 0.35rem; margin: 1rem 0 1.25rem; padding: 0.85rem 1rem; background: var(--pf-soft); border: 1px solid var(--pf-line); border-radius: 12px; font-size: 8.5pt; }
+      .meta strong { color: var(--pf-ink); }
+      .note { background: var(--pf-charge-soft); border: 1px solid #bfdbfe; border-radius: 10px; padding: 0.85rem 1rem; font-size: 9pt; color: var(--pf-ink); margin: 1rem 0; }
+      .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1rem 0; }
+      .card { border: 1px solid var(--pf-line); border-radius: 10px; padding: 0.85rem 1rem; background: #fff; }
+      .card h3 { margin: 0 0 0.35rem; font-size: 10pt; color: var(--pf-ink); }
+      .card p { margin: 0; font-size: 8.5pt; }
+      .cta { margin-top: 1.25rem; padding: 1rem; border-radius: 10px; background: #0f172a; color: #cbd5e1; }
+      .cta strong { color: #fff; }
+      a { color: var(--pf-charge); }
     </style>
   </head>
   <body>
-    <main>
-      <p class="eyebrow">Precifarm · Kenya</p>
-      <h1>MegaPack project brief</h1>
-      <p class="meta">Conceptual platform · 3 September 2026 · Not a product datasheet</p>
-      <p>
-        Precifarm MegaPack is a project-engineered battery energy storage system (BESS)
-        platform for commercial, industrial, renewable-energy, EV-charging, microgrid and
-        utility-scale applications in Kenya, with a design path across Africa.
-      </p>
-      <div class="note">
-        Precifarm is the designer, integrator and project developer — and may be a
-        financing or operating partner where that is lawful and contracted. Precifarm does
-        not claim to manufacture the battery cells, power conversion equipment or complete
-        container as a standard product line.
+    <div class="pf-print-band" aria-hidden="true">
+      <div class="pf-print-band-row pf-print-band-brand">
+        <img src="./precifarm-logo-mark.svg" alt="" width="14" height="14" />
+        <strong>Precifarm</strong>
+        <span class="pf-print-band-muted">Electric mobility infrastructure for Africa</span>
       </div>
-      <h2>What to tell us</h2>
-      <ul>
-        <li>What you need to power, and which loads are critical</li>
-        <li>How much energy you need to store, and for how many hours</li>
-        <li>Where the project will connect (voltage, capacity, export if any)</li>
-        <li>Solar or other generation on site or planned</li>
-        <li>Whether EV charging, backup or grid-support is in scope</li>
-        <li>Preferred commercial model (own, finance, service)</li>
-      </ul>
-      <h2>How we work</h2>
-      <p>
-        Assess → Model → Connect → Engineer → Finance → Build → Operate. Final architecture
-        depends on grid voltage, connection capacity, load profile, export capability,
-        battery power and energy, protection, metering, utility requirements, operating
-        model and applicable Kenyan regulations.
-      </p>
-      <h2>Regulatory position</h2>
-      <p>
-        Designed for compliance with applicable Kenyan requirements. Final compliance and
-        approvals are determined project-by-project. Grid-connected projects are subject to
-        site-specific engineering, utility interconnection, applicable EPRA
-        approvals/licensing, environmental and county approvals, and the relevant network
-        operator. Precifarm does not claim “EPRA certified”, “KPLC approved” or licensed
-        energy-storage operator status on this brief.
-      </p>
-      <p>
-        MegaPack is not advertised as net-metering enabled. Backup is not automatic on a
-        grid-tied BESS. Storage can help reduce instantaneous grid demand; it does not
-        eliminate interconnection studies or possible reinforcement.
-      </p>
-      <p class="note">
-        Regulatory notice: MegaPack is a project-engineered energy-storage platform.
-        Grid-connected installations, generation/export arrangements, EV public-charging
-        operations and electricity supply activities may require approvals, licences,
-        permits, agreements, technical studies and inspections under Kenyan law and
-        applicable utility requirements. Requirements vary by project, location, capacity,
-        point of connection and operating model.
-      </p>
-      <p>
-        Start a conversation:
-        <a href="https://precifarm.com/contact?interest=megapack">precifarm.com/contact</a>
-        ·
-        <a href="https://precifarm.com/charging/modular-energy/megapack">MegaPack page</a>
-      </p>
+      <div class="pf-print-band-row pf-print-band-contact">sales@precifarm.com · +254 794 702 768 · precifarm.com</div>
+      <div class="pf-print-band-row pf-print-band-social"><a href="https://wa.me/254794702768">WhatsApp</a> · <a href="https://x.com/precifarm">X</a> · <a href="https://instagram.com/precifarm">Instagram</a> · <a href="https://linkedin.com/company/precifarm">LinkedIn</a> · <a href="https://facebook.com/precifarm">Facebook</a> · <a href="https://tiktok.com/@precifarm">TikTok</a></div>
+      <div class="pf-print-band-row pf-print-band-doc"><span>PF-MEGAPACK-001 · v1.1 · 4 September 2026</span><span>MegaPack project brief</span><span>© 2026 Precifarm</span></div>
+    </div>
+
+    <div class="toolbar no-print pf-doc-toolbar">
+      <div class="pf-doc-toolbar-brand">
+        <img src="./precifarm-logo-mark.svg" alt="" width="24" height="24" />
+        <span class="pf-doc-toolbar-id">PF-MEGAPACK-001 · v1.1 · Project brief</span>
+      </div>
+      <div class="pf-doc-toolbar-actions">
+        <button type="button" class="primary" onclick="window.print()">Print</button>
+        <a class="primary" href="./precifarm-megapack-project-brief.pdf" download>Download PDF</a>
+        <a href="/charging/modular-energy/megapack">MegaPack page</a>
+      </div>
+    </div>
+
+    <main class="sheet">
+      <section class="page">
+        <header class="pf-doc-header">
+          <div class="pf-doc-brand">
+            <img src="./precifarm-logo-mark.svg" alt="" width="40" height="40" class="pf-doc-mark" />
+            <div class="pf-doc-brand-text">
+              <p class="pf-doc-wordmark">Precifarm</p>
+              <p class="pf-doc-brand-tagline">From home charging to highway charging.</p>
+            </div>
+          </div>
+          <p class="pf-doc-header-id">PF-MEGAPACK-001 · v1.1</p>
+        </header>
+
+        <p class="eyebrow">Modular energy · Kenya · Conceptual platform</p>
+        <h1>Project-engineered battery storage from industrial sites to grid-connected plants</h1>
+
+        <div class="meta">
+          <div><strong>Document:</strong> PF-MEGAPACK-001 v1.1 · 4 September 2026</div>
+          <div><strong>Status:</strong> Conceptual — not on sale. Project-engineered per site.</div>
+          <div><strong>Role:</strong> Precifarm designs, integrates and develops — not a manufactured product line.</div>
+          <div><strong>Live page:</strong> precifarm.com/charging/modular-energy/megapack</div>
+        </div>
+
+        <p>
+          Precifarm MegaPack is a project-engineered battery energy storage system (BESS) platform for commercial,
+          industrial, renewable-energy, EV-charging, microgrid and utility-scale applications in Kenya — with a design
+          path across Africa.
+        </p>
+
+        <div class="note">
+          Precifarm is the designer, integrator and project developer — and may be a financing or operating partner where
+          that is lawful and contracted. We do not claim to manufacture cells, power conversion equipment or complete
+          containers as a standard catalogue product.
+        </div>
+
+        <h2>Applications</h2>
+        <div class="grid-2">
+          <div class="card"><h3>Industrial &amp; commercial</h3><p>Peak shaving, backup, process continuity and solar firming at factories, cold chain and campuses.</p></div>
+          <div class="card"><h3>Utility &amp; grid-connected</h3><p>Project-scoped plants subject to interconnection studies — not advertised as net-metering or guaranteed grid revenue.</p></div>
+          <div class="card"><h3>EV hub &amp; corridor energy</h3><p>Buffer storage for depot and highway charging where grid import limits or solar surplus need orchestration.</p></div>
+          <div class="card"><h3>Microgrid &amp; weak-grid sites</h3><p>Islandable or grid-following architectures where Kenya Power availability and critical loads dictate design.</p></div>
+        </div>
+      </section>
+
+      <section class="page">
+        <header class="pf-doc-header">
+          <div class="pf-doc-brand">
+            <img src="./precifarm-logo-mark.svg" alt="" width="40" height="40" class="pf-doc-mark" />
+            <div class="pf-doc-brand-text">
+              <p class="pf-doc-wordmark">Precifarm</p>
+              <p class="pf-doc-brand-tagline">MegaPack · project brief</p>
+            </div>
+          </div>
+          <p class="pf-doc-header-id">PF-MEGAPACK-001 · Page 2</p>
+        </header>
+
+        <h2>What to tell us</h2>
+        <ul>
+          <li>What you need to power, and which loads are critical</li>
+          <li>How much energy to store, and for how many hours</li>
+          <li>Connection point (voltage, capacity, export if any)</li>
+          <li>Solar or other generation on site or planned</li>
+          <li>Whether EV charging, backup or grid-support is in scope</li>
+          <li>Preferred commercial model (own, finance, service)</li>
+        </ul>
+
+        <h2>How we work</h2>
+        <p><strong>Assess → Model → Connect → Engineer → Finance → Build → Operate.</strong> Final architecture depends on grid voltage, connection capacity, load profile, export capability, battery power and energy, protection, metering, utility requirements, operating model and applicable Kenyan regulations.</p>
+
+        <h2>Regulatory position</h2>
+        <p>
+          Designed for compliance with applicable Kenyan requirements. Final compliance and approvals are determined
+          project-by-project. Grid-connected projects require site-specific engineering, utility interconnection, applicable
+          EPRA approvals/licensing, environmental and county approvals, and the relevant network operator.
+        </p>
+        <div class="note">
+          Precifarm does not claim “EPRA certified”, “KPLC approved”, net-metering for utility BESS, or licensed
+          energy-storage operator status on this brief. Backup is not automatic on a grid-tied BESS. Storage can reduce
+          instantaneous grid demand; it does not eliminate interconnection studies or possible reinforcement.
+        </div>
+
+        <div class="cta">
+          <p><strong>Start a conversation</strong></p>
+          <p><a href="https://precifarm.com/contact?interest=megapack">precifarm.com/contact?interest=megapack</a></p>
+          <p><a href="https://precifarm.com/charging/modular-energy/megapack">precifarm.com/charging/modular-energy/megapack</a></p>
+        </div>
+
+        <footer class="doc-foot pf-doc-footer">
+          <div class="pf-doc-footer-brand">
+            <img src="./precifarm-logo-mark.svg" alt="" width="28" height="28" class="pf-doc-mark pf-doc-mark-sm" />
+            <div>
+              <p class="pf-doc-wordmark pf-doc-wordmark-sm">Precifarm</p>
+              <p class="pf-doc-brand-tagline">Electric mobility infrastructure for Africa</p>
+            </div>
+          </div>
+          <p class="pf-doc-footer-title"><strong>Precifarm MegaPack — project brief</strong></p>
+          <p class="pf-doc-footer-meta">© 2026 Precifarm · PF-MEGAPACK-001 v1.1 · 4 September 2026</p>
+          <p class="pf-doc-footer-contact">sales@precifarm.com · +254 794 702 768 · Nairobi, Kenya · <a href="https://precifarm.com">precifarm.com</a></p>
+          <p class="pf-doc-footer-social"><a href="https://wa.me/254794702768">WhatsApp</a> · <a href="https://x.com/precifarm">X</a> · <a href="https://instagram.com/precifarm">Instagram</a> · <a href="https://linkedin.com/company/precifarm">LinkedIn</a> · <a href="https://facebook.com/precifarm">Facebook</a> · <a href="https://tiktok.com/@precifarm">TikTok</a></p>
+          <p class="pf-doc-footer-disclaimer">Conceptual platform — not a product datasheet. Not a substitute for licensed design, Kenya Power studies or statutory approvals.</p>
+          <p class="pf-doc-footer-link"><a href="https://precifarm.com/charging/modular-energy/megapack">precifarm.com/charging/modular-energy/megapack</a></p>
+        </footer>
+      </section>
     </main>
   </body>
 </html>

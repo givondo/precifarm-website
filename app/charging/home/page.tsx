@@ -32,7 +32,7 @@ export default function HomeChargingPage() {
       >
         <a
           href="#survey"
-          className="inline-flex rounded-full bg-charge-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-charge-500"
+          className="btn-primary"
         >
           {siteCtas.homeSurvey.label}
         </a>
@@ -182,7 +182,11 @@ export default function HomeChargingPage() {
             </ul>
           </div>
           <div>
-            <SectionHeader eyebrow="Coverage" title="Survey crews" description="Same teams as our route hubs." />
+            <SectionHeader
+              eyebrow="Coverage"
+              title="Where we survey"
+              description="We visit homes in these towns. Call us if your area is not listed."
+            />
             <ul className="mt-6 flex flex-wrap gap-2">
               {privateHouseChargingPage.serviceAreas.map((city) => (
                 <li
@@ -213,7 +217,7 @@ export default function HomeChargingPage() {
         </div>
       </section>
 
-      <section className="section-pad bg-muted/30">
+      <section id="survey" className="section-pad scroll-mt-24 bg-muted/30">
         <div className="page-container max-w-2xl">
           <HomeSurveyForm />
         </div>

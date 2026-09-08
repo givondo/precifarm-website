@@ -23,7 +23,8 @@ Maintain the public charging site:
 - Charging Hub (`/hub`)
 - Home / fleet / highway products (`/charging`, `/charging/home`)
 - Modular energy conceptual pages
-- AI companion (`/download`)
+- Precifarm Agent (`/download`)
+- Sustainability (`/sustainability`)
 - Training, partners, SEO surfaces
 
 ## Source of truth
@@ -33,7 +34,7 @@ Maintain the public charging site:
 - Demo stores are not traction
 - Live vs planned hubs stay honest
 - Modular energy is not on sale
-- AI companion is not a chatbot
+- Precifarm Agent is not a chatbot
 
 ## Key files
 
@@ -43,7 +44,7 @@ Maintain the public charging site:
 | Design tokens | `app/globals.css` |
 | Homepage | `app/page.tsx`, `lib/brand-messaging.ts` |
 | Charging Hub | `lib/charging-hub.ts`, `lib/hub-locations.ts` |
-| AI companion | `app/download/`, `lib/download-page.ts` |
+| Precifarm Agent | `app/download/`, `lib/download-page.ts` |
 | Home charging | `lib/home-charging.ts` |
 | Navigation | `components/Header.tsx` |
 | CMS client | `lib/cms.ts` |
@@ -51,10 +52,11 @@ Maintain the public charging site:
 
 ## Copy
 
-- From home charging to highway charging
+- From home charging to highway charging, then modular storage
 - Full product names (Pulse charger, Pod energy storage, …)
 - Open Charging Hub — not Book Now
-- Nairobi–Kisumu is the first Corridor, not a live passenger timetable
+- Nairobi–Kisumu is the first Corridor, not a bus timetable
+- Modular energy is conceptual, not on sale
 - Planning assumptions are not traction
 
 ## Deploy

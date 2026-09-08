@@ -15,7 +15,7 @@ export const entityRegistry: KnowledgeEntity[] = [
     description:
       "Kenyan electric mobility infrastructure company — charging, storage and operations for homes, fleets and highways.",
     url: siteConfig.url,
-    relatedIds: ["service-charge-map", "service-home-charging", "product-pulse", "product-corridor"],
+    relatedIds: ["service-charge-map", "service-home-charging", "product-pulse", "product-corridor", "service-sustainability", "product-modular-energy"],
   },
   {
     id: "product-pulse",
@@ -151,11 +151,40 @@ export const entityRegistry: KnowledgeEntity[] = [
     id: "service-mobile-app",
     slug: "mobile-app",
     type: "service",
-    name: "Precifarm AI Companion",
+    name: "Precifarm Agent",
     description:
-      "Android companion for Charging Hub, home charger installations and the Spark–Corridor product range. iOS not available yet.",
+      "Android app for Charging Hub, home Pulse and Pod surveys, trip planning and M-Pesa pay. iOS is not available yet.",
     url: absoluteUrl("/download"),
     relatedIds: ["service-charge-map", "service-home-charging", "product-pulse"],
+  },
+  {
+    id: "service-sustainability",
+    slug: "sustainability",
+    type: "service",
+    name: "Sustainability & social impact",
+    description:
+      "2030 commitments on cleaner kilometres, grid-smart energy, circularity and honest impact reporting for Kenya.",
+    url: absoluteUrl("/sustainability"),
+    relatedIds: ["service-home-charging", "service-charge-map", "product-pod"],
+  },
+  {
+    id: "product-modular-energy",
+    slug: "modular-energy",
+    type: "equipment",
+    name: "Modular energy platform",
+    description:
+      "Conceptual home and shop storage family — P1 Go, P2 Home and Pod Stack share one 2.56 kWh Energy Module. Not on sale yet.",
+    url: absoluteUrl("/charging/modular-energy"),
+    relatedIds: ["product-pod", "service-home-charging", "product-megapack"],
+  },
+  {
+    id: "product-megapack",
+    slug: "megapack",
+    type: "equipment",
+    name: "MegaPack",
+    description: "Project-engineered BESS for industrial sites, EV hubs and grid-connected plants — quoted per site.",
+    url: absoluteUrl("/charging/modular-energy/megapack"),
+    relatedIds: ["product-modular-energy", "service-fleet-charging"],
   },
   {
     id: "location-nairobi",
@@ -262,6 +291,21 @@ export function internalLinksForPath(path: string): { href: string; label: strin
       add("/charging", "EV charging", "From home charging to highway charging");
       add("/training", "Training", "Technician certification");
       add("/about", "About Precifarm", "Mission and route-one proof");
+      break;
+    case "/sustainability":
+      add("/charging", "EV charging", "Infrastructure behind cleaner kilometres");
+      add("/charging/modular-energy", "Modular energy", "Home and shop storage platform");
+      add("/faq", "FAQ", "Charging and energy answers");
+      break;
+    case "/charging/modular-energy":
+      add("/charging/home", "Home charging", "What installs today");
+      add("/charging/modular-energy/megapack", "MegaPack", "Project-engineered BESS");
+      add("/sustainability", "Sustainability", "Impact commitments and reporting");
+      break;
+    case "/charging/modular-energy/megapack":
+      add("/charging/modular-energy", "Modular energy", "Platform overview");
+      add("/partners", "Partners", "Fleet and site-host projects");
+      add("/charging/engineering", "Engineering", "Site design basis");
       break;
     default:
       break;

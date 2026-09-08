@@ -6,6 +6,7 @@ import ContentIndexCard from "@/components/ui/ContentIndexCard";
 import PageCTA from "@/components/ui/PageCTA";
 import PageHero from "@/components/ui/PageHero";
 import { HOMEPAGE_FAQ_SLUG } from "@/lib/charging-faqs";
+import { faqPage } from "@/lib/company-pages";
 import { absoluteUrl } from "@/lib/seo/config";
 import {
   formatContentDate,
@@ -37,7 +38,7 @@ export default async function FaqIndexPage() {
       ? [
           itemListSchema({
             name: "Precifarm FAQ",
-            description: "Frequently asked questions about Precifarm home charging, public DC, the Charging Hub and the AI companion in Kenya.",
+            description: "Frequently asked questions about Precifarm home charging, public DC, the Charging Hub and Precifarm Agent in Kenya.",
             path: "/faq",
             items: listItems,
           }),
@@ -54,9 +55,9 @@ export default async function FaqIndexPage() {
     <>
       <JsonLd data={jsonLd} />
       <PageHero
-        eyebrow="FAQ"
-        title="Frequently asked questions"
-        description="Answers on home charging, public DC, Lipa Pole Pole, the Charging Hub and the Precifarm AI companion."
+        eyebrow={faqPage.eyebrow}
+        title={faqPage.title}
+        description={faqPage.description}
       />
       <section className="section-pad bg-white">
         <div className="page-container max-w-3xl">
@@ -102,12 +103,12 @@ export default async function FaqIndexPage() {
         </div>
       </section>
       <PageCTA
-        title="Still have questions?"
-        description="Request a house survey, get the AI companion, or reach us on phone, email and WhatsApp."
-        primaryHref="/charging/home"
-        primaryLabel="Home charging"
-        secondaryHref="/download"
-        secondaryLabel="AI companion"
+        title={faqPage.cta.title}
+        description={faqPage.cta.description}
+        primaryHref={faqPage.cta.primaryHref}
+        primaryLabel={faqPage.cta.primaryLabel}
+        secondaryHref={faqPage.cta.secondaryHref}
+        secondaryLabel={faqPage.cta.secondaryLabel}
       />
     </>
   );

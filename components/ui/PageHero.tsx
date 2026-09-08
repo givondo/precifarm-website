@@ -25,9 +25,7 @@ export default function PageHero({
             <Breadcrumbs items={breadcrumbs} />
           </div>
         )}
-        <p className="text-eyebrow text-sm font-semibold uppercase tracking-widest text-charge-600">
-          {eyebrow}
-        </p>
+        <p className="text-eyebrow">{eyebrow}</p>
         <h1 className="heading-display page-hero-title">{title}</h1>
         {description && <p className="page-hero-description">{description}</p>}
         {children && <div className="mt-7">{children}</div>}

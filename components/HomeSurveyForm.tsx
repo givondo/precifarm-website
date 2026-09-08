@@ -1,19 +1,52 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
+import Input from "@/components/ui/Input";
 import { getAnonymousId } from "@/lib/analytics";
 import { contact } from "@/lib/contact";
-import { privateHouseChargingPage } from "@/lib/home-charging";
+import { homeSurveyForm, privateHouseChargingPage } from "@/lib/home-charging";
 
 const HOME_INTEREST = "Home charger installation (Pulse charger or Pod energy storage)";
 
-const products = [
-  { id: "pulse", label: "Pulse charger (7 kW wallbox)" },
-  { id: "pod", label: "Pod energy storage (+ optional solar)" },
-  { id: "spark", label: "Spark portable charger" },
-] as const;
+type ProductId = (typeof homeSurveyForm.products)[number]["id"];
 
-type ProductId = (typeof products)[number]["id"];
+function FieldSelect({
+  label,
+  name,
+  required,
+  optional,
+  placeholder,
+  children,
+}: {
+  label: string;
+  name: string;
+  required?: boolean;
+  optional?: boolean;
+  placeholder?: string;
+  children: ReactNode;
+}) {
+  return (
+    <label className="block">
+      <span className="text-sm font-medium text-forest-900">
+        {label}
+        {optional ? <span className="ml-1 font-normal text-forest-500">(optional)</span> : null}
+      </span>
+      <select
+        name={name}
+        required={required}
+        defaultValue=""
+        className="field-input mt-2"
+      >
+        {placeholder ? (
+          <option value="" disabled>
+            {placeholder}
+          </option>
+        ) : null}
+        {children}
+      </select>
+    </label>
+  );
+}
 
 function buildSurveyMessage(input: {
   city: string;
@@ -26,7 +59,7 @@ function buildSurveyMessage(input: {
 }): string {
   const lines = [
     `City: ${input.city}`,
-    `Product interest: ${products.find((p) => p.id === input.product)?.label ?? input.product}`,
+    `Product interest: ${homeSurveyForm.products.find((p) => p.id === input.product)?.label ?? input.product}`,
     input.propertyType ? `Property type: ${input.propertyType}` : null,
     input.vehicle ? `Vehicle: ${input.vehicle}` : null,
     input.parking ? `Parking: ${input.parking}` : null,
@@ -103,10 +136,7 @@ export default function HomeSurveyForm() {
 
   if (submitted) {
     return (
-      <div
-        id="survey"
-        className="card flex flex-col items-center justify-center p-10 text-center scroll-mt-24"
-      >
+      <div className="card flex flex-col items-center justify-center p-10 text-center">
         <span className="flex h-14 w-14 items-center justify-center rounded-full bg-charge-100">
           <svg
             viewBox="0 0 24 24"
@@ -118,14 +148,13 @@ export default function HomeSurveyForm() {
             <path d="M20 6 9 17l-5-5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </span>
-        <h2 className="mt-5 text-xl font-semibold text-forest-900">Survey request received</h2>
-        <p className="mt-2 max-w-md text-sm leading-relaxed text-forest-600/80">
-          Our installation team will call within one business day to schedule a site visit.
+        <h2 className="mt-5 text-xl font-semibold text-forest-900">{homeSurveyForm.successTitle}</h2>
+        <p className="mt-2 max-w-md text-sm leading-relaxed text-forest-600">
+          {homeSurveyForm.successText}
           {reference ? (
             <>
               {" "}
-              Reference{" "}
-              <span className="font-mono font-medium text-forest-800">{reference}</span>.
+              Reference <span className="font-mono font-medium text-forest-800">{reference}</span>.
             </>
           ) : null}
         </p>
@@ -134,141 +163,106 @@ export default function HomeSurveyForm() {
   }
 
   return (
-    <form id="survey" className="card scroll-mt-24 p-6 sm:p-8" onSubmit={handleSubmit}>
-      <h2 className="text-lg font-semibold text-forest-900">Request a home charging survey</h2>
-      <p className="mt-2 text-sm leading-relaxed text-forest-600/80">
-        Tell us about your house and vehicle. We survey the site, quote installation, and can
-        start Lipa Pole Pole on M-Pesa after you approve.
-      </p>
+    <form className="card p-6 sm:p-8" onSubmit={handleSubmit}>
+      <h2 className="heading-display text-xl text-forest-900 sm:text-2xl">{homeSurveyForm.title}</h2>
+      <p className="mt-3 text-sm leading-relaxed text-forest-600">{homeSurveyForm.description}</p>
 
       {error ? (
-        <p className="mt-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
-          {error}
-        </p>
+        <p className="mt-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">{error}</p>
       ) : null}
 
-      <div className="mt-6 grid gap-6 sm:grid-cols-2">
-        <label className="block">
-          <span className="text-sm font-medium text-forest-900">Name</span>
-          <input
-            type="text"
-            name="name"
-            required
-            className="mt-2 w-full rounded-xl border border-border bg-muted px-4 py-3 text-sm outline-none focus:border-charge-500"
-            placeholder="Your name"
-          />
-        </label>
-        <label className="block">
-          <span className="text-sm font-medium text-forest-900">Phone (M-Pesa)</span>
-          <input
-            type="tel"
+      <fieldset className="mt-8">
+        <legend className="text-xs font-semibold uppercase tracking-widest text-forest-500">Your details</legend>
+        <div className="mt-4 grid gap-5 sm:grid-cols-2">
+          <Input label="Name" name="name" required placeholder="Your name" autoComplete="name" />
+          <Input
+            label="Phone"
             name="phone"
+            type="tel"
             required
-            className="mt-2 w-full rounded-xl border border-border bg-muted px-4 py-3 text-sm outline-none focus:border-charge-500"
             placeholder="07XX XXX XXX"
+            autoComplete="tel"
+            hint="We will call this number. Use your M-Pesa number if you want Lipa Pole Pole."
           />
-        </label>
-      </div>
-
-      <label className="mt-6 block">
-        <span className="text-sm font-medium text-forest-900">Email</span>
-        <input
-          type="email"
-          name="email"
-          required
-          className="mt-2 w-full rounded-xl border border-border bg-muted px-4 py-3 text-sm outline-none focus:border-charge-500"
-          placeholder="you@email.com"
-        />
-      </label>
-
-      <div className="mt-6 grid gap-6 sm:grid-cols-2">
-        <label className="block">
-          <span className="text-sm font-medium text-forest-900">City / area</span>
-          <select
-            name="city"
+        </div>
+        <div className="mt-5">
+          <Input
+            label="Email"
+            name="email"
+            type="email"
             required
-            className="mt-2 w-full rounded-xl border border-border bg-muted px-4 py-3 text-sm outline-none focus:border-charge-500"
-          >
+            placeholder="you@email.com"
+            autoComplete="email"
+          />
+        </div>
+      </fieldset>
+
+      <fieldset className="mt-8">
+        <legend className="text-xs font-semibold uppercase tracking-widest text-forest-500">Your home</legend>
+        <div className="mt-4 grid gap-5 sm:grid-cols-2">
+          <FieldSelect label="City or area" name="city" required placeholder="Choose city or area">
             {privateHouseChargingPage.serviceAreas.map((city) => (
               <option key={city} value={city}>
                 {city}
               </option>
             ))}
-          </select>
-        </label>
-        <label className="block">
-          <span className="text-sm font-medium text-forest-900">Product interest</span>
-          <select
-            name="product"
-            className="mt-2 w-full rounded-xl border border-border bg-muted px-4 py-3 text-sm outline-none focus:border-charge-500"
-          >
-            {products.map((p) => (
-              <option key={p.id} value={p.id}>
-                {p.label}
+          </FieldSelect>
+          <FieldSelect label="Property type" name="propertyType" optional placeholder="Choose property type">
+            {homeSurveyForm.propertyTypes.map((type) => (
+              <option key={type} value={type}>
+                {type}
               </option>
             ))}
-          </select>
-        </label>
-      </div>
+          </FieldSelect>
+          <FieldSelect label="Parking" name="parking" optional placeholder="Choose parking">
+            {homeSurveyForm.parkingTypes.map((type) => (
+              <option key={type} value={type}>
+                {type}
+              </option>
+            ))}
+          </FieldSelect>
+          <Input label="Vehicle" name="vehicle" optional placeholder="Make and model" />
+        </div>
+      </fieldset>
 
-      <div className="mt-6 grid gap-6 sm:grid-cols-2">
-        <label className="block">
-          <span className="text-sm font-medium text-forest-900">Property type</span>
-          <input
-            type="text"
-            name="propertyType"
-            className="mt-2 w-full rounded-xl border border-border bg-muted px-4 py-3 text-sm outline-none focus:border-charge-500"
-            placeholder="Detached house, townhouse, gated community…"
+      <fieldset className="mt-8">
+        <legend className="text-xs font-semibold uppercase tracking-widest text-forest-500">What you want</legend>
+        <div className="mt-4">
+          <FieldSelect label="Product" name="product" required placeholder="Choose a product">
+            {homeSurveyForm.products.map((product) => (
+              <option key={product.id} value={product.id}>
+                {product.label}
+              </option>
+            ))}
+          </FieldSelect>
+        </div>
+
+        <label className="mt-5 flex items-start gap-3 rounded-xl border border-border bg-muted/40 px-4 py-3">
+          <input type="checkbox" name="lipaPolePole" className="mt-1" />
+          <span className="text-sm leading-relaxed text-forest-700">{homeSurveyForm.lipaLabel}</span>
+        </label>
+
+        <label className="mt-5 block">
+          <span className="text-sm font-medium text-forest-900">
+            Anything else we should know?
+            <span className="ml-1 font-normal text-forest-500">(optional)</span>
+          </span>
+          <textarea
+            name="details"
+            rows={3}
+            className="field-input mt-2 resize-y"
+            placeholder="Meter location, solar, or a preferred survey date"
           />
         </label>
-        <label className="block">
-          <span className="text-sm font-medium text-forest-900">Vehicle</span>
-          <input
-            type="text"
-            name="vehicle"
-            className="mt-2 w-full rounded-xl border border-border bg-muted px-4 py-3 text-sm outline-none focus:border-charge-500"
-            placeholder="Make and model"
-          />
-        </label>
-      </div>
-
-      <label className="mt-6 block">
-        <span className="text-sm font-medium text-forest-900">Private parking</span>
-        <input
-          type="text"
-          name="parking"
-          className="mt-2 w-full rounded-xl border border-border bg-muted px-4 py-3 text-sm outline-none focus:border-charge-500"
-          placeholder="Driveway, car port, dedicated bay…"
-        />
-      </label>
-
-      <label className="mt-6 flex items-start gap-3 rounded-xl border border-border bg-muted/40 px-4 py-3">
-        <input type="checkbox" name="lipaPolePole" className="mt-1" />
-        <span className="text-sm text-forest-700">
-          I am interested in <strong>Lipa Pole Pole</strong> instalments on M-Pesa
-        </span>
-      </label>
-
-      <label className="mt-6 block">
-        <span className="text-sm font-medium text-forest-900">Anything else we should know?</span>
-        <textarea
-          name="details"
-          rows={3}
-          className="mt-2 w-full resize-y rounded-xl border border-border bg-muted px-4 py-3 text-sm outline-none focus:border-charge-500"
-          placeholder="Meter location, solar interest, preferred survey date…"
-        />
-      </label>
+      </fieldset>
 
       <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
         <button type="submit" disabled={submitting} className="btn-primary">
-          {submitting ? "Submitting…" : "Request survey"}
+          {submitting ? "Sending…" : "Request survey"}
         </button>
-        <p className="text-xs text-forest-500">
-          Or call{" "}
-          <a href={contact.phoneHref} className="text-link">
-            {contact.phone}
-          </a>
-        </p>
+        <a href={contact.phoneHref} className="btn-secondary">
+          Call {contact.phone}
+        </a>
       </div>
     </form>
   );

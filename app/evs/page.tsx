@@ -47,15 +47,15 @@ export default function KenyaEvCompatibilityPage() {
         />
 
         <div className="mt-8 grid gap-4 lg:grid-cols-3">
-          <article className="rounded-2xl border border-charge-200 bg-charge-50/60 px-5 py-5">
+          <article className="rounded-2xl border border-border bg-white px-5 py-5">
             <h2 className="text-sm font-semibold text-forest-900">{leaf.title}</h2>
             <p className="mt-2 text-sm leading-relaxed text-forest-600">{leaf.text}</p>
           </article>
-          <article className="rounded-2xl border border-charge-200 bg-charge-50/60 px-5 py-5">
+          <article className="rounded-2xl border border-border bg-white px-5 py-5">
             <h2 className="text-sm font-semibold text-forest-900">{byd.title}</h2>
             <p className="mt-2 text-sm leading-relaxed text-forest-600">{byd.text}</p>
           </article>
-          <article className="rounded-2xl border border-charge-200 bg-charge-50/60 px-5 py-5">
+          <article className="rounded-2xl border border-border bg-white px-5 py-5">
             <h2 className="text-sm font-semibold text-forest-900">{ebike.title}</h2>
             <p className="mt-2 text-sm leading-relaxed text-forest-600">{ebike.text}</p>
           </article>
@@ -104,15 +104,15 @@ export default function KenyaEvCompatibilityPage() {
       <section className="section-pad bg-white">
         <div className="page-container max-w-3xl text-center">
           <h2 className="text-2xl font-semibold tracking-tight text-forest-900">
-            Plan EV charging in Kenya with Precifarm
+            Match your EV to Pulse, Corridor or Boda Hub
           </h2>
           <p className="mt-3 text-base leading-relaxed text-forest-500">
-            Connect your vehicle in the AI companion, find compatible chargers on the Charging Hub, pay with M-Pesa — or
+            Connect your vehicle in Precifarm Agent, check compatible chargers on the Charging Hub, pay with M-Pesa — or
             book a home survey for Pulse charger or Pod energy storage.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
-            <Link href="/download" className="btn-primary rounded-full px-6 py-3 text-sm">
-              Get the AI companion
+            <Link href="/download" className="btn-primary">
+              Get Precifarm Agent
             </Link>
             <Link href="/charging/home" className="text-sm font-medium">
               Home charging ›

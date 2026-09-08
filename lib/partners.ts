@@ -8,7 +8,7 @@ export const partnersPage = {
     eyebrow: "Partners",
     title: "Electrify a fleet, host a hub, or sell home charging",
     description:
-      "Precifarm designs, installs and operates chargers from home wallboxes to highway DC. You bring the site, fleet or sales channel — we own the energy layer.",
+      "Precifarm designs, installs and operates chargers from home wallboxes to highway DC. You bring the site, fleet or sales channel — we handle survey, install, ops and M-Pesa settlement.",
     primaryHref: "/contact",
     primaryLabel: "Talk to the team",
     secondaryHref: "/charging",
@@ -61,7 +61,7 @@ export const partnerTypes: PartnerType[] = [
       "Depot design support where overnight and route charging connect",
     ],
     keeps:
-      "You retain dispatch and day-to-day operations; Precifarm guarantees the energy layer and uptime.",
+      "You retain dispatch and day-to-day operations; Precifarm runs charging, billing and uptime on commissioned sites.",
   },
   {
     id: "boda-operators",
@@ -87,7 +87,7 @@ export const partnerTypes: PartnerType[] = [
     points: [
       "Survey-to-commission workflow with Precifarm-approved installation checklists",
       "Lipa Pole Pole M-Pesa instalments for Pulse charger and Pod energy storage — deposit, monthly and total shown upfront",
-      "Lead referral from precifarm.com and the AI companion",
+      "Lead referral from precifarm.com and Precifarm Agent",
       "Training tiers T1–T3 for field and hub operations",
     ],
     keeps:

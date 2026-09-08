@@ -22,9 +22,9 @@ import { jobPostingSchema } from "@/lib/seo/schema";
 export const metadata: Metadata = pageMetadata("/careers");
 
 const departmentStyles: Record<CareerDepartment, string> = {
-  Infrastructure: "bg-charge-50 text-charge-700 ring-charge-200/80",
-  Operations: "bg-green-50 text-green-800 ring-green-200/80",
-  Engineering: "bg-forest-100 text-forest-800 ring-forest-200/80",
+  Infrastructure: "bg-muted/60 text-forest-700 ring-border",
+  Operations: "bg-muted/60 text-forest-700 ring-border",
+  Engineering: "bg-muted/60 text-forest-700 ring-border",
 };
 
 function DepartmentBadge({ department }: { department: CareerDepartment }) {
@@ -59,10 +59,10 @@ export default function CareersPage() {
         description={careersIntro.description}
       >
         <div className="flex flex-wrap gap-3">
-          <a href="#roles" className="btn-primary rounded-full px-6 py-2.5 text-sm">
+          <a href="#roles" className="btn-primary">
             View open roles
           </a>
-          <a href={careersApplyMailto()} className="btn-secondary rounded-full px-6 py-2.5 text-sm">
+          <a href={careersApplyMailto()} className="btn-secondary">
             Send your CV
           </a>
         </div>
@@ -199,14 +199,14 @@ export default function CareersPage() {
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
             <a
               href={careersApplyMailto("General application")}
-              className="btn-primary rounded-full px-6 py-2.5 text-sm"
+              className="btn-primary"
             >
               Email careers
             </a>
-            <Link href="/about" className="btn-secondary rounded-full px-6 py-2.5 text-sm">
+            <Link href="/about" className="btn-secondary">
               About Precifarm
             </Link>
-            <Link href="/training" className="btn-secondary rounded-full px-6 py-2.5 text-sm">
+            <Link href="/training" className="btn-secondary">
               EV training
             </Link>
           </div>

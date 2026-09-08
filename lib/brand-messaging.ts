@@ -4,7 +4,8 @@
  * uncommissioned hubs as traction.
  */
 
-import { modularEnergyNav } from "@/lib/modular-energy-page";
+import { chargingHub } from "@/lib/charging-hub";
+import { modularEnergyBrand, modularEnergyNav, modularEnergyPaths } from "@/lib/modular-energy-page";
 
 export const brand = {
   category: "Electric mobility infrastructure for Africa.",
@@ -14,6 +15,8 @@ export const brand = {
   africa: "Built for Kenya. Engineered for Africa.",
   payment: "One network. One account. M-Pesa everywhere.",
   energy: "Generate. Store. Charge. Move.",
+  /** Modular energy platform — keep in sync with modularEnergyBrand. */
+  energyPlatform: modularEnergyBrand.shortLine,
   fleet: "Electrify your fleet. We'll engineer the system.",
   network: "Find EV charging across Kenya.",
   visionCta: "Let's build the electric network.",
@@ -22,9 +25,9 @@ export const brand = {
   words50:
     "Precifarm is an electric mobility infrastructure company. We design, finance, deploy and operate charging, storage and energy systems — from a portable Spark charger to highway Corridor DC — with M-Pesa payments and one ops team behind every unit.",
   words100:
-    "Precifarm builds the infrastructure behind electric transport in Kenya, with a design path to Africa. We combine grid and solar power, battery storage, EV charging, software monitoring, M-Pesa payments and Lipa Pole Pole financing into one operating system for homes, fleets and highway corridors. Precifarm owns the energy layer: site engineering, commissioning, uptime and settlement. Nairobi–Kisumu is the first corridor we prove before the next is financed.",
+    "Precifarm builds the infrastructure behind electric transport in Kenya, with a design path to Africa. We combine grid and solar power, battery storage, EV charging, software monitoring, M-Pesa payments and Lipa Pole Pole financing into one operating system for homes, fleets and highway corridors. Precifarm handles site engineering, commissioning, uptime and settlement. Nairobi–Kisumu is the first corridor we prove before the next is financed.",
   llm:
-    "Precifarm is a Kenyan electric mobility infrastructure company. It installs, finances and runs EV charging from home charging to highway charging. Chargers: Spark charger (portable 3.3 kW, about 180 minutes for a typical day), Pulse charger (7 kW home, about 90 minutes, from KES 79,000), Pod energy storage (home charger + 5 or 10 kWh storage, from KES 295,000), Boda Hub (swap under 5 minutes), Depot charging station (22 kW fleet AC, about 120 minutes for 40+ kWh), Corridor charging (120 kW+ highway DC, fast highway top-up in about 30 minutes). Lipa Pole Pole is M-Pesa financing for Pulse charger and Pod energy storage, not a charger. Public DC from KES 39/kWh. A home charging day costs about KES 140 versus ~KES 1,000 diesel per day. Charging Hub at precifarm.com/hub. M-Pesa on every product. Precifarm AI companion on Android; iOS not yet. Reserved route charging is designed, not yet commissioned.",
+    "Precifarm is a Kenyan electric mobility infrastructure company. It installs, finances and runs EV charging from home charging to highway charging. Chargers: Spark charger (portable 3.3 kW, about 180 minutes for a typical day), Pulse charger (7 kW home, about 90 minutes, from KES 79,000), Pod energy storage (home charger + 5 or 10 kWh storage, from KES 295,000), Boda Hub (swap under 5 minutes), Depot charging station (22 kW fleet AC, about 120 minutes for 40+ kWh), Corridor charging (120 kW+ highway DC, fast highway top-up in about 30 minutes). Lipa Pole Pole is M-Pesa financing for Pulse charger and Pod energy storage, not a charger. Public DC from KES 39/kWh. A home charging day costs about KES 140 versus ~KES 1,000 diesel per day. Charging Hub at precifarm.com/hub. M-Pesa on every product. Precifarm Agent on Android; iOS not yet. Modular energy (P1 Go, P2 Home, Pod Stack) is conceptual — not on sale. Reserved route charging is designed, not yet commissioned.",
 } as const;
 
 export const audienceCopy = {
@@ -104,9 +107,9 @@ export const homeSolarInstallSection = {
 
 export const homeNetworkTeaser = {
   eyebrow: "Charging Hub",
-  title: "Find EV charging across Kenya.",
+  title: "Highway DC, boda swap and partner stops on one map.",
   description:
-    "Map DC chargers, Boda Hub swap stations and partner sites — live bay status, battery availability and M-Pesa on every stop.",
+    "Live and planned labels on every site — public DC from KES 39/kWh, swap under five minutes and M-Pesa pay in Precifarm Agent.",
   stats: [
     { stat: "Live", label: "Nairobi–Kisumu corridor on the map" },
     { stat: "KES 39", label: "public DC from, per kWh" },
@@ -355,14 +358,6 @@ export const headerCta = {
   label: "Open Charging Hub",
 } as const;
 
-const fleetsNavGroup = {
-  title: "Fleets",
-  links: [
-    { href: "/partners", label: "Electrify a fleet" },
-    { href: "/partners#hub-hosts", label: "Host a hub" },
-    { href: "/partners#fleet-logistics", label: "Logistics & buses" },
-  ],
-} as const;
 
 export const siteNavGroups = [
   {
@@ -378,29 +373,34 @@ export const siteNavGroups = [
   {
     title: modularEnergyNav.title,
     links: [
-      { href: modularEnergyNav.overview.href, label: modularEnergyNav.overview.label, description: "Family, Kenya sites and design targets" },
+      {
+        href: modularEnergyNav.overview.href,
+        label: modularEnergyNav.overview.label,
+        description: "One 2.56 kWh module across three scales",
+      },
       ...modularEnergyNav.products.map((product) => ({
         href: product.href,
         label: product.label,
         description:
-          product.slug === "pod"
-            ? "Modular energy — not Pod energy storage"
+          product.slug === "pod-stack"
+            ? "2–6 modules outdoors — not Pod energy storage"
             : product.slug === "p1-go"
-              ? "Portable energy"
-              : "Home energy",
+              ? "Portable ~1 kWh with foldable solar"
+              : "1–4 module tower for essential loads",
       })),
       {
         href: modularEnergyNav.megapack.href,
         label: modularEnergyNav.megapack.label,
         description: modularEnergyNav.megapack.description,
       },
-      { href: "/download", label: "AI companion", description: "Find charging, size home energy, pay with M-Pesa" },
+      { href: "/download", label: "Precifarm Agent", description: "Charging Hub, home energy surveys and M-Pesa on Android" },
     ],
   },
   {
     title: "Company",
     links: [
       { href: "/about", label: "About" },
+      { href: "/sustainability", label: "Sustainability", description: "Cleaner driving, grid-smart energy and honest reporting" },
       { href: "/evs", label: "Kenya EV guide" },
       { href: "/guides", label: "Guides" },
       { href: "/faq", label: "FAQ" },
@@ -411,15 +411,51 @@ export const siteNavGroups = [
 ] as const;
 
 export const footerNavGroups = [
-  siteNavGroups[0],
-  siteNavGroups[1],
-  fleetsNavGroup,
-  siteNavGroups[2],
+  {
+    title: "Charge",
+    links: [
+      { href: chargingHub.path, label: chargingHub.label },
+      { href: "/charging/home", label: "Home charging" },
+      { href: "/charging", label: "All charging" },
+      { href: "/download", label: "Precifarm Agent" },
+      { href: "/charging/engineering", label: "Engineering" },
+    ],
+  },
+  {
+    title: "Energy",
+    links: [
+      { href: modularEnergyPaths.overview, label: "Modular energy" },
+      { href: modularEnergyPaths.megapack, label: "MegaPack" },
+      { href: modularEnergyPaths.p1Go, label: "P1 Go" },
+      { href: modularEnergyPaths.p2Home, label: "P2 Home" },
+      { href: modularEnergyPaths.podStack, label: "Pod Stack" },
+    ],
+  },
+  {
+    title: "Partners",
+    links: [
+      { href: "/partners", label: "Fleet & partners" },
+      { href: "/partners#hub-hosts", label: "Host a hub" },
+      { href: "/contact?interest=megapack", label: "MegaPack projects" },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { href: "/about", label: "About" },
+      { href: "/sustainability", label: "Sustainability" },
+      { href: "/faq", label: "FAQ" },
+      { href: "/guides", label: "Guides" },
+      { href: "/evs", label: "Kenya EV guide" },
+      { href: "/training", label: "Training" },
+      { href: "/careers", label: "Careers" },
+    ],
+  },
 ] as const;
 
 export const footerSection = {
   tagline: brand.oneLiner,
-  productLine: "Pulse · Pod · Spark · Corridor · Boda Hub · Depot · P1 Go · MegaPack",
+  productLine: "Pulse · Pod · Spark · Corridor · Boda Hub · Depot · MegaPack",
   socialLabel: "Follow Precifarm",
   meta: `${brand.africa} · M-Pesa on every product`,
 } as const;

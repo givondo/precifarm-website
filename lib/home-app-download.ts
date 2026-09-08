@@ -1,33 +1,34 @@
 import { chargingHub } from "@/lib/charging-hub";
 
-/** Homepage AI companion band — driver + fleet layers */
+/** Homepage Precifarm Agent band — EV charging pivot */
 export const homeAppDownload = {
-  eyebrow: "AI companion",
-  title: "Your charging companion.",
-  description: `The Precifarm AI companion on Android finds live hubs, sizes Pulse charger and Pod energy storage, and pays with M-Pesa. iOS is not available yet.`,
+  eyebrow: "Precifarm Agent",
+  title: "Kenya's EV charging app.",
+  description:
+    "Precifarm Agent on Android — Charging Hub, Pulse and Pod home surveys, and M-Pesa on one account. iOS is not available yet.",
   features: [
     {
-      title: "AI companion",
-      text: "Find a hub, size home energy and pay with M-Pesa — one companion for how you actually drive.",
-    },
-    {
       title: chargingHub.name,
-      text: "Precifarm hubs, partner chargers and planned sites — live labelled honestly.",
+      text: "Corridor DC, Boda Hub swap and partner sites — live and planned labelled honestly.",
     },
     {
       title: "Home charging",
-      text: "Request a Pulse charger or Pod energy storage survey and track installation on your own meter.",
+      text: "Request a Pulse charger or Pod energy storage survey before we quote your site.",
     },
     {
-      title: "Fleet layer",
-      text: "One dashboard for vehicles, chargers and kWh — in design, not live yet.",
+      title: "M-Pesa built in",
+      text: "Public session pay and Lipa Pole Pole instalments. Price shown before you confirm.",
+    },
+    {
+      title: "Modular energy path",
+      text: "Pod energy storage today. P1 Go and P2 Home are still on the design roadmap.",
     },
   ],
-  phoneTagline: "From home charging to highway charging",
+  phoneTagline: "EV charging and home energy — one Android app",
   phonePill: chargingHub.openLabel,
-  primaryLabel: "Get the AI companion",
+  primaryLabel: "Get Precifarm Agent",
   iosLabel: "Download for iOS",
   iosUnavailableNote: "Not available yet",
-  secondaryLabel: "Install guide & details",
+  secondaryLabel: "Agent details & install",
   secondaryHref: "/download",
 } as const;

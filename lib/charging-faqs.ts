@@ -18,7 +18,7 @@ type ChargingFaq = FaqItem & { id: string };
 export const chargingHubFaq: ChargingFaq = {
   id: "charging-hub",
   question: "What is the Charging Hub?",
-  answer: `The Charging Hub at precifarm.com/hub is Precifarm's map of DC fast chargers, Boda Hub battery swap stations, partner sites and planned corridor locations across Kenya. Open it on the web or in the AI companion. Live sites are labelled live; planned sites stay labelled planned.`,
+  answer: `The Charging Hub at precifarm.com/hub is Precifarm's map of DC fast chargers, Boda Hub battery swap stations, partner sites and planned corridor locations across Kenya. Open it on the web or in Precifarm Agent. Live sites are labelled live; planned sites stay labelled planned.`,
 };
 
 function pickFaqs(ids: readonly string[], pool: ChargingFaq[]): FaqItem[] {
@@ -48,7 +48,7 @@ export const consumerChargingFaqs: ChargingFaq[] = [
     id: "public-dc-price",
     question: "How much is public DC charging?",
     answer:
-      "Public DC at Precifarm Depot charging stations and Corridor charging sites is from KES 39/kWh. Corridor charging adds about 60 kWh in 30 minutes at 120 kW DC. The session price is shown in the AI companion and at the charger before you start. Charging on your own home meter is usually cheaper per kWh than public DC.",
+      "Public DC at Precifarm Depot charging stations and Corridor charging sites is from KES 39/kWh. Corridor charging adds about 60 kWh in 30 minutes at 120 kW DC. The session price is shown in Precifarm Agent and at the charger before you start. Charging on your own home meter is usually cheaper per kWh than public DC.",
   },
   {
     id: "home-vs-public",
@@ -66,7 +66,7 @@ export const consumerChargingFaqs: ChargingFaq[] = [
     id: "get-home-charger",
     question: "How do I get a home charger?",
     answer:
-      "Visit precifarm.com/charging/home or open the Precifarm AI companion, request a Pulse charger or Pod energy storage survey, and pay the deposit via M-Pesa. Certified installation and commissioning typically take one day after survey approval. Three-year aftersale care is included on every home unit.",
+      "Visit precifarm.com/charging/home or open Precifarm Agent, request a Pulse charger or Pod energy storage survey, and pay the deposit via M-Pesa. Certified installation and commissioning typically take one day after survey approval. Three-year aftersale care is included on every home unit.",
   },
   {
     id: "house-installation-includes",
@@ -96,7 +96,7 @@ export const consumerChargingFaqs: ChargingFaq[] = [
     id: "pay-public",
     question: "How do I pay at a public charger?",
     answer:
-      "Start the session in the Precifarm AI companion or at the charger and pay with M-Pesa. The price per kWh is shown before you start. Public DC at Depot charging stations and Corridor charging sites is from KES 39/kWh.",
+      "Start the session in Precifarm Agent or at the charger and pay with M-Pesa. The price per kWh is shown before you start. Public DC at Depot charging stations and Corridor charging sites is from KES 39/kWh.",
   },
   {
     id: "solar-vs-grid",
@@ -123,9 +123,9 @@ export const consumerChargingFaqs: ChargingFaq[] = [
   },
   {
     id: "ai-companion",
-    question: "What is the Precifarm AI companion?",
+    question: "What is Precifarm Agent?",
     answer:
-      "It is Precifarm's Android companion for charging in Kenya. Find a hub, size Pulse charger or Pod energy storage, and pay with M-Pesa. It is not a live chatbot. Download the APK from precifarm.com/download — not on the Play Store yet. iOS is not available yet.",
+      "Precifarm Agent is the Precifarm Android app — trip and charge planning, Charging Hub, home Pulse and Pod surveys, and M-Pesa pay. Download the APK from precifarm.com/download. It is not on the Play Store yet, and iOS is not available yet.",
   },
   {
     id: "depot",
@@ -143,7 +143,7 @@ export const consumerChargingFaqs: ChargingFaq[] = [
     id: "modular-energy",
     question: "What is Precifarm modular energy?",
     answer:
-      "P1 Go, P2 Home and the Pod enclosure are a conceptual energy-storage family — portable backup, a home tower and outdoor SME backup. They are not on sale yet and the Pod enclosure is not Pod energy storage (the home charger + battery on the home charging page). See precifarm.com/charging/modular-energy.",
+      "P1 Go, P2 Home and Pod Stack are a conceptual energy-storage family — portable backup, a home tower and outdoor SME backup. They are not on sale yet and Pod Stack is not Pod energy storage (the home charger + battery on the home charging page). See precifarm.com/charging/modular-energy.",
   },
   {
     id: "training",

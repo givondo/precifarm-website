@@ -7,10 +7,16 @@
  *
  * Usage: node scripts/generate-modular-energy-v2-pdf.mjs
  */
-import { execFileSync } from "node:child_process";
 import { copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { basename, dirname, join } from "node:path";
-import { fileURLToPath, pathToFileURL } from "node:url";
+import { fileURLToPath } from "node:url";
+import {
+  brandDocFooterHtml,
+  brandPrintCss,
+  brandPrintFooterHtml,
+  brandToolbarHtml,
+  printHtmlToPdf,
+} from "./lib/document-brand.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, "..");
@@ -714,53 +720,41 @@ function buildHtml() {
   .print-footer {
     display: none;
   }
-  @page { size: A4; margin: 14mm 0 20mm; }
+  ${brandPrintCss()}
+  @page { size: A4; margin: 14mm 0 24mm; }
   @media print {
     .toolbar { display: none !important; }
-    .sheet { max-width: none; padding: 0 14mm 16mm; }
+    .sheet { max-width: none; padding: 0 14mm 20mm; }
     a { color: inherit; text-decoration: none; }
     .plate, .callout, .tagline-band { break-inside: avoid; }
     table.grid tbody tr { break-inside: avoid; }
     h2, h3, h4 { break-after: avoid; }
-    .print-footer {
-      display: flex; position: fixed; bottom: 6mm; left: 14mm; right: 14mm;
-      justify-content: space-between; align-items: center;
-      padding-top: 2mm; border-top: 1px solid var(--line);
-      font-family: var(--mono); font-size: 6.8pt; color: var(--subtle); letter-spacing: .04em;
-    }
   }
 </style>
 </head>
 <body>
-  <div class="print-footer" aria-hidden="true">
-    <span>${DOC.id} · v${DOC.version}</span>
-    <span>Precifarm Modular Energy Platform</span>
-    <span>${DOC.date}</span>
-  </div>
-  <div class="toolbar">
-    <div style="display:flex;align-items:center;gap:.6rem">
-      <img src="./precifarm-logo-mark.svg" alt="" width="22" height="22" />
-      <span class="id">${DOC.id} · v${DOC.version} · ${DOC.status}</span>
-    </div>
-    <div style="display:flex;gap:.5rem;flex-wrap:wrap">
-      <button type="button" class="primary" onclick="window.print()">Print</button>
-      <a class="primary" href="./precifarm-modular-energy-platform-v2.pdf" download>Download PDF</a>
-      <a href="/charging">Back to charging</a>
-    </div>
-  </div>
+  ${brandPrintFooterHtml({ id: DOC.id, version: DOC.version, date: DOC.date, shortTitle: "Modular Energy Platform" })}
+  ${brandToolbarHtml({
+    docId: DOC.id,
+    version: DOC.version,
+    status: DOC.status,
+    pdfFile: "precifarm-modular-energy-platform-v2.pdf",
+    backHref: "/charging/modular-energy",
+    backLabel: "Modular energy",
+  })}
 
   <main class="sheet">
     ${buildCover()}
     ${buildToc(toc, plates)}
     ${html}
-    <footer class="doc-foot">
-      <strong>Precifarm Modular Energy Platform — Product + Engineering Architecture</strong><br />
-      ${DOC.id} · v${DOC.version} · ${DOC.date} · Supersedes ${DOC.supersedes}<br /><br />
-      Every engineering claim in this document is either carried forward from PF-MODENERGY-001 v1.0, derived and shown
-      as a calculation, declared as an assumption, or cited to an external source in §30. No Precifarm product holds
-      any certification at the date of issue, and no product may be sold as a certified energy-storage system before
-      the P4 gate defined in §24.
-    </footer>
+    ${brandDocFooterHtml(
+      { ...DOC, title: "Precifarm Modular Energy Platform — Product + Engineering Architecture" },
+      {
+        livePagePath: "/charging/modular-energy",
+        extraDisclaimer:
+          "Every engineering claim is either carried forward, shown as a calculation, declared as an assumption, or cited in §30. No product may be sold as certified before the P4 gate in §24.",
+      },
+    )}
   </main>
 </body>
 </html>`;
@@ -768,30 +762,8 @@ function buildHtml() {
 
 /* ------------------------------------------------------------------- print */
 
-function findBrowser() {
-  for (const candidate of browsers) {
-    if (candidate && existsSync(candidate)) return candidate;
-  }
-  return null;
-}
-
 function generatePdf(htmlPath) {
-  const browser = findBrowser();
-  if (!browser) throw new Error("Chrome or Edge not found. Install one to generate the PDF.");
-
-  execFileSync(
-    browser,
-    [
-      "--headless=new",
-      "--disable-gpu",
-      "--no-pdf-header-footer",
-      "--run-all-compositor-stages-before-draw",
-      "--virtual-time-budget=180000",
-      `--print-to-pdf=${pdfOut}`,
-      pathToFileURL(htmlPath).href,
-    ],
-    { stdio: "inherit", windowsHide: true },
-  );
+  printHtmlToPdf(htmlPath, pdfOut, { virtualTimeBudget: 180000 });
 
   if (!existsSync(pdfOut) || readFileSync(pdfOut).length < 10000) {
     throw new Error("PDF generation failed or file is empty.");

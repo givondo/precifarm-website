@@ -11,7 +11,7 @@ function PackageCard({ pkg }: { pkg: Package }) {
       id={`package-${pkg.id}`}
       className="group flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-border bg-white transition-shadow hover:shadow-lg hover:shadow-black/[0.06]"
     >
-      <div className="relative overflow-hidden bg-[#f5f5f7]">
+      <div className="relative overflow-hidden surface-well">
         <SiteImage
           src={pkg.image}
           alt={pkg.imageAlt}
@@ -69,7 +69,7 @@ export default function HomeEnergySection() {
         </div>
 
         <div className="mt-8 flex flex-wrap items-center justify-center gap-x-7 gap-y-3">
-          <Link href={primaryHref} className="btn-primary rounded-full px-6 py-3 text-sm">
+          <Link href={primaryHref} className="btn-primary">
             {primaryLabel}
           </Link>
           <Link href={secondaryHref} className="text-sm font-medium">
