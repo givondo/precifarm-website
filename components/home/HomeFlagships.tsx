@@ -6,7 +6,7 @@ import { productImages } from "@/lib/product-images";
 
 function flagshipImage(id: FlagshipProductId) {
   if (id === "pod") {
-    return { src: productImages.familyHero.src, alt: productImages.familyHero.alt };
+    return { src: productImages.podHomeHero.src, alt: productImages.podHomeHero.alt };
   }
   const shot = productImages[id];
   return { src: shot.src, alt: shot.alt };

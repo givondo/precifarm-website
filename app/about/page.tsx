@@ -64,21 +64,43 @@ export default function AboutPage() {
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
           {page.pillars.items.map((pillar) => (
             <article key={pillar.title} className="card flex flex-col overflow-hidden">
-              <div className="bg-muted/40 px-6 pt-6">
-                <ProductPhoto
-                  src={pillar.image.src}
-                  alt={pillar.image.alt}
-                  width={900}
-                  height={675}
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="mx-auto aspect-[4/3] w-full object-contain"
-                />
+              <div className="bg-muted/40 px-5 pt-6 pb-4 sm:px-6">
+                {"familyImages" in pillar && pillar.familyImages ? (
+                  <div className="grid grid-cols-3 items-end gap-2 sm:gap-3">
+                    {pillar.familyImages.map((item) => (
+                      <div key={item.label} className="flex min-w-0 flex-col items-center">
+                        <ProductPhoto
+                          src={item.src}
+                          alt={item.alt}
+                          width={400}
+                          height={520}
+                          sizes="(max-width: 1024px) 30vw, 16vw"
+                          className="h-40 w-full object-contain object-bottom sm:h-48"
+                        />
+                        <p className="mt-2 text-center text-[10px] font-semibold leading-tight text-forest-600 sm:text-xs">
+                          {item.label}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <ProductPhoto
+                    src={pillar.image.src}
+                    alt={pillar.image.alt}
+                    width={900}
+                    height={675}
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="mx-auto aspect-[4/3] w-full object-contain"
+                  />
+                )}
               </div>
               <div className="flex flex-1 flex-col p-6 sm:p-7">
-                <p className="text-[11px] font-semibold uppercase tracking-widest text-forest-500">
-                  {pillar.eyebrow}
-                </p>
-                <h3 className="mt-2 text-lg font-semibold text-forest-900">{pillar.title}</h3>
+                {pillar.eyebrow ? (
+                  <p className="text-[11px] font-semibold uppercase tracking-widest text-forest-500">
+                    {pillar.eyebrow}
+                  </p>
+                ) : null}
+                <h3 className={`text-lg font-semibold text-forest-900 ${pillar.eyebrow ? "mt-2" : ""}`}>{pillar.title}</h3>
                 <p className="mt-3 flex-1 text-sm leading-relaxed text-forest-600/85">{pillar.text}</p>
                 <Link href={pillar.href} className="btn-secondary mt-6 inline-flex w-fit">
                   {pillar.cta}

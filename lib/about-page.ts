@@ -1,4 +1,4 @@
-import { modularEnergyPaths, modularEnergyStatusNote } from "@/lib/modular-energy-page";
+import { modularEnergyPage, modularEnergyPaths, modularEnergyStatusNote } from "@/lib/modular-energy-page";
 import { productImages } from "@/lib/product-images";
 
 export const aboutPage = {
@@ -32,12 +32,13 @@ export const aboutPage = {
         image: productImages.pulse,
       },
       {
-        eyebrow: "Conceptual — not on sale",
+        eyebrow: "",
         title: "Modular energy",
         text: "One Energy Module at three scales — P1 Go, P2 Home and Pod Stack — plus MegaPack for site-scale battery storage. The architecture matches the chargers. It is not certified for sale.",
         href: modularEnergyPaths.overview,
         cta: "Read the platform",
-        image: productImages.familyHero,
+        image: productImages.p1Go,
+        familyImages: modularEnergyPage.hero.familyImages,
       },
     ],
   },
