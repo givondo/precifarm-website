@@ -81,11 +81,12 @@ export const homeProducts: HomeProduct[] = [
   {
     id: "boda",
     name: productNames.boda,
-    summary: "Battery swap or kerbside charge in under 5 minutes.",
-    tagline: "Boda Hub gets riders back on the road in under 5 minutes with a battery swap or kerbside charge.",
+    summary: "Keep your bike moving — smart lockers for e-bodas.",
+    tagline:
+      "Boda Hub is Precifarm’s outdoor smart locker network for electric motorcycles — partner-hosted sites, 2.56 kWh Energy Module, M-Pesa on every swap.",
     category: "boda",
     priceLabel: "Fleet pricing",
-    href: "/partners#boda-operators",
+    href: "/charging/boda-hub",
     image: productImages.boda.src,
     imageAlt: productImages.boda.alt,
     imageBrand: productImages.boda.brand,

@@ -40,7 +40,7 @@ Phased delivery for the full master specification. **Phases 1–4 implemented.**
 - [x] **Auto-refresh stale content** — `lib/seo/stale.ts`, `/seo/automation`, `npm run seo:refresh-stale`
 - [x] **AI citation tracking** — referrer classification on website, `seo_ai_citations`, `npm run seo:ingest-citations`
 - [x] **MCP-compatible agent API** — `GET/POST /api/v1/seo/agent` (CMS), `/api/knowledge/tools` (website)
-- [x] **Mobile deep link indexing** — `/book`, `/.well-known/assetlinks.json`, `SoftwareApplication` schema with `precifarm://`
+- [x] **Mobile deep link indexing** — `/.well-known/assetlinks.json`, `SoftwareApplication` schema with `precifarm://` (public product is charging / Precifarm Agent; `/book` redirects to `/charging`)
 - [x] **Swahili hreflang** — `locale` on `seo_content`, `/sw` routes, hreflang in metadata, Swahili FAQ seed
 
 **Cron setup (recommended):**
@@ -67,4 +67,4 @@ npm run seo:report && npm run seo:competitors && npm run seo:refresh-stale
 
 ## Domain alignment note
 
-Precifarm's live product is electric intercity transport in Kenya. The entity graph seeds transport + EV charging + renewable energy, with schema designed to expand into adjacent engineering verticals without rework.
+Precifarm's public product is **EV charging + modular energy** in Kenya. The entity graph seeds EV charging, hubs, home energy and renewable storage — not passenger ticketing. Schema can expand into adjacent engineering verticals without rework.

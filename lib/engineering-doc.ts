@@ -49,7 +49,7 @@ export const engineeringDoc = {
     },
     {
       title: "Highway & route",
-      text: "Corridor T-canopy DC where intercity routes need it. Reserved bus windows on Nairobi–Kisumu are design-stage only.",
+      text: "Corridor T-canopy DC where intercity routes need it. Import limits, dwell and public DC sessions engineered for highway EV traffic.",
     },
   ],
   contents: [
@@ -57,7 +57,7 @@ export const engineeringDoc = {
     "Solar canopy and LiFePO₄ sizing methods (planning assumptions)",
     "Concept single-line and typical two-bay site plan",
     "Fleet depot and campus station design bases",
-    "Nairobi–Kisumu reserved-window worked example (design-stage)",
+    "Highway DC and storage peak-shave worked examples",
     "Kenya Power, EPRA, NEMA and fire hold points",
     "Phased task sheet with owners, outputs and acceptance tests",
   ],

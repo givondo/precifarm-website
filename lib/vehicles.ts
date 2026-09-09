@@ -1,7 +1,7 @@
 const homeSolarImage = "/images/charging-private-house-hybrid.png";
 const corridorImage = "/images/products/corridor-v5.png";
 const depotImage = "/images/products/depot-v5.png";
-const familyImage = "/images/charging-ecosystem-hero-v20.png";
+const familyImage = "/images/charging-ecosystem-hero-v21.png";
 
 export const hubImages = {
   /** Home solar + storage + wall charging — passenger EV, not a bus */

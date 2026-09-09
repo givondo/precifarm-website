@@ -300,7 +300,7 @@ html {
   @apply flex items-center gap-2 border-t border-border/70 p-1.5;
 }
 
-.mobile-nav-book {
+.mobile-nav-hub {
   @apply inline-flex min-h-11 flex-1 touch-manipulation items-center justify-center gap-2 rounded-lg bg-charge-600 px-3 text-sm font-semibold text-white transition-colors active:bg-charge-500;
 }
 
@@ -1351,6 +1351,42 @@ html {
   @apply inline-flex items-center justify-center rounded-full border border-white/25 px-6 py-3 text-sm font-semibold text-white transition-colors duration-150 hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white active:scale-[0.98];
 }
 
+@keyframes agent-task-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-charge-500) 35%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-charge-500) 0%, transparent);
+  }
+}
+
+.agent-task-pulse {
+  animation: agent-task-pulse 1.6s ease-in-out infinite;
+}
+
+.agent-workspace {
+  font-variant-ligatures: none;
+}
+
+@keyframes agent-task-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-charge-500) 35%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-charge-500) 0%, transparent);
+  }
+}
+
+.agent-task-pulse {
+  animation: agent-task-pulse 1.6s ease-in-out infinite;
+}
+
+.agent-workspace {
+  font-variant-ligatures: none;
+}
+
 .text-link {
   color: var(--color-link);
   text-underline-offset: 2px;
@@ -2016,7 +2052,8 @@ button,
 
   .hub-grid-pulse,
   .hub-grid-line-live,
-  .booking-route-track::after {
+  .booking-route-track::after,
+  .agent-task-pulse {
     animation: none !important;
   }
 }

@@ -1,6 +1,13 @@
 import { NextResponse } from "next/server";
+import { BOOKING_FAQ_SLUG, BOOKING_GUIDE_SLUG } from "@/lib/charging-faqs";
 import { cmsSearchSeo } from "@/lib/seo/cms-client";
 import { entityRegistry } from "@/lib/seo/entities/registry";
+
+const RETIRED_SLUGS = new Set([BOOKING_GUIDE_SLUG, BOOKING_FAQ_SLUG]);
+
+function isRetiredSlug(slug: string | undefined | null): boolean {
+  return Boolean(slug && RETIRED_SLUGS.has(slug));
+}
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -13,11 +20,17 @@ export async function GET(request: Request) {
 
   try {
     const cmsResults = await cmsSearchSeo(q, mode);
-    if (cmsResults.content.length > 0 || cmsResults.entities.length > 0) {
+    const content = (cmsResults.content ?? []).filter((item) => !isRetiredSlug(item.slug));
+    const entities = (cmsResults.entities ?? []).filter((item) => !isRetiredSlug(item.slug));
+
+    if (content.length > 0 || entities.length > 0) {
       return NextResponse.json({
         source: "cms",
         mode,
-        ...cmsResults,
+        query: cmsResults.query ?? q,
+        content,
+        entities,
+        meta: cmsResults.meta,
       });
     }
 

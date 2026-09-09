@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
-import BookNowLink from "@/components/BookNowLink";
+import HubCtaLink from "@/components/HubCtaLink";
 import {
   IconBolt,
   IconChevron,
@@ -288,9 +288,9 @@ function MobileNavPanel({ pathname, onClose }: { pathname: string; onClose: () =
       ))}
 
       <div className="mobile-nav-actions">
-        <BookNowLink onClick={onClose} className="mobile-nav-book">
+        <HubCtaLink onClick={onClose} className="mobile-nav-hub">
           {headerCta.label}
-        </BookNowLink>
+        </HubCtaLink>
         <a href={contact.phoneHref} className="mobile-nav-icon-btn" aria-label="Call us" onClick={onClose}>
           <IconPhone />
         </a>
@@ -414,7 +414,7 @@ export default function Header() {
               <IconPhone className="h-4 w-4 shrink-0" />
               <span className="hidden xl:inline">{contact.phone}</span>
             </a>
-            <BookNowLink className="site-header-cta">{headerCta.label}</BookNowLink>
+            <HubCtaLink className="site-header-cta">{headerCta.label}</HubCtaLink>
           </div>
 
           <div className="site-header-mobile-actions">

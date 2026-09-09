@@ -1,34 +1,30 @@
-import { chargingHub } from "@/lib/charging-hub";
+/** Homepage Precifarm Agent band */
 
-/** Homepage Precifarm Agent band — EV charging pivot */
 export const homeAppDownload = {
   eyebrow: "Precifarm Agent",
-  title: "Kenya's EV charging app.",
+  title: "Your AI electrical & energy engineer.",
   description:
-    "Precifarm Agent on Android — Charging Hub, Pulse and Pod home surveys, and M-Pesa on one account. iOS is not available yet.",
+    "Design EV charging, solar and batteries on your computer. Coming soon for Windows and macOS — request access today.",
   features: [
     {
-      title: chargingHub.name,
-      text: "Corridor DC, Boda Hub swap and partner sites — live and planned labelled honestly.",
+      title: "Real calculators",
+      text: "The Agent plans the work. Tools run the EV, solar, battery and electrical maths.",
     },
     {
-      title: "Home charging",
-      text: "Request a Pulse charger or Pod energy storage survey before we quote your site.",
+      title: "One project file",
+      text: "Keep the customer, vehicle, loads, supply and design changes together.",
     },
     {
-      title: "M-Pesa built in",
-      text: "Public session pay and Lipa Pole Pole instalments. Price shown before you confirm.",
+      title: "Ready to hand over",
+      text: "Calcs, diagrams, parts lists and install notes — not chat alone.",
     },
     {
-      title: "Modular energy path",
-      text: "Pod energy storage today. P1 Go and P2 Home are still on the design roadmap.",
+      title: "Desktop first",
+      text: "Built for the desk. Install when early access opens.",
     },
   ],
-  phoneTagline: "EV charging and home energy — one Android app",
-  phonePill: chargingHub.openLabel,
-  primaryLabel: "Get Precifarm Agent",
-  iosLabel: "Download for iOS",
-  iosUnavailableNote: "Not available yet",
-  secondaryLabel: "Agent details & install",
+  primaryLabel: "Request desktop access",
+  primaryHref: "/contact?interest=agent-desktop",
+  secondaryLabel: "Download page",
   secondaryHref: "/download",
 } as const;

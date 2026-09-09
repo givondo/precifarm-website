@@ -25,9 +25,14 @@ export function pathWithoutLocale(path: string): string {
   return path;
 }
 
-/** Build hreflang alternates for a logical page path (without locale prefix). */
-export function hreflangAlternates(logicalPath: string): Record<string, string> {
-  const normalized = logicalPath.startsWith("/") ? logicalPath : `/${logicalPath}`;
+/**
+ * Build hreflang alternates for a page path. Accepts either a logical path or an
+ * already-localised one (`/sw/faq/x`) — the locale prefix is stripped first so
+ * Swahili pages don't advertise themselves as `/sw/sw/...`.
+ */
+export function hreflangAlternates(path: string): Record<string, string> {
+  const withPrefix = path.startsWith("/") ? path : `/${path}`;
+  const normalized = pathWithoutLocale(withPrefix);
   const languages: Record<string, string> = {};
   for (const locale of siteLocales) {
     const localized =

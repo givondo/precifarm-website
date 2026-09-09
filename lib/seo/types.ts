@@ -7,6 +7,7 @@ export type SitemapEntry = {
   lastModified?: Date | string;
   changeFrequency?: ChangeFrequency;
   priority?: number;
+  images?: string[];
 };
 
 export type BreadcrumbItem = {
@@ -69,6 +70,8 @@ export type PageSeoInput = {
   title: string;
   description: string;
   path: string;
+  /** Set when this path is an alias that should consolidate onto another URL. */
+  canonicalPath?: string;
   keywords?: string[];
   noIndex?: boolean;
   ogImage?: string;

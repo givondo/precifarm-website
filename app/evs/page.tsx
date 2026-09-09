@@ -111,7 +111,7 @@ export default function KenyaEvCompatibilityPage() {
             book a home survey for Pulse charger or Pod energy storage.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
-            <Link href="/download" className="btn-primary">
+            <Link href="/agent" className="btn-primary">
               Get Precifarm Agent
             </Link>
             <Link href="/charging/home" className="text-sm font-medium">

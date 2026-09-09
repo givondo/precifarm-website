@@ -33,10 +33,13 @@ function locationFromMetadata(entity: NonNullable<Awaited<ReturnType<typeof cmsG
 
 function buildSeo(slug: string, title: string, description: string) {
   const path = `/locations/${slug}`;
+  // `ev-charging-<city>` serves the same entity as `<city>` — consolidate onto the bare slug.
+  const canonicalPath = `/locations/${slug.replace(/^ev-charging-/, "")}`;
   return createPageSeo({
     title,
     description,
     path,
+    canonicalPath,
     ogType: "website",
     breadcrumbs: [
       { name: "Home", href: "/" },

@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import FaqAccordion from "@/components/seo/FaqAccordion";
 import SiteImage from "@/components/SiteImage";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
@@ -63,9 +63,9 @@ const relatedImages: Record<string, { image: string; imageAlt: string; descripti
     imageAlt: modularEnergyProducts["p2-home"].imageAlt,
     description: "1–4 modules on a utility-room floor",
   },
-  "pod-stack": {
-    image: modularEnergyProducts["pod-stack"].image,
-    imageAlt: modularEnergyProducts["pod-stack"].imageAlt,
+  "mini-stack": {
+    image: modularEnergyProducts["mini-stack"].image,
+    imageAlt: modularEnergyProducts["mini-stack"].imageAlt,
     description: "2–6 modules on an outdoor plinth",
   },
   megapack: {

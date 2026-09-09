@@ -11,7 +11,7 @@ import { cmsGetSeoContent, cmsListSeoContent, type CmsSeoContent } from "@/lib/s
 import { siteConfig } from "@/lib/seo/config";
 import { internalLinksForPath } from "@/lib/seo/entities/registry";
 import { createPageSeo } from "@/lib/seo/metadata";
-import { articleSchema, faqSchema } from "@/lib/seo/schema";
+import { articleSchema, faqSchema, omitSchemaTypes } from "@/lib/seo/schema";
 import type { AisoContentBlock } from "@/lib/seo/types";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -68,7 +68,7 @@ export default async function FaqPage({ params }: Props) {
   const faqs = faqsFromCmsContent(content);
   const jsonLd = faqs.length
     ? [
-        ...seo.jsonLd,
+        ...omitSchemaTypes(seo.jsonLd, ["FAQPage", "Article"]),
         faqSchema(faqs),
         articleSchema({
           title: content.title,

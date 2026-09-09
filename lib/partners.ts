@@ -55,10 +55,10 @@ export const partnerTypes: PartnerType[] = [
       "Contract dependable depot and corridor charging for vans, buses and delivery fleets — without per-session payment friction.",
     products: "Depot · Corridor",
     points: [
-      "Reserved charging windows aligned to your dispatch schedule",
+      "Depot overnight and corridor DC sized to your duty cycle",
       "Fleet invoicing and session reporting on M-Pesa",
       "More stable energy cost compared with volatile diesel prices",
-      "Depot design support where overnight and route charging connect",
+      "Site engineering where yard charging and highway top-ups connect",
     ],
     keeps:
       "You retain dispatch and day-to-day operations; Precifarm runs charging, billing and uptime on commissioned sites.",
@@ -67,16 +67,16 @@ export const partnerTypes: PartnerType[] = [
     id: "boda-operators",
     title: "Boda & last-mile",
     summary:
-      "Deploy kerbside racks and twelve-bay swap cabinets for electric bodas — same design language as the rest of the range.",
+      "Deploy Boda Hub for electric bodas — from partner-operated cabinets today toward automated self-service lockers on the product roadmap. Same design language as the rest of the range.",
     products: "Boda Hub",
     points: [
-      "2 kW pack charging sized for high-turnover swap operations",
-      "M-Pesa session pay on every bay — no bank account required",
-      "Remote monitoring and field response from the same ops team",
-      "Pilot-to-scale rollout with utilisation gates before expansion",
+      "Partner-hosted sites — Precifarm hardware, software and monitoring",
+      "M-Pesa session pay — no bank account required for riders",
+      "Remote monitoring and field response from the ops platform",
+      "Automated locker architecture under engineering validation — see /charging/boda-hub",
     ],
     keeps:
-      "You operate the riders and routes; Precifarm supplies hardware, financing and three-year aftersale care.",
+      "You operate the riders and routes (or host the site); Precifarm supplies infrastructure, software and network care — not a counter attendant at every bay.",
   },
   {
     id: "dealers-installers",
@@ -136,7 +136,7 @@ export const partnerProcess = [
 export const partnerCommitments = [
   {
     title: "Uptime you can plan around",
-    text: "Reserved charging slots, field response and honest status updates when equipment needs recovery.",
+    text: "Contracted uptime, field response and honest status updates when equipment needs recovery.",
   },
   {
     title: "Measured economics",

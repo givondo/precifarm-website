@@ -1,10 +1,9 @@
 import Link from "next/link";
-import DownloadApkButton from "@/components/DownloadApkButton";
-import { appDownload } from "@/lib/app-download";
 import { homeAppDownload } from "@/lib/home-app-download";
 
 export default function HomeAppDownload() {
-  const { eyebrow, title, description, features, primaryLabel, secondaryHref, secondaryLabel } = homeAppDownload;
+  const { eyebrow, title, description, features, primaryLabel, primaryHref, secondaryHref, secondaryLabel } =
+    homeAppDownload;
 
   return (
     <section id="download-app" className="home-section bg-white">
@@ -25,13 +24,12 @@ export default function HomeAppDownload() {
         </div>
 
         <div className="mt-8 flex flex-wrap items-center justify-center gap-x-7 gap-y-3">
-          <DownloadApkButton
-            href={appDownload.apkUrl}
-            download={appDownload.fileName}
+          <Link
+            href={primaryHref}
             className="inline-flex rounded-full bg-forest-900 px-6 py-3 text-sm font-semibold text-white"
           >
             {primaryLabel}
-          </DownloadApkButton>
+          </Link>
           <Link href={secondaryHref} className="link-touch text-sm font-medium">
             {secondaryLabel} ›
           </Link>

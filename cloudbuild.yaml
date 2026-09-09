@@ -44,7 +44,9 @@ steps:
       - --platform=managed
       - --allow-unauthenticated
       - --port=8080
-      - --memory=512Mi
+      # 1Gi + CPU boost: sharp resizes multi-MB source PNGs on first request per variant
+      - --memory=1Gi
+      - --cpu-boost
       - --min-instances=0
       - --max-instances=10
       - --set-env-vars=CMS_API_URL=${_CMS_API_URL},NEXT_PUBLIC_SITE_URL=${_SITE_URL},NEXT_PUBLIC_ANALYTICS_ENVIRONMENT=${_ANALYTICS_ENV},NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=${_GOOGLE_SITE_VERIFICATION}

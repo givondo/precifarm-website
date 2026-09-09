@@ -5,12 +5,13 @@ import JsonLd from "@/components/seo/JsonLd";
 import MarkdownContent from "@/components/seo/MarkdownContent";
 import TrustSignals from "@/components/seo/TrustSignals";
 import AisoPageSections from "@/components/seo/AisoPageSections";
+import { BOOKING_GUIDE_SLUG } from "@/lib/charging-faqs";
 import { faqsFromCmsContent } from "@/lib/seo/cms-content";
 import { cmsGetSeoContent, cmsListSeoContent, type CmsSeoContent } from "@/lib/seo/cms-client";
 import { siteConfig } from "@/lib/seo/config";
 import { internalLinksForPath } from "@/lib/seo/entities/registry";
 import { createPageSeo } from "@/lib/seo/metadata";
-import { articleSchema } from "@/lib/seo/schema";
+import { articleSchema, omitSchemaTypes } from "@/lib/seo/schema";
 import type { AisoContentBlock } from "@/lib/seo/types";
 import { notFound } from "next/navigation";
 
@@ -41,6 +42,7 @@ export async function generateStaticParams() {
   const items = await cmsListSeoContent({ status: "published", locale: siteConfig.locale });
   return items
     .filter((item) => ["guide", "howto", "article"].includes(item.contentType))
+    .filter((item) => item.slug !== BOOKING_GUIDE_SLUG)
     .map((item) => ({ slug: item.slug }));
 }
 
@@ -53,6 +55,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function GuidePage({ params }: Props) {
   const { slug } = await params;
+  if (slug === BOOKING_GUIDE_SLUG) {
+    notFound();
+  }
   const content = await cmsGetSeoContent(slug);
   if (!content || !["guide", "howto", "article"].includes(content.contentType)) {
     notFound();
@@ -61,7 +66,7 @@ export default async function GuidePage({ params }: Props) {
   const path = `/guides/${slug}`;
   const seo = buildSeo(slug, content);
   const jsonLd = [
-    ...seo.jsonLd,
+    ...omitSchemaTypes(seo.jsonLd, ["Article"]),
     articleSchema({
       title: content.title,
       description: content.description,

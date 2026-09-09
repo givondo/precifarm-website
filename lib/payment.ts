@@ -7,7 +7,8 @@ export type PaymentMode = "demo" | "live-sandbox" | "live-production" | "misconf
 
 export type StkPaymentResult = {
   status: "success" | "pending" | "failed";
-  bookingId?: string;
+  /** Optional CMS payment / session reference when STK is used for charging products. */
+  paymentId?: string;
   reference: string;
   mpesaReceipt?: string;
   paidAt?: string;
@@ -32,7 +33,7 @@ export function paymentModeLabel(mode: PaymentMode): string {
     case "live-production":
       return "M-Pesa Express · enter PIN on your phone";
     case "misconfigured":
-      return "M-Pesa not configured on booking server";
+      return "M-Pesa not configured on payment server";
     default:
       return "M-Pesa Express";
   }
@@ -45,5 +46,5 @@ export function mpesaTrustCopy(mode: PaymentMode | null): string {
   if (mode === "live-production" || mode === "live-sandbox") {
     return `${paymentModeLabel(mode)} An STK push will be sent to your phone — enter your PIN to pay.`;
   }
-  return "M-Pesa Express STK will be sent when the booking server is ready.";
+  return "M-Pesa Express STK will be sent when the payment server is ready.";
 }

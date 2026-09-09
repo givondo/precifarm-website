@@ -1,4 +1,4 @@
-# Precifarm Website
+﻿# Precifarm Website
 
 Public EV charging and modular-energy site for Kenya.
 
@@ -13,7 +13,7 @@ Passenger booking was **removed** (31 August 2026). `/book` redirects to `/charg
 ## Start
 
 ```bash
-cp .env.example .env.local   # Windows: copy .env.example .env.local
+cp .env.example .env.local # Windows: copy .env.example .env.local
 npm install
 npm run dev
 ```
@@ -26,12 +26,12 @@ Open <http://localhost:3000>.
 
 | Route | Purpose |
 |---|---|
-| `/` | Home — charging + energy |
+| `/` | Home as charging + energy |
 | `/hub` | Charging Hub |
 | `/charging`, `/charging/home` | Products + home survey |
-| `/charging/modular-energy` | P1 Go / P2 Home / Pod Stack / MegaPack (conceptual) |
-| `/charging/modular-energy/pod-stack` | Pod Stack — outdoor SME backup (not Pod energy storage) |
-| `/charging/modular-energy/megapack` | MegaPack — project-engineered BESS (industrial to utility-scale) |
+| `/charging/modular-energy` | P1 Go / P2 Home / Mini Stack / MegaPack (conceptual) |
+| `/charging/modular-energy/mini-stack` | Mini Stack as outdoor SME backup (not Pod energy storage) |
+| `/charging/modular-energy/megapack` | MegaPack as project-engineered BESS (industrial to utility-scale) |
 | `/charging/engineering` | Design package PDF |
 | `/download` | Precifarm Agent APK + product sheet |
 | `/sustainability` | 2030 commitments and impact reporting |
@@ -71,7 +71,7 @@ Full map: [Website channel doc](../docs/channels/website.md) · [Pivot cleanup](
 - Full product names: Pulse charger, Pod energy storage, Spark charger, Corridor charging.
 - Precifarm Agent is **not a chatbot**.
 - Live vs planned hubs stay honest.
-- Modular energy is **conceptual, not on sale**. Pod Stack ≠ Pod energy storage.
+- Modular energy is **conceptual, not on sale**. Mini Stack â‰  Pod energy storage.
 - Do not present booking, seat maps or bus-route charging as live or near-term product.
 - Do not mention BYD on homepage or product pages.
 

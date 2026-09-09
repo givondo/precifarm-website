@@ -9,7 +9,7 @@ export const chargingHub = {
   openLabel: "Open Charging Hub",
   nameLower: "charging hub",
   description:
-    "Charging Hub lists Precifarm fast chargers, boda battery swap and partner stops across Kenya — with honest open and coming-soon labels, and M-Pesa pay in the Android app.",
+    "Charging Hub lists Precifarm fast chargers, boda battery swap and partner stops across Kenya — with honest open and coming-soon labels, and M-Pesa pay at the bay.",
   url: "https://precifarm.com/hub",
 } as const;
 
@@ -18,7 +18,7 @@ export const chargingHubPage = {
     eyebrow: "Kenya · live map",
     title: "Highway DC, boda swap and partner stops — each one labelled open or coming soon",
     description:
-      "Browse free on the web. Check plug type, public DC from KES 39/kWh and whether the bay is live before you drive — then pay with M-Pesa in Precifarm Agent on Android.",
+      "Browse free on the web. Check plug type, public DC from KES 39/kWh and whether the bay is live before you drive — then pay with M-Pesa.",
     image: {
       src: productImages.corridor.src,
       alt: "Precifarm Charging Hub — highway DC, boda battery swap and partner charging stops across Kenya",
@@ -41,7 +41,7 @@ export const chargingHubPage = {
       },
     ] as const,
     primaryHref: "/download",
-    primaryLabel: "Get the Android app",
+    primaryLabel: "Get Precifarm Agent",
     secondaryHref: "/contact",
     secondaryLabel: "Host a charger",
   },
@@ -106,12 +106,12 @@ export const chargingHubPage = {
   steps: {
     eyebrow: "How it works",
     title: "Three steps to your next charge",
-    description: "Browse free on the web. Pay and keep history in Precifarm Agent on Android — free APK from precifarm.com.",
+    description: "Browse free on the web. Use Precifarm Agent for engineering and project work — desktop coming soon.",
     items: [
       {
         step: "1",
         title: "Open Charging Hub",
-        text: "Use precifarm.com/hub in your browser, or install Precifarm Agent on Android.",
+        text: "Use precifarm.com/hub in your browser to browse live and coming-soon sites.",
       },
       {
         step: "2",
@@ -121,13 +121,13 @@ export const chargingHubPage = {
       {
         step: "3",
         title: "Go and pay",
-        text: "Get directions in Maps, then start the session and pay with M-Pesa in the app.",
+        text: "Get directions in Maps, then start the session and pay with M-Pesa.",
       },
     ],
     appHref: "/download",
-    appLabel: "Download for Android",
-    guideHref: "/guides/download-precifarm-android-app",
-    guideLabel: "Install guide",
+    appLabel: "Desktop download",
+    guideHref: "/guides",
+    guideLabel: "Guides",
   },
   statusLabels: {
     eyebrow: "Site labels",
@@ -168,15 +168,15 @@ export const chargingHubPage = {
   },
   faq: {
     title: "Common questions",
-    lead: "Public charging and the Android app. Home Pulse and Pod installs are on ",
+    lead: "Public charging on the Charging Hub. Home Pulse and Pod installs are on ",
     homeHref: "/charging/home",
     homeLabel: "home charging",
   },
   cta: {
     title: "Ready to charge?",
-    description: "Download Precifarm Agent for directions and M-Pesa pay. Have land for a charger? Talk to us.",
+    description: "Browse the hub for live sites. Want Precifarm Agent on desktop? Request access. Have land for a charger? Talk to us.",
     primaryHref: "/download",
-    primaryLabel: "Get the Android app",
+    primaryLabel: "Get Precifarm Agent",
     secondaryHref: "/contact",
     secondaryLabel: "Host a charger",
   },

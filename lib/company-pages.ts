@@ -4,7 +4,7 @@ export const guidesPage = {
   eyebrow: "Guides · Kenya",
   title: "Home install, highway DC and M-Pesa — step by step",
   description:
-    "Written for Kenyan drivers and installers: Pulse charger and Pod energy storage at home, Corridor sessions on the highway, Charging Hub labels and Precifarm Agent on Android.",
+    "Written for Kenyan drivers and installers: Pulse charger and Pod energy storage at home, Corridor sessions on the highway, Charging Hub labels and Precifarm Agent on desktop.",
   cta: {
     title: "Ready to charge?",
     description: "Browse the charging range or open the Charging Hub to see what is live near you.",
@@ -19,14 +19,14 @@ export const faqPage = {
   eyebrow: "FAQ · Kenya",
   title: "Prices, plugs, Lipa Pole Pole and what is live today",
   description:
-    "Straight answers on Pulse from KES 79,000, a home day about KES 140, public DC from KES 39/kWh, Charging Hub status labels and Precifarm Agent on Android.",
+    "Straight answers on Pulse from KES 79,000, a home day about KES 140, public DC from KES 39/kWh, Charging Hub status labels and Precifarm Agent on desktop.",
   cta: {
     title: "Still have questions?",
-    description: "Request a home survey, download Precifarm Agent, or reach us on phone, email and WhatsApp.",
+    description: "Request a home survey, request Precifarm Agent desktop access, or reach us on phone, email and WhatsApp.",
     primaryHref: "/charging/home",
     primaryLabel: "Home charging",
     secondaryHref: "/download",
-    secondaryLabel: "Precifarm Agent",
+    secondaryLabel: "Desktop download",
   },
 } as const;
 

@@ -216,7 +216,7 @@ All values belong in `website/.env.local` (from `.env.example`). Full reference:
 | Variable | Purpose |
 |----------|---------|
 | `NEXT_PUBLIC_SITE_URL` | Canonical base URL (required in production) |
-| `CMS_API_URL` | CMS proxy for booking, search, analytics |
+| `CMS_API_URL` | CMS proxy for SEO content, search, contact, analytics |
 | `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` | Optional maps on `/hub` |
 | `ANALYTICS_INGEST_KEY` | Analytics proxy (must match CMS) |
 

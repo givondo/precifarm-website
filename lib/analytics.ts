@@ -2,7 +2,7 @@ import { classifyAiReferrer } from "@/lib/seo/ai-referrers";
 
 export type AnalyticsEnvironment = "development" | "staging" | "production";
 
-export type BookingAnalyticsPayload = {
+export type AcquisitionAnalyticsPayload = {
   anonymousId?: string;
   sessionId?: string;
   acquisitionSource?: string;
@@ -11,6 +11,9 @@ export type BookingAnalyticsPayload = {
   acquisitionTerm?: string;
   acquisitionContent?: string;
 };
+
+/** @deprecated Use AcquisitionAnalyticsPayload */
+export type BookingAnalyticsPayload = AcquisitionAnalyticsPayload;
 
 type EventProps = Record<string, string | number | boolean | null | undefined>;
 
@@ -128,7 +131,7 @@ export function captureUtmFromUrl(search?: string): void {
   });
 }
 
-export function getBookingAnalyticsPayload(): BookingAnalyticsPayload {
+export function getAcquisitionAnalyticsPayload(): AcquisitionAnalyticsPayload {
   const first = readFirstTouch();
   return {
     anonymousId: getAnonymousId(),
@@ -139,6 +142,11 @@ export function getBookingAnalyticsPayload(): BookingAnalyticsPayload {
     acquisitionTerm: first?.acquisitionTerm,
     acquisitionContent: first?.acquisitionContent,
   };
+}
+
+/** @deprecated Use getAcquisitionAnalyticsPayload */
+export function getBookingAnalyticsPayload(): AcquisitionAnalyticsPayload {
+  return getAcquisitionAnalyticsPayload();
 }
 
 function buildEvent(name: string, props?: EventProps) {

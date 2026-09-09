@@ -13,4 +13,9 @@ export {
 export { runSeoAudit, auditPageSeo } from "@/lib/seo/audit/checks";
 export { homepageAisoBlocks, chargingHowToBlock, homepageRelatedLinks, buildGeoFaqSet } from "@/lib/seo/aiso/blocks";
 export { buildStaticSitemapEntries, buildImageSitemapEntries } from "@/lib/seo/sitemap";
+export {
+  commercialProductCatalog,
+  conceptualProductCatalog,
+  productSchemasForPath,
+} from "@/lib/seo/product-catalog";
 export * from "@/lib/seo/cms-client";

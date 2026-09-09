@@ -11,6 +11,7 @@ import {
   serviceSchema,
   webPageSchema,
 } from "@/lib/seo/schema";
+import { productSchemasForPath } from "@/lib/seo/product-catalog";
 import type { GeneratedPageSeo, PageSeoInput } from "@/lib/seo/types";
 
 const DEFAULT_OG_IMAGE = "/opengraph-image";
@@ -24,17 +25,25 @@ function buildTitle(title: string, path?: string): string {
 }
 
 export function createPageSeo(input: PageSeoInput): GeneratedPageSeo {
-  const canonical = absoluteUrl(input.path);
+  const canonicalPath = input.canonicalPath ?? input.path;
+  const canonical = absoluteUrl(canonicalPath);
   const ogImage = absoluteUrl(input.ogImage ?? DEFAULT_OG_IMAGE);
   const title = buildTitle(input.title, input.path);
 
   const metadata: Metadata = {
-    title: input.path === "/" ? { absolute: siteConfig.defaultTitle } : input.title,
+    // The layout template appends " · Precifarm"; opt out when the title already
+    // names the brand so it isn't repeated twice in the SERP.
+    title:
+      input.path === "/"
+        ? { absolute: siteConfig.defaultTitle }
+        : input.title.includes(siteConfig.name)
+          ? { absolute: input.title }
+          : input.title,
     description: input.description,
     keywords: input.keywords ?? [...siteConfig.defaultKeywords],
     alternates: {
       canonical,
-      languages: hreflangAlternates(input.path),
+      languages: hreflangAlternates(canonicalPath),
     },
     robots: input.noIndex
       ? { index: false, follow: false }
@@ -103,6 +112,8 @@ export function createPageSeo(input: PageSeoInput): GeneratedPageSeo {
       }),
     );
   }
+
+  jsonLd.push(...productSchemasForPath(input.path));
 
   return { metadata, jsonLd };
 }

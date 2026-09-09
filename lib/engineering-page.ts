@@ -30,7 +30,7 @@ export const engineeringPage = {
       },
       {
         title: "Highway & route",
-        text: "Corridor T-canopy DC where the route needs it. Import limits, dwell and M-Pesa sessions — reserved bus windows are design-stage only.",
+        text: "Corridor T-canopy DC where the route needs it. Import limits, dwell and M-Pesa sessions engineered for public and fleet EV traffic.",
       },
     ],
   },
@@ -50,12 +50,12 @@ export const engineeringPage = {
     eyebrow: "Energy stack",
     title: "What sits behind the charger.",
     description:
-      "Solar does not replace Kenya Power — it cuts cost and adds resilience. Storage holds a reserved window when the feeder cannot deliver peak kW.",
+      "Solar does not replace Kenya Power — it cuts cost and adds resilience. Storage peak-shaves when the feeder cannot deliver the charger's peak kW.",
     columns: ["Layer", "Role", "Status"] as const,
     rows: [
       ["Grid", "Kenya Power connection and e-mobility tariff first", "Available"],
       ["Solar", "Canopy or rooftop PV — cost, shade, daytime yield", "Available"],
-      ["Storage", "LiFePO₄ to peak-shave and hold a reserved bus window", "Available"],
+      ["Storage", "LiFePO₄ to peak-shave and back up charging loads", "Available"],
       ["Charging", "Corridor DC, Depot AC, Pulse wallbox — sized to duty cycle", "Available"],
       ["Software", "OCPP monitoring, status, session records, M-Pesa", "In service"],
     ],
@@ -67,7 +67,7 @@ export const engineeringPage = {
       { id: "pulse", ...productImages.pulse, href: "/charging/home" },
       { id: "corridor", ...productImages.corridor, href: "/charging" },
       { id: "depot", ...productImages.depot, href: "/partners" },
-      { id: "boda", ...productImages.boda, href: "/partners#boda-operators" },
+      { id: "boda", ...productImages.boda, href: "/charging/boda-hub" },
     ] as const,
     columns: ["Product", "Best for", "Engineering note"] as const,
     rows: [
@@ -135,19 +135,19 @@ export const engineeringPageFaqs = [
     id: "who-for",
     question: "Who is the engineering package for?",
     answer:
-      "Homeowners sizing Pulse or Pod with solar, fleet partners planning Depot or Boda Hub yards, and highway hosts scoping Corridor T-canopy DC. Reserved charging windows for fleets on Nairobi–Kisumu are design-stage reference only — not live commercial product yet.",
+      "Homeowners sizing Pulse or Pod with solar, fleet and property partners planning Depot or Boda Hub yards, highway hosts scoping Corridor T-canopy DC, and sites exploring modular energy storage. The package covers EV charging and energy systems — not passenger booking or bus timetable products.",
   },
   {
     id: "solar-window",
-    question: "Does solar power a reserved charging window in real time?",
+    question: "Does solar replace the Kenya Power connection?",
     answer:
       "No. A 40–80 kWp canopy in Kenya yields roughly 180–440 kWh/day. Against an illustrative 1,500 kWh/day hub, PV covers about 12–30% of daily energy. Use solar for cost, shade and resilience — not as a substitute for the Kenya Power feeder. Planning assumption.",
   },
   {
     id: "batteries-hub",
-    question: "Why add batteries at a route hub?",
+    question: "Why add batteries at a charging hub?",
     answer:
-      "When peak charger demand exceeds the Kenya Power import limit during a reserved window, LiFePO₄ storage covers the gap. Example: 120 kWh in 30 minutes at ~240 kW with a 180 kW import limit needs storage for the difference plus reserve. Site-specific — not a bill of quantities.",
+      "When peak charger demand exceeds the Kenya Power import limit, LiFePO₄ storage covers the gap and smooths demand charges. Example: 120 kWh in 30 minutes at ~240 kW with a 180 kW import limit needs storage for the difference plus reserve. Site-specific — not a bill of quantities.",
   },
   {
     id: "cost-quote",

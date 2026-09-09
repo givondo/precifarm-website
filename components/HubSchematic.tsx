@@ -3,7 +3,7 @@ export default function HubSchematic({ className = "" }: { className?: string })
   return (
     <figure
       className={`hub-schematic aspect-[4/3] w-full ${className}`}
-      aria-label="Schematic diagram of a Precifarm route charging hub showing solar canopy, grid and battery storage, DC fast charger and passenger dwell area"
+      aria-label="Schematic diagram of a Precifarm corridor charging hub showing solar canopy, grid and battery storage, DC fast charger and driver amenity area"
     >
       <svg viewBox="0 0 640 480" className="h-full w-full" role="img" aria-hidden>
         <defs>
@@ -82,15 +82,15 @@ export default function HubSchematic({ className = "" }: { className?: string })
 
         <rect x="480" y="300" width="120" height="56" fill="#fff" stroke="#d4d4d4" strokeWidth="1.5" rx="6" strokeDasharray="4 3" />
         <text x="540" y="324" textAnchor="middle" className="hub-schematic-caption">
-          Passenger
+          Driver
         </text>
         <text x="540" y="342" textAnchor="middle" className="hub-schematic-caption">
-          dwell
+          amenity
         </text>
 
         {[
           { x: 100, y: 400, label: "1 · Energy", sub: "Grid + solar + storage" },
-          { x: 260, y: 400, label: "2 · Charging", sub: "DC fast · reserved windows" },
+          { x: 260, y: 400, label: "2 · Charging", sub: "DC fast · public sessions" },
           { x: 420, y: 400, label: "3 · Dwell", sub: "Shade · safe circulation" },
           { x: 560, y: 400, label: "4 · Ops", sub: "OCPP · 24/7 monitoring" },
         ].map((item) => (
@@ -106,8 +106,8 @@ export default function HubSchematic({ className = "" }: { className?: string })
         ))}
       </svg>
       <figcaption className="sr-only">
-        Schematic of a Precifarm route hub: solar canopy, grid and battery storage, DC fast
-        charging for intercity buses, passenger dwell space and remote operations monitoring.
+        Schematic of a Precifarm corridor hub: solar canopy, grid and battery storage, DC fast
+        charging for highway EVs and fleets, driver amenity space and remote operations monitoring.
       </figcaption>
     </figure>
   );

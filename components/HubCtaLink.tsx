@@ -4,7 +4,7 @@ import type { ComponentProps } from "react";
 type HubCtaLinkProps = Omit<ComponentProps<"a">, "href">;
 
 /** Primary header CTA — Charging Hub. */
-export default function BookNowLink({
+export default function HubCtaLink({
   className,
   children,
   ...rest

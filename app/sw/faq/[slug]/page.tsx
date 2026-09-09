@@ -9,7 +9,7 @@ import TrustSignals from "@/components/seo/TrustSignals";
 import { BOOKING_FAQ_SLUG } from "@/lib/charging-faqs";
 import { cmsGetSeoContent, cmsListSeoContent } from "@/lib/seo/cms-client";
 import { createPageSeo } from "@/lib/seo/metadata";
-import { articleSchema, faqSchema } from "@/lib/seo/schema";
+import { articleSchema } from "@/lib/seo/schema";
 import type { AisoContentBlock, FaqItem } from "@/lib/seo/types";
 
 export const revalidate = 3600;
@@ -66,7 +66,12 @@ export default async function SwahiliFaqPage({ params }: Props) {
     faqs: faqsFromBlocks(content.aisoBlocks as AisoContentBlock[]),
   });
   const faqs = faqsFromBlocks(content.aisoBlocks as AisoContentBlock[]);
-  const jsonLd = faqs.length ? [...seo.jsonLd, faqSchema(faqs), articleSchema({ title: content.title, description: content.description, path })] : seo.jsonLd;
+  const jsonLd = faqs.length
+    ? [
+        ...seo.jsonLd,
+        articleSchema({ title: content.title, description: content.description, path }),
+      ]
+    : seo.jsonLd;
 
   return (
     <>

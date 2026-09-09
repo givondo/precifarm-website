@@ -66,6 +66,14 @@ export function breadcrumbSchema(items: BreadcrumbItem[]): JsonLd {
   };
 }
 
+/**
+ * Drop nodes a page re-emits with richer data (author, reviewer, sources), so a
+ * document never carries two FAQPage or Article entries.
+ */
+export function omitSchemaTypes(nodes: JsonLd[], types: string[]): JsonLd[] {
+  return nodes.filter((node) => !types.includes(String(node["@type"])));
+}
+
 export function faqSchema(faqs: FaqItem[]): JsonLd {
   return {
     "@context": SCHEMA_CONTEXT,
@@ -99,38 +107,124 @@ export function serviceSchema(input: {
   };
 }
 
+export type ProductOfferInput = {
+  /** Numeric price string only (e.g. "79000") — omit Offer entirely when unknown. */
+  price?: string;
+  priceCurrency?: string;
+  /** schema.org ItemAvailability URL fragment, e.g. InStock / PreOrder */
+  availability?: "InStock" | "PreOrder" | "OutOfStock" | "Discontinued";
+  /** Unit text when the offer is a rate (e.g. "kWh") rather than a unit price. */
+  unitText?: string;
+  priceValidUntil?: string;
+};
+
+export type ProductSchemaInput = {
+  name: string;
+  description: string;
+  path: string;
+  image: string;
+  sku?: string;
+  category?: string;
+  brandName?: string;
+  /** Additional properties shown as additionalProperty (power, connector, etc.). */
+  additionalProperty?: { name: string; value: string }[];
+  /**
+   * Omit `offer` for conceptual / not-on-sale products so we never imply
+   * purchasability. When present, only use verified published prices.
+   */
+  offer?: ProductOfferInput;
+};
+
+export function productSchema(input: ProductSchemaInput): JsonLd {
+  const imageUrl = input.image.startsWith("http") ? input.image : absoluteUrl(input.image);
+  const schema: JsonLd = {
+    "@context": SCHEMA_CONTEXT,
+    "@type": "Product",
+    name: input.name,
+    description: input.description,
+    url: absoluteUrl(input.path),
+    image: imageUrl,
+    brand: {
+      "@type": "Brand",
+      name: input.brandName ?? siteConfig.name,
+    },
+    manufacturer: { "@id": `${siteConfig.url}/#organization` },
+  };
+
+  if (input.sku) schema.sku = input.sku;
+  if (input.category) schema.category = input.category;
+  if (input.additionalProperty?.length) {
+    schema.additionalProperty = input.additionalProperty.map((prop) => ({
+      "@type": "PropertyValue",
+      name: prop.name,
+      value: prop.value,
+    }));
+  }
+
+  if (input.offer?.price) {
+    const offer: JsonLd = {
+      "@type": "Offer",
+      url: absoluteUrl(input.path),
+      priceCurrency: input.offer.priceCurrency ?? "KES",
+      price: input.offer.price,
+      availability: `https://schema.org/${input.offer.availability ?? "InStock"}`,
+      seller: { "@id": `${siteConfig.url}/#organization` },
+      areaServed: {
+        "@type": "Country",
+        name: "Kenya",
+      },
+    };
+    if (input.offer.unitText) {
+      offer.unitText = input.offer.unitText;
+      offer.priceSpecification = {
+        "@type": "UnitPriceSpecification",
+        price: input.offer.price,
+        priceCurrency: input.offer.priceCurrency ?? "KES",
+        unitText: input.offer.unitText,
+      };
+    }
+    if (input.offer.priceValidUntil) {
+      offer.priceValidUntil = input.offer.priceValidUntil;
+    }
+    schema.offers = offer;
+  }
+
+  return schema;
+}
+
 export function softwareApplicationSchema(): JsonLd {
   const app = siteConfig.androidApp;
   return {
     "@context": SCHEMA_CONTEXT,
     "@type": "SoftwareApplication",
     name: app.name,
-    applicationCategory: "LifestyleApplication",
-    operatingSystem: "Android",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Windows, macOS",
     identifier: app.packageName,
     offers: {
       "@type": "Offer",
       price: "0",
       priceCurrency: "KES",
+      availability: "https://schema.org/PreOrder",
     },
     downloadUrl: absoluteUrl(app.downloadPath),
-    installUrl: absoluteUrl("/download"),
+    installUrl: absoluteUrl(app.downloadPath),
     publisher: { "@id": `${siteConfig.url}/#organization` },
     potentialAction: [
       {
         "@type": "ViewAction",
-        target: absoluteUrl("/hub"),
-        name: "Open Charging Hub",
+        target: absoluteUrl("/agent"),
+        name: "Explore Precifarm Agent",
       },
       {
         "@type": "ViewAction",
-        target: absoluteUrl("/charging/home"),
-        name: "Request home charging",
+        target: absoluteUrl("/download"),
+        name: "Request desktop access",
       },
       {
         "@type": "ViewAction",
-        target: `${app.deepLinkScheme}://charging`,
-        name: "Find chargers in the companion",
+        target: absoluteUrl("/contact"),
+        name: "Contact Precifarm",
       },
     ],
   };

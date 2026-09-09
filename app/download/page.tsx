@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import CopilotView from "@/components/download/CopilotView";
+import DownloadView from "@/components/download/DownloadView";
 import JsonLd from "@/components/seo/JsonLd";
 import { pageJsonLd, pageMetadata } from "@/lib/seo/pages/helpers";
 
@@ -9,7 +9,7 @@ export default function DownloadPage() {
   return (
     <>
       <JsonLd data={pageJsonLd("/download")} />
-      <CopilotView />
+      <DownloadView />
     </>
   );
 }

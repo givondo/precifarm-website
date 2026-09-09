@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { BOOKING_FAQ_SLUG, BOOKING_GUIDE_SLUG } from "@/lib/charging-faqs";
 import { homepageAisoBlocks, chargingHowToBlock } from "@/lib/seo/aiso/blocks";
 import { entityRegistry, internalLinksForPath } from "@/lib/seo/entities/registry";
 import { publicRoutes, siteConfig } from "@/lib/seo/config";
@@ -21,6 +22,11 @@ async function resolveCmsKnowledge(path: string, locale: string) {
   if (guideMatch) slug = guideMatch[1];
   if (faqMatch) slug = faqMatch[1];
   if (locationMatch) slug = locationMatch[1];
+
+  // Retired passenger-booking content must not surface to AI crawlers or agents.
+  if (slug === BOOKING_GUIDE_SLUG || slug === BOOKING_FAQ_SLUG) {
+    return null;
+  }
 
   if (slug) {
     const content = await cmsGetSeoContent(slug, effectiveLocale);

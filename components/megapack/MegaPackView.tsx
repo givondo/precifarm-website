@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import FaqAccordion from "@/components/seo/FaqAccordion";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import SiteImage from "@/components/SiteImage";
@@ -368,8 +368,8 @@ export default function MegaPackView() {
           <Link href={modularEnergyPaths.p2Home} className="font-medium hover:text-charge-300">
             P2 Home
           </Link>
-          <Link href={modularEnergyPaths.podStack} className="font-medium hover:text-charge-300">
-            Pod Stack
+          <Link href={modularEnergyPaths.miniStack} className="font-medium hover:text-charge-300">
+            Mini Stack
           </Link>
           <Link href={modularEnergyPaths.overview} className="font-medium hover:text-charge-300">
             Platform overview

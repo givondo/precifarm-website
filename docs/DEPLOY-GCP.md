@@ -4,8 +4,8 @@
 
 | Service | Cloud Run name | Public URL |
 |---|---|---|
-| Booking website | `precifarm-website` | `https://precifarm.com` |
-| Ticketing CMS / API | `precifarm-cms` | `https://api.precifarm.com` |
+| Charging website | `precifarm-website` | `https://precifarm.com` |
+| CMS / payments API | `precifarm-cms` | `https://api.precifarm.com` |
 
 **Compute region:** **`europe-west1`** (Belgium) — required for custom domain mappings (`africa-south1` does not support domain mapping).  
 **Database / Artifact Registry:** **`africa-south1`** (Johannesburg — closest to Kenya).
@@ -20,7 +20,7 @@ Hostinger (registrar)
         ├── precifarm.com      → precifarm-website
         ├── www.precifarm.com  → precifarm-website
         └── api.precifarm.com  → precifarm-cms
-              └── Cloud SQL PostgreSQL (bookings, payments, analytics)
+              └── Cloud SQL PostgreSQL (SEO, contact, analytics, payments when configured)
 ```
 
 Website env: see [`website/.env.example`](../.env.example) — production sets `CMS_API_URL` only (non-secret URLs).
@@ -246,11 +246,12 @@ SSL certificates are provisioned automatically by Google (15–60 minutes after 
 
 ## 6. Verify
 
-- `https://precifarm.com` — booking website
-- `https://precifarm.com/#book` — seat booking
-- `https://precifarm.com/download` — app download
+- `https://precifarm.com` — charging website
+- `https://precifarm.com/hub` — Charging Hub
+- `https://precifarm.com/charging` — products
+- `https://precifarm.com/download` — Precifarm Agent APK
 - `https://api.precifarm.com/api/v1/health` — CMS health JSON
-- M-Pesa STK in sandbox with `DEMO_PAYMENT=false`
+- M-Pesa STK in sandbox with `DEMO_PAYMENT=false` (sessions / Lipa when configured)
 
 ---
 
@@ -274,7 +275,7 @@ docker build -t precifarm-website:local .
 docker run -p 8080:8080 -e CMS_API_URL=http://host.docker.internal:3002/api precifarm-website:local
 ```
 
-Open <http://localhost:8080/#book>.
+Open <http://localhost:8080> (home, `/hub`, `/charging`).
 
 ---
 
@@ -310,7 +311,7 @@ Scale up `db-custom` tier and Cloud Run memory when route-one goes live.
 | 502 on Cloud Run | Check logs: `gcloud run services logs read precifarm-website --region europe-west1` |
 | CMS DB connection fails | Verify `--add-cloudsql-instances` and `DATABASE_URL` socket format |
 | Domain SSL pending | Wait for managed cert; confirm DNS records at Hostinger |
-| Booking uses demo store | Set `CMS_API_URL` on website Cloud Run service |
+| CMS proxy / SEO fails | Set `CMS_API_URL` on website Cloud Run service |
 | M-Pesa callback fails | `MPESA_CALLBACK_URL` in CMS secrets must match your public API URL — see [environment.md](../../docs/infrastructure/environment.md) |
 
 See also: [`../../docs/infrastructure/gcp-deployment.md`](../../docs/infrastructure/gcp-deployment.md)

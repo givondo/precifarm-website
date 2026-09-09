@@ -42,7 +42,7 @@ export default function SwahiliHomePage() {
             <Link href="/evs" className="text-link font-medium">
               {page.body.links.evGuide}
             </Link>
-            <Link href="/download" className="text-link font-medium">
+            <Link href="/agent" className="text-link font-medium">
               {page.body.links.download}
             </Link>
             <Link href="/locations" className="text-link font-medium">

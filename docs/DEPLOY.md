@@ -27,8 +27,10 @@ gcloud builds submit --config cloudbuild.yaml
 
 ## Verify
 
-- Home + `#book` booking flow
-- `/download` app page
+- Home — charging + energy (no `#book` seat flow)
+- `/hub` Charging Hub
+- `/charging` and `/charging/home`
+- `/download` Precifarm Agent
 - `GET /api/cms/health` when CMS is live
 
 ## APK download
