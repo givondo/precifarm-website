@@ -1,9 +1,21 @@
 import { aiCompanionDoc } from "@/lib/ai-companion-doc";
 import { appDownload } from "@/lib/app-download";
 import { engineeringDoc } from "@/lib/engineering-doc";
+import { productEngineeringDoc } from "@/lib/product-engineering-doc";
 
 /** Central registry of user-facing downloadable assets on precifarm.com */
 export const downloadRegistry = [
+  {
+    id: productEngineeringDoc.id,
+    kind: "document" as const,
+    title: productEngineeringDoc.title,
+    subtitle: productEngineeringDoc.subtitle,
+    version: productEngineeringDoc.version,
+    date: productEngineeringDoc.date,
+    pdfHref: productEngineeringDoc.downloadHref,
+    htmlHref: productEngineeringDoc.downloadHtmlHref,
+    pageHref: "/charging",
+  },
   {
     id: engineeringDoc.id,
     kind: "document" as const,

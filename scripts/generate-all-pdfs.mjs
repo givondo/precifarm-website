@@ -16,6 +16,7 @@ const scripts = [
   "generate-modular-energy-v2-pdf.mjs",
   "generate-modular-energy-design-pdf.mjs",
   "generate-megapack-brief-pdf.mjs",
+  "generate-product-engineering-pdf.mjs",
 ];
 
 for (const script of scripts) {

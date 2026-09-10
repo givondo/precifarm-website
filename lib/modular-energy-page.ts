@@ -170,7 +170,7 @@ export const modularEnergyPage = {
  name: "P1 Go",
  role: "Portable backup",
  scale: "~1 kWh carry",
- summary: "Keeps the router, laptop and phones alive through a dip. Foldable solar ships in the box.",
+ summary: "Keeps the router, laptop and phones on through a dip.",
  image: "/images/modular-energy/render-p1-go-v5.png",
  imageAlt: "P1 Go portable power station with foldable solar panel and Type 2 trickle cable",
  },
@@ -179,7 +179,7 @@ export const modularEnergyPage = {
  name: "P2 Home",
  role: "Home tower",
  scale: "1–4 modules",
- summary: "Stands beside the consumer board and carries essential loads on a sub-board. Add bays as you need hours.",
+ summary: "Carries essential loads from beside the consumer board.",
  image: "/images/modular-energy/render-p2-home-v2.png",
  imageAlt: "P2 Home backup tower beside a consumer board",
  },
@@ -188,7 +188,7 @@ export const modularEnergyPage = {
  name: "Mini Stack",
  role: "Shop backup",
  scale: "2–6 modules",
- summary: "Mounts outdoors on a plinth where there is no utility room. Holds up the fridge, till and lights.",
+ summary: "Outdoor backup for the fridge, till and lights.",
  image: "/images/modular-energy/render-pod.png",
  imageAlt: "Precifarm Mini Stack outdoor backup unit with service door and sun-shield canopy",
  },
@@ -197,7 +197,7 @@ export const modularEnergyPage = {
  name: "MegaPack",
  role: "Project BESS",
  scale: "MWh to GWh",
- summary: "A separate line for factories, EV hubs and grid plants. Scoped, engineered and quoted per site.",
+ summary: "Engineered per site for factories, EV hubs and grid plants.",
  image: "/images/megapack-hero-v3.png",
  imageAlt: "Precifarm MegaPack utility-scale battery storage",
  },
@@ -418,7 +418,7 @@ export const modularEnergyProducts: Record<ModularEnergyProductSlug, ModularEner
  title: "The pack you carry when the power goes out",
  audience: "For renters, students and anyone without a fixed install",
  description:
- "An aluminium power station with a fold-flat handle and a magnetic port bay. The foldable solar panel and Type 2 trickle lead ship in the box, so it charges from the grid, a car 12 V socket or sunshine on a balcony. Sized to hold up a router, laptop and phones through an outage as not to charge your car.",
+ "A carry-size power station that holds up a router, laptop and phones through an outage.",
  image: "/images/modular-energy/render-p1-go-v5.png",
  imageAlt: "P1 Go portable power station on kickstand with foldable solar panel, UK sockets and Type 2 cable",
  highlights: [
@@ -525,7 +525,7 @@ export const modularEnergyProducts: Record<ModularEnergyProductSlug, ModularEner
  title: "A tower that grows with the hours you need covered",
  audience: "For homeowners with a utility room and a weak evening grid",
  description:
- "The Power Core sits on top; 2.56 kWh module bays stack below it. The tower stands on the floor beside your consumer board and feeds a dedicated sub-board — lights, router, TV, fan and security. Air conditioning, cooking and water heating stay on the main board and on Kenya Power.",
+ "A floor-standing tower beside your consumer board that runs lights, router, TV, fan and security.",
  image: "/images/modular-energy/render-p2-stack-scale-v2.png",
  imageAlt: "Precifarm P2 Home towers at two, three and four modules, floor-standing beside the board",
  highlights: [
@@ -579,7 +579,7 @@ export const modularEnergyProducts: Record<ModularEnergyProductSlug, ModularEner
  features: [
  {
  title: "An essential-load day of about 1.4 kWh",
- text: "Our design example covers lights, router, TV, fan and security through the outage hours a typical Nairobi household sees in an evening.",
+ text: "Our design example covers lights, router, TV, fan and security through the outage hours a typical Nairobi household sees in an evening. Air conditioning, cooking and water heating stay on the main board and on Kenya Power.",
  },
  {
  title: "Start with one bay, add the rest later",
@@ -640,7 +640,7 @@ export const modularEnergyProducts: Record<ModularEnergyProductSlug, ModularEner
  title: "Backup for shops with no room to spare inside",
  audience: "For street-front retail, kiosks and small workshops",
  description:
- "Two to six Energy Modules in a sun-shield enclosure, bolted to a plinth outside the shop. It is ready for rooftop PV and opens through a service door so a module can be swapped without dismantling the shade structure — built for sites where every square metre indoors is selling space.",
+ "Two to six modules in a shaded outdoor enclosure, bolted to a plinth outside the shop.",
  image: "/images/modular-energy/render-pod.png",
  imageAlt: "Precifarm Mini Stack outdoor backup unit with service door and sun-shield canopy",
  highlights: [

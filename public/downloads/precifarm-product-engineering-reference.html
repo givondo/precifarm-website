@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en-KE">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Precifarm Products &amp; Services — Engineering Design Reference (PF-PRODUCT-ENG-001 v1.0)</title>
+<meta name="description" content="Illustrated engineering reference for every Precifarm product and service: Spark, Pulse, Pod, Depot, Corridor, Boda Hub, modular energy and MegaPack, with ratings, sizing rules and Kenya approval gates." />
+<link rel="stylesheet" href="./precifarm-document-brand.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #0a0a0a;
+    --muted: #404040;
+    --subtle: #737373;
+    --line: #e5e5e5;
+    --soft: #f5f5f7;
+    --blue: #2563eb;
+    --blue-soft: #eff6ff;
+    --amber: #b45309;
+    --amber-soft: #fffbeb;
+    --font: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    color: var(--muted);
+    background: #fff;
+    font-family: var(--font);
+    font-size: 8.5pt;
+    line-height: 1.45;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .toolbar {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; justify-content: space-between;
+    padding: .7rem 1rem; background: rgba(255,255,255,.96);
+    border-bottom: 1px solid var(--line);
+  }
+  .toolbar a, .toolbar button {
+    display: inline-flex; align-items: center; border-radius: 999px;
+    padding: .5rem .95rem; font-size: .82rem; font-weight: 600; text-decoration: none;
+    border: 1px solid var(--line); background: #fff; color: var(--ink); cursor: pointer;
+  }
+  .toolbar .primary { background: var(--blue); border-color: var(--blue); color: #fff; }
+
+  .sheet { max-width: 210mm; margin: 0 auto; }
+  .page {
+    position: relative;
+    min-height: 277mm;
+    padding: 10mm 14mm 16mm;
+    break-after: page;
+    page-break-after: always;
+  }
+  .page:last-child { break-after: auto; page-break-after: auto; }
+
+  .page-head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 6mm; padding-bottom: 3mm; border-bottom: 2px solid var(--ink);
+  }
+  .brand { display: flex; align-items: center; gap: 2.5mm; }
+  .brand img { width: 8mm; height: 8mm; }
+  .brand-word { display: block; font-size: 7pt; font-weight: 700; letter-spacing: .14em; color: var(--ink); }
+  .brand-sub { display: block; font-size: 6.5pt; color: var(--subtle); }
+  .doc-id { font-family: var(--mono); font-size: 6.5pt; color: var(--subtle); text-align: right; line-height: 1.5; }
+
+  .page-cover { padding-top: 8mm; }
+  .cover-accent {
+    position: absolute; top: 0; left: 0; width: 5mm; height: 100%;
+    background: linear-gradient(180deg, var(--blue) 0%, var(--blue-soft) 100%);
+  }
+  .cover-eyebrow {
+    margin: 0 0 2mm; font-family: var(--mono); font-size: 6.8pt;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--blue);
+  }
+  .cover-title {
+    margin: 0 0 3mm; font-size: 24pt; font-weight: 700; line-height: 1.1;
+    letter-spacing: -.03em; color: var(--ink);
+  }
+  .cover-lead { margin: 0 0 5mm; max-width: 140mm; font-size: 9.5pt; color: var(--muted); }
+  .cover-pills { display: flex; flex-wrap: wrap; gap: 2mm; margin-bottom: 6mm; }
+  .cover-pills span {
+    padding: 1.5mm 4mm; border-radius: 999px; font-size: 6.5pt; font-weight: 600;
+    letter-spacing: .06em; background: var(--blue-soft); color: var(--blue);
+  }
+  .hero {
+    margin: 0; border-radius: 10px; overflow: hidden;
+    border: 1px solid var(--line); box-shadow: 0 12px 36px rgba(15,23,42,.1);
+    background: var(--soft);
+  }
+  .hero img { display: block; width: 100%; height: 104mm; object-fit: cover; object-position: center 45%; }
+  .hero figcaption {
+    padding: 3mm 4mm; font-size: 7pt; color: var(--subtle);
+    border-top: 1px solid var(--line); background: #fff;
+  }
+  .cover-foot {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm;
+    margin-top: 5mm; padding: 4mm; border-radius: 8px; background: var(--soft);
+    font-size: 7pt;
+  }
+  .cover-foot span { display: block; color: var(--subtle); font-size: 6pt; text-transform: uppercase; letter-spacing: .08em; }
+  .cover-foot strong { color: var(--ink); font-size: 7.5pt; }
+  .cover-note {
+    margin: 4mm 0 0; padding: 3mm 4mm; border-left: 2px solid var(--blue);
+    font-size: 6.8pt; color: var(--subtle); background: #fafafa; border-radius: 0 6px 6px 0;
+  }
+
+  .sec-title { margin: 0 0 1mm; font-size: 13.5pt; font-weight: 700; letter-spacing: -.02em; color: var(--ink); }
+  .sec-lead { margin: 0 0 5mm; font-size: 8.5pt; color: var(--subtle); max-width: 160mm; }
+  .sec-lead-tight { margin-bottom: 3.5mm; font-size: 7.6pt; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5mm; margin-bottom: 3.5mm; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm; margin-bottom: 3.5mm; }
+  .split-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5mm; margin-bottom: 3.5mm; align-items: start; }
+
+  .card {
+    margin: 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
+    background: #fff; box-shadow: 0 6px 20px rgba(15,23,42,.06);
+  }
+  .card-img { background: var(--soft); padding: 2mm; }
+  .card-img img { display: block; width: 100%; height: 36mm; object-fit: contain; object-position: center; }
+  .card figcaption { padding: 2.5mm 3mm 3.5mm; }
+  .card-name { display: block; font-size: 9pt; font-weight: 700; color: var(--ink); }
+  .card-tag {
+    display: inline-block; margin: 1mm 0 1.5mm; padding: .8mm 2.5mm; border-radius: 999px;
+    font-size: 5.8pt; font-weight: 600; letter-spacing: .04em;
+    background: var(--blue-soft); color: var(--blue);
+  }
+  .card-text { margin: 0; font-size: 6.8pt; line-height: 1.45; color: var(--subtle); }
+
+  .plate {
+    margin: 0 0 3mm; border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
+    background: #fff; box-shadow: 0 6px 20px rgba(15,23,42,.06);
+  }
+  .plate img { display: block; width: 100%; height: 46mm; object-fit: cover; object-position: center; background: var(--soft); }
+  .plate figcaption {
+    padding: 2mm 3mm; font-size: 6.5pt; color: var(--subtle);
+    border-top: 1px solid var(--line); background: #fff;
+  }
+  .plate-wide img { height: 52mm; }
+
+  .check-shell {
+    border: 1px solid #cbd5e1; border-radius: 8px; overflow: hidden; background: #fff;
+    box-shadow: 0 1px 4px rgba(15,23,42,.05); margin-bottom: 3.5mm;
+  }
+  .check-list { margin: 0; padding: 2mm 3mm 2.5mm; list-style: none; }
+  .check-list li {
+    position: relative; padding: 1.4mm 0 1.4mm 4mm; font-size: 7pt; line-height: 1.45;
+    border-bottom: 1px solid #eef2f7;
+  }
+  .check-list li:last-child { border-bottom: none; }
+  .check-list li::before {
+    content: ""; position: absolute; left: 0; top: 2.6mm; width: 1.4mm; height: 1.4mm;
+    border-radius: 50%; background: var(--blue);
+  }
+  .check-list strong { display: block; color: var(--ink); font-size: 7.2pt; }
+  .check-list span { color: var(--subtle); }
+
+  .table-shell {
+    margin-bottom: 3.5mm; border: 1px solid #cbd5e1; border-radius: 8px; overflow: hidden;
+    background: #fff; box-shadow: 0 1px 4px rgba(15,23,42,.05);
+  }
+  .table-caption {
+    padding: 2mm 3mm; font-size: 7.2pt; font-weight: 700; color: var(--ink);
+    background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+    border-bottom: 1px solid #cbd5e1;
+  }
+  .data-table { width: 100%; border-collapse: collapse; table-layout: auto; font-size: 7pt; line-height: 1.45; }
+  .data-table thead th {
+    background: #1d4ed8; color: #fff; font-weight: 600; font-size: 6.4pt;
+    letter-spacing: .05em; text-transform: uppercase; padding: 2.2mm 2.6mm;
+    text-align: left; vertical-align: bottom; border-right: 1px solid rgba(255,255,255,.12);
+  }
+  .data-table thead th:last-child { border-right: none; }
+  .data-table thead th.num { text-align: right; }
+  .data-table thead th.hl { background: #1e40af; }
+  .data-table .th-main { display: block; line-height: 1.25; }
+  .data-table .th-unit {
+    display: block; margin-top: .4mm; font-size: 5.8pt; font-weight: 500;
+    letter-spacing: .02em; text-transform: none; opacity: .82;
+  }
+  .data-table tbody td {
+    padding: 1.9mm 2.6mm; border-bottom: 1px solid #e2e8f0; vertical-align: top; color: var(--muted);
+  }
+  .data-table tbody tr:nth-child(even) td { background: #f8fafc; }
+  .data-table tbody tr:last-child td { border-bottom: none; }
+  .data-table tbody td.label { font-weight: 600; color: var(--ink); background: #f1f5f9 !important; width: 22%; }
+  .split-2 .data-table tbody td.label { width: 46%; }
+  .data-table tbody td.num {
+    font-family: var(--mono); font-size: 6.8pt; font-weight: 500; text-align: right;
+    white-space: nowrap; color: #334155;
+  }
+  .data-table tbody td.hl { background: #dbeafe !important; color: #1e3a8a; font-weight: 700; }
+  .data-table tbody tr.row-total td {
+    font-weight: 700; color: var(--ink); background: #e2e8f0 !important; border-top: 2px solid #94a3b8;
+  }
+
+  .callout { margin-top: 2mm; padding: 3mm 3.5mm; border-radius: 8px; font-size: 6.8pt; line-height: 1.5; color: var(--muted); }
+  .callout strong { display: block; color: var(--ink); margin-bottom: .8mm; }
+  .callout-blue { background: var(--blue-soft); border: 1px solid #bfdbfe; border-left: 3px solid var(--blue); }
+  .callout-amber { background: var(--amber-soft); border: 1px solid #fde68a; border-left: 3px solid var(--amber); }
+
+  .page-foot {
+    margin-top: 4mm; padding-top: 3mm; border-top: 1px solid var(--line);
+    font-size: 6.5pt; color: var(--subtle); line-height: 1.5;
+  }
+
+  @page { size: A4; margin: 0; }
+  @media print {
+    .toolbar { display: none !important; }
+    .sheet { max-width: none; }
+    .page { min-height: 297mm; padding: 12mm 14mm 20mm; }
+    .card, .plate, .hero, .table-shell, .check-shell, .callout { break-inside: avoid; }
+    .data-table { font-size: 6.8pt; }
+    .data-table tbody td.num { font-size: 6.6pt; }
+  }
+  
+.pf-doc-toolbar-id { font-family: ui-monospace, Consolas, monospace; font-size: .78rem; color: var(--pf-subtle, #737373); letter-spacing: .04em; }
+.pf-doc-toolbar-actions { display: flex; gap: .5rem; flex-wrap: wrap; }
+.pf-print-band { display: none; }
+.pf-doc-footer-title { margin: .5rem 0 0; font-size: .88rem; color: var(--pf-ink, #0a0a0a); }
+.pf-doc-footer-social a { color: var(--pf-charge, #2563eb); text-decoration: none; }
+@media print {
+  @page { size: A4; margin: 12mm 12mm 22mm; }
+  body { padding-bottom: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .pf-print-band {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2mm 12mm 3mm;
+    border-top: 1px solid var(--pf-line, #e5e5e5);
+    background: #fff;
+    font-size: 6pt;
+    line-height: 1.35;
+    color: var(--pf-muted, #404040);
+    z-index: 9999;
+  }
+  .pf-print-band-row { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem  .6rem; margin: 0 0 .6mm; }
+  .pf-print-band-row:last-child { margin-bottom: 0; justify-content: space-between; }
+  .pf-print-band-brand strong { color: var(--pf-ink, #0a0a0a); font-size: 6.5pt; }
+  .pf-print-band-brand img { vertical-align: middle; margin-right: 1mm; }
+  .pf-print-band-muted { color: var(--pf-subtle, #737373); }
+  .pf-print-band-contact, .pf-print-band-social { color: var(--pf-subtle, #737373); font-size: 5.8pt; }
+  .pf-print-band-social a { color: var(--pf-muted, #404040); text-decoration: none; }
+  .pf-print-band-doc { font-family: ui-monospace, Consolas, monospace; font-size: 5.8pt; color: var(--pf-subtle, #737373); }
+  .toolbar, .no-print { display: none !important; }
+  .pf-doc-footer a, .pf-print-band a { color: inherit; }
+}
+</style>
+</head>
+<body>
+  <div class="pf-print-band" aria-hidden="true">
+  <div class="pf-print-band-row pf-print-band-brand">
+    <img src="./precifarm-logo-mark.svg" alt="" width="14" height="14" />
+    <strong>Precifarm</strong>
+    <span class="pf-print-band-muted">Electric mobility infrastructure for Africa</span>
+  </div>
+  <div class="pf-print-band-row pf-print-band-contact">
+    sales@precifarm.com · +254 794 702 768 · precifarm.com
+  </div>
+  <div class="pf-print-band-row pf-print-band-social"><a href="https://wa.me/254794702768">WhatsApp</a> · <a href="https://x.com/precifarm">X</a> · <a href="https://instagram.com/precifarm">Instagram</a> · <a href="https://linkedin.com/company/precifarm">LinkedIn</a> · <a href="https://facebook.com/precifarm">Facebook</a> · <a href="https://tiktok.com/@precifarm">TikTok</a></div>
+  <div class="pf-print-band-row pf-print-band-doc">
+    <span>PF-PRODUCT-ENG-001 · v1.0 · 11 September 2026</span>
+    <span>Products &amp; Services</span>
+    <span>© 2026 Precifarm</span>
+  </div>
+</div>
+  <div class="toolbar no-print pf-doc-toolbar">
+  <div class="pf-doc-toolbar-brand">
+    <img src="./precifarm-logo-mark.svg" alt="" width="24" height="24" />
+    <span class="pf-doc-toolbar-id">PF-PRODUCT-ENG-001 · v1.0 · Engineering Design Reference</span>
+  </div>
+  <div class="pf-doc-toolbar-actions">
+    <button type="button" class="primary" onclick="window.print()">Print</button>
+    <a class="primary" href="./precifarm-product-engineering-reference.pdf" download>Download PDF</a>
+    <a href="/charging">Back to site</a>
+  </div>
+</div>
+
+  <main class="sheet">
+    
+    <section class="page page-cover">
+      <div class="cover-accent" aria-hidden="true"></div>
+      <header class="page-head">
+        <div class="brand">
+          <img src="./precifarm-logo-mark.svg" alt="" />
+          <div>
+            <span class="brand-word">PRECIFARM</span>
+            <span class="brand-sub">Products &amp; services</span>
+          </div>
+        </div>
+        <div class="doc-id">PF-PRODUCT-ENG-001<br />v1.0<br />11 September 2026</div>
+      </header>
+
+      <p class="cover-eyebrow">Engineering Design Reference · 12 pages</p>
+      <h1 class="cover-title">Every product.<br />Every number you need to start a design.</h1>
+      <p class="cover-lead">
+        The full Precifarm range — home charging, fleet and highway charging, battery swap, modular energy
+        and project storage — with ratings, sizing rules, installation requirements and approval gates in one place.
+      </p>
+      <div class="cover-pills">
+        <span>SPARK</span><span>PULSE</span><span>POD</span><span>DEPOT</span><span>CORRIDOR</span>
+        <span>BODA HUB</span><span>MODULAR ENERGY</span><span>MEGAPACK</span>
+      </div>
+
+      <figure class="hero">
+        <img src="./product-engineering/ecosystem-hero.jpg" alt="Precifarm charging and energy product family" />
+        <figcaption>The Precifarm range — portable Spark through highway Corridor DC, plus home storage and battery swap.</figcaption>
+      </figure>
+
+      <div class="cover-foot">
+        <div><span>Document</span><strong>PF-PRODUCT-ENG-001</strong></div>
+        <div><span>Status</span><strong>Engineering Design Reference</strong></div>
+        <div><span>Companions</span><strong>PF-ENG-SOLAR-HUB-001 · PF-MODENERGY-002</strong></div>
+      </div>
+      <p class="cover-note">
+        Sizing figures are planning assumptions for early design. Every installation still needs a site survey,
+        Kenya Power confirmation and licensed professional sign-off. Modular energy products are conceptual and not on sale.
+      </p>
+    </section>
+    
+    <section class="page">
+      
+      <header class="page-head">
+        <div class="brand">
+          <img src="./precifarm-logo-mark.svg" alt="" />
+          <div>
+            <span class="brand-word">PRECIFARM</span>
+            <span class="brand-sub">Portfolio at a glance</span>
+          </div>
+        </div>
+        <div class="doc-id">PF-PRODUCT-ENG-001 · Page 2 of 12</div>
+      </header>
+
+      <h2 class="sec-title">What Precifarm sells, and what is still concept</h2>
+      <p class="sec-lead sec-lead-tight">
+        Status is part of the specification. On-sale products can be quoted and installed today.
+        Conceptual products show design intent and must never be offered for sale.
+      </p>
+
+      
+    <div class="table-shell">
+      <div class="table-caption">Hardware portfolio</div>
+      <table class="data-table">
+        <thead><tr><th class=""><span class="th-main">Product</span></th><th class=""><span class="th-main">Role</span></th><th class="num"><span class="th-main">Rating</span></th><th class="num"><span class="th-main">Interface</span></th><th class=""><span class="th-main">Status</span></th><th class="num"><span class="th-main">From</span></th></tr></thead>
+        <tbody><tr class=""><td class="">Spark charger</td><td class="">Portable AC</td><td class="num">3.3 kW</td><td class="num">Type 2</td><td class="">On sale</td><td class="num">KES 25,000</td></tr><tr class=""><td class="">Pulse charger</td><td class="">Home wallbox</td><td class="num">7 kW AC</td><td class="num">Type 2</td><td class="">On sale</td><td class="num">KES 79,000</td></tr><tr class=""><td class="">Pod energy storage</td><td class="">Home charger + battery</td><td class="num">7 kW + 5–10 kWh</td><td class="num">Type 2</td><td class="">On sale</td><td class="num">KES 295,000</td></tr><tr class=""><td class="">Depot station</td><td class="">Fleet / campus AC</td><td class="num">22 kW AC</td><td class="num">Type 2</td><td class="">On sale</td><td class="num">Quoted per site</td></tr><tr class=""><td class="">Corridor charging</td><td class="">Highway DC</td><td class="num">120 kW+ DC</td><td class="num">Dual CCS2</td><td class="">On sale</td><td class="num">KES 39/kWh</td></tr><tr class=""><td class="">Boda Hub</td><td class="">Battery swap</td><td class="num">2.56 kWh packs</td><td class="num">Pack swap</td><td class="">Partner sites live</td><td class="num">Fleet pricing</td></tr><tr class=""><td class="">Automated Boda Hub</td><td class="">Self-service lockers</td><td class="num">8–24+ doors</td><td class="num">Pack swap</td><td class="">In design &amp; testing</td><td class="num">Not quoted</td></tr><tr class=""><td class="">Energy Module</td><td class="">2.56 kWh building block</td><td class="num">2.56 kW</td><td class="num">Blind-mate</td><td class="">Conceptual</td><td class="num">Not on sale</td></tr><tr class=""><td class="">P1 Go</td><td class="">Portable backup</td><td class="num">~1 kWh</td><td class="num">UK 3-pin / USB</td><td class="">Conceptual</td><td class="num">Not on sale</td></tr><tr class=""><td class="">P2 Home</td><td class="">Home backup tower</td><td class="num">2.6–10.2 kWh</td><td class="num">Sub-board</td><td class="">Conceptual</td><td class="num">Not on sale</td></tr><tr class=""><td class="">Mini Stack</td><td class="">Outdoor SME backup</td><td class="num">5.1–15.4 kWh</td><td class="num">Sub-board</td><td class="">Conceptual</td><td class="num">Not on sale</td></tr><tr class=""><td class="">MegaPack</td><td class="">Project BESS</td><td class="num">5 MWh – GWh</td><td class="num">Project HV</td><td class="">Design-stage</td><td class="num">Project-engineered</td></tr></tbody>
+      </table>
+    </div>
+
+      
+    <div class="table-shell">
+      <div class="table-caption">Services and platform</div>
+      <table class="data-table">
+        <thead><tr><th class=""><span class="th-main">Service</span></th><th class=""><span class="th-main">What it does</span></th><th class=""><span class="th-main">Status</span></th></tr></thead>
+        <tbody><tr class=""><td class="">Charging Hub</td><td class="">Public map of Precifarm DC, Boda swap and partner sites</td><td class="">Live</td></tr><tr class=""><td class="">Precifarm Agent</td><td class="">AI electrical &amp; energy engineering workspace</td><td class="">Early access · desktop coming soon</td></tr><tr class=""><td class="">Engineering package</td><td class="">Design basis for home, depot, corridor and partner sites</td><td class="">Published (PF-ENG-SOLAR-HUB-001)</td></tr><tr class=""><td class="">Training T1 / T2 / T3</td><td class="">Site staff, technician and commissioning certification</td><td class="">Delivered in Nairobi + field</td></tr><tr class=""><td class="">Partners &amp; fleet</td><td class="">Hub hosting, fleet electrification, dealer and installer network</td><td class="">By contract</td></tr><tr class=""><td class="">Lipa Pole Pole</td><td class="">M-Pesa instalment financing for Pulse and Pod only</td><td class="">Live · from KES 3,300/month</td></tr><tr class=""><td class="">Charging-as-a-Service</td><td class="">Precifarm finances, installs and operates; pay per kWh or monthly</td><td class="">By contract</td></tr></tbody>
+      </table>
+    </div>
+
+      
+    <div class="table-shell">
+      <div class="table-caption">Evidence labels used across Precifarm documents</div>
+      <table class="data-table">
+        <thead><tr><th class=""><span class="th-main">Label</span></th><th class=""><span class="th-main">Meaning</span></th></tr></thead>
+        <tbody><tr class=""><td class="label">actual</td><td class="">Measured or delivered — verifiable today.</td></tr><tr class=""><td class="label">contracted</td><td class="">Committed in a signed agreement.</td></tr><tr class=""><td class="label">pipeline</td><td class="">In progress, not yet committed.</td></tr><tr class=""><td class="label">target</td><td class="">Design intent, not yet proven.</td></tr><tr class=""><td class="label">planning assumption</td><td class="">Used for sizing; confirm on site.</td></tr><tr class=""><td class="label">illustrative</td><td class="">Example figure to explain a concept.</td></tr></tbody>
+      </table>
+    </div>
+
+      <div class="callout callout-amber">
+        <strong>Naming rules that must hold</strong>
+        Lipa Pole Pole is M-Pesa financing for Pulse and Pod — it is not a charger.
+        Pod energy storage (home) is not Mini Stack (outdoor modular energy).
+        MegaPack is project-engineered, not a catalogue item. Automated Boda Hub lockers are still in design and testing.
+      </div>
+    </section>
+    
+    <section class="page">
+      
+      <header class="page-head">
+        <div class="brand">
+          <img src="./precifarm-logo-mark.svg" alt="" />
+          <div>
+            <span class="brand-word">PRECIFARM</span>
+            <span class="brand-sub">Home charging</span>
+          </div>
+        </div>
+        <div class="doc-id">PF-PRODUCT-ENG-001 · Page 3 of 12</div>
+      </header>
+
+      <h2 class="sec-title">Home charging — Spark, Pulse, Pod</h2>
+      <p class="sec-lead sec-lead-tight">
+        Most Kenyan driving is a ~60 km day, about 10 kWh. That single number decides which product fits,
+        and how long the vehicle needs to be plugged in.
+      </p>
+
+      <div class="grid-3">
+        
+    <figure class="card">
+      <div class="card-img"><img src="./product-engineering/spark.jpg" alt="Spark charger" /></div>
+      <figcaption>
+        <span class="card-name">Spark charger</span>
+        <span class="card-tag">Portable 3.3 kW</span>
+        <p class="card-text">Boot-carried Type 2 lead for 13 A sockets. Top-up tool, not a daily home solution.</p>
+      </figcaption>
+    </figure>
+    <figure class="card">
+      <div class="card-img"><img src="./product-engineering/pulse.jpg" alt="Pulse charger" /></div>
+      <figcaption>
+        <span class="card-name">Pulse charger</span>
+        <span class="card-tag">Home 7 kW AC</span>
+        <p class="card-text">Wall-mounted Type 2 wallbox. Consumer unit to parking bay, typically installed in one day.</p>
+      </figcaption>
+    </figure>
+    <figure class="card">
+      <div class="card-img"><img src="./product-engineering/pod.jpg" alt="Pod energy storage" /></div>
+      <figcaption>
+        <span class="card-name">Pod energy storage</span>
+        <span class="card-tag">7 kW + 5–10 kWh</span>
+        <p class="card-text">Charger plus LiFePO4 storage for weak-grid evenings. Solar-ready, essential-load backup.</p>
+      </figcaption>
+    </figure>
+      </div>
+
+      
+    <div class="table-shell">
+      <div class="table-caption">Home product specifications</div>
+      <table class="data-table">
+        <thead><tr><th class=""><span class="th-main">Parameter</span></th><th class="num"><span class="th-main">Spark</span></th><th class="num"><span class="th-main">Pulse</span></th><th class="num"><span class="th-main">Pod</span></th></tr></thead>
+        <tbody><tr class=""><td class="label">Rated power</td><td class="num">3.3 kW</td><td class="num">7 kW</td><td class="num">7 kW</td></tr><tr class=""><td class="label">Connector</td><td class="num">Type 2</td><td class="num">Type 2</td><td class="num">Type 2</td></tr><tr class=""><td class="label">Supply</td><td class="num">13 A socket</td><td class="num">230 V / 50 Hz dedicated</td><td class="num">230 V / 50 Hz dedicated</td></tr><tr class=""><td class="label">Storage</td><td class="num">None</td><td class="num">None</td><td class="num">5 or 10 kWh LiFePO4</td></tr><tr class=""><td class="label">Typical day (~10 kWh)</td><td class="num">~180 min</td><td class="num">~90 min</td><td class="num">~90 min</td></tr><tr class=""><td class="label">From (KES)</td><td class="num">25,000</td><td class="num">79,000</td><td class="num">295,000</td></tr><tr class=""><td class="label">Lipa Pole Pole</td><td class="num">No</td><td class="num">Yes</td><td class="num">Yes</td></tr><tr class=""><td class="label">Aftersale care</td><td class="num">Warranty</td><td class="num">3 years</td><td class="num">3 years</td></tr></tbody>
+      </table>
+    </div>
+
+      
+    <div class="table-shell">
+      <div class="table-caption">Home energy packages — indicative, confirmed after survey</div>
+      <table class="data-table">
+        <thead><tr><th class=""><span class="th-main">Package</span></th><th class="num"><span class="th-main">From (KES)</span></th><th class=""><span class="th-main">Contents</span></th><th class=""><span class="th-main">Notes</span></th></tr></thead>
+        <tbody><tr class=""><td class="">Charge</td><td class="num">120,000</td><td class="">7–11 kW AC wallbox, install</td><td class="">No solar or battery</td></tr><tr class=""><td class="">Solar + Charge</td><td class="num">450,000</td><td class="">4–5 kWp solar + 7–11 kW charger</td><td class="">Battery optional</td></tr><tr class=""><td class="">Home Energy</td><td class="num">650,000</td><td class="">~5 kWp + 5–10 kWh battery + 7–11 kW charger</td><td class="">Essential backup circuits</td></tr></tbody>
+      </table>
+    </div>
+
+      <div class="callout callout-blue">
+        <strong>Choosing between them</strong>
+        Spark covers a top-up where no wallbox exists. Pulse is the default for a home with a stable supply.
+        Pod is for weak-grid sites where the customer also wants essential-load backup. Solar is added to Pod, not to Spark.
+      </div>
+    </section>
+    
+    <section class="page">
+      
+      <header class="page-head">
+        <div class="brand">
+          <img src="./precifarm-logo-mark.svg" alt="" />
+          <div>
+            <span class="brand-word">PRECIFARM</span>
+            <span class="brand-sub">Home installation basis</span>
+          </div>
+        </div>
+        <div class="doc-id">PF-PRODUCT-ENG-001 · Page 4 of 12</div>
+      </header>
+
+      <h2 class="sec-title">What has to be true before install day</h2>
+      <p class="sec-lead sec-lead-tight">
+        A home charger is a new continuous load on an existing installation. The survey exists to prove the supply,
+        the board and the earthing can carry it.
+      </p>
+
+      <div class="split-2">
+        <div>
+          
+    <div class="check-shell">
+      <div class="table-caption">Home survey and installation checklist</div>
+      <ul class="check-list">
+        <li><strong>Supply check</strong><span>Confirm main fuse, consumer-unit spare ways and incoming cable rating before quoting.</span></li><li><strong>Dedicated circuit</strong><span>Pulse and Pod run on their own protected radial — no spurs off socket circuits.</span></li><li><strong>Protection</strong><span>RCD Type A plus DC fault detection, or RCD Type B where the unit does not provide detection.</span></li><li><strong>Earthing</strong><span>Verify earthing arrangement and electrode resistance; PME export requires assessment.</span></li><li><strong>Cable route</strong><span>Size for load and length; check voltage drop at the far end of the run, not the origin.</span></li><li><strong>Backup scope</strong><span>Pod backs essential circuits on a sub-board — not air conditioning, cooking or water heating.</span></li><li><strong>Commissioning</strong><span>Load test, M-Pesa test session, remote monitoring registration, customer handover.</span></li>
+      </ul>
+    </div>
+        </div>
+        <div>
+          
+    <figure class="plate ">
+      <img src="./product-engineering/eng-home-hybrid.jpg" alt="Private house hybrid charging with solar and storage" />
+      <figcaption>Home hybrid — grid, rooftop solar, storage and wallbox on one essential-load board.</figcaption>
+    </figure>
+          
+    <figure class="plate ">
+      <img src="./product-engineering/pod-garage.jpg" alt="Pod energy storage installed in a Kenyan home garage" />
+      <figcaption>Pod in a garage install — charger, storage and essential circuits in the same utility corner.</figcaption>
+    </figure>
+        </div>
+      </div>
+
+      
+    <div class="table-shell">
+      <div class="table-caption">Running cost reference</div>
+      <table class="data-table">
+        <thead><tr><th class=""><span class="th-main">Item</span></th><th class="num"><span class="th-main">Figure</span></th><th class=""><span class="th-main">Evidence</span></th></tr></thead>
+        <tbody><tr class=""><td class="label">Home charging day (~60 km)</td><td class="num">~KES 140</td><td class="">Illustrative</td></tr><tr class=""><td class="label">Diesel equivalent day</td><td class="num">~KES 1,000</td><td class="">Illustrative</td></tr><tr class=""><td class="label">Public DC session</td><td class="num">From KES 39/kWh</td><td class="">Actual tariff floor</td></tr><tr class=""><td class="label">Boda swap</td><td class="num">Under 5 minutes</td><td class="">Actual at live sites</td></tr></tbody>
+      </table>
+    </div>
+
+      <div class="callout callout-blue">
+        <strong>Financing</strong>
+        Lipa Pole Pole covers Pulse and Pod from KES 3,300 per month on M-Pesa. Deposit, monthly amount and total
+        are shown before the customer commits. It does not apply to public charging sessions or Spark.
+      </div>
+    </section>
+    
+    <section class="page">
+      
+      <header class="page-head">
+        <div class="brand">
+          <img src="./precifarm-logo-mark.svg" alt="" />
+          <div>
+            <span class="brand-word">PRECIFARM</span>
+            <span class="brand-sub">Fleet and public charging</span>
+          </div>
+        </div>
+        <div class="doc-id">PF-PRODUCT-ENG-001 · Page 5 of 12</div>
+      </header>
+
+      <h2 class="sec-title">Depot AC and Corridor DC</h2>
+      <p class="sec-lead sec-lead-tight">
+        Depot suits vehicles that park for hours. Corridor suits vehicles that stop for minutes.
+        Dwell time, not vehicle type, decides which one a site needs.
+      </p>
+
+      <div class="grid-2">
+        
+    <figure class="plate ">
+      <img src="./product-engineering/depot.jpg" alt="Precifarm Depot 22 kW AC charging pedestal" />
+      <figcaption>Depot — 22 kW AC pedestal for fleet yards, campuses and partner retail.</figcaption>
+    </figure>
+        
+    <figure class="plate ">
+      <img src="./product-engineering/corridor.jpg" alt="Precifarm Corridor DC fast charger under a T-canopy" />
+      <figcaption>Corridor — 120 kW+ DC under a T-canopy with dual CCS2 on overhead cables.</figcaption>
+    </figure>
+      </div>
+
+      
+    <div class="table-shell">
+      <div class="table-caption">Depot and Corridor specifications</div>
+      <table class="data-table">
+        <thead><tr><th class=""><span class="th-main">Parameter</span></th><th class="num"><span class="th-main">Depot station</span></th><th class="num"><span class="th-main">Corridor charging</span></th></tr></thead>
+        <tbody><tr class=""><td class="label">Rated power</td><td class="num">22 kW AC</td><td class="num">120 kW+ DC</td></tr><tr class=""><td class="label">Connector</td><td class="num">Type 2</td><td class="num">Dual CCS2</td></tr><tr class=""><td class="label">Typical session</td><td class="num">40+ kWh in ~120 min</td><td class="num">~60 kWh in 30 min</td></tr><tr class=""><td class="label">Design class</td><td class="num">11–22 kW where dwell &gt; 2 h</td><td class="num">120–180 kW town · 240–320 kW highway</td></tr><tr class=""><td class="label">Form factor</td><td class="num">Pedestal</td><td class="num">T-canopy, overhead cables</td></tr><tr class=""><td class="label">Payment</td><td class="num">M-Pesa · account billing</td><td class="num">M-Pesa from KES 39/kWh</td></tr><tr class=""><td class="label">Typical host</td><td class="num">Fleet yard, campus, partner retail</td><td class="num">Fuel retail, highway stop, transport terminus</td></tr></tbody>
+      </table>
+    </div>
+
+      
+    <div class="table-shell">
+      <div class="table-caption">Five gates before Precifarm builds a hub</div>
+      <table class="data-table">
+        <thead><tr><th class=""><span class="th-main">Gate</span></th><th class=""><span class="th-main">Test</span></th></tr></thead>
+        <tbody><tr class=""><td class="label">Proven demand</td><td class="">Enough EV sessions and corridor traffic to justify capital before deployment.</td></tr><tr class=""><td class="label">Power and tariff</td><td class="">Feeder study, interconnection and tariff clarity resolved before irreversible spend.</td></tr><tr class=""><td class="label">Site and dwell</td><td class="">Safe parking, shade and amenities — somewhere worth stopping, not just a plug.</td></tr><tr class=""><td class="label">Durable control</td><td class="">Long-term site rights at fuel retailers, malls, yards or transport termini.</td></tr><tr class=""><td class="label">Approvals</td><td class="">Regulatory and safety sign-off in place before public operation begins.</td></tr></tbody>
+      </table>
+    </div>
+
+      <div class="callout callout-blue">
+        <strong>Public AC rule of thumb</strong>
+        Where dwell exceeds two hours, 11–22 kW Type 2 delivers more useful energy per shilling of capital than DC.
+        Reserve DC for genuine turnaround stops.
+      </div>
+    </section>
+    
+    <section class="page">
+      
+      <header class="page-head">
+        <div class="brand">
+          <img src="./precifarm-logo-mark.svg" alt="" />
+          <div>
+            <span class="brand-word">PRECIFARM</span>
+            <span class="brand-sub">Corridor site engineering</span>
+          </div>
+        </div>
+        <div class="doc-id">PF-PRODUCT-ENG-001 · Page 6 of 12</div>
+      </header>
+
+      <h2 class="sec-title">Sizing a corridor site</h2>
+      <p class="sec-lead sec-lead-tight">
+        Grid import is usually the binding constraint, not the charger. Storage closes the gap between what the
+        vehicle wants in 30 minutes and what the feeder can supply.
+      </p>
+
+      <div class="split-2">
+        <div>
+          
+    <div class="table-shell">
+      <div class="table-caption">Worked example — 120 kWh in 30 minutes</div>
+      <table class="data-table">
+        <thead><tr><th class=""><span class="th-main">Step</span></th><th class="num"><span class="th-main">Value</span></th></tr></thead>
+        <tbody><tr class=""><td class="label">Session target</td><td class="num">120 kWh in 30 minutes</td></tr><tr class=""><td class="label">Power at vehicle</td><td class="num">240 kW</td></tr><tr class=""><td class="label">Site demand with losses</td><td class="num">~253 kW</td></tr><tr class=""><td class="label">Grid import limit</td><td class="num">180 kW</td></tr><tr class=""><td class="label">Shortfall energy</td><td class="num">~37 kWh per session</td></tr><tr class=""><td class="label">BESS sizing with reserve</td><td class="num">80 – 100 kWh usable</td></tr><tr class=""><td class="label">Canopy PV</td><td class="num">40 – 80 kWp → 180 – 440 kWh/day</td></tr><tr class=""><td class="label">PV share of 1,500 kWh/day hub</td><td class="num">12 – 30 %</td></tr></tbody>
+      </table>
+    </div>
+        </div>
+        <div>
+          
+    <figure class="plate ">
+      <img src="./product-engineering/eng-route-hub.jpg" alt="Route hub with solar canopy, DC chargers and battery storage" />
+      <figcaption>Route hub — solar canopy, DC posts and BESS behind one connection point.</figcaption>
+    </figure>
+          
+    <figure class="plate ">
+      <img src="./product-engineering/corridor-safety.jpg" alt="Corridor charging safety and site marking" />
+      <figcaption>Bay marking, lighting and safe cable management are part of the design, not an extra.</figcaption>
+    </figure>
+        </div>
+      </div>
+
+      
+    <figure class="plate plate-wide">
+      <img src="./product-engineering/eng-architecture.jpg" alt="Precifarm charging system architecture" />
+      <figcaption>System architecture — grid, PV, storage, CCS2 dispensers and the charging management system.</figcaption>
+    </figure>
+
+      <div class="callout callout-amber">
+        <strong>Storage does not replace a connection study</strong>
+        BESS smooths peaks. It does not remove the need for a Kenya Power load application, and it does not
+        licence export or public supply. Confirm both before committing capital.
+      </div>
+    </section>
+    
+    <section class="page">
+      
+      <header class="page-head">
+        <div class="brand">
+          <img src="./precifarm-logo-mark.svg" alt="" />
+          <div>
+            <span class="brand-word">PRECIFARM</span>
+            <span class="brand-sub">Boda Hub battery swap</span>
+          </div>
+        </div>
+        <div class="doc-id">PF-PRODUCT-ENG-001 · Page 7 of 12</div>
+      </header>
+
+      <h2 class="sec-title">Swap in under five minutes</h2>
+      <p class="sec-lead sec-lead-tight">
+        Riders earn by the trip, so charging time is lost income. Swap moves the charging off the rider and
+        onto the cabinet. Phase 1 runs on one validated 2.56 kWh Energy Module.
+      </p>
+
+      <div class="grid-3">
+        
+    <figure class="plate ">
+      <img src="./product-engineering/boda.jpg" alt="Precifarm twelve-bay Boda Hub battery swap cabinet" />
+      <figcaption>Twelve-bay swap cabinet — the standard urban configuration.</figcaption>
+    </figure>
+        
+    <figure class="plate ">
+      <img src="./product-engineering/boda-bay-module.jpg" alt="Boda Hub single bay module detail" />
+      <figcaption>Bay module — one door, one pack, blind-mate power and comms.</figcaption>
+    </figure>
+        
+    <figure class="plate ">
+      <img src="./product-engineering/boda-site-petrol.jpg" alt="Boda Hub lockers at a Kenyan petrol station" />
+      <figcaption>Sited where riders already stop — petrol stations, stages and shops.</figcaption>
+    </figure>
+      </div>
+
+      
+    <div class="table-shell">
+      <div class="table-caption">Automated Boda Hub configurations</div>
+      <table class="data-table">
+        <thead><tr><th class=""><span class="th-main">Configuration</span></th><th class="num"><span class="th-main">Doors</span></th><th class="num"><span class="th-main">Stored energy</span></th><th class=""><span class="th-main">Typical site</span></th></tr></thead>
+        <tbody><tr class=""><td class="label">Compact</td><td class="num">8</td><td class="num">~20 kWh</td><td class="">Shops, neighbourhood stages</td></tr><tr class=""><td class="label">Standard</td><td class="num">12</td><td class="num">~30 kWh</td><td class="">Petrol stations, urban hubs</td></tr><tr class=""><td class="label">Locker bank</td><td class="num">24+</td><td class="num">Two or more cabinets</td><td class="">Fleet yards, busy corridors</td></tr></tbody>
+      </table>
+    </div>
+
+      
+    <figure class="plate plate-wide">
+      <img src="./product-engineering/boda-locker-family.jpg" alt="Precifarm Boda Hub locker family" />
+      <figcaption>Locker family — compact, standard and bank configurations share one bay module.</figcaption>
+    </figure>
+
+      <div class="callout callout-amber">
+        <strong>Status and limits</strong>
+        Self-service lockers are in design and testing. Live Boda sites on Charging Hub may still be partner or staff
+        operated. Weather rating is under test. Other battery packs are only supported after approval gates.
+        Tariffs and payback come from pilots, not projections.
+      </div>
+    </section>
+    
+    <section class="page">
+      
+      <header class="page-head">
+        <div class="brand">
+          <img src="./precifarm-logo-mark.svg" alt="" />
+          <div>
+            <span class="brand-word">PRECIFARM</span>
+            <span class="brand-sub">Modular energy — conceptual</span>
+          </div>
+        </div>
+        <div class="doc-id">PF-PRODUCT-ENG-001 · Page 8 of 12</div>
+      </header>
+
+      <h2 class="sec-title">One module. Three scales.</h2>
+      <p class="sec-lead sec-lead-tight">
+        The modular energy platform is a design programme, not a product line. Targets below are engineering intent
+        for review — nothing here is certified or for sale.
+      </p>
+
+      <div class="grid-3">
+        
+    <figure class="card">
+      <div class="card-img"><img src="./product-engineering/p1-go.jpg" alt="P1 Go" /></div>
+      <figcaption>
+        <span class="card-name">P1 Go</span>
+        <span class="card-tag">Portable · conceptual</span>
+        <p class="card-text">~1 kWh carry unit. Foldable 100–200 W panel on XT60, UK 3-pin sockets, USB-C and USB-A. Type 2 trickle only — not daily EV charging.</p>
+      </figcaption>
+    </figure>
+    <figure class="card">
+      <div class="card-img"><img src="./product-engineering/p2-home.jpg" alt="P2 Home" /></div>
+      <figcaption>
+        <span class="card-name">P2 Home</span>
+        <span class="card-tag">1–4 modules · conceptual</span>
+        <p class="card-text">Floor-standing tower beside the consumer board. 2.6 / 5.1 / 7.7 / 10.2 kWh nameplate tiers, 2.4 or 4.8 kW inverter, essential-load sub-board.</p>
+      </figcaption>
+    </figure>
+    <figure class="card">
+      <div class="card-img"><img src="./product-engineering/mini-stack.jpg" alt="Mini Stack" /></div>
+      <figcaption>
+        <span class="card-name">Mini Stack</span>
+        <span class="card-tag">2–6 modules · conceptual</span>
+        <p class="card-text">Outdoor SME backup on a plinth with wall shade and service door. Fridge, till and lighting continuity. IP rating not certified yet.</p>
+      </figcaption>
+    </figure>
+      </div>
+
+      <div class="split-2">
+        <div>
+          
+    <div class="table-shell">
+      <div class="table-caption">Energy Module — engineering targets</div>
+      <table class="data-table">
+        <thead><tr><th class=""><span class="th-main">Parameter</span></th><th class="num"><span class="th-main">Target</span></th></tr></thead>
+        <tbody><tr class=""><td class="label">Nominal energy</td><td class="num">2.56 kWh</td></tr><tr class=""><td class="label">Configuration</td><td class="num">16s LiFePO4 · 51.2 V · 50 Ah</td></tr><tr class=""><td class="label">Operating voltage</td><td class="num">44.8 – 58.4 V</td></tr><tr class=""><td class="label">Max discharge</td><td class="num">50 A (1.0 C) → 2.56 kW</td></tr><tr class=""><td class="label">Max charge</td><td class="num">30 A (0.6 C) → ~1.5 kW</td></tr><tr class=""><td class="label">Peak discharge</td><td class="num">100 A / 10 s [VALIDATE]</td></tr><tr class=""><td class="label">Usable AC (backup)</td><td class="num">2.17 kWh per module</td></tr><tr class=""><td class="label">Daily cycling AC</td><td class="num">1.68 kWh per module</td></tr><tr class=""><td class="label">Operating temperature</td><td class="num">−5 °C to +50 °C, derated above 40 °C</td></tr><tr class=""><td class="label">Cycle life target</td><td class="num">≥ 4,000 cycles to 80 % SOH at 25 °C, 0.5 C</td></tr><tr class=""><td class="label">Enclosure</td><td class="num">IP20 indoor · IP55 outdoor rack [CERT]</td></tr><tr class=""><td class="label">Communications</td><td class="num">CAN 2.0B 500 kbit/s, RS-485 fallback</td></tr><tr class=""><td class="label">Mass target</td><td class="num">≤ 30 kg</td></tr></tbody>
+      </table>
+    </div>
+        </div>
+        <div>
+          
+    <figure class="plate ">
+      <img src="./product-engineering/energy-module.jpg" alt="Precifarm 2.56 kWh Energy Module" />
+      <figcaption>The 2.56 kWh Energy Module — the repeated unit of capacity across the platform.</figcaption>
+    </figure>
+          
+    <div class="table-shell">
+      <div class="table-caption">P2 Home stack tiers</div>
+      <table class="data-table">
+        <thead><tr><th class="num"><span class="th-main">Modules</span></th><th class="num"><span class="th-main">Nameplate</span><span class="th-unit">kWh</span></th><th class="num"><span class="th-main">Usable AC</span><span class="th-unit">kWh</span></th><th class=""><span class="th-main">Backup example</span></th></tr></thead>
+        <tbody><tr class=""><td class="num">1</td><td class="num">2.56</td><td class="num">2.17</td><td class="">~4.3 h at 500 W</td></tr><tr class=""><td class="num">2</td><td class="num">5.12</td><td class="num">4.34</td><td class="">~4.3 h at 1 kW</td></tr><tr class=""><td class="num">3</td><td class="num">7.68</td><td class="num">6.51</td><td class="">~3.3 h at 2 kW</td></tr><tr class=""><td class="num">4</td><td class="num">10.24</td><td class="num">8.68</td><td class="">~4.3 h at 2 kW</td></tr></tbody>
+      </table>
+    </div>
+        </div>
+      </div>
+
+      <div class="callout callout-amber">
+        <strong>Do not quote nameplate</strong>
+        Usable AC energy is what the customer experiences: nameplate × SOC window × conversion.
+        Quote expected usable kWh and state the reserve. Modular energy is conceptual — not on sale.
+      </div>
+    </section>
+    
+    <section class="page">
+      
+      <header class="page-head">
+        <div class="brand">
+          <img src="./precifarm-logo-mark.svg" alt="" />
+          <div>
+            <span class="brand-word">PRECIFARM</span>
+            <span class="brand-sub">MegaPack project storage</span>
+          </div>
+        </div>
+        <div class="doc-id">PF-PRODUCT-ENG-001 · Page 9 of 12</div>
+      </header>
+
+      <h2 class="sec-title">Project-engineered storage, not a catalogue item</h2>
+      <p class="sec-lead sec-lead-tight">
+        Precifarm designs, integrates and develops MegaPack projects. Precifarm does not manufacture cells,
+        power conversion or containers. Every figure below is scoped per site.
+      </p>
+
+      <div class="grid-2">
+        
+    <figure class="plate ">
+      <img src="./product-engineering/megapack.jpg" alt="Precifarm MegaPack utility-scale battery storage" />
+      <figcaption>MegaPack — container-scale storage for industrial, hub and grid-connected sites.</figcaption>
+    </figure>
+        
+    <figure class="plate ">
+      <img src="./product-engineering/megapack-ev-hub.jpg" alt="MegaPack supporting an EV charging hub" />
+      <figcaption>Storage behind an EV hub — solar, grid and BESS feeding high-power chargers.</figcaption>
+    </figure>
+      </div>
+
+      
+    <div class="table-shell">
+      <div class="table-caption">Scale stages</div>
+      <table class="data-table">
+        <thead><tr><th class=""><span class="th-main">Stage</span></th><th class="num"><span class="th-main">Energy</span></th><th class=""><span class="th-main">Form</span></th><th class=""><span class="th-main">Typical use</span></th></tr></thead>
+        <tbody><tr class=""><td class="label">Energy Block</td><td class="num">Sub-MWh</td><td class="">Single skid or container</td><td class="">Site backup, peak shaving</td></tr><tr class=""><td class="label">MegaPack</td><td class="num">~5 – 100 MWh</td><td class="">Container array</td><td class="">Industrial, EV hub, C&amp;I</td></tr><tr class=""><td class="label">Energy Hub</td><td class="num">~25 – 500 MWh</td><td class="">Multi-array site</td><td class="">Grid support, large campus</td></tr><tr class=""><td class="label">Energy Park</td><td class="num">500 MWh – GWh</td><td class="">Utility plant</td><td class="">Utility firming, market services</td></tr></tbody>
+      </table>
+    </div>
+
+      
+    <div class="table-shell">
+      <div class="table-caption">Illustrative project shapes</div>
+      <table class="data-table">
+        <thead><tr><th class=""><span class="th-main">Case</span></th><th class="num"><span class="th-main">Sizing</span></th><th class=""><span class="th-main">Role</span></th><th class=""><span class="th-main">Evidence</span></th></tr></thead>
+        <tbody><tr class=""><td class="label">EV charging hub</td><td class="num">1 MW grid · 1 MW solar · 5 MWh BESS</td><td class="">1–2 MW chargers</td><td class="">Illustrative</td></tr><tr class=""><td class="label">Industrial site</td><td class="num">2 MW / 8 MWh (~4 h)</td><td class="">Peak shaving, continuity</td><td class="">Illustrative</td></tr><tr class=""><td class="label">Utility plant</td><td class="num">50 MW / 200 MWh (~4 h)</td><td class="">Firming and market services</td><td class="">Illustrative</td></tr></tbody>
+      </table>
+    </div>
+
+      <div class="callout callout-amber">
+        <strong>Licensing</strong>
+        Export and public EV charging may require licences. Storage does not replace grid interconnection studies.
+        Chemistry is LFP where appropriate, confirmed per project.
+      </div>
+    </section>
+    
+    <section class="page">
+      
+      <header class="page-head">
+        <div class="brand">
+          <img src="./precifarm-logo-mark.svg" alt="" />
+          <div>
+            <span class="brand-word">PRECIFARM</span>
+            <span class="brand-sub">Design basis and calculations</span>
+          </div>
+        </div>
+        <div class="doc-id">PF-PRODUCT-ENG-001 · Page 10 of 12</div>
+      </header>
+
+      <h2 class="sec-title">The numbers every Precifarm design starts from</h2>
+      <p class="sec-lead sec-lead-tight">
+        Use these for first-pass sizing. Confirm supply, tariff and irradiance on site before quoting.
+      </p>
+
+      <div class="split-2">
+        <div>
+          
+    <div class="table-shell">
+      <div class="table-caption">Kenya design basis</div>
+      <table class="data-table">
+        <thead><tr><th class=""><span class="th-main">Parameter</span></th><th class="num"><span class="th-main">Value</span></th></tr></thead>
+        <tbody><tr class=""><td class="label">Grid</td><td class="num">230 V · 50 Hz · Type G</td></tr><tr class=""><td class="label">Design solar (Nairobi)</td><td class="num">4.7 PSH · ~3.5 kWh/kWp/day</td></tr><tr class=""><td class="label">PV performance ratio</td><td class="num">0.75 planning</td></tr><tr class=""><td class="label">Canopy PV yield band</td><td class="num">4.5 – 5.5 kWh/kWp/day</td></tr><tr class=""><td class="label">Grid cost (all-in)</td><td class="num">KES 20 – 28 / kWh</td></tr><tr class=""><td class="label">E-mobility tariff</td><td class="num">~KES 8 off-peak · 16 peak, before levies</td></tr><tr class=""><td class="label">Domestic net-metering cap</td><td class="num">10 kW</td></tr><tr class=""><td class="label">Average monthly outage</td><td class="num">~8.4 h reported</td></tr><tr class=""><td class="label">Typical Nairobi day</td><td class="num">~60 km ≈ ~10 kWh</td></tr><tr class=""><td class="label">EV consumption default</td><td class="num">0.18 kWh/km</td></tr></tbody>
+      </table>
+    </div>
+        </div>
+        <div>
+          
+    <div class="table-shell">
+      <div class="table-caption">Precifarm Agent calculation tools</div>
+      <table class="data-table">
+        <thead><tr><th class=""><span class="th-main">Domain</span></th><th class="num"><span class="th-main">Tool</span></th></tr></thead>
+        <tbody><tr class=""><td class="label">EV energy</td><td class="num">calculateEvEnergy()</td></tr><tr class=""><td class="label">Charging</td><td class="num">calculateChargingTime()</td></tr><tr class=""><td class="label">Load</td><td class="num">calculatePeakLoad()</td></tr><tr class=""><td class="label">Solar</td><td class="num">sizePvSystem()</td></tr><tr class=""><td class="label">Battery</td><td class="num">sizeBattery()</td></tr><tr class=""><td class="label">Inverter</td><td class="num">sizeInverter()</td></tr><tr class=""><td class="label">Cables</td><td class="num">calculateVoltageDrop()</td></tr><tr class=""><td class="label">Protection</td><td class="num">sizeProtection()</td></tr><tr class=""><td class="label">Costs</td><td class="num">calculateEnergyCost()</td></tr></tbody>
+      </table>
+    </div>
+        </div>
+      </div>
+
+      
+    <div class="table-shell">
+      <div class="table-caption">Core sizing formulas</div>
+      <table class="data-table">
+        <thead><tr><th class=""><span class="th-main">Quantity</span></th><th class=""><span class="th-main">Formula</span></th><th class="num"><span class="th-main">Worked value</span></th></tr></thead>
+        <tbody><tr class=""><td class="label">Daily EV energy</td><td class="">E_day = distance × consumption</td><td class="num">80 km × 0.18 = 14.4 kWh</td></tr><tr class=""><td class="label">Charge time</td><td class="">t = E_day ÷ P_charger</td><td class="num">14.4 ÷ 7 = 2.1 h</td></tr><tr class=""><td class="label">Minimum charger power</td><td class="">P_min = E_day ÷ window</td><td class="num">18 ÷ 10 = 1.8 kW</td></tr><tr class=""><td class="label">Usable storage</td><td class="">E_use = nameplate × SOC window × conversion</td><td class="num">2.56 × 0.90 × 0.94 = 2.17 kWh</td></tr><tr class=""><td class="label">Backup duration</td><td class="">t = E_use ÷ load</td><td class="num">8.68 ÷ 2 = 4.3 h</td></tr><tr class=""><td class="label">PV daily yield</td><td class="">E_pv = kWp × PSH × PR</td><td class="num">50 × 4.7 × 0.75 ≈ 176 kWh/day</td></tr><tr class=""><td class="label">Peak site power</td><td class="">P = E_session ÷ session time</td><td class="num">120 kWh ÷ 0.5 h = 240 kW</td></tr><tr class=""><td class="label">BESS gap</td><td class="">E_gap = (P_demand − P_import) × time</td><td class="num">(253 − 180) × 0.5 ≈ 37 kWh</td></tr></tbody>
+      </table>
+    </div>
+
+      <div class="callout callout-blue">
+        <strong>Order of work</strong>
+        Establish the daily energy first, then the available charging window, then the minimum power.
+        Only after that pick a product. Sizing the charger before the window is the most common error.
+      </div>
+    </section>
+    
+    <section class="page">
+      
+      <header class="page-head">
+        <div class="brand">
+          <img src="./precifarm-logo-mark.svg" alt="" />
+          <div>
+            <span class="brand-word">PRECIFARM</span>
+            <span class="brand-sub">Electrical and site engineering</span>
+          </div>
+        </div>
+        <div class="doc-id">PF-PRODUCT-ENG-001 · Page 11 of 12</div>
+      </header>
+
+      <h2 class="sec-title">From load schedule to commissioning</h2>
+      <p class="sec-lead sec-lead-tight">
+        The same sequence applies to a single wallbox and a highway hub. Only the magnitudes change.
+      </p>
+
+      <div class="split-2">
+        <div>
+          
+    <div class="check-shell">
+      <div class="table-caption">Electrical design checklist</div>
+      <ul class="check-list">
+        <li><strong>Load schedule</strong><span>List every circuit with power and duty before sizing anything.</span></li><li><strong>Peak demand</strong><span>Apply diversity to household loads; charger load is not diversified.</span></li><li><strong>Supply capacity</strong><span>Compare peak demand against main fuse and Kenya Power connection.</span></li><li><strong>Cable sizing</strong><span>Size on current-carrying capacity, then verify voltage drop over the run.</span></li><li><strong>Protection</strong><span>Overcurrent plus RCD Type A with DC detection, or Type B where required.</span></li><li><strong>Distribution board</strong><span>Confirm spare ways, busbar rating and labelling before install day.</span></li><li><strong>Earthing</strong><span>Verify arrangement and electrode resistance; assess PME export.</span></li><li><strong>Load management</strong><span>Where supply is tight, limit charger current rather than upgrading blindly.</span></li>
+      </ul>
+    </div>
+        </div>
+        <div>
+          
+    <figure class="plate ">
+      <img src="./product-engineering/eng-site-plan.jpg" alt="Two-bay charging site plan" />
+      <figcaption>Site plan — bays, clearances, cable routes and equipment positions agreed before civils.</figcaption>
+    </figure>
+          
+    <figure class="plate ">
+      <img src="./product-engineering/hub-premium.jpg" alt="Precifarm charging hub in Kenya" />
+      <figcaption>Hub context — lighting, shade and amenity decide whether drivers actually stop.</figcaption>
+    </figure>
+        </div>
+      </div>
+
+      
+    <div class="table-shell">
+      <div class="table-caption">Kenya approval and hold points</div>
+      <table class="data-table">
+        <thead><tr><th class=""><span class="th-main">Authority</span></th><th class=""><span class="th-main">Scope</span></th><th class=""><span class="th-main">When</span></th></tr></thead>
+        <tbody><tr class=""><td class="label">Kenya Power</td><td class="">Load application, connection study, metering</td><td class="">Before irreversible spend</td></tr><tr class=""><td class="label">EPRA</td><td class="">Electrical installation compliance</td><td class="">Design and install</td></tr><tr class=""><td class="label">NEMA</td><td class="">Environmental screening where applicable</td><td class="">Site development</td></tr><tr class=""><td class="label">County fire</td><td class="">Fire safety approval for public sites</td><td class="">Before public operation</td></tr><tr class=""><td class="label">Precifarm CSMS</td><td class="">OCPP registration and M-Pesa test session</td><td class="">Commissioning</td></tr></tbody>
+      </table>
+    </div>
+
+      <div class="callout callout-amber">
+        <strong>Hold points are not paperwork</strong>
+        Each one can change the design. Clear the Kenya Power load application and tariff position before
+        ordering equipment, not after.
+      </div>
+    </section>
+    
+    <section class="page">
+      
+      <header class="page-head">
+        <div class="brand">
+          <img src="./precifarm-logo-mark.svg" alt="" />
+          <div>
+            <span class="brand-word">PRECIFARM</span>
+            <span class="brand-sub">Services and support</span>
+          </div>
+        </div>
+        <div class="doc-id">PF-PRODUCT-ENG-001 · Page 12 of 12</div>
+      </header>
+
+      <h2 class="sec-title">What surrounds the hardware</h2>
+      <p class="sec-lead sec-lead-tight">
+        Charging Hub gets drivers to a working bay. Training keeps sites safe. The Agent speeds up the engineering.
+        Financing decides whether the customer can proceed at all.
+      </p>
+
+      
+    <div class="table-shell">
+      <div class="table-caption">Training tiers</div>
+      <table class="data-table">
+        <thead><tr><th class=""><span class="th-main">Tier</span></th><th class="num"><span class="th-main">Duration</span></th><th class=""><span class="th-main">Audience</span></th><th class=""><span class="th-main">Validity</span></th></tr></thead>
+        <tbody><tr class=""><td class="label">T1</td><td class="num">1 day</td><td class="">Hub staff, drivers, site hosts</td><td class="">24 months</td></tr><tr class=""><td class="label">T2</td><td class="num">3 days</td><td class="">Field technicians</td><td class="">Annual refresher</td></tr><tr class=""><td class="label">T3</td><td class="num">5 days</td><td class="">Commissioning engineers</td><td class="">Annual refresher + authorisation</td></tr></tbody>
+      </table>
+    </div>
+
+      <div class="split-2">
+        <div>
+          
+    <figure class="plate ">
+      <img src="./product-engineering/financing.jpg" alt="Lipa Pole Pole M-Pesa instalment financing" />
+      <figcaption>Lipa Pole Pole — M-Pesa instalments for Pulse and Pod. Financing, not a charger.</figcaption>
+    </figure>
+        </div>
+        <div>
+          
+    <figure class="plate ">
+      <img src="./product-engineering/modular-family.jpg" alt="Precifarm modular energy product family" />
+      <figcaption>Modular energy family — conceptual renders showing design intent only.</figcaption>
+    </figure>
+        </div>
+      </div>
+
+      <div class="callout callout-blue">
+        <strong>Training delivery</strong>
+        Cohorts of 6 to 16, Nairobi classroom plus field modules on the Nairobi–Kisumu corridor.
+        Certificates issue within five business days. T1 is valid 24 months; T2 and T3 need annual refreshers.
+      </div>
+
+      <footer class="page-foot">
+        <strong>Precifarm Products &amp; Services — Engineering Design Reference</strong><br />
+        PF-PRODUCT-ENG-001 · v1.0 · 11 September 2026 · Companions: PF-ENG-SOLAR-HUB-001 · PF-MODENERGY-002<br />
+        Planning basis only. Every installation requires a site survey, Kenya Power confirmation and licensed sign-off.
+        Conceptual products are not offered for sale.
+      </footer>
+    </section>
+    <footer class="doc-foot pf-doc-footer">
+  <div class="pf-doc-footer-brand">
+    <img src="./precifarm-logo-mark.svg" alt="" width="28" height="28" class="pf-doc-mark pf-doc-mark-sm" />
+    <div>
+      <p class="pf-doc-wordmark pf-doc-wordmark-sm">Precifarm</p>
+      <p class="pf-doc-brand-tagline">Electric mobility infrastructure for Africa</p>
+    </div>
+  </div>
+  <p class="pf-doc-footer-title"><strong>Products &amp; Services — Engineering Design Reference</strong></p>
+  <p class="pf-doc-footer-meta">© 2026 Precifarm · PF-PRODUCT-ENG-001 v1.0 · 11 September 2026</p>
+  <p class="pf-doc-footer-contact">sales@precifarm.com · +254 794 702 768 · Nairobi, Kenya · <a href="https://precifarm.com">precifarm.com</a></p>
+  <p class="pf-doc-footer-social"><a href="https://wa.me/254794702768">WhatsApp</a> · <a href="https://x.com/precifarm">X</a> · <a href="https://instagram.com/precifarm">Instagram</a> · <a href="https://linkedin.com/company/precifarm">LinkedIn</a> · <a href="https://facebook.com/precifarm">Facebook</a> · <a href="https://tiktok.com/@precifarm">TikTok</a></p>
+  <p class="pf-doc-footer-disclaimer">Planning basis for early design. Not a substitute for a site survey, Kenya Power studies, statutory approvals or licensed professional sign-off. Conceptual products are not offered for sale.</p>
+  <p class="pf-doc-footer-link"><a href="https://precifarm.com/charging/engineering">precifarm.com/charging/engineering</a></p>
+</footer>
+  </main>
+</body>
+</html>

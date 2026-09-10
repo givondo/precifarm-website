@@ -31,7 +31,7 @@ export const megapackPageContent = {
     eyebrow: "MegaPack · project-engineered BESS",
     title: "Battery storage from industrial sites to grid-connected plants",
     description:
-      "Precifarm designs and integrates BESS for factories, EV charging hubs, solar + storage and utility-scale plants in Kenya. Power, energy and equipment are specified per site — not sold as a catalogue SKU.",
+      "Precifarm designs and integrates BESS for factories, EV hubs and utility-scale plants in Kenya.",
     image: {
       src: "/images/megapack-hero-v3.png",
       alt: "Precifarm MegaPack utility-scale battery storage at golden hour",

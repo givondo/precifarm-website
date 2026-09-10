@@ -323,7 +323,7 @@ export const siteNavGroups = [
  {
  href: "/charging/boda-hub",
  label: "Automated Boda Hub",
- description: "Automated battery-swap smart lockers",
+ description: "Battery-swap lockers",
  },
  { href: "/charging/engineering", label: "Engineering" },
  { href: "/training", label: "Training", description: "T1 · T2 · T3 certification" },
@@ -335,17 +335,17 @@ export const siteNavGroups = [
  {
  href: modularEnergyNav.overview.href,
  label: modularEnergyNav.overview.label,
- description: "One 2.56 kWh module across three scales",
+ description: "One module, three scales",
  },
  ...modularEnergyNav.products.map((product) => ({
  href: product.href,
  label: product.label,
  description:
  product.slug === "mini-stack"
- ? "2–6 modules outdoors — not Pod energy storage"
+ ? "Outdoor · 2–6 modules"
  : product.slug === "p1-go"
- ? "Portable ~1 kWh with foldable solar"
- : "1–4 module tower for essential loads",
+ ? "Portable · ~1 kWh"
+ : "Home tower · 1–4 modules",
  })),
  {
  href: modularEnergyNav.megapack.href,
@@ -360,7 +360,7 @@ export const siteNavGroups = [
  {
  href: "/download",
  label: "Desktop download",
- description: "Coming soon — request access",
+ description: "Coming soon",
  },
  ],
  },
@@ -368,7 +368,7 @@ export const siteNavGroups = [
  title: "Company",
  links: [
  { href: "/about", label: "About" },
- { href: "/sustainability", label: "Sustainability", description: "Cleaner driving, grid-smart energy and honest reporting" },
+ { href: "/sustainability", label: "Sustainability", description: "Cleaner driving, honest reporting" },
  { href: "/evs", label: "Kenya EV guide" },
  { href: "/guides", label: "Guides" },
  { href: "/faq", label: "FAQ" },

@@ -20,6 +20,7 @@
     "pdf:modular-energy-design": "node scripts/generate-modular-energy-design-pdf.mjs",
     "pdf:ai-companion": "node scripts/generate-ai-companion-pdf.mjs",
     "pdf:megapack-brief": "node scripts/generate-megapack-brief-pdf.mjs",
+    "pdf:product-engineering": "node scripts/generate-product-engineering-pdf.mjs",
     "pdf:all": "node scripts/generate-all-pdfs.mjs",
     "figures:enhance": "node scripts/enhance-figure-design.mjs && node scripts/normalize-figure-svgs.mjs"
   },
