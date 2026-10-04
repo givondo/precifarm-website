@@ -57,7 +57,7 @@ export const homeProducts: HomeProduct[] = [
     name: productNames.pulse,
     summary: "Plug in when you get home. By morning the car is ready — petrol stops being part of the weekday.",
     tagline:
-      "Pulse is the wallbox most homeowners start with. We install it, you charge overnight, Lipa Pole Pole if you want to spread the cost.",
+      "The Pulse charger is the wallbox most homeowners start with. We install it, you charge overnight, Lipa Pole Pole if you want to spread the cost.",
     category: "home",
     priceLabel: "KES 79,000 · Lipa Pole Pole",
     href: "/charging/home",
@@ -168,7 +168,7 @@ export const flagshipProductDetails: Record<FlagshipProductId, FlagshipProductDe
     priceLabel: "KES 79,000 · From KES 3,300/month",
     specs: ["7 kW AC", "Type 2", "Home"],
     bestFor: "Daily drivers",
-    ctaLabel: "Get Pulse",
+    ctaLabel: "Get Pulse charger",
     href: "/charging/home",
   },
   pod: {

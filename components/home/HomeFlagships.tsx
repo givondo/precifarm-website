@@ -2,11 +2,12 @@ import Link from "next/link";
 import SiteImage from "@/components/SiteImage";
 import { productRangeSection } from "@/lib/brand-messaging";
 import { flagshipIds, flagshipProductDetails, type FlagshipProductId } from "@/lib/home-products";
+import { homePageImages } from "@/lib/home-page-images";
 import { productImages } from "@/lib/product-images";
 
 function flagshipImage(id: FlagshipProductId) {
   if (id === "pod") {
-    return { src: productImages.podHomeHero.src, alt: productImages.podHomeHero.alt };
+    return { src: homePageImages.podHomeHero.src, alt: homePageImages.podHomeHero.alt };
   }
   const shot = productImages[id];
   return { src: shot.src, alt: shot.alt };

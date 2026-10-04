@@ -6,6 +6,7 @@
  */
 
 import { modularEnergyPaths } from "@/lib/modular-energy-page";
+import { productRenderPaths } from "@/lib/product-renders-catalog";
 
 export const bodaHubPath = "/charging/boda-hub" as const;
 
@@ -32,9 +33,8 @@ export const bodaHubPageContent = {
  description:
  "Automated battery-swap smart lockers for electric motorcycles as find a hub, reserve a pack, scan, swap and pay with M-Pesa.",
  image: {
- src: "/images/products/boda-hub-street-hero.png",
- alt: "Two silver Precifarm Boda Hub smart lockers at a Kenyan petrol station with e-motorcycles",
- caption: "Lockers where riders already stop as petrol stations, stages and shops.",
+ src: productRenderPaths.bodaHubStudio,
+ alt: "Boda Hub smart lockers at a partner site with electric motorcycles",
  },
  primaryCta: { href: bodaHubPaths.contact, label: "Talk to Precifarm" },
  secondaryCta: { href: bodaHubPaths.hub, label: "See live Boda sites" },
@@ -65,9 +65,8 @@ export const bodaHubPageContent = {
  description:
  "Quiet streets get a compact cabinet. Busy hubs get a standard. Peak stages get a bank. Same shell, same doors, same software.",
  image: {
- src: "/images/products/boda-hub-locker-family-closed.png",
- alt: "Precifarm Boda Hub locker family with all doors closed as compact 8-door, standard 12-door and 24-door locker bank",
- caption: "Compact · Standard · Locker bank",
+ src: productRenderPaths.bodaHub,
+ alt: "Boda Hub standard locker with closed doors",
  },
  configs: [
  {
@@ -120,9 +119,8 @@ export const bodaHubPageContent = {
  "Service teams learn one pack, not a catalogue of packs",
  ] as const,
  image: {
- src: "/images/products/energy-module-256-v2.png",
- alt: "Precifarm Energy Module 2.56 kWh as matte black pack with silver trim and blue status light",
- caption: "2.56 kWh Energy Module as the pack behind every swap.",
+ src: productRenderPaths.energyModuleEm256,
+ alt: "Precifarm 2.56 kWh Energy Module",
  },
  href: bodaHubPaths.modularEnergy,
  hrefLabel: "Explore modular energy",
@@ -151,9 +149,8 @@ export const bodaHubPageContent = {
  },
  ] as const,
  image: {
- src: "/images/products/boda-hub-bay-closed.png",
- alt: "Precifarm Boda Hub standard locker front with all white doors closed",
- caption: "Blue lights show which doors are ready.",
+ src: productRenderPaths.bodaHubFront,
+ alt: "Boda Hub locker front with rider screen and smart doors",
  },
  },
  journey: {

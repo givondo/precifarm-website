@@ -20,7 +20,15 @@ npm run dev
 
 Open <http://localhost:3000>.
 
+### Local dev tips
+
+- Run **one** `npm run dev` at a time. If port 3000 is stuck, stop the other Node process (Next prints the PID) or use Task Manager.
+- After dependency or CSS changes, if you see a 500 on `/`, run `npm install` then `npm run dev:clean` (deletes `.next` and restarts). On Windows, close other tools locking `.next` if delete fails.
+- Leaflet styles load from `app/layout.tsx` (not `globals.css`) so Tailwind v4 dev does not break.
+
 **Environment:** copy [`.env.example`](./.env.example) → `.env.local`. Full reference: [`docs/infrastructure/environment.md`](../docs/infrastructure/environment.md).
+
+**Improvement roadmap:** [`docs/WEBSITE-IMPROVEMENT-PLAN.md`](./docs/WEBSITE-IMPROVEMENT-PLAN.md).
 
 ## Public routes
 

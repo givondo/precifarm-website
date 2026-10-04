@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "leaflet/dist/leaflet.css";
 
 :root {
   --background: #ffffff;
@@ -326,6 +325,23 @@ html {
 
 .section-pad {
   @apply py-10 sm:py-16;
+}
+
+/* Homepage — shared rhythm */
+.home-section {
+  @apply py-14 sm:py-20 lg:py-24;
+}
+
+.home-section-header {
+  @apply mb-0;
+}
+
+.home-section-grid {
+  @apply mt-0;
+}
+
+.home-hero {
+  @apply border-b border-border bg-white py-12 sm:py-16 lg:py-20;
 }
 
 .page-hero-split {

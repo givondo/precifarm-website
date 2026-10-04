@@ -27,8 +27,9 @@ type NavGroup = {
 };
 
 const groupIcons: Record<(typeof siteNavGroups)[number]["title"], ReactNode> = {
-  Charge: <IconMap />,
-  "Modular energy": <IconBolt />,
+  Charging: <IconMap />,
+  Energy: <IconBolt />,
+  "For business": <IconPhone />,
   Company: <IconGrid />,
 };
 
@@ -209,7 +210,7 @@ function DesktopNavDropdown({ group, pathname }: { group: NavGroup; pathname: st
         <div className="site-header-dropdown-menu">
           {group.items.map((item) => (
             <DesktopMenuLink
-              key={`${group.label}-${item.href}`}
+              key={`${group.label}-${item.label}-${item.href}`}
               item={item}
               pathname={pathname}
               onNavigate={closeNow}
@@ -274,7 +275,7 @@ function MobileNavPanel({ pathname, onClose }: { pathname: string; onClose: () =
           </summary>
           <ul className="mobile-nav-sublist">
             {group.items.map((item) => (
-              <li key={item.href}>
+              <li key={`${item.label}-${item.href}`}>
                 <MobileNavLink
                   href={item.href}
                   label={item.label}

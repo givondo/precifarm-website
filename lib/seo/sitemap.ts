@@ -1,6 +1,8 @@
 import { absoluteUrl, publicRoutes } from "@/lib/seo/config";
 import { modularEnergyPaths } from "@/lib/modular-energy-page";
+import { homePageImages } from "@/lib/home-page-images";
 import { productImages } from "@/lib/product-images";
+import { productRenderPaths } from "@/lib/product-renders-catalog";
 import type { SitemapEntry } from "@/lib/seo/types";
 
 export function buildStaticSitemapEntries(lastModified = new Date()): SitemapEntry[] {
@@ -23,9 +25,8 @@ export function buildStaticSitemapEntries(lastModified = new Date()): SitemapEnt
 export function buildImageSitemapEntries(): Record<string, string[]> {
   return {
     "/": [
-      productImages.chargingEcosystemHero.src,
-      productImages.pulse.src,
-      productImages.podHomeHero.src,
+      homePageImages.featuredPulse.src,
+      homePageImages.podHomeHero.src,
       productImages.corridor.src,
       productImages.spark.src,
     ].map(absoluteUrl),
@@ -34,10 +35,10 @@ export function buildImageSitemapEntries(): Record<string, string[]> {
       absoluteUrl,
     ),
     "/charging/boda-hub": [
-      "/images/products/boda-hub-street-hero.png",
-      "/images/products/boda-hub-locker-family-closed.png",
-      "/images/products/energy-module-256-v2.png",
-      "/images/products/boda-hub-bay-closed.png",
+      productRenderPaths.bodaHubStudio,
+      productRenderPaths.bodaHub,
+      productRenderPaths.energyModuleEm256,
+      productRenderPaths.bodaHubFront,
     ].map(absoluteUrl),
     [modularEnergyPaths.overview]: [
       productImages.familyHero.src,

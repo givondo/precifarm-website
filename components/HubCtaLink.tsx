@@ -3,7 +3,7 @@ import type { ComponentProps } from "react";
 
 type HubCtaLinkProps = Omit<ComponentProps<"a">, "href">;
 
-/** Primary header CTA — Charging Hub. */
+/** Primary header CTA from brand-messaging `headerCta`. */
 export default function HubCtaLink({
   className,
   children,

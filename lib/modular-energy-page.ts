@@ -1,5 +1,7 @@
 ﻿/** Modular energy as overview tables and product pages */
 
+import { productRenderPaths } from "@/lib/product-renders-catalog";
+
 export const modularEnergyPaths = {
  overview: "/charging/modular-energy",
  p1Go: "/charging/modular-energy/p1-go",
@@ -85,7 +87,7 @@ export const modularEnergyAvailability = {
  eyebrow: "Availability",
  title: "What installs today, and what is still design intent",
  description:
- "Modular energy is not on sale. If you need backup or solar this quarter, these are the products we commission today.",
+ "If you need backup or solar this quarter, these are the products we commission today alongside the modular energy platform.",
  today: {
  title: modularEnergyBrand.status.today,
  items: [
@@ -125,27 +127,26 @@ export const modularEnergyPage = {
  "P1 Go, P2 Home and Mini Stack are three scales of the same Energy Module: a pack you carry through a dip, a tower beside the consumer board, or an outdoor enclosure at a street-front shop. One capacity block means one spare part and one service procedure across the family.",
  primaryCta: { href: "/contact", label: "Talk to us about energy" },
  secondaryCta: { href: "/charging/home", label: "See what installs today" },
- note: modularEnergyStatusNote,
  /** Three-scale hero as carried, stacked, mounted outdoors */
  familyImages: [
  {
- src: "/images/modular-energy/render-p1-go-v5.png",
+ src: productRenderPaths.p1Go,
  alt: "P1 Go portable power station with foldable solar panel",
  label: "P1 Go · carried",
  },
  {
- src: "/images/modular-energy/render-p2-home-v2.png",
+ src: productRenderPaths.p2Home,
  alt: "P2 Home backup tower with stacked Energy Modules",
  label: "P2 Home · stacked",
  },
  {
- src: "/images/modular-energy/render-pod.png",
+ src: productRenderPaths.miniStack,
  alt: "Mini Stack outdoor enclosure with service door open and Energy Modules on rails",
  label: "Mini Stack · outdoors",
  },
  ] as const,
  image: {
- src: "/images/modular-energy/render-family-hero-v3.jpg",
+ src: productRenderPaths.energyStorageFamily,
  alt: "Precifarm modular energy family — P1 Go, P2 Home, Mini Stack and MegaPack share one Energy Module",
  },
  },
@@ -171,7 +172,7 @@ export const modularEnergyPage = {
  role: "Portable backup",
  scale: "~1 kWh carry",
  summary: "Keeps the router, laptop and phones on through a dip.",
- image: "/images/modular-energy/render-p1-go-v5.png",
+ image: productRenderPaths.p1Go,
  imageAlt: "P1 Go portable power station with foldable solar panel and Type 2 trickle cable",
  },
  {
@@ -180,7 +181,7 @@ export const modularEnergyPage = {
  role: "Home tower",
  scale: "1–4 modules",
  summary: "Carries essential loads from beside the consumer board.",
- image: "/images/modular-energy/render-p2-home-v2.png",
+ image: productRenderPaths.p2Home,
  imageAlt: "P2 Home backup tower beside a consumer board",
  },
  {
@@ -189,7 +190,7 @@ export const modularEnergyPage = {
  role: "Shop backup",
  scale: "2–6 modules",
  summary: "Outdoor backup for the fridge, till and lights.",
- image: "/images/modular-energy/render-pod.png",
+ image: productRenderPaths.miniStack,
  imageAlt: "Precifarm Mini Stack outdoor backup unit with service door and sun-shield canopy",
  },
  {
@@ -198,15 +199,15 @@ export const modularEnergyPage = {
  role: "Project BESS",
  scale: "MWh to GWh",
  summary: "Engineered per site for factories, EV hubs and grid plants.",
- image: "/images/megapack-hero-v3.png",
- imageAlt: "Precifarm MegaPack utility-scale battery storage",
+ image: productRenderPaths.commercialCabinet,
+ imageAlt: "Precifarm C215 commercial energy cabinet — project-scale BESS building block",
  },
  ],
  },
  familyTable: {
  eyebrow: "Choose by site",
  title: "Which product suits your building, and how much energy it holds",
- caption: "Every row below is design intent. Nothing in the modular energy family is certified or on sale yet.",
+ caption: "Compare site fit, scale and typical loads across the modular energy family.",
  columns: ["Product", "Where it goes", "Scale", "Sized for"] as const,
  rows: [
  {
@@ -252,8 +253,8 @@ export const modularEnergyPage = {
  description:
  "Buy the outage hours you need now. Every P2 bay holds one 2.56 kWh module, so a one-module tower can grow to four without changing the Power Core, the inverter or the sub-board wiring.",
  image: {
- src: "/images/modular-energy/render-p2-stack-scale-v2.png",
- alt: "Precifarm P2 Home towers at two, three and four modules, floor-standing, no wheels",
+ src: productRenderPaths.p2Home,
+ alt: "Precifarm P2 Home backup tower with stacked Energy Modules beside the consumer board",
  },
  tiers: [
  { modules: 2, label: "~5.1 kWh" },
@@ -268,8 +269,8 @@ export const modularEnergyPage = {
  description:
  "Because P1 Go, P2 Home and Mini Stack share one 2.56 kWh module, a failed bay is a part our technician carries. The site keeps the enclosure, the wiring and the remaining capacity — only the module changes.",
  image: {
- src: "/images/modular-energy/render-energy-module-rack-v1.png",
- alt: "Precifarm Energy Module rack in a test lab with modules extended on sliding rails and monitoring dashboards",
+ src: productRenderPaths.energyModuleEm256,
+ alt: "Precifarm 2.56 kWh Energy Module — the pack swapped in Boda Hub and modular energy",
  },
  steps: [
  { title: "The system names the bay", text: "Monitoring identifies which module is out of tolerance before the customer notices a shortfall." },
@@ -287,32 +288,32 @@ export const modularEnergyPage = {
  setting: "Urban home",
  hardware: "P2 Home beside the consumer board",
  loads: "Lights, router, TV, fan and security on a sub-board",
- image: "/images/modular-energy/render-kenya-home-v2.png",
- imageAlt: "P2 Home installed beside a Kenyan urban residence distribution board",
+ image: productRenderPaths.p2Home,
+ imageAlt: "Precifarm P2 Home tower beside a Kenyan home consumer board",
  href: modularEnergyPaths.p2Home,
  },
  {
  setting: "SME retail",
  hardware: "Mini Stack on a plinth, shaded by the wall",
  loads: "Refrigeration, point of sale and lighting through a dip",
- image: "/images/modular-energy/render-kenya-sme.png",
- imageAlt: "Precifarm Pod at a Kenyan SME retail site with rooftop solar",
+ image: productRenderPaths.miniStack,
+ imageAlt: "Precifarm Mini Stack outdoor enclosure at a Kenyan SME retail site",
  href: modularEnergyPaths.miniStack,
  },
  {
  setting: "Solar and EV",
  hardware: "Storage plus a Pulse wallbox",
  loads: "House on backup, daytime solar surplus into the car",
- image: "/images/modular-energy/render-solar-ev.png",
- imageAlt: "Carport EV charging from rooftop solar surplus at a Kenyan home",
+ image: productRenderPaths.p1GoSolar,
+ imageAlt: "Precifarm P1 Go with solar panel — portable energy for home and EV top-ups",
  href: "/charging/home",
  },
  {
  setting: "Charging hub or industrial",
  hardware: "MegaPack, engineered per project",
  loads: "Peak support and solar shifting where the site specifies it",
- image: "/images/megapack-ev-hub-v2.png",
- imageAlt: "Precifarm EV charging hub with MegaPack storage and solar canopy",
+ image: productRenderPaths.corridorForecourt,
+ imageAlt: "Precifarm Corridor forecourt with DC fast charging and site-scale energy",
  href: modularEnergyPaths.megapack,
  },
  ],
@@ -419,7 +420,7 @@ export const modularEnergyProducts: Record<ModularEnergyProductSlug, ModularEner
  audience: "For renters, students and anyone without a fixed install",
  description:
  "A carry-size power station that holds up a router, laptop and phones through an outage.",
- image: "/images/modular-energy/render-p1-go-v5.png",
+ image: productRenderPaths.p1Go,
  imageAlt: "P1 Go portable power station on kickstand with foldable solar panel, UK sockets and Type 2 cable",
  highlights: [
  { label: "Energy class", value: "~1 kWh carry" },
@@ -445,8 +446,8 @@ export const modularEnergyProducts: Record<ModularEnergyProductSlug, ModularEner
  },
  faqSectionTitle: "P1 Go as charging role, solar and when it will be available",
  scene: {
- src: "/images/modular-energy/render-p1-go-scene-v1.png",
- alt: "P1 Go powering a router, laptop and phones during a power dip in a Nairobi apartment",
+ src: productRenderPaths.p1GoSolar,
+ alt: "Precifarm P1 Go with foldable solar panel for backup during a power dip",
  caption: "Typical use as keep the router, laptop and phones running when Kenya Power dips.",
  },
  specColumns: ["Item", "Target"],
@@ -526,8 +527,8 @@ export const modularEnergyProducts: Record<ModularEnergyProductSlug, ModularEner
  audience: "For homeowners with a utility room and a weak evening grid",
  description:
  "A floor-standing tower beside your consumer board that runs lights, router, TV, fan and security.",
- image: "/images/modular-energy/render-p2-stack-scale-v2.png",
- imageAlt: "Precifarm P2 Home towers at two, three and four modules, floor-standing beside the board",
+ image: productRenderPaths.p2Home,
+ imageAlt: "Precifarm P2 Home backup tower beside the consumer board",
  highlights: [
  { label: "Modules", value: "1–4 bays" },
  { label: "Max nameplate", value: "~10.2 kWh" },
@@ -556,8 +557,8 @@ export const modularEnergyProducts: Record<ModularEnergyProductSlug, ModularEner
  },
  faqSectionTitle: "P2 Home — load coverage, stacking modules and installation",
  scene: {
- src: "/images/modular-energy/render-kenya-home-v2.png",
- alt: "P2 Home installed beside a Kenyan urban residence distribution board",
+ src: productRenderPaths.p2Home,
+ alt: "Precifarm P2 Home tower beside a Kenyan home consumer board",
  caption: "Typical install: tower in the utility room, essential loads on a sub-board.",
  },
  stackTiers: [
@@ -641,7 +642,7 @@ export const modularEnergyProducts: Record<ModularEnergyProductSlug, ModularEner
  audience: "For street-front retail, kiosks and small workshops",
  description:
  "Two to six modules in a shaded outdoor enclosure, bolted to a plinth outside the shop.",
- image: "/images/modular-energy/render-pod.png",
+ image: productRenderPaths.miniStack,
  imageAlt: "Precifarm Mini Stack outdoor backup unit with service door and sun-shield canopy",
  highlights: [
  { label: "Modules", value: "2–6 modules" },
@@ -667,8 +668,8 @@ export const modularEnergyProducts: Record<ModularEnergyProductSlug, ModularEner
  },
  faqSectionTitle: "Mini Stack — outdoor install, module count and weather design",
  scene: {
- src: "/images/modular-energy/render-kenya-sme.png",
- alt: "Precifarm Pod at a Kenyan SME retail site with rooftop solar",
+ src: productRenderPaths.miniStack,
+ alt: "Precifarm Mini Stack outdoor enclosure at a Kenyan SME retail site",
  caption: "Typical install: Mini Stack on a plinth, fridge and till through a dip.",
  },
  specColumns: ["Item", "Target"],

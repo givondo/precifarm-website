@@ -9,7 +9,7 @@ import { trainingPageFaqs } from "@/lib/training-page";
 import { chargingHub } from "@/lib/charging-hub";
 import { agentPageFaqs } from "@/lib/agent-page";
 import { downloadPageFaqs } from "@/lib/download-page";
-import { megapackFaqs } from "@/lib/megapack-page";
+import { megapackFaqs, megapackPageContent } from "@/lib/megapack-page";
 import { bodaHubFaqs, bodaHubPageContent, bodaHubStatusNote } from "@/lib/boda-hub-page";
 import { homepageAisoBlocks } from "@/lib/seo/aiso/blocks";
 import { defaultSiteTitle } from "@/lib/seo/config";
@@ -118,7 +118,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  "Precifarm Boda Hub",
  "2.56 kWh battery swap Kenya",
  ],
- ogImage: "/images/products/boda-hub-street-hero.png",
+ ogImage: bodaHubPageContent.hero.image.src,
  faqs: [...bodaHubFaqs],
  breadcrumbs: [
  { name: "Home", href: "/" },
@@ -195,7 +195,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  "renewable energy storage Kenya",
  "Precifarm MegaPack",
  ],
- ogImage: "/images/megapack-hero-v3.png",
+ ogImage: megapackPageContent.hero.image.src,
  faqs: [...megapackFaqs],
  breadcrumbs: [
  { name: "Home", href: "/" },

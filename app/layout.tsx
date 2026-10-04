@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
+import "leaflet/dist/leaflet.css";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";

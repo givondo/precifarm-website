@@ -1,7 +1,10 @@
-const homeSolarImage = "/images/charging-private-house-hybrid.png";
-const corridorImage = "/images/products/corridor-v5.png";
-const depotImage = "/images/products/depot-v5.png";
-const familyImage = "/images/charging-ecosystem-hero-v21.png";
+import { productImages } from "@/lib/product-images";
+import { productRenderPaths } from "@/lib/product-renders-catalog";
+
+const homeSolarImage = productRenderPaths.p2Home;
+const corridorImage = productImages.corridor.src;
+const depotImage = productRenderPaths.pulsePlus22kW;
+const familyImage = productRenderPaths.energyStorageFamily;
 
 export const hubImages = {
   /** Home solar + storage + wall charging — passenger EV, not a bus */

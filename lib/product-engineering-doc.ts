@@ -1,4 +1,5 @@
 import { documentBrand } from "@/lib/document-brand";
+import { productRenderPaths } from "@/lib/product-renders-catalog";
 
 /** Illustrated product & service reference — every Precifarm product with its engineering numbers. */
 export const productEngineeringDoc = {
@@ -17,12 +18,12 @@ export const productEngineeringDoc = {
   printHint: "12 pages — product photography, specification tables, sizing formulas and Kenya hold points.",
   figures: [
     {
-      src: "/images/charging-ecosystem-hero-v21.png",
+      src: productRenderPaths.energyStorageFamily,
       alt: "Precifarm charging and energy product family",
       caption: "The full range — portable Spark through highway Corridor DC, plus home storage and battery swap.",
     },
     {
-      src: "/images/products/pod-home-hero-v3-garage-4x3.png",
+      src: productRenderPaths.p2Home,
       alt: "Pod energy storage installed in a Kenyan home garage",
       caption: "Home charging and storage in one utility corner.",
     },
@@ -32,7 +33,7 @@ export const productEngineeringDoc = {
       caption: "Grid, PV, storage, CCS2 dispensers and the charging management system.",
     },
     {
-      src: "/images/products/boda-hub-locker-family-v3.png",
+      src: productRenderPaths.bodaHub,
       alt: "Precifarm Boda Hub locker family",
       caption: "Battery swap lockers — compact, standard and bank configurations.",
     },

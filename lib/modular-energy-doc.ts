@@ -1,4 +1,5 @@
 ﻿import { documentBrand } from "@/lib/document-brand";
+import { productRenderPaths } from "@/lib/product-renders-catalog";
 
 /** Modular energy platform as PF-MODENERGY-002 product + engineering architecture */
 export const modularEnergyDoc = {
@@ -18,59 +19,59 @@ export const modularEnergyDoc = {
  "PDF includes executive summary, platform architecture, sizing charts, PAYGO policy, test matrix and full figure annex.",
  figures: [
  {
- src: "/images/modular-energy/render-p1-go-v5.png",
+ src: productRenderPaths.p1Go,
  alt: "P1 Go portable power station",
  caption: "P1 Go · carried",
  },
  {
- src: "/images/modular-energy/render-p2-stack-scale-v2.png",
+ src: productRenderPaths.p2Home,
  alt: "P2 Home towers at two, three and four modules",
  caption: "P2 Home · stacked beside the board",
  },
  {
- src: "/images/modular-energy/render-pod.png",
+ src: productRenderPaths.miniStack,
  alt: "Mini Stack outdoor enclosure with service door open",
  caption: "Mini Stack · outdoor plinth for retail sites",
  },
  {
- src: "/images/modular-energy/render-p1-go-v5.png",
+ src: productRenderPaths.p1Go,
  alt: "P1 Go portable power station with foldable solar panel, glass display and Type 2 EV lead",
  caption:
  "P1 Go as compact aluminum body, fold-flat handle, magnetic port bay, wireless pad, foldable solar panel in the box and emergency EV trickle lead.",
  },
  {
- src: "/images/modular-energy/render-energy-module.png",
+ src: productRenderPaths.energyModuleEm256,
  alt: "Precifarm 2.56 kWh Energy Module with recessed handles and glass status strip",
  caption: "Energy Module as 2.56 kWh building block with blind-mate power and comms connectors.",
  },
  {
- src: "/images/modular-energy/render-energy-module-rack-v1.png",
+ src: productRenderPaths.energyModuleEm256,
  alt: "Precifarm Energy Module rack in a test lab with modules extended on sliding rails",
  caption:
  "Service flow as spot the fault, pull the module, swap it in. Same rails in the lab and on site.",
  },
  {
- src: "/images/modular-energy/render-p2-home-v2.png",
+ src: productRenderPaths.p2Home,
  alt: "P2 Home backup tower with Power Core above four module bays as floor-standing, no wheels",
  caption: "P2 Home as Power Core above, four module bays, floor-standing beside the board.",
  },
  {
- src: "/images/modular-energy/render-pod.png",
+ src: productRenderPaths.miniStack,
  alt: "Precifarm Pod outdoor SME enclosure with service door and sun-shield canopy",
  caption: "Pod as outdoor SME enclosure with Power Unit, six-module rack and sun-shield canopy.",
  },
  {
- src: "/images/modular-energy/render-kenya-home-v2.png",
+ src: productRenderPaths.p2Home,
  alt: "P2 Home installed beside a Kenyan urban residence distribution board",
  caption: "Kenya urban home as P2 beside the consumer board with essential-load sub-board intervention.",
  },
  {
- src: "/images/modular-energy/render-kenya-sme.png",
+ src: productRenderPaths.miniStack,
  alt: "Precifarm Pod at a Kenyan SME retail site with rooftop solar",
  caption: "Kenya SME as wall-shaded Pod for refrigeration continuity, plinth mount and rooftop PV.",
  },
  {
- src: "/images/modular-energy/render-solar-ev.png",
+ src: productRenderPaths.p1GoSolar,
  alt: "Carport EV charging from rooftop solar surplus at a Kenyan home",
  caption: "Solar + EV as Phase A home energy loop, carport charging from customer solar surplus.",
  },

@@ -122,7 +122,6 @@ export default function ModularEnergyView() {
                   {page.hero.secondaryCta.label}
                 </Link>
               </div>
-              <p className="mt-4 text-sm text-forest-500">{page.hero.note}</p>
             </div>
             <figure className="visual-frame-muted p-4 sm:p-5">
               <div className="grid grid-cols-3 items-end gap-3 sm:gap-4">

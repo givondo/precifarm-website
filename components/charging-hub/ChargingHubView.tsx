@@ -5,6 +5,8 @@ import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import FaqAccordion from "@/components/seo/FaqAccordion";
 import PageCTA from "@/components/ui/PageCTA";
 import SectionHeader from "@/components/ui/SectionHeader";
+import ChargingHubMap from "@/components/charging-hub/ChargingHubMap";
+import StatusBadge from "@/components/ui/StatusBadge";
 import { chargingHub, chargingHubPage } from "@/lib/charging-hub";
 import { hubPageFaqs } from "@/lib/charging-faqs";
 import { productImages } from "@/lib/product-images";
@@ -114,6 +116,8 @@ export default function ChargingHubView() {
         </div>
       </section>
 
+      <ChargingHubMap />
+
       {/* Highlights */}
       <section className="section-pad border-b border-border bg-white">
         <div className="page-container">
@@ -156,7 +160,10 @@ export default function ChargingHubView() {
                   </div>
                   <div className="flex flex-1 flex-col px-6 pb-7 pt-3">
                     <p className="text-sm font-semibold text-charge-600">{type.stat}</p>
-                    <h3 className="mt-1 text-lg font-semibold text-forest-900">{type.title}</h3>
+                    <div className="mt-1 flex flex-wrap items-center gap-2">
+                      <h3 className="text-lg font-semibold text-forest-900">{type.title}</h3>
+                      {"status" in type && type.status ? <StatusBadge status={type.status} /> : null}
+                    </div>
                     <p className="mt-2 flex-1 text-sm leading-relaxed text-forest-600">{type.detail}</p>
                   </div>
                 </article>

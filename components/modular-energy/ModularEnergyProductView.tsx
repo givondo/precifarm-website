@@ -9,10 +9,10 @@ import {
   modularEnergyNav,
   modularEnergyPage,
   modularEnergyProducts,
-  modularEnergyStatusNote,
   type ModularEnergyProduct,
   type ModularEnergyProductSlug,
 } from "@/lib/modular-energy-page";
+import { productRenderPaths } from "@/lib/product-renders-catalog";
 
 function FeatureCard({ title, text }: { title: string; text: string }) {
   return (
@@ -69,7 +69,7 @@ const relatedImages: Record<string, { image: string; imageAlt: string; descripti
     description: "2–6 modules on an outdoor plinth",
   },
   megapack: {
-    image: "/images/megapack-hero-v3.png",
+    image: productRenderPaths.commercialCabinet,
     imageAlt: "Precifarm MegaPack utility-scale battery storage",
     description: "Engineered per site, MWh to GWh",
   },
@@ -111,7 +111,6 @@ export default function ModularEnergyProductView({ slug }: { slug: ModularEnergy
                   Platform overview
                 </Link>
               </div>
-              <p className="mt-4 text-sm text-forest-500">{modularEnergyStatusNote}</p>
             </div>
             <figure className="visual-frame">
               <SiteImage

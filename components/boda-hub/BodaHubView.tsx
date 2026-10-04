@@ -4,6 +4,7 @@ import FaqAccordion from "@/components/seo/FaqAccordion";
 import SiteImage from "@/components/SiteImage";
 import PageCTA from "@/components/ui/PageCTA";
 import SectionHeader from "@/components/ui/SectionHeader";
+import StatusBadge from "@/components/ui/StatusBadge";
 import {
   bodaHubDisclaimer,
   bodaHubPageContent,
@@ -26,7 +27,10 @@ export default function BodaHubView() {
             ]}
           />
           <div className="mt-6 max-w-3xl">
-            <p className="text-eyebrow">{p.hero.eyebrow}</p>
+            <div className="flex flex-wrap items-center gap-3">
+              <p className="text-eyebrow">{p.hero.eyebrow}</p>
+              <StatusBadge status="concept" label="Automated lockers" />
+            </div>
             <h1 className="heading-display mt-3 text-[1.75rem] leading-[1.1] sm:text-3xl lg:text-4xl">
               {p.hero.title}
             </h1>
@@ -46,7 +50,7 @@ export default function BodaHubView() {
         </div>
         <figure className="mt-8 sm:mt-10">
           <div className="page-container">
-            <div className="visual-frame overflow-hidden">
+            <div className="visual-frame overflow-hidden bg-muted/25 p-4 sm:p-6">
               <SiteImage
                 src={p.hero.image.src}
                 alt={p.hero.image.alt}
@@ -54,10 +58,9 @@ export default function BodaHubView() {
                 height={1080}
                 priority
                 sizes="100vw"
-                className="aspect-[16/9] w-full object-cover object-center"
+                className="aspect-[16/9] w-full object-contain object-center"
               />
             </div>
-            <figcaption className="mt-3 text-sm text-forest-500">{p.hero.image.caption}</figcaption>
           </div>
         </figure>
       </section>
@@ -89,16 +92,15 @@ export default function BodaHubView() {
             title={p.lockers.title}
             description={p.lockers.description}
           />
-          <figure className="visual-frame mt-10">
+          <figure className="visual-frame mt-10 bg-muted/25 p-4 sm:p-8">
             <SiteImage
               src={p.lockers.image.src}
               alt={p.lockers.image.alt}
               width={1920}
               height={1080}
               sizes="100vw"
-              className="aspect-[16/9] w-full object-cover"
+              className="aspect-[16/9] w-full object-contain"
             />
-            <figcaption className="mt-3 text-sm text-forest-500">{p.lockers.image.caption}</figcaption>
           </figure>
           <div className="mt-10 divide-y divide-border border-t border-border">
             {p.lockers.configs.map((config) => (
@@ -124,16 +126,15 @@ export default function BodaHubView() {
             description={p.module.description}
           />
           <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(260px,400px)_minmax(0,1fr)] lg:items-start">
-            <figure className="visual-frame">
+            <figure className="visual-frame bg-muted/25 p-4 sm:p-6">
               <SiteImage
                 src={p.module.image.src}
                 alt={p.module.image.alt}
                 width={1200}
                 height={900}
                 sizes="(max-width: 1024px) 100vw, 32vw"
-                className="aspect-[4/3] w-full object-cover"
+                className="aspect-[4/3] w-full object-contain"
               />
-              <figcaption className="mt-3 text-sm text-forest-500">{p.module.image.caption}</figcaption>
             </figure>
             <div>
               <dl className="grid grid-cols-2 gap-x-6 gap-y-5 sm:grid-cols-4">
@@ -185,16 +186,15 @@ export default function BodaHubView() {
                 ))}
               </ol>
             </div>
-            <figure className="visual-frame">
+            <figure className="visual-frame bg-muted/25 p-4 sm:p-6">
               <SiteImage
                 src={p.build.image.src}
                 alt={p.build.image.alt}
                 width={1200}
                 height={900}
                 sizes="(max-width: 1024px) 100vw, 32vw"
-                className="aspect-[4/3] w-full object-cover"
+                className="aspect-[4/3] w-full object-contain"
               />
-              <figcaption className="mt-3 text-sm text-forest-500">{p.build.image.caption}</figcaption>
             </figure>
           </div>
 

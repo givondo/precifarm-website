@@ -1,29 +1,30 @@
 import { privateHouseChargingFaqs as houseFaqs } from "@/lib/charging-faqs";
 import { contact } from "@/lib/contact";
+import { homePageImages } from "@/lib/home-page-images";
 import { productImages } from "@/lib/product-images";
 import { sitePricing } from "@/lib/site-copy";
 
 /** Homepage band — links to the dedicated private house charging page */
 export const homeChargingHighlight = {
-  eyebrow: "Private house charging",
-  title: "House-based private charging on your own property",
+  eyebrow: "Featured · Pulse charger",
+  title: "Wake up charged at home",
   paragraphs: [
-    "A 7 kW Pulse charger on your driveway or car port — sized to your EV, on your meter, with no public access or shared hub queues.",
-    "Optional Pod energy storage with solar and LiFePO₄ where you want dependable overnight top-up at home.",
-    "Survey, installation and three-year aftersale support from the same Precifarm crews that commission our route hubs.",
+    `7 kW Pulse charger on your driveway — sized to your EV and meter, with no public queues. From ${sitePricing.pulseFrom}, or Lipa Pole Pole from ${sitePricing.lipaFrom} on M-Pesa.`,
+    "Add Pod energy storage or rooftop solar when you want backup and lower daytime cost.",
+    "Survey, install and 3 years of aftersale from the same team that engineers and runs our route hubs.",
   ],
-  primaryLabel: "Private house charging",
+  primaryLabel: "Explore Pulse charger",
   primaryHref: "/charging/home",
-  secondaryLabel: "All charging services",
-  secondaryHref: "/charging",
-  tertiaryLabel: "Charging Hub",
-  tertiaryHref: "/hub",
+  secondaryLabel: "Request a survey",
+  secondaryHref: "/charging/home#survey",
+  image: homePageImages.featuredPulse.src,
+  imageAlt: homePageImages.featuredPulse.alt,
 } as const;
 
 export const privateHouseChargingPage = {
   hero: {
     eyebrow: "Home charging",
-    title: "Pulse and Pod on your property",
+    title: "Pulse charger and Pod on your property",
     description:
       "Wallbox or storage on your land, for your car — survey, install and three-year care from one team. Lipa Pole Pole on M-Pesa.",
   },
@@ -43,11 +44,11 @@ export const privateHouseChargingPage = {
     },
     {
       title: "Typical day in ~90 min",
-      text: "About 60 km on Pulse or Pod at home.",
+      text: "About 60 km on a Pulse charger or Pod at home.",
     },
     {
       title: "Lipa Pole Pole",
-      text: `Pulse from ${sitePricing.pulseFrom}. Instalments from ${sitePricing.lipaFrom} on M-Pesa.`,
+      text: `Pulse charger from ${sitePricing.pulseFrom}. Instalments from ${sitePricing.lipaFrom} on M-Pesa.`,
     },
     {
       title: "Weak grid cover",

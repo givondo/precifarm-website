@@ -6,6 +6,7 @@
  */
 
 import { modularEnergyPaths } from "@/lib/modular-energy-page";
+import { productRenderPaths } from "@/lib/product-renders-catalog";
 
 export const megapackInterest =
   "MegaPack energy-storage project (industrial or utility BESS)" as const;
@@ -33,8 +34,8 @@ export const megapackPageContent = {
     description:
       "Precifarm designs and integrates BESS for factories, EV hubs and utility-scale plants in Kenya.",
     image: {
-      src: "/images/megapack-hero-v3.png",
-      alt: "Precifarm MegaPack utility-scale battery storage at golden hour",
+      src: productRenderPaths.commercialCabinet,
+      alt: "Precifarm C215 commercial energy cabinet — project-engineered BESS",
     },
     primaryCta: { href: megapackPaths.contact, label: "Start a project" },
     secondaryCta: { href: megapackPaths.brief, label: "Project brief" },
@@ -47,8 +48,8 @@ export const megapackPageContent = {
     { label: "Kenya context", value: "Kenya Power, Grid Code and EPRA per project" },
   ] as const,
   plantImage: {
-    src: "/images/megapack-grid-hero-v2.png",
-    alt: "Precifarm grid-connected storage plant with solar in Kenya",
+    src: productRenderPaths.energyStorageFamily,
+    alt: "Precifarm energy storage family from portable to corridor-scale cabinets",
     caption: "Solar and storage parks are engineered from the grid connection inward.",
   },
   applications: {
@@ -108,8 +109,8 @@ export const megapackPageContent = {
       { label: "Chargers", value: "1–2 MW", note: "Vehicle mix dependent" },
     ] as const,
     image: {
-      src: "/images/megapack-ev-hub-v2.png",
-      alt: "Precifarm EV charging hub with MegaPack storage and solar canopy",
+      src: productRenderPaths.corridorForecourt,
+      alt: "Precifarm Corridor forecourt — EV hub with DC fast charging and site energy",
     },
     note: "Illustrative only. Storage can reduce instantaneous grid demand. It does not remove interconnection studies or reinforcement.",
   },

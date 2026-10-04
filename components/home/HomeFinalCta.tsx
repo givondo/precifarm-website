@@ -1,5 +1,8 @@
 import Link from "next/link";
 import { finalCta } from "@/lib/brand-messaging";
+import { siteCtas } from "@/lib/site-copy";
+
+const moreLinks = [siteCtas.exploreCharging, siteCtas.allFaq] as const;
 
 export default function HomeFinalCta() {
   return (
@@ -15,6 +18,16 @@ export default function HomeFinalCta() {
             {finalCta.secondary.label} ›
           </Link>
         </div>
+        <nav
+          aria-label="More on Precifarm"
+          className="mt-10 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 border-t border-border pt-8 text-sm text-forest-500"
+        >
+          {moreLinks.map((item) => (
+            <Link key={item.href} href={item.href} className="link-touch font-medium hover:text-forest-900">
+              {item.label}
+            </Link>
+          ))}
+        </nav>
       </div>
     </section>
   );

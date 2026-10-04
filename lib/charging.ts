@@ -7,7 +7,7 @@ export const chargingPage = {
   eyebrow: "Charging",
   title: brand.promise,
   description:
-    "Home, fleet and highway — Pulse, Pod, Spark, Depot, Boda Hub and Corridor. M-Pesa on every product.",
+    "Home, fleet and highway — Pulse charger, Pod energy storage, Spark charger, Depot, Boda Hub and Corridor. M-Pesa on every product.",
 } as const;
 
 type CopyPart = string | { readonly bold: string };
@@ -25,14 +25,14 @@ export const whereYouCharge = {
       title: "Wake up charged.",
       body: [
         "Charge overnight from your own driveway. ",
-        { bold: "Pulse" },
+        { bold: "Pulse charger" },
         " handles daily charging, ",
-        { bold: "Pod" },
-        " adds energy storage and backup, while ",
-        { bold: "Spark" },
-        " keeps a portable charger in your boot.",
+        { bold: "Pod energy storage" },
+        " adds backup, while ",
+        { bold: "Spark charger" },
+        " stays in your boot for top-ups.",
       ] as const satisfies readonly CopyPart[],
-      products: "Pulse · Pod · Spark",
+      products: "Pulse charger · Pod · Spark charger",
       cta: siteCtas.homeCharging,
       offeringsKey: "home" as const,
     },

@@ -30,8 +30,8 @@ export const chargingHubPage = {
         label: "Highway DC",
       },
       {
-        src: productImages.boda.src,
-        alt: "Precifarm Boda Hub twelve-bay battery swap cabinet for electric motorcycles",
+        src: productImages.bodaStudio.src,
+        alt: productImages.bodaStudio.alt,
         label: "Boda swap",
       },
       {
@@ -86,6 +86,7 @@ export const chargingHubPage = {
         stat: "~60 kWh in 30 min",
         detail: "Fast top-up on major routes. From " + sitePricing.publicDcFrom + " on M-Pesa.",
         imageKey: "corridor" as const,
+        status: "pilot" as const,
       },
       {
         id: "boda",
@@ -93,6 +94,7 @@ export const chargingHubPage = {
         stat: "Under 5 min",
         detail: "Drop a flat pack and pick up a charged one in Nairobi, Kisumu and Nakuru.",
         imageKey: "boda" as const,
+        status: "pilot" as const,
       },
       {
         id: "partner",
@@ -100,6 +102,7 @@ export const chargingHubPage = {
         stat: "Shops & malls",
         detail: "Chargers at fuel stations, malls and retail stops along routes you already drive.",
         imageKey: "depot" as const,
+        status: "available" as const,
       },
     ],
   },
