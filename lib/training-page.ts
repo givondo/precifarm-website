@@ -4,6 +4,7 @@ import { productImages } from "@/lib/product-images";
 import {
   evChargingTracks,
   trainingDeliveryDetails,
+  trainingIntro,
   trainingProgression,
   trainingTiers,
   trainingTrackMatrix,
@@ -12,19 +13,33 @@ import {
 export const trainingPage = {
   hero: {
     eyebrow: "Training",
-    title: "Certify your team on the chargers we deploy.",
+    title: "EV charging training — T1, T2 and T3.",
     description:
-      "T1, T2 and T3 programmes for hub staff, installers and field engineers — mapped to Pulse, Pod, Depot, Boda Hub and Corridor, with field modules on live Precifarm hardware.",
+      "Certify hub staff, installers and field engineers on Pulse charger, Pod energy storage, Depot, Boda Hub and Corridor — classroom in Nairobi, field modules on live hardware.",
     primaryLabel: "Enquire about a cohort",
     secondaryLabel: "Engineering design basis",
     secondaryHref: "/charging/engineering",
     meta: "Nairobi classroom · corridor field modules · certificates within 5 business days",
   },
   stats: [
-    { stat: "3 tiers", label: "T1 safety → T2 field tech → T3 commissioning" },
+    { stat: "T1 → T3", label: "Site safety, field technician, then commissioning specialist" },
     { stat: "1–5 days", label: "Per tier — classroom plus supervised field work" },
     { stat: "6–16", label: "Participants per cohort · partner intakes on request" },
+    { stat: "5 days", label: "Certificate issued within five business days of passing" },
   ],
+  who: {
+    eyebrow: "Who it is for",
+    title: "Operators, installers and engineers on Precifarm hardware",
+    description: trainingIntro.lead,
+    audience: trainingIntro.whoShouldAttend,
+  },
+  explore: [
+    { href: "#t1", label: "T1" },
+    { href: "#t2", label: "T2" },
+    { href: "#t3", label: "T3" },
+    { href: "#tracks", label: "Product tracks" },
+    { href: "#enrol", label: "Enrol" },
+  ] as const,
   why: {
     eyebrow: "Why Precifarm training",
     title: "Real hardware. Real hubs. Not generic EV theory.",

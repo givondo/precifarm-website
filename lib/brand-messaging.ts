@@ -344,11 +344,13 @@ export const siteNavGroups = [
  links: [
  { href: "/partners", label: "Fleet & partners", description: "Depot and corridor programmes" },
  { href: "/charging/engineering", label: "Engineering", description: "Site design and commissioning" },
+ { href: "/training", label: "Training", description: "T1 · T2 · T3 certification" },
  ],
  },
  {
  title: "Company",
  links: [
+ { href: "/evs", label: "Kenya EV guide", description: "17 models · charging requirements" },
  { href: "/about", label: "About" },
  { href: "/faq", label: "FAQ" },
  { href: "/contact", label: "Contact" },
@@ -382,6 +384,8 @@ export const footerNavGroups = [
  {
  title: "Company",
  links: [
+ { href: "/evs", label: "Kenya EV guide" },
+ { href: "/training", label: "Training · T1–T3" },
  { href: "/about", label: "About" },
  { href: "/faq", label: "FAQ" },
  { href: "/contact", label: "Contact" },

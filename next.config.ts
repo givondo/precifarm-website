@@ -38,8 +38,6 @@ const nextConfig: NextConfig = {
  { source: "/guides/:path*", destination: "/faq", permanent: true },
  { source: "/learn", destination: "/faq", permanent: true },
  { source: "/learn/:path*", destination: "/faq", permanent: true },
- { source: "/evs", destination: "/faq", permanent: true },
- { source: "/training", destination: "/contact", permanent: true },
  { source: "/careers", destination: "/contact", permanent: true },
  { source: "/sustainability", destination: "/about", permanent: true },
  { source: "/download", destination: "/contact", permanent: true },

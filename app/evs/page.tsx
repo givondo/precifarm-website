@@ -3,6 +3,7 @@ import Link from "next/link";
 import KenyaEvComparisonTable from "@/components/evs/KenyaEvComparisonTable";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import JsonLd from "@/components/seo/JsonLd";
+import SpecTable from "@/components/modular-energy/SpecTable";
 import PageHero from "@/components/ui/PageHero";
 import SectionHeader from "@/components/ui/SectionHeader";
 import {
@@ -30,6 +31,7 @@ export default function KenyaEvCompatibilityPage() {
     carTableCaption,
     bikeTableCaption,
     path,
+    chargingRequirementsSection,
   } = kenyaEvCompatibilityPage;
   const { leaf, byd, ebike } = kenyaEvMarketCallouts;
 
@@ -69,11 +71,40 @@ export default function KenyaEvCompatibilityPage() {
         </div>
       </section>
 
-      <section className="border-y border-border bg-muted/20 section-pad">
+      <section className="border-y border-border bg-white section-pad">
+        <div className="page-container">
+          <SectionHeader
+            eyebrow={chargingRequirementsSection.eyebrow}
+            title={chargingRequirementsSection.title}
+            description={chargingRequirementsSection.description}
+          />
+          <div className="mt-8">
+            <SpecTable
+              columns={chargingRequirementsSection.columns}
+              rows={chargingRequirementsSection.products.map((row) => [
+                row.need,
+                row.requirement,
+                row.product,
+              ])}
+            />
+          </div>
+          <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium">
+            {chargingRequirementsSection.products.map((row) => (
+              <li key={row.href}>
+                <Link href={row.href} className="text-link">
+                  {row.product} ›
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="border-b border-border bg-muted/20 section-pad">
         <div className="page-container space-y-10">
           <SectionHeader
             eyebrow="Kenya EV comparison"
-            title="17 models — range, DC speed and charging time"
+            title="17 models — range, DC speed and daily charging time"
             description={whyTheseModels}
           />
 
@@ -117,8 +148,11 @@ export default function KenyaEvCompatibilityPage() {
             <Link href="/charging/home" className="text-sm font-medium">
               Home charging ›
             </Link>
-            <Link href="/hub" className="text-sm font-medium">
-              Open Charging Hub ›
+            <Link href="/training" className="text-sm font-medium">
+              T1–T3 training ›
+            </Link>
+            <Link href="/charging" className="text-sm font-medium">
+              All chargers ›
             </Link>
           </div>
         </div>

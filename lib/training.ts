@@ -1,5 +1,5 @@
 import { contact } from "@/lib/contact";
-import { chargingOfferings } from "@/lib/charging";
+import { productRenderPaths } from "@/lib/product-renders-catalog";
 
 export type TrainingTierId = "t1" | "t2" | "t3";
 
@@ -29,10 +29,10 @@ export type EvChargingTrack = {
 };
 
 export const trainingHeroImage = {
-  src: chargingOfferings.routeHub.image,
-  alt: "Field engineers and hub staff at a Precifarm DC fast charging site with solar canopy and battery storage on an intercity route",
+  src: productRenderPaths.corridorForecourt,
+  alt: "Precifarm Corridor forecourt with DC fast charging — the hardware T2 and T3 cohorts commission and maintain",
   caption:
-    "Training uses the same charger models, monitoring tools and hub layouts deployed on live Precifarm routes.",
+    "Classroom modules use the same Pulse, Depot, Corridor and Boda Hub models deployed on live Precifarm sites.",
 } as const;
 
 export const trainingIntro = {
@@ -168,7 +168,7 @@ export const evChargingTracks: EvChargingTrack[] = [
     id: "route-hub",
     title: "Highway charging",
     description:
-      "Corridor charging at route hubs — CCS2 DC, live status and M-Pesa on the Charging Hub.",
+      "Corridor charging at highway sites — CCS2 DC, live status and M-Pesa session pay on commissioned forecourts.",
     tiers: ["t1", "t2", "t3"],
     roles: "Hub operators, route engineers, partner depot leads",
     topics: [

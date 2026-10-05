@@ -275,7 +275,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  path: "/training",
  title: "EV Charging Training in Kenya",
  description:
- "Precifarm EV charging training for hub staff and field engineers. T1 safety awareness, T2 field technician and T3 commissioning specialist certification in Kenya.",
+ "T1 site safety, T2 field technician and T3 commissioning specialist programmes for Pulse, Pod, Depot, Boda Hub and Corridor — Nairobi classroom plus field modules on live Precifarm hardware in Kenya.",
  faqs: [...trainingPageFaqs],
  keywords: [
  "EV charging training Kenya",

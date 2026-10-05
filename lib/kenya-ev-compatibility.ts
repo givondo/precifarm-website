@@ -246,7 +246,52 @@ export const kenyaEvCompatibilityPage = {
     "Battery size, DC speed, charging time and practical range vary by manufacturing batch, import spec, software limits and local charger hardware. Charging times show a typical daily top-up — not a full 0–100% pack charge.",
   chargingTimeNote: "Daily top-up · Home = Pulse charger · DC = public fast charge · Swap = Boda Hub",
   chargingKey:
-    "Precifarm charging fit — Home: Pulse charger or Pod energy storage · Destination: Charging Hub or Depot · Corridor: highway DC · High-power corridor: 120 kW+ sessions · Boda Hub: battery swap under 5 min · Workplace: fleet Depot site.",
+    "Precifarm charging fit — Home: Pulse charger or Pod energy storage · Destination: public charging map or Depot · Corridor: highway DC · High-power corridor: 120 kW+ sessions · Boda Hub: battery swap under 5 min · Workplace: fleet Depot site.",
+  chargingRequirementsSection: {
+    eyebrow: "Charging requirements",
+    title: "What your EV needs from Precifarm",
+    description:
+      "Match plug type, power level and session length to the charger we install — home Type 2 AC, fleet depot AC, highway DC or boda swap.",
+    columns: ["Need", "Typical requirement", "Precifarm product"] as const,
+    products: [
+      {
+        need: "Daily home top-up",
+        requirement: "Type 2 · 7 kW AC · ~90 min for a Nairobi day",
+        product: "Pulse charger",
+        href: "/charging/home",
+      },
+      {
+        need: "Home + outage backup",
+        requirement: "Type 2 + 5–10 kWh storage",
+        product: "Pod energy storage",
+        href: "/charging/home",
+      },
+      {
+        need: "Portable top-up",
+        requirement: "3.3 kW AC (Type 2 or domestic)",
+        product: "Spark charger",
+        href: "/charging",
+      },
+      {
+        need: "Fleet yard overnight",
+        requirement: "22 kW AC · Type 2",
+        product: "Depot charging station",
+        href: "/partners",
+      },
+      {
+        need: "Highway fast charge",
+        requirement: "CCS2 DC · 60–120 kW+ (CHAdeMO where equipped)",
+        product: "Corridor charging",
+        href: "/charging",
+      },
+      {
+        need: "E-boda continuity",
+        requirement: "Swap or slow AC · 2–4 kWh pack",
+        product: "Boda Hub",
+        href: "/charging/boda-hub",
+      },
+    ] as const,
+  },
   practicalRangeFootnote:
     "* Practical range is an indicative planning estimate, not a guaranteed specification. Actual range depends on speed, traffic, terrain, temperature, payload, driving style and battery condition.",
   whyTheseModels:
@@ -263,7 +308,7 @@ export const kenyaEvCompatibilityPage = {
     practicalRange: "Practical range*",
     dcCharging: "DC charging",
     chargingTime: "Charging time",
-    precifarmCharging: "Precifarm fit",
+    precifarmCharging: "Charging requirement",
   },
 } as const;
 
