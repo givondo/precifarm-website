@@ -287,7 +287,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  breadcrumbs: [
  { name: "Home", href: "/" },
  { name: "Charging", href: "/charging" },
- { name: "Training", href: "/training" },
+ { name: "EV charging training", href: "/training" },
  ],
  },
  {

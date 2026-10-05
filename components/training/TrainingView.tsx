@@ -17,7 +17,7 @@ import PageCTA from "@/components/ui/PageCTA";
 import SectionHeader from "@/components/ui/SectionHeader";
 import SiteImage from "@/components/SiteImage";
 import { contact } from "@/lib/contact";
-import { trainingEnquiryMailto, trainingHeroImage, trainingTiers } from "@/lib/training";
+import { trainingEnquiryMailto, trainingHeroImage, trainingNavLabel, trainingTiers } from "@/lib/training";
 import { trainingPage, trainingPageFaqs } from "@/lib/training-page";
 
 export default function TrainingView() {
@@ -46,7 +46,7 @@ export default function TrainingView() {
             items={[
               { name: "Home", href: "/" },
               { name: "Charging", href: "/charging" },
-              { name: "Training", href: "/training" },
+              { name: trainingNavLabel, href: "/training" },
             ]}
           />
           <div className="mt-6 grid items-center gap-10 lg:grid-cols-[1fr_minmax(280px,480px)] lg:gap-14">

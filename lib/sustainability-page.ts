@@ -75,7 +75,7 @@ export const socialImpactCards = [
  headline: "Trained on Precifarm kit",
  text: "Field training on the chargers we deploy as install, fault-finding and handover to the customer.",
  href: "/training",
- label: "Training",
+ label: "EV charging training",
  },
  {
  id: "operators",

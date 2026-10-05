@@ -50,6 +50,6 @@ export const homepageRelatedLinks = [
   { href: "/charging/home", label: "Home EV charging", reason: "Pulse charger and Pod energy storage" },
   { href: chargingHub.path, label: chargingHub.label, reason: "Find public chargers in Kenya" },
   { href: "/evs", label: "Kenya EV guide", reason: "Compare EVs and charging fit" },
-  { href: "/training", label: "Training", reason: "EV charging technician certification" },
+  { href: "/training", label: "EV charging training", reason: "EV charging technician certification" },
   { href: "/faq", label: "FAQ", reason: "Charging and installation answers" },
 ] as const;

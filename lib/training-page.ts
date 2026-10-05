@@ -5,6 +5,7 @@ import {
   evChargingTracks,
   trainingDeliveryDetails,
   trainingIntro,
+  trainingNavLabel,
   trainingProgression,
   trainingTiers,
   trainingTrackMatrix,
@@ -12,7 +13,7 @@ import {
 
 export const trainingPage = {
   hero: {
-    eyebrow: "Training",
+    eyebrow: trainingNavLabel,
     title: "EV charging training — T1, T2 and T3.",
     description:
       "Certify hub staff, installers and field engineers on Pulse charger, Pod energy storage, Depot, Boda Hub and Corridor — classroom in Nairobi, field modules on live hardware.",

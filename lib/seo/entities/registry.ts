@@ -302,7 +302,7 @@ export function internalLinksForPath(path: string): { href: string; label: strin
  break;
  case "/partners":
  add("/charging", "EV charging", "From home charging to highway charging");
- add("/training", "Training", "Technician certification");
+ add("/training", "EV charging training", "Technician certification");
  add("/about", "About Precifarm", "Mission and route-one proof");
  break;
  case "/sustainability":

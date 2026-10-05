@@ -5,6 +5,7 @@
  */
 
 import { modularEnergyBrand, modularEnergyNav, modularEnergyPaths } from "@/lib/modular-energy-page";
+import { trainingNavLabel } from "@/lib/training";
 import { sitePricing } from "@/lib/site-copy";
 
 export const brand = {
@@ -344,7 +345,7 @@ export const siteNavGroups = [
  links: [
  { href: "/partners", label: "Fleet & partners", description: "Depot and corridor programmes" },
  { href: "/charging/engineering", label: "Engineering", description: "Site design and commissioning" },
- { href: "/training", label: "Training", description: "T1 · T2 · T3 certification" },
+ { href: "/training", label: trainingNavLabel, description: "T1 · T2 · T3 certification" },
  ],
  },
  {
@@ -385,7 +386,7 @@ export const footerNavGroups = [
  title: "Company",
  links: [
  { href: "/evs", label: "Kenya EV guide" },
- { href: "/training", label: "Training · T1–T3" },
+ { href: "/training", label: `${trainingNavLabel} · T1–T3` },
  { href: "/about", label: "About" },
  { href: "/faq", label: "FAQ" },
  { href: "/contact", label: "Contact" },

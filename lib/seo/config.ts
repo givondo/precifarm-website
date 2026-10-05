@@ -72,7 +72,7 @@ export const publicRoutes = [
  { path: "/evs", label: "Kenya EV guide", changefreq: "weekly" as const, priority: 0.84 },
  { path: "/charging/engineering", label: "Engineering Design Package", changefreq: "monthly" as const, priority: 0.8 },
  { path: "/partners", label: "Partners", changefreq: "monthly" as const, priority: 0.8 },
- { path: "/training", label: "Training", changefreq: "monthly" as const, priority: 0.76 },
+ { path: "/training", label: "EV charging training", changefreq: "monthly" as const, priority: 0.76 },
  { path: "/about", label: "About", changefreq: "monthly" as const, priority: 0.75 },
  { path: "/sustainability", label: "Sustainability", changefreq: "monthly" as const, priority: 0.72 },
  { path: "/careers", label: "Careers", changefreq: "monthly" as const, priority: 0.7 },

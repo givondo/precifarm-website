@@ -149,7 +149,7 @@ export default function KenyaEvCompatibilityPage() {
               Home charging ›
             </Link>
             <Link href="/training" className="text-sm font-medium">
-              T1–T3 training ›
+              EV charging training ›
             </Link>
             <Link href="/charging" className="text-sm font-medium">
               All chargers ›

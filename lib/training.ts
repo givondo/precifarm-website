@@ -1,6 +1,9 @@
 import { contact } from "@/lib/contact";
 import { productRenderPaths } from "@/lib/product-renders-catalog";
 
+/** Public nav, breadcrumbs and page eyebrow — keep in sync across the site. */
+export const trainingNavLabel = "EV charging training";
+
 export type TrainingTierId = "t1" | "t2" | "t3";
 
 export type TrainingTier = {
@@ -36,7 +39,7 @@ export const trainingHeroImage = {
 } as const;
 
 export const trainingIntro = {
-  eyebrow: "Training",
+  eyebrow: trainingNavLabel,
   title: "EV charging training — T1, T2 and T3",
   description:
     "Certification for hub staff, installers and field engineers on the chargers Precifarm deploys in Kenya.",
