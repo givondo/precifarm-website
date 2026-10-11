@@ -15,6 +15,7 @@ type Props = {
 export default function ProductShowcaseRow({ products, className = "" }: Props) {
   return (
     <div
+      data-reveal-stagger="90"
       className={`grid gap-3 ${
         products.length === 2
         ? "grid-cols-1 sm:grid-cols-2"
@@ -28,7 +29,8 @@ export default function ProductShowcaseRow({ products, className = "" }: Props) 
       {products.map((product) => (
         <div
           key={product.src}
-          className="overflow-hidden rounded-2xl border border-border bg-white p-3 shadow-sm"
+          data-reveal
+          className="overflow-hidden rounded-2xl border border-border bg-white p-3 shadow-sm transition-shadow duration-300 hover:shadow-lg"
         >
           <ProductPhoto
             src={product.src}

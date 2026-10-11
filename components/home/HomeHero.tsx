@@ -1,45 +1,72 @@
 import Link from "next/link";
-import HomeHeroVideo from "@/components/home/HomeHeroVideo";
-import { heroStats, homeHero } from "@/lib/brand-messaging";
+import { Fragment } from "react";
+import SiteImage from "@/components/SiteImage";
+import HomeFilmButton from "@/components/home/HomeFilmButton";
+import { announcementBar, homeHero } from "@/lib/brand-messaging";
+import { homePageImages } from "@/lib/home-page-images";
+
+function SplitWords({ text, offset = 0 }: { text: string; offset?: number }) {
+  return text.split(" ").map((word, index) => (
+    <Fragment key={`${word}-${index}`}>
+      {index > 0 && " "}
+      <span className="hx-word">
+        <span style={{ animationDelay: `${(offset + index) * 70 + 150}ms` }}>{word}</span>
+      </span>
+    </Fragment>
+  ));
+}
 
 export default function HomeHero() {
+  const headlineWords = homeHero.headline.split(" ").length;
+
   return (
-    <section id="charging" className="home-hero scroll-mt-20">
-      <div className="page-container">
-        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-14">
-          <div className="order-2 max-w-xl lg:order-1 lg:py-2">
-            <p className="text-eyebrow">{homeHero.eyebrow}</p>
-            <h1 className="heading-display mt-4 text-[2rem] leading-[1.08] sm:text-4xl lg:text-[2.75rem]">
-              {homeHero.headline}
-              <span className="block text-forest-700">{homeHero.headlineAccent}</span>
-            </h1>
-            <p className="mt-5 max-w-lg text-base leading-relaxed text-forest-600 sm:text-lg">{homeHero.whatWeDo}</p>
-            <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-3">
-              <Link href={homeHero.primaryCta.href} className="btn-primary">
-                {homeHero.primaryCta.label}
-              </Link>
-              <Link href={homeHero.secondaryCta.href} className="link-touch text-sm font-medium">
-                {homeHero.secondaryCta.label} ›
-              </Link>
-            </div>
+    <section id="charging" className="hx-hero" aria-labelledby="home-hero-title">
+      <div className="hx-hero-media">
+        <SiteImage
+          src={homePageImages.hero.src}
+          alt={homePageImages.hero.alt}
+          fill
+          priority
+          sizes="100vw"
+          className="hx-hero-img object-cover"
+        />
+      </div>
+      <div className="hx-hero-shade" aria-hidden />
 
-            <dl className="mt-8 grid gap-4 border-t border-border pt-6 sm:grid-cols-2 sm:gap-6">
-              {heroStats.map((item) => (
-                <div key={item.stat}>
-                  <dt className="font-mono text-xl font-semibold tracking-tight text-forest-900 sm:text-2xl">
-                    {item.stat}
-                  </dt>
-                  <dd className="mt-1 text-xs leading-relaxed text-forest-500 sm:text-sm">{item.label}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
+      <div className="hx-container hx-hero-content">
+        <Link href={announcementBar.href} className="hx-chip hx-rise" style={{ animationDelay: "60ms" }}>
+          <span className="hx-chip-dot" aria-hidden />
+          {announcementBar.textShort}
+          <span aria-hidden>→</span>
+        </Link>
 
-          <div className="order-1 w-full lg:order-2">
-            <HomeHeroVideo />
-          </div>
+        <p className="hx-eyebrow hx-rise mt-8" style={{ animationDelay: "120ms" }}>
+          {homeHero.eyebrow}
+        </p>
+        <h1 id="home-hero-title" className="hx-display mt-4">
+          <SplitWords text={homeHero.headline} />
+          <span className="hx-display-accent block">
+            <SplitWords text={homeHero.headlineAccent} offset={headlineWords} />
+          </span>
+        </h1>
+        <p className="hx-lead hx-rise mt-6 max-w-xl" style={{ animationDelay: "750ms" }}>
+          {homeHero.whatWeDo}
+        </p>
+
+        <div className="hx-rise mt-9 flex flex-wrap items-center gap-3" style={{ animationDelay: "880ms" }}>
+          <Link href={homeHero.primaryCta.href} className="hx-btn hx-btn-solid">
+            <span>{homeHero.primaryCta.label}</span>
+          </Link>
+          <Link href={homeHero.secondaryCta.href} className="hx-btn">
+            <span>{homeHero.secondaryCta.label}</span>
+          </Link>
+          <HomeFilmButton youtubeId={homeHero.video.youtubeId} title={homeHero.video.title} />
         </div>
       </div>
+
+      <a href="#home-panels" className="hx-scroll-cue" aria-label="Scroll to products">
+        <span className="hx-scroll-cue-line" aria-hidden />
+      </a>
     </section>
   );
 }

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { contact } from "@/lib/contact";
 import { absoluteUrl, siteConfig } from "@/lib/seo/config";
 import { chargingHowToBlock } from "@/lib/seo/aiso/blocks";
 import { hreflangAlternates } from "@/lib/seo/i18n";

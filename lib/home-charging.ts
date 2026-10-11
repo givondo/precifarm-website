@@ -1,25 +1,7 @@
 import { privateHouseChargingFaqs as houseFaqs } from "@/lib/charging-faqs";
 import { contact } from "@/lib/contact";
-import { homePageImages } from "@/lib/home-page-images";
 import { productImages } from "@/lib/product-images";
 import { sitePricing } from "@/lib/site-copy";
-
-/** Homepage band — links to the dedicated private house charging page */
-export const homeChargingHighlight = {
-  eyebrow: "Featured · Pulse charger",
-  title: "Wake up charged at home",
-  paragraphs: [
-    `7 kW Pulse charger on your driveway — sized to your EV and meter, with no public queues. From ${sitePricing.pulseFrom}, or Lipa Pole Pole from ${sitePricing.lipaFrom} on M-Pesa.`,
-    "Add Pod energy storage or rooftop solar when you want backup and lower daytime cost.",
-    "Survey, install and 3 years of aftersale from the same team that engineers and runs our route hubs.",
-  ],
-  primaryLabel: "Explore Pulse charger",
-  primaryHref: "/charging/home",
-  secondaryLabel: "Request a survey",
-  secondaryHref: "/charging/home#survey",
-  image: homePageImages.featuredPulse.src,
-  imageAlt: homePageImages.featuredPulse.alt,
-} as const;
 
 export const privateHouseChargingPage = {
   hero: {

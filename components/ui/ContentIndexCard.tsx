@@ -14,7 +14,7 @@ export default function ContentIndexCard({
   meta,
 }: ContentIndexCardProps) {
   return (
-    <Link href={href} className="content-index-card group">
+    <Link href={href} className="content-index-card group" data-reveal>
       <div className="min-w-0 flex-1">
         {meta && <p className="content-index-card-meta">{meta}</p>}
         <h2 className="content-index-card-title">{title}</h2>

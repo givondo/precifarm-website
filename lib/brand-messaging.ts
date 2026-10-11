@@ -54,7 +54,7 @@ export const homeHero = {
  headline: "Ultra EV fast charging.",
  headlineAccent: "For electric cars and motorcycles.",
  whatWeDo:
- "Precifarm builds and finances innovative EV charging solutions to power electric cars and motorcycles from as low as KES 3,000/month.",
+ `Precifarm builds and finances EV charging for electric cars and motorcycles, from ${sitePricing.lipaFrom} on Lipa Pole Pole.`,
  primaryCta: { href: "/charging/home", label: "Home charging" },
  secondaryCta: { href: "/partners", label: "Fleet & partners" },
  caption: "Pulse charger · Kenya",
@@ -156,6 +156,74 @@ export const homeScenarios = [
  cta: "Highway corridor programmes",
  },
 ] as const;
+
+/** Full-bleed homepage panels, home → highway → storage. Images: lib/home-page-images.ts */
+export const homePanels = [
+ {
+  id: "home",
+  eyebrow: "Home · Pulse charger",
+  title: "Wake up charged.",
+  text: `A 7 kW Pulse charger on your driveway, sized to your EV and your meter. From ${sitePricing.pulseFrom}, or Lipa Pole Pole from ${sitePricing.lipaFrom} on M-Pesa. Add Pod energy storage when the grid dips.`,
+  imageKey: "podHomeHero",
+  fit: "cover",
+  stats: [
+   { value: 7, suffix: " kW", label: "Pulse charger" },
+   { value: 90, prefix: "~", suffix: " min", label: "Typical 60 km day" },
+   { value: 3, suffix: " yrs", label: "Aftersale care" },
+  ],
+  primary: { href: "/charging/home", label: "Explore Pulse charger" },
+  secondary: { href: "/charging/home#survey", label: "Request a survey" },
+ },
+ {
+  id: "boda",
+  eyebrow: "Two-wheelers · Boda Hub",
+  title: "Swap. Ride. Repeat.",
+  text: "Boda Hub smart lockers swap batteries for electric motorcycles in minutes, at petrol stations and stages where riders already stop.",
+  imageKey: "bodaHub",
+  fit: "cover",
+  stats: [
+   { value: 5, prefix: "<", suffix: " min", label: "Battery swap" },
+   { value: 22, suffix: " kW", label: "Depot AC for fleet yards" },
+  ],
+  primary: { href: "/charging/boda-hub", label: "Explore Boda Hub" },
+  secondary: { href: "/partners", label: "Fleet programmes" },
+ },
+ {
+  id: "highway",
+  eyebrow: "Highway · Corridor charging",
+  title: "Go farther.",
+  text: "Pull in for 120 kW+ Corridor DC fast charging on long routes. We engineer and operate the site; you pay each session with M-Pesa. Nairobi–Kisumu is the first Corridor we prove.",
+  imageKey: "corridor",
+  fit: "contain",
+  stats: [
+   { value: 120, suffix: " kW+", label: "Corridor DC" },
+   { value: 39, prefix: "KES ", label: "Public DC from, per kWh" },
+  ],
+  primary: { href: "/charging", label: "Explore Corridor charging" },
+  secondary: { href: "/partners", label: "Highway programmes" },
+ },
+ {
+  id: "energy",
+  eyebrow: "Modular energy",
+  status: "Conceptual · not on sale",
+  title: "Store the power.",
+  text: "P1 Go, P2 Home, Mini Stack and project-engineered MegaPack: one modular storage platform designed to make every charger dependable.",
+  imageKey: "energy",
+  fit: "cover",
+  stats: [],
+  primary: { href: modularEnergyNav.overview.href, label: "See the design" },
+  secondary: { href: "/charging/modular-energy/megapack", label: "MegaPack" },
+ },
+] as const;
+
+export const homeProofStats = [
+ { value: 140, prefix: "KES ", label: "Typical home charging day", note: `~60 km in Nairobi vs ~${sitePricing.dieselDay} diesel` },
+ { value: 1, suffix: " day", label: "Home install", note: "Survey, wiring and commissioning" },
+ { value: 3, suffix: " years", label: "Aftersale care", note: "On every home unit we commission" },
+ { value: 39, prefix: "KES ", label: "Public DC from, per kWh", note: "M-Pesa session pay where available" },
+] as const;
+
+export const homeEcosystemLine = ["Spark", "Pulse", "Pod", "Boda Hub", "Depot", "Corridor", "Charging Hub", "Precifarm Agent"] as const;
 
 export const homeSupportSection = {
  eyebrow: "What you get",

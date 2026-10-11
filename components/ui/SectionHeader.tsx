@@ -18,6 +18,7 @@ export default function SectionHeader({
   return (
     <div
       className={`max-w-2xl ${centered ? "mx-auto text-center" : ""} ${className}`}
+      data-reveal
     >
       {eyebrow && (
         <p className={inverted ? "text-eyebrow-inverted" : "text-eyebrow"}>{eyebrow}</p>

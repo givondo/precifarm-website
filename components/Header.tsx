@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useId, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import HubCtaLink from "@/components/HubCtaLink";
 import {
@@ -38,6 +38,8 @@ const navGroups: NavGroup[] = siteNavGroups.map((group) => ({
   icon: groupIcons[group.title],
   items: [...group.links],
 }));
+
+const subscribeNever = () => () => {};
 
 const DROPDOWN_OPEN_DELAY_MS = 60;
 const DROPDOWN_CLOSE_DELAY_MS = 160;
@@ -111,12 +113,10 @@ function isGroupActive(group: NavGroup, pathname: string) {
 
 function DesktopMenuLink({
   item,
-  pathname,
   className,
   onNavigate,
 }: {
   item: NavLink;
-  pathname: string;
   className: string;
   onNavigate?: () => void;
 }) {
@@ -212,7 +212,6 @@ function DesktopNavDropdown({ group, pathname }: { group: NavGroup; pathname: st
             <DesktopMenuLink
               key={`${group.label}-${item.label}-${item.href}`}
               item={item}
-              pathname={pathname}
               onNavigate={closeNow}
               className={`site-header-dropdown-item ${
                 isNavItemActive(item.href, pathname) ? "site-header-dropdown-item-active" : ""
@@ -304,7 +303,7 @@ export default function Header() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(subscribeNever, () => true, () => false);
   const panelRef = useRef<HTMLDivElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const ignoreOutsideRef = useRef(false);
@@ -318,13 +317,12 @@ export default function Header() {
     });
   }, []);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    closeMobile();
-  }, [pathname, closeMobile]);
+  // Close the mobile menu on navigation (state adjusted during render, not in an effect).
+  const [menuPath, setMenuPath] = useState(pathname);
+  if (menuPath !== pathname) {
+    setMenuPath(pathname);
+    setMobileOpen(false);
+  }
 
   useEffect(() => {
     if (!mobileOpen) return;
@@ -372,6 +370,9 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const isHome = pathname === "/";
+  const overlay = isHome && !scrolled && !mobileOpen;
+
   const mobileMenu =
     mobileOpen && mounted ? (
       <>
@@ -399,10 +400,15 @@ export default function Header() {
         id="site-header"
         className={`site-header ${scrolled ? "site-header-scrolled" : ""} ${
           mobileOpen ? "site-header-menu-open" : ""
-        }`}
+        } ${isHome ? "site-header-dark" : ""} ${overlay ? "site-header-overlay" : ""}`}
       >
         <div className="page-container site-header-bar">
-          <Logo size="header" className="site-header-logo" onClick={closeMobile} />
+          <Logo
+            size="header"
+            variant={isHome ? "onDark" : "default"}
+            className="site-header-logo"
+            onClick={closeMobile}
+          />
 
           <nav className="site-header-nav" aria-label="Main">
             {navGroups.map((group) => (
