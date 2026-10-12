@@ -483,7 +483,7 @@ export const modularEnergyProducts: Record<ModularEnergyProductSlug, ModularEner
  worksWith: [
  {
  name: "Spark · 3.3 kW portable charger",
- text: "The boot charger for a typical day as about 180 minutes on a 13 A socket.",
+ text: "The boot charger: a typical day in about 3.5 hours on a 16 A outlet, or about 5 hours on a 13 A socket.",
  href: "/charging",
  },
  {
@@ -501,7 +501,7 @@ export const modularEnergyProducts: Record<ModularEnergyProductSlug, ModularEner
  {
  question: "Is P1 Go an EV charger?",
  answer:
- "Not in any practical sense. The Type 2 lead in the box trickles enough range to reach a proper charger if you are caught out. For a driving day, Spark gives you 3.3 kW from a wall socket and Pulse gives you 7 kW on the wall at home.",
+ "Not in any practical sense. The Type 2 lead in the box trickles enough range to reach a proper charger if you are caught out. For a driving day, Spark gives you up to 3.3 kW from a 16 A outlet and Pulse gives you 7 kW on the wall at home.",
  },
  {
  question: "Do I need a roof or a mounted array for the solar?",
@@ -598,7 +598,7 @@ export const modularEnergyProducts: Record<ModularEnergyProductSlug, ModularEner
  worksWith: [
  {
  name: "Pulse · 7 kW home wallbox",
- text: "Full charge in about 90 minutes, from KES 79,000 with Lipa Pole Pole.",
+ text: "A typical day in about 90 minutes, from KES 79,000 with Lipa Pole Pole.",
  href: "/charging/home",
  },
  {

@@ -43,7 +43,7 @@ export const entityRegistry: KnowledgeEntity[] = [
  type: "equipment",
  name: "Spark charger",
  description:
- "Portable 3.3 kW charger for the boot. A typical 60 km day refills in about 180 minutes. From KES 25,000.",
+ "Portable 3.3 kW charger for the boot. A typical 60 km day refills in about 3.5 hours on a 16 A outlet. From KES 25,000.",
  url: absoluteUrl("/charging"),
  relatedIds: ["service-home-charging", "product-pulse"],
  },
@@ -53,7 +53,7 @@ export const entityRegistry: KnowledgeEntity[] = [
  type: "equipment",
  name: "Corridor charging",
  description:
- "120 kW+ highway DC. Adds about 60 kWh in 30 minutes. Public DC from KES 39/kWh, paid with M-Pesa.",
+ "120 kW+ highway DC. Adds up to about 60 kWh in 30 minutes, vehicle permitting. Public DC from KES 39/kWh, paid with M-Pesa.",
  url: absoluteUrl("/charging"),
  relatedIds: ["service-hub-charging", "equipment-ev-charger"],
  },
@@ -114,7 +114,7 @@ export const entityRegistry: KnowledgeEntity[] = [
  slug: "hub-charging",
  type: "service",
  name: "Highway charging",
- description: "Corridor charging at Precifarm hubs as about 60 kWh in 30 minutes, paid with M-Pesa.",
+ description: "Corridor charging at Precifarm hubs, up to about 60 kWh in 30 minutes, paid with M-Pesa.",
  url: absoluteUrl("/charging"),
  relatedIds: ["equipment-ev-charger", "location-nairobi", "location-kisumu", "service-charge-map"],
  },

@@ -71,7 +71,7 @@ export const commercialProductCatalog = {
  additionalProperty: [
  { name: "Power", value: "3.3 kW" },
  { name: "Connector", value: "Type 2" },
- { name: "Typical day charge", value: "about 180 minutes for ~60 km" },
+ { name: "Typical day charge", value: "about 3.5 hours for ~60 km (16 A outlet)" },
  ],
  offer: {
  price: "25000",
@@ -103,7 +103,7 @@ export const commercialProductCatalog = {
  additionalProperty: [
  { name: "Power", value: "120 kW+ DC" },
  { name: "Connectors", value: "Dual CCS2" },
- { name: "Session energy", value: "about 60 kWh in 30 minutes" },
+ { name: "Session energy", value: "up to about 60 kWh in 30 minutes" },
  { name: "Public DC rate", value: "from KES 39/kWh" },
  ],
  offer: {
