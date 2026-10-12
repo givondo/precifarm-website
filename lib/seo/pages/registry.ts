@@ -3,12 +3,10 @@
  faqIndexChargingFaqs,
  privateHouseChargingFaqs,
 } from "@/lib/charging-faqs";
-import { contactPage, faqPage, guidesPage } from "@/lib/company-pages";
+import { contactPage, faqPage } from "@/lib/company-pages";
 import { engineeringPageFaqs } from "@/lib/engineering-page";
 import { trainingPageFaqs } from "@/lib/training-page";
-import { chargingHub } from "@/lib/charging-hub";
 import { agentPageFaqs } from "@/lib/agent-page";
-import { downloadPageFaqs } from "@/lib/download-page";
 import { megapackFaqs, megapackPageContent } from "@/lib/megapack-page";
 import { bodaHubFaqs, bodaHubPageContent, bodaHubStatusNote } from "@/lib/boda-hub-page";
 import { homepageAisoBlocks } from "@/lib/seo/aiso/blocks";
@@ -24,40 +22,6 @@ export const pageSeoRegistry: PageSeoInput[] = [
  "Precifarm designs, finances, installs and operates EV charging infrastructure in Kenya as from home charging to fleet and high-power corridor stations, with M-Pesa payments.",
  faqs: (homepageAisoBlocks.find((b) => b.type === "faq")?.items ?? []) as PageSeoInput["faqs"],
  breadcrumbs: [{ name: "Home", href: "/" }],
- },
- {
- path: chargingHub.path,
- title: "Charging Hub as Highway DC, Boda Swap and Partner Chargers in Kenya",
- description: chargingHub.description,
- keywords: [
- "Charging Hub Kenya",
- "find EV chargers Kenya",
- "boda battery swap Nairobi",
- "fast EV charging Kenya",
- "M-Pesa EV charging",
- "Precifarm Agent",
- ],
- faqs: [
- {
- question: "What is Charging Hub?",
- answer:
- "Charging Hub lists every Precifarm fast charger, boda swap cabinet and partner stop in Kenya as with honest open and coming-soon labels on each site.",
- },
- {
- question: "How do I use Charging Hub?",
- answer:
- "Open precifarm.com/hub in your browser. Precifarm Agent desktop is coming soon — request access at precifarm.com/download.",
- },
- {
- question: "Can I pay with M-Pesa?",
- answer:
- "Yes. Session price is shown in the app before you confirm. Receipts stay on your phone.",
- },
- ],
- breadcrumbs: [
- { name: "Home", href: "/" },
- { name: chargingHub.label, href: chargingHub.path },
- ],
  },
  {
  path: "/charging",
@@ -318,43 +282,6 @@ export const pageSeoRegistry: PageSeoInput[] = [
  ],
  },
  {
- path: "/sustainability",
- title: "Sustainability as Precifarm Kenya",
- description:
- "Our 2030 goal is to make clean charging the affordable choice for Kenya. By 2050 we aim to help replace 1 billion kilometres of fossil-fuel driving with electric kilometres. A typical 60 km home day is about KES 140 versus about KES 1,000 in diesel.",
- faqs: [
- {
- question: "What is Precifarm's 2050 kilometre target?",
- answer:
- "By 2050, we aim to help replace 1 billion kilometres of fossil-fuel driving with electric kilometres across Kenya. That is a long-term target as not a live running total. We will publish how we count before showing a cumulative figure.",
- },
- {
- question: "What are Precifarm's six 2030 goals?",
- answer:
- "Cheaper than diesel, honest Hub labels, Lipa Pole Pole, solar on hubs, battery recycling, and a carbon study.",
- },
- {
- question: "Does Precifarm recycle batteries?",
- answer:
- "Pod uses LFP batteries. We maintain and repair packs in the field, reuse suitable ones for backup power where we can, and plan a contracted recycling partner in Kenya by 2030.",
- },
- ],
- breadcrumbs: [
- { name: "Home", href: "/" },
- { name: "Sustainability", href: "/sustainability" },
- ],
- },
- {
- path: "/careers",
- title: "EV Charging Careers in Kenya",
- description:
- "Join Precifarm to commission Pulse and Pod at home, run Boda Hub swap, restore Corridor sessions and keep M-Pesa checkout online as starting on Nairobi–Kisumu.",
- breadcrumbs: [
- { name: "Home", href: "/" },
- { name: "Careers", href: "/careers" },
- ],
- },
- {
  path: "/agent",
  title: "Precifarm Agent — AI Electrical & Energy Engineer",
  description:
@@ -374,18 +301,6 @@ export const pageSeoRegistry: PageSeoInput[] = [
  breadcrumbs: [
  { name: "Home", href: "/" },
  { name: "Precifarm Agent", href: "/agent" },
- ],
- },
- {
- path: "/download",
- title: "Precifarm Agent Desktop — Download",
- description:
- "Request early access to Precifarm Agent for desktop. Coming soon for Windows and macOS — design EV charging, solar and storage from your computer.",
- faqs: downloadPageFaqs,
- breadcrumbs: [
- { name: "Home", href: "/" },
- { name: "Precifarm Agent", href: "/agent" },
- { name: "Download", href: "/download" },
  ],
  },
  {
@@ -420,34 +335,6 @@ export const pageSeoRegistry: PageSeoInput[] = [
  breadcrumbs: [
  { name: "Home", href: "/" },
  { name: "FAQ", href: "/faq" },
- ],
- },
- {
- path: "/guides",
- title: "EV Charging Guides for Kenya",
- description: guidesPage.description,
- faqs: [
- {
- question: "Where can I learn about EV charging in Kenya?",
- answer:
- "Precifarm publishes guides on home charging, public DC charging, M-Pesa payment and the Charging Hub as written for Kenyan drivers, homeowners and fleet operators.",
- },
- ],
- keywords: ["Precifarm guides", "home EV charger Kenya", "EV charging guide"],
- breadcrumbs: [
- { name: "Home", href: "/" },
- { name: "Guides", href: "/guides" },
- ],
- },
- {
- path: "/locations",
- title: "Locations as EV charging across Kenya",
- description:
- "City guides for Precifarm EV charging in Nairobi, Kisumu, Nakuru, Mombasa and beyond as home Pulse charger installs, Corridor DC, Boda Hub swap and fleet Depot.",
- keywords: ["EV charging Kenya cities", "Precifarm hubs", "electric travel locations"],
- breadcrumbs: [
- { name: "Home", href: "/" },
- { name: "Locations", href: "/locations" },
  ],
  },
  {

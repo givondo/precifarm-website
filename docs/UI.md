@@ -62,10 +62,8 @@ No separate `tailwind.config.*` — design tokens live in `@theme inline` inside
 | `HubCtaLink` | Primary header CTA (“Open Charging Hub”) — renamed from retired `BookNowLink` |
 | `Footer` | Company links and contact |
 | `HomeHero` / `home/*` | Homepage hero, panels, proof, scenarios, final CTA |
-| `ChargingHubView` / `hub-map/*` | Charging Hub map, list, site detail |
 | `HomeSurveyForm` | Pulse / Pod home survey on `/charging/home` |
 | `ModularEnergyView` / `MegaPackView` | Conceptual modular-energy and MegaPack pages |
-| `DownloadShowcase` / `download/*` | Precifarm Agent APK and product sheet |
 | `ValueProposition` | Problem/solution marketing block |
 | `SiteImage` | Optimized image wrapper |
 

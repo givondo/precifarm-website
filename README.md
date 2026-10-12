@@ -4,7 +4,7 @@ Public EV charging and modular-energy site for Kenya.
 
 **Production:** `https://precifarm.com`
 
-**Core job:** Charging Hub, home/fleet/highway products, Pulse/Pod surveys, Precifarm Agent APK, conceptual modular energy, sustainability, training.
+**Core job:** home/fleet/highway charging products, Pulse/Pod surveys, Precifarm Agent, conceptual modular energy, training.
 
 **Stack:** Next.js 16 · React 19 · TypeScript · Tailwind CSS 4 · Plus Jakarta Sans (headings) · Geist Sans (body)
 
@@ -24,7 +24,6 @@ Open <http://localhost:3000>.
 
 - Run **one** `npm run dev` at a time. If port 3000 is stuck, stop the other Node process (Next prints the PID) or use Task Manager.
 - After dependency or CSS changes, if you see a 500 on `/`, run `npm install` then `npm run dev:clean` (deletes `.next` and restarts). On Windows, close other tools locking `.next` if delete fails.
-- Leaflet styles load from `app/layout.tsx` (not `globals.css`) so Tailwind v4 dev does not break.
 
 **Environment:** copy [`.env.example`](./.env.example) → `.env.local`. Full reference: [`docs/infrastructure/environment.md`](../docs/infrastructure/environment.md).
 
@@ -35,17 +34,17 @@ Open <http://localhost:3000>.
 | Route | Purpose |
 |---|---|
 | `/` | Home as charging + energy |
-| `/hub` | Charging Hub |
 | `/charging`, `/charging/home` | Products + home survey |
 | `/charging/modular-energy` | P1 Go / P2 Home / Mini Stack / MegaPack (conceptual) |
 | `/charging/modular-energy/mini-stack` | Mini Stack as outdoor SME backup (not Pod energy storage) |
 | `/charging/modular-energy/megapack` | MegaPack as project-engineered BESS (industrial to utility-scale) |
 | `/charging/engineering` | Design package PDF |
-| `/download` | Precifarm Agent APK + product sheet |
-| `/sustainability` | 2030 commitments and impact reporting |
+| `/agent` | Precifarm Agent |
 | `/training` | T1–T3 |
-| `/evs`, `/guides`, `/faq`, `/locations` | SEO |
-| `/partners`, `/about`, `/contact`, `/careers` | Company / GTM |
+| `/evs`, `/faq` | SEO |
+| `/partners`, `/about`, `/contact` | Company / GTM |
+
+`/hub`, `/download`, `/careers`, `/sustainability`, `/guides` and `/locations` are permanent redirects in `next.config.ts`; their pages were removed in October 2026.
 
 Full map: [Website channel doc](../docs/channels/website.md) · [Pivot cleanup](./docs/PIVOT-CLEANUP.md).
 
@@ -66,8 +65,7 @@ Full map: [Website channel doc](../docs/channels/website.md) · [Pivot cleanup](
 | Global styles / tokens | `app/globals.css` |
 | Homepage | `app/page.tsx` |
 | Canonical copy | `lib/brand-messaging.ts` |
-| Charging Hub | `lib/charging-hub.ts`, `lib/hub-locations.ts` |
-| Precifarm Agent | `lib/download-page.ts`, `app/download/` |
+| Precifarm Agent | `lib/agent-page.ts`, `app/agent/` |
 | Private house charging | `lib/home-charging.ts` |
 | Modular energy | `lib/modular-energy-page.ts` |
 | SEO | `lib/seo/`, `components/seo/` |
@@ -85,7 +83,7 @@ Full map: [Website channel doc](../docs/channels/website.md) · [Pivot cleanup](
 
 ## Status
 
-**Actual:** charging site, Charging Hub, Precifarm Agent page, sustainability, Cloud Run at precifarm.com.
+**Actual:** charging site, Precifarm Agent page, Cloud Run at precifarm.com.
 
 **Not proven as traction:** paid installs, public session volume.
 

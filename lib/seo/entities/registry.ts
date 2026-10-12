@@ -125,7 +125,7 @@ export const entityRegistry: KnowledgeEntity[] = [
  name: chargingHub.name,
  description: chargingHub.description,
  aliases: ["Charge Map", "Hub Network"],
- url: absoluteUrl("/hub"),
+ url: absoluteUrl("/charging"),
  relatedIds: ["service-hub-charging", "service-home-charging", "location-nairobi", "location-kisumu"],
  },
  {
@@ -155,7 +155,7 @@ export const entityRegistry: KnowledgeEntity[] = [
  name: "Precifarm Agent",
  description:
  "AI electrical and energy engineering workspace for EV charging, solar, batteries and electrical systems. Desktop coming soon.",
- url: absoluteUrl("/download"),
+ url: absoluteUrl("/agent"),
  relatedIds: ["service-charge-map", "service-home-charging", "product-pulse"],
  },
  {
@@ -165,7 +165,7 @@ export const entityRegistry: KnowledgeEntity[] = [
  name: "Sustainability & social impact",
  description:
  "2030 commitments on cleaner kilometres, grid-smart energy, circularity and honest impact reporting for Kenya.",
- url: absoluteUrl("/sustainability"),
+ url: absoluteUrl("/about"),
  relatedIds: ["service-home-charging", "service-charge-map", "product-pod"],
  },
  {
@@ -246,11 +246,6 @@ export function internalLinksForPath(path: string): { href: string; label: strin
  add("/evs", "Kenya EV guide", "Compare EVs and charging fit");
  add("/faq", "FAQ", "Charging and installation answers");
  return links.slice(0, 5);
- case "/hub":
- add("/charging", "EV charging", "From home charging to highway charging");
- add("/charging/home", "Home EV charging", "Pulse charger and Pod energy storage");
- add("/locations", "Locations", "City guides across Kenya");
- break;
  case "/charging":
  add(chargingHub.path, chargingHub.label, "See hub locations");
  add("/charging/home", "Home EV charging", "Pulse charger and Pod energy storage");
@@ -266,17 +261,13 @@ export function internalLinksForPath(path: string): { href: string; label: strin
  break;
  case "/charging/home":
  add("/charging", "EV charging", "Home, fleet and highway");
- add("/guides", "Guides", "Home charger installation guides");
+ add("/faq", "FAQ", "Home charging answers");
  add(chargingHub.path, chargingHub.label, "Route hub locations");
  break;
  case "/evs":
  add("/charging/home", "Home EV charging", "Daily top-up at home");
  add(chargingHub.path, chargingHub.label, "Public DC charging");
  add("/faq", "FAQ", "Charging economics in Kenya");
- break;
- case "/locations":
- add(chargingHub.path, chargingHub.label, "Charging Hub directory");
- add("/charging/home", "Home EV charging", "Install in your city");
  break;
  case "/training":
  add("/charging/engineering", "Engineering package", "Hub design basis");
@@ -291,13 +282,8 @@ export function internalLinksForPath(path: string): { href: string; label: strin
  add("/partners", "Partners", "Fleet and hub hosting");
  break;
  case "/agent":
- add("/download", "Desktop download", "Request early access");
+ add("/contact", "Request access", "Precifarm Agent desktop early access");
  add("/charging/home", "Home EV charging", "Pulse charger and Pod energy storage installs");
- add("/charging", "EV charging", "Spark charger to Corridor");
- break;
- case "/download":
- add("/agent", "Precifarm Agent", "Product overview");
- add("/contact", "Contact", "Request desktop access");
  add("/charging", "EV charging", "Spark charger to Corridor");
  break;
  case "/partners":
@@ -305,15 +291,10 @@ export function internalLinksForPath(path: string): { href: string; label: strin
  add("/training", "EV charging training", "Technician certification");
  add("/about", "About Precifarm", "Mission and route-one proof");
  break;
- case "/sustainability":
- add("/charging", "EV charging", "Infrastructure behind cleaner kilometres");
- add("/charging/modular-energy", "Modular energy", "Home and shop storage platform");
- add("/faq", "FAQ", "Charging and energy answers");
- break;
  case "/charging/modular-energy":
  add("/charging/home", "Home charging", "What installs today");
  add("/charging/modular-energy/megapack", "MegaPack", "Project-engineered BESS");
- add("/sustainability", "Sustainability", "Impact commitments and reporting");
+ add("/about", "About Precifarm", "Mission and impact commitments");
  break;
  case "/charging/modular-energy/megapack":
  add("/charging/modular-energy", "Modular energy", "Platform overview");

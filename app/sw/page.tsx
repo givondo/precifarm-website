@@ -24,7 +24,7 @@ export default function SwahiliHomePage() {
           <Link href="/charging" className="btn-primary">
             {swahiliUi.bookCta}
           </Link>
-          <Link href="/hub" className="btn-secondary">
+          <Link href="/charging" className="btn-secondary">
             {swahiliUi.chargingHubCta}
           </Link>
           <Link href="/charging/home" className="btn-secondary">
@@ -45,7 +45,7 @@ export default function SwahiliHomePage() {
             <Link href="/agent" className="text-link font-medium">
               {page.body.links.download}
             </Link>
-            <Link href="/locations" className="text-link font-medium">
+            <Link href="/charging" className="text-link font-medium">
               {page.body.links.locations}
             </Link>
             <Link href="/" className="text-link font-medium">

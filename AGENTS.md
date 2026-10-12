@@ -20,11 +20,9 @@ Passenger-booking agent docs are **archived**. Do not restore `/book`, seat maps
 
 Maintain the public charging site:
 
-- Charging Hub (`/hub`)
 - Home / fleet / highway products (`/charging`, `/charging/home`)
 - Modular energy conceptual pages
-- Precifarm Agent (`/download`)
-- Sustainability (`/sustainability`)
+- Precifarm Agent (`/agent`)
 - Training, partners, SEO surfaces
 
 ## Source of truth
@@ -43,8 +41,8 @@ Maintain the public charging site:
 | Layout + fonts | `app/layout.tsx` |
 | Design tokens | `app/globals.css` |
 | Homepage | `app/page.tsx`, `lib/brand-messaging.ts` |
-| Charging Hub | `lib/charging-hub.ts`, `lib/hub-locations.ts` |
-| Precifarm Agent | `app/download/`, `lib/download-page.ts` |
+| Charging Hub copy | `lib/charging-hub.ts` |
+| Precifarm Agent | `app/agent/`, `lib/agent-page.ts` |
 | Home charging | `lib/home-charging.ts` |
 | Navigation | `components/Header.tsx` |
 | CMS client | `lib/cms.ts` |
@@ -67,4 +65,4 @@ Production: **Google Cloud Run** (`europe-west1`). See [`docs/DEPLOY-GCP.md`](do
 
 ## Required checks
 
-Run lint and build. Confirm `/book` still redirects to `/charging`. Confirm `/download` does not claim a chatbot, Play Store or iOS.
+Run lint and build. Confirm `/book` still redirects to `/charging`. Confirm `/agent` does not claim a chatbot, Play Store or iOS. `/hub`, `/download`, `/careers`, `/sustainability`, `/guides` and `/locations` are redirects only (pages removed October 2026).

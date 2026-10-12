@@ -218,7 +218,7 @@ export function softwareApplicationSchema(): JsonLd {
       },
       {
         "@type": "ViewAction",
-        target: absoluteUrl("/download"),
+        target: absoluteUrl("/contact"),
         name: "Request desktop access",
       },
       {

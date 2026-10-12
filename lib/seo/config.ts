@@ -4,7 +4,6 @@
  */
 
 import { contact } from "@/lib/contact";
-import { chargingHub } from "@/lib/charging-hub";
 import { modularEnergyPaths } from "@/lib/modular-energy-page";
 import { socialHandles, socialProfileUrls } from "@/lib/social";
 
@@ -48,11 +47,11 @@ export const siteConfig = {
  androidApp: {
  packageName: "com.precifarm.agent",
  name: "Precifarm Agent",
- downloadPath: "/download",
+ downloadPath: "/contact",
  deepLinkScheme: "precifarm",
  },
  cmsApiUrl: process.env.CMS_API_URL?.replace(/\/$/, ""),
- searchPath: "/hub",
+ searchPath: "/charging",
 } as const;
 
 export type SiteConfig = typeof siteConfig;
@@ -60,7 +59,6 @@ export type SiteConfig = typeof siteConfig;
 /** Static routes included in sitemap and internal linking graph */
 export const publicRoutes = [
  { path: "/", label: "Home", changefreq: "weekly" as const, priority: 1.0 },
- { path: chargingHub.path, label: chargingHub.label, changefreq: "weekly" as const, priority: 0.9 },
  { path: "/charging", label: "Charging", changefreq: "monthly" as const, priority: 0.95 },
  { path: "/charging/home", label: "Home charging", changefreq: "monthly" as const, priority: 0.82 },
  { path: "/charging/boda-hub", label: "Automated Boda Hub", changefreq: "monthly" as const, priority: 0.82 },
@@ -74,14 +72,9 @@ export const publicRoutes = [
  { path: "/partners", label: "Partners", changefreq: "monthly" as const, priority: 0.8 },
  { path: "/training", label: "EV charging training", changefreq: "monthly" as const, priority: 0.76 },
  { path: "/about", label: "About", changefreq: "monthly" as const, priority: 0.75 },
- { path: "/sustainability", label: "Sustainability", changefreq: "monthly" as const, priority: 0.72 },
- { path: "/careers", label: "Careers", changefreq: "monthly" as const, priority: 0.7 },
  { path: "/agent", label: "Precifarm Agent", changefreq: "monthly" as const, priority: 0.85 },
- { path: "/download", label: "Precifarm Agent Desktop", changefreq: "monthly" as const, priority: 0.7 },
  { path: "/contact", label: "Contact", changefreq: "yearly" as const, priority: 0.65 },
- { path: "/guides", label: "Guides", changefreq: "weekly" as const, priority: 0.8 },
  { path: "/faq", label: "FAQ", changefreq: "weekly" as const, priority: 0.75 },
- { path: "/locations", label: "Locations", changefreq: "weekly" as const, priority: 0.78 },
  { path: "/sw", label: "Kiswahili", changefreq: "weekly" as const, priority: 0.6 },
 ] as const;
 

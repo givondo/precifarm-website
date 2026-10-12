@@ -4,13 +4,13 @@ import { sitePricing } from "@/lib/site-copy";
 /** Canonical public name and path for the Charging Hub */
 export const chargingHub = {
   name: "Charging Hub",
-  path: "/hub" as const,
+  path: "/charging" as const,
   label: "Charging Hub",
   openLabel: "Open Charging Hub",
   nameLower: "charging hub",
   description:
     "Charging Hub lists Precifarm fast chargers, boda battery swap and partner stops across Kenya — with honest open and coming-soon labels, and M-Pesa pay at the bay.",
-  url: "https://precifarm.com/hub",
+  url: "https://precifarm.com/charging",
 } as const;
 
 export const chargingHubPage = {
@@ -40,7 +40,7 @@ export const chargingHubPage = {
         label: "Partner & fleet",
       },
     ] as const,
-    primaryHref: "/download",
+    primaryHref: "/contact",
     primaryLabel: "Get Precifarm Agent",
     secondaryHref: "/contact",
     secondaryLabel: "Host a charger",
@@ -114,7 +114,7 @@ export const chargingHubPage = {
       {
         step: "1",
         title: "Open Charging Hub",
-        text: "Use precifarm.com/hub in your browser to browse live and coming-soon sites.",
+        text: "Use precifarm.com/charging in your browser to browse live and coming-soon sites.",
       },
       {
         step: "2",
@@ -127,9 +127,9 @@ export const chargingHubPage = {
         text: "Get directions in Maps, then start the session and pay with M-Pesa.",
       },
     ],
-    appHref: "/download",
+    appHref: "/contact",
     appLabel: "Desktop download",
-    guideHref: "/guides",
+    guideHref: "/faq",
     guideLabel: "Guides",
   },
   statusLabels: {
@@ -178,7 +178,7 @@ export const chargingHubPage = {
   cta: {
     title: "Ready to charge?",
     description: "Browse the hub for live sites. Want Precifarm Agent on desktop? Request access. Have land for a charger? Talk to us.",
-    primaryHref: "/download",
+    primaryHref: "/contact",
     primaryLabel: "Get Precifarm Agent",
     secondaryHref: "/contact",
     secondaryLabel: "Host a charger",

@@ -45,7 +45,7 @@ export default function AgentView() {
               </div>
               <p className="mt-5 text-xs text-forest-400">
                 {agentStatusNote}{" "}
-                <Link href="/download" className="underline underline-offset-2 hover:text-forest-600">
+                <Link href="/contact" className="underline underline-offset-2 hover:text-forest-600">
                   Request access
                 </Link>
               </p>

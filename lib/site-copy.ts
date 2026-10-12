@@ -12,7 +12,7 @@ export const siteCtas = {
   homeSurvey: { href: "/charging/home", label: "Request a house survey" },
   homeCharging: { href: "/charging/home", label: "Explore home charging" },
   fleetCharging: { href: "/partners", label: "Explore fleet charging" },
-  chargingHub: { href: "/hub", label: "Find a charging hub" },
+  chargingHub: { href: "/charging", label: "Find a charging hub" },
   exploreCharging: { href: "/charging", label: "Explore charging" },
   allFaq: { href: "/faq", label: "All FAQ" },
   partners: { href: "/partners", label: "Fleet & partners" },
