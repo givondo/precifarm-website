@@ -287,7 +287,7 @@ Open <http://localhost:8080> (home, `/hub`, `/charging`).
 | **Vercel** | Remove `precifarm.com` domain; account already suspended |
 | **Hostinger** | Stop using Netlify nameservers; point DNS to Google |
 
-Delete local `.netlify` folders. Do not use `netlify.toml` — removed from this repo.
+Delete local `.netlify` folders. `netlify.toml` exists only to stop the still-connected Netlify project from building (`ignore = "exit 0"`); remove it once that project is disconnected from GitHub. Do not add build settings to it.
 
 ---
 
