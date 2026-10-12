@@ -255,15 +255,46 @@ SSL certificates are provisioned automatically by Google (15–60 minutes after 
 
 ---
 
-## 7. CI/CD (optional)
+## 7. Automatic deploys from GitHub (website)
 
-Connect Cloud Build to GitHub:
+`.github/workflows/deploy-cloud-run.yml` runs on every push to `main` (and on demand from
+the **Actions** tab): lint and build, then `gcloud builds submit --config cloudbuild.yaml`,
+then a smoke test of `https://precifarm.com`. Until the two secrets below exist, the deploy
+job is skipped with a notice instead of failing.
 
-1. Cloud Console → **Cloud Build** → **Triggers**
-2. Create trigger on `main` for `givondo/precifarm-cms` → `cloudbuild.yaml`
-3. Create trigger on `main` for `givondo/precifarm-website` → `cloudbuild.yaml`
+**One-time setup** (PowerShell, from a machine where `gcloud` is signed in):
 
-Deploy CMS before website on each release.
+```powershell
+$PROJECT = "YOUR_PROJECT_ID"
+$SA = "github-deployer@$PROJECT.iam.gserviceaccount.com"
+
+gcloud iam service-accounts create github-deployer --project $PROJECT `
+  --display-name "GitHub Actions deploy (precifarm-website)"
+
+# Submit builds, upload source, stream build logs
+foreach ($role in "roles/cloudbuild.builds.editor", "roles/storage.admin",
+                  "roles/logging.viewer", "roles/serviceusage.serviceUsageConsumer") {
+  gcloud projects add-iam-policy-binding $PROJECT --member "serviceAccount:$SA" --role $role
+}
+
+gcloud iam service-accounts keys create github-deployer.json --iam-account $SA
+```
+
+Then in GitHub → `givondo/precifarm-website` → **Settings → Secrets and variables → Actions**
+add:
+
+| Secret | Value |
+|---|---|
+| `GCP_SA_KEY` | the full contents of `github-deployer.json` |
+| `GCP_PROJECT_ID` | your project ID |
+
+Delete `github-deployer.json` from your machine afterwards. The image push and the
+`gcloud run deploy` step run as the **Cloud Build** service account, which already has the
+rights it uses for manual deploys. Re-run the first deploy from **Actions → Deploy to Cloud
+Run → Run workflow**.
+
+The CMS (`givondo/precifarm-cms`) is not covered; deploy it before the website when a
+release changes both.
 
 ---
 

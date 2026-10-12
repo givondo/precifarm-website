@@ -1,0 +1,71 @@
+# Deploys precifarm.com to Cloud Run on every push to main, using the same
+# cloudbuild.yaml as a manual `gcloud builds submit`. Setup: docs/DEPLOY-GCP.md
+# ("Automatic deploys from GitHub").
+name: Deploy to Cloud Run
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# One deploy at a time; a newer push waits rather than racing an older one.
+concurrency:
+  group: deploy-cloud-run
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    name: Lint and build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+
+  deploy:
+    name: Cloud Build → Cloud Run
+    needs: checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      HAS_KEY: ${{ secrets.GCP_SA_KEY != '' && secrets.GCP_PROJECT_ID != '' }}
+    steps:
+      - name: Skip until secrets are configured
+        if: env.HAS_KEY != 'true'
+        run: echo "::notice::GCP_SA_KEY or GCP_PROJECT_ID is not set; skipping deploy. See docs/DEPLOY-GCP.md."
+
+      - uses: actions/checkout@v4
+        if: env.HAS_KEY == 'true'
+
+      - uses: google-github-actions/auth@v2
+        if: env.HAS_KEY == 'true'
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - uses: google-github-actions/setup-gcloud@v2
+        if: env.HAS_KEY == 'true'
+
+      - name: Build image and deploy
+        if: env.HAS_KEY == 'true'
+        run: |
+          gcloud builds submit \
+            --project "${{ secrets.GCP_PROJECT_ID }}" \
+            --config cloudbuild.yaml \
+            .
+
+      - name: Smoke test precifarm.com
+        if: env.HAS_KEY == 'true'
+        run: |
+          for path in / /charging /charging/home; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "https://precifarm.com${path}")
+            echo "${path} -> ${code}"
+            [ "$code" = "200" ] || exit 1
+          done

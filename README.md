@@ -100,6 +100,10 @@ npm run pdf:ai-companion
 
 Google Cloud Run (`europe-west1`). See [DEPLOY-GCP.md](./docs/DEPLOY-GCP.md).
 
+Every push to `main` deploys automatically through GitHub Actions
+(`.github/workflows/deploy-cloud-run.yml`) once the `GCP_SA_KEY` and `GCP_PROJECT_ID`
+secrets are set. Manual deploy:
+
 ```powershell
 gcloud builds submit --config cloudbuild.yaml
 ```
