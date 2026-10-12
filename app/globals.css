@@ -980,8 +980,6 @@ button,
   clip: rect(0, 0, 0, 0);
 }
 
-/* Homepage loader */
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
