@@ -118,9 +118,9 @@ export const aboutPage = {
  items: [
  { name: "Pulse, Pod and Spark", href: "/charging/home", note: "Home charging" },
  { name: "Depot and Boda Hub", href: "/partners", note: "Fleet and two-wheelers" },
- { name: "Corridor DC", href: "/hub", note: "Nairobi–Kisumu first" },
- { name: "Charging Hub", href: "/hub", note: "Live vs planned map" },
- { name: "Precifarm Agent", href: "/download", note: "Desktop · coming soon" },
+ { name: "Corridor DC", href: "/charging", note: "Nairobi–Kisumu first" },
+ { name: "Charging Hub", href: "/charging", note: "Live vs planned map" },
+ { name: "Precifarm Agent", href: "/contact", note: "Desktop · coming soon" },
  ],
  },
  roadmap: {
@@ -165,7 +165,7 @@ export const aboutPage = {
  description: "Home survey, fleet depot, highway hub or energy-storage conversation as we respond within one business day.",
  primaryHref: "/contact",
  primaryLabel: "Contact us",
- secondaryHref: "/hub",
+ secondaryHref: "/charging",
  secondaryLabel: "Open Charging Hub",
  },
 } as const;

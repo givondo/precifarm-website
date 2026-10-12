@@ -25,10 +25,11 @@ export function buildStaticSitemapEntries(lastModified = new Date()): SitemapEnt
 export function buildImageSitemapEntries(): Record<string, string[]> {
   return {
     "/": [
-      homePageImages.featuredPulse.src,
+      homePageImages.hero.src,
       homePageImages.podHomeHero.src,
-      productImages.corridor.src,
-      productImages.spark.src,
+      homePageImages.bodaHub.src,
+      homePageImages.corridor.src,
+      homePageImages.energy.src,
     ].map(absoluteUrl),
     "/charging/home": [productImages.pulse.src, productImages.financing.src].map(absoluteUrl),
     "/charging": [productImages.corridor.src, productImages.depot.src, productImages.boda.src].map(

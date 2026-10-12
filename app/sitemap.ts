@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { BOOKING_FAQ_SLUG, BOOKING_GUIDE_SLUG } from "@/lib/charging-faqs";
+import { BOOKING_FAQ_SLUG } from "@/lib/charging-faqs";
 import { absoluteUrl } from "@/lib/seo/config";
 import { cmsListSeoContent } from "@/lib/seo/cms-client";
 import { buildStaticSitemapEntries } from "@/lib/seo/sitemap";
@@ -25,16 +25,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       }));
 
     const contentEntries: MetadataRoute.Sitemap = items
-      .filter((item) => item.slug !== BOOKING_FAQ_SLUG && item.slug !== BOOKING_GUIDE_SLUG)
+      // Guides and local pages redirect to /faq and /charging, so only FAQ pages are listed.
+      .filter((item) => item.contentType === "faq" && item.slug !== BOOKING_FAQ_SLUG)
       .map((item) => {
-        const prefix =
-          item.contentType === "faq"
-            ? "/faq"
-            : item.contentType === "local_page"
-              ? "/locations"
-              : "/guides";
         return {
-          url: absoluteUrl(`${prefix}/${item.slug}`),
+          url: absoluteUrl(`/faq/${item.slug}`),
           lastModified: item.updatedAt,
           changeFrequency: "weekly" as const,
           priority: 0.7,

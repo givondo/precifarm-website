@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 
-import HomeAnnouncement from "@/components/home/HomeAnnouncement";
-import HomePageGate from "@/components/home/HomePageGate";
 import HomeHero from "@/components/home/HomeHero";
-import HomeChargingCta from "@/components/home/HomeChargingCta";
+import HomePanels from "@/components/home/HomePanels";
+import HomeProof from "@/components/home/HomeProof";
 import HomeScenarios from "@/components/home/HomeScenarios";
-import HomeWhyPrecifarm from "@/components/home/HomeWhyPrecifarm";
 import HomeFinalCta from "@/components/home/HomeFinalCta";
 import JsonLd from "@/components/seo/JsonLd";
 import { createPageSeo } from "@/lib/seo";
@@ -16,34 +14,31 @@ export const revalidate = 3600;
 
 const pageSeo = getPageSeo("/")!;
 
-export async function generateMetadata(): Promise<Metadata> {
+async function homeSeo() {
   const cmsFaqs = await getHomepageFaqsForSchema();
   return createPageSeo({
     ...pageSeo,
     faqs: cmsFaqs.length > 0 ? cmsFaqs : pageSeo.faqs,
-  }).metadata;
+  });
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  return (await homeSeo()).metadata;
 }
 
 export default async function Home() {
-  const cmsFaqs = await getHomepageFaqsForSchema();
-  const seo = createPageSeo({
-    ...pageSeo,
-    faqs: cmsFaqs.length > 0 ? cmsFaqs : pageSeo.faqs,
-  });
+  const seo = await homeSeo();
 
   return (
     <>
       <JsonLd data={seo.jsonLd} />
-      <HomePageGate>
-        <div className="bg-white">
-          <HomeAnnouncement />
-          <HomeHero />
-          <HomeScenarios />
-          <HomeChargingCta />
-          <HomeWhyPrecifarm />
-          <HomeFinalCta />
-        </div>
-      </HomePageGate>
+      <div className="hx-page">
+        <HomeHero />
+        <HomePanels />
+        <HomeProof />
+        <HomeScenarios />
+        <HomeFinalCta />
+      </div>
     </>
   );
 }

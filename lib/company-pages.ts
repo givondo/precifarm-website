@@ -1,20 +1,5 @@
 /** Hero and index copy for Company nav pages (About lives in about-page.ts). */
 
-export const guidesPage = {
-  eyebrow: "Guides · Kenya",
-  title: "Home install, highway DC and M-Pesa — step by step",
-  description:
-    "Written for Kenyan drivers and installers: Pulse charger and Pod energy storage at home, Corridor sessions on the highway, Charging Hub labels and Precifarm Agent on desktop.",
-  cta: {
-    title: "Ready to charge?",
-    description: "Browse the charging range or open the Charging Hub to see what is live near you.",
-    primaryHref: "/charging",
-    primaryLabel: "Explore charging",
-    secondaryHref: "/hub",
-    secondaryLabel: "Open Charging Hub",
-  },
-} as const;
-
 export const faqPage = {
   eyebrow: "FAQ · Kenya",
   title: "Prices, plugs, Lipa Pole Pole and what is live today",
@@ -25,7 +10,7 @@ export const faqPage = {
     description: "Request a home survey, request Precifarm Agent desktop access, or reach us on phone, email and WhatsApp.",
     primaryHref: "/charging/home",
     primaryLabel: "Home charging",
-    secondaryHref: "/download",
+    secondaryHref: "/contact",
     secondaryLabel: "Desktop download",
   },
 } as const;

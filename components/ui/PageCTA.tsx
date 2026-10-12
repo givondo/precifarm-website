@@ -43,7 +43,7 @@ export default function PageCTA({
   secondaryLabel = "Contact us",
 }: PageCTAProps) {
   return (
-    <section className="page-cta">
+    <section className="page-cta" data-reveal>
       <div className="page-container page-cta-container">
         <div className="page-cta-inner">
           <h2 className="page-cta-title">{title}</h2>

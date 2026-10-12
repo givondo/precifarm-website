@@ -9,7 +9,7 @@ import type { FaqItem } from "@/lib/seo/types";
  * Booking / Nairobi–Kisumu passenger content is retired from the public site:
  * Precifarm does not operate vehicles, so it contradicts the entity description
  * everywhere else. `precifarm-booking-faq` 301s to `/faq` and
- * `book-nairobi-kisumu-coach` 301s to `/guides`.
+ * `book-nairobi-kisumu-coach` 301s to `/faq`.
  */
 
 export const HOMEPAGE_FAQ_SLUG = "ev-charging-economics-faq";
@@ -21,7 +21,7 @@ type ChargingFaq = FaqItem & { id: string };
 export const chargingHubFaq: ChargingFaq = {
  id: "charging-hub",
  question: "What is the Charging Hub?",
- answer: `The Charging Hub at precifarm.com/hub is Precifarm's map of DC fast chargers, Boda Hub battery swap stations, partner sites and planned corridor locations across Kenya. Open it on the web or in Precifarm Agent. Live sites are labelled live; planned sites stay labelled planned.`,
+ answer: `The Charging Hub at precifarm.com/charging is Precifarm's map of DC fast chargers, Boda Hub battery swap stations, partner sites and planned corridor locations across Kenya. Open it on the web or in Precifarm Agent. Live sites are labelled live; planned sites stay labelled planned.`,
 };
 
 function pickFaqs(ids: readonly string[], pool: ChargingFaq[]): FaqItem[] {
@@ -116,7 +116,7 @@ export const consumerChargingFaqs: ChargingFaq[] = [
  {
  id: "public-locations",
  question: "Where are Precifarm public chargers?",
- answer: `See the ${chargingHub.name} at precifarm.com/hub for Precifarm hubs and partner sites including EVChaja and ChargeNet across Kenya.`,
+ answer: `See the ${chargingHub.name} at precifarm.com/charging for Precifarm hubs and partner sites including EVChaja and ChargeNet across Kenya.`,
  },
  {
  id: "what-is-precifarm",
@@ -128,7 +128,7 @@ export const consumerChargingFaqs: ChargingFaq[] = [
  id: "ai-companion",
  question: "What is Precifarm Agent?",
  answer:
- "Precifarm Agent is the AI electrical and energy engineering workspace for EV charging, solar, batteries and electrical systems. Desktop coming soon — request access at precifarm.com/download.",
+ "Precifarm Agent is the AI electrical and energy engineering workspace for EV charging, solar, batteries and electrical systems. Desktop coming soon — request access at precifarm.com/contact.",
  },
  {
  id: "depot",

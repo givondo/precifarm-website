@@ -494,7 +494,7 @@ export const modularEnergyProducts: Record<ModularEnergyProductSlug, ModularEner
  {
  name: "Charging Hub",
  text: "Public DC and Boda Hub swap sites across Kenya, with live bay status.",
- href: "/hub",
+ href: "/charging",
  },
  ],
  faqs: [

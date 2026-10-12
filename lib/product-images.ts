@@ -1,6 +1,6 @@
 ﻿/**
  * Canonical product shots for inner pages (2026 industrial renders where available).
- * Homepage bands use lib/home-page-images.ts — not this file for featured Pulse / Pod hero.
+ * Homepage full-bleed panels use lib/home-page-images.ts, not this file.
  */
 
 import { productRenderPaths } from "@/lib/product-renders-catalog";

@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { cmsListSeoEntities } from "@/lib/seo/cms-client";
 import {
-  entityRegistry,
   getEntity,
   getEntityBySlug,
   getRelatedEntities,

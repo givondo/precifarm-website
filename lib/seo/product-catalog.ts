@@ -96,7 +96,7 @@ export const commercialProductCatalog = {
  corridor: {
  name: productNames.corridor,
  description: byId("corridor").tagline,
- path: "/hub",
+ path: "/charging",
  image: productImages.corridor.src,
  sku: "corridor-120kw",
  category: "Highway DC Fast Charger",

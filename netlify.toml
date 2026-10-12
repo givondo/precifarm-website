@@ -1,0 +1,6 @@
+# Production runs on Google Cloud Run (docs/DEPLOY-GCP.md). Netlify is retired, but
+# the old Netlify site is still connected to this repo and posts failing deploy
+# previews. `exit 0` tells Netlify to skip every build. Delete this file once the
+# Netlify project is disconnected from GitHub.
+[build]
+  ignore = "exit 0"

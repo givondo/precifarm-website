@@ -13,7 +13,7 @@ export const bodaHubPath = "/charging/boda-hub" as const;
 export const bodaHubPaths = {
  product: bodaHubPath,
  partners: "/partners#boda-operators",
- hub: "/hub",
+ hub: "/charging",
  agent: "/agent",
  contact: "/contact?interest=boda-hub",
  engineering: "/charging/engineering",

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { contactPage } from "@/lib/company-pages";
 import { contact } from "@/lib/contact";
 import ContactForm from "@/components/ContactForm";

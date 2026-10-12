@@ -3,33 +3,32 @@ import { homeScenarios, scenarioSection } from "@/lib/brand-messaging";
 
 export default function HomeScenarios() {
   return (
-    <section className="home-section border-b border-border bg-muted/30">
-      <div className="page-container">
-        <div className="home-section-header mx-auto max-w-2xl text-center lg:max-w-3xl">
-          <p className="text-eyebrow">{scenarioSection.eyebrow}</p>
-          <h2 className="heading-display mt-3 text-2xl text-forest-900 sm:text-3xl lg:text-4xl">
+    <section className="hx-scenarios" aria-labelledby="home-scenarios-title">
+      <div className="hx-container py-24 sm:py-32">
+        <div className="max-w-3xl">
+          <p className="hx-eyebrow" data-reveal>
+            {scenarioSection.eyebrow}
+          </p>
+          <h2 id="home-scenarios-title" className="hx-title mt-4" data-reveal>
             {scenarioSection.title}
           </h2>
-          <p className="mt-3 text-sm leading-relaxed text-forest-600 sm:text-base">{scenarioSection.description}</p>
+          <p className="hx-lead mt-5 max-w-2xl" data-reveal>
+            {scenarioSection.description}
+          </p>
         </div>
 
-        <div className="home-section-grid mt-10 grid gap-4 lg:grid-cols-3 lg:gap-5">
-          {homeScenarios.map((item) => (
-            <Link
-              key={item.id}
-              href={item.href}
-              className="home-scenario-card group flex h-full flex-col rounded-[1.75rem] border border-border bg-white p-6 transition-[box-shadow,border-color] hover:border-forest-200 hover:shadow-md sm:p-7"
-            >
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-charge-600">{item.audience}</p>
-              <h3 className="mt-3 text-xl font-semibold tracking-tight text-forest-900 sm:text-2xl">{item.title}</h3>
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-forest-600">{item.text}</p>
-              <p className="mt-4 text-xs font-medium uppercase tracking-wide text-forest-400">
-                {item.products}
-              </p>
-              <span className="mt-5 inline-flex items-center text-sm font-semibold text-forest-900 group-hover:text-charge-600">
+        <div className="mt-14 grid gap-px overflow-hidden bg-white/10 lg:grid-cols-3" data-reveal-stagger="120">
+          {homeScenarios.map((item, index) => (
+            <Link key={item.id} href={item.href} className="hx-card group" data-reveal>
+              <span className="hx-card-index">{String(index + 1).padStart(2, "0")}</span>
+              <p className="hx-eyebrow mt-10">{item.audience}</p>
+              <h3 className="hx-card-title">{item.title}</h3>
+              <p className="mt-4 flex-1 text-[15px] leading-relaxed text-white/65">{item.text}</p>
+              <p className="mt-6 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40">{item.products}</p>
+              <span className="hx-card-cta">
                 {item.cta}
-                <span aria-hidden className="ml-1 transition-transform group-hover:translate-x-0.5">
-                  ›
+                <span aria-hidden className="hx-card-arrow">
+                  →
                 </span>
               </span>
             </Link>

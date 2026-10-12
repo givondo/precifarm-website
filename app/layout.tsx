@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
-import "leaflet/dist/leaflet.css";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AnalyticsProvider from "@/components/AnalyticsProvider";
+import MotionProvider from "@/components/motion/MotionProvider";
 import JsonLd from "@/components/seo/JsonLd";
 import { siteConfig } from "@/lib/seo/config";
 import { rootLayoutMetadata } from "@/lib/seo/metadata";
@@ -66,11 +66,13 @@ export default function RootLayout({
     >
       <body className="flex min-h-full flex-col bg-white font-sans text-base text-forest-900">
         <JsonLd data={globalSchemas()} />
+        <div className="scroll-progress" aria-hidden />
         <AnalyticsProvider>
           <Header />
           <main className="relative z-0 flex-1">{children}</main>
           <Footer />
         </AnalyticsProvider>
+        <MotionProvider />
       </body>
     </html>
   );

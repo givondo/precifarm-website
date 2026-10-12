@@ -20,7 +20,7 @@ export const agentPageFaqs: FaqItem[] = [
   {
     question: "Is Precifarm Agent live today?",
     answer:
-      "Early access is open. The desktop app is coming soon — request access at precifarm.com/download.",
+      "Early access is open. The desktop app is coming soon — request access at precifarm.com/contact.",
   },
   {
     question: "Who is it for?",
@@ -39,7 +39,7 @@ export const agentPage = {
     eyebrow: "Precifarm Agent",
     title: "Your AI electrical & energy engineer.",
     subhead: "Tell it what you’re building. It sizes, designs and checks the system with you.",
-    primaryCta: { href: "/download", label: "Download for desktop" },
+    primaryCta: { href: "/contact", label: "Download for desktop" },
     secondaryCta: { href: "/contact", label: "Start designing" },
   },
 
@@ -213,7 +213,7 @@ export const agentPage = {
     description: "Tell Precifarm Agent what you’re building. Add the files you have. Let it work through the design.",
     primaryHref: "/contact",
     primaryLabel: "Start designing",
-    secondaryHref: "/download",
+    secondaryHref: "/contact",
     secondaryLabel: "Get desktop access",
     finalLine: "EV charging. Solar. Batteries. Electrical systems. One Agent.",
   },
