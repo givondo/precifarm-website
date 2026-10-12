@@ -59,7 +59,7 @@ Maintain the public charging site:
 
 ## Deploy
 
-Production: **Google Cloud Run** (`europe-west1`). See [`docs/DEPLOY-GCP.md`](docs/DEPLOY-GCP.md).
+Production: **Google Cloud Run** (`europe-west1`). Pushes to `main` deploy through `.github/workflows/deploy-cloud-run.yml`. See [`docs/DEPLOY-GCP.md`](docs/DEPLOY-GCP.md).
 
 **Secrets:** copy [`.env.example`](.env.example) → `.env.local`. See [`docs/infrastructure/environment.md`](../docs/infrastructure/environment.md).
 
