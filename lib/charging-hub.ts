@@ -83,7 +83,7 @@ export const chargingHubPage = {
       {
         id: "highway",
         title: "Highway fast charge",
-        stat: "~60 kWh in 30 min",
+        stat: "Up to ~60 kWh in 30 min",
         detail: "Fast top-up on major routes. From " + sitePricing.publicDcFrom + " on M-Pesa.",
         imageKey: "corridor" as const,
         status: "pilot" as const,
