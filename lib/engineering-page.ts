@@ -73,7 +73,7 @@ export const engineeringPage = {
     rows: [
       ["Pulse · 7 kW", "Home daily charging", "Type 2 AC on customer meter · from KES 79,000"],
       ["Pod + solar", "Weak-grid evenings", "Hybrid sub-board · optional rooftop PV"],
-      ["Depot · 22 kW", "Fleet yards", "AC overnight · ~120 min for 40+ kWh"],
+      ["Depot · 22 kW", "Fleet yards", "AC overnight · ~120 min for 40+ kWh at 22 kW; 3.5 to 6 h on 7 to 11 kW cars"],
       ["Corridor · 120 kW+", "Highway DC", "T-canopy · up to ~60 kWh in 30 min · from KES 39/kWh"],
       ["Boda Hub", "E-motorbike swap", "Kerbside or depot · under 5 minutes"],
     ],

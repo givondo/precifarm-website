@@ -19,7 +19,7 @@ export const productChargeTimes = {
   pulse: "about 90 minutes",
   pod: "about 90 minutes",
   boda: "under 5 minutes",
-  depot: "about 120 minutes",
+  depot: "about 120 minutes for 40+ kWh at 22 kW AC (3.5 to 6 hours on 7 to 11 kW cars)",
   corridor: "about 30 minutes",
 } as const;
 
@@ -96,7 +96,7 @@ export const homeProducts: HomeProduct[] = [
     name: productNames.depot,
     summary: "22 kW AC pedestal for fleet yards and depots.",
     tagline:
-      "The Depot charging station is a 22 kW AC pedestal that adds 40+ kWh in about 120 minutes while the fleet is parked.",
+      "The Depot charging station is a 22 kW AC pedestal that adds 40+ kWh in about 120 minutes on vehicles that accept 22 kW AC. Most cars accept 7 to 11 kW, about 3.5 to 6 hours for 40 kWh.",
     category: "commercial",
     priceLabel: "KES 39/kWh",
     href: "/charging",

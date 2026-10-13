@@ -18,7 +18,7 @@ Precifarm installs, finances and runs EV charging in Kenya as from home charging
 - Pulse charger: 7 kW home wallbox · typical day in about 90 minutes · from KES 79,000 · Lipa Pole Pole
 - Pod energy storage: home charger + 5 or 10 kWh storage · from KES 295,000 · Lipa Pole Pole
 - Boda Hub: battery swap or kerbside · under 5 minutes
-- Depot charging station: 22 kW fleet AC · 40+ kWh in about 120 minutes
+- Depot charging station: 22 kW fleet AC · 40+ kWh in about 120 minutes on vehicles that accept 22 kW AC; most cars accept 7 to 11 kW (about 3.5 to 6 hours)
 - Corridor charging: 120 kW+ highway DC · up to about 60 kWh in 30 minutes, vehicle permitting · public DC from KES 39/kWh
 
 Lipa Pole Pole is M-Pesa financing for Pulse charger and Pod energy storage, not a charger.

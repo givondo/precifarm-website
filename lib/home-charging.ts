@@ -101,7 +101,7 @@ export const privateHouseChargingPackages = [
   },
   {
     name: "Pod energy storage",
-    bestFor: "Weak-grid evenings — the 10 kWh Pod covers a typical day from storage alone",
+    bestFor: "Weak-grid evenings. A 10 kWh Pod delivers about 8 kWh (illustrative), most of a typical day; grid or solar tops up the rest",
     includes: [
       "Pod energy storage with 5 or 10 kWh LiFePO₄ at the house",
       "Optional rooftop solar",

@@ -63,7 +63,7 @@ export const entityRegistry: KnowledgeEntity[] = [
  type: "equipment",
  name: "Depot charging station",
  description:
- "22 kW AC pedestal for fleets. Adds 40+ kWh in about 120 minutes while vehicles are parked. Public DC from KES 39/kWh.",
+ "22 kW AC pedestal for fleets. Adds 40+ kWh in about 120 minutes on vehicles that accept 22 kW AC; most cars accept 7 to 11 kW, about 3.5 to 6 hours. Public DC from KES 39/kWh.",
  url: absoluteUrl("/partners"),
  relatedIds: ["service-fleet-charging", "product-corridor"],
  },

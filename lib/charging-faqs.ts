@@ -134,7 +134,7 @@ export const consumerChargingFaqs: ChargingFaq[] = [
  id: "depot",
  question: "What is a Depot charging station?",
  answer:
- "Depot is a 22 kW AC pedestal for fleets that park for hours as vans, shuttles and yard vehicles. It adds 40+ kWh in about 120 minutes. Public DC at Depot and Corridor sites is from KES 39/kWh on M-Pesa. See Partners for fleet electrification.",
+ "Depot is a 22 kW AC pedestal for fleets that park for hours as vans, shuttles and yard vehicles. It adds 40+ kWh in about 120 minutes on vehicles that accept 22 kW AC; most cars accept 7 to 11 kW, about 3.5 to 6 hours for 40 kWh. Public DC at Depot and Corridor sites is from KES 39/kWh on M-Pesa. See Partners for fleet electrification.",
  },
  {
  id: "boda-hub",

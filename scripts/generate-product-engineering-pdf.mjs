@@ -145,7 +145,7 @@ const HOME_PACKAGES = [
 const FLEET_SPECS = [
   ["Rated power", "22 kW AC", "120 kW+ DC"],
   ["Connector", "Type 2", "Dual CCS2"],
-  ["Typical session", "40+ kWh in ~120 min", "Up to ~60 kWh in 30 min"],
+  ["Typical session", "40+ kWh in ~120 min at 22 kW; 3.5 to 6 h on 7 to 11 kW cars", "Up to ~60 kWh in 30 min"],
   ["Design class", "11–22 kW where dwell > 2 h", "120–180 kW town · 240–320 kW highway"],
   ["Form factor", "Pedestal", "T-canopy, overhead cables"],
   ["Payment", "M-Pesa · account billing", "M-Pesa from KES 39/kWh"],

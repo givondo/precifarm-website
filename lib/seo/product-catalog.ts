@@ -88,7 +88,7 @@ export const commercialProductCatalog = {
  category: "Fleet EV Charger",
  additionalProperty: [
  { name: "Power", value: "22 kW AC" },
- { name: "Session energy", value: "40+ kWh in about 120 minutes" },
+ { name: "Session energy", value: "40+ kWh in about 120 minutes at 22 kW AC; 3.5 to 6 hours on 7 to 11 kW cars" },
  { name: "Public DC rate", value: "from KES 39/kWh" },
  ],
  // Hardware unit price is not published; do not invent an Offer.

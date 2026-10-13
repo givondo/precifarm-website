@@ -112,7 +112,7 @@ const PRECIFARM_CHARGERS = [
   ["Spark charger", "3.3 kW", "Type 2", "Portable top-up", "~180 min"],
   ["Pulse charger", "7 kW", "Type 2", "Home overnight", "~90 min"],
   ["Pod + charger", "7 kW + storage", "Type 2", "Weak-grid home", "5–10 kWh"],
-  ["Depot station", "22 kW", "Type 2", "Fleet / campus", "~120 min"],
+  ["Depot station", "22 kW", "Type 2", "Fleet / campus", "~120 min at 22 kW"],
   ["Corridor DC", "120–320 kW", "CCS2", "Highway / hub", "~60 kWh / 30 min"],
   ["Boda Hub", "Swap", "Pack swap", "E-motorcycle", "<5 min"],
   ["Route hub", "120–320 kW", "CCS2 + BESS", "Reserved bus", "120 kWh / 30 min"],
