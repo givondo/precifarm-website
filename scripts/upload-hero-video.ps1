@@ -43,7 +43,7 @@ if ((Test-Path $WebPath) -and (Test-Path $MobilePath)) {
   Upload-Video $WebPath "precifarm-ad-v2-web.mp4"
   Upload-Video $MobilePath "precifarm-ad-v2-mobile.mp4"
 } elseif (Test-Path $SourcePath) {
-  Write-Host "Compressed variants missing — uploading master as legacy object..." -ForegroundColor Yellow
+  Write-Host "Compressed variants missing - uploading master as legacy object..." -ForegroundColor Yellow
   Upload-Video $SourcePath "precifarm-ad-v2-master.mp4"
 } else {
   Write-Error "No video files found. Compress locally or provide -SourcePath."
