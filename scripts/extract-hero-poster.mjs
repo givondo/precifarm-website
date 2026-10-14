@@ -1,6 +1,9 @@
 /**
  * Extract a hero video poster frame (16:9) for the homepage wallpaper.
  * Requires: npm install --no-save ffmpeg-static
+ *
+ * HERO_POSTER_SEC=92   — explicit timestamp (seconds)
+ * HERO_POSTER_END=1    — last frame (~1:40 on v2 master)
  */
 import { execFileSync } from "node:child_process";
 import fs from "node:fs";
@@ -30,17 +33,23 @@ if (!fs.existsSync(src)) {
 
 fs.mkdirSync(outDir, { recursive: true });
 
-/** Pick a frame after the opening beat; subtle grade for web hero */
+/** Subtle grade for web hero */
 const vf = "scale=1920:-2,eq=brightness=-0.04:contrast=1.08:saturation=1.06,unsharp=5:5:0.4:5:5:0.0";
 
-console.log("Extracting poster from", src);
+const useEnd =
+  process.env.HERO_POSTER_END === "1" ||
+  process.env.HERO_POSTER_SEC === "last" ||
+  process.env.HERO_POSTER_SEC === "end";
+
+const inputArgs = useEnd
+  ? ["-sseof", "-0.5", "-i", src]
+  : ["-ss", process.env.HERO_POSTER_SEC ?? "99", "-i", src];
+
+console.log("Extracting poster from", src, useEnd ? "(last frame)" : `at ${process.env.HERO_POSTER_SEC ?? "99"}s`);
 execFileSync(
   ffmpegPath,
   [
-    "-ss",
-    process.env.HERO_POSTER_SEC ?? "12",
-    "-i",
-    src,
+    ...inputArgs,
     "-vframes",
     "1",
     "-update",

@@ -21,10 +21,10 @@ export default function HomeHeroVideo() {
   }, [src, srcMobile]);
 
   return (
-    <figure className="home-hero-visual relative aspect-video w-full min-h-[11rem] overflow-hidden sm:min-h-[14rem]">
+    <figure className="home-hero-visual relative aspect-video w-full min-h-0 overflow-hidden sm:min-h-[14rem] lg:min-h-0 lg:aspect-video">
       <video
         key={activeSrc}
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 h-full w-full object-cover max-lg:object-contain lg:object-cover"
         src={activeSrc}
         poster={posterSrc}
         playsInline

@@ -3,13 +3,14 @@
  * Align with GCP production: website on Cloud Run, CMS at api.precifarm.com
  */
 
+import { homePageTitle } from "@/lib/brand-messaging";
 import { contact } from "@/lib/contact";
 import { chargingHub } from "@/lib/charging-hub";
 import { modularEnergyPaths } from "@/lib/modular-energy-page";
 import { socialHandles, socialProfileUrls } from "@/lib/social";
 
 /** Browser tab title for the homepage as keep in sync with layout metadata */
-export const defaultSiteTitle = "Precifarm | EV Charging Infrastructure in Kenya" as const;
+export const defaultSiteTitle = homePageTitle;
 
 export const siteConfig = {
  name: "Precifarm",

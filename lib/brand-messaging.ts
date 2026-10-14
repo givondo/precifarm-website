@@ -42,11 +42,17 @@ export const audienceCopy = {
  investor: { title: "Investor", line: "Build the infrastructure behind electric transport." },
 } as const;
 
+/** Browser tab + homepage H1 on large screens — keep in sync with lib/seo/config.ts */
+export const homePageTitle = "Precifarm - Powering the shift to electric transport." as const;
+
 export const announcementBar = {
  text: "Pulse charger from KES 79,000 · Public DC charging in <30 min · Lipa Pole Pole financing available",
  textShort: "Pulse charger from KES 79,000 · Lipa Pole Pole on M-Pesa",
+ /** One-line promo on small screens */
+ textMobile: "Pulse · from KES 79,000",
  href: "/charging/home",
  label: "Home charging",
+ labelMobile: "Home",
 } as const;
 
 export const homeHero = {
