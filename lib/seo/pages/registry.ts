@@ -23,6 +23,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  path: "/",
  title: defaultSiteTitle,
  description: siteConfig.defaultDescription,
+ ogImage: "/images/home-hero-video-wallpaper.jpg",
  faqs: (homepageAisoBlocks.find((b) => b.type === "faq")?.items ?? []) as PageSeoInput["faqs"],
  breadcrumbs: [{ name: "Home", href: "/" }],
  },
@@ -139,6 +140,18 @@ export const pageSeoRegistry: PageSeoInput[] = [
  "LiFePO4 home backup Kenya",
  "Precifarm P1 Go P2 Home Pod",
  ],
+ faqs: [
+ {
+ question: "Is modular energy on sale in Kenya?",
+ answer:
+ "P1 Go, P2 Home, Mini Stack and MegaPack are conceptual platform products — not certified for sale. Pulse, Pod, Spark, Depot, Boda Hub and Corridor are the commercial charging line.",
+ },
+ {
+ question: "What is the 2.56 kWh Energy Module?",
+ answer:
+ "One lithium module scales from portable P1 Go to home P2 Home and outdoor Mini Stack — engineered for Kenyan homes, shops and sites on the same platform family.",
+ },
+ ],
  breadcrumbs: [
  { name: "Home", href: "/" },
  { name: "Modular energy", href: "/charging/modular-energy" },
@@ -150,6 +163,13 @@ export const pageSeoRegistry: PageSeoInput[] = [
  description:
  "About 1 kWh in an aluminium carry case, with foldable solar and a Type 2 trickle lead in the box. Sized for a router, laptop and phones through an outage. Conceptual, not a daily EV charger and not on sale yet.",
  keywords: ["P1 Go", "portable power station Kenya", "home backup battery Kenya"],
+ faqs: [
+ {
+ question: "Is P1 Go an EV charger?",
+ answer:
+ "No. P1 Go is conceptual portable backup (~1 kWh) for routers, laptops and phones through an outage — not a daily EV charger and not on sale yet.",
+ },
+ ],
  breadcrumbs: [
  { name: "Home", href: "/" },
  { name: "Modular energy", href: "/charging/modular-energy" },
@@ -162,6 +182,13 @@ export const pageSeoRegistry: PageSeoInput[] = [
  description:
  "One to four 2.56 kWh modules on a single Power Core, standing beside the consumer board and feeding an essential-load sub-board. About 2.6 to 10.2 kWh nameplate. Conceptual, not certified for sale.",
  keywords: ["P2 Home", "home battery storage Kenya", "LiFePO4 backup Kenya"],
+ faqs: [
+ {
+ question: "How much backup does P2 Home provide?",
+ answer:
+ "One to four 2.56 kWh modules on a Power Core — about 2.6 to 10.2 kWh nameplate for essential loads. Conceptual, not certified for sale.",
+ },
+ ],
  breadcrumbs: [
  { name: "Home", href: "/" },
  { name: "Modular energy", href: "/charging/modular-energy" },
@@ -174,6 +201,13 @@ export const pageSeoRegistry: PageSeoInput[] = [
  description:
  "Two to six Energy Modules in an outdoor enclosure on a plinth, holding up refrigeration, the till and lighting at Kenyan retail sites. Distinct from Pod energy storage for home EV charging. Conceptual, not certified for sale.",
  keywords: ["Precifarm Mini Stack", "SME battery storage Kenya", "outdoor energy storage Kenya"],
+ faqs: [
+ {
+ question: "Is Mini Stack the same as Pod energy storage?",
+ answer:
+ "No. Mini Stack is outdoor modular backup for retail sites. Pod energy storage is the home EV charger + storage product on /charging/home.",
+ },
+ ],
  breadcrumbs: [
  { name: "Home", href: "/" },
  { name: "Modular energy", href: "/charging/modular-energy" },
@@ -348,6 +382,17 @@ export const pageSeoRegistry: PageSeoInput[] = [
  title: "EV Charging Careers in Kenya",
  description:
  "Join Precifarm to commission Pulse and Pod at home, run Boda Hub swap, restore Corridor sessions and keep M-Pesa checkout online, starting on Nairobi–Kisumu.",
+ faqs: [
+ {
+ question: "Where does Precifarm hire first?",
+ answer:
+ "Nairobi–Kisumu corridor roles — field commissioning, Boda Hub swap operations, Corridor uptime and M-Pesa checkout support.",
+ },
+ {
+ question: "How do I apply?",
+ answer: "Open precifarm.com/careers for current openings and contact details.",
+ },
+ ],
  breadcrumbs: [
  { name: "Home", href: "/" },
  { name: "Careers", href: "/careers" },
@@ -461,6 +506,13 @@ export const pageSeoRegistry: PageSeoInput[] = [
  title: "Precifarm as Usafiri wa umeme Kenya",
  description:
  "Precifarm inajenga na kuendesha kuchaji umeme nchini Kenya as kutoka Pulse charger nyumbani hadi Corridor DC barabarani, Lipa Pole Pole kutoka KES 3,300 kwa mwezi, kulipwa na M-Pesa.",
+ faqs: [
+ {
+ question: "Precifarm inafanya nini?",
+ answer:
+ "Inasanifu, kusakinisha na kuendesha miundombinu ya kuchaji EV nchini Kenya — Pulse nyumbani, Boda Hub, Depot na Corridor DC, kulipwa na M-Pesa.",
+ },
+ ],
  breadcrumbs: [
  { name: "Home", href: "/" },
  { name: "Kiswahili", href: "/sw" },

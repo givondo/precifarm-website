@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { homeHero } from "@/lib/brand-messaging";
 import { contact } from "@/lib/contact";
 import { absoluteUrl, siteConfig } from "@/lib/seo/config";
+import { trimMetaDescription } from "@/lib/seo/serp";
 import { chargingHowToBlock } from "@/lib/seo/aiso/blocks";
 import { hreflangAlternates } from "@/lib/seo/i18n";
 import {
@@ -9,6 +11,7 @@ import {
   faqSchema,
   howToSchema,
   serviceSchema,
+  videoObjectSchema,
   webPageSchema,
 } from "@/lib/seo/schema";
 import { productSchemasForPath } from "@/lib/seo/product-catalog";
@@ -29,6 +32,7 @@ export function createPageSeo(input: PageSeoInput): GeneratedPageSeo {
   const canonical = absoluteUrl(canonicalPath);
   const ogImage = absoluteUrl(input.ogImage ?? DEFAULT_OG_IMAGE);
   const title = buildTitle(input.title, input.path);
+  const description = trimMetaDescription(input.description);
 
   const metadata: Metadata = {
     // The layout template appends " · Precifarm"; opt out when the title already
@@ -39,7 +43,7 @@ export function createPageSeo(input: PageSeoInput): GeneratedPageSeo {
         : input.title.includes(siteConfig.name)
           ? { absolute: input.title }
           : input.title,
-    description: input.description,
+    description,
     keywords: input.keywords ?? [...siteConfig.defaultKeywords],
     alternates: {
       canonical,
@@ -54,7 +58,7 @@ export function createPageSeo(input: PageSeoInput): GeneratedPageSeo {
       url: canonical,
       siteName: siteConfig.name,
       title,
-      description: input.description,
+      description,
       images: [{ url: ogImage, width: OG_IMAGE_WIDTH, height: OG_IMAGE_HEIGHT, alt: siteConfig.name }],
       ...(input.publishedTime ? { publishedTime: input.publishedTime } : {}),
       ...(input.modifiedTime ? { modifiedTime: input.modifiedTime } : {}),
@@ -62,14 +66,14 @@ export function createPageSeo(input: PageSeoInput): GeneratedPageSeo {
     twitter: {
       card: "summary_large_image",
       title,
-      description: input.description,
+      description,
       images: [ogImage],
       ...(siteConfig.social.twitter ? { site: siteConfig.social.twitter } : {}),
     },
   };
 
   const jsonLd = [
-    webPageSchema({ title, description: input.description, path: input.path }),
+    webPageSchema({ title, description, path: input.path }),
   ];
 
   if (input.breadcrumbs && input.breadcrumbs.length > 0) {
@@ -81,10 +85,20 @@ export function createPageSeo(input: PageSeoInput): GeneratedPageSeo {
   }
 
   if (input.path === "/") {
+    const { src, posterSrc, title: videoTitle } = homeHero.video;
     jsonLd.push(
+      videoObjectSchema({
+        name: videoTitle,
+        description,
+        path: "/",
+        thumbnailUrl: posterSrc,
+        contentUrl: src,
+        uploadDate: "2026-10-14",
+        duration: "PT1M40S",
+      }),
       serviceSchema({
         name: "Precifarm EV Charging",
-        description: input.description,
+        description,
         path: "/charging",
         areaServed: "Kenya",
       }),
@@ -105,7 +119,7 @@ export function createPageSeo(input: PageSeoInput): GeneratedPageSeo {
     jsonLd.push(
       articleSchema({
         title,
-        description: input.description,
+        description,
         path: input.path,
         publishedTime: input.publishedTime,
         modifiedTime: input.modifiedTime,

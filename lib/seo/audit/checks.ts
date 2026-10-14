@@ -1,4 +1,5 @@
 import { publicRoutes, siteConfig } from "@/lib/seo/config";
+import { trimMetaDescription } from "@/lib/seo/serp";
 import type { PageSeoInput, SeoAuditIssue } from "@/lib/seo/types";
 
 const MIN_DESCRIPTION = 50;
@@ -8,6 +9,7 @@ const MAX_TITLE = 60;
 
 export function auditPageSeo(input: PageSeoInput): SeoAuditIssue[] {
   const issues: SeoAuditIssue[] = [];
+  const description = trimMetaDescription(input.description);
 
   if (input.title.length < MIN_TITLE) {
     issues.push({
@@ -25,7 +27,7 @@ export function auditPageSeo(input: PageSeoInput): SeoAuditIssue[] {
       path: input.path,
     });
   }
-  if (input.description.length < MIN_DESCRIPTION) {
+  if (description.length < MIN_DESCRIPTION) {
     issues.push({
       code: "DESCRIPTION_TOO_SHORT",
       severity: "warning",
@@ -33,7 +35,7 @@ export function auditPageSeo(input: PageSeoInput): SeoAuditIssue[] {
       path: input.path,
     });
   }
-  if (input.description.length > MAX_DESCRIPTION) {
+  if (description.length > MAX_DESCRIPTION) {
     issues.push({
       code: "DESCRIPTION_TOO_LONG",
       severity: "info",
