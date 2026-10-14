@@ -2,8 +2,8 @@
  * Extract a hero video poster frame (16:9) for the homepage wallpaper.
  * Requires: npm install --no-save ffmpeg-static
  *
- * HERO_POSTER_SEC=92   — explicit timestamp (seconds)
- * HERO_POSTER_END=1    — last frame (~1:40 on v2 master)
+ * HERO_POSTER_SEC=42   — default: Pulse home-charger frame (0:42 in v2 master)
+ * HERO_POSTER_END=1    — last frame (~1:40 on v2 master); ignored if HERO_POSTER_SEC is set
  */
 import { execFileSync } from "node:child_process";
 import fs from "node:fs";
@@ -36,16 +36,18 @@ fs.mkdirSync(outDir, { recursive: true });
 /** Subtle grade for web hero */
 const vf = "scale=1920:-2,eq=brightness=-0.04:contrast=1.08:saturation=1.06,unsharp=5:5:0.4:5:5:0.0";
 
+const posterSec = process.env.HERO_POSTER_SEC;
 const useEnd =
-  process.env.HERO_POSTER_END === "1" ||
-  process.env.HERO_POSTER_SEC === "last" ||
-  process.env.HERO_POSTER_SEC === "end";
+  !posterSec &&
+  (process.env.HERO_POSTER_END === "1" ||
+    posterSec === "last" ||
+    posterSec === "end");
 
-const inputArgs = useEnd
-  ? ["-sseof", "-0.5", "-i", src]
-  : ["-ss", process.env.HERO_POSTER_SEC ?? "99", "-i", src];
+const atSec = posterSec && posterSec !== "last" && posterSec !== "end" ? posterSec : "42";
 
-console.log("Extracting poster from", src, useEnd ? "(last frame)" : `at ${process.env.HERO_POSTER_SEC ?? "99"}s`);
+const inputArgs = useEnd ? ["-sseof", "-0.5", "-i", src] : ["-ss", atSec, "-i", src];
+
+console.log("Extracting poster from", src, useEnd ? "(last frame)" : `at ${atSec}s`);
 execFileSync(
   ffmpegPath,
   [

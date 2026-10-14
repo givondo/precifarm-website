@@ -42,8 +42,8 @@ export const audienceCopy = {
  investor: { title: "Investor", line: "Build the infrastructure behind electric transport." },
 } as const;
 
-/** Browser tab + homepage H1 on large screens — keep in sync with lib/seo/config.ts */
-export const homePageTitle = "Precifarm - Powering the shift to electric transport." as const;
+/** Browser tab title — keep in sync with lib/seo/config.ts; hero H1 uses homeHero.headline */
+export const homePageTitle = "Precifarm | EV charging Infrastructure" as const;
 
 export const announcementBar = {
  text: "Pulse charger from KES 79,000 · Public DC charging in <30 min · Lipa Pole Pole financing available",

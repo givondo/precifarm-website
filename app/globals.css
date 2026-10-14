@@ -328,7 +328,7 @@ html {
 }
 
 .home-hero {
-  @apply border-b border-border bg-white py-8 sm:py-16 lg:py-20;
+  @apply border-b border-border bg-white pt-3 pb-6 sm:pt-5 sm:pb-12 lg:pt-6 lg:pb-16 xl:pt-7;
 }
 
 .page-hero-split {
@@ -542,18 +542,6 @@ html {
 
   .home-hero-grid {
     @apply gap-1.5;
-  }
-
-  .home-hero-copy .text-eyebrow {
-    @apply mb-0 text-[9px] tracking-wider;
-  }
-
-  .home-hero-copy .heading-display {
-    @apply mt-1.5 text-[1.625rem] leading-[1.06];
-  }
-
-  .home-hero-copy .home-hero-lead {
-    @apply mt-2.5 text-[14px] leading-snug;
   }
 
   .home-hero-visual {

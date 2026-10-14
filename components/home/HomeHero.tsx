@@ -1,22 +1,21 @@
 import Link from "next/link";
 import HomeHeroVideo from "@/components/home/HomeHeroVideo";
-import { heroStats, homeHero, homePageTitle } from "@/lib/brand-messaging";
+import { heroStats, homeHero } from "@/lib/brand-messaging";
 
 export default function HomeHero() {
   return (
     <section id="charging" className="home-hero scroll-mt-20">
       <div className="page-container">
-        <div className="home-hero-grid grid items-center gap-6 sm:gap-8 lg:grid-cols-2 lg:items-center lg:gap-14">
-          <div className="home-hero-copy max-lg:order-2 max-w-xl lg:py-2">
+        <div className="home-hero-grid grid items-center gap-6 sm:gap-8 lg:grid-cols-2 lg:items-start lg:gap-14">
+          <div className="home-hero-copy max-lg:order-2 max-w-xl">
             <p className="text-eyebrow">{homeHero.eyebrow}</p>
-            <h1 className="heading-display mt-3 text-[2rem] leading-[1.08] sm:mt-4 sm:text-4xl lg:text-[2.75rem]">
-              <span className="lg:hidden">{homeHero.headline}</span>
-              <span className="hidden lg:inline">{homePageTitle}</span>
+            <h1 className="heading-display mt-4 text-[2rem] leading-[1.08] sm:text-4xl lg:text-[2.75rem]">
+              {homeHero.headline}
               {homeHero.headlineAccent ? (
                 <span className="block text-forest-700">{homeHero.headlineAccent}</span>
               ) : null}
             </h1>
-            <p className="home-hero-lead mt-5 max-w-lg text-base leading-relaxed text-forest-600 sm:mt-5 sm:text-base sm:leading-relaxed lg:text-lg">
+            <p className="mt-5 max-w-lg text-base leading-relaxed text-forest-600 sm:text-lg">
               {homeHero.whatWeDo}
             </p>
             <div className="home-hero-cta-row mt-8 flex flex-wrap items-center gap-x-7 gap-y-3">
@@ -40,7 +39,7 @@ export default function HomeHero() {
             </dl>
           </div>
 
-          <div className="home-hero-media max-lg:order-1 w-full">
+          <div className="home-hero-media max-lg:order-1 w-full lg:mt-14 xl:mt-[4.25rem]">
             <HomeHeroVideo />
           </div>
         </div>
