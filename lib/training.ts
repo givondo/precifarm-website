@@ -1,5 +1,4 @@
 import { contact } from "@/lib/contact";
-import { productRenderPaths } from "@/lib/product-renders-catalog";
 
 /** Public nav, breadcrumbs and page eyebrow — keep in sync across the site. */
 export const trainingNavLabel = "EV charging training";
@@ -31,11 +30,10 @@ export type EvChargingTrack = {
   roles: string;
 };
 
+/** Same frame as homepage hero poster (Pulse @ 0:42 in Precifarm_Ad_v2). */
 export const trainingHeroImage = {
-  src: productRenderPaths.corridorForecourt,
-  alt: "Precifarm Corridor forecourt with DC fast charging — the hardware T2 and T3 cohorts commission and maintain",
-  caption:
-    "Classroom modules use the same Pulse, Depot, Corridor and Boda Hub models deployed on live Precifarm sites.",
+  src: "/images/home-hero-video-wallpaper.jpg",
+  alt: "Precifarm Pulse 7 kW home wallbox on a Kenyan home",
 } as const;
 
 export const trainingIntro = {

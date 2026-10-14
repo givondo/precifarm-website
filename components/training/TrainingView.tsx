@@ -68,7 +68,7 @@ export default function TrainingView() {
               </div>
               <p className="mt-4 text-sm text-forest-500">{hero.meta}</p>
             </div>
-            <figure className="visual-frame overflow-hidden">
+            <div className="visual-frame overflow-hidden">
               <SiteImage
                 src={trainingHeroImage.src}
                 alt={trainingHeroImage.alt}
@@ -78,10 +78,7 @@ export default function TrainingView() {
                 sizes="(max-width: 1024px) 100vw, 42vw"
                 className="aspect-[4/3] w-full object-cover"
               />
-              <figcaption className="border-t border-border bg-muted/30 px-5 py-3 text-sm leading-relaxed text-forest-600">
-                {trainingHeroImage.caption}
-              </figcaption>
-            </figure>
+            </div>
           </div>
         </div>
       </section>
