@@ -12,7 +12,6 @@ import {
   webPageSchema,
 } from "@/lib/seo/schema";
 import { productSchemasForPath } from "@/lib/seo/product-catalog";
-import { trimMetaDescription } from "@/lib/seo/serp";
 import type { GeneratedPageSeo, PageSeoInput } from "@/lib/seo/types";
 
 const DEFAULT_OG_IMAGE = "/opengraph-image";
@@ -30,7 +29,6 @@ export function createPageSeo(input: PageSeoInput): GeneratedPageSeo {
   const canonical = absoluteUrl(canonicalPath);
   const ogImage = absoluteUrl(input.ogImage ?? DEFAULT_OG_IMAGE);
   const title = buildTitle(input.title, input.path);
-  const description = trimMetaDescription(input.description);
 
   const metadata: Metadata = {
     // The layout template appends " · Precifarm"; opt out when the title already
@@ -41,7 +39,7 @@ export function createPageSeo(input: PageSeoInput): GeneratedPageSeo {
         : input.title.includes(siteConfig.name)
           ? { absolute: input.title }
           : input.title,
-    description,
+    description: input.description,
     keywords: input.keywords ?? [...siteConfig.defaultKeywords],
     alternates: {
       canonical,
@@ -56,7 +54,7 @@ export function createPageSeo(input: PageSeoInput): GeneratedPageSeo {
       url: canonical,
       siteName: siteConfig.name,
       title,
-      description,
+      description: input.description,
       images: [{ url: ogImage, width: OG_IMAGE_WIDTH, height: OG_IMAGE_HEIGHT, alt: siteConfig.name }],
       ...(input.publishedTime ? { publishedTime: input.publishedTime } : {}),
       ...(input.modifiedTime ? { modifiedTime: input.modifiedTime } : {}),
@@ -64,14 +62,14 @@ export function createPageSeo(input: PageSeoInput): GeneratedPageSeo {
     twitter: {
       card: "summary_large_image",
       title,
-      description,
+      description: input.description,
       images: [ogImage],
       ...(siteConfig.social.twitter ? { site: siteConfig.social.twitter } : {}),
     },
   };
 
   const jsonLd = [
-    webPageSchema({ title, description, path: input.path }),
+    webPageSchema({ title, description: input.description, path: input.path }),
   ];
 
   if (input.breadcrumbs && input.breadcrumbs.length > 0) {
@@ -86,7 +84,7 @@ export function createPageSeo(input: PageSeoInput): GeneratedPageSeo {
     jsonLd.push(
       serviceSchema({
         name: "Precifarm EV Charging",
-        description,
+        description: input.description,
         path: "/charging",
         areaServed: "Kenya",
       }),
@@ -107,7 +105,7 @@ export function createPageSeo(input: PageSeoInput): GeneratedPageSeo {
     jsonLd.push(
       articleSchema({
         title,
-        description,
+        description: input.description,
         path: input.path,
         publishedTime: input.publishedTime,
         modifiedTime: input.modifiedTime,

@@ -23,7 +23,7 @@ export const siteConfig = {
  region: "KE",
  timezone: "Africa/Nairobi",
  defaultDescription:
- "Powering Kenya's shift to electric transport. Home, fleet and highway EV charging — installed from KES 3,000/month. M-Pesa on every product.",
+ "Precifarm designs, finances, installs and operates EV charging infrastructure in Kenya as from home charging to fleet and high-power corridor stations, with M-Pesa payments.",
  defaultKeywords: [
  "EV charging Kenya",
  "home charging Kenya",
