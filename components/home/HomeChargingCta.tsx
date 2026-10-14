@@ -31,7 +31,7 @@ export default function HomeChargingCta() {
                 </li>
               ))}
             </ul>
-            <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-3">
+            <div className="home-hero-cta-row mt-8 flex flex-wrap items-center gap-x-4 gap-y-3">
               <Link href={homeChargingHighlight.primaryHref} className="btn-primary">
                 {homeChargingHighlight.primaryLabel}
               </Link>

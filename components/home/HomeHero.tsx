@@ -6,7 +6,7 @@ export default function HomeHero() {
   return (
     <section id="charging" className="home-hero scroll-mt-20">
       <div className="page-container">
-        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-14">
+        <div className="grid items-center gap-6 sm:gap-8 lg:grid-cols-2 lg:gap-14">
           <div className="order-2 max-w-xl lg:order-1 lg:py-2">
             <p className="text-eyebrow">{homeHero.eyebrow}</p>
             <h1 className="heading-display mt-4 text-[2rem] leading-[1.08] sm:text-4xl lg:text-[2.75rem]">
@@ -16,7 +16,7 @@ export default function HomeHero() {
               ) : null}
             </h1>
             <p className="mt-5 max-w-lg text-base leading-relaxed text-forest-600 sm:text-lg">{homeHero.whatWeDo}</p>
-            <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-3">
+            <div className="home-hero-cta-row mt-8 flex flex-wrap items-center gap-x-7 gap-y-3">
               <Link href={homeHero.primaryCta.href} className="btn-primary">
                 {homeHero.primaryCta.label}
               </Link>
@@ -25,7 +25,7 @@ export default function HomeHero() {
               </Link>
             </div>
 
-            <dl className="mt-8 grid gap-4 border-t border-border pt-6 sm:grid-cols-2 sm:gap-6">
+            <dl className="home-hero-stats mt-6 grid gap-4 border-t border-border pt-5 sm:mt-8 sm:grid-cols-2 sm:gap-6 sm:pt-6">
               {heroStats.map((item) => (
                 <div key={item.stat}>
                   <dt className="font-mono text-xl font-semibold tracking-tight text-forest-900 sm:text-2xl">

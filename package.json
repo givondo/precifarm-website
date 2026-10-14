@@ -15,6 +15,7 @@
     "seo:audit-routes": "node scripts/seo/audit-routes.mjs",
     "seo:validate": "node scripts/seo/validate-health.mjs",
     "seo:validate:prod": "node scripts/seo/validate-health.mjs https://precifarm.com",
+    "compress:hero-video": "node scripts/compress-hero-video.mjs",
     "verify:cms": "node scripts/verify-cms-content.mjs",
     "seo:verify-cms": "node scripts/verify-cms-content.mjs",
     "pdf:engineering": "node scripts/generate-engineering-pdf.mjs",

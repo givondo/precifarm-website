@@ -1,8 +1,11 @@
-# Upload homepage hero MP4 to public GCS media bucket.
-# Usage: powershell -File scripts/upload-hero-video.ps1 [-SourcePath "C:\path\to\video.mp4"]
+# Upload homepage hero MP4 variants to public GCS media bucket.
+# Run scripts/compress-hero-video.mjs first (or pass -SourcePath master).
+# Usage: powershell -File scripts/upload-hero-video.ps1
 
 param(
-  [string]$SourcePath = "C:\Users\DAVID\Desktop\Precifarm Designs\Precifarm_Ad_v2_MASTER.mp4"
+  [string]$SourcePath = "",
+  [string]$WebPath = "",
+  [string]$MobilePath = ""
 )
 
 $ErrorActionPreference = "Stop"
@@ -14,34 +17,44 @@ if (-not (Test-Path $GCLOUD)) {
 
 $PROJECT = "skilled-orbit-460722-h9"
 $BUCKET = "precifarm-public-media-skilled-orbit"
-$OBJECT = "videos/precifarm-ad-v2-master.mp4"
+$Root = Join-Path $PSScriptRoot ".."
+$VideosDir = Join-Path $Root "public\videos"
 
-if (-not (Test-Path $SourcePath)) {
-  Write-Error "Source video not found: $SourcePath"
+if (-not $WebPath) { $WebPath = Join-Path $VideosDir "precifarm-ad-v2-web.mp4" }
+if (-not $MobilePath) { $MobilePath = Join-Path $VideosDir "precifarm-ad-v2-mobile.mp4" }
+if (-not $SourcePath) {
+  $SourcePath = "C:\Users\DAVID\Desktop\Precifarm Designs\Precifarm_Ad_v2_MASTER.mp4"
 }
 
-Write-Host "Uploading hero video to gs://$BUCKET/$OBJECT ..." -ForegroundColor Cyan
-& $GCLOUD storage cp $SourcePath "gs://$BUCKET/$OBJECT" `
-  --cache-control="public, max-age=31536000, immutable" `
-  --content-type="video/mp4" `
-  --project=$PROJECT
-
-if ($LASTEXITCODE -ne 0) {
-  Write-Error "Upload failed."
+function Upload-Video($LocalPath, $ObjectName) {
+  if (-not (Test-Path $LocalPath)) {
+    Write-Error "Video not found: $LocalPath (run node scripts/compress-hero-video.mjs first)"
+  }
+  Write-Host "Uploading $ObjectName ..." -ForegroundColor Cyan
+  & $GCLOUD storage cp $LocalPath "gs://$BUCKET/videos/$ObjectName" `
+    --cache-control="public, max-age=31536000, immutable" `
+    --content-type="video/mp4" `
+    --project=$PROJECT
+  if ($LASTEXITCODE -ne 0) { Write-Error "Upload failed for $ObjectName" }
+  Write-Host "https://storage.googleapis.com/$BUCKET/videos/$ObjectName" -ForegroundColor Green
 }
 
-$PUBLIC_URL = "https://storage.googleapis.com/$BUCKET/$OBJECT"
-Write-Host ""
-Write-Host "Video URL:" -ForegroundColor Green
-Write-Host $PUBLIC_URL
+if ((Test-Path $WebPath) -and (Test-Path $MobilePath)) {
+  Upload-Video $WebPath "precifarm-ad-v2-web.mp4"
+  Upload-Video $MobilePath "precifarm-ad-v2-mobile.mp4"
+} elseif (Test-Path $SourcePath) {
+  Write-Host "Compressed variants missing — uploading master as legacy object..." -ForegroundColor Yellow
+  Upload-Video $SourcePath "precifarm-ad-v2-master.mp4"
+} else {
+  Write-Error "No video files found. Compress locally or provide -SourcePath."
+}
 
-$POSTER = Join-Path $PSScriptRoot "..\public\images\home-hero-video-wallpaper.jpg"
+$POSTER = Join-Path $Root "public\images\home-hero-video-wallpaper.jpg"
 if (Test-Path $POSTER) {
-  Write-Host "Uploading poster wallpaper..." -ForegroundColor Cyan
+  Write-Host "Uploading poster..." -ForegroundColor Cyan
   & $GCLOUD storage cp $POSTER "gs://$BUCKET/images/home-hero-video-wallpaper.jpg" `
     --cache-control="public, max-age=31536000, immutable" `
     --content-type="image/jpeg" `
     --project=$PROJECT
-  Write-Host "Poster URL:" -ForegroundColor Green
-  Write-Host "https://storage.googleapis.com/$BUCKET/images/home-hero-video-wallpaper.jpg"
+  Write-Host "https://storage.googleapis.com/$BUCKET/images/home-hero-video-wallpaper.jpg" -ForegroundColor Green
 }

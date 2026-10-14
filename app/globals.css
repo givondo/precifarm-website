@@ -327,21 +327,8 @@ html {
   @apply py-10 sm:py-16;
 }
 
-/* Homepage — shared rhythm */
-.home-section {
-  @apply py-14 sm:py-20 lg:py-24;
-}
-
-.home-section-header {
-  @apply mb-0;
-}
-
-.home-section-grid {
-  @apply mt-0;
-}
-
 .home-hero {
-  @apply border-b border-border bg-white py-12 sm:py-16 lg:py-20;
+  @apply border-b border-border bg-white py-8 sm:py-16 lg:py-20;
 }
 
 .page-hero-split {
@@ -533,7 +520,7 @@ html {
 }
 
 .home-section {
-  @apply py-10 sm:py-16;
+  @apply py-10 sm:py-16 lg:py-20;
 }
 
 .home-section-header {
@@ -542,6 +529,41 @@ html {
 
 .home-section-grid {
   @apply mt-8;
+}
+
+@media (max-width: 639px) {
+  .home-hero-visual {
+    @apply rounded-2xl border border-border bg-forest-950/95 shadow-sm;
+    max-height: min(56vw, 240px);
+  }
+
+  .home-hero-visual video {
+    @apply object-contain;
+  }
+
+  .home-hero-cta-row {
+    @apply w-full flex-col items-stretch gap-3;
+  }
+
+  .home-hero-cta-row .btn-primary {
+    @apply w-full min-h-12 px-5 py-3.5 text-base;
+  }
+
+  .home-hero-cta-row .link-touch {
+    @apply justify-center;
+  }
+
+  .home-hero-stats dd {
+    @apply text-[11px] leading-snug;
+  }
+
+  .home-scenario-card {
+    @apply rounded-2xl p-5;
+  }
+
+  .home-section-grid {
+    @apply mt-6 gap-3;
+  }
 }
 
 .content-measure {

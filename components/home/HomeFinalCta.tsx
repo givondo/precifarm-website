@@ -10,7 +10,7 @@ export default function HomeFinalCta() {
       <div className="page-container max-w-xl text-center">
         <h2 className="text-3xl font-semibold tracking-tight text-forest-900 sm:text-4xl">{finalCta.title}</h2>
         <p className="mt-4 text-base leading-relaxed text-forest-500">{finalCta.description}</p>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-7 gap-y-3">
+        <div className="home-hero-cta-row mt-8 flex flex-wrap items-center justify-center gap-x-7 gap-y-3">
           <Link href={finalCta.primary.href} className="btn-primary">
             {finalCta.primary.label}
           </Link>

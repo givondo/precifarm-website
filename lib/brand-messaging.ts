@@ -59,9 +59,11 @@ export const homeHero = {
  secondaryCta: { href: "/partners", label: "Fleet & partners" },
  caption: "Pulse charger · Kenya",
  video: {
- /** Hosted on GCS — see scripts/upload-hero-video.ps1 */
+ /** Hosted on GCS — see scripts/upload-hero-video.ps1 & compress-hero-video.mjs */
  src:
- "https://storage.googleapis.com/precifarm-public-media-skilled-orbit/videos/precifarm-ad-v2-master.mp4",
+ "https://storage.googleapis.com/precifarm-public-media-skilled-orbit/videos/precifarm-ad-v2-web.mp4",
+ srcMobile:
+ "https://storage.googleapis.com/precifarm-public-media-skilled-orbit/videos/precifarm-ad-v2-mobile.mp4",
  posterSrc: "/images/home-hero-video-wallpaper.jpg",
  title: "Precifarm EV charging in Kenya",
  },
