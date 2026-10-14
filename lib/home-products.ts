@@ -15,7 +15,7 @@ export const productNames = {
 
 /** Illustrative charge times for public copy — based on ~10 kWh typical Nairobi day (~60 km) unless noted. */
 export const productChargeTimes = {
-  spark: "about 180 minutes",
+  spark: "about 3.5 hours",
   pulse: "about 90 minutes",
   pod: "about 90 minutes",
   boda: "under 5 minutes",

@@ -101,7 +101,7 @@ export const privateHouseChargingPackages = [
   },
   {
     name: "Pod energy storage",
-    bestFor: "Weak-grid evenings — storage keeps a typical day charging in about 90 minutes",
+    bestFor: "Weak-grid evenings — the 10 kWh Pod covers a typical day from storage alone",
     includes: [
       "Pod energy storage with 5 or 10 kWh LiFePO₄ at the house",
       "Optional rooftop solar",

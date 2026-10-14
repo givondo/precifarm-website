@@ -58,7 +58,7 @@ export const whereYouCharge = {
       body: [
         "Go beyond the city with ",
         { bold: "Corridor" },
-        " DC fast charging. Add about ",
+        " DC fast charging. Add up to about ",
         { bold: "60 kWh in 30 minutes" },
         ", check availability and pay with M-Pesa.",
       ] as const satisfies readonly CopyPart[],

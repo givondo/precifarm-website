@@ -51,7 +51,7 @@ export const consumerChargingFaqs: ChargingFaq[] = [
  id: "public-dc-price",
  question: "How much is public DC charging?",
  answer:
- "Public DC at Precifarm Depot charging stations and Corridor charging sites is from KES 39/kWh. Corridor charging adds about 60 kWh in 30 minutes at 120 kW DC. The session price is shown in Precifarm Agent and at the charger before you start. Charging on your own home meter is usually cheaper per kWh than public DC.",
+ "Public DC at Precifarm Depot charging stations and Corridor charging sites is from KES 39/kWh. Corridor charging adds up to about 60 kWh in 30 minutes at 120 kW DC, on vehicles that accept that rate. The session price is shown in Precifarm Agent and at the charger before you start. Charging on your own home meter is usually cheaper per kWh than public DC.",
  },
  {
  id: "home-vs-public",
@@ -87,13 +87,13 @@ export const consumerChargingFaqs: ChargingFaq[] = [
  id: "spark",
  question: "What is the Spark charger?",
  answer:
- "The Spark charger is a 3.3 kW portable unit that refills a typical day in about 180 minutes from a normal socket and travels in the boot. Use it where you have a suitable outlet. It is not a public Corridor charging session, and you pay the electricity at that site.",
+ "The Spark charger is a 3.3 kW portable unit that refills a typical day in about 3.5 hours from a 16 A outlet, or about 5 hours on a standard 13 A socket, and travels in the boot. Use it where you have a suitable outlet. It is not a public Corridor charging session, and you pay the electricity at that site.",
  },
  {
  id: "home-charge-time",
  question: "How long does home charging take?",
  answer:
- "A typical Nairobi day of about 60 km is roughly 10 kWh. On a Pulse charger at 7 kW, that refills in about 90 minutes. Plug in overnight and most drivers wake up full. A Spark charger from a normal socket takes about 180 minutes for the same day.",
+ "A typical Nairobi day of about 60 km is roughly 10 kWh. On a Pulse charger at 7 kW, that refills in about 90 minutes. Plug in overnight and most drivers wake up full. A Spark charger takes about 3.5 hours for the same day on a 16 A outlet, or about 5 hours on a standard 13 A socket.",
  },
  {
  id: "pay-public",
