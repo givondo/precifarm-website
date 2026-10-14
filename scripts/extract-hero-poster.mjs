@@ -18,7 +18,7 @@ try {
   process.exit(1);
 }
 
-const defaultSrc = "C:\\Users\\DAVID\\Desktop\\Precifarm Designs\\Precifarm_Ad_1080p_MASTER.mp4";
+const defaultSrc = "C:\\Users\\DAVID\\Desktop\\Precifarm Designs\\Precifarm_Ad_v2_MASTER.mp4";
 const src = process.env.HERO_VIDEO ?? defaultSrc;
 const outDir = path.join(root, "public", "images");
 const outJpg = path.join(outDir, "home-hero-video-wallpaper.jpg");
@@ -38,7 +38,7 @@ execFileSync(
   ffmpegPath,
   [
     "-ss",
-    process.env.HERO_POSTER_SEC ?? "74",
+    process.env.HERO_POSTER_SEC ?? "12",
     "-i",
     src,
     "-vframes",

@@ -3,13 +3,14 @@
 import { homeHero } from "@/lib/brand-messaging";
 
 export default function HomeHeroVideo() {
-  const { src, title } = homeHero.video;
+  const { src, posterSrc, title } = homeHero.video;
 
   return (
     <figure className="home-hero-visual relative aspect-video w-full min-h-[12rem] overflow-hidden sm:min-h-[14rem]">
       <video
         className="absolute inset-0 h-full w-full object-cover"
         src={src}
+        poster={posterSrc}
         playsInline
         controls
         preload="none"

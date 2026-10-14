@@ -2,7 +2,7 @@
 # Usage: powershell -File scripts/upload-hero-video.ps1 [-SourcePath "C:\path\to\video.mp4"]
 
 param(
-  [string]$SourcePath = "C:\Users\DAVID\Desktop\Precifarm Designs\Precifarm_Ad_1080p_MASTER.mp4"
+  [string]$SourcePath = "C:\Users\DAVID\Desktop\Precifarm Designs\Precifarm_Ad_v2_MASTER.mp4"
 )
 
 $ErrorActionPreference = "Stop"
@@ -14,7 +14,7 @@ if (-not (Test-Path $GCLOUD)) {
 
 $PROJECT = "skilled-orbit-460722-h9"
 $BUCKET = "precifarm-public-media-skilled-orbit"
-$OBJECT = "videos/precifarm-ad-1080p-master.mp4"
+$OBJECT = "videos/precifarm-ad-v2-master.mp4"
 
 if (-not (Test-Path $SourcePath)) {
   Write-Error "Source video not found: $SourcePath"

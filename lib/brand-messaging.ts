@@ -61,7 +61,8 @@ export const homeHero = {
  video: {
  /** Hosted on GCS — see scripts/upload-hero-video.ps1 */
  src:
- "https://storage.googleapis.com/precifarm-public-media-skilled-orbit/videos/precifarm-ad-1080p-master.mp4",
+ "https://storage.googleapis.com/precifarm-public-media-skilled-orbit/videos/precifarm-ad-v2-master.mp4",
+ posterSrc: "/images/home-hero-video-wallpaper.jpg",
  title: "Precifarm EV charging in Kenya",
  },
 } as const;
