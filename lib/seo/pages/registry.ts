@@ -5,14 +5,16 @@
 } from "@/lib/charging-faqs";
 import { contactPage, faqPage, guidesPage } from "@/lib/company-pages";
 import { engineeringPageFaqs } from "@/lib/engineering-page";
-import { trainingPageFaqs } from "@/lib/training-page";
+import { trainingNavLabel } from "@/lib/training";
+import { trainingPage, trainingPageFaqs } from "@/lib/training-page";
 import { chargingHub } from "@/lib/charging-hub";
 import { agentPageFaqs } from "@/lib/agent-page";
 import { downloadPageFaqs } from "@/lib/download-page";
 import { megapackFaqs, megapackPageContent } from "@/lib/megapack-page";
+import { productImages } from "@/lib/product-images";
 import { bodaHubFaqs, bodaHubPageContent, bodaHubStatusNote } from "@/lib/boda-hub-page";
 import { homepageAisoBlocks } from "@/lib/seo/aiso/blocks";
-import { defaultSiteTitle } from "@/lib/seo/config";
+import { defaultSiteTitle, siteConfig } from "@/lib/seo/config";
 import type { PageSeoInput } from "@/lib/seo/types";
 
 /** Central registry for SEO audit and metadata consistency */
@@ -20,14 +22,14 @@ export const pageSeoRegistry: PageSeoInput[] = [
  {
  path: "/",
  title: defaultSiteTitle,
- description:
- "Precifarm designs, finances, installs and operates EV charging infrastructure in Kenya as from home charging to fleet and high-power corridor stations, with M-Pesa payments.",
+ description: siteConfig.defaultDescription,
  faqs: (homepageAisoBlocks.find((b) => b.type === "faq")?.items ?? []) as PageSeoInput["faqs"],
  breadcrumbs: [{ name: "Home", href: "/" }],
  },
  {
  path: chargingHub.path,
- title: "Charging Hub as Highway DC, Boda Swap and Partner Chargers in Kenya",
+ title: "Charging Hub — DC Fast, Boda Swap & Map | Precifarm",
+ ogImage: productImages.corridorForecourt.src,
  description: chargingHub.description,
  keywords: [
  "Charging Hub Kenya",
@@ -41,7 +43,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  {
  question: "What is Charging Hub?",
  answer:
- "Charging Hub lists every Precifarm fast charger, boda swap cabinet and partner stop in Kenya as with honest open and coming-soon labels on each site.",
+ "Charging Hub lists every Precifarm fast charger, boda swap cabinet and partner stop in Kenya — with honest open and coming-soon labels on each site.",
  },
  {
  question: "How do I use Charging Hub?",
@@ -63,7 +65,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  path: "/charging",
  title: "EV Charging Infrastructure in Kenya",
  description:
- "Home, fleet and highway EV charging in Kenya as Pulse charger and Pod energy storage at home, Depot and Boda Hub for fleets, Corridor DC on the highway. M-Pesa on every product.",
+ "EV charging in Kenya — Pulse and Pod at home, Depot and Boda Hub for fleets, Corridor DC on highways. M-Pesa on every product.",
  keywords: ["EV charging Kenya", "fleet charging", "home AC charger installation", "KES 39 kWh"],
  faqs: chargingServicesFaqs,
  breadcrumbs: [
@@ -75,7 +77,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  path: "/charging/home",
  title: "Home EV Charging in Kenya",
  description:
- "Home EV charger installation in Kenya as Pulse charger from KES 79,000, Pod energy storage, Lipa Pole Pole from KES 3,300/month on M-Pesa. Survey and three-year Precifarm aftersale support.",
+ "Home EV charger installation in Kenya. Pulse from KES 79,000, Pod storage, Lipa Pole Pole from KES 3,300/month on M-Pesa. Survey and aftersale support.",
  faqs: privateHouseChargingFaqs,
  keywords: [
  "private house EV charging Kenya",
@@ -91,9 +93,9 @@ export const pageSeoRegistry: PageSeoInput[] = [
  },
  {
  path: "/charging/engineering",
- title: "EV charging site engineering as Kenya",
+ title: "EV Charging Site Engineering in Kenya",
  description:
- "Precifarm engineering design basis for home, fleet and highway charging as grid, solar, LiFePOâ‚„ storage, Corridor T-canopy DC, Kenya Power hold points and phased task sheet. PDF download.",
+ "Precifarm design basis for home, fleet and highway charging — grid, solar, LiFePO4, Corridor DC, Kenya Power hold points and phased commissioning. PDF download.",
  faqs: [...engineeringPageFaqs],
  keywords: [
  "EV charging station design Kenya",
@@ -128,7 +130,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  },
  {
  path: "/charging/modular-energy",
- title: "Modular Energy as One 2.56 kWh Module at Three Scales",
+ title: "Modular Energy — One 2.56 kWh Module, Three Scales",
  description:
  "P1 Go carried, P2 Home stacked beside the board, Mini Stack mounted outdoors as three scales of one 2.56 kWh Energy Module, designed for Kenyan homes and shops. Conceptual, not on sale yet.",
  keywords: [
@@ -144,7 +146,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  },
  {
  path: "/charging/modular-energy/p1-go",
- title: "P1 Go as The Pack You Carry When the Power Goes Out",
+ title: "P1 Go — Portable Backup When the Power Goes Out",
  description:
  "About 1 kWh in an aluminium carry case, with foldable solar and a Type 2 trickle lead in the box. Sized for a router, laptop and phones through an outage. Conceptual, not a daily EV charger and not on sale yet.",
  keywords: ["P1 Go", "portable power station Kenya", "home backup battery Kenya"],
@@ -156,7 +158,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  },
  {
  path: "/charging/modular-energy/p2-home",
- title: "P2 Home as A Tower That Grows With the Hours You Need",
+ title: "P2 Home — A Tower That Grows With Your Backup Needs",
  description:
  "One to four 2.56 kWh modules on a single Power Core, standing beside the consumer board and feeding an essential-load sub-board. About 2.6 to 10.2 kWh nameplate. Conceptual, not certified for sale.",
  keywords: ["P2 Home", "home battery storage Kenya", "LiFePO4 backup Kenya"],
@@ -168,7 +170,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  },
  {
  path: "/charging/modular-energy/mini-stack",
- title: "Mini Stack as Backup for Shops With No Room to Spare Inside",
+ title: "Mini Stack — Outdoor Backup for Kenyan Retail Sites",
  description:
  "Two to six Energy Modules in an outdoor enclosure on a plinth, holding up refrigeration, the till and lighting at Kenyan retail sites. Distinct from Pod energy storage for home EV charging. Conceptual, not certified for sale.",
  keywords: ["Precifarm Mini Stack", "SME battery storage Kenya", "outdoor energy storage Kenya"],
@@ -182,7 +184,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  path: "/charging/modular-energy/megapack",
  title: "MegaPack | Project-Engineered BESS Kenya",
  description:
- "Precifarm MegaPack is project-engineered battery storage in Kenya as from industrial sites and EV charging hubs to grid-connected utility plants. Sized per site, not sold as a catalogue SKU.",
+ "Precifarm MegaPack is project-engineered battery storage in Kenya — from industrial sites and EV charging hubs to grid-connected utility plants. Sized per site, not sold as a catalogue SKU.",
  keywords: [
  "battery energy storage Kenya",
  "BESS Kenya",
@@ -207,7 +209,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  path: "/evs",
  title: "Electric Vehicles in Kenya",
  description:
- "Compare EVs in Kenya as Nissan Leaf, BYD Atto 3, MG4, Tesla Model 3, Roam Air and more. Practical range, DC charging speed, daily top-up time and where Precifarm home, hub and corridor charging fit.",
+ "Compare EVs in Kenya — Nissan Leaf, BYD Atto 3, MG4, Tesla Model 3, Roam Air and more. Practical range, DC charging speed, daily top-up time and where Precifarm home, hub and corridor charging fit.",
  keywords: [
  "EV Kenya comparison",
  "Kenya EV guide",
@@ -235,7 +237,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  {
  question: "Does Precifarm support Nissan Leaf CHAdeMO charging?",
  answer:
- "Yes. Precifarm maps home, workplace and destination charging for Leaf drivers in Kenya, including CHAdeMO-capable DC sessions where available as without requiring every Leaf to use high-power CCS corridor chargers.",
+ "Yes. Precifarm maps home, workplace and destination charging for Leaf drivers in Kenya, including CHAdeMO-capable DC sessions where available without requiring every Leaf to use high-power CCS corridor chargers.",
  },
  ],
  breadcrumbs: [
@@ -244,10 +246,26 @@ export const pageSeoRegistry: PageSeoInput[] = [
  ],
  },
  {
+ path: "/training",
+ title: `${trainingNavLabel} — T1, T2 and T3 Certification`,
+ description: trainingPage.hero.description,
+ keywords: [
+ "EV charging training Kenya",
+ "EV charger installation course",
+ "Precifarm certification",
+ "Corridor DC commissioning training",
+ ],
+ faqs: trainingPageFaqs.map(({ question, answer }) => ({ question, answer })),
+ breadcrumbs: [
+ { name: "Home", href: "/" },
+ { name: trainingNavLabel, href: "/training" },
+ ],
+ },
+ {
  path: "/partners",
  title: "Fleet EV Charging Solutions in Kenya",
  description:
- "Partner with Precifarm to host Corridor hubs, run Depot and Boda Hub for fleets, or sell Pulse charger and Pod energy storage home installations as M-Pesa on every product.",
+ "Partner with Precifarm to host Corridor hubs, run Depot and Boda Hub for fleets, or sell Pulse and Pod home installs — M-Pesa on every product.",
  faqs: [
  {
  question: "Who can partner with Precifarm?",
@@ -257,7 +275,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  {
  question: "What fleet charging does Precifarm offer?",
  answer:
- "Depot charging station (22 kW AC pedestals), Boda Hub battery swap and Corridor DC on intercity routes as engineered, commissioned and operated by Precifarm.",
+ "Depot charging station (22 kW AC pedestals), Boda Hub battery swap and Corridor DC on intercity routes — engineered, commissioned and operated by Precifarm.",
  },
  ],
  keywords: [
@@ -272,34 +290,15 @@ export const pageSeoRegistry: PageSeoInput[] = [
  ],
  },
  {
- path: "/training",
- title: "EV Charging Training in Kenya",
- description:
- "T1 site safety, T2 field technician and T3 commissioning specialist programmes for Pulse, Pod, Depot, Boda Hub and Corridor — Nairobi classroom plus field modules on live Precifarm hardware in Kenya.",
- faqs: [...trainingPageFaqs],
- keywords: [
- "EV charging training Kenya",
- "T1 T2 T3 technician certification",
- "DC fast charger training",
- "Precifarm training",
- "EV charger commissioning course",
- ],
- breadcrumbs: [
- { name: "Home", href: "/" },
- { name: "Charging", href: "/charging" },
- { name: "EV charging training", href: "/training" },
- ],
- },
- {
  path: "/about",
- title: "About Precifarm as EV Charging and Modular Energy in Kenya",
+ title: "About Precifarm — EV Charging & Modular Energy in Kenya",
  description:
- "Precifarm builds EV charging and modular energy storage in Kenya as Pulse, Pod and Corridor today; P1 Go, P2 Home, Mini Stack and MegaPack on the platform roadmap. M-Pesa on every product.",
+ "Precifarm builds EV charging and modular energy storage in Kenya — Pulse, Pod and Corridor today; P1 Go, P2 Home, Mini Stack and MegaPack on the platform roadmap. M-Pesa on every product.",
  faqs: [
  {
  question: "What does Precifarm do?",
  answer:
- "Precifarm designs, finances, installs and operates EV charging in Kenya as from home Pulse and Pod to fleet Depot, Boda Hub and highway Corridor DC as and designs a modular energy-storage family (P1 Go, P2 Home, Mini Stack, MegaPack) that is conceptual, not on sale. M-Pesa on every product.",
+ "Precifarm designs, finances, installs and operates EV charging in Kenya — from home Pulse and Pod to fleet Depot, Boda Hub and highway Corridor DC and designs a modular energy-storage family (P1 Go, P2 Home, Mini Stack, MegaPack) that is conceptual, not on sale. M-Pesa on every product.",
  },
  {
  question: "Does Precifarm operate vehicles or buses?",
@@ -309,7 +308,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  {
  question: "Is modular energy on sale?",
  answer:
- "No. P1 Go, P2 Home, Mini Stack and MegaPack are conceptual platform products as not certified for sale. Charging products (Pulse, Pod, Spark, Depot, Boda Hub, Corridor) are the commercial beachhead.",
+ "No. P1 Go, P2 Home, Mini Stack and MegaPack are conceptual platform products — not certified for sale. Charging products (Pulse, Pod, Spark, Depot, Boda Hub, Corridor) are the commercial beachhead.",
  },
  ],
  breadcrumbs: [
@@ -319,14 +318,14 @@ export const pageSeoRegistry: PageSeoInput[] = [
  },
  {
  path: "/sustainability",
- title: "Sustainability as Precifarm Kenya",
+ title: "Sustainability — Precifarm Kenya",
  description:
  "Our 2030 goal is to make clean charging the affordable choice for Kenya. By 2050 we aim to help replace 1 billion kilometres of fossil-fuel driving with electric kilometres. A typical 60 km home day is about KES 140 versus about KES 1,000 in diesel.",
  faqs: [
  {
  question: "What is Precifarm's 2050 kilometre target?",
  answer:
- "By 2050, we aim to help replace 1 billion kilometres of fossil-fuel driving with electric kilometres across Kenya. That is a long-term target as not a live running total. We will publish how we count before showing a cumulative figure.",
+ "By 2050, we aim to help replace 1 billion kilometres of fossil-fuel driving with electric kilometres across Kenya. That is a long-term target — not a live running total. We will publish how we count before showing a cumulative figure.",
  },
  {
  question: "What are Precifarm's six 2030 goals?",
@@ -348,7 +347,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  path: "/careers",
  title: "EV Charging Careers in Kenya",
  description:
- "Join Precifarm to commission Pulse and Pod at home, run Boda Hub swap, restore Corridor sessions and keep M-Pesa checkout online as starting on Nairobi–Kisumu.",
+ "Join Precifarm to commission Pulse and Pod at home, run Boda Hub swap, restore Corridor sessions and keep M-Pesa checkout online, starting on Nairobi–Kisumu.",
  breadcrumbs: [
  { name: "Home", href: "/" },
  { name: "Careers", href: "/careers" },
@@ -390,7 +389,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  },
  {
  path: "/contact",
- title: "Contact Precifarm as EV Charging Kenya",
+ title: "Contact Precifarm — EV Charging in Kenya",
  description:
  contactPage.description,
  faqs: [
@@ -407,7 +406,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  },
  {
  path: "/faq",
- title: "FAQ as EV charging in Kenya",
+ title: "FAQ — EV Charging in Kenya",
  description: faqPage.description,
  faqs: faqIndexChargingFaqs,
  keywords: [
@@ -430,7 +429,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  {
  question: "Where can I learn about EV charging in Kenya?",
  answer:
- "Precifarm publishes guides on home charging, public DC charging, M-Pesa payment and the Charging Hub as written for Kenyan drivers, homeowners and fleet operators.",
+ "Precifarm publishes guides on home charging, public DC charging, M-Pesa payment and the Charging Hub, written for Kenyan drivers, homeowners and fleet operators.",
  },
  ],
  keywords: ["Precifarm guides", "home EV charger Kenya", "EV charging guide"],
@@ -441,10 +440,17 @@ export const pageSeoRegistry: PageSeoInput[] = [
  },
  {
  path: "/locations",
- title: "Locations as EV charging across Kenya",
+ title: "EV Charging Locations Across Kenya",
  description:
- "City guides for Precifarm EV charging in Nairobi, Kisumu, Nakuru, Mombasa and beyond as home Pulse charger installs, Corridor DC, Boda Hub swap and fleet Depot.",
+ "City guides for Precifarm charging in Nairobi, Kisumu, Nakuru, Mombasa and beyond — home Pulse installs, Corridor DC, Boda Hub swap and fleet Depot.",
  keywords: ["EV charging Kenya cities", "Precifarm hubs", "electric travel locations"],
+ faqs: [
+ {
+ question: "Which cities have Precifarm EV charging guides?",
+ answer:
+ "Published location pages cover major Kenyan cities and corridors where Precifarm installs or plans charging — check each page for live, coming-soon and partner-operated labels.",
+ },
+ ],
  breadcrumbs: [
  { name: "Home", href: "/" },
  { name: "Locations", href: "/locations" },

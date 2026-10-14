@@ -73,8 +73,8 @@ export const productImages = {
   },
   corridor: {
     /** T-canopy DC product shot — matches public Corridor copy (120 kW+, dual CCS2, M-Pesa). */
-    src: "/images/products/corridor-v5.png",
-    alt: "Precifarm Corridor 120 kW DC fast charger with T-canopy, dual CCS2 holsters and M-Pesa on the display",
+    src: "/images/products/corridor-v6.jpg",
+    alt: "Precifarm Corridor 120 kW DC fast charger with T-canopy, dual CCS2 holsters and M-Pesa tap-to-pay on the display",
     brand: "corridor" as const,
   },
   corridorDispenserRender: {
@@ -83,8 +83,8 @@ export const productImages = {
     brand: "corridor" as const,
   },
   corridorForecourt: {
-    src: productRenderPaths.corridorForecourt,
-    alt: "Precifarm Corridor forecourt with T-canopy DC fast charging",
+    src: "/images/renders/corridor-forecourt-v6.jpg",
+    alt: "Precifarm Corridor DC fast charging bay at a Kenyan highway service area with solar canopy and M-Pesa session display",
     brand: "corridor" as const,
   },
   corridorPowerCabinet: {

@@ -32,17 +32,9 @@ const nextConfig: NextConfig = {
  },
  async redirects() {
  return [
- { source: "/hub", destination: "/charging", permanent: true },
- { source: "/hub/:path*", destination: "/charging", permanent: true },
- { source: "/guides", destination: "/faq", permanent: true },
- { source: "/guides/:path*", destination: "/faq", permanent: true },
+ // Keep legacy /learn paths on FAQ; live guide pages live under /guides.
  { source: "/learn", destination: "/faq", permanent: true },
  { source: "/learn/:path*", destination: "/faq", permanent: true },
- { source: "/careers", destination: "/contact", permanent: true },
- { source: "/sustainability", destination: "/about", permanent: true },
- { source: "/download", destination: "/contact", permanent: true },
- { source: "/locations", destination: "/charging", permanent: true },
- { source: "/locations/:path*", destination: "/charging", permanent: true },
  { source: "/electric-vehicles/kenya", destination: "/evs", permanent: true },
  { source: "/ev-charging", destination: "/charging", permanent: true },
  { source: "/ev-charging/kenya", destination: "/charging", permanent: true },

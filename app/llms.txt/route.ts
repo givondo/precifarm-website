@@ -55,7 +55,8 @@ Mini Stack is modular-energy outdoor backup as not Pod energy storage (the home 
 
 ## Content hubs
 - FAQ index: ${siteConfig.url}/faq
-- Guides index: ${siteConfig.url}/guides (also ${siteConfig.url}/learn)
+- Guides index: ${siteConfig.url}/guides
+- Legacy learn URLs redirect to FAQ: ${siteConfig.url}/faq
 - Locations index: ${siteConfig.url}/locations
 
 ## Machine-readable APIs (JSON)

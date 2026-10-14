@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 
 import HomeAnnouncement from "@/components/home/HomeAnnouncement";
-import HomePageGate from "@/components/home/HomePageGate";
 import HomeHero from "@/components/home/HomeHero";
 import HomeChargingCta from "@/components/home/HomeChargingCta";
 import HomeScenarios from "@/components/home/HomeScenarios";
@@ -34,16 +33,14 @@ export default async function Home() {
   return (
     <>
       <JsonLd data={seo.jsonLd} />
-      <HomePageGate>
-        <div className="bg-white">
-          <HomeAnnouncement />
-          <HomeHero />
-          <HomeScenarios />
-          <HomeChargingCta />
-          <HomeWhyPrecifarm />
-          <HomeFinalCta />
-        </div>
-      </HomePageGate>
+      <div className="bg-white">
+        <HomeAnnouncement />
+        <HomeHero />
+        <HomeScenarios />
+        <HomeChargingCta />
+        <HomeWhyPrecifarm />
+        <HomeFinalCta />
+      </div>
     </>
   );
 }

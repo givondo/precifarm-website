@@ -11,7 +11,9 @@ export default function HomeHero() {
             <p className="text-eyebrow">{homeHero.eyebrow}</p>
             <h1 className="heading-display mt-4 text-[2rem] leading-[1.08] sm:text-4xl lg:text-[2.75rem]">
               {homeHero.headline}
-              <span className="block text-forest-700">{homeHero.headlineAccent}</span>
+              {homeHero.headlineAccent ? (
+                <span className="block text-forest-700">{homeHero.headlineAccent}</span>
+              ) : null}
             </h1>
             <p className="mt-5 max-w-lg text-base leading-relaxed text-forest-600 sm:text-lg">{homeHero.whatWeDo}</p>
             <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-3">

@@ -28,7 +28,7 @@ export const brand = {
  words100:
  "Precifarm builds the infrastructure behind electric transport in Kenya, with a design path to Africa. We combine grid and solar power, battery storage, EV charging, software monitoring, M-Pesa payments and Lipa Pole Pole financing into one operating system for homes, fleets and highway corridors. Precifarm handles site engineering, commissioning, uptime and settlement. Nairobi–Kisumu is the first corridor we prove before the next is financed.",
  llm:
- "Precifarm is a Kenyan electric mobility infrastructure company. It installs, finances and runs EV charging from home charging to highway charging. Chargers: Spark charger (portable 3.3 kW, about 180 minutes for a typical day), Pulse charger (7 kW home, about 90 minutes, from KES 79,000), Pod energy storage (home charger + 5 or 10 kWh storage, from KES 295,000), Boda Hub (swap under 5 minutes), Depot charging station (22 kW fleet AC, about 120 minutes for 40+ kWh), Corridor charging (120 kW+ highway DC, fast highway top-up in about 30 minutes). Lipa Pole Pole is M-Pesa financing for Pulse charger and Pod energy storage, not a charger. Public DC from KES 39/kWh. A home charging day costs about KES 140 versus ~KES 1,000 diesel per day. Charging Hub at precifarm.com/hub. M-Pesa on every product. Precifarm Agent desktop coming soon at precifarm.com/download. Modular energy (P1 Go, P2 Home, Mini Stack) is conceptual — not on sale.",
+ "Precifarm is a Kenyan electric mobility infrastructure company. It installs, finances and runs EV charging from home charging to highway charging. Chargers: Spark charger (portable 3.3 kW, about 180 minutes for a typical day), Pulse charger (7 kW home, about 90 minutes, from KES 79,000), Pod energy storage (home charger + 5 or 10 kWh storage, from KES 295,000), Boda Hub (swap under 5 minutes), Depot charging station (22 kW fleet AC, about 120 minutes for 40+ kWh), Corridor charging (120 kW+ highway DC, fast highway top-up in about 30 minutes). Lipa Pole Pole is M-Pesa financing for Pulse charger and Pod energy storage, not a charger. Public DC from KES 39/kWh. A home charging day costs about KES 140 versus ~KES 1,000 diesel per day. Charging Hub at precifarm.com/hub. M-Pesa on every product. Precifarm Agent desktop coming soon at precifarm.com/download. Modular energy (P1 Go, P2 Home, Mini Stack, MegaPack) is on the engineering roadmap — confirm availability on product pages before quoting.",
 } as const;
 
 export const audienceCopy = {
@@ -50,18 +50,19 @@ export const announcementBar = {
 } as const;
 
 export const homeHero = {
- eyebrow: "EV charging · Kenya",
- headline: "Ultra EV fast charging.",
- headlineAccent: "For electric cars and motorcycles.",
+ eyebrow: "Precifarm EV Charging",
+ headline: "Powering the shift to electric transport.",
+ headlineAccent: "",
  whatWeDo:
- "Precifarm builds and finances innovative EV charging solutions to power electric cars and motorcycles from as low as KES 3,000/month.",
+ "Fast, reliable charging for electric cars and motorcycles, fully installed and financed from KES 3,000/month.",
  primaryCta: { href: "/charging/home", label: "Home charging" },
  secondaryCta: { href: "/partners", label: "Fleet & partners" },
  caption: "Pulse charger · Kenya",
  video: {
- youtubeId: "vMJp49Denaw",
+ /** Hosted on GCS — see scripts/upload-hero-video.ps1 */
+ src:
+ "https://storage.googleapis.com/precifarm-public-media-skilled-orbit/videos/precifarm-ad-1080p-master.mp4",
  title: "Precifarm EV charging in Kenya",
- posterSrc: "/images/home-hero-video-wallpaper.jpg",
  },
 } as const;
 
@@ -394,9 +395,21 @@ export const footerNavGroups = [
  },
 ] as const;
 
+export const footerProducts = [
+ { label: "Pulse charger", href: "/charging/home" },
+ { label: "Pod", href: "/charging/home" },
+ { label: "Spark charger", href: "/charging/home" },
+ { label: "Corridor DC", href: "/partners" },
+ { label: "Boda Hub", href: "/charging/boda-hub" },
+ { label: "Depot", href: "/charging" },
+ { label: "MegaPack", href: "/charging/modular-energy/megapack" },
+] as const;
+
 export const footerSection = {
- tagline: brand.oneLiner,
- productLine: "Pulse charger · Pod · Spark charger · Corridor · Boda Hub · Depot · MegaPack",
+ tagline: "Powering the shift to electric transport.",
+ taglineSupport:
+ "We design, install, finance and operate EV charging in Kenya — home, fleet and highway, with M-Pesa on every product.",
+ productsHeading: "Explore the range",
  socialLabel: "Follow Precifarm",
  meta: `${brand.africa} · M-Pesa on every product`,
 } as const;

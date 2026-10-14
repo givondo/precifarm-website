@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Logo from "@/components/Logo";
 import SocialIcon from "@/components/SocialIcon";
-import { footerNavGroups, footerSection } from "@/lib/brand-messaging";
+import { footerNavGroups, footerProducts, footerSection } from "@/lib/brand-messaging";
 import { contact } from "@/lib/contact";
 import { socialLinks } from "@/lib/social";
 
@@ -46,6 +46,23 @@ function FooterNavGroup({
         <FooterLinkList links={links} groupTitle={title} />
       </nav>
     </>
+  );
+}
+
+function FooterProductRange() {
+  return (
+    <div className="site-footer-products">
+      <p className="site-footer-products-heading">{footerSection.productsHeading}</p>
+      <ul className="site-footer-products-list">
+        {footerProducts.map((product) => (
+          <li key={product.label}>
+            <Link href={product.href} className="site-footer-product-chip">
+              {product.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
@@ -107,7 +124,8 @@ export default function Footer() {
                 <Logo size="footer" variant="onDark" />
               </div>
               <p className="site-footer-tagline">{footerSection.tagline}</p>
-              <p className="mt-2 text-xs leading-relaxed text-white/55">{footerSection.productLine}</p>
+              <p className="site-footer-tagline-support">{footerSection.taglineSupport}</p>
+              <FooterProductRange />
               <FooterSocialLinks />
             </div>
           </div>

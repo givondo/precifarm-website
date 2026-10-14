@@ -43,7 +43,7 @@ const IMAGE_FILES = [
   ["pod", "products/pod.png"],
   ["pod-garage", "products/pod-home-hero-v3-garage-4x3.png"],
   ["depot", "products/depot-v5.png"],
-  ["corridor", "products/corridor-v5.png"],
+  ["corridor", "products/corridor-v6.jpg"],
   ["corridor-safety", "products/corridor-safety.png"],
   ["boda", "products/boda-v3.png"],
   ["boda-locker-family", "products/boda-hub-locker-family-v3.png"],

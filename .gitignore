@@ -65,6 +65,9 @@ firebase-adminsdk*.json
 /public/downloads/.engineering-pdf-source.html
 /public/downloads/.pdf-build/
 
+# large hero / marketing video (hosted on GCS — scripts/upload-hero-video.ps1)
+/public/videos/*.mp4
+
 # draft downloads and PDF build output (may embed contact or unreleased copy)
 /public/downloads/_*
 .pdf-preview/
