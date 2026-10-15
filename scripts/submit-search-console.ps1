@@ -29,7 +29,11 @@ function Get-AccessToken {
 
 function Ensure-SearchConsoleAuth {
   Write-Host "Checking gcloud auth (Search Console / webmasters scope)..." -ForegroundColor Cyan
-  $token = Get-AccessToken
+  # User credentials from `gcloud auth login` usually lack webmasters scope — prefer ADC.
+  $token = Get-AccessToken -ForceAdc
+  if (-not $token) {
+    $token = Get-AccessToken
+  }
   if (-not $token) {
     Write-Host "Opening browser for gcloud auth login..." -ForegroundColor Yellow
     & $GCLOUD auth login --brief 2>&1 | Out-Null
