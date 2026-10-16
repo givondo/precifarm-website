@@ -1402,6 +1402,15 @@ html {
   @apply text-forest-600;
 }
 
+/* Unlayered rules beat Tailwind utilities, so dark sections need explicit overrides. */
+.heading-display.heading-inverted {
+  color: #ffffff;
+}
+
+.subtitle-inverted {
+  color: rgb(255 255 255 / 0.72);
+}
+
 .text-eyebrow {
   @apply text-xs font-semibold uppercase tracking-widest text-charge-600;
 }

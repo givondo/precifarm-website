@@ -2,32 +2,33 @@
 
 import type { FaqItem } from "@/lib/seo/types";
 import { siteConfig } from "@/lib/seo/config";
+import { agentToolCatalogue } from "@/lib/agent/tools/engineering";
 
 export const agentPath = "/agent";
 
 export const agentStatusNote =
-  "Web workspace live · DeepSeek V4 Flash · OpenCode config for local runs.";
+  "Web workspace in early access · Ask and Plan modes · OpenCode config for local runs.";
 
 export const agentPageFaqs: FaqItem[] = [
   {
     question: "What is Precifarm Agent?",
     answer:
-      "An agentic AI for EV charging, solar, batteries and electrical systems — not customer-service chat. It plans the work, runs real calculators, and labels every result as calculated, estimated, or needing a site check.",
+      "An agentic AI for EV charging, solar, batteries and electrical systems, not customer-service chat. It plans the work, runs real calculators, and labels every result as calculated, estimated, or needing a site check.",
   },
   {
     question: "Does the AI do the maths itself?",
     answer:
-      "No. The Agent decides what to calculate. Separate engineering tools do the maths. You can audit the pipeline from brief to result.",
+      "No. The Agent decides what to calculate; ten deterministic engineering tools do the maths. Every reply shows a calculation trace with each tool call, its result and its evidence label.",
   },
   {
     question: "Is Precifarm Agent live today?",
     answer:
-      "Yes in early access — design workflows and calculators are in use with partners. Android builds support mobility use cases; desktop is coming soon at precifarm.com/download.",
+      "Yes, in early access. The web workspace is open at precifarm.com/agent/chat and on this page. The desktop workspace is coming; request access at precifarm.com/download.",
   },
   {
     question: "Who is it for?",
     answer:
-      "Engineers, technicians, installers and energy businesses working on EV charging, solar and storage — including Precifarm Pulse, Pod, Spark, Depot, Boda Hub and Corridor projects.",
+      "Engineers, technicians, installers and energy businesses working on EV charging, solar and storage, including Precifarm Pulse, Pod, Spark, Depot, Boda Hub and Corridor projects.",
   },
   {
     question: "Can it replace a site survey?",
@@ -37,23 +38,23 @@ export const agentPageFaqs: FaqItem[] = [
   {
     question: "Will it pay with M-Pesa or control my car?",
     answer:
-      "Never silently. Financial and vehicle actions require explicit approval (or user-defined low-risk rules you opt into). Ask and Plan modes have no side effects.",
+      "No. Today's workspace runs in Ask and Plan modes only, with no side effects. Act and Auto modes, with explicit approval for anything involving money or a vehicle, are on the roadmap.",
   },
 ];
 
 export const agentPage = {
   hero: {
     eyebrow: "Precifarm Agent",
-    title: "Your intelligent mobility and energy engineer.",
+    title: "Your AI electrical and energy engineer.",
     subhead:
-      "State-of-the-art agentic design today — sizing, diagrams and auditable calcs. Tomorrow: a command centre that understands your vehicle, journey, charging and home energy when you allow it.",
-    primaryCta: { href: "/agent/chat", label: "Open workspace" },
-    secondaryCta: { href: "/download", label: "Download · OpenCode" },
+      "Give it a brief. It plans the design, runs real engineering tools for every number, and tells you what still needs a site check. EV charging, solar, batteries, cables and protection, built for Kenya.",
+    primaryCta: { href: "#try", label: "Try it now" },
+    secondaryCta: { href: "/agent/chat", label: "Open full workspace" },
   },
 
   progress: [
-    { stat: "9+", label: "Engineering calculators in the tool kernel — EV, solar, battery, protection, costs" },
-    { stat: "8-step", label: "Design workflow from brief to deliverables — built for professional sign-off" },
+    { stat: String(agentToolCatalogue.length), label: "Deterministic engineering tools: EV, solar, battery, inverter, cables, protection, costs, products" },
+    { stat: "100%", label: "Of numbers come from a tool and carry an evidence label you can audit" },
     { stat: siteConfig.androidApp.name, label: "Android companion in early access · desktop workspace next" },
   ],
 
@@ -61,15 +62,23 @@ export const agentPage = {
     eyebrow: "Ambition",
     title: "Your car has a companion. Your energy has a brain.",
     description:
-      "Precifarm Agent is the intelligent layer connecting driver, vehicle, journey, charging, home energy, M-Pesa and the Precifarm network — without becoming a generic chatbot or a map with lipstick.",
+      "Precifarm Agent is the intelligent layer connecting driver, vehicle, journey, charging, home energy, M-Pesa and the Precifarm network, without becoming a generic chatbot or a map with lipstick.",
     quote:
       "We are building command-centre-first software: the map is a tool the Agent uses, not the product.",
+  },
+
+  tryIt: {
+    id: "try",
+    eyebrow: "Try it",
+    title: "Give it a real brief.",
+    description:
+      "Pick an example or describe your own site. Open the calculation trace under each reply to see every tool the Agent ran.",
   },
 
   modes: {
     eyebrow: "Interaction modes",
     title: "You always know what the Agent is allowed to do.",
-    description: "Every screen shows the active mode — no hidden side effects.",
+    description: "Every screen shows the active mode. Today's workspace runs Ask and Plan only; Act and Auto come with approval controls.",
     items: [
       {
         mode: "Ask",
@@ -79,12 +88,12 @@ export const agentPage = {
       {
         mode: "Plan",
         title: "Recommend a path",
-        text: "Trip, charge schedule, bill of materials or upgrade plan — presented for review, not executed.",
+        text: "Trip, charge schedule, bill of materials or upgrade plan, presented for review, not executed.",
       },
       {
         mode: "Act",
         title: "Execute with approval",
-        text: "Book a survey, start a session, export a report — only after you confirm.",
+        text: "Book a survey, start a session, export a report, only after you confirm.",
       },
       {
         mode: "Auto",
@@ -96,34 +105,34 @@ export const agentPage = {
 
   roadmap: {
     eyebrow: "Progress & roadmap",
-    title: "Shipping the kernel. Expanding the companion.",
+    title: "Shipped, in build, and next.",
     columns: {
       shipped: "In the wild today",
       building: "In active build",
       next: "Next horizon",
     },
     shipped: [
-      "Agentic design workflow — Understand through Deliver",
-      "Engineering tool kernel with auditable calculations",
-      "Evidence labels on every output (calculated, estimated, needs site check)",
+      "Web workspace in early access, Ask and Plan modes",
+      "Ten-tool engineering kernel: EV, solar, battery, inverter, voltage drop, protection, cost, products",
+      "Calculation trace with evidence labels on every reply",
       `${siteConfig.androidApp.name} early access on Android`,
     ],
     building: [
-      "Desktop workspace for Windows and macOS",
-      "Richer system diagrams and exportable install packs",
-      "Deeper Precifarm product libraries (Pulse, Pod, Corridor, Depot)",
+      "Kenyan benchmark: 50 real survey cases graded by registered engineers (Q1 2027)",
+      "Install pack export: calc sheet, single line diagram, parts list (Q2 2027)",
+      "Use on live Pulse home surveys with partner installers (Q3 2027)",
     ],
     next: [
-      "Journey-aware planning — route, charge stops, cost and time",
-      "Charging Hub intelligence with honest live/planned labels",
-      "M-Pesa and Lipa Pole Pole flows gated by explicit approval",
-      "Wireless pad site modelling — shared with R&D at precifarm.com/research",
+      "Desktop workspace and survey to quote handover",
+      "Journey planning: route, charge stops, cost and time",
+      "M-Pesa and Lipa Pole Pole actions behind explicit approval",
+      "Wireless pad site modelling, shared with the R&D programme",
     ],
   },
 
   agentLoop: {
     eyebrow: "Core agent loop",
-    title: "Observe → Plan → Verify → Act — with consent.",
+    title: "Observe, plan, verify, act: with consent.",
     steps: [
       "Observe",
       "Understand",
@@ -141,7 +150,7 @@ export const agentPage = {
   differentiation: {
     eyebrow: "The difference",
     title: "Don’t just ask AI. Give it a job.",
-    body: "Most AI answers questions. Precifarm Agent works through the design step by step — the same discipline we use commissioning hardware in the field.",
+    body: "Most AI answers questions. Precifarm Agent works through the design step by step, with the same discipline we use commissioning hardware in the field.",
     stages: [
       "Understand",
       "Plan",
@@ -162,7 +171,7 @@ export const agentPage = {
       {
         n: "01",
         title: "Understand",
-        text: "Read the brief — site, vehicle, energy need and limits.",
+        text: "Read the brief: site, vehicle, energy need and limits.",
       },
       {
         n: "02",
@@ -177,7 +186,7 @@ export const agentPage = {
       {
         n: "04",
         title: "Calculate",
-        text: "Run real engineering calculators — not guesswork from the AI.",
+        text: "Run real engineering calculators, not guesswork from the AI.",
       },
       {
         n: "05",
@@ -192,7 +201,7 @@ export const agentPage = {
       {
         n: "07",
         title: "Iterate",
-        text: "Change one input — related numbers update with it.",
+        text: "Change one input and related numbers update with it.",
       },
       {
         n: "08",
@@ -236,7 +245,7 @@ export const agentPage = {
   kernel: {
     eyebrow: "How the maths works",
     title: "AI plans. Tools calculate.",
-    lead: "The Agent chooses what to work out. Dedicated tools run the numbers — state-of-the-art agent orchestration with deterministic engineering underneath.",
+    lead: "The Agent chooses what to work out. Dedicated, deterministic tools run the numbers, validate inputs and attach notes on what still needs checking.",
     pipeline: [
       "Your brief",
       "AI Agent",
@@ -245,17 +254,7 @@ export const agentPage = {
       "Check",
       "Result",
     ] as const,
-    tools: [
-      { label: "EV energy", fn: "calculateEvEnergy()" },
-      { label: "Charging", fn: "calculateChargingTime()" },
-      { label: "Load", fn: "calculatePeakLoad()" },
-      { label: "Solar", fn: "sizePvSystem()" },
-      { label: "Battery", fn: "sizeBattery()" },
-      { label: "Inverter", fn: "sizeInverter()" },
-      { label: "Cables", fn: "calculateVoltageDrop()" },
-      { label: "Protection", fn: "sizeProtection()" },
-      { label: "Costs", fn: "calculateEnergyCost()" },
-    ] as const,
+    tools: agentToolCatalogue.map((t) => ({ label: t.label, fn: `${t.name}()` })),
   },
 
   example: {
@@ -290,11 +289,11 @@ export const agentPage = {
 
   companion: {
     eyebrow: "Hardware meets software",
-    title: "One brain for wired installs and wireless research.",
+    title: "Agent is an R&D programme with a public goal.",
     description:
-      "Agent models Pulse and Corridor sites today and feeds the same discipline into wireless pad research — so when a pilot graduates from bench to field, the software already speaks M-Pesa, protection and honest hub labels.",
-    researchHref: "/research",
-    researchLabel: "R&D · wireless charging programme",
+      "Target: agree with engineer-checked reference designs on at least 90% of a 50-case Kenyan benchmark by Q2 2027, then run on every Precifarm home survey. Progress, gates and the path are published on the R&D page.",
+    researchHref: "/research#precifarm-agent",
+    researchLabel: "See the Agent programme on R&D",
   },
 
   trust: {
@@ -315,15 +314,15 @@ export const agentPage = {
   cta: {
     title: "Start with the problem. Scale to the journey.",
     description: "Tell Precifarm Agent what you’re building. Add the files you have. Let it work through the design.",
-    primaryHref: "/contact",
+    primaryHref: "/agent/chat",
     primaryLabel: "Start designing",
     secondaryHref: "/download",
-    secondaryLabel: "Get desktop access",
+    secondaryLabel: "Request desktop access",
     finalLine: "EV charging. Solar. Batteries. Electrical systems. One Agent.",
   },
 
   heroMock: {
-    project: "Karen Residence — EV Charging",
+    project: "Karen Residence · EV charging",
     user: [
       "Design an EV charging system for a",
       "3-bedroom house in Nairobi.",
