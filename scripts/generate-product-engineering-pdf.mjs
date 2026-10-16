@@ -28,40 +28,40 @@ const pdfOut = join(downloadsDir, "precifarm-product-engineering-reference.pdf")
 
 const DOC = {
   id: "PF-PRODUCT-ENG-001",
-  version: "1.0",
+  version: "1.1",
   status: "Engineering Design Reference",
-  date: "11 September 2026",
+  date: "16 October 2026",
   pages: 12,
   companions: "PF-ENG-SOLAR-HUB-001 · PF-MODENERGY-002",
 };
 
 /** Staged into ./product-engineering/: [asset key, path under public/images] */
 const IMAGE_FILES = [
-  ["ecosystem-hero", "charging-ecosystem-hero-v21.png"],
+  ["ecosystem-hero", "renders/energy-storage-family-hero.png"],
   ["spark", "products/spark-v3.png"],
-  ["pulse", "products/pulse-v9.png"],
-  ["pod", "products/pod.png"],
+  ["pulse", "renders/pulse-7kw-hero.png"],
+  ["pod", "renders/p2-home-hero.png"],
   ["pod-garage", "products/pod-home-hero-v3-garage-4x3.png"],
-  ["depot", "products/depot-v5.png"],
+  ["depot", "renders/depot-22kw-hero.png"],
   ["corridor", "products/corridor-v6.jpg"],
-  ["corridor-safety", "products/corridor-safety.png"],
-  ["boda", "products/boda-v3.png"],
+  ["corridor-safety", "renders/corridor-power-cabinet-hero.png"],
+  ["boda", "renders/boda-hub-hero.png"],
   ["boda-locker-family", "products/boda-hub-locker-family-v3.png"],
   ["boda-bay-module", "products/boda-hub-bay-module-v2.png"],
   ["boda-site-petrol", "products/boda-hub-site-petrol.png"],
-  ["energy-module", "products/energy-module-256-v2.png"],
+  ["energy-module", "renders/energy-module-em256-hero.png"],
   ["financing", "products/financing.png"],
-  ["p1-go", "modular-energy/render-p1-go-v5.png"],
-  ["p2-home", "modular-energy/render-p2-home-v2.png"],
-  ["mini-stack", "modular-energy/render-pod.png"],
-  ["modular-family", "modular-energy/render-family-hero-v3.jpg"],
+  ["p1-go", "renders/p1-go-hero.png"],
+  ["p2-home", "renders/p2-home-hero.png"],
+  ["mini-stack", "renders/mini-stack-hero.png"],
+  ["modular-family", "renders/energy-storage-family-hero.png"],
   ["megapack", "megapack-hero-v3.png"],
   ["megapack-ev-hub", "megapack-ev-hub-v2.png"],
   ["eng-architecture", "engineering/system-architecture.png"],
   ["eng-site-plan", "engineering/site-plan.png"],
   ["eng-route-hub", "engineering/route-hub.png"],
   ["eng-home-hybrid", "engineering/home-hybrid.png"],
-  ["hub-premium", "charging-hub-premium-kenya.png"],
+  ["hub-premium", "renders/corridor-forecourt-v6.jpg"],
 ];
 
 /** asset key -> staged filename, populated by stageImages() before buildHtml(). */
@@ -73,8 +73,8 @@ const PORTFOLIO = [
   ["Spark charger", "Portable AC", "3.3 kW", "Type 2", "On sale", "KES 25,000"],
   ["Pulse charger", "Home wallbox", "7 kW AC", "Type 2", "On sale", "KES 79,000"],
   ["Pod energy storage", "Home charger + battery", "7 kW + 5–10 kWh", "Type 2", "On sale", "KES 295,000"],
-  ["Depot station", "Fleet / campus AC", "22 kW AC", "Type 2", "On sale", "Quoted per site"],
-  ["Corridor charging", "Highway DC", "120 kW+ DC", "Dual CCS2", "On sale", "KES 39/kWh"],
+  ["Depot charging station", "Fleet / campus AC", "22 kW AC", "Type 2", "On sale", "Quoted per site"],
+  ["Corridor charging", "Highway DC · Nairobi–Kisumu first", "120 kW+ DC", "Dual CCS2", "On sale", "KES 39/kWh"],
   ["Boda Hub", "Battery swap", "2.56 kWh packs", "Pack swap", "Partner sites live", "Fleet pricing"],
   ["Automated Boda Hub", "Self-service lockers", "8–24+ doors", "Pack swap", "In design & testing", "Not quoted"],
   ["Energy Module", "2.56 kWh building block", "2.56 kW", "Blind-mate", "Conceptual", "Not on sale"],
@@ -85,10 +85,14 @@ const PORTFOLIO = [
 ];
 
 const SERVICES = [
-  ["Charging Hub", "Public map of Precifarm DC, Boda swap and partner sites", "Live"],
-  ["Precifarm Agent", "AI electrical & energy engineering workspace", "Early access · desktop coming soon"],
+  ["Charging Hub", "Map of Precifarm DC, boda swap and partner stops — open vs coming soon", "Live at /hub"],
+  [
+    "Precifarm Agent",
+    "Web chat (DeepSeek V4 Flash) + OpenCode config + Android APK",
+    "Web live · OpenCode setup · Android early access",
+  ],
   ["Engineering package", "Design basis for home, depot, corridor and partner sites", "Published (PF-ENG-SOLAR-HUB-001)"],
-  ["Training T1 / T2 / T3", "Site staff, technician and commissioning certification", "Delivered in Nairobi + field"],
+  ["Training T1 / T2 / T3", "Site staff, technician and commissioning on Pulse–Corridor hardware", "Nairobi + corridor field modules"],
   ["Partners & fleet", "Hub hosting, fleet electrification, dealer and installer network", "By contract"],
   ["Lipa Pole Pole", "M-Pesa instalment financing for Pulse and Pod only", "Live · from KES 3,300/month"],
   ["Charging-as-a-Service", "Precifarm finances, installs and operates; pay per kWh or monthly", "By contract"],
@@ -111,7 +115,7 @@ const HOME_PRODUCTS = [
     image: "pod",
     name: "Pod energy storage",
     tag: "7 kW + 5–10 kWh",
-    text: "Charger plus LiFePO4 storage for weak-grid evenings. Solar-ready, essential-load backup.",
+    text: "7 kW charger plus 5 or 10 kWh LiFePO4 for weak-grid evenings. Essential-load backup — not whole-house air conditioning.",
   },
 ];
 
@@ -120,7 +124,7 @@ const HOME_SPECS = [
   ["Connector", "Type 2", "Type 2", "Type 2"],
   ["Supply", "13 A socket", "230 V / 50 Hz dedicated", "230 V / 50 Hz dedicated"],
   ["Storage", "None", "None", "5 or 10 kWh LiFePO4"],
-  ["Typical day (~10 kWh)", "~180 min", "~90 min", "~90 min"],
+  ["Typical day (~10 kWh / ~60 km)", "~180 min", "~90 min", "~90 min"],
   ["From (KES)", "25,000", "79,000", "295,000"],
   ["Lipa Pole Pole", "No", "Yes", "Yes"],
   ["Aftersale care", "Warranty", "3 years", "3 years"],
@@ -233,11 +237,11 @@ const KENYA_BASIS = [
   ["Domestic net-metering cap", "10 kW"],
   ["Average monthly outage", "~8.4 h reported"],
   ["Typical Nairobi day", "~60 km ≈ ~10 kWh"],
-  ["EV consumption default", "0.18 kWh/km"],
+  ["EV consumption default", "~0.17 kWh/km (~10 kWh at 60 km planning)"],
 ];
 
 const FORMULAS = [
-  ["Daily EV energy", "E_day = distance × consumption", "80 km × 0.18 = 14.4 kWh"],
+  ["Daily EV energy", "E_day = distance × consumption", "60 km × 0.167 ≈ 10 kWh"],
   ["Charge time", "t = E_day ÷ P_charger", "14.4 ÷ 7 = 2.1 h"],
   ["Minimum charger power", "P_min = E_day ÷ window", "18 ÷ 10 = 1.8 kW"],
   ["Usable storage", "E_use = nameplate × SOC window × conversion", "2.56 × 0.90 × 0.94 = 2.17 kWh"],
@@ -288,14 +292,11 @@ const EVIDENCE_LABELS = [
 
 const AGENT_TOOLS = [
   ["EV energy", "calculateEvEnergy()"],
-  ["Charging", "calculateChargingTime()"],
-  ["Load", "calculatePeakLoad()"],
-  ["Solar", "sizePvSystem()"],
-  ["Battery", "sizeBattery()"],
-  ["Inverter", "sizeInverter()"],
-  ["Cables", "calculateVoltageDrop()"],
-  ["Protection", "sizeProtection()"],
-  ["Costs", "calculateEnergyCost()"],
+  ["Charging time", "calculateChargingTime()"],
+  ["Peak load", "calculatePeakLoad()"],
+  ["Backup sizing", "sizeBattery()"],
+  ["Tariff cost", "calculateEnergyCost()"],
+  ["Output labels", "calculated · estimated · assumed"],
 ];
 
 const TRAINING = [
@@ -305,10 +306,10 @@ const TRAINING = [
 ];
 
 const OPERATING_COST = [
-  ["Home charging day (~60 km)", "~KES 140", "Illustrative"],
-  ["Diesel equivalent day", "~KES 1,000", "Illustrative"],
-  ["Public DC session", "From KES 39/kWh", "Actual tariff floor"],
-  ["Boda swap", "Under 5 minutes", "Actual at live sites"],
+  ["Home charging day (~60 km)", "From KES 140", "Illustrative · site tariff"],
+  ["Diesel equivalent day", "From KES 1,000", "Illustrative"],
+  ["Public DC session", "From KES 39/kWh", "Marketed floor · M-Pesa at bay"],
+  ["Boda swap", "Under 5 minutes", "Marketed at live swap sites"],
 ];
 
 /* ------------------------------------------------------------- helpers --- */
@@ -587,8 +588,8 @@ function fleetPage() {
       </p>
 
       <div class="grid-2">
-        ${plate("depot", "Precifarm Depot 22 kW AC charging pedestal", "Depot — 22 kW AC pedestal for fleet yards, campuses and partner retail.")}
-        ${plate("corridor", "Precifarm Corridor DC fast charger under a T-canopy", "Corridor — 120 kW+ DC under a T-canopy with dual CCS2 on overhead cables.")}
+        ${plate("depot", "Precifarm Depot 22 kW AC charging pedestal", "Depot — 22 kW AC (Pulse Plus pedestal) for fleet yards, campuses and partner retail.")}
+        ${plate("corridor", "Precifarm Corridor DC fast charger under a T-canopy", "Corridor — 120 kW+ DC, dual CCS2, M-Pesa tap-to-pay. First corridor: Nairobi–Kisumu.")}
       </div>
 
       ${dataTable({
@@ -685,8 +686,8 @@ function bodaPage() {
 
       <div class="callout callout-amber">
         <strong>Status and limits</strong>
-        Self-service lockers are in design and testing. Live Boda sites on Charging Hub may still be partner or staff
-        operated. Weather rating is under test. Other battery packs are only supported after approval gates.
+        Self-service lockers are in design and testing. Live Boda sites on Charging Hub (/hub) may be partner- or
+        staff-operated. Weather rating is under test. Other battery packs only after approval gates.
         Tariffs and payback come from pilots, not projections.
       </div>
     </section>`;
@@ -870,8 +871,8 @@ function servicesPage() {
 
       <h2 class="sec-title">What surrounds the hardware</h2>
       <p class="sec-lead sec-lead-tight">
-        Charging Hub gets drivers to a working bay. Training keeps sites safe. The Agent speeds up the engineering.
-        Financing decides whether the customer can proceed at all.
+        Charging Hub (/hub) lists open and coming-soon bays. Training keeps sites safe on live hardware.
+        Precifarm Agent speeds first-pass sizing (web workspace + OpenCode). Lipa Pole Pole unlocks Pulse and Pod purchases.
       </p>
 
       ${dataTable({

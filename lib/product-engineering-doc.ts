@@ -4,8 +4,8 @@ import { productRenderPaths } from "@/lib/product-renders-catalog";
 /** Illustrated product & service reference — every Precifarm product with its engineering numbers. */
 export const productEngineeringDoc = {
   id: "PF-PRODUCT-ENG-001",
-  version: "1.0",
-  date: "11 September 2026",
+  version: "1.1",
+  date: "16 October 2026",
   title: "Precifarm products & services",
   subtitle: "Engineering design reference for the full range",
   description:
