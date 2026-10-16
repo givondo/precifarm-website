@@ -24,7 +24,7 @@ export const siteConfig = {
  region: "KE",
  timezone: "Africa/Nairobi",
  defaultDescription:
- "EV charging in Kenya — home Pulse installs, fleet hubs and Corridor DC. Financed from KES 3,000/month on M-Pesa. Designed, installed and operated by Precifarm.",
+ "EV charging in Kenya — home Pulse installs, fleet hubs and Corridor DC. Financed from KES 3,300/month on M-Pesa. Designed, installed and operated by Precifarm.",
  defaultKeywords: [
  "EV charging Kenya",
  "home charging Kenya",

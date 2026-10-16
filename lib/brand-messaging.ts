@@ -60,7 +60,7 @@ export const homeHero = {
  headline: "Powering the shift to electric transport.",
  headlineAccent: "",
  whatWeDo:
- "Fast, reliable charging for electric cars and motorcycles, fully installed and financed from KES 3,000/month.",
+ "Fast, reliable charging for electric cars and motorcycles, fully installed and financed from KES 3,300/month.",
  primaryCta: { href: "/charging/home", label: "Home charging" },
  secondaryCta: { href: "/partners", label: "Fleet & partners" },
  caption: "Pulse charger · Kenya",
