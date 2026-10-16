@@ -50,6 +50,8 @@ Mini Stack is modular-energy outdoor backup as not Pod energy storage (the home 
 - About: ${siteConfig.url}/about
 - Careers: ${siteConfig.url}/careers
 - Precifarm Agent: ${siteConfig.url}/agent
+- Research & development: ${siteConfig.url}/research
+- Legal & policies: ${siteConfig.url}/legal
 - Desktop download: ${siteConfig.url}/download
 - Contact: ${siteConfig.url}/contact
 
@@ -75,7 +77,8 @@ Mini Stack is modular-energy outdoor backup as not Pod energy storage (the home 
 
 ## Precifarm Agent
 - Precifarm Agent: ${siteConfig.url}/agent
-- Desktop download (coming soon): ${siteConfig.url}/download
+- Web workspace: ${siteConfig.url}/agent/chat
+- OpenCode local setup: ${siteConfig.url}/download
 - Request access: ${siteConfig.url}/contact?interest=agent-desktop
 
 ## Topics we publish authoritative content on

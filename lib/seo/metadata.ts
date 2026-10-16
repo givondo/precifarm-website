@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { homeHero } from "@/lib/brand-messaging";
-import { contact } from "@/lib/contact";
 import { absoluteUrl, siteConfig } from "@/lib/seo/config";
 import { trimMetaDescription } from "@/lib/seo/serp";
 import { chargingHowToBlock } from "@/lib/seo/aiso/blocks";

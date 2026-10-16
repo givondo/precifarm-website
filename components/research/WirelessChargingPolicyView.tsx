@@ -11,7 +11,7 @@ import {
   wirelessIndustryBenchmarks,
 } from "@/lib/wireless-charging-policy-page";
 import { legalHubPath } from "@/lib/legal/paths";
-import { researchNavLabel, researchPath } from "@/lib/research-page";
+import { researchPath } from "@/lib/research-page";
 
 export default function WirelessChargingPolicyView() {
   const page = wirelessChargingPolicyPage;
@@ -107,7 +107,7 @@ export default function WirelessChargingPolicyView() {
             ))}
             <p className="mt-4 text-sm">
               <Link href={researchPath} className="font-medium text-charge-700 hover:underline">
-                View R&D progress →
+                View research programmes →
               </Link>
             </p>
           </div>

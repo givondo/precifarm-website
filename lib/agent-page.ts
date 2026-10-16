@@ -5,8 +5,7 @@ import { siteConfig } from "@/lib/seo/config";
 
 export const agentPath = "/agent";
 
-export const agentStatusNote =
-  "Web workspace live · DeepSeek V4 Flash · OpenCode config for local runs.";
+export const agentStatusNote = "Live in early access · powered by DeepSeek V4 Flash";
 
 export const agentPageFaqs: FaqItem[] = [
   {
@@ -22,7 +21,7 @@ export const agentPageFaqs: FaqItem[] = [
   {
     question: "Is Precifarm Agent live today?",
     answer:
-      "Yes in early access — design workflows and calculators are in use with partners. Android builds support mobility use cases; desktop is coming soon at precifarm.com/download.",
+      "Yes, in early access. The web workspace is live at precifarm.com/agent/chat with five engineering calculators. Android is available on request, and engineers can run it locally with OpenCode from precifarm.com/download.",
   },
   {
     question: "Who is it for?",
@@ -46,13 +45,14 @@ export const agentPage = {
     eyebrow: "Precifarm Agent",
     title: "Your intelligent mobility and energy engineer.",
     subhead:
-      "State-of-the-art agentic design today — sizing, diagrams and auditable calcs. Tomorrow: a command centre that understands your vehicle, journey, charging and home energy when you allow it.",
-    primaryCta: { href: "/agent/chat", label: "Open workspace" },
-    secondaryCta: { href: "/download", label: "Download · OpenCode" },
+      "Size EV charging, solar and battery backup in minutes. The Agent plans the job, runs real engineering calculators and labels every number so you can check it.",
+    primaryCta: { href: "/agent/chat", label: "Open the workspace" },
+    secondaryCta: { href: "/download", label: "Run locally with OpenCode" },
+    highlights: ["5 engineering calculators", "Every result labelled", "Engineer signs off"],
   },
 
   progress: [
-    { stat: "9+", label: "Engineering calculators in the tool kernel — EV, solar, battery, protection, costs" },
+    { stat: "5", label: "Engineering calculators in the tool kernel — EV energy, charge time, peak load, cost, battery" },
     { stat: "8-step", label: "Design workflow from brief to deliverables — built for professional sign-off" },
     { stat: siteConfig.androidApp.name, label: "Android companion in early access · desktop workspace next" },
   ],
@@ -236,7 +236,7 @@ export const agentPage = {
   kernel: {
     eyebrow: "How the maths works",
     title: "AI plans. Tools calculate.",
-    lead: "The Agent chooses what to work out. Dedicated tools run the numbers — state-of-the-art agent orchestration with deterministic engineering underneath.",
+    lead: "The Agent chooses what to work out. Dedicated tools run the numbers, so every result can be traced and checked.",
     pipeline: [
       "Your brief",
       "AI Agent",
@@ -249,12 +249,8 @@ export const agentPage = {
       { label: "EV energy", fn: "calculateEvEnergy()" },
       { label: "Charging", fn: "calculateChargingTime()" },
       { label: "Load", fn: "calculatePeakLoad()" },
-      { label: "Solar", fn: "sizePvSystem()" },
-      { label: "Battery", fn: "sizeBattery()" },
-      { label: "Inverter", fn: "sizeInverter()" },
-      { label: "Cables", fn: "calculateVoltageDrop()" },
-      { label: "Protection", fn: "sizeProtection()" },
       { label: "Costs", fn: "calculateEnergyCost()" },
+      { label: "Battery", fn: "sizeBattery()" },
     ] as const,
   },
 

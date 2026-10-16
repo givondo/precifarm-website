@@ -24,7 +24,7 @@ export default function AboutPage() {
         description={page.hero.description}
         breadcrumbs={[
           { name: "Home", href: "/" },
-          { name: "About", href: "/about" },
+          { name: "About us", href: "/about" },
         ]}
       >
         <div className="flex flex-wrap gap-3">

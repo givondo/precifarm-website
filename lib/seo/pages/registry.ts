@@ -364,13 +364,15 @@ export const pageSeoRegistry: PageSeoInput[] = [
  },
  {
  path: "/research",
- title: "R&D — Wireless EV Charging & Energy Research | Precifarm",
+ title: "R&D: Wireless EV Charging & Energy Systems | Precifarm",
  description:
- "Precifarm R&D — three tracks with public progress: wireless EV charging, Precifarm Agent, and hub solar & storage. Research only; Pulse and Corridor wired charging is what we sell today.",
+ "Precifarm R&D in Kenya: wireless EV charging, the Precifarm Agent engineering workspace and grid-connected solar and storage hubs — with the validation gates for each programme.",
  keywords: [
  "wireless EV charging research",
+ "wireless power transfer Kenya",
+ "EV charging engineering software",
+ "solar battery EV charging hub",
  "Precifarm Agent R&D",
- "EV hub energy storage research",
  "Precifarm research Kenya",
  ],
  faqs: researchPageFaqs,
@@ -492,14 +494,14 @@ export const pageSeoRegistry: PageSeoInput[] = [
  path: "/agent",
  title: "Precifarm Agent — AI Electrical & Energy Engineer",
  description:
- "Precifarm Agent — agentic AI for EV charging, solar and storage design with auditable calculators. Early access on Android; desktop next. Roadmap: journey planning, M-Pesa with approval, and wireless site modelling.",
+ "Precifarm Agent sizes EV charging, peak load, energy cost and battery backup with five auditable engineering calculators. Web workspace live in early access; run it locally with OpenCode.",
  keywords: [
  "AI electrical engineer",
  "AI engineering assistant",
  "EV charger sizing",
  "EV charging design",
- "solar sizing calculator",
- "battery sizing",
+ "EV charging time calculator",
+ "battery backup sizing",
  "electrical design software",
  "energy engineering AI",
  "Precifarm Agent",

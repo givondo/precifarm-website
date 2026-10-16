@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Canonical public messaging. Evidence labels follow Canon:
  * live copy must not present planned software, national corridors or
  * uncommissioned hubs as traction.
@@ -364,10 +364,9 @@ export const siteNavGroups = [
  { href: "/evs", label: "Kenya EV guide", description: "17 models · charging requirements" },
  { href: "/agent", label: "Precifarm Agent", description: "AI electrical & energy engineer" },
  { href: "/research", label: "R&D", description: "Wireless EV charging research" },
- { href: "/legal", label: "Legal & policies", description: "Terms, privacy, cookies, R&D" },
- { href: "/about", label: "About" },
+ { href: "/about", label: "About us" },
  { href: "/faq", label: "FAQ" },
- { href: "/contact", label: "Contact" },
+ { href: "/contact", label: "Contact us" },
  ],
  },
 ] as const;
@@ -401,11 +400,10 @@ export const footerNavGroups = [
  { href: "/evs", label: "Kenya EV guide" },
  { href: "/agent", label: "Precifarm Agent" },
  { href: "/research", label: "R&D · wireless charging" },
- { href: "/legal", label: "Legal & policies" },
  { href: "/training", label: `${trainingNavLabel} · T1–T3` },
- { href: "/about", label: "About" },
+ { href: "/about", label: "About us" },
  { href: "/faq", label: "FAQ" },
- { href: "/contact", label: "Contact" },
+ { href: "/contact", label: "Contact us" },
  ],
  },
 ] as const;
@@ -421,7 +419,7 @@ export const footerProducts = [
 ] as const;
 
 export const footerLegalLinks = [
- { href: "/legal", label: "Legal hub" },
+ { href: "/legal", label: "Legal & policies" },
  { href: "/legal/terms", label: "Terms" },
  { href: "/legal/privacy", label: "Privacy" },
  { href: "/legal/cookies", label: "Cookies" },

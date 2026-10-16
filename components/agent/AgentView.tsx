@@ -43,15 +43,19 @@ export default function AgentView() {
                   {p.hero.secondaryCta.label}
                 </Link>
               </div>
-              <p className="mt-5 text-xs text-forest-400">
-                {agentStatusNote}{" "}
-                <Link href="/agent/chat" className="underline underline-offset-2 hover:text-forest-600">
-                  DeepSeek V4 Flash
-                </Link>{" "}
-                · OpenCode local setup on{" "}
-                <Link href="/download" className="underline underline-offset-2 hover:text-forest-600">
-                  Download
-                </Link>
+              <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm text-forest-700">
+                {p.hero.highlights.map((item) => (
+                  <li key={item} className="inline-flex items-center gap-1.5">
+                    <svg viewBox="0 0 20 20" className="h-4 w-4 text-charge-600" fill="currentColor" aria-hidden>
+                      <path d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.5 7.5a1 1 0 0 1-1.4 0L3.3 9.7a1 1 0 1 1 1.4-1.4l3.8 3.8 6.8-6.8a1 1 0 0 1 1.4 0z" />
+                    </svg>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-4 inline-flex items-center gap-2 text-xs text-forest-500">
+                <span aria-hidden className="h-2 w-2 shrink-0 rounded-full bg-[#22c55e]" />
+                {agentStatusNote}
               </p>
             </div>
             <AgentWorkspaceMock />

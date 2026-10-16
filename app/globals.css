@@ -2120,6 +2120,19 @@ button,
   clip: rect(0, 0, 0, 0);
 }
 
+/* Research / R&D SVG diagrams */
+.research-diagram-label {
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: 11px;
+  font-weight: 600;
+  fill: #171717;
+}
+.research-diagram-caption {
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: 10px;
+  fill: #525252;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

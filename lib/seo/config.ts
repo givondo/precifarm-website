@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Central SEO / AISO configuration for precifarm.com
  * Align with GCP production: website on Cloud Run, CMS at api.precifarm.com
  */
@@ -74,7 +74,7 @@ export const publicRoutes = [
  { path: "/charging/engineering", label: "Engineering Design Package", changefreq: "monthly" as const, priority: 0.8 },
  { path: "/partners", label: "Partners", changefreq: "monthly" as const, priority: 0.8 },
  { path: "/training", label: "EV charging training", changefreq: "monthly" as const, priority: 0.76 },
- { path: "/about", label: "About", changefreq: "monthly" as const, priority: 0.75 },
+ { path: "/about", label: "About us", changefreq: "monthly" as const, priority: 0.75 },
  { path: "/sustainability", label: "Sustainability", changefreq: "monthly" as const, priority: 0.72 },
  { path: "/research", label: "R&D", changefreq: "monthly" as const, priority: 0.68 },
  {
@@ -90,7 +90,7 @@ export const publicRoutes = [
  { path: "/careers", label: "Careers", changefreq: "monthly" as const, priority: 0.7 },
  { path: "/agent", label: "Precifarm Agent", changefreq: "monthly" as const, priority: 0.85 },
  { path: "/download", label: "Precifarm Agent Desktop", changefreq: "monthly" as const, priority: 0.7 },
- { path: "/contact", label: "Contact", changefreq: "yearly" as const, priority: 0.65 },
+ { path: "/contact", label: "Contact us", changefreq: "yearly" as const, priority: 0.65 },
  { path: "/guides", label: "Guides", changefreq: "weekly" as const, priority: 0.8 },
  { path: "/faq", label: "FAQ", changefreq: "weekly" as const, priority: 0.75 },
  { path: "/locations", label: "Locations", changefreq: "weekly" as const, priority: 0.78 },

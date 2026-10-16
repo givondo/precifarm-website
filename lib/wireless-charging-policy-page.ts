@@ -119,6 +119,6 @@ export const wirelessChargingPolicyPage = {
     primaryHref: "/contact",
     primaryLabel: "Contact R&D",
     secondaryHref: "/research",
-    secondaryLabel: "R&D progress",
+    secondaryLabel: "Research programmes",
   },
 } as const;
