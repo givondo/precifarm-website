@@ -71,6 +71,20 @@ const nextConfig: NextConfig = {
  { source: "/ai", destination: "/agent", permanent: true },
  { source: "/ai-agent", destination: "/agent", permanent: true },
  { source: "/precifarm-agent", destination: "/agent", permanent: true },
+ // Legacy marketing site / WordPress (GSC 5xx & 404 cleanup)
+ { source: "/financing", destination: "/charging/home", permanent: true },
+ { source: "/terms", destination: "/contact", permanent: true },
+ { source: "/cities/:slug", destination: "/locations/:slug", permanent: true },
+ { source: "/products/commercial", destination: "/partners", permanent: true },
+ { source: "/products/solar-irrigation", destination: "/charging/modular-energy", permanent: true },
+ { source: "/products/:path*", destination: "/charging", permanent: true },
+ { source: "/blog", destination: "/guides", permanent: true },
+ { source: "/blog/:path*", destination: "/guides", permanent: true },
+ // Swahili stubs → English routes (only /sw and /sw/faq/:slug exist today)
+ { source: "/sw/training", destination: "/training", permanent: true },
+ { source: "/sw/download", destination: "/download", permanent: true },
+ { source: "/sw/faq", destination: "/faq", permanent: true },
+ { source: "/sw/charging/:path*", destination: "/charging/:path*", permanent: true },
  ];
  },
  async headers() {
@@ -78,6 +92,18 @@ const nextConfig: NextConfig = {
  {
  source: "/:path*",
  headers: securityHeaders,
+ },
+ {
+ source: "/opengraph-image",
+ headers: [
+ { key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" },
+ ],
+ },
+ {
+ source: "/manifest.webmanifest",
+ headers: [
+ { key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" },
+ ],
  },
  {
  source: "/downloads/:file*.apk",

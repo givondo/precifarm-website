@@ -9,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/_next/"],
+        disallow: ["/api/", "/_next/", "/opengraph-image", "/manifest.webmanifest"],
       },
       {
         userAgent: "GPTBot",
@@ -41,7 +41,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "Bingbot",
         allow: "/",
-        disallow: ["/api/", "/_next/"],
+        disallow: ["/api/", "/_next/", "/opengraph-image", "/manifest.webmanifest"],
       },
     ],
     sitemap: `${base}/sitemap.xml`,
