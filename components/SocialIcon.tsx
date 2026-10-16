@@ -21,22 +21,10 @@ export default function SocialIcon({ platform, className = iconClass }: SocialIc
           <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
         </svg>
       );
-    case "instagram":
-      return (
-        <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-          <path d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4A5.8 5.8 0 0 1 16.2 22H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6m9.65 1.5a1.05 1.05 0 1 1 0 2.1 1.05 1.05 0 0 1 0-2.1M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z" />
-        </svg>
-      );
     case "tiktok":
       return (
         <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
           <path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.01 3.04-4.97 6.48 1.03 3.44 5.11 4.81 7.83 2.61 1.06-.83 1.68-2.1 1.68-3.45V9.01a6.27 6.27 0 0 0 4.77 1.52v-3.08a4.7 4.7 0 0 1-1-.63z" />
-        </svg>
-      );
-    case "facebook":
-      return (
-        <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-          <path d="M22 12a10 10 0 1 0-11.5 9.9v-7H7.9V12h2.6V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7A10 10 0 0 0 22 12" />
         </svg>
       );
     case "linkedin":

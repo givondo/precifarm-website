@@ -1,26 +1,28 @@
 /** Precifarm Agent — AI electrical & energy engineer product page */
 
 import type { FaqItem } from "@/lib/seo/types";
+import { siteConfig } from "@/lib/seo/config";
 
 export const agentPath = "/agent";
 
-export const agentStatusNote = "Desktop app coming soon.";
+export const agentStatusNote =
+  "Web workspace live · DeepSeek V4 Flash · OpenCode config for local runs.";
 
 export const agentPageFaqs: FaqItem[] = [
   {
     question: "What is Precifarm Agent?",
     answer:
-      "An AI that helps you design EV charging, solar, batteries and electrical systems. It plans the work, runs real calculators, and gives you clear results — not a chat bot for customer service.",
+      "An agentic AI for EV charging, solar, batteries and electrical systems — not customer-service chat. It plans the work, runs real calculators, and labels every result as calculated, estimated, or needing a site check.",
   },
   {
     question: "Does the AI do the maths itself?",
     answer:
-      "No. The Agent decides what to calculate. Separate tools do the maths. You can see what was calculated, estimated, assumed, or still needs a site check.",
+      "No. The Agent decides what to calculate. Separate engineering tools do the maths. You can audit the pipeline from brief to result.",
   },
   {
     question: "Is Precifarm Agent live today?",
     answer:
-      "Early access is open. The desktop app is coming soon — request access at precifarm.com/download.",
+      "Yes in early access — design workflows and calculators are in use with partners. Android builds support mobility use cases; desktop is coming soon at precifarm.com/download.",
   },
   {
     question: "Who is it for?",
@@ -30,23 +32,116 @@ export const agentPageFaqs: FaqItem[] = [
   {
     question: "Can it replace a site survey?",
     answer:
-      "No. Photos and documents help early design. Safety-critical work still needs a real visit and a qualified professional.",
+      "No. Photos and documents accelerate early design. Safety-critical work still needs a physical visit and a qualified professional.",
+  },
+  {
+    question: "Will it pay with M-Pesa or control my car?",
+    answer:
+      "Never silently. Financial and vehicle actions require explicit approval (or user-defined low-risk rules you opt into). Ask and Plan modes have no side effects.",
   },
 ];
 
 export const agentPage = {
   hero: {
     eyebrow: "Precifarm Agent",
-    title: "Your AI electrical & energy engineer.",
-    subhead: "Tell it what you’re building. It sizes, designs and checks the system with you.",
-    primaryCta: { href: "/download", label: "Download for desktop" },
-    secondaryCta: { href: "/contact", label: "Start designing" },
+    title: "Your intelligent mobility and energy engineer.",
+    subhead:
+      "State-of-the-art agentic design today — sizing, diagrams and auditable calcs. Tomorrow: a command centre that understands your vehicle, journey, charging and home energy when you allow it.",
+    primaryCta: { href: "/agent/chat", label: "Open workspace" },
+    secondaryCta: { href: "/download", label: "Download · OpenCode" },
+  },
+
+  progress: [
+    { stat: "9+", label: "Engineering calculators in the tool kernel — EV, solar, battery, protection, costs" },
+    { stat: "8-step", label: "Design workflow from brief to deliverables — built for professional sign-off" },
+    { stat: siteConfig.androidApp.name, label: "Android companion in early access · desktop workspace next" },
+  ],
+
+  northStar: {
+    eyebrow: "Ambition",
+    title: "Your car has a companion. Your energy has a brain.",
+    description:
+      "Precifarm Agent is the intelligent layer connecting driver, vehicle, journey, charging, home energy, M-Pesa and the Precifarm network — without becoming a generic chatbot or a map with lipstick.",
+    quote:
+      "We are building command-centre-first software: the map is a tool the Agent uses, not the product.",
+  },
+
+  modes: {
+    eyebrow: "Interaction modes",
+    title: "You always know what the Agent is allowed to do.",
+    description: "Every screen shows the active mode — no hidden side effects.",
+    items: [
+      {
+        mode: "Ask",
+        title: "Answer only",
+        text: "Questions, explanations and what-if scenarios. Zero changes to schedules, payments or hardware.",
+      },
+      {
+        mode: "Plan",
+        title: "Recommend a path",
+        text: "Trip, charge schedule, bill of materials or upgrade plan — presented for review, not executed.",
+      },
+      {
+        mode: "Act",
+        title: "Execute with approval",
+        text: "Book a survey, start a session, export a report — only after you confirm.",
+      },
+      {
+        mode: "Auto",
+        title: "Your rules, narrowly",
+        text: "Low-risk automations you define (e.g. charge before 7 AM). Never silent money or vehicle control.",
+      },
+    ] as const,
+  },
+
+  roadmap: {
+    eyebrow: "Progress & roadmap",
+    title: "Shipping the kernel. Expanding the companion.",
+    columns: {
+      shipped: "In the wild today",
+      building: "In active build",
+      next: "Next horizon",
+    },
+    shipped: [
+      "Agentic design workflow — Understand through Deliver",
+      "Engineering tool kernel with auditable calculations",
+      "Evidence labels on every output (calculated, estimated, needs site check)",
+      `${siteConfig.androidApp.name} early access on Android`,
+    ],
+    building: [
+      "Desktop workspace for Windows and macOS",
+      "Richer system diagrams and exportable install packs",
+      "Deeper Precifarm product libraries (Pulse, Pod, Corridor, Depot)",
+    ],
+    next: [
+      "Journey-aware planning — route, charge stops, cost and time",
+      "Charging Hub intelligence with honest live/planned labels",
+      "M-Pesa and Lipa Pole Pole flows gated by explicit approval",
+      "Wireless pad site modelling — shared with R&D at precifarm.com/research",
+    ],
+  },
+
+  agentLoop: {
+    eyebrow: "Core agent loop",
+    title: "Observe → Plan → Verify → Act — with consent.",
+    steps: [
+      "Observe",
+      "Understand",
+      "Plan",
+      "Verify",
+      "Propose",
+      "Approve",
+      "Act",
+      "Confirm",
+      "Learn",
+    ] as const,
+    note: "Specialized backend agents, one Precifarm face. Verify always includes tools, permissions and data freshness.",
   },
 
   differentiation: {
     eyebrow: "The difference",
     title: "Don’t just ask AI. Give it a job.",
-    body: "Most AI answers questions. Precifarm Agent works through the design step by step.",
+    body: "Most AI answers questions. Precifarm Agent works through the design step by step — the same discipline we use commissioning hardware in the field.",
     stages: [
       "Understand",
       "Plan",
@@ -141,7 +236,7 @@ export const agentPage = {
   kernel: {
     eyebrow: "How the maths works",
     title: "AI plans. Tools calculate.",
-    lead: "The Agent chooses what to work out. Dedicated tools run the numbers.",
+    lead: "The Agent chooses what to work out. Dedicated tools run the numbers — state-of-the-art agent orchestration with deterministic engineering underneath.",
     pipeline: [
       "Your brief",
       "AI Agent",
@@ -193,6 +288,15 @@ export const agentPage = {
     ] as const,
   },
 
+  companion: {
+    eyebrow: "Hardware meets software",
+    title: "One brain for wired installs and wireless research.",
+    description:
+      "Agent models Pulse and Corridor sites today and feeds the same discipline into wireless pad research — so when a pilot graduates from bench to field, the software already speaks M-Pesa, protection and honest hub labels.",
+    researchHref: "/research",
+    researchLabel: "R&D · wireless charging programme",
+  },
+
   trust: {
     eyebrow: "Trust & safety",
     title: "Faster work. You stay responsible.",
@@ -209,7 +313,7 @@ export const agentPage = {
   },
 
   cta: {
-    title: "Start with the problem.",
+    title: "Start with the problem. Scale to the journey.",
     description: "Tell Precifarm Agent what you’re building. Add the files you have. Let it work through the design.",
     primaryHref: "/contact",
     primaryLabel: "Start designing",

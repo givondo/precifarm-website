@@ -3,65 +3,91 @@ import type { FaqItem } from "@/lib/seo/types";
 
 export const downloadPageFaqs: FaqItem[] = [
   {
-    question: "Is the desktop app available today?",
-    answer: "Not yet. Request access and we’ll tell you when you can install it.",
-  },
-  {
-    question: "Which computers will it run on?",
-    answer: "Windows and macOS first.",
-  },
-  {
-    question: "What is Precifarm Agent?",
+    question: "How do I use Precifarm Agent right now?",
     answer:
-      "An AI that helps you design EV charging, solar, batteries and electrical systems — with real calculators and clear results.",
+      "Open the web workspace at precifarm.com/agent/chat — powered by DeepSeek V4 Flash with Precifarm engineering calculators on the server.",
   },
   {
-    question: "Can I try it before the app ships?",
-    answer: "Yes. Request access on the contact page, or read the overview on the Agent page.",
+    question: "What is OpenCode and why download it?",
+    answer:
+      "OpenCode is an open-source agentic coding assistant. Precifarm publishes a starter config so you can run the same DeepSeek V4 Flash model locally with /connect → deepseek and your own API key.",
+  },
+  {
+    question: "Which DeepSeek model should I select?",
+    answer:
+      "Use deepseek-v4-flash (or deepseek-flash on the latest API) for fast agent work. Precifarm’s web agent uses V4 Flash by default.",
+  },
+  {
+    question: "Is the native desktop installer available?",
+    answer:
+      "Windows and macOS use the OpenCode + Precifarm config bundle today. A packaged Precifarm desktop app is on the roadmap — request access if you need enterprise rollout.",
+  },
+  {
+    question: "Can I try it without an API key?",
+    answer:
+      "The web workspace uses Precifarm’s server key in production. Local OpenCode requires your own DeepSeek API key from platform.deepseek.com.",
   },
 ];
 
+const platformStatusLabel: Record<(typeof appDownload.platforms)[number]["status"], string> = {
+  available: "Available now",
+  setup: "OpenCode setup",
+  early_access: "Early access",
+};
+
 export const downloadPage = {
   hero: {
-    eyebrow: `${appBrand.fullName} · Desktop`,
-    title: "Precifarm Agent on your computer.",
-    lead: "Design EV charging, solar and storage from your desk. Coming soon for Windows and macOS.",
-    primaryLabel: "Request access",
-    primaryHref: appDownload.requestAccessHref,
-    secondaryLabel: "See how Agent works",
-    secondaryHref: appDownload.productHref,
-    meta: `v${appDownload.version} · Desktop · Coming soon`,
+    eyebrow: `${appBrand.fullName} · Download`,
+    title: "Run Precifarm Agent — web, OpenCode, or Android.",
+    lead: "DeepSeek V4 Flash for fast agentic design. Use the browser workspace now, or install OpenCode locally with our config.",
+    primaryLabel: "Open web workspace",
+    primaryHref: appDownload.webChatHref,
+    secondaryLabel: "Download OpenCode config",
+    secondaryHref: appDownload.opencodeConfigHref,
+    meta: `v${appDownload.version} · ${appDownload.deepseekModel} · OpenCode compatible`,
   },
   capabilities: {
-    eyebrow: "On desktop",
-    title: "What you get.",
+    eyebrow: "Stack",
+    title: "OpenCode + DeepSeek V4 Flash.",
     items: [
       {
-        title: "One workspace",
-        text: "Projects, calcs, diagrams and files in one place.",
+        title: "Web workspace",
+        text: "Chat at /agent/chat — Precifarm system prompt, tool kernel, and V4 Flash on our server.",
       },
       {
-        title: "Real calculators",
-        text: "The Agent plans the work. Tools run the maths.",
+        title: "Local OpenCode",
+        text: "Install OpenCode ≥ v1.14.24, /connect deepseek, import precifarm-agent.opencode.json.",
       },
       {
-        title: "Your documents",
-        text: "Add datasheets, drawings and site photos to the project.",
+        title: "Engineering tools",
+        text: "EV energy, charge time, peak load, battery size, and tariff cost — not LLM guesswork.",
       },
       {
-        title: "Clear labels",
-        text: "See what was calculated, estimated, assumed or still needs a site check.",
+        title: "Evidence labels",
+        text: "Calculated, estimated, assumed, and needs site check on every design output.",
       },
     ],
   },
   platforms: {
     eyebrow: "Platforms",
-    title: "Windows and macOS first.",
-    description: "No public installer yet. Request access and we’ll reach out when it’s ready.",
+    title: "Choose how you run the Agent.",
+    description: "Web is the fastest start. OpenCode is for offline project folders and power users.",
     items: appDownload.platforms.map((p) => ({
       label: p.label,
-      status: "Coming soon",
+      status: platformStatusLabel[p.status] ?? p.status,
+      href: p.id === "web" ? appDownload.webChatHref : undefined,
     })),
+  },
+  setup: {
+    eyebrow: "OpenCode setup",
+    title: "Three steps on your machine.",
+    steps: [
+      "Install OpenCode from opencode.ai (version ≥ 1.14.24).",
+      "Run opencode, type /connect, choose deepseek, paste your DeepSeek API key.",
+      "Download precifarm-agent.opencode.json and merge instructions into your OpenCode config.",
+    ],
+    configHref: appDownload.opencodeConfigHref,
+    docsHref: appDownload.opencodeDocsUrl,
   },
   faq: {
     eyebrow: "FAQ",
@@ -69,11 +95,11 @@ export const downloadPage = {
     items: downloadPageFaqs,
   },
   cta: {
-    title: "Join the desktop list.",
-    description: "Tell us what you build. We’ll open access when the app is ready.",
-    primaryHref: appDownload.requestAccessHref,
-    primaryLabel: "Request access",
+    title: "Start in the browser or go local.",
+    description: "Web workspace for instant sizing. OpenCode when you want the agent in your repo.",
+    primaryHref: appDownload.webChatHref,
+    primaryLabel: "Open workspace",
     secondaryHref: appDownload.productHref,
-    secondaryLabel: "Explore Agent",
+    secondaryLabel: "Product overview",
   },
 } as const;

@@ -9,6 +9,18 @@ import { trainingNavLabel } from "@/lib/training";
 import { trainingPage, trainingPageFaqs } from "@/lib/training-page";
 import { chargingHub } from "@/lib/charging-hub";
 import { agentPageFaqs } from "@/lib/agent-page";
+import { researchPageFaqs } from "@/lib/research-page";
+import {
+  wirelessChargingPolicyFaqs,
+  wirelessChargingPolicyPath,
+} from "@/lib/wireless-charging-policy-page";
+import { cookiesFaqs, privacyFaqs, termsFaqs } from "@/lib/legal/content";
+import {
+  cookiesPolicyPath,
+  legalHubPath,
+  privacyPolicyPath,
+  termsOfUsePath,
+} from "@/lib/legal/paths";
 import { downloadPageFaqs } from "@/lib/download-page";
 import { megapackFaqs, megapackPageContent } from "@/lib/megapack-page";
 import { productImages } from "@/lib/product-images";
@@ -351,6 +363,84 @@ export const pageSeoRegistry: PageSeoInput[] = [
  ],
  },
  {
+ path: "/research",
+ title: "R&D — Wireless EV Charging & Energy Research | Precifarm",
+ description:
+ "Precifarm R&D — three tracks with public progress: wireless EV charging, Precifarm Agent, and hub solar & storage. Research only; Pulse and Corridor wired charging is what we sell today.",
+ keywords: [
+ "wireless EV charging research",
+ "Precifarm Agent R&D",
+ "EV hub energy storage research",
+ "Precifarm research Kenya",
+ ],
+ faqs: researchPageFaqs,
+ breadcrumbs: [
+ { name: "Home", href: "/" },
+ { name: "R&D", href: "/research" },
+ ],
+ },
+ {
+ path: wirelessChargingPolicyPath,
+ title: "Wireless EV Charging R&D Policy | Precifarm",
+ description:
+ "Precifarm company policy for wireless EV charging research — industry benchmarks (SAE J2954, IEC 61980, OEM references), safety gates, and Kenya pilot rules. Not a product offer; wired Pulse and Corridor remain commercial.",
+ keywords: [
+ "wireless EV charging policy",
+ "WPT research Kenya",
+ "SAE J2954",
+ "Precifarm R&D policy",
+ ],
+ faqs: wirelessChargingPolicyFaqs,
+ breadcrumbs: [
+ { name: "Home", href: "/" },
+ { name: "R&D", href: "/research" },
+ { name: "Wireless charging policy", href: wirelessChargingPolicyPath },
+ ],
+ },
+ {
+ path: legalHubPath,
+ title: "Legal & policies | Precifarm",
+ description:
+ "Terms of use, privacy, cookies, and R&D policies for precifarm.com — operated by PreciFarm AI Ltd in Kenya.",
+ breadcrumbs: [
+ { name: "Home", href: "/" },
+ { name: "Legal & policies", href: legalHubPath },
+ ],
+ },
+ {
+ path: termsOfUsePath,
+ title: "Terms of use | Precifarm",
+ description: "Terms for using precifarm.com, product vs research claims, and Precifarm Agent.",
+ faqs: termsFaqs,
+ breadcrumbs: [
+ { name: "Home", href: "/" },
+ { name: "Legal", href: legalHubPath },
+ { name: "Terms", href: termsOfUsePath },
+ ],
+ },
+ {
+ path: privacyPolicyPath,
+ title: "Privacy policy | Precifarm",
+ description: "How Precifarm handles personal data on precifarm.com, forms, and Agent chat — Kenya DPA 2019.",
+ faqs: privacyFaqs,
+ breadcrumbs: [
+ { name: "Home", href: "/" },
+ { name: "Legal", href: legalHubPath },
+ { name: "Privacy", href: privacyPolicyPath },
+ ],
+ },
+ {
+ path: cookiesPolicyPath,
+ title: "Cookies & analytics | Precifarm",
+ description: "Cookies and analytics on precifarm.com.",
+ faqs: cookiesFaqs,
+ breadcrumbs: [
+ { name: "Home", href: "/" },
+ { name: "Legal", href: legalHubPath },
+ { name: "Cookies", href: cookiesPolicyPath },
+ ],
+ },
+ {
  path: "/sustainability",
  title: "Sustainability — Precifarm Kenya",
  description:
@@ -402,7 +492,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  path: "/agent",
  title: "Precifarm Agent — AI Electrical & Energy Engineer",
  description:
- "Precifarm Agent helps you design EV charging, solar, batteries and electrical systems. It plans the work, runs real calculators, and gives you clear results you can hand over.",
+ "Precifarm Agent — agentic AI for EV charging, solar and storage design with auditable calculators. Early access on Android; desktop next. Roadmap: journey planning, M-Pesa with approval, and wireless site modelling.",
  keywords: [
  "AI electrical engineer",
  "AI engineering assistant",

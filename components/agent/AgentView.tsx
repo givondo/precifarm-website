@@ -45,13 +45,43 @@ export default function AgentView() {
               </div>
               <p className="mt-5 text-xs text-forest-400">
                 {agentStatusNote}{" "}
+                <Link href="/agent/chat" className="underline underline-offset-2 hover:text-forest-600">
+                  DeepSeek V4 Flash
+                </Link>{" "}
+                · OpenCode local setup on{" "}
                 <Link href="/download" className="underline underline-offset-2 hover:text-forest-600">
-                  Request access
+                  Download
                 </Link>
               </p>
             </div>
             <AgentWorkspaceMock />
           </div>
+        </div>
+      </section>
+
+      <section className="border-y border-forest-900 bg-forest-900 section-pad" aria-label="Agent progress">
+        <div className="page-container">
+          <div className="grid gap-6 sm:grid-cols-3">
+            {p.progress.map((item) => (
+              <article key={item.stat} className="text-center sm:text-left">
+                <p className="font-mono text-lg font-bold tracking-tight text-white sm:text-xl">{item.stat}</p>
+                <p className="mt-2 text-sm leading-snug text-white/70">{item.label}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-border bg-muted/25 section-pad">
+        <div className="page-container max-w-3xl">
+          <SectionHeader
+            eyebrow={p.northStar.eyebrow}
+            title={p.northStar.title}
+            description={p.northStar.description}
+          />
+          <blockquote className="mt-8 border-l-2 border-charge-500 pl-5 text-base italic leading-relaxed text-forest-700">
+            {p.northStar.quote}
+          </blockquote>
         </div>
       </section>
 
@@ -63,6 +93,96 @@ export default function AgentView() {
             description={p.differentiation.body}
           />
           <AgentWorkflowStrip />
+        </div>
+      </section>
+
+      <section className="border-b border-border bg-muted/20 section-pad">
+        <div className="page-container">
+          <SectionHeader
+            eyebrow={p.modes.eyebrow}
+            title={p.modes.title}
+            description={p.modes.description}
+          />
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {p.modes.items.map((item) => (
+              <article key={item.mode} className="card p-5 sm:p-6">
+                <p className="font-mono text-xs font-semibold uppercase tracking-widest text-charge-600">
+                  {item.mode}
+                </p>
+                <h3 className="mt-2 font-semibold text-forest-900">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-forest-600/85">{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-border bg-white section-pad">
+        <div className="page-container">
+          <SectionHeader eyebrow={p.roadmap.eyebrow} title={p.roadmap.title} />
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            <div className="card p-6">
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-charge-700">
+                {p.roadmap.columns.shipped}
+              </p>
+              <ul className="mt-4 space-y-2.5">
+                {p.roadmap.shipped.map((line) => (
+                  <li key={line} className="text-sm leading-relaxed text-forest-600/90">
+                    · {line}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="card border-charge-200 bg-charge-50/30 p-6">
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-charge-800">
+                {p.roadmap.columns.building}
+              </p>
+              <ul className="mt-4 space-y-2.5">
+                {p.roadmap.building.map((line) => (
+                  <li key={line} className="text-sm leading-relaxed text-forest-700">
+                    · {line}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="card p-6">
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-forest-500">
+                {p.roadmap.columns.next}
+              </p>
+              <ul className="mt-4 space-y-2.5">
+                {p.roadmap.next.map((line) => (
+                  <li key={line} className="text-sm leading-relaxed text-forest-600/90">
+                    · {line}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-border bg-[#0c0f12] section-pad text-white">
+        <div className="page-container">
+          <SectionHeader
+            inverted
+            eyebrow={p.agentLoop.eyebrow}
+            title={p.agentLoop.title}
+            description={p.agentLoop.note}
+          />
+          <ol className="mt-10 flex flex-wrap gap-2">
+            {p.agentLoop.steps.map((step, i) => (
+              <li key={step} className="flex items-center gap-2">
+                <span className="rounded-lg border border-white/15 bg-white/5 px-3 py-2 font-mono text-[11px] uppercase tracking-wider text-white/85">
+                  {step}
+                </span>
+                {i < p.agentLoop.steps.length - 1 && (
+                  <span className="text-white/25" aria-hidden>
+                    →
+                  </span>
+                )}
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
@@ -143,6 +263,19 @@ export default function AgentView() {
         <div className="page-container">
           <SectionHeader eyebrow={p.example.eyebrow} title={p.example.title} />
           <AgentExampleDemo />
+        </div>
+      </section>
+
+      <section className="border-b border-border bg-muted/20 section-pad">
+        <div className="page-container max-w-3xl">
+          <SectionHeader
+            eyebrow={p.companion.eyebrow}
+            title={p.companion.title}
+            description={p.companion.description}
+          />
+          <Link href={p.companion.researchHref} className="btn-secondary mt-8 inline-flex w-fit">
+            {p.companion.researchLabel}
+          </Link>
         </div>
       </section>
 

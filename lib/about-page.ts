@@ -26,7 +26,7 @@ export const aboutPage = {
  {
  eyebrow: "In market",
  title: "EV charging",
- text: "Spark charger, Pulse charger, Pod energy storage, Depot, Boda Hub and Corridor DC cover the driveway through Nairobi–Kisumu. Charging Hub labels every site live or planned. Precifarm Agent is coming soon on desktop.",
+ text: "Spark charger, Pulse charger, Pod energy storage, Depot, Boda Hub and Corridor DC cover the driveway through Nairobi–Kisumu. Charging Hub labels every site live or planned. Precifarm Agent helps engineers size and design systems — desktop access is rolling out.",
  href: "/charging",
  cta: "Explore charging",
  image: productImages.pulse,
@@ -120,15 +120,16 @@ export const aboutPage = {
  { name: "Depot and Boda Hub", href: "/partners", note: "Fleet and two-wheelers" },
  { name: "Corridor DC", href: "/hub", note: "Nairobi–Kisumu first" },
  { name: "Charging Hub", href: "/hub", note: "Live vs planned map" },
- { name: "Precifarm Agent", href: "/download", note: "Desktop · coming soon" },
+ { name: "Precifarm Agent", href: "/agent", note: "AI design · desktop access" },
  ],
  },
  roadmap: {
- title: "Modular energy as not on sale",
+ title: "Modular energy & R&D — not on sale",
  note: modularEnergyStatusNote,
  items: [
  { name: "P1 Go, P2 Home, Mini Stack", href: modularEnergyPaths.overview, note: "One module, three scales" },
  { name: "MegaPack", href: modularEnergyPaths.megapack, note: "Project-engineered BESS" },
+ { name: "Wireless EV charging", href: "/research", note: "Research programme" },
  ],
  },
  },

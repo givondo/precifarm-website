@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Logo from "@/components/Logo";
 import SocialIcon from "@/components/SocialIcon";
-import { footerNavGroups, footerProducts, footerSection } from "@/lib/brand-messaging";
+import { footerLegalLinks, footerNavGroups, footerProducts, footerSection } from "@/lib/brand-messaging";
 import { contact } from "@/lib/contact";
 import { socialLinks } from "@/lib/social";
 
@@ -149,6 +149,13 @@ export default function Footer() {
         <div className="site-footer-bottom">
           <div className="site-footer-bottom-start">
             <p>&copy; {year} Precifarm</p>
+            <nav aria-label="Legal" className="site-footer-bottom-links">
+              {footerLegalLinks.map((link) => (
+                <Link key={link.href} href={link.href}>
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
           </div>
           <p className="site-footer-bottom-meta">{footerSection.meta}</p>
         </div>

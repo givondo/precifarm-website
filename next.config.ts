@@ -73,7 +73,8 @@ const nextConfig: NextConfig = {
  { source: "/precifarm-agent", destination: "/agent", permanent: true },
  // Legacy marketing site / WordPress (GSC 5xx & 404 cleanup)
  { source: "/financing", destination: "/charging/home", permanent: true },
- { source: "/terms", destination: "/contact", permanent: true },
+ { source: "/terms", destination: "/legal/terms", permanent: true },
+ { source: "/privacy", destination: "/legal/privacy", permanent: true },
  { source: "/cities/:slug", destination: "/locations/:slug", permanent: true },
  { source: "/products/commercial", destination: "/partners", permanent: true },
  { source: "/products/solar-irrigation", destination: "/charging/modular-energy", permanent: true },

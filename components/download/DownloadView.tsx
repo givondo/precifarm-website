@@ -31,9 +31,9 @@ export default function DownloadView() {
             <Link href={page.hero.primaryHref} className="btn-primary">
               {page.hero.primaryLabel}
             </Link>
-            <Link href={page.hero.secondaryHref} className="btn-secondary">
+            <a href={page.hero.secondaryHref} className="btn-secondary">
               {page.hero.secondaryLabel}
-            </Link>
+            </a>
           </div>
           <p className="mt-5 text-xs text-forest-400 sm:text-sm">{page.hero.meta}</p>
         </div>
@@ -64,10 +64,16 @@ export default function DownloadView() {
             {page.platforms.items.map((item) => (
               <li
                 key={item.label}
-                className="flex items-center justify-between border-b border-border py-3 last:border-0"
+                className="flex items-center justify-between gap-4 border-b border-border py-3 last:border-0"
               >
-                <span className="text-sm font-medium text-forest-900">{item.label}</span>
-                <span className="font-mono text-[11px] uppercase tracking-widest text-forest-400">
+                {"href" in item && item.href ? (
+                  <Link href={item.href} className="text-sm font-medium text-charge-700 hover:underline">
+                    {item.label}
+                  </Link>
+                ) : (
+                  <span className="text-sm font-medium text-forest-900">{item.label}</span>
+                )}
+                <span className="shrink-0 font-mono text-[11px] uppercase tracking-widest text-forest-400">
                   {item.status}
                 </span>
               </li>
@@ -77,6 +83,30 @@ export default function DownloadView() {
       </section>
 
       <section className="border-b border-border bg-white section-pad">
+        <div className="page-container max-w-3xl">
+          <SectionHeader eyebrow={page.setup.eyebrow} title={page.setup.title} />
+          <ol className="mt-8 list-decimal space-y-3 pl-5 text-sm leading-relaxed text-forest-600">
+            {page.setup.steps.map((step) => (
+              <li key={step}>{step}</li>
+            ))}
+          </ol>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a href={page.setup.configHref} className="btn-primary">
+              Download OpenCode config
+            </a>
+            <a
+              href={page.setup.docsHref}
+              className="btn-secondary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              DeepSeek × OpenCode docs
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-border bg-muted/20 section-pad">
         <div className="page-container max-w-3xl">
           <SectionHeader eyebrow={page.faq.eyebrow} title={page.faq.title} />
           <div className="mt-8">

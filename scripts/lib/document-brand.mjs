@@ -23,11 +23,9 @@ export const BRAND = {
     "For planning and briefing. Not a substitute for licensed design, Kenya Power studies or statutory approvals.",
   socials: [
     { label: "WhatsApp", href: "https://wa.me/254794702768" },
-    { label: "X", href: "https://x.com/precifarm" },
-    { label: "Instagram", href: "https://instagram.com/precifarm" },
-    { label: "LinkedIn", href: "https://linkedin.com/company/precifarm" },
-    { label: "Facebook", href: "https://facebook.com/precifarm" },
-    { label: "TikTok", href: "https://tiktok.com/@precifarm" },
+    { label: "TikTok", href: "https://www.tiktok.com/@precifarm" },
+    { label: "X", href: "https://x.com/Precifarm" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/company/precifarm" },
   ],
 };
 
