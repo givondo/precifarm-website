@@ -166,6 +166,12 @@ gcloud run services update precifarm-website --region europe-west1 `
 # Optional: Android App Links fingerprint from mobile signing cert (store in Secret Manager in production)
 # gcloud run services update precifarm-website --region europe-west1 `
 #   --set-secrets=ANDROID_APP_SHA256=precifarm-android-sha256:latest
+
+# Precifarm Agent chat (store key in Secret Manager — never commit)
+# echo -n "YOUR_KEY" | gcloud secrets create precifarm-deepseek-api-key --data-file=-
+# gcloud run services update precifarm-website --region europe-west1 `
+#   --set-secrets=DEEPSEEK_API_KEY=precifarm-deepseek-api-key:latest `
+#   --update-env-vars=AGENT_MODEL=deepseek-v4-flash
 ```
 
 Map domains:
