@@ -2,17 +2,19 @@ import { NextResponse } from "next/server";
 import { agentRuntime } from "@/lib/agent/config";
 import { agentPublic } from "@/lib/agent/public";
 
+const OPENCODE_DEEPSEEK_MODEL = "deepseek-v4-flash";
+
 /** OpenCode starter config — DeepSeek V4 Flash provider (user adds API key locally). */
 export async function GET() {
   const config = {
     $schema: "https://opencode.ai/config.schema.json",
     name: "Precifarm Agent",
     description: "EV charging and energy design — DeepSeek V4 Flash via OpenCode",
-    model: agentRuntime.model,
+    model: OPENCODE_DEEPSEEK_MODEL,
     provider: {
       deepseek: {
         baseURL: agentRuntime.deepseekBaseUrl,
-        model: agentRuntime.model,
+        model: OPENCODE_DEEPSEEK_MODEL,
       },
     },
     instructions: [

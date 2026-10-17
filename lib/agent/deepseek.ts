@@ -18,19 +18,25 @@ type DeepSeekMessage = ChatMessage & {
 };
 
 function apiKey(): string {
-  const key = process.env.DEEPSEEK_API_KEY;
+  const key = process.env[agentRuntime.apiKeyEnv]?.trim();
   if (!key) {
-    throw new Error("DEEPSEEK_API_KEY is not configured on the server.");
+    throw new Error(`${agentRuntime.apiKeyEnv} is not configured on the server.`);
   }
   return key;
 }
 
+function providerHeaders(): Record<string, string> {
+  if (agentRuntime.provider !== "openrouter") return {};
+  return { "HTTP-Referer": "https://precifarm.com", "X-Title": "Precifarm Agent" };
+}
+
 async function chatCompletion(messages: DeepSeekMessage[]) {
-  const res = await fetch(`${agentRuntime.deepseekBaseUrl}/chat/completions`, {
+  const res = await fetch(`${agentRuntime.baseUrl}/chat/completions`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${apiKey()}`,
       "Content-Type": "application/json",
+      ...providerHeaders(),
     },
     body: JSON.stringify({
       model: agentRuntime.model,

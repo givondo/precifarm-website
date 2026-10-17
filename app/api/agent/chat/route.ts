@@ -49,13 +49,13 @@ export async function POST(request: Request) {
     const { reply, messages } = await runPrecifarmAgentTurn(history);
     return NextResponse.json({
       reply,
-      backend: "deepseek",
+      backend: agentRuntime.provider,
       model: agentRuntime.model,
       messages,
     });
   } catch (err) {
     const message = err instanceof Error ? err.message : "Agent error";
-    const status = message.includes("DEEPSEEK_API_KEY") ? 503 : 500;
+    const status = message.includes(agentRuntime.apiKeyEnv) ? 503 : 500;
     return NextResponse.json({ error: message }, { status });
   }
 }

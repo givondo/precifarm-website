@@ -168,10 +168,10 @@ gcloud run services update precifarm-website --region europe-west1 `
 #   --set-secrets=ANDROID_APP_SHA256=precifarm-android-sha256:latest
 
 # Precifarm Agent chat (store key in Secret Manager — never commit)
-# echo -n "YOUR_KEY" | gcloud secrets create precifarm-deepseek-api-key --data-file=-
-# gcloud run services update precifarm-website --region europe-west1 `
-#   --set-secrets=DEEPSEEK_API_KEY=precifarm-deepseek-api-key:latest `
-#   --update-env-vars=AGENT_MODEL=deepseek-v4-flash
+# Put OPENROUTER_API_KEY=... in website/.env.local, then:
+# powershell -ExecutionPolicy Bypass -File scripts/set-cloud-run-agent-secret.ps1
+# (mounts secret precifarm-openrouter-api-key as OPENROUTER_API_KEY, AGENT_MODEL=deepseek/deepseek-v4-flash;
+#  falls back to DEEPSEEK_API_KEY / precifarm-deepseek-api-key when no OpenRouter key is set)
 ```
 
 Map domains:
