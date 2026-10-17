@@ -5,6 +5,7 @@ import HomeHero from "@/components/home/HomeHero";
 import HomeChargingCta from "@/components/home/HomeChargingCta";
 import HomeScenarios from "@/components/home/HomeScenarios";
 import HomeWhyPrecifarm from "@/components/home/HomeWhyPrecifarm";
+import HomeInnovation from "@/components/home/HomeInnovation";
 import HomeFinalCta from "@/components/home/HomeFinalCta";
 import JsonLd from "@/components/seo/JsonLd";
 import { createPageSeo } from "@/lib/seo";
@@ -39,6 +40,7 @@ export default async function Home() {
         <HomeScenarios />
         <HomeChargingCta />
         <HomeWhyPrecifarm />
+        <HomeInnovation />
         <HomeFinalCta />
       </div>
     </>
