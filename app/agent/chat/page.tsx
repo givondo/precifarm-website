@@ -7,7 +7,7 @@ import { agentPublic } from "@/lib/agent/public";
 
 export const metadata: Metadata = {
   title: "Precifarm Agent Chat",
-  description: "Design EV charging and energy systems with Precifarm Agent — DeepSeek V4 Flash and engineering calculators.",
+  description: "Design EV charging, solar, storage, cables and protection with Precifarm Agent. Ten engineering tools, a visible calculation trace and evidence labels on every number.",
   robots: { index: false, follow: true },
 };
 
@@ -25,7 +25,7 @@ export default function AgentChatPage() {
         <div>
           <h1 className="heading-display text-2xl sm:text-3xl">Agent workspace</h1>
           <p className="mt-2 max-w-xl text-sm text-forest-600">
-            {agentPublic.stackLabel} · {agentPublic.modelLabel}. Tools run the maths; the Agent plans the job.
+            The Agent plans the job; engineering tools run every number. Open the calculation trace under each reply to audit it. Ask and Plan modes only.
           </p>
         </div>
         <Link href="/download" className="btn-secondary text-sm">

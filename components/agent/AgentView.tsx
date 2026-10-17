@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AgentChat from "@/components/agent/AgentChat";
 import AgentExampleDemo from "@/components/agent/AgentExampleDemo";
 import AgentWorkflowStrip from "@/components/agent/AgentWorkflowStrip";
 import AgentWorkspaceMock from "@/components/agent/AgentWorkspaceMock";
@@ -36,9 +37,9 @@ export default function AgentView() {
                 {p.hero.subhead}
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
-                <Link href={p.hero.primaryCta.href} className="btn-primary">
+                <a href={p.hero.primaryCta.href} className="btn-primary">
                   {p.hero.primaryCta.label}
-                </Link>
+                </a>
                 <Link href={p.hero.secondaryCta.href} className="btn-secondary">
                   {p.hero.secondaryCta.label}
                 </Link>
@@ -72,6 +73,15 @@ export default function AgentView() {
                 <p className="mt-2 text-sm leading-snug text-white/70">{item.label}</p>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section id={p.tryIt.id} className="scroll-mt-24 border-b border-border bg-white section-pad">
+        <div className="page-container">
+          <SectionHeader eyebrow={p.tryIt.eyebrow} title={p.tryIt.title} description={p.tryIt.description} />
+          <div className="mt-8">
+            <AgentChat compact />
           </div>
         </div>
       </section>

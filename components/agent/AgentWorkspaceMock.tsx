@@ -114,7 +114,7 @@ export default function AgentWorkspaceMock() {
           </div>
           <p className="mt-4 font-mono text-[11px] leading-relaxed text-white/40">
             {tab === 0 && "EV energy and charge-time calcs · inputs you can check"}
-            {tab === 1 && "System sketch — still needs supply check on site"}
+            {tab === 1 && "System sketch: still needs a supply check on site"}
             {tab === 2 && "Draft parts list: Pulse 7 kW · Pod 10 kWh · protection TBD"}
           </p>
         </div>

@@ -23,13 +23,13 @@ export default function SectionHeader({
         <p className={inverted ? "text-eyebrow-inverted" : "text-eyebrow"}>{eyebrow}</p>
       )}
       <h2
-        className={`heading-display ${eyebrow ? "mt-3" : ""} text-xl sm:text-2xl ${inverted ? "text-white" : ""}`}
+        className={`heading-display ${eyebrow ? "mt-3" : ""} text-xl sm:text-2xl ${inverted ? "heading-inverted" : ""}`}
       >
         {title}
       </h2>
       {description && (
         <p
-          className={`text-subtitle mt-4 text-base leading-relaxed ${inverted ? "text-white/70" : "text-forest-600"}`}
+          className={`mt-4 text-base leading-relaxed ${inverted ? "subtitle-inverted" : "text-subtitle text-forest-600"}`}
         >
           {description}
         </p>

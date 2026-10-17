@@ -364,9 +364,9 @@ export const pageSeoRegistry: PageSeoInput[] = [
  },
  {
  path: "/research",
- title: "R&D: Wireless EV Charging & Energy Systems | Precifarm",
+ title: "R&D: Wireless Charging, Agent & Hub Energy Research | Precifarm",
  description:
- "Precifarm R&D in Kenya: wireless EV charging, the Precifarm Agent engineering workspace and grid-connected solar and storage hubs — with the validation gates for each programme.",
+ "Precifarm R&D in Kenya: five programmes with goals, G0 to G4 evidence gates and a dated roadmap. Wireless e-boda charging, Precifarm Agent, hub solar and storage, battery health and bidirectional charging.",
  keywords: [
  "wireless EV charging research",
  "wireless power transfer Kenya",
@@ -374,6 +374,8 @@ export const pageSeoRegistry: PageSeoInput[] = [
  "solar battery EV charging hub",
  "Precifarm Agent R&D",
  "Precifarm research Kenya",
+ "wireless e-boda charging",
+ "battery second life Kenya",
  ],
  faqs: researchPageFaqs,
  breadcrumbs: [
@@ -492,9 +494,9 @@ export const pageSeoRegistry: PageSeoInput[] = [
  },
  {
  path: "/agent",
- title: "Precifarm Agent — AI Electrical & Energy Engineer",
+ title: "Precifarm Agent: AI Electrical & Energy Engineer",
  description:
- "Precifarm Agent sizes EV charging, peak load, energy cost and battery backup with five auditable engineering calculators. Web workspace live in early access; run it locally with OpenCode.",
+ "Precifarm Agent: an AI electrical and energy engineer for Kenya. It plans EV charging, solar, battery, cable and protection designs and runs ten deterministic engineering tools, with a calculation trace and evidence label on every number. Try it in the browser.",
  keywords: [
  "AI electrical engineer",
  "AI engineering assistant",
