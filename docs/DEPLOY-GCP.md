@@ -321,3 +321,23 @@ Scale up `db-custom` tier and Cloud Run memory when route-one goes live.
 | M-Pesa callback fails | `MPESA_CALLBACK_URL` in CMS secrets must match your public API URL — see [environment.md](../../docs/infrastructure/environment.md) |
 
 See also: [`../../docs/infrastructure/gcp-deployment.md`](../../docs/infrastructure/gcp-deployment.md)
+
+## 6. ops.precifarm.com (Precifarm Agent workspace)
+
+The website service also answers `ops.precifarm.com`. `proxy.ts` serves the Agent workspace at its root, passes through `/api/agent/*`, `/agent/chat` and `/legal/*`, and redirects everything else to `https://precifarm.com`. The host is marked `noindex`.
+
+Do these once, after the branch that adds the routing is merged and deployed:
+
+1. **Cap spend first.** Set a monthly credit limit on the OpenRouter key and confirm `OPENCODE_SERVER_URL` is not set on the service.
+2. **Map the domain** (same region as the other mappings):
+
+   ```bash
+   gcloud run domain-mappings create --service precifarm-website --domain ops.precifarm.com --region europe-west1
+   gcloud run domain-mappings describe --domain ops.precifarm.com --region europe-west1
+   ```
+
+   The apex verification already covers subdomains.
+3. **Hostinger DNS.** In precifarm.com, DNS records, add a CNAME: name `ops`, target `ghs.googlehosted.com`, TTL 3600. Use the exact target the `describe` command prints if it differs.
+4. **Wait for the certificate.** Google provisions it automatically, usually within an hour and at most 24 hours. `describe` shows `CertificateProvisioned: True` when done.
+5. **Allowed origins.** If `AGENT_ALLOWED_ORIGINS` is set on the service, add `https://ops.precifarm.com` to it. The code default already includes it.
+6. **Check.** `curl -I https://ops.precifarm.com/` returns 200 with `x-robots-tag: noindex, follow`; `curl -I https://ops.precifarm.com/charging` returns 301 to `https://precifarm.com/charging`.
