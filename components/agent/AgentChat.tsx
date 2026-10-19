@@ -268,6 +268,11 @@ export default function AgentChat({ compact = false }: { compact?: boolean }) {
           >
             {msg.role === "assistant" ? <Markdown text={msg.content} /> : msg.content}
             {msg.trace ? <Trace trace={msg.trace} /> : null}
+            {msg.trace && !msg.trace.length && /\d/.test(msg.content) ? (
+              <p className="mt-3 rounded-lg border border-amber-400/30 bg-amber-400/10 px-3 py-2 text-[11.5px] leading-snug text-amber-100">
+                No engineering tool ran for this reply. Treat any numbers in it as unverified and ask the Agent to calculate them.
+              </p>
+            ) : null}
             {msg.role === "assistant" && msg.id !== "welcome" ? (
               <div className="mt-2 flex items-center justify-between gap-3">
                 {msg.meta ? <p className="font-mono text-[10px] uppercase tracking-wider text-white/40">{msg.meta}</p> : <span />}
@@ -339,8 +344,13 @@ export default function AgentChat({ compact = false }: { compact?: boolean }) {
           </button>
         </div>
         <p className="mt-3 text-[11px] leading-relaxed text-white/40">
-          Every number comes from an engineering tool and carries an evidence label. Not a substitute for a site survey or a
-          qualified professional.{" "}
+          Numbers from an engineering tool appear in the calculation trace with an evidence label. Not a substitute for a site
+          survey or a qualified professional. Your messages are sent to our AI model provider (OpenRouter or DeepSeek) for
+          processing, which may be outside Kenya: do not include personal details.{" "}
+          <Link href="/legal/privacy" className="underline underline-offset-2 hover:text-white/70">
+            Privacy
+          </Link>
+          .{" "}
           {compact ? (
             <Link href={agentPublic.chatPath} className="underline underline-offset-2 hover:text-white/70">
               Open full workspace
