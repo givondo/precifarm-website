@@ -125,6 +125,13 @@ describe("limiters", () => {
     assert.equal(limited("b", 3), false);
     assert.equal(limited("a", 2000), false);
   });
+  it("keeps at most limit + 1 timestamps per key however hard it is hammered", () => {
+    const limited = createRateLimiter(3, 60_000);
+    for (let t = 0; t < 5000; t++) limited("flood", t);
+    assert.equal(limited.entries("flood"), 4);
+    assert.equal(limited("flood", 5000), true, "still limited inside the window");
+    assert.equal(limited("flood", 5000 + 60_000), false, "free again once the window has passed");
+  });
   it("evicts the least recent keys past the cap", () => {
     const limited = createRateLimiter(1, 1000, 2);
     limited("a", 0);

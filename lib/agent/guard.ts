@@ -100,12 +100,16 @@ export function crossOrigin(origin: string | null, host: string | null, allowed:
   return !allowed.includes(o.origin);
 }
 
-/** Sliding-window limiter keyed by client. Bounded memory: oldest keys are evicted past maxKeys. */
+/**
+ * Sliding-window limiter keyed by client. Bounded memory: at most requests + 1 timestamps per key
+ * (enough to decide "over the limit"), and the oldest keys are evicted past maxKeys.
+ */
 export function createRateLimiter(requests: number, windowMs: number, maxKeys = 10_000) {
   const hits = new Map<string, number[]>();
-  return (key: string, now = Date.now()): boolean => {
+  const limited = (key: string, now = Date.now()): boolean => {
     const recent = (hits.get(key) ?? []).filter((t) => now - t < windowMs);
     recent.push(now);
+    if (recent.length > requests + 1) recent.splice(0, recent.length - (requests + 1));
     hits.delete(key);
     hits.set(key, recent);
     // Map keeps insertion order and each hit re-inserts its key, so the first key is the least recent.
@@ -116,6 +120,9 @@ export function createRateLimiter(requests: number, windowMs: number, maxKeys = 
     }
     return recent.length > requests;
   };
+  /** Timestamps held for a key, for tests. */
+  limited.entries = (key: string) => hits.get(key)?.length ?? 0;
+  return limited;
 }
 
 /** Fixed daily budget across all visitors on this instance. */
