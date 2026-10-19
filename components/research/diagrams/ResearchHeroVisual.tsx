@@ -3,7 +3,7 @@ import DiagramFrame from "@/components/research/diagrams/DiagramFrame";
 export default function ResearchHeroVisual() {
   return (
     <DiagramFrame
-      title="Three research programmes"
+      title="Three of five research programmes"
       caption="Wireless power, engineering software and site energy share one engineering method."
       className="mt-8 lg:mt-0"
     >
