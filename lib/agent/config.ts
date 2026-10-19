@@ -54,7 +54,7 @@ export const agentRuntime = {
   /** X-Forwarded-For entries appended by trusted proxies: 1 for Cloud Run direct, 2 behind an external load balancer */
   trustedProxyHops: envInt("AGENT_TRUSTED_PROXY_HOPS", 1),
   /** Extra browser origins allowed to call the API, besides same-host requests */
-  allowedOrigins: (process.env.AGENT_ALLOWED_ORIGINS ?? "https://precifarm.com,https://www.precifarm.com")
+  allowedOrigins: (process.env.AGENT_ALLOWED_ORIGINS ?? "https://precifarm.com,https://www.precifarm.com,https://ops.precifarm.com")
     .split(",")
     .map((s) => s.trim())
     .filter(Boolean),
