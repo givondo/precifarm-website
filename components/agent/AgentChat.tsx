@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Fragment, type ReactNode, useCallback, useRef, useState } from "react";
 import { agentPublic } from "@/lib/agent/public";
+import { hasEngineeringFigures } from "@/lib/agent/untooled";
 import { agentToolCatalogue, type EvidenceLabel, type ToolResult } from "@/lib/agent/tools/engineering";
 
 type TraceEntry = { tool: string; args: Record<string, unknown>; result: ToolResult };
@@ -268,7 +269,7 @@ export default function AgentChat({ compact = false }: { compact?: boolean }) {
           >
             {msg.role === "assistant" ? <Markdown text={msg.content} /> : msg.content}
             {msg.trace ? <Trace trace={msg.trace} /> : null}
-            {msg.trace && !msg.trace.length && /\d/.test(msg.content) ? (
+            {msg.trace && !msg.trace.length && hasEngineeringFigures(msg.content) ? (
               <p className="mt-3 rounded-lg border border-amber-400/30 bg-amber-400/10 px-3 py-2 text-[11.5px] leading-snug text-amber-100">
                 No engineering tool ran for this reply. Treat any numbers in it as unverified and ask the Agent to calculate them.
               </p>
