@@ -247,9 +247,10 @@ const STANDARD_INVERTER_KW = [1, 1.5, 2, 3, 3.6, 5, 6, 8, 10, 12, 15, 20, 25, 30
 const RESISTIVITY = { copper: 0.0225, aluminium: 0.036 } as const;
 
 /**
- * Screening current-carrying capacity, A, for copper PVC 70 °C cable, reference method C
- * (clipped direct), 30 °C ambient, no grouping: IEC 60364-5-52 Table B.52.4 / BS 7671 Table 4D1A.
- * twoLoaded = single-phase or DC, threeLoaded = three-phase. A screen, not a substitute for the
+ * Screening current-carrying capacity, A, PVC 70 °C insulation, reference method C (clipped
+ * direct), 30 °C ambient, no grouping. IEC 60364-5-52:2009 Table B.52.2 (two loaded conductors:
+ * single-phase or DC) and Table B.52.4 (three loaded conductors: three-phase). BS 7671
+ * equivalent: Table 4D2A for copper, 4H2A for aluminium. A screen, not a substitute for the
  * installation-method table on site.
  */
 const IZ_CU_PVC_METHOD_C: Record<number, { twoLoaded: number; threeLoaded: number }> = {
@@ -269,8 +270,34 @@ const IZ_CU_PVC_METHOD_C: Record<number, { twoLoaded: number; threeLoaded: numbe
   185: { twoLoaded: 392, threeLoaded: 341 },
   240: { twoLoaded: 461, threeLoaded: 403 },
 };
-/** Aluminium carries roughly 78% of the copper rating for the same size; only 16 mm² and up. */
-const ALUMINIUM_IZ_RATIO = 0.78;
+
+/**
+ * Aluminium, PVC, method C, two loaded conductors: IEC 60364-5-52 Table B.52.2. Values agree in
+ * two independent reproductions: EUPEN "Technical Data for Low Voltage Power and Control cable
+ * 0.6/1 kV" (Ed. 05 2022, section 4.2.2) and Schneider Electric Electrical Installation Guide,
+ * Fig. G21, method C "2 PVC" column. Only 16 mm² and up, as aluminium is not used below that here.
+ */
+export const IZ_AL_PVC_METHOD_C_TWO_LOADED: Record<number, number> = {
+  16: 66,
+  25: 83,
+  35: 103,
+  50: 125,
+  70: 160,
+  95: 195,
+  120: 226,
+  150: 261,
+  185: 298,
+  240: 352,
+};
+
+/**
+ * Three-phase aluminium (Table B.52.4) is deliberately not tabulated. Only one reproduction of
+ * B.52.4 itself was found (EUPEN); the Schneider guide gives its simplified table instead, which
+ * differs at 16, 150, 185 and 240 mm². Without two agreeing sources the tool refuses rather than
+ * guess, and the caller is told an engineer must size it.
+ */
+export const ALUMINIUM_THREE_PHASE_NEEDS_ENGINEER =
+  "aluminium sizing for three-phase circuits needs an engineer: the Agent has no verified IEC 60364-5-52 Table B.52.4 aluminium values (only one published reproduction could be confirmed), so it will not screen this size";
 
 /** Smallest standard size whose screening Iz × derating ≥ current. */
 export function minCsaForCurrent(
@@ -278,11 +305,16 @@ export function minCsaForCurrent(
   opts: { threePhase: boolean; conductor: "copper" | "aluminium"; deratingFactor?: number },
 ): number | null {
   const f = opts.deratingFactor ?? 1;
+  if (opts.conductor === "aluminium" && opts.threePhase) throw new ToolInputError(ALUMINIUM_THREE_PHASE_NEEDS_ENGINEER);
   for (const csa of STANDARD_CSA_MM2) {
-    if (opts.conductor === "aluminium" && csa < 16) continue;
-    const base = IZ_CU_PVC_METHOD_C[csa];
-    const iz = (opts.threePhase ? base.threeLoaded : base.twoLoaded) * (opts.conductor === "aluminium" ? ALUMINIUM_IZ_RATIO : 1) * f;
-    if (iz >= currentA - 1e-9) return csa;
+    const base =
+      opts.conductor === "aluminium"
+        ? IZ_AL_PVC_METHOD_C_TWO_LOADED[csa]
+        : opts.threePhase
+          ? IZ_CU_PVC_METHOD_C[csa].threeLoaded
+          : IZ_CU_PVC_METHOD_C[csa].twoLoaded;
+    if (base === undefined) continue;
+    if (base * f >= currentA - 1e-9) return csa;
   }
   return null;
 }
@@ -539,7 +571,7 @@ function dispatch(name: string, args: Record<string, unknown>): ToolResult {
         notes: [
           "Resistive method, IEC 60364-5-52 Annex G (ρ = 1.25 × ρ20); ignores reactance, which matters above roughly 25 mm².",
           "The limit applies from the origin of the installation (3% lighting, 5% other uses); subtract any drop already in the submain.",
-          `Current-carrying screen uses copper PVC, reference method C, 30 °C, derating ${derating}. Buried, enclosed, grouped or hot runs need the installation-method table: needs site check.`,
+          `Current-carrying screen uses ${conductor} PVC, reference method C, 30 °C (IEC 60364-5-52 Table ${system === "three-phase" ? "B.52.4" : "B.52.2"}), derating ${derating}. Buried, enclosed, grouped or hot runs need the installation-method table: needs site check.`,
         ],
       };
     }

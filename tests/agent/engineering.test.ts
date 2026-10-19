@@ -7,6 +7,8 @@ import assert from "node:assert/strict";
 import {
   agentToolCatalogue,
   engineeringToolDefinitions,
+  IZ_AL_PVC_METHOD_C_TWO_LOADED,
+  minCsaForCurrent,
   runEngineeringTool,
   type ToolResult,
 } from "@/lib/agent/tools/engineering";
@@ -224,6 +226,36 @@ describe("calculateVoltageDrop", () => {
   it("DC needs an explicit voltage", () => {
     fails(run("calculateVoltageDrop", { currentA: 50, lengthM: 10, system: "dc" }), /voltageV/);
     assert.equal(ok(run("calculateVoltageDrop", { currentA: 50, lengthM: 10, system: "dc", voltageV: 48 })).data.voltageV, 48);
+  });
+});
+
+describe("current-carrying screen, IEC 60364-5-52 method C, PVC, 30 °C", () => {
+  // Boundary currents: exactly the tabulated Iz passes, 1 A more needs the next size.
+  const size = (a: number, conductor: "copper" | "aluminium", threePhase: boolean) => minCsaForCurrent(a, { conductor, threePhase });
+  it("aluminium two loaded conductors matches Table B.52.2 (EUPEN and Schneider EIG Fig. G21 agree)", () => {
+    const expected: Array<[number, number]> = [[16, 66], [25, 83], [35, 103], [50, 125], [95, 195], [150, 261], [240, 352]];
+    for (const [csa, iz] of expected) {
+      assert.equal(IZ_AL_PVC_METHOD_C_TWO_LOADED[csa], iz, `${csa} mm²`);
+      assert.equal(size(iz, "aluminium", false), csa, `${iz} A fits ${csa} mm²`);
+    }
+    assert.equal(size(67, "aluminium", false), 25);
+    assert.equal(size(353, "aluminium", false), null);
+  });
+  it("85 A single-phase aluminium needs 35 mm²: 25 mm² carries 83 A, not the 87 A the old 0.78 ratio gave", () => {
+    assert.equal(size(85, "aluminium", false), 35);
+  });
+  it("copper matches Table B.52.2 (two loaded) and B.52.4 (three loaded)", () => {
+    assert.equal(size(27, "copper", false), 2.5);
+    assert.equal(size(85, "copper", false), 16);
+    assert.equal(size(258, "copper", false), 95);
+    assert.equal(size(259, "copper", false), 120);
+    assert.equal(size(24, "copper", true), 2.5);
+    assert.equal(size(76, "copper", true), 16);
+    assert.equal(size(77, "copper", true), 25);
+    assert.equal(size(223, "copper", true), 95);
+  });
+  it("three-phase aluminium refuses and says an engineer must size it", () => {
+    fails(run("calculateVoltageDrop", { currentA: 100, lengthM: 20, conductor: "aluminium", system: "three-phase" }), /needs an engineer/);
   });
 });
 
