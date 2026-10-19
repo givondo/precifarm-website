@@ -94,27 +94,27 @@ export const researchAreas: readonly ResearchArea[] = [
     id: "wireless-ev",
     title: "Wireless charging for e-bodas and cars",
     horizon: "Now",
-    workingTowards: "G2",
+    workingTowards: "G1",
     progress: 38,
-    stage: "Architecture and bench preparation",
+    stage: "Framing and simulation",
     question:
       "Can a parked electric motorcycle top up without a plug, safely, through dust, rain and imperfect parking?",
     summary:
-      "Inductive pads built into Boda Hub stands first, then the 7 to 11 kW passenger class. Coil and compensation design, alignment guidance, foreign and living object protection, and M-Pesa metering per session. Pulse wired charging is what we install today.",
+      "Inductive pads built into Boda Hub stands first, then the 7 to 11 kW passenger class. Coil and compensation design, alignment guidance, foreign and living object protection, and M-Pesa metering per session. No wireless hardware has been built yet; Pulse wired charging is the product we market today.",
     goal:
       "A measured, safe 3.3 kW e-boda wireless stand ready for a hosted Boda Hub pilot by Q3 2027, and a product decision on it by Q4 2027.",
     targets: [
       { label: "Power class (e-boda track)", value: "3.3 kW" },
       { label: "DC to battery efficiency", value: "≥ 85% at nominal alignment" },
-      { label: "Lateral misalignment tolerance", value: "± 50 mm" },
+      { label: "Lateral misalignment tolerance", value: "± 50 mm (SAE J2954 cars: ± 100 mm)" },
       { label: "Foreign object detection", value: "100% of standard test objects" },
-      { label: "Field exposure", value: "Within ICNIRP public reference levels" },
+      { label: "Field exposure", value: "Within ICNIRP 2010 public reference level (27 µT at 85 kHz)" },
     ],
     milestones: [
-      { when: "Q4 2026", title: "Coil, ferrite and compensation topology simulated in the 85 kHz band", status: "active" },
+      { when: "Q4 2026", title: "Coil, ferrite and compensation topology simulated in the 79 to 90 kHz band (G1)", status: "active" },
       { when: "Q4 2026", title: "3.3 kW bench rig assembled; first efficiency and thermal map", status: "next" },
       { when: "Q1 2027", title: "Foreign and living object protection on the bench", status: "next" },
-      { when: "Q2 2027", title: "EMC pre-compliance against IEC 61980; bench report published (G2)", status: "next" },
+      { when: "Q2 2027", title: "EMC pre-compliance against IEC 61980-1 and CISPR 11; bench report published (G2)", status: "next" },
       { when: "Q3 2027", title: "One hosted Boda Hub stand, 90 days metered on M-Pesa (G3)", status: "later" },
       { when: "Q4 2027", title: "G4 decision for e-boda; passenger 11 kW track sized from bench data", status: "later" },
     ],
@@ -130,7 +130,7 @@ export const researchAreas: readonly ResearchArea[] = [
     id: "precifarm-agent",
     title: "Precifarm Agent",
     horizon: "Now",
-    workingTowards: "G3",
+    workingTowards: "G2",
     progress: 62,
     stage: "Web workspace in early access",
     question:
@@ -147,7 +147,7 @@ export const researchAreas: readonly ResearchArea[] = [
     ],
     milestones: [
       { when: "Q4 2026", title: "Ten-tool kernel with visible calculation trace in the web workspace", status: "done" },
-      { when: "Q1 2027", title: "Kenyan benchmark: 50 real survey cases graded by registered engineers", status: "active" },
+      { when: "Q1 2027", title: "Kenyan benchmark: 50 real survey cases graded by registered engineers (G2)", status: "active" },
       { when: "Q2 2027", title: "Install pack export: calc sheet, single line diagram, parts list", status: "next" },
       { when: "Q3 2027", title: "Agent used on live Pulse home surveys with partner installers (G3)", status: "next" },
       { when: "Q4 2027", title: "Desktop workspace and survey to quote handover", status: "later" },
@@ -163,13 +163,13 @@ export const researchAreas: readonly ResearchArea[] = [
     id: "hub-energy",
     title: "Hub solar and storage",
     horizon: "Now",
-    workingTowards: "G2",
+    workingTowards: "G1",
     progress: 22,
     stage: "Site modelling",
     question:
       "What mix of grid, solar and battery keeps a Corridor or Depot hub reliable and profitable on a weak rural feeder?",
     summary:
-      "Hourly models of hub load, PV yield and battery duty cycle for the first Corridor on the Nairobi to Kisumu route, with honest live and planned labelling on Charging Hub.",
+      "Hourly models of hub load, PV yield and battery duty cycle for the first Corridor on the Nairobi to Kisumu route, with live and planned sites labelled honestly.",
     goal:
       "A validated sizing and dispatch method, checked against metered site data, that every new hub uses before construction from 2027.",
     targets: [
@@ -178,7 +178,7 @@ export const researchAreas: readonly ResearchArea[] = [
       { label: "Peak grid draw reduction", value: "≥ 30% at a Corridor site" },
     ],
     milestones: [
-      { when: "Q4 2026", title: "Load and PV yield model for the first Corridor site", status: "active" },
+      { when: "Q4 2026", title: "Load and PV yield model for the first Corridor site (G1)", status: "active" },
       { when: "Q1 2027", title: "Storage duty cycle simulated against Corridor DC session profiles", status: "next" },
       { when: "Q2 2027", title: "Revenue-grade metering on a live site; model validated (G2)", status: "next" },
       { when: "Q4 2027", title: "Dispatch controller pilot with MegaPack storage (G3)", status: "later" },
@@ -195,9 +195,9 @@ export const researchAreas: readonly ResearchArea[] = [
     progress: 12,
     stage: "Data framing",
     question:
-      "Can swap and charge data predict the health of a 2.56 kWh Energy Module well enough to price swaps fairly and move tired modules into stationary storage?",
+      "Can swap and charge data predict battery health well enough to price Boda Hub swaps fairly and move tired packs into stationary storage?",
     summary:
-      "State of health estimation from Boda Hub swap cycles and BMS telemetry, a capacity test protocol, and retirement rules that move modules from motorcycles to Pod and Mini Stack duty.",
+      "State of health estimation from Boda Hub swap cycles and BMS telemetry, a capacity test protocol, and retirement rules that move tired swap packs into stationary duty, including the 2.56 kWh Energy Module design (conceptual, not on sale).",
     goal:
       "State of health estimated within ± 3% of a capacity test, and a second-life rule set proven on a stationary pilot by 2028.",
     targets: [
@@ -331,12 +331,12 @@ export const researchPageFaqs: FaqItem[] = [
   {
     question: "Can I buy wireless charging from Precifarm?",
     answer:
-      "Wireless charging is a research programme. Pulse, Pod, Spark, Depot, Boda Hub and Corridor are the wired chargers we install today, with M-Pesa.",
+      "Wireless charging is a research programme. No wireless hardware has been built yet. Pulse, Pod, Spark, Depot, Boda Hub and Corridor are the wired charging products we market today, with M-Pesa.",
   },
   {
     question: "What does the progress bar mean?",
     answer:
-      "Engineering completion toward the programme's next gate (G0 Frame to G4 Decide). It is not market share, installed base or a launch date.",
+      "Engineering completion toward the programme's next gate (G0 Frame to G4 Decide), estimated by the Precifarm team. It is a planning estimate, not a measurement, and not market share, installed base or a launch date.",
   },
   {
     question: "Why stage gates?",

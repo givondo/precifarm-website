@@ -34,7 +34,7 @@ export default function HomeInnovation() {
           <article className="flex flex-col rounded-2xl border border-white/10 bg-white/[0.04] p-6 sm:p-8">
             <p className="flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-widest text-charge-300">
               <span aria-hidden className="h-2 w-2 rounded-full bg-[#22c55e]" />
-              Precifarm Agent · live
+              Precifarm Agent · early access
             </p>
             <h3 className="heading-display heading-inverted mt-3 text-xl sm:text-2xl">An energy engineer in your browser.</h3>
             <p className="mt-3 text-sm leading-relaxed text-white/70">
@@ -59,7 +59,7 @@ export default function HomeInnovation() {
                 ))}
               </dl>
               <figcaption className="border-t border-white/10 px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-charge-300">
-                Calculated by tools · reviewed by an engineer
+                Illustrative example · calculated by tools
               </figcaption>
             </figure>
 
