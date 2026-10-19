@@ -27,33 +27,33 @@ export const wirelessChargingPolicyFaqs: FaqItem[] = [
 /** Public industry references — not Precifarm performance claims. */
 export const wirelessIndustryBenchmarks = [
   {
-    source: "SAE J2954 (light-duty WPT)",
-    benchmark: "Standardised power classes up to 11 kW (WPT1–WPT3) for stationary pad charging",
+    source: "SAE J2954 (light-duty WPT, revision August 2024)",
+    benchmark: "Three classes up to 11.1 kVA input (WPT1 3.7, WPT2 7.7, WPT3 11.1 kVA), 79 to 90 kHz band, parking tolerance ± 75 mm fore and aft and ± 100 mm lateral; 22 kVA planned. Heavy duty sits in J2954/2",
     note: "Global baseline for passenger static wireless charging interoperability.",
   },
   {
     source: "IEC 61980 series",
-    benchmark: "Safety and performance requirements for EV wireless power transfer systems",
+    benchmark: "IEC 61980-1:2020 general and EMC requirements (CISPR 11), plus parts for magnetic field WPT. Two- and three-wheelers are not yet covered; IEC lists them as under consideration",
     note: "Used as a compliance reference frame for any Precifarm pilot hardware.",
   },
   {
-    source: "ISO 15118-20",
+    source: "ISO 15118-20:2022",
     benchmark: "Digital communication for WPT sessions alongside wired charging protocols",
     note: "Research track for session control and future hub integration.",
   },
   {
-    source: "Mercedes-Benz (optional factory WPT)",
-    benchmark: "Up to 11 kW inductive home charging offered on select models in supported markets",
-    note: "OEM benchmark for luxury passenger static WPT — not available from Precifarm today.",
+    source: "Porsche Wireless Charging (Cayenne Electric)",
+    benchmark: "Up to 11 kW factory option, orderable in Europe from 2026. Porsche claims up to 90% grid to battery; German list price about EUR 6,960 for ground plate and vehicle pad",
+    note: "OEM benchmark for premium passenger static WPT. Not available from Precifarm.",
   },
   {
-    source: "BMW (optional Wireless Charging)",
-    benchmark: "Factory/inductive pad programmes around ~3.2–3.7 kW class in prior generations",
-    note: "Shows multi-kW residential WPT is shipping at OEM level in some regions.",
+    source: "BMW (530e iPerformance Wireless Charging)",
+    benchmark: "3.2 kW inductive pad offered from 2018 in limited markets, mostly to lease customers; no longer offered",
+    note: "Shows multi-kW residential WPT has shipped at OEM level, at small volume.",
   },
   {
     source: "WiTricity / licensed automaker programmes",
-    benchmark: "Resonant magnetic WPT licensing ecosystem for 7–11 kW class systems",
+    benchmark: "Resonant magnetic WPT licensing ecosystem for 7 to 11 kW class systems",
     note: "Industry pattern Precifarm studies; we do not claim WiTricity IP or licences unless disclosed.",
   },
   {
@@ -63,8 +63,13 @@ export const wirelessIndustryBenchmarks = [
   },
   {
     source: "Published efficiency literature",
-    benchmark: "Typical coil-to-battery efficiencies often quoted ~85–93% for well-aligned static systems",
+    benchmark: "Grid to battery efficiencies of about 85 to 93% are reported for well-aligned static car systems (Idaho National Laboratory measured up to 88.8% on a 3.3 kW system)",
     note: "Site, gap, and thermal management dominate; Precifarm publishes numbers only from measured bench data.",
+  },
+  {
+    source: "Two-wheeler WPT (e-bikes and scooters)",
+    benchmark: "No published WPT standard yet. The Wireless Power Consortium began light electric vehicle work in 2023; products are low power, for example a 150 W e-bike kickstand system",
+    note: "Closest reference for Precifarm's e-boda track. Precifarm's 3.3 kW e-boda target is well above shipping two-wheeler systems.",
   },
 ] as const;
 
@@ -87,7 +92,7 @@ export const wirelessChargingPolicyPage = {
       "Live vs lab: Charging Hub and marketing may not label wireless hardware as live until commissioned, metered, and safety-reviewed.",
       "Measured vs marketed: Efficiency, kW class, and alignment claims require traceable bench or field data.",
       "Kenya-first: Grid quality, dust, parking behaviour, and M-Pesa settlement are design inputs from day one.",
-      "Wired beachhead: Customers needing charging today are directed to wired products Precifarm installs and operates.",
+      "Wired beachhead: Customers needing charging today are directed to the wired products Precifarm markets.",
     ],
   },
   benchmarksIntro: {
@@ -97,9 +102,9 @@ export const wirelessChargingPolicyPage = {
   },
   targets: {
     title: "4. Precifarm research targets",
-    description: "Internal gates — subject to change when bench results require it.",
+    description: "Internal targets, not results. They change when bench results require it.",
     items: [
-      "Static WPT in the passenger 7–11 kW class (aligned with SAE J2954 WPT2/WPT3 research band).",
+      "Static WPT for electric motorcycles (e-bodas) first, at a 3.3 kW research target, then the passenger 7.7 to 11.1 kVA class (SAE J2954 WPT2 and WPT3).",
       "Foreign-object detection and living-object protection integrated before any hosted pilot.",
       "Alignment tolerance and driver feedback suitable for shared parking in Kenyan sites.",
       "Session metering compatible with M-Pesa settlement and Charging Hub live/planned labels.",
