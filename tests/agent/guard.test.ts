@@ -2,7 +2,7 @@ import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import { agentRuntime } from "@/lib/agent/config";
 import { sanitiseHistory } from "@/lib/agent/deepseek";
-import { clientIp, createDailyBudget, createRateLimiter, crossOrigin, parseChatBody, truncateAssistant } from "@/lib/agent/guard";
+import { clientIp, createDailyBudget, createRateLimiter, crossOrigin, isLoopbackRequest, parseChatBody, truncateAssistant } from "@/lib/agent/guard";
 
 describe("parseChatBody", () => {
   it("accepts a normal conversation", () => {
@@ -113,6 +113,23 @@ describe("crossOrigin", () => {
   it("blocks other sites", () => {
     assert.equal(crossOrigin("https://evil.example", "precifarm.com", ["https://precifarm.com"]), true);
     assert.equal(crossOrigin("garbage", "precifarm.com"), true);
+  });
+});
+
+describe("isLoopbackRequest", () => {
+  it("accepts localhost with a loopback socket address", () => {
+    assert.equal(isLoopbackRequest("localhost:3000", "127.0.0.1"), true);
+    assert.equal(isLoopbackRequest("127.0.0.1:3000", "::1"), true);
+    assert.equal(isLoopbackRequest("[::1]:3000", "::ffff:127.0.0.1", "localhost:3000"), true);
+  });
+  it("rejects LAN visitors, DNS rebinding and missing headers", () => {
+    assert.equal(isLoopbackRequest("192.168.1.20:3000", "192.168.1.35"), false);
+    assert.equal(isLoopbackRequest("localhost:3000", "192.168.1.35"), false);
+    assert.equal(isLoopbackRequest("localhost:3000", "127.0.0.1, 192.168.1.35"), false);
+    assert.equal(isLoopbackRequest("evil.example:3000", "127.0.0.1"), false);
+    assert.equal(isLoopbackRequest("localhost:3000", "127.0.0.1", "evil.example"), false);
+    assert.equal(isLoopbackRequest("localhost:3000", null), false);
+    assert.equal(isLoopbackRequest(null, "127.0.0.1"), false);
   });
 });
 

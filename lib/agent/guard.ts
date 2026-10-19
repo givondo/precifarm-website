@@ -139,3 +139,22 @@ export function createDailyBudget(limit: number) {
     return used > limit;
   };
 }
+
+const LOOPBACK_HOSTS = new Set(["localhost", "127.0.0.1", "[::1]"]);
+const LOOPBACK_ADDRS = new Set(["127.0.0.1", "::1", "::ffff:127.0.0.1"]);
+
+/**
+ * True only when the request reached this server from the same machine. Route handlers cannot see
+ * the socket, so this relies on Next.js filling X-Forwarded-For with the socket address when the
+ * client sent none: a LAN visitor shows their own address there, and a page using DNS rebinding
+ * shows a foreign Host. Both Host and every X-Forwarded-For entry must be loopback. Used to keep
+ * the local OpenCode bridge, which can run commands on its host, to the developer's own machine.
+ */
+export function isLoopbackRequest(host: string | null, forwardedFor: string | null, forwardedHost: string | null = null): boolean {
+  const hostname = (h: string) => h.trim().toLowerCase().replace(/:\d+$/, "");
+  if (!host || !LOOPBACK_HOSTS.has(hostname(host))) return false;
+  if (forwardedHost && !LOOPBACK_HOSTS.has(hostname(forwardedHost))) return false;
+  if (!forwardedFor) return false;
+  const addrs = forwardedFor.split(",").map((a) => a.trim().toLowerCase());
+  return addrs.length > 0 && addrs.every((a) => LOOPBACK_ADDRS.has(a));
+}

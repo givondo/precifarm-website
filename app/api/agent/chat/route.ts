@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { agentRuntime } from "@/lib/agent/config";
 import { runPrecifarmAgentTurn } from "@/lib/agent/deepseek";
-import { clientIp, createDailyBudget, createRateLimiter, crossOrigin, parseChatBody } from "@/lib/agent/guard";
+import { clientIp, createDailyBudget, createRateLimiter, crossOrigin, isLoopbackRequest, parseChatBody } from "@/lib/agent/guard";
 import { promptViaOpenCode } from "@/lib/agent/opencode-bridge";
 
 export const runtime = "nodejs";
@@ -48,7 +48,13 @@ export async function POST(request: Request) {
   }
 
   try {
-    if (agentRuntime.opencodeServerUrl) {
+    // OpenCode can run commands on its host: only for requests from the developer's own machine.
+    const local = isLoopbackRequest(
+      request.headers.get("host"),
+      request.headers.get("x-forwarded-for"),
+      request.headers.get("x-forwarded-host"),
+    );
+    if (agentRuntime.opencodeServerUrl && local) {
       const lastUser = parsed.history[parsed.history.length - 1].content ?? "";
       const reply = await promptViaOpenCode(lastUser, AbortSignal.timeout(agentRuntime.timeoutMs));
       return NextResponse.json({ reply, backend: "opencode", model: agentRuntime.model, trace: [] });

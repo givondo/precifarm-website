@@ -19,7 +19,8 @@ export const agentRuntime = {
   model: process.env.AGENT_MODEL ?? (useOpenRouter ? "deepseek/deepseek-v4-flash" : "deepseek-v4-flash"),
   /**
    * OpenCode is an agentic coding tool that can run commands on its host. It is only used when
-   * AGENT_PREFER_OPENCODE=true outside production, never because a visitor asked for it.
+   * AGENT_PREFER_OPENCODE=true outside production, never because a visitor asked for it, and the
+   * chat route additionally requires the request to come from localhost (isLoopbackRequest).
    */
   opencodeServerUrl:
     process.env.AGENT_PREFER_OPENCODE === "true" && process.env.NODE_ENV !== "production"
