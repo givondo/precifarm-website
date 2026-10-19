@@ -58,11 +58,24 @@ export const engineeringToolDefinitions = [
   ),
   fn(
     "calculateChargingTime",
-    "Hours to deliver an amount of energy at a charger power. Returns ideal hours and hours including charging losses.",
+    "Hours to deliver an amount of energy to the battery. Uses the lower of charger and vehicle limit, and returns grid energy including losses.",
     {
       kwh: { type: "number", description: "Energy to deliver to the battery in kWh" },
-      chargerKw: { type: "number", description: "Charger power in kW (limited by the vehicle's onboard charger for AC)" },
-      efficiency: { type: "number", description: "Charging efficiency 0.5 to 1 (default 0.9)" },
+      chargerKw: { type: "number", description: "Charger rated power in kW" },
+      mode: { type: "string", enum: ["ac", "dc"], description: "AC (onboard charger) or DC fast charging. Default ac" },
+      vehicleMaxKw: {
+        type: "number",
+        description: "Vehicle limit in kW: onboard charger rating for AC (often 3.7, 7.4 or 11), or peak DC acceptance for DC",
+      },
+      efficiency: {
+        type: "number",
+        description: "Grid to battery efficiency 0.5 to 1 (planning assumption: 0.9 for AC, 0.95 for DC)",
+      },
+      dcAverageFactor: {
+        type: "number",
+        description:
+          "DC only: average session power as a fraction of peak, to allow for taper. Default 0.7, a planning assumption from measured sessions (0.63 to 0.75)",
+      },
     },
     ["kwh", "chargerKw"],
   ),
@@ -90,12 +103,16 @@ export const engineeringToolDefinitions = [
   ),
   fn(
     "sizeBattery",
-    "Battery backup size from critical load and backup hours, with depth of discharge and module rounding.",
+    "Battery backup size from critical load and backup hours, with depth of discharge, discharge efficiency and module rounding.",
     {
       criticalLoadKw: { type: "number", description: "Average critical load during backup in kW" },
       backupHours: { type: "number", description: "Hours of backup required" },
       depthOfDischarge: { type: "number", description: "Usable fraction 0.5 to 1 (default 0.9 for LiFePO4)" },
-      roundToKwh: { type: "number", description: "Module size to round up to in kWh (default 2.56, the Precifarm Energy Module)" },
+      dischargeEfficiency: {
+        type: "number",
+        description: "Battery to AC load efficiency 0.7 to 1: inverter x battery discharge (default 0.92, about 0.95 x 0.97)",
+      },
+      roundToKwh: { type: "number", description: "Storage step to round up to in kWh (default 5; Pod energy storage comes in 5 or 10 kWh)" },
     },
     ["criticalLoadKw", "backupHours"],
   ),
@@ -118,9 +135,13 @@ export const engineeringToolDefinitions = [
       lengthM: { type: "number", description: "One-way cable length in m" },
       csaMm2: { type: "number", description: "Conductor cross-section in mm² (if omitted, only the recommendation is returned)" },
       system: { type: "string", enum: ["single-phase", "three-phase", "dc"], description: "Default single-phase" },
-      voltageV: { type: "number", description: "Nominal voltage (default 230 single-phase, 400 three-phase)" },
+      voltageV: { type: "number", description: "Nominal voltage (Kenyan default 240 single-phase, 415 three-phase)" },
       conductor: { type: "string", enum: ["copper", "aluminium"], description: "Default copper" },
       limitPct: { type: "number", description: "Allowed drop in percent (default 5; 3 is a common target for final circuits)" },
+      deratingFactor: {
+        type: "number",
+        description: "Combined ambient and grouping correction factor Ca x Cg, 0.3 to 1 (default 1: 30 °C, no grouping)",
+      },
     },
     ["currentA", "lengthM"],
   ),
@@ -130,7 +151,7 @@ export const engineeringToolDefinitions = [
     {
       loadKw: { type: "number", description: "Load in kW" },
       system: { type: "string", enum: ["single-phase", "three-phase"], description: "Default single-phase" },
-      voltageV: { type: "number", description: "Nominal voltage (default 230 or 400)" },
+      voltageV: { type: "number", description: "Nominal voltage (Kenyan default 240 single-phase, 415 three-phase)" },
       powerFactor: { type: "number", description: "Default 1.0 for EV chargers" },
       continuous: { type: "boolean", description: "Continuous load such as EV charging (default true, applies 1.25 factor)" },
       isEvCharger: { type: "boolean", description: "Adds EV-specific RCD and earthing notes (default true)" },
@@ -141,8 +162,16 @@ export const engineeringToolDefinitions = [
     "calculateEnergyCost",
     "Daily, monthly and yearly energy cost, with an optional fuel comparison for the same distance.",
     {
-      kwhPerDay: { type: "number", description: "Energy per day in kWh" },
-      kesPerKwh: { type: "number", description: "Tariff in KES/kWh (ask the user or label as assumed)" },
+      kwhPerDay: { type: "number", description: "Energy per day in kWh delivered to the battery (as from calculateEvEnergy)" },
+      kesPerKwh: {
+        type: "number",
+        description:
+          "All-in tariff in KES/kWh. Ask the user or label as assumed. October 2026 planning references: 24.70 (e-mobility base), 27.81 (domestic DC3)",
+      },
+      chargingEfficiency: {
+        type: "number",
+        description: "Grid to battery efficiency 0.5 to 1 (default 0.9 AC; 0.95 DC; 1 if kwhPerDay is already metered grid energy)",
+      },
       dailyKm: { type: "number", description: "Daily distance, for the fuel comparison" },
       fuelLPer100km: { type: "number", description: "Comparable fuel vehicle consumption in L/100 km" },
       kesPerLitre: { type: "number", description: "Fuel price in KES/L" },
@@ -188,13 +217,122 @@ function optNum(args: Record<string, unknown>, key: string, opts: { min?: number
   return num(args, key, opts);
 }
 
+function oneOf<T extends string>(args: Record<string, unknown>, key: string, allowed: readonly T[], def: T, aliases: Record<string, T> = {}): T {
+  const raw = args[key];
+  if (raw === undefined || raw === null || raw === "") return def;
+  const v = String(raw).trim().toLowerCase();
+  const hit = (allowed as readonly string[]).includes(v) ? (v as T) : aliases[v];
+  if (!hit) throw new ToolInputError(`${key} must be one of ${allowed.join(", ")}`);
+  return hit;
+}
+
+/** Strict boolean: the strings "false" and "0" mean false (Boolean("false") is true). */
+function bool(args: Record<string, unknown>, key: string, def: boolean): boolean {
+  const raw = args[key];
+  if (raw === undefined || raw === null || raw === "") return def;
+  if (typeof raw === "boolean") return raw;
+  const v = String(raw).trim().toLowerCase();
+  if (v === "true" || v === "1" || v === "yes") return true;
+  if (v === "false" || v === "0" || v === "no") return false;
+  throw new ToolInputError(`${key} must be true or false`);
+}
+
 const r = (v: number, dp = 2) => Number(v.toFixed(dp));
+
+/** Kenyan nominal LV supply (Kenya Power): 240 V single-phase, 415 V three-phase, 50 Hz. */
+export const KENYA_LV = { singlePhaseV: 240, threePhaseV: 415 } as const;
 
 const STANDARD_CSA_MM2 = [1.5, 2.5, 4, 6, 10, 16, 25, 35, 50, 70, 95, 120, 150, 185, 240];
 const STANDARD_BREAKER_A = [6, 10, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200, 250];
 const STANDARD_INVERTER_KW = [1, 1.5, 2, 3, 3.6, 5, 6, 8, 10, 12, 15, 20, 25, 30, 40, 50, 60, 80, 100];
-/** Resistivity at about 70 °C conductor temperature, Ω·mm²/m */
+/**
+ * Resistivity for voltage drop, Ω·mm²/m: 1.25 × the 20 °C value, as IEC 60364-5-52 Annex G
+ * (copper 0.0225, aluminium 0.036).
+ */
 const RESISTIVITY = { copper: 0.0225, aluminium: 0.036 } as const;
+
+/**
+ * Screening current-carrying capacity, A, PVC 70 °C insulation, reference method C (clipped
+ * direct), 30 °C ambient, no grouping. IEC 60364-5-52:2009 Table B.52.2 (two loaded conductors:
+ * single-phase or DC) and Table B.52.4 (three loaded conductors: three-phase). BS 7671
+ * equivalent: Table 4D2A for copper, 4H2A for aluminium. A screen, not a substitute for the
+ * installation-method table on site.
+ */
+const IZ_CU_PVC_METHOD_C: Record<number, { twoLoaded: number; threeLoaded: number }> = {
+  1.5: { twoLoaded: 19.5, threeLoaded: 17.5 },
+  2.5: { twoLoaded: 27, threeLoaded: 24 },
+  4: { twoLoaded: 36, threeLoaded: 32 },
+  6: { twoLoaded: 46, threeLoaded: 41 },
+  10: { twoLoaded: 63, threeLoaded: 57 },
+  16: { twoLoaded: 85, threeLoaded: 76 },
+  25: { twoLoaded: 112, threeLoaded: 96 },
+  35: { twoLoaded: 138, threeLoaded: 119 },
+  50: { twoLoaded: 168, threeLoaded: 144 },
+  70: { twoLoaded: 213, threeLoaded: 184 },
+  95: { twoLoaded: 258, threeLoaded: 223 },
+  120: { twoLoaded: 299, threeLoaded: 259 },
+  150: { twoLoaded: 344, threeLoaded: 299 },
+  185: { twoLoaded: 392, threeLoaded: 341 },
+  240: { twoLoaded: 461, threeLoaded: 403 },
+};
+
+/**
+ * Aluminium, PVC, method C, two loaded conductors: IEC 60364-5-52 Table B.52.2. Values agree in
+ * two independent reproductions: EUPEN "Technical Data for Low Voltage Power and Control cable
+ * 0.6/1 kV" (Ed. 05 2022, section 4.2.2) and Schneider Electric Electrical Installation Guide,
+ * Fig. G21, method C "2 PVC" column. Only 16 mm² and up, as aluminium is not used below that here.
+ */
+export const IZ_AL_PVC_METHOD_C_TWO_LOADED: Record<number, number> = {
+  16: 66,
+  25: 83,
+  35: 103,
+  50: 125,
+  70: 160,
+  95: 195,
+  120: 226,
+  150: 261,
+  185: 298,
+  240: 352,
+};
+
+/**
+ * Three-phase aluminium (Table B.52.4) is deliberately not tabulated. Only one reproduction of
+ * B.52.4 itself was found (EUPEN); the Schneider guide gives its simplified table instead, which
+ * differs at 16, 150, 185 and 240 mm². Without two agreeing sources the tool refuses rather than
+ * guess, and the caller is told an engineer must size it.
+ */
+export const ALUMINIUM_THREE_PHASE_NEEDS_ENGINEER =
+  "aluminium sizing for three-phase circuits needs an engineer: the Agent has no verified IEC 60364-5-52 Table B.52.4 aluminium values (only one published reproduction could be confirmed), so it will not screen this size";
+
+/** Smallest standard size whose screening Iz × derating ≥ current. */
+export function minCsaForCurrent(
+  currentA: number,
+  opts: { threePhase: boolean; conductor: "copper" | "aluminium"; deratingFactor?: number },
+): number | null {
+  const f = opts.deratingFactor ?? 1;
+  if (opts.conductor === "aluminium" && opts.threePhase) throw new ToolInputError(ALUMINIUM_THREE_PHASE_NEEDS_ENGINEER);
+  for (const csa of STANDARD_CSA_MM2) {
+    const base =
+      opts.conductor === "aluminium"
+        ? IZ_AL_PVC_METHOD_C_TWO_LOADED[csa]
+        : opts.threePhase
+          ? IZ_CU_PVC_METHOD_C[csa].threeLoaded
+          : IZ_CU_PVC_METHOD_C[csa].twoLoaded;
+    if (base === undefined) continue;
+    if (base * f >= currentA - 1e-9) return csa;
+  }
+  return null;
+}
+
+/**
+ * DC average-to-peak power over a session, planning assumption from measured sessions. 0.7 at
+ * 95% efficiency puts a 120 kW charger at about 40 kWh in 30 min, inside the 35 to 43 kWh seen
+ * for common CCS2 cars; 0.63 to 0.75 spans that observed range.
+ */
+const DC_AVERAGE_TO_PEAK = 0.7;
+
+/** Module area per watt: 2.6 m² for a 550 W module. */
+const MODULE_AREA_M2_PER_W = 2.6 / 550;
 
 const nextUp = (list: number[], v: number) => list.find((x) => x >= v - 1e-9) ?? null;
 
@@ -232,21 +370,60 @@ function dispatch(name: string, args: Record<string, unknown>): ToolResult {
     case "calculateChargingTime": {
       const kwh = num(args, "kwh", { min: 0, max: 2000 });
       const chargerKw = num(args, "chargerKw", { min: 0.1, max: 1000 });
-      const efficiency = num(args, "efficiency", { min: 0.5, max: 1, def: 0.9 });
-      const ideal = kwh / chargerKw;
-      const real = kwh / (chargerKw * efficiency);
+      const mode = oneOf(args, "mode", ["ac", "dc"] as const, "ac");
+      const vehicleMaxKw = optNum(args, "vehicleMaxKw", { min: 0.5, max: 1000 });
+      const efficiency = num(args, "efficiency", { min: 0.5, max: 1, def: mode === "dc" ? 0.95 : 0.9 });
+      const dcAverageFactor = num(args, "dcAverageFactor", { min: 0.3, max: 1, def: DC_AVERAGE_TO_PEAK });
+      const effectiveKw = vehicleMaxKw !== undefined ? Math.min(chargerKw, vehicleMaxKw) : chargerKw;
+      const ideal = kwh / effectiveKw;
+      // AC: the onboard charger holds its rating, so the battery fills at kW × efficiency.
+      // DC: power tapers as the battery fills, so the session averages a fraction of peak.
+      const real = mode === "ac" ? kwh / (effectiveKw * efficiency) : kwh / (effectiveKw * dcAverageFactor * efficiency);
+      const notes: string[] = [
+        `Efficiency ${efficiency} is a planning assumption (0.9 AC, 0.95 DC) unless measured.`,
+      ];
+      if (vehicleMaxKw === undefined) {
+        notes.push(
+          mode === "ac"
+            ? "AC charging is capped by the vehicle's onboard charger rating; confirm it for the specific model."
+            : "DC charging is capped by the vehicle's peak DC acceptance; confirm it for the specific model.",
+        );
+      } else if (vehicleMaxKw < chargerKw) {
+        notes.push(`Vehicle limit ${vehicleMaxKw} kW is below the ${chargerKw} kW charger rating, so the vehicle sets the rate.`);
+      }
+      if (mode === "dc") {
+        notes.push(
+          `DC time allows for taper with an average-to-peak factor of ${dcAverageFactor} (planning assumption from measured sessions, range 0.63 to 0.75). Check: a 120 kW Corridor charger adds about 35 to 43 kWh in 30 min for common CCS2 cars.`,
+        );
+      }
       return {
-        label: "calculated",
-        summary: `${kwh} kWh at ${chargerKw} kW takes ${r(ideal)} h ideal, about ${r(real)} h with ${Math.round(efficiency * 100)}% efficiency.`,
-        data: { kwh, chargerKw, efficiency, hoursIdeal: r(ideal), hoursWithLosses: r(real), gridKwh: r(kwh / efficiency) },
-        notes: ["AC charging is capped by the vehicle's onboard charger rating; confirm it for the specific model."],
+        label: mode === "dc" ? "estimated" : "calculated",
+        summary: `${kwh} kWh ${mode.toUpperCase()} at ${r(effectiveKw)} kW takes ${r(ideal)} h at full power${
+          mode === "ac"
+            ? `, about ${r(real)} h with ${Math.round(efficiency * 100)}% efficiency`
+            : `, about ${r(real)} h allowing for taper (average ${dcAverageFactor} of peak, ${Math.round(efficiency * 100)}% efficiency)`
+        }; ${r(kwh / efficiency)} kWh from the grid.`,
+        data: {
+          kwh,
+          chargerKw,
+          mode,
+          vehicleMaxKw: vehicleMaxKw ?? null,
+          effectiveKw: r(effectiveKw),
+          efficiency,
+          hoursIdeal: r(ideal),
+          hoursWithLosses: r(real),
+          gridKwh: r(kwh / efficiency),
+          ...(mode === "dc" ? { dcAverageFactor, kwhIn30Min: r(effectiveKw * dcAverageFactor * efficiency * 0.5) } : {}),
+        },
+        notes,
       };
     }
 
     case "calculatePeakLoad": {
-      const loads = Array.isArray(args.loadsKw) ? args.loadsKw.map(Number) : [];
-      if (!loads.length || loads.some((v) => !Number.isFinite(v) || v < 0)) {
-        throw new ToolInputError("loadsKw must be a non-empty list of non-negative numbers");
+      const rawLoads = Array.isArray(args.loadsKw) ? args.loadsKw : [];
+      const loads = rawLoads.map((v) => (typeof v === "number" || (typeof v === "string" && v.trim() !== "") ? Number(v) : NaN));
+      if (!loads.length || loads.length > 200 || loads.some((v) => !Number.isFinite(v) || v < 0 || v > 10000)) {
+        throw new ToolInputError("loadsKw must be a list of 1 to 200 numbers between 0 and 10000 kW");
       }
       const diversity = num(args, "diversityFactor", { min: 0.1, max: 1, def: 0.7 });
       const evKw = optNum(args, "evChargerKw", { min: 0, max: 400 }) ?? 0;
@@ -286,11 +463,13 @@ function dispatch(name: string, args: Record<string, unknown>): ToolResult {
           installedKwp: r(installedKwp),
           dailyYieldKwh: r(installedKwp * psh * pr, 1),
           annualYieldKwh: r(installedKwp * psh * pr * 365, 0),
-          roofAreaM2: r(panels * 2.6, 0),
+          roofAreaM2: r(panels * MODULE_AREA_M2_PER_W * panelW, 0),
         },
         notes: [
-          ...(args.peakSunHours === undefined ? ["Peak sun hours assumed at 5.5; use site irradiance data for design."] : []),
-          "Roof area assumes about 2.6 m² per 550 W module; check orientation, shading and structure on site.",
+          ...(args.peakSunHours === undefined ? ["Peak sun hours assumed at 5.5 (Kenya is roughly 5 to 6); use site irradiance data for design."] : []),
+          ...(args.performanceRatio === undefined ? ["Performance ratio assumed at 0.78."] : []),
+          "If the energy passes through a battery or an EV charger, add those losses to dailyKwh first.",
+          "Roof area assumes about 2.6 m² per 550 W module (about 21% module efficiency); check orientation, shading and structure on site.",
         ],
       };
     }
@@ -299,16 +478,32 @@ function dispatch(name: string, args: Record<string, unknown>): ToolResult {
       const loadKw = num(args, "criticalLoadKw", { min: 0.01, max: 10000 });
       const hours = num(args, "backupHours", { min: 0.1, max: 168 });
       const dod = num(args, "depthOfDischarge", { min: 0.5, max: 1, def: 0.9 });
-      const step = num(args, "roundToKwh", { min: 0.1, max: 1000, def: 2.56 });
+      const eff = num(args, "dischargeEfficiency", { min: 0.7, max: 1, def: 0.92 });
+      const step = num(args, "roundToKwh", { min: 0.1, max: 1000, def: 5 });
       const energy = loadKw * hours;
-      const nameplate = energy / dod;
+      // Usable energy must cover the load plus inverter and battery discharge losses.
+      const nameplate = energy / (dod * eff);
       const modules = Math.ceil(nameplate / step - 1e-9);
       const sized = modules * step;
       return {
         label: "calculated",
-        summary: `${loadKw} kW for ${hours} h is ${r(energy, 1)} kWh usable; at ${Math.round(dod * 100)}% depth of discharge that is ${r(nameplate, 1)} kWh nameplate: ${modules} × ${step} kWh = ${r(sized, 2)} kWh.`,
-        data: { criticalLoadKw: loadKw, backupHours: hours, usableKwh: r(energy, 1), nameplateKwh: r(nameplate, 1), modules, moduleKwh: step, sizedKwh: r(sized, 2) },
-        notes: ["Check inverter continuous and surge rating against the same critical load."],
+        summary: `${loadKw} kW for ${hours} h is ${r(energy, 1)} kWh at the load; at ${Math.round(dod * 100)}% depth of discharge and ${Math.round(eff * 100)}% discharge efficiency that is ${r(nameplate, 1)} kWh nameplate: ${modules} × ${step} kWh = ${r(sized, 2)} kWh.`,
+        data: {
+          criticalLoadKw: loadKw,
+          backupHours: hours,
+          loadKwh: r(energy, 1),
+          depthOfDischarge: dod,
+          dischargeEfficiency: eff,
+          nameplateKwh: r(nameplate, 1),
+          modules,
+          moduleKwh: step,
+          sizedKwh: r(sized, 2),
+        },
+        notes: [
+          ...(args.dischargeEfficiency === undefined ? ["Discharge efficiency assumed at 0.92 (inverter about 95% × battery about 97%)."] : []),
+          "Check inverter continuous and surge rating against the same critical load.",
+          "Allow for capacity fade over life (about 70 to 80% at end of warranty) if backup hours must hold for the full life.",
+        ],
       };
     }
 
@@ -322,7 +517,8 @@ function dispatch(name: string, args: Record<string, unknown>): ToolResult {
       const required = Math.max(forLoad, forPv);
       const rating = nextUp(STANDARD_INVERTER_KW, required);
       const notes: string[] = [];
-      if (surge && rating && surge > rating * 2) notes.push(`Starting load ${surge} kW exceeds a typical 2× surge rating; consider a soft starter or a larger unit.`);
+      if (pv) notes.push("PV check assumes a DC to AC ratio up to 1.3; confirm the inverter's maximum PV input and MPPT voltage window.");
+      if (surge && (rating === null || surge > rating * 2)) notes.push(`Starting load ${surge} kW exceeds a typical 2× surge rating; consider a soft starter or a larger unit.`);
       if (rating && rating > 10) notes.push("Above about 10 kW, a three-phase inverter and supply are usually needed in Kenya.");
       return {
         label: "calculated",
@@ -335,60 +531,83 @@ function dispatch(name: string, args: Record<string, unknown>): ToolResult {
     case "calculateVoltageDrop": {
       const current = num(args, "currentA", { min: 0.1, max: 5000 });
       const length = num(args, "lengthM", { min: 0.5, max: 5000 });
-      const system = (["single-phase", "three-phase", "dc"].includes(String(args.system)) ? String(args.system) : "single-phase") as
-        | "single-phase"
-        | "three-phase"
-        | "dc";
-      const conductor = args.conductor === "aluminium" ? "aluminium" : "copper";
-      const voltage = num(args, "voltageV", { min: 12, max: 1500, def: system === "three-phase" ? 400 : 230 });
+      const system = oneOf(args, "system", ["single-phase", "three-phase", "dc"] as const, "single-phase", {
+        "single phase": "single-phase",
+        "1-phase": "single-phase",
+        "three phase": "three-phase",
+        "3-phase": "three-phase",
+      });
+      const conductor = oneOf(args, "conductor", ["copper", "aluminium"] as const, "copper", { aluminum: "aluminium", cu: "copper", al: "aluminium" });
+      const voltage = num(args, "voltageV", {
+        min: 12,
+        max: 1500,
+        def: system === "three-phase" ? KENYA_LV.threePhaseV : system === "single-phase" ? KENYA_LV.singlePhaseV : undefined,
+      });
       const limit = num(args, "limitPct", { min: 0.5, max: 10, def: 5 });
+      const derating = num(args, "deratingFactor", { min: 0.3, max: 1, def: 1 });
       const csa = optNum(args, "csaMm2", { min: 0.5, max: 630 });
       const rho = RESISTIVITY[conductor];
+      // Line-to-line drop for three-phase (√3), loop drop for single-phase and DC (2).
       const k = system === "three-phase" ? Math.sqrt(3) : 2;
       const dropFor = (a: number) => (k * current * length * rho) / a;
-      const minCsa = (k * current * length * rho) / ((limit / 100) * voltage);
-      const recommended = nextUp(STANDARD_CSA_MM2, minCsa);
+      const minCsaVd = (k * current * length * rho) / ((limit / 100) * voltage);
+      const minCsaIz = minCsaForCurrent(current, { threePhase: system === "three-phase", conductor, deratingFactor: derating });
+      const vdSize = STANDARD_CSA_MM2.find((x) => x >= minCsaVd - 1e-9 && (conductor === "copper" || x >= 16)) ?? null;
+      const recommended = vdSize === null || minCsaIz === null ? null : Math.max(vdSize, minCsaIz);
       const data: ToolResult["data"] = {
         system,
         voltageV: voltage,
         conductor,
         limitPct: limit,
-        minimumCsaMm2: r(minCsa),
+        deratingFactor: derating,
+        minimumCsaForDropMm2: r(minCsaVd),
+        minimumCsaForCurrentMm2: minCsaIz,
         recommendedCsaMm2: recommended,
       };
-      let summary = `${current} A over ${length} m (${system}, ${conductor}) needs at least ${r(minCsa)} mm² for ≤ ${limit}% drop; smallest standard size that passes: ${recommended ?? "above 240"} mm².`;
-      if (csa) {
+      let summary = `${current} A over ${length} m (${system}, ${conductor}, ${voltage} V) needs at least ${r(minCsaVd)} mm² for ≤ ${limit}% drop and ${
+        minCsaIz ?? "above 240"
+      } mm² to carry the current (method C screen); smallest standard size that passes both: ${recommended ?? "above 240"} mm².`;
+      if (csa !== undefined) {
         const dropV = dropFor(csa);
         const pct = (dropV / voltage) * 100;
         data.csaMm2 = csa;
         data.dropV = r(dropV);
         data.dropPct = r(pct);
         data.pass = pct <= limit;
-        summary = `${csa} mm² ${conductor}: ${r(dropV)} V drop (${r(pct)}%), ${pct <= limit ? "within" : "over"} the ${limit}% limit. ` + summary;
+        data.currentCapacityOk = minCsaIz !== null && csa >= minCsaIz;
+        summary = `${csa} mm² ${conductor}: ${r(dropV)} V drop (${r(pct)}%), ${pct <= limit ? "within" : "over"} the ${limit}% limit${
+          minCsaIz !== null && csa < minCsaIz ? `, but below the ${minCsaIz} mm² needed to carry ${current} A` : ""
+        }. ` + summary;
       }
       return {
         label: "calculated",
         summary,
         data,
         notes: [
-          "Resistive method at about 70 °C; ignores reactance, which matters above roughly 25 mm².",
-          "Cable must also meet current-carrying capacity (Iz) for the installation method and grouping: needs site check.",
+          "Resistive method, IEC 60364-5-52 Annex G (ρ = 1.25 × ρ20); ignores reactance, which matters above roughly 25 mm².",
+          "The limit applies from the origin of the installation (3% lighting, 5% other uses); subtract any drop already in the submain.",
+          `Current-carrying screen uses ${conductor} PVC, reference method C, 30 °C (IEC 60364-5-52 Table ${system === "three-phase" ? "B.52.4" : "B.52.2"}), derating ${derating}. Buried, enclosed, grouped or hot runs need the installation-method table: needs site check.`,
         ],
       };
     }
 
     case "sizeProtection": {
       const kw = num(args, "loadKw", { min: 0.01, max: 5000 });
-      const system = args.system === "three-phase" ? "three-phase" : "single-phase";
-      const voltage = num(args, "voltageV", { min: 100, max: 1000, def: system === "three-phase" ? 400 : 230 });
+      const system = oneOf(args, "system", ["single-phase", "three-phase"] as const, "single-phase", {
+        "single phase": "single-phase",
+        "1-phase": "single-phase",
+        "three phase": "three-phase",
+        "3-phase": "three-phase",
+      });
+      const voltage = num(args, "voltageV", { min: 100, max: 1000, def: system === "three-phase" ? KENYA_LV.threePhaseV : KENYA_LV.singlePhaseV });
       const pf = num(args, "powerFactor", { min: 0.5, max: 1, def: 1 });
-      const continuous = args.continuous === undefined ? true : Boolean(args.continuous);
-      const isEv = args.isEvCharger === undefined ? true : Boolean(args.isEvCharger);
+      const continuous = bool(args, "continuous", true);
+      const isEv = bool(args, "isEvCharger", true);
       const ib = (kw * 1000) / (system === "three-phase" ? Math.sqrt(3) * voltage * pf : voltage * pf);
       const design = continuous ? ib * 1.25 : ib;
       const breaker = nextUp(STANDARD_BREAKER_A, design);
       const notes = [
-        "Coordinate Ib ≤ In ≤ Iz: the cable rating must be at least the breaker rating for its installation method.",
+        "Coordinate Ib ≤ In ≤ Iz: the cable rating must be at least the breaker rating for its installation method. minCableCsaMm2 is a copper PVC method C screen at 30 °C.",
         ...(continuous
           ? ["The 1.25 continuous-load margin is conservative; under IEC 60364 In ≥ Ib applies, so follow the charger manual's specified breaker where given."]
           : []),
@@ -399,6 +618,7 @@ function dispatch(name: string, args: Record<string, unknown>): ToolResult {
         designCurrentA: r(ib, 1),
         sizingCurrentA: r(design, 1),
         breakerA: breaker,
+        minCableCsaMm2: breaker === null ? null : minCsaForCurrent(breaker, { threePhase: system === "three-phase", conductor: "copper" }),
         breakerType: isEv ? "MCB curve C, dedicated circuit" : "MCB curve B or C to suit load",
         poles: system === "three-phase" ? "3P or 4P" : "1P+N",
       };
@@ -420,15 +640,19 @@ function dispatch(name: string, args: Record<string, unknown>): ToolResult {
     case "calculateEnergyCost": {
       const kwhDay = num(args, "kwhPerDay", { min: 0, max: 100000 });
       const tariff = num(args, "kesPerKwh", { min: 0, max: 500 });
-      const perDay = kwhDay * tariff;
+      const eff = num(args, "chargingEfficiency", { min: 0.5, max: 1, def: 0.9 });
+      const gridKwh = kwhDay / eff;
+      const perDay = gridKwh * tariff;
       const data: ToolResult["data"] = {
         kwhPerDay: kwhDay,
+        chargingEfficiency: eff,
+        gridKwhPerDay: r(gridKwh),
         kesPerKwh: tariff,
         kesPerDay: r(perDay, 0),
         kesPerMonth: r(perDay * 30, 0),
         kesPerYear: r(perDay * 365, 0),
       };
-      let summary = `${kwhDay} kWh/day × KES ${tariff}/kWh = KES ${r(perDay, 0)}/day, about KES ${r(perDay * 30, 0).toLocaleString("en-KE")}/month.`;
+      let summary = `${kwhDay} kWh/day at the battery is ${r(gridKwh)} kWh/day from the grid at ${Math.round(eff * 100)}% efficiency; × KES ${tariff}/kWh = KES ${r(perDay, 0).toLocaleString("en-KE")}/day, about KES ${r(perDay * 30, 0).toLocaleString("en-KE")}/month.`;
       const km = optNum(args, "dailyKm", { min: 0, max: 2000 });
       const lPer100 = optNum(args, "fuelLPer100km", { min: 1, max: 100 });
       const kesL = optNum(args, "kesPerLitre", { min: 1, max: 1000 });
@@ -442,7 +666,10 @@ function dispatch(name: string, args: Record<string, unknown>): ToolResult {
         label: "calculated",
         summary,
         data,
-        notes: ["Tariffs and fuel prices change; confirm current figures before quoting."],
+        notes: [
+          ...(args.chargingEfficiency === undefined ? ["Charging efficiency assumed at 0.9 (AC planning assumption)."] : []),
+          "Tariffs and fuel prices change; confirm current figures before quoting. October 2026 planning references: all-in KES 24.70/kWh e-mobility base, KES 27.81/kWh domestic DC3.",
+        ],
       };
     }
 

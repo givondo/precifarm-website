@@ -1,73 +1,70 @@
 import { NextResponse } from "next/server";
 import { agentRuntime } from "@/lib/agent/config";
-import type { ChatMessage } from "@/lib/agent/deepseek";
 import { runPrecifarmAgentTurn } from "@/lib/agent/deepseek";
+import { clientIp, createDailyBudget, createRateLimiter, crossOrigin, isLoopbackRequest, parseChatBody } from "@/lib/agent/guard";
 import { promptViaOpenCode } from "@/lib/agent/opencode-bridge";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-type Body = {
-  messages?: ChatMessage[];
-  message?: string;
-  backend?: "deepseek" | "opencode";
-};
-
-/* Best-effort per-instance limiter so a public page cannot drain the API key. */
-const hits = new Map<string, number[]>();
-
-function rateLimited(ip: string): boolean {
-  const now = Date.now();
-  const { requests, windowMs } = agentRuntime.rateLimit;
-  const recent = (hits.get(ip) ?? []).filter((t) => now - t < windowMs);
-  recent.push(now);
-  hits.set(ip, recent);
-  if (hits.size > 5000) {
-    for (const [k, v] of hits) if (!v.some((t) => now - t < windowMs)) hits.delete(k);
-  }
-  return recent.length > requests;
-}
+/*
+ * Best-effort, per-instance limits so a public page cannot drain the API key. With several
+ * Cloud Run instances the effective ceiling is limit × instances: keep a credit limit on the
+ * provider key as the hard stop.
+ */
+const perIpLimited = createRateLimiter(agentRuntime.rateLimit.requests, agentRuntime.rateLimit.windowMs);
+const dailyBudgetSpent = createDailyBudget(agentRuntime.dailyLimit);
 
 export async function POST(request: Request) {
-  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
-  if (rateLimited(ip)) {
+  if (crossOrigin(request.headers.get("origin"), request.headers.get("x-forwarded-host") ?? request.headers.get("host"))) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+
+  const ip = clientIp(request.headers.get("x-forwarded-for"));
+  if (perIpLimited(ip)) {
+    return NextResponse.json({ error: "Too many requests. Please wait a few minutes and try again." }, { status: 429 });
+  }
+
+  const declared = Number(request.headers.get("content-length") ?? 0);
+  if (declared > agentRuntime.maxBodyChars * 4) {
+    return NextResponse.json({ error: "Request too large." }, { status: 413 });
+  }
+  let raw: string;
+  try {
+    raw = await request.text();
+  } catch {
+    return NextResponse.json({ error: "Invalid body" }, { status: 400 });
+  }
+  const parsed = parseChatBody(raw);
+  if (!parsed.ok) {
+    return NextResponse.json({ error: parsed.error }, { status: parsed.status });
+  }
+
+  if (dailyBudgetSpent()) {
     return NextResponse.json(
-      { error: "Too many requests. Please wait a few minutes and try again." },
-      { status: 429 },
+      { error: "The Agent has reached today's early-access limit. Please try again tomorrow." },
+      { status: 503 },
     );
   }
 
-  let body: Body;
   try {
-    body = (await request.json()) as Body;
-  } catch {
-    return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
-  }
-
-  const lastUser =
-    body.message?.trim() ??
-    [...(body.messages ?? [])].reverse().find((m) => m.role === "user" && m.content)?.content?.trim();
-
-  if (!lastUser) {
-    return NextResponse.json({ error: "message or user messages required" }, { status: 400 });
-  }
-
-  const backend =
-    agentRuntime.opencodeServerUrl && (body.backend === "opencode" || process.env.AGENT_PREFER_OPENCODE === "true")
-      ? "opencode"
-      : "deepseek";
-
-  try {
-    if (backend === "opencode") {
-      const reply = await promptViaOpenCode(lastUser.slice(0, agentRuntime.maxMessageChars));
-      return NextResponse.json({ reply, backend, model: agentRuntime.model, trace: [] });
+    // OpenCode can run commands on its host: only for requests from the developer's own machine.
+    const local = isLoopbackRequest(
+      request.headers.get("host"),
+      request.headers.get("x-forwarded-for"),
+      request.headers.get("x-forwarded-host"),
+    );
+    if (agentRuntime.opencodeServerUrl && local) {
+      const lastUser = parsed.history[parsed.history.length - 1].content ?? "";
+      const reply = await promptViaOpenCode(lastUser, AbortSignal.timeout(agentRuntime.timeoutMs));
+      return NextResponse.json({ reply, backend: "opencode", model: agentRuntime.model, trace: [] });
     }
 
-    const history: ChatMessage[] = body.messages?.length ? body.messages : [{ role: "user", content: lastUser }];
-    const { reply, trace } = await runPrecifarmAgentTurn(history, AbortSignal.timeout(agentRuntime.timeoutMs));
+    const { reply, trace } = await runPrecifarmAgentTurn(parsed.history, AbortSignal.timeout(agentRuntime.timeoutMs));
     return NextResponse.json({ reply, backend: agentRuntime.provider, model: agentRuntime.model, trace });
   } catch (err) {
     const message = err instanceof Error ? err.message : "Agent error";
+    // Logs carry the error only: never the API key or the visitor's messages.
     console.error("[agent/chat]", message);
     if (message.includes(agentRuntime.apiKeyEnv)) {
       return NextResponse.json(

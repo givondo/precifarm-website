@@ -53,13 +53,14 @@ async function chatCompletion(messages: DeepSeekMessage[], signal?: AbortSignal)
       tools: engineeringToolDefinitions,
       tool_choice: "auto",
       temperature: 0.2,
+      max_tokens: agentRuntime.maxOutputTokens,
       stream: false,
     }),
   });
 
   if (!res.ok) {
     const text = await res.text();
-    throw new Error(`DeepSeek API ${res.status}: ${text.slice(0, 400)}`);
+    throw new Error(`Model API ${res.status}: ${text.slice(0, 200)}`);
   }
 
   return res.json() as Promise<{
@@ -67,12 +68,28 @@ async function chatCompletion(messages: DeepSeekMessage[], signal?: AbortSignal)
   }>;
 }
 
-/** Keep only plain user/assistant turns from the client, capped in count and length. */
+/**
+ * Keep only plain user/assistant turns from the client, capped in count, per-message length and
+ * total characters (most recent kept). Assistant turns come from the client and are untrusted.
+ */
 export function sanitiseHistory(history: ChatMessage[]): ChatMessage[] {
-  return history
-    .filter((m) => (m.role === "user" || m.role === "assistant") && typeof m.content === "string" && m.content.trim())
+  const kept = history
+    .filter((m) => m && (m.role === "user" || m.role === "assistant") && typeof m.content === "string" && m.content.trim())
     .slice(-agentRuntime.maxHistoryMessages)
-    .map((m) => ({ role: m.role, content: m.content!.slice(0, agentRuntime.maxMessageChars) }));
+    .map((m) => ({
+      role: m.role,
+      content: m.content!.slice(0, m.role === "user" ? agentRuntime.maxMessageChars : agentRuntime.maxAssistantMessageChars),
+    }));
+  let total = 0;
+  let start = kept.length;
+  while (start > 0 && total + kept[start - 1].content.length <= agentRuntime.maxHistoryChars) {
+    total += kept[start - 1].content.length;
+    start -= 1;
+  }
+  const trimmed = kept.slice(Math.min(start, kept.length - 1));
+  // The model must not start on a forged assistant turn.
+  while (trimmed.length > 1 && trimmed[0].role !== "user") trimmed.shift();
+  return trimmed;
 }
 
 /** Run the agent loop, executing tools until the model returns text or the round limit is hit. */
@@ -97,6 +114,7 @@ export async function runPrecifarmAgentTurn(
 
     const toolCalls = msg.tool_calls;
     if (toolCalls?.length) {
+      if (trace.length + toolCalls.length > agentRuntime.maxToolCallsPerTurn) break;
       for (const call of toolCalls) {
         let parsed: Record<string, unknown> = {};
         try {
@@ -116,7 +134,7 @@ export async function runPrecifarmAgentTurn(
       continue;
     }
 
-    return { reply: msg.content?.trim() ?? "", trace };
+    return { reply: typeof msg.content === "string" ? msg.content.trim() : "", trace };
   }
 
   return {

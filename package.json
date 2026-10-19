@@ -26,7 +26,8 @@
     "pdf:megapack-brief": "node scripts/generate-megapack-brief-pdf.mjs",
     "pdf:product-engineering": "node scripts/generate-product-engineering-pdf.mjs",
     "pdf:all": "node scripts/generate-all-pdfs.mjs",
-    "figures:enhance": "node scripts/enhance-figure-design.mjs && node scripts/normalize-figure-svgs.mjs"
+    "figures:enhance": "node scripts/enhance-figure-design.mjs && node scripts/normalize-figure-svgs.mjs",
+    "test": "node --import tsx --test \"tests/**/*.test.ts\""
   },
   "dependencies": {
     "@react-google-maps/api": "^2.20.8",
@@ -45,6 +46,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.10",
     "tailwindcss": "^4",
+    "tsx": "^4.19.2",
     "typescript": "^5"
   }
 }
