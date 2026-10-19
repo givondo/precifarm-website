@@ -33,10 +33,15 @@ export const agentRuntime = {
   maxOutputTokens: 1500,
   /** Conversation turns kept per request */
   maxHistoryMessages: 16,
-  /** Messages accepted from the client before trimming (anything longer is rejected) */
+  /** Most recent messages kept from the client; older ones are dropped, never rejected */
   maxClientMessages: 60,
-  /** Characters per message (matches the textarea maxLength) */
+  /** Characters per user message (matches the textarea maxLength); longer user messages get 413 */
   maxMessageChars: 6000,
+  /**
+   * Assistant replies the browser sends back are truncated to this many characters, never
+   * rejected, so one long reply cannot block the rest of the conversation.
+   */
+  maxAssistantMessageChars: 8000,
   /** Characters of history sent upstream, most recent kept */
   maxHistoryChars: 24_000,
   /** Raw request body size accepted, characters */

@@ -2,7 +2,7 @@ import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import { agentRuntime } from "@/lib/agent/config";
 import { sanitiseHistory } from "@/lib/agent/deepseek";
-import { clientIp, createDailyBudget, createRateLimiter, crossOrigin, parseChatBody } from "@/lib/agent/guard";
+import { clientIp, createDailyBudget, createRateLimiter, crossOrigin, parseChatBody, truncateAssistant } from "@/lib/agent/guard";
 
 describe("parseChatBody", () => {
   it("accepts a normal conversation", () => {
@@ -32,14 +32,50 @@ describe("parseChatBody", () => {
     const res = parseChatBody(JSON.stringify({ messages: [{ role: "user", content: "a" }, { role: "assistant", content: "b" }] }));
     assert.equal(res.ok, false);
   });
-  it("rejects oversized messages, conversations and bodies", () => {
+  it("rejects oversized user messages and bodies", () => {
     const long = "x".repeat(agentRuntime.maxMessageChars + 1);
     const a = parseChatBody(JSON.stringify({ message: long }));
     assert.equal(a.ok === false && a.status, 413);
-    const many = Array.from({ length: agentRuntime.maxClientMessages + 1 }, () => ({ role: "user", content: "a" }));
-    assert.equal(parseChatBody(JSON.stringify({ messages: many })).ok, false);
+    const inList = parseChatBody(JSON.stringify({ messages: [{ role: "user", content: long }] }));
+    assert.equal(inList.ok === false && inList.status, 413);
     const b = parseChatBody("x".repeat(agentRuntime.maxBodyChars + 1));
     assert.equal(b.ok === false && b.status, 413);
+  });
+  it("truncates a long assistant reply instead of rejecting every later message", () => {
+    const reply = "r".repeat(agentRuntime.maxMessageChars * 3);
+    const res = parseChatBody(
+      JSON.stringify({
+        messages: [
+          { role: "user", content: "Design a depot" },
+          { role: "assistant", content: reply },
+          { role: "user", content: "Now size the cable" },
+        ],
+      }),
+    );
+    assert.equal(res.ok, true);
+    if (!res.ok) return;
+    const echoed = res.history[1].content ?? "";
+    assert.equal(echoed.length, agentRuntime.maxAssistantMessageChars);
+    assert.match(echoed, /truncated\]$/);
+    assert.equal(res.history[2].content, "Now size the cable");
+    assert.equal(truncateAssistant("short"), "short");
+  });
+  it("keeps chatting past 30 exchanges by dropping the oldest turns", () => {
+    const messages = [];
+    for (let i = 0; i < 50; i++) {
+      messages.push({ role: "user", content: `question ${i}` }, { role: "assistant", content: `answer ${i}`.padEnd(3000, ".") });
+    }
+    messages.push({ role: "user", content: "latest" });
+    const res = parseChatBody(JSON.stringify({ messages }));
+    assert.equal(res.ok, true);
+    if (!res.ok) return;
+    assert.equal(res.history.length, agentRuntime.maxClientMessages);
+    assert.equal(res.history[res.history.length - 1].content, "latest");
+    assert.ok(!res.history.some((m) => m.content === "question 0"), "oldest turn dropped");
+    const upstream = sanitiseHistory(res.history);
+    assert.ok(upstream.reduce((n, m) => n + (m.content?.length ?? 0), 0) <= agentRuntime.maxHistoryChars);
+    assert.equal(upstream[0].role, "user");
+    assert.equal(upstream[upstream.length - 1].content, "latest");
   });
 });
 

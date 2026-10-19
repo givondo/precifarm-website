@@ -76,7 +76,10 @@ export function sanitiseHistory(history: ChatMessage[]): ChatMessage[] {
   const kept = history
     .filter((m) => m && (m.role === "user" || m.role === "assistant") && typeof m.content === "string" && m.content.trim())
     .slice(-agentRuntime.maxHistoryMessages)
-    .map((m) => ({ role: m.role, content: m.content!.slice(0, agentRuntime.maxMessageChars) }));
+    .map((m) => ({
+      role: m.role,
+      content: m.content!.slice(0, m.role === "user" ? agentRuntime.maxMessageChars : agentRuntime.maxAssistantMessageChars),
+    }));
   let total = 0;
   let start = kept.length;
   while (start > 0 && total + kept[start - 1].content.length <= agentRuntime.maxHistoryChars) {

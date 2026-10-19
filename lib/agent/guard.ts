@@ -12,6 +12,13 @@ import type { ChatMessage } from "@/lib/agent/deepseek";
 
 export type ParsedChat = { ok: true; history: ChatMessage[] } | { ok: false; status: number; error: string };
 
+const TRUNCATED = "\n[earlier reply truncated]";
+
+/** Cap an assistant turn echoed back by the browser at maxAssistantMessageChars, keeping its start. */
+export function truncateAssistant(content: string, max: number = agentRuntime.maxAssistantMessageChars): string {
+  return content.length <= max ? content : content.slice(0, max - TRUNCATED.length) + TRUNCATED;
+}
+
 /** Validate and normalise the JSON body sent by the Agent workspace. */
 export function parseChatBody(raw: string): ParsedChat {
   if (raw.length > agentRuntime.maxBodyChars) {
@@ -30,8 +37,9 @@ export function parseChatBody(raw: string): ParsedChat {
 
   let history: ChatMessage[];
   if (messages !== undefined) {
-    if (!Array.isArray(messages) || messages.length === 0 || messages.length > agentRuntime.maxClientMessages) {
-      return { ok: false, status: 400, error: `messages must be a list of 1 to ${agentRuntime.maxClientMessages} items` };
+    // Count is bounded by maxBodyChars; older turns are trimmed below rather than rejected.
+    if (!Array.isArray(messages) || messages.length === 0) {
+      return { ok: false, status: 400, error: "messages must be a non-empty list" };
     }
     history = [];
     for (const m of messages) {
@@ -40,11 +48,14 @@ export function parseChatBody(raw: string): ParsedChat {
       if ((role !== "user" && role !== "assistant") || typeof content !== "string") {
         return { ok: false, status: 400, error: "Each message needs role user or assistant and string content" };
       }
-      if (content.length > agentRuntime.maxMessageChars) {
+      // Only what the visitor typed is limited; replies the browser echoes back are truncated.
+      if (role === "user" && content.length > agentRuntime.maxMessageChars) {
         return { ok: false, status: 413, error: `Each message must be at most ${agentRuntime.maxMessageChars} characters` };
       }
-      if (content.trim()) history.push({ role, content });
+      const text = role === "assistant" ? truncateAssistant(content) : content;
+      if (text.trim()) history.push({ role, content: text });
     }
+    history = history.slice(-agentRuntime.maxClientMessages);
   } else if (typeof message === "string") {
     if (message.length > agentRuntime.maxMessageChars) {
       return { ok: false, status: 413, error: `Message must be at most ${agentRuntime.maxMessageChars} characters` };
