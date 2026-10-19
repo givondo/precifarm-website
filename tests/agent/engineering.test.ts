@@ -76,14 +76,25 @@ describe("calculateChargingTime", () => {
     assert.equal(res.data.hoursIdeal, 3.89);
     assert.equal(res.data.hoursWithLosses, 4.32);
   });
-  it("DC 40 kWh at 120 kW: 0.33 h before taper, 42.11 kWh grid at 95%, labelled estimated", () => {
+  it("DC 40 kWh at 120 kW: 0.33 h at full power, 0.5 h with taper 0.7 and 95%, labelled estimated", () => {
     const res = ok(run("calculateChargingTime", { kwh: 40, chargerKw: 120, mode: "dc" }));
     assert.equal(res.data.efficiency, 0.95);
+    assert.equal(res.data.dcAverageFactor, 0.7);
     assert.equal(res.data.hoursIdeal, 0.33);
-    assert.equal(res.data.hoursWithLosses, 0.33);
+    // 40 / (120 × 0.7 × 0.95) = 0.501 h
+    assert.equal(res.data.hoursWithLosses, 0.5);
     assert.equal(res.data.gridKwh, 42.11);
     assert.equal(res.label, "estimated");
     assert.ok(res.notes?.some((n) => n.includes("35 to 43 kWh")));
+  });
+  it("120 kW DC for 30 min adds 35 to 43 kWh across the 0.63 to 0.75 factor range", () => {
+    for (const dcAverageFactor of [0.63, 0.7, 0.75]) {
+      const res = ok(run("calculateChargingTime", { kwh: 40, chargerKw: 120, mode: "dc", dcAverageFactor }));
+      const added = Number(res.data.kwhIn30Min);
+      assert.ok(added >= 35 && added <= 43, `factor ${dcAverageFactor}: ${added} kWh`);
+      assert.equal(res.data.kwhIn30Min, Math.round(120 * dcAverageFactor * 0.95 * 0.5 * 100) / 100);
+    }
+    fails(run("calculateChargingTime", { kwh: 40, chargerKw: 120, mode: "dc", dcAverageFactor: 1.5 }), /dcAverageFactor/);
   });
   it("DC capped by an 80 kW vehicle: 0.5 h", () => {
     assert.equal(ok(run("calculateChargingTime", { kwh: 40, chargerKw: 120, mode: "DC", vehicleMaxKw: 80 })).data.hoursIdeal, 0.5);

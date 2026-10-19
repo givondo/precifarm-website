@@ -71,6 +71,11 @@ export const engineeringToolDefinitions = [
         type: "number",
         description: "Grid to battery efficiency 0.5 to 1 (planning assumption: 0.9 for AC, 0.95 for DC)",
       },
+      dcAverageFactor: {
+        type: "number",
+        description:
+          "DC only: average session power as a fraction of peak, to allow for taper. Default 0.7, a planning assumption from measured sessions (0.63 to 0.75)",
+      },
     },
     ["kwh", "chargerKw"],
   ),
@@ -319,6 +324,13 @@ export function minCsaForCurrent(
   return null;
 }
 
+/**
+ * DC average-to-peak power over a session, planning assumption from measured sessions. 0.7 at
+ * 95% efficiency puts a 120 kW charger at about 40 kWh in 30 min, inside the 35 to 43 kWh seen
+ * for common CCS2 cars; 0.63 to 0.75 spans that observed range.
+ */
+const DC_AVERAGE_TO_PEAK = 0.7;
+
 /** Module area per watt: 2.6 m² for a 550 W module. */
 const MODULE_AREA_M2_PER_W = 2.6 / 550;
 
@@ -361,12 +373,12 @@ function dispatch(name: string, args: Record<string, unknown>): ToolResult {
       const mode = oneOf(args, "mode", ["ac", "dc"] as const, "ac");
       const vehicleMaxKw = optNum(args, "vehicleMaxKw", { min: 0.5, max: 1000 });
       const efficiency = num(args, "efficiency", { min: 0.5, max: 1, def: mode === "dc" ? 0.95 : 0.9 });
+      const dcAverageFactor = num(args, "dcAverageFactor", { min: 0.3, max: 1, def: DC_AVERAGE_TO_PEAK });
       const effectiveKw = vehicleMaxKw !== undefined ? Math.min(chargerKw, vehicleMaxKw) : chargerKw;
       const ideal = kwh / effectiveKw;
-      // AC: the rating is drawn from the grid and the onboard charger loses the rest, so the battery
-      // fills at kW × efficiency. DC: the rating is delivered at the connector; losses sit in the
-      // charger cabinet and show up as extra grid energy, not as extra time.
-      const real = mode === "ac" ? kwh / (effectiveKw * efficiency) : ideal;
+      // AC: the onboard charger holds its rating, so the battery fills at kW × efficiency.
+      // DC: power tapers as the battery fills, so the session averages a fraction of peak.
+      const real = mode === "ac" ? kwh / (effectiveKw * efficiency) : kwh / (effectiveKw * dcAverageFactor * efficiency);
       const notes: string[] = [
         `Efficiency ${efficiency} is a planning assumption (0.9 AC, 0.95 DC) unless measured.`,
       ];
@@ -381,13 +393,15 @@ function dispatch(name: string, args: Record<string, unknown>): ToolResult {
       }
       if (mode === "dc") {
         notes.push(
-          "DC power tapers as the battery fills, so real sessions are longer than this constant-power figure. Planning reference: a 120 kW Corridor charger adds about 35 to 43 kWh in 30 min for common CCS2 cars.",
+          `DC time allows for taper with an average-to-peak factor of ${dcAverageFactor} (planning assumption from measured sessions, range 0.63 to 0.75). Check: a 120 kW Corridor charger adds about 35 to 43 kWh in 30 min for common CCS2 cars.`,
         );
       }
       return {
         label: mode === "dc" ? "estimated" : "calculated",
         summary: `${kwh} kWh ${mode.toUpperCase()} at ${r(effectiveKw)} kW takes ${r(ideal)} h at full power${
-          mode === "ac" ? `, about ${r(real)} h with ${Math.round(efficiency * 100)}% efficiency` : " before taper"
+          mode === "ac"
+            ? `, about ${r(real)} h with ${Math.round(efficiency * 100)}% efficiency`
+            : `, about ${r(real)} h allowing for taper (average ${dcAverageFactor} of peak, ${Math.round(efficiency * 100)}% efficiency)`
         }; ${r(kwh / efficiency)} kWh from the grid.`,
         data: {
           kwh,
@@ -399,6 +413,7 @@ function dispatch(name: string, args: Record<string, unknown>): ToolResult {
           hoursIdeal: r(ideal),
           hoursWithLosses: r(real),
           gridKwh: r(kwh / efficiency),
+          ...(mode === "dc" ? { dcAverageFactor, kwhIn30Min: r(effectiveKw * dcAverageFactor * efficiency * 0.5) } : {}),
         },
         notes,
       };
