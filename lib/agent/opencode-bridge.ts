@@ -5,7 +5,7 @@ import { precifarmAgentSystemPrompt } from "@/lib/agent/system-prompt";
  * Forward a prompt to a running OpenCode server (local desktop or sidecar).
  * Configure DeepSeek V4 Flash inside OpenCode via /connect → deepseek.
  */
-export async function promptViaOpenCode(userText: string): Promise<string> {
+export async function promptViaOpenCode(userText: string, signal?: AbortSignal): Promise<string> {
   const base = agentRuntime.opencodeServerUrl;
   if (!base) {
     throw new Error("OPENCODE_SERVER_URL is not set");
@@ -13,6 +13,7 @@ export async function promptViaOpenCode(userText: string): Promise<string> {
 
   const sessionRes = await fetch(`${base}/session`, {
     method: "POST",
+    signal,
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       title: "Precifarm Agent",
@@ -25,11 +26,12 @@ export async function promptViaOpenCode(userText: string): Promise<string> {
 
   const session = (await sessionRes.json()) as { id: string };
 
-  const promptRes = await fetch(`${base}/session/${session.id}/prompt`, {
+  const promptRes = await fetch(`${base}/session/${encodeURIComponent(session.id)}/prompt`, {
     method: "POST",
+    signal,
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      text: `${precifarmAgentSystemPrompt}\n\nUser:\n${userText}`,
+      text: `${precifarmAgentSystemPrompt}\n\nUser:\n${userText.slice(0, agentRuntime.maxMessageChars)}`,
     }),
   });
 
