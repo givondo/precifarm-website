@@ -6,7 +6,7 @@ export const aboutPage = {
  eyebrow: "About Precifarm · Kenya",
  title: "EV charging and modular energy storage for Kenya.",
  description:
- "We survey, finance, install and operate charging for homes, fleets and the Nairobi–Kisumu corridor. Modular energy sits on the same platform as conceptual, not on sale. M-Pesa on every product.",
+ "We survey, finance, install and operate charging for homes, fleets and the Nairobi–Kisumu corridor. Modular energy sits on the same platform (conceptual, not on sale). M-Pesa on every product.",
  primaryHref: "/charging",
  primaryLabel: "Explore charging",
  secondaryHref: "/charging/modular-energy",
@@ -21,7 +21,7 @@ export const aboutPage = {
  eyebrow: "What Precifarm sells",
  title: "We commission charging today and keep modular energy on the same platform until it is ready to sell.",
  description:
- "The commercial beachhead is EV charging we can survey, install and operate. Modular energy is the gated second family as designed with the same engineering language, not sold as a catalogue SKU yet.",
+ "The commercial beachhead is EV charging we can survey, install and operate. Modular energy is the gated second family, designed with the same engineering language, not sold as a catalogue SKU yet.",
  items: [
  {
  eyebrow: "In market",
@@ -34,7 +34,7 @@ export const aboutPage = {
  {
  eyebrow: "",
  title: "Modular energy",
- text: "One Energy Module at three scales as P1 Go, P2 Home and Mini Stack as plus MegaPack for site-scale battery storage. The architecture matches the chargers. It is not certified for sale.",
+ text: "One Energy Module at three scales (P1 Go, P2 Home and Mini Stack), plus MegaPack for site-scale battery storage. The architecture matches the chargers. It is not certified for sale.",
  href: modularEnergyPaths.overview,
  cta: "Read the platform",
  image: productImages.p1Go,
@@ -93,7 +93,7 @@ export const aboutPage = {
  principles: [
  {
  title: "The system around the charger",
- text: "Grid, solar, storage, software and M-Pesa are designed with the charger as not added after it is on the wall.",
+ text: "Grid, solar, storage, software and M-Pesa are designed with the charger, not added after it is on the wall.",
  },
  {
  title: "We don't run the vehicles",
@@ -114,7 +114,7 @@ export const aboutPage = {
  description:
  "Home, fleet and highway products are marketed now. P1 Go, P2 Home, Mini Stack and MegaPack are conceptual and not on sale.",
  today: {
- title: "EV charging as marketed",
+ title: "EV charging: marketed",
  items: [
  { name: "Pulse, Pod and Spark", href: "/charging/home", note: "Home charging" },
  { name: "Depot and Boda Hub", href: "/partners", note: "Fleet and two-wheelers" },
@@ -158,12 +158,12 @@ export const aboutPage = {
  {
  layer: "Modular energy",
  precifarm: "Design P1 Go, P2 Home, Mini Stack and MegaPack on one architecture. These products are not on sale yet.",
- partners: "Homes, shops and industrial sites that need backup as scoped as projects, not a catalogue checkout.",
+ partners: "Homes, shops and industrial sites that need backup, scoped as projects, not a catalogue checkout.",
  },
  ],
  cta: {
  title: "Tell us which site you want to electrify.",
- description: "Home survey, fleet depot, highway hub or energy-storage conversation as we respond within one business day.",
+ description: "Home survey, fleet depot, highway hub or energy-storage conversation: we respond within one business day.",
  primaryHref: "/contact",
  primaryLabel: "Contact us",
  secondaryHref: "/hub",

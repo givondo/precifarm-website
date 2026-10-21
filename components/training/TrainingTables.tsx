@@ -44,7 +44,7 @@ function TrainingTable({
     <div className="training-table-shell">
       {hint && <p className="training-table-hint">{hint}</p>}
       <div className="training-table-wrap">
-        <div className="training-table-scroll">
+        <div className="training-table-scroll" tabIndex={0} role="region" aria-label={`${caption} (scrolls sideways)`}>
           <table className="training-table w-full text-left text-sm" style={{ minWidth }}>
             <caption className="training-table-caption">
               <span className="training-table-caption-label">{caption}</span>

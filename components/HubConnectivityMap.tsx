@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import {
   chargingMapHubs,
   filterHubs,
@@ -64,7 +64,7 @@ function mapViewport(filter: HubFilter) {
 export default function HubConnectivityMap() {
   const [filter, setFilter] = useState<HubFilter>("all");
   const [query, setQuery] = useState("");
-  const [selectedHubId, setSelectedHubId] = useState<string | null>(DEFAULT_HUB_ID);
+  const [chosenHubId, setSelectedHubId] = useState<string | null>(DEFAULT_HUB_ID);
   const [listOpen, setListOpen] = useState(false);
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [nearMeActive, setNearMeActive] = useState(false);
@@ -81,14 +81,11 @@ export default function HubConnectivityMap() {
     return sortHubsByDistance(filteredHubs, userLocation.lat, userLocation.lng);
   }, [filteredHubs, userLocation]);
 
+  // When a filter or search hides the chosen hub, the first match is shown instead (derived, not stored).
+  const selectedHubId =
+    chosenHubId && !filteredHubs.some((h) => h.id === chosenHubId) ? (filteredHubs[0]?.id ?? null) : chosenHubId;
   const selectedHub = hubsWithDistance.find((h) => h.id === selectedHubId) ?? null;
   const viewport = mapViewport(filter);
-
-  useEffect(() => {
-    if (selectedHubId && !filteredHubs.some((h) => h.id === selectedHubId)) {
-      setSelectedHubId(filteredHubs[0]?.id ?? null);
-    }
-  }, [filteredHubs, selectedHubId]);
 
   const handleNearMe = useCallback(() => {
     if (!navigator.geolocation) {

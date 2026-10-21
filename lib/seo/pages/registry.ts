@@ -24,7 +24,7 @@ import {
 import { downloadPageFaqs } from "@/lib/download-page";
 import { megapackFaqs, megapackPageContent } from "@/lib/megapack-page";
 import { productImages } from "@/lib/product-images";
-import { bodaHubFaqs, bodaHubPageContent, bodaHubStatusNote } from "@/lib/boda-hub-page";
+import { bodaHubFaqs, bodaHubPageContent } from "@/lib/boda-hub-page";
 import { homepageAisoBlocks } from "@/lib/seo/aiso/blocks";
 import { defaultSiteTitle, siteConfig } from "@/lib/seo/config";
 import type { PageSeoInput } from "@/lib/seo/types";
@@ -125,7 +125,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  {
  path: "/charging/boda-hub",
  title: "Automated Boda Hub | Keep your bike moving",
- description: `${bodaHubPageContent.hero.description} ${bodaHubStatusNote}`,
+ description: `${bodaHubPageContent.hero.description} Self-service in design and testing.`,
  keywords: [
  "boda battery swap Kenya",
  "electric motorcycle smart locker",
@@ -145,7 +145,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  path: "/charging/modular-energy",
  title: "Modular Energy — One 2.56 kWh Module, Three Scales",
  description:
- "P1 Go carried, P2 Home stacked beside the board, Mini Stack mounted outdoors as three scales of one 2.56 kWh Energy Module, designed for Kenyan homes and shops. Conceptual, not on sale yet.",
+ "P1 Go carried, P2 Home stacked, Mini Stack mounted outdoors: three scales of one 2.56 kWh Energy Module for Kenyan homes and shops. Conceptual, not on sale yet.",
  keywords: [
  "home battery storage Kenya",
  "modular energy platform",
@@ -173,7 +173,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  path: "/charging/modular-energy/p1-go",
  title: "P1 Go — Portable Backup When the Power Goes Out",
  description:
- "About 1 kWh in an aluminium carry case, with foldable solar and a Type 2 trickle lead in the box. Sized for a router, laptop and phones through an outage. Conceptual, not a daily EV charger and not on sale yet.",
+ "About 1 kWh with foldable solar and a Type 2 trickle lead, for a router, laptop and phones in an outage. Conceptual: not a daily EV charger, not on sale yet.",
  keywords: ["P1 Go", "portable power station Kenya", "home backup battery Kenya"],
  faqs: [
  {
@@ -192,7 +192,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  path: "/charging/modular-energy/p2-home",
  title: "P2 Home — A Tower That Grows With Your Backup Needs",
  description:
- "One to four 2.56 kWh modules on a single Power Core, standing beside the consumer board and feeding an essential-load sub-board. About 2.6 to 10.2 kWh nameplate. Conceptual, not certified for sale.",
+ "One to four 2.56 kWh modules (2.6 to 10.2 kWh) on one Power Core beside the consumer board, feeding essential loads. Conceptual, not certified for sale.",
  keywords: ["P2 Home", "home battery storage Kenya", "LiFePO4 backup Kenya"],
  faqs: [
  {
@@ -211,7 +211,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  path: "/charging/modular-energy/mini-stack",
  title: "Mini Stack — Outdoor Backup for Kenyan Retail Sites",
  description:
- "Two to six Energy Modules in an outdoor enclosure on a plinth, holding up refrigeration, the till and lighting at Kenyan retail sites. Distinct from Pod energy storage for home EV charging. Conceptual, not certified for sale.",
+ "Two to six Energy Modules outdoors on a plinth, for fridges, tills and lights at Kenyan shops. Not Pod energy storage. Conceptual, not certified for sale.",
  keywords: ["Precifarm Mini Stack", "SME battery storage Kenya", "outdoor energy storage Kenya"],
  faqs: [
  {
@@ -230,7 +230,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  path: "/charging/modular-energy/megapack",
  title: "MegaPack | Project-Engineered BESS Kenya",
  description:
- "Precifarm MegaPack is project-engineered battery storage in Kenya — from industrial sites and EV charging hubs to grid-connected utility plants. Sized per site, not sold as a catalogue SKU.",
+ "Project-engineered battery storage in Kenya for industrial sites, EV charging hubs and grid-connected plants. Sized per site, not sold as a catalogue SKU.",
  keywords: [
  "battery energy storage Kenya",
  "BESS Kenya",
@@ -255,7 +255,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  path: "/evs",
  title: "Electric Vehicles in Kenya",
  description:
- "Compare EVs in Kenya — Nissan Leaf, BYD Atto 3, MG4, Tesla Model 3, Roam Air and more. Practical range, DC charging speed, daily top-up time and where Precifarm home, hub and corridor charging fit.",
+ "Compare EVs in Kenya: Nissan Leaf, BYD Atto 3, MG4, Tesla Model 3, Roam Air and more. Range, DC speed, daily top-up time and where Precifarm charging fits.",
  keywords: [
  "EV Kenya comparison",
  "Kenya EV guide",
@@ -339,7 +339,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  path: "/about",
  title: "About Precifarm — EV Charging & Modular Energy in Kenya",
  description:
- "Precifarm builds EV charging and modular energy storage in Kenya — Pulse, Pod and Corridor today; P1 Go, P2 Home, Mini Stack and MegaPack on the platform roadmap. M-Pesa on every product.",
+ "Precifarm builds EV charging and modular storage in Kenya: Pulse, Pod and Corridor today; P1 Go, P2 Home, Mini Stack and MegaPack on the roadmap. All on M-Pesa.",
  faqs: [
  {
  question: "What does Precifarm do?",
@@ -366,7 +366,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  path: "/research",
  title: "R&D: Wireless Charging, Agent & Hub Energy Research | Precifarm",
  description:
- "Precifarm R&D in Kenya: five programmes with goals, G0 to G4 evidence gates and a dated roadmap. Wireless e-boda charging, Precifarm Agent, hub solar and storage, battery health and bidirectional charging.",
+ "Five Precifarm R&D programmes in Kenya, gated G0 to G4: wireless e-boda charging, Agent, hub solar and storage, battery health and bidirectional charging.",
  keywords: [
  "wireless EV charging research",
  "wireless power transfer Kenya",
@@ -387,7 +387,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  path: wirelessChargingPolicyPath,
  title: "Wireless EV Charging R&D Policy | Precifarm",
  description:
- "Precifarm company policy for wireless EV charging research — industry benchmarks (SAE J2954, IEC 61980, OEM references), safety gates, and Kenya pilot rules. Not a product offer; wired Pulse and Corridor remain commercial.",
+ "Wireless EV charging research policy: SAE J2954 and IEC 61980 benchmarks, safety gates, Kenya pilot rules. Not a product offer; wired charging stays commercial.",
  keywords: [
  "wireless EV charging policy",
  "WPT research Kenya",
@@ -436,7 +436,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  {
  path: cookiesPolicyPath,
  title: "Cookies & analytics | Precifarm",
- description: "Cookies and analytics on precifarm.com.",
+ description: "Which cookies and analytics precifarm.com uses, why they are needed, and how to block or delete them in your browser.",
  faqs: cookiesFaqs,
  breadcrumbs: [
  { name: "Home", href: "/" },
@@ -448,7 +448,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  path: "/sustainability",
  title: "Sustainability — Precifarm Kenya",
  description:
- "Our 2030 goal is to make clean charging the affordable choice for Kenya. By 2050 we aim to help replace 1 billion kilometres of fossil-fuel driving with electric kilometres. A typical 60 km home day is about KES 140 versus about KES 1,000 in diesel.",
+ "Our 2030 goal: make clean charging the affordable choice for Kenya. By 2050 we aim to help replace 1 billion fossil-fuel kilometres with electric ones.",
  faqs: [
  {
  question: "What is Precifarm's 2050 kilometre target?",
@@ -496,7 +496,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  path: "/agent",
  title: "Precifarm Agent: AI Electrical & Energy Engineer",
  description:
- "Precifarm Agent: an AI electrical and energy engineer for Kenya. It plans EV charging, solar, battery, cable and protection designs and runs ten deterministic engineering tools, with a calculation trace and evidence label on every number. Try it in the browser.",
+ "Precifarm Agent, an AI electrical and energy engineer for Kenya, plans EV charging, solar, battery and cable designs with a calculation trace on every number.",
  keywords: [
  "AI electrical engineer",
  "AI engineering assistant",
@@ -597,9 +597,9 @@ export const pageSeoRegistry: PageSeoInput[] = [
  },
  {
  path: "/sw",
- title: "Precifarm as Usafiri wa umeme Kenya",
+ title: "Precifarm: Usafiri wa umeme Kenya",
  description:
- "Precifarm inajenga na kuendesha kuchaji umeme nchini Kenya as kutoka Pulse charger nyumbani hadi Corridor DC barabarani, Lipa Pole Pole kutoka KES 3,300 kwa mwezi, kulipwa na M-Pesa.",
+ "Precifarm inajenga na kuendesha kuchaji umeme Kenya: kutoka Pulse charger nyumbani hadi Corridor DC barabarani. Lipa Pole Pole ya M-Pesa kutoka KES 3,300/mwezi.",
  faqs: [
  {
  question: "Precifarm inafanya nini?",

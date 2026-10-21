@@ -73,7 +73,7 @@ export const socialImpactCards = [
  icon: "technicians",
  title: "Technicians",
  headline: "Trained on Precifarm kit",
- text: "Field training on the chargers we deploy as install, fault-finding and handover to the customer.",
+ text: "Field training on the chargers we deploy: install, fault-finding and handover to the customer.",
  href: "/training",
  label: "EV charging training",
  },
@@ -82,14 +82,14 @@ export const socialImpactCards = [
  icon: "operators",
  title: "Operators",
  headline: "Back on shift fast",
- text: "Boda swap in under five minutes. Fleet charging while vehicles are parked as sized to the working day.",
+ text: "Boda swap in under five minutes. Fleet charging while vehicles are parked, sized to the working day.",
  },
  {
  id: "smes",
  icon: "smes",
  title: "Shops & SMEs",
  headline: "Power for the business",
- text: "Solar, storage and charging sized for fridges, tills and back-office load as one survey, one install team.",
+ text: "Solar, storage and charging sized for fridges, tills and back-office load: one survey, one install team.",
  href: "/charging/engineering",
  label: "Site design",
  },
@@ -141,7 +141,7 @@ export const reportingPlanned = [
  {
  id: "methodology-disclosure",
  title: "How we count electric kilometres",
- detail: "Published before any running kilometre or COâ‚‚ total on this site.",
+ detail: "Published before any running kilometre or CO₂ total on this site.",
  },
  {
  id: "pcf",
@@ -186,7 +186,7 @@ export const sustainabilityPage = {
  },
  socialSection: {
  eyebrow: "Jobs & towns",
- title: "Every install needs fitters, operators and technicians as not only drivers.",
+ title: "Every install needs fitters, operators and technicians, not only drivers.",
  description:
  "Home chargers, swap cabinets and highway stops need people nearby to survey, fit, run and repair them.",
  },
@@ -208,7 +208,7 @@ export const sustainabilityPage = {
  "We do not show annual impact reports or outside certificates until the counting method is ready. The 1 billion kilometre target stays labelled as an ambition until then.",
  ambition: {
  value: "1 billion km",
- title: "A 2050 ambition as not a live counter",
+ title: "A 2050 ambition, not a live counter",
  text: "By 2050, we aim to help replace 1 billion kilometres of fossil-fuel driving with electric kilometres across Kenya. That number is a target. We will publish how we count before any running total appears on this page.",
  },
  sdgNote:
@@ -294,7 +294,7 @@ export const sustainabilityPage = {
  cta: {
  title: "More electric kilometres. Less fossil fuel. Better charging for Kenya.",
  description:
- "From a home wallbox to a highway stop as Precifarm installs charging and storage with honest Hub labels and published KES prices.",
+ "From a home wallbox to a highway stop, Precifarm installs charging and storage with honest Hub labels and published KES prices.",
  primaryHref: siteCtas.exploreCharging.href,
  primaryLabel: siteCtas.exploreCharging.label,
  secondaryHref: siteCtas.chargingHub.href,

@@ -4,7 +4,7 @@ import type { FaqItem } from "@/lib/seo/types";
 /**
  * Public charging FAQs grounded in published consumer copy and the solar-hub
  * design basis. Handbook LCOC / payback figures stay on the engineering page
- * and are labelled planning / illustrative as never as live tariffs.
+ * and are labelled planning / illustrative, never as live tariffs.
  *
  * Booking / Nairobi–Kisumu passenger content is retired from the public site:
  * Precifarm does not operate vehicles, so it contradicts the entity description
@@ -39,13 +39,13 @@ export const consumerChargingFaqs: ChargingFaq[] = [
  id: "home-day-cost",
  question: "How much does home charging cost per day?",
  answer:
- "A typical Nairobi driving day of about 60 km as a home charging day as costs roughly KES 140 in electricity at home versus ~KES 1,000 in diesel per day as a typical saving of about KES 860 a day. On a Pulse charger, that day refills in about 90 minutes. Actual cost depends on your Kenya Power tariff, vehicle efficiency and kilometres driven.",
+ "A typical Nairobi driving day of about 60 km (a home charging day) costs roughly KES 140 in electricity at home versus ~KES 1,000 in diesel per day, a typical saving of about KES 860 a day. On a Pulse charger, that day refills in about 90 minutes. Actual cost depends on your Kenya Power tariff, vehicle efficiency and kilometres driven.",
  },
  {
  id: "pulse-price",
  question: "How much is a Pulse charger?",
  answer:
- "The Pulse charger starts from KES 79,000, with Lipa Pole Pole instalments on M-Pesa. A typical 60 km day refills in about 90 minutes at 7 kW. The quoted price follows a private-house survey as consumer-unit upgrades, extra cabling or civil works are priced separately if they are needed.",
+ "The Pulse charger starts from KES 79,000, with Lipa Pole Pole instalments on M-Pesa. A typical 60 km day refills in about 90 minutes at 7 kW. The quoted price follows a private-house survey; consumer-unit upgrades, extra cabling or civil works are priced separately if they are needed.",
  },
  {
  id: "public-dc-price",
@@ -57,13 +57,13 @@ export const consumerChargingFaqs: ChargingFaq[] = [
  id: "home-vs-public",
  question: "Why is home charging cheaper than public DC?",
  answer:
- "At home you pay your household electricity tariff on your own meter. Public Depot charging stations and Corridor charging sites recover charger hardware, Kenya Power demand, monitoring and uptime as so the published public rate starts from KES 39/kWh, still typically far below diesel for the same kilometres.",
+ "At home you pay your household electricity tariff on your own meter. Public Depot charging stations and Corridor charging sites recover charger hardware, Kenya Power demand, monitoring and uptime, so the published public rate starts from KES 39/kWh, still typically far below diesel for the same kilometres.",
  },
  {
  id: "lipa-pole-pole",
  question: "What is Lipa Pole Pole?",
  answer:
- "Lipa Pole Pole is Precifarm instalment financing on M-Pesa as from KES 3,300/month. Pay a deposit and spread the balance on any phone as no bank account required. It applies to Pulse charger and Pod energy storage installations, not to public charging sessions.",
+ "Lipa Pole Pole is Precifarm instalment financing on M-Pesa, from KES 3,300/month. Pay a deposit and spread the balance on any phone. No bank account required. It applies to Pulse charger and Pod energy storage installations, not to public charging sessions.",
  },
  {
  id: "get-home-charger",
@@ -75,7 +75,7 @@ export const consumerChargingFaqs: ChargingFaq[] = [
  id: "house-installation-includes",
  question: "What is included in a private house installation?",
  answer:
- "Remote intake and property survey, a written quote and single-line diagram, Pulse charger or Pod energy storage supply and installation (Type 2 AC for your vehicle), commissioning, handover, remote monitoring and three-year aftersale support. Optional Pod energy storage with solar and LiFePOâ‚„ storage. Kenya Power service upgrades and unusual civil works are not included unless they appear on the quote.",
+ "Remote intake and property survey, a written quote and single-line diagram, Pulse charger or Pod energy storage supply and installation (Type 2 AC for your vehicle), commissioning, handover, remote monitoring and three-year aftersale support. Optional Pod energy storage with solar and LiFePO₄ storage. Kenya Power service upgrades and unusual civil works are not included unless they appear on the quote.",
  },
  {
  id: "pulse-vs-pod",
@@ -111,7 +111,7 @@ export const consumerChargingFaqs: ChargingFaq[] = [
  id: "payment-methods",
  question: "What payment methods are accepted?",
  answer:
- "M-Pesa for home instalments (Lipa Pole Pole) and public charging sessions. USSD and SMS work on basic phones as no bank account required.",
+ "M-Pesa for home instalments (Lipa Pole Pole) and public charging sessions. USSD and SMS work on basic phones. No bank account required.",
  },
  {
  id: "public-locations",
@@ -134,19 +134,19 @@ export const consumerChargingFaqs: ChargingFaq[] = [
  id: "depot",
  question: "What is a Depot charging station?",
  answer:
- "Depot is a 22 kW AC pedestal for fleets that park for hours as vans, shuttles and yard vehicles. It adds 40+ kWh in about 120 minutes. Public DC at Depot and Corridor sites is from KES 39/kWh on M-Pesa. See Partners for fleet electrification.",
+ "Depot is a 22 kW AC pedestal for fleets that park for hours: vans, shuttles and yard vehicles. It adds 40+ kWh in about 120 minutes. Public DC at Depot and Corridor sites is from KES 39/kWh on M-Pesa. See Partners for fleet electrification.",
  },
  {
  id: "boda-hub",
  question: "What is Boda Hub?",
  answer:
- "Boda Hub is battery swap or kerbside charge for electric motorcycles as typically under five minutes back on the road. Live sites are listed on the Charging Hub. Automated self-service lockers (find → reserve → scan → swap → pay) are on the product roadmap under engineering validation as see precifarm.com/charging/boda-hub. Compatibility depends on validated platforms at each site.",
+ "Boda Hub is battery swap or kerbside charge for electric motorcycles, typically under five minutes back on the road. Live sites are listed on the Charging Hub. Automated self-service lockers (find → reserve → scan → swap → pay) are on the product roadmap under engineering validation. See precifarm.com/charging/boda-hub. Compatibility depends on validated platforms at each site.",
  },
  {
  id: "modular-energy",
  question: "What is Precifarm modular energy?",
  answer:
- "P1 Go, P2 Home and Mini Stack are a conceptual energy-storage family as portable backup, a home tower and outdoor SME backup. They are not on sale yet and Mini Stack is not Pod energy storage (the home charger + battery on the home charging page). See precifarm.com/charging/modular-energy.",
+ "P1 Go, P2 Home and Mini Stack are a conceptual energy-storage family: portable backup, a home tower and outdoor SME backup. They are not on sale yet and Mini Stack is not Pod energy storage (the home charger + battery on the home charging page). See precifarm.com/charging/modular-energy.",
  },
  {
  id: "training",
@@ -201,7 +201,7 @@ export const privateHouseScopeFaqs: FaqItem[] = [
  {
  question: "What about a whole estate or school?",
  answer:
- "Multi-bay sites for organisations use Depot charging stations as see fleet charging on the Partners page. That is not Pulse charger or Pod energy storage home charging. Those sites are sized to fleet and visitor demand in a written engineering assessment.",
+ "Multi-bay sites for organisations use Depot charging stations. See fleet charging on the Partners page. That is not Pulse charger or Pod energy storage home charging. Those sites are sized to fleet and visitor demand in a written engineering assessment.",
  },
  {
  question: "How long does a house installation take?",

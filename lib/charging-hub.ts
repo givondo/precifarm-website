@@ -9,7 +9,7 @@ export const chargingHub = {
   openLabel: "Open Charging Hub",
   nameLower: "charging hub",
   description:
-    "Charging Hub lists Precifarm fast chargers, boda battery swap and partner stops across Kenya — with honest open and coming-soon labels, and M-Pesa pay at the bay.",
+    "Charging Hub lists Precifarm fast chargers, boda battery swap and partner stops across Kenya, with honest open and coming-soon labels and M-Pesa pay at the bay.",
   url: "https://precifarm.com/hub",
 } as const;
 

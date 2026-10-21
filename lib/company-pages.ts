@@ -4,7 +4,7 @@ export const guidesPage = {
   eyebrow: "Guides · Kenya",
   title: "Home install, highway DC and M-Pesa — step by step",
   description:
-    "Written for Kenyan drivers and installers: Pulse charger and Pod energy storage at home, Corridor sessions on the highway, Charging Hub labels and Precifarm Agent on desktop.",
+    "For Kenyan drivers and installers: Pulse charger and Pod energy storage at home, Corridor sessions on the highway, Charging Hub labels and Precifarm Agent.",
   cta: {
     title: "Ready to charge?",
     description: "Browse the charging range or open the Charging Hub to see what is live near you.",

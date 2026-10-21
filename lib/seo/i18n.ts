@@ -33,8 +33,13 @@ export function pathWithoutLocale(path: string): string {
 export function hreflangAlternates(path: string): Record<string, string> {
   const withPrefix = path.startsWith("/") ? path : `/${path}`;
   const normalized = pathWithoutLocale(withPrefix);
+  // Only /sw and the Swahili FAQ pages exist. Advertising /sw/<path> for every English page sent search
+  // engines to redirects and 404s, so a Swahili alternate is listed only where that page is known to exist:
+  // the home page, and a Swahili page describing itself.
+  const swahiliExists = normalized === "/" || localeFromPath(withPrefix).code === "sw-KE";
   const languages: Record<string, string> = {};
   for (const locale of siteLocales) {
+    if (locale.code === "sw-KE" && !swahiliExists) continue;
     const localized =
       locale.pathPrefix === ""
         ? normalized

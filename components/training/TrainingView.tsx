@@ -116,7 +116,7 @@ export default function TrainingView() {
         <div className="page-container flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
           <span className="font-semibold text-white/70">Jump to</span>
           {explore.map((item) => (
-            <a key={item.href} href={item.href} className="font-medium hover:text-charge-300">
+            <a key={item.href} href={item.href} className="font-medium text-white hover:text-charge-300">
               {item.label}
             </a>
           ))}

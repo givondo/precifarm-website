@@ -35,7 +35,7 @@ export default function AgentWorkspaceMock() {
 
       <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
         <div className="border-b border-white/10 p-4 sm:p-5 lg:border-b-0 lg:border-r">
-          <p className="font-mono text-[10px] uppercase tracking-widest text-white/40">User</p>
+          <p className="font-mono text-[10px] uppercase tracking-widest text-white/60">User</p>
           <div className="mt-3 space-y-1 font-mono text-[13px] leading-relaxed text-white/85">
             {mock.user.map((line, i) =>
               line === "" ? (
@@ -57,7 +57,7 @@ export default function AgentWorkspaceMock() {
                   <li
                     key={task.label}
                     className={`flex items-start gap-2.5 font-mono text-[12px] sm:text-[13px] ${
-                      done || current ? "text-white/90" : "text-white/35"
+                      done || current ? "text-white/90" : "text-white/55"
                     }`}
                   >
                     <span
@@ -81,7 +81,7 @@ export default function AgentWorkspaceMock() {
         </div>
 
         <div className="bg-white/[0.03] p-4 sm:p-5">
-          <p className="font-mono text-[10px] uppercase tracking-widest text-white/40">
+          <p className="font-mono text-[10px] uppercase tracking-widest text-white/60">
             Current analysis
           </p>
           <dl className="mt-4 space-y-2.5">
@@ -112,7 +112,7 @@ export default function AgentWorkspaceMock() {
               </button>
             ))}
           </div>
-          <p className="mt-4 font-mono text-[11px] leading-relaxed text-white/40">
+          <p className="mt-4 font-mono text-[11px] leading-relaxed text-white/60">
             {tab === 0 && "EV energy and charge-time calcs · inputs you can check"}
             {tab === 1 && "System sketch: still needs a supply check on site"}
             {tab === 2 && "Draft parts list: Pulse 7 kW · Pod 10 kWh · protection TBD"}

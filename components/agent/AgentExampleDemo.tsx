@@ -55,7 +55,7 @@ export default function AgentExampleDemo() {
         </ol>
 
         <div className="border-t border-border bg-[#0c0f12] p-5 text-white sm:p-6 lg:border-l lg:border-t-0">
-          <p className="font-mono text-[10px] uppercase tracking-widest text-white/40">
+          <p className="font-mono text-[10px] uppercase tracking-widest text-white/60">
             {ex.recommendation.title}
           </p>
           <div

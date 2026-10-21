@@ -23,7 +23,7 @@ export const productImages = {
   },
   spark: {
     src: "/images/products/spark-v3.png",
-    alt: "Precifarm Spark portable EV charger as Type 2 connector, control box and industrial plug",
+    alt: "Precifarm Spark portable EV charger: Type 2 connector, control box and industrial plug",
     brand: "spark" as const,
   },
   pulse: {

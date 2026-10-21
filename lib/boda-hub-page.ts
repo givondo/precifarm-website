@@ -1,5 +1,5 @@
 ﻿/**
- * Precifarm Automated Boda Hub as public product page.
+ * Precifarm Automated Boda Hub: public product page.
  * Brand voice: short, Kenya-first, infrastructure not jargon.
  * Silver lockers · 2.56 kWh Energy Module · partner-hosted.
  * Not live as unattended self-service yet.
@@ -31,7 +31,7 @@ export const bodaHubPageContent = {
  eyebrow: "Boda Hub",
  title: "Keep your bike moving.",
  description:
- "Automated battery-swap smart lockers for electric motorcycles as find a hub, reserve a pack, scan, swap and pay with M-Pesa.",
+ "Automated battery-swap smart lockers for electric motorcycles: find a hub, reserve a pack, scan, swap and pay with M-Pesa.",
  image: {
  src: productRenderPaths.bodaHubStudio,
  alt: "Boda Hub smart lockers at a partner site with electric motorcycles",
@@ -48,11 +48,11 @@ export const bodaHubPageContent = {
  highlights: [
  {
  label: "Riders",
- value: "Back on the road in minutes as charged pack out, empty pack in",
+ value: "Back on the road in minutes: charged pack out, empty pack in",
  },
  {
  label: "Hosts",
- value: "Turn your forecourt or stage into a swap stop as no shop to staff",
+ value: "Turn your forecourt or stage into a swap stop, no shop to staff",
  },
  {
  label: "Network",
@@ -91,7 +91,7 @@ export const bodaHubPageContent = {
  },
  networkSites: {
  eyebrow: "How sites grow",
- title: "Add a cabinet as not a building.",
+ title: "Add a cabinet, not a building.",
  description:
  "When rush hour empties the doors, park another locker beside the first. Same look. More capacity.",
  points: [
@@ -105,7 +105,7 @@ export const bodaHubPageContent = {
  eyebrow: "Energy Module",
  title: "One pack. Every door.",
  description:
- "The 2.56 kWh Energy Module is the battery riders swap as the same block used across Precifarm modular energy. One spare. One training path. One network.",
+ "The 2.56 kWh Energy Module is the battery riders swap, the same block used across Precifarm modular energy. One spare. One training path. One network.",
  facts: [
  { label: "Capacity", value: "2.56 kWh" },
  { label: "Use", value: "Swap pack" },
@@ -115,7 +115,7 @@ export const bodaHubPageContent = {
  points: [
  "Every Boda Hub door is built for this module",
  "Shared with P1 Go, P2 Home and Mini Stack",
- "Grow a site by adding doors as not new battery types",
+ "Grow a site by adding doors, not new battery types",
  "Service teams learn one pack, not a catalogue of packs",
  ] as const,
  image: {
@@ -129,11 +129,11 @@ export const bodaHubPageContent = {
  eyebrow: "Hardware",
  title: "Simple outside. Smart inside.",
  description:
- "A public-place cabinet riders understand in seconds as screen, doors, status lights.",
+ "A public-place cabinet riders understand in seconds: screen, doors, status lights.",
  anatomy: [
  {
  name: "Rider screen",
- text: "One next step at a time as scan, open, return, pay.",
+ text: "One next step at a time: scan, open, return, pay.",
  },
  {
  name: "Smart doors",
@@ -145,7 +145,7 @@ export const bodaHubPageContent = {
  },
  {
  name: "Outdoor shell",
- text: "Silver cabinet for streets and stages as weather rating still under test.",
+ text: "Silver cabinet for streets and stages (weather rating still under test).",
  },
  ] as const,
  image: {
@@ -164,7 +164,7 @@ export const bodaHubPageContent = {
  },
  {
  name: "Scan",
- text: "App, QR or tap as the locker knows it is you.",
+ text: "App, QR or tap: the locker knows it is you.",
  },
  {
  name: "Take charged",
@@ -190,7 +190,7 @@ export const bodaHubPageContent = {
  eyebrow: "Trust",
  title: "We do not hand out a pack we have not checked.",
  description:
- "Identity, pack health and payment rules come before the door opens. Failed packs stay with technicians as not the next rider.",
+ "Identity, pack health and payment rules come before the door opens. Failed packs stay with technicians, not the next rider.",
  points: [
  "One door at a time on a normal swap",
  "Safe override when something jams",
@@ -202,7 +202,7 @@ export const bodaHubPageContent = {
  eyebrow: "Kenya",
  title: "Built for weak signal days.",
  description:
- "Doors and safety stay on the locker. Accounts and pricing stay online. If the link drops, safe swaps can still complete and sync later as we never skip payment or safety to keep doors open.",
+ "Doors and safety stay on the locker. Accounts and pricing stay online. If the link drops, safe swaps can still complete and sync later. We never skip payment or safety to keep doors open.",
  },
  system: {
  eyebrow: "The Precifarm system",
@@ -210,7 +210,7 @@ export const bodaHubPageContent = {
  items: [
  {
  name: "Smart pick",
- text: "The network chooses a healthy charged pack as not only the fullest one.",
+ text: "The network chooses a healthy charged pack, not only the fullest one.",
  },
  {
  name: "M-Pesa",
@@ -218,7 +218,7 @@ export const bodaHubPageContent = {
  },
  {
  name: "Remote ops",
- text: "We see stock, faults and uptime as and send field care before riders feel it.",
+ text: "We see stock, faults and uptime, and send field care before riders feel it.",
  },
  {
  name: "Precifarm Agent",
@@ -230,7 +230,7 @@ export const bodaHubPageContent = {
  eyebrow: "Partners",
  title: "You bring the site. We bring Boda Hub.",
  description:
- "Petrol stations, shops, stages, parking and depots. Commercial terms are agreed per deal as lease, revenue share or similar.",
+ "Petrol stations, shops, stages, parking and depots. Commercial terms are agreed per deal: lease, revenue share or similar.",
  sites: [
  "Petrol stations & shops",
  "Supermarkets & malls",
@@ -251,7 +251,7 @@ export const bodaHubPageContent = {
  phases: [
  {
  name: "1 · Prototype",
- text: "One working locker as doors, charging and safe swaps.",
+ text: "One working locker: doors, charging and safe swaps.",
  },
  {
  name: "2 · Pilot",
@@ -263,13 +263,13 @@ export const bodaHubPageContent = {
  },
  {
  name: "4 · Network",
- text: "More towns as more pack types only when they pass the gate.",
+ text: "More towns. More pack types only when they pass the gate.",
  },
  ] as const,
  },
  note: {
  economics:
- "Tariffs and payback come from pilots as not invented numbers on this page.",
+ "Tariffs and payback come from pilots, not invented numbers on this page.",
  regulatory:
  "Power, fire, battery handling, payments and data rules must clear Kenyan requirements before unattended public use.",
  },
@@ -287,7 +287,7 @@ export const bodaHubPageContent = {
  {
  question: "Is this a different brand from Boda Hub?",
  answer:
- "No. Same Precifarm silver cabinet language and blue lights as automated for self-service, not a new brand.",
+ "No. Same Precifarm silver cabinet language and blue lights, automated for self-service, not a new brand.",
  },
  {
  question: "Are Compact, Standard and Bank different products?",
@@ -312,13 +312,13 @@ export const bodaHubPageContent = {
  {
  question: "How do I pay?",
  answer:
- "M-Pesa first as per swap, plans or fleet accounts. You always see the price before you confirm.",
+ "M-Pesa first: per swap, plans or fleet accounts. You always see the price before you confirm.",
  },
  ],
  cta: {
  title: "Let's put Boda Hub on your site.",
  description:
- "Hosts, fleets and partners as tell us where riders need energy. We reply within one business day.",
+ "Hosts, fleets and partners: tell us where riders need energy. We reply within one business day.",
  primary: { href: bodaHubPaths.contact, label: "Contact Precifarm" },
  secondary: { href: bodaHubPaths.partners, label: "Partner programmes" },
  },

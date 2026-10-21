@@ -92,7 +92,7 @@ export default function HomeInnovation() {
                     <Link href={`${researchPath}#${area.id}`} className="group block px-4 py-3.5">
                       <div className="flex items-baseline justify-between gap-3">
                         <span className="text-sm font-medium text-white group-hover:text-charge-300">{area.title}</span>
-                        <span aria-hidden className="text-white/40 group-hover:text-charge-300">
+                        <span aria-hidden className="text-white/60 group-hover:text-charge-300">
                           ›
                         </span>
                       </div>

@@ -39,8 +39,9 @@
   --color-forest-50: #fafafa;
 
   /* Green — hyperlinks */
-  --color-link: #16a34a;
-  --color-link-hover: #15803d;
+  /* Link green darkened from #16a34a (3.3:1 on white) to meet the 4.5:1 text contrast minimum. */
+  --color-link: #15803d;
+  --color-link-hover: #166534;
   --color-link-700: #15803d;
   --color-link-600: #16a34a;
   --color-link-500: #22c55e;
@@ -1325,7 +1326,7 @@ html {
 }
 
 .training-tier-col-head {
-  @apply inline-flex h-9 min-w-[2.75rem] items-center justify-center rounded-lg px-3 text-sm font-bold no-underline shadow-sm;
+  @apply inline-flex h-9 min-w-[2.75rem] items-center justify-center rounded-lg bg-white/10 px-3 text-sm font-bold text-white no-underline shadow-sm hover:bg-white/20;
 }
 
 .training-tier-col-sub {
@@ -1333,7 +1334,7 @@ html {
 }
 
 .training-tier-inline-badge {
-  @apply inline-flex rounded-lg px-2.5 py-1 text-xs font-bold;
+  @apply inline-flex rounded-lg bg-muted/60 px-2.5 py-1 text-xs font-bold text-forest-800;
 }
 
 .training-module-list {
@@ -2162,4 +2163,10 @@ button,
   .agent-task-pulse {
     animation: none !important;
   }
+}
+
+/* Tables that scroll sideways take keyboard focus (so arrow keys can scroll them); show where it is. */
+[role="region"][tabindex="0"]:focus-visible {
+  outline: 2px solid var(--color-forest-700);
+  outline-offset: 2px;
 }

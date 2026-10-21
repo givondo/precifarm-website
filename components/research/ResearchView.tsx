@@ -286,7 +286,7 @@ export default function ResearchView() {
       <section id={page.roadmap.id} className="scroll-mt-24 border-b border-border bg-muted/25 section-pad">
         <div className="page-container">
           <SectionHeader eyebrow={page.roadmap.eyebrow} title={page.roadmap.title} description={page.roadmap.description} />
-          <div className="mt-10 overflow-x-auto rounded-2xl border border-border bg-white">
+          <div className="mt-10 overflow-x-auto rounded-2xl border border-border bg-white" tabIndex={0} role="region" aria-label={`${page.roadmap.title} (scrolls sideways)`}>
             <table className="w-full min-w-[640px] text-left text-sm">
               <thead>
                 <tr className="border-b border-border bg-muted/40">

@@ -12,7 +12,7 @@ export default function SpecTable({
       {caption ? (
         <p className="border-b border-border bg-muted/30 px-5 py-3 text-sm text-forest-600 sm:px-6">{caption}</p>
       ) : null}
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto" tabIndex={0} role="region" aria-label={`${caption ?? columns.join(", ")} (scrolls sideways)`}>
         <table className={`w-full text-left text-sm ${columns.length > 2 ? "min-w-[32rem]" : "min-w-[20rem]"}`}>
           <thead className="bg-forest-800 text-white">
             <tr>

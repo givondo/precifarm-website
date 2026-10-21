@@ -64,7 +64,7 @@ export default function WirelessChargingPolicyView() {
           <div>
             <h2 className="text-lg font-semibold text-forest-900">{page.benchmarksIntro.title}</h2>
             <p className="mt-3 text-sm leading-relaxed text-forest-600">{page.benchmarksIntro.description}</p>
-            <div className="mt-6 overflow-x-auto rounded-xl border border-border">
+            <div className="mt-6 overflow-x-auto rounded-xl border border-border" tabIndex={0} role="region" aria-label={`${page.benchmarksIntro.title} (scrolls sideways)`}>
               <table className="w-full min-w-[640px] text-left text-sm">
                 <thead className="border-b border-border bg-muted/40">
                   <tr>

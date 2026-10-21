@@ -9,7 +9,9 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/_next/", "/opengraph-image", "/manifest.webmanifest"],
+        // Search engines must fetch /_next/ scripts and styles to render pages, and link previews
+        // (LinkedIn, X, WhatsApp) must fetch the share image, so neither is blocked.
+        disallow: ["/api/", "/manifest.webmanifest"],
       },
       {
         userAgent: "GPTBot",
@@ -41,7 +43,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "Bingbot",
         allow: "/",
-        disallow: ["/api/", "/_next/", "/opengraph-image", "/manifest.webmanifest"],
+        disallow: ["/api/", "/manifest.webmanifest"],
       },
     ],
     sitemap: `${base}/sitemap.xml`,

@@ -1,5 +1,5 @@
 ﻿/**
- * Product schema catalog as verified published prices and specs only.
+ * Product schema catalog: verified published prices and specs only.
  * Conceptual modular-energy items deliberately omit Offer so they are never
  * implied as for sale.
  */
@@ -51,7 +51,7 @@ export const commercialProductCatalog = {
  sku: "pod-home-storage",
  category: "Home Energy Storage + EV Charging",
  additionalProperty: [
- { name: "Storage", value: "5 or 10 kWh LiFePOâ‚„" },
+ { name: "Storage", value: "5 or 10 kWh LiFePO₄" },
  { name: "Typical day charge", value: "about 90 minutes for ~60 km" },
  { name: "Financing", value: "Lipa Pole Pole on M-Pesa" },
  ],
@@ -125,7 +125,7 @@ export const commercialProductCatalog = {
  { name: "Modes", value: "Battery swap or kerbside charge" },
  { name: "Roadmap", value: "Automated self-service lockers under engineering validation" },
  ],
- // Fleet pricing only as no catalogue unit price.
+ // Fleet pricing only; no catalogue unit price.
  },
 } as const satisfies Record<string, ProductSchemaInput>;
 
@@ -144,7 +144,7 @@ function conceptualProduct(
  image,
  category,
  additionalProperty,
- // No offer as conceptual, not on sale.
+ // No offer: conceptual, not on sale.
  };
 }
 
@@ -189,7 +189,7 @@ export const conceptualProductCatalog: Record<string, ProductSchemaInput> = {
  path: modularEnergyPaths.megapack,
  image: megapackPageContent.hero.image.src,
  category: "Project-Engineered Battery Energy Storage",
- additionalProperty: [{ name: "Availability", value: "Project-engineered as not a catalogue SKU" }],
+ additionalProperty: [{ name: "Availability", value: "Project-engineered, not a catalogue SKU" }],
  },
 };
 
@@ -223,7 +223,7 @@ export function productSchemasForPath(path: string): JsonLd[] {
  return [productSchema(commercialProductCatalog.boda)];
  }
 
- // /charging is the category hub as Spark is primary; Depot/Corridor/Boda also appear there.
+ // /charging is the category hub: Spark is primary; Depot/Corridor/Boda also appear there.
  if (path === "/charging") {
  return [
  productSchema(commercialProductCatalog.spark),

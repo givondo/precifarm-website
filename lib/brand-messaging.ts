@@ -16,7 +16,7 @@ export const brand = {
  africa: "Built for Kenya. Engineered for Africa.",
  payment: "One network. One account. M-Pesa everywhere.",
  energy: "Generate. Store. Charge. Move.",
- /** Modular energy platform as keep in sync with modularEnergyBrand. */
+ /** Modular energy platform: keep in sync with modularEnergyBrand. */
  energyPlatform: modularEnergyBrand.shortLine,
  fleet: "Electrify your fleet. We'll engineer the system.",
  network: "Find EV charging across Kenya.",
@@ -24,7 +24,7 @@ export const brand = {
  words25:
  "Precifarm designs, finances, deploys and operates EV charging and energy systems for homes, fleets and highway corridors.",
  words50:
- "Precifarm is an electric mobility infrastructure company. We design, finance, deploy and operate charging, storage and energy systems as from a portable Spark charger to highway Corridor DC as with M-Pesa payments and one ops team behind every unit.",
+ "Precifarm is an electric mobility infrastructure company. We design, finance, deploy and operate charging, storage and energy systems, from a portable Spark charger to highway Corridor DC, with M-Pesa payments and one ops team behind every unit.",
  words100:
  "Precifarm builds the infrastructure behind electric transport in Kenya, with a design path to Africa. We combine grid and solar power, battery storage, EV charging, software monitoring, M-Pesa payments and Lipa Pole Pole financing into one operating system for homes, fleets and highway corridors. Precifarm handles site engineering, commissioning, uptime and settlement. Nairobi–Kisumu is the first corridor we prove before the next is financed.",
  llm:
@@ -115,7 +115,7 @@ export const productRangeSection = {
  "From your driveway to the highway, Precifarm makes EV charging simple, affordable and reliable.",
  subline: "Choose the charger that fits your life.",
  compactTitle: "Also in the range",
- compactDescription: "Boda Hub for two-wheelers, Depot for fleet yards as plus Lipa Pole Pole M-Pesa financing on Pulse charger and Pod energy storage.",
+ compactDescription: "Boda Hub for two-wheelers, Depot for fleet yards, plus Lipa Pole Pole M-Pesa financing on Pulse charger and Pod energy storage.",
  footer: {
  title: "One ecosystem. Every journey.",
  items: [
@@ -183,7 +183,7 @@ export const homeSupport = [
  {
  label: "Turnkey installation",
  stat: "1 day",
- text: "Licensed wiring, protection gear, commissioning and Kenya Power paperwork as typical Pulse charger installation.",
+ text: "Licensed wiring, protection gear, commissioning and Kenya Power paperwork (typical Pulse charger installation).",
  },
  {
  label: "Lipa Pole Pole",
@@ -202,13 +202,13 @@ export const problemSolution = {
  title: "We don't just install chargers. We build the system around them.",
  problemTitle: "EVs are here. Dependable charging is not.",
  problemPoints: [
- "Public chargers are fragmented as no shared status, account or M-Pesa flow.",
+ "Public chargers are fragmented: no shared status, account or M-Pesa flow.",
  "A typical Nairobi day of ~60 km is about ~KES 1,000 in diesel per day versus about KES 140 at home.",
  "Fleets cannot run a duty cycle on a charger that might be occupied or offline.",
  ],
  answerTitle: "Power. Charging. Storage. Software. Financing. One partner.",
  answerPoints: [
- "Site survey, grid, solar, storage and DC as engineered as one site, not a bolted-on charger.",
+ "Site survey, grid, solar, storage and DC: engineered as one site, not a bolted-on charger.",
  "Lipa Pole Pole and session pay on M-Pesa. No bank account required.",
  "Remote monitoring and three-year aftersale care on home units we commission.",
  ],
@@ -218,14 +218,14 @@ export const energySection = {
  eyebrow: "Energy",
  title: "Charge when power is there. Store when it pays. Deliver when vehicles need it.",
  description:
- "Grid, rooftop solar and LiFePOâ‚„ storage sit behind the charger. Solar does not replace Kenya Power. It cuts cost and covers weak-grid gaps. Planning assumption as sized per site.",
+ "Grid, rooftop solar and LiFePO₄ storage sit behind the charger. Solar does not replace Kenya Power. It cuts cost and covers weak-grid gaps. Planning assumption, sized per site.",
  layers: [
  { name: "Grid", text: "Kenya Power connection and e-mobility tariff first.", status: "Available" },
  { name: "Solar", text: "Canopy or rooftop PV for cost, shade and daytime yield.", status: "Available" },
- { name: "Storage", text: "LiFePOâ‚„ to peak-shave and cover weak-grid evenings.", status: "Available" },
+ { name: "Storage", text: "LiFePO₄ to peak-shave and cover weak-grid evenings.", status: "Available" },
  { name: "Charging", text: "CCS2 DC and Type 2 AC sized to the duty cycle.", status: "Available" },
  { name: "Software", text: "OCPP monitoring, status and session records.", status: "In service" },
- { name: "Energy OS", text: "Full grid + solar + battery optimisation as Precifarm OS.", status: "In design" },
+ { name: "Energy OS", text: "Full grid + solar + battery optimisation (Precifarm OS).", status: "In design" },
  ],
 } as const;
 
@@ -241,7 +241,7 @@ export const fleetSection = {
  eyebrow: "Fleets",
  title: "Electrify your fleet. We'll engineer the system.",
  description:
- "Route energy, depot layout, chargers, M-Pesa billing and uptime as one partner from survey to daily operation. You keep the vehicles and PSV obligations.",
+ "Route energy, depot layout, chargers, M-Pesa billing and uptime: one partner from survey to daily operation. You keep the vehicles and PSV obligations.",
  segments: ["Buses", "Logistics", "Taxis", "Corporate", "Government"],
  cta: { href: "/partners", label: "Design my fleet system" },
 } as const;
@@ -264,7 +264,7 @@ export const paymentsSection = {
  eyebrow: "M-Pesa",
  title: "Charge with M-Pesa. Finance with M-Pesa. Move with Precifarm.",
  description:
- "Kenya already pays on the phone. Precifarm puts home instalments, public sessions and fleet billing on the same rail as USSD and SMS on basic phones.",
+ "Kenya already pays on the phone. Precifarm puts home instalments, public sessions and fleet billing on the same rail: USSD and SMS on basic phones.",
 } as const;
 
 export const financeSection = {
@@ -294,7 +294,7 @@ export const engineeringSection = {
  eyebrow: "Engineering",
  title: "From site assessment to daily operation.",
  description:
- "Licensed electrical design, Kenya Power hold points, OCPP commissioning and three-year aftersale care. Heat, dust, weak feeders and mobile money are design inputs as not slogans.",
+ "Licensed electrical design, Kenya Power hold points, OCPP commissioning and three-year aftersale care. Heat, dust, weak feeders and mobile money are design inputs, not slogans.",
  cta: { href: "/charging/engineering", label: "Read the design basis" },
 } as const;
 
@@ -302,7 +302,7 @@ export const africaSection = {
  eyebrow: "Kenya first",
  title: "Built for Kenya. Engineered for Africa.",
  description:
- "We start on Nairobi–Kisumu. Expansion beyond route one waits on utilisation, uptime and partner return. The engineering is made for African grids and distances as the network is not claimed where it is not built.",
+ "We start on Nairobi–Kisumu. Expansion beyond route one waits on utilisation, uptime and partner return. The engineering is made for African grids and distances; the network is not claimed where it is not built.",
 } as const;
 
 export const finalCta = {

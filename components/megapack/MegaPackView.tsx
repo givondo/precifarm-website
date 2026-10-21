@@ -362,16 +362,16 @@ export default function MegaPackView() {
       <section className="border-b border-border bg-forest-900 py-6 text-white">
         <div className="page-container flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
           <span className="font-semibold text-white/70">Home & shop scale</span>
-          <Link href={modularEnergyPaths.p1Go} className="font-medium hover:text-charge-300">
+          <Link href={modularEnergyPaths.p1Go} className="font-medium text-white hover:text-charge-300">
             P1 Go
           </Link>
-          <Link href={modularEnergyPaths.p2Home} className="font-medium hover:text-charge-300">
+          <Link href={modularEnergyPaths.p2Home} className="font-medium text-white hover:text-charge-300">
             P2 Home
           </Link>
-          <Link href={modularEnergyPaths.miniStack} className="font-medium hover:text-charge-300">
+          <Link href={modularEnergyPaths.miniStack} className="font-medium text-white hover:text-charge-300">
             Mini Stack
           </Link>
-          <Link href={modularEnergyPaths.overview} className="font-medium hover:text-charge-300">
+          <Link href={modularEnergyPaths.overview} className="font-medium text-white hover:text-charge-300">
             Platform overview
           </Link>
         </div>

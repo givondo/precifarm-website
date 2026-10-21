@@ -16,7 +16,7 @@ export const trainingPage = {
     eyebrow: trainingNavLabel,
     title: "EV charging training — T1, T2 and T3.",
     description:
-      "Certify hub staff, installers and field engineers on Pulse charger, Pod energy storage, Depot, Boda Hub and Corridor — classroom in Nairobi, field modules on live hardware.",
+      "Certify hub staff, installers and field engineers on Pulse charger, Pod energy storage, Depot, Boda Hub and Corridor: Nairobi classroom and live field modules.",
     primaryLabel: "Enquire about a cohort",
     secondaryLabel: "Engineering design basis",
     secondaryHref: "/charging/engineering",

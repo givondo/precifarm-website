@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useId, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import HubCtaLink from "@/components/HubCtaLink";
 import {
@@ -111,7 +111,6 @@ function isGroupActive(group: NavGroup, pathname: string) {
 
 function DesktopMenuLink({
   item,
-  pathname,
   className,
   onNavigate,
 }: {
@@ -300,11 +299,19 @@ function MobileNavPanel({ pathname, onClose }: { pathname: string; onClose: () =
   );
 }
 
+const subscribeNothing = () => () => {};
+
 export default function Header() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  // A route change closes the menu: adjust state while rendering rather than in an effect.
+  const [menuPath, setMenuPath] = useState(pathname);
+  if (menuPath !== pathname) {
+    setMenuPath(pathname);
+    setMobileOpen(false);
+  }
   const [scrolled, setScrolled] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(subscribeNothing, () => true, () => false);
   const panelRef = useRef<HTMLDivElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const ignoreOutsideRef = useRef(false);
@@ -317,14 +324,6 @@ export default function Header() {
       return !open;
     });
   }, []);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    closeMobile();
-  }, [pathname, closeMobile]);
 
   useEffect(() => {
     if (!mobileOpen) return;

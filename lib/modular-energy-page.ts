@@ -1,4 +1,4 @@
-﻿/** Modular energy as overview tables and product pages */
+﻿/** Modular energy: overview tables and product pages */
 
 import { productRenderPaths } from "@/lib/product-renders-catalog";
 
@@ -16,7 +16,7 @@ export type ModularEnergyProductSlug = "p1-go" | "p2-home" | "mini-stack";
 export const modularEnergyProductSlugs = ["p1-go", "p2-home", "mini-stack"] as const satisfies readonly ModularEnergyProductSlug[];
 
 export const modularEnergyStatusNote =
- "Conceptual platform as design targets and renders show intent, not a certified product for sale.";
+ "Conceptual platform: design targets and renders show intent, not a certified product for sale.";
 
 export const modularEnergyNav = {
  title: "Modular energy",
@@ -34,11 +34,11 @@ export const modularEnergyNav = {
 } as const;
 
 /**
- * Platform voice. Keep these lines consistent wherever modular energy appears as 
+ * Platform voice. Keep these lines consistent wherever modular energy appears:
  * overview, product pages, nav descriptions and cross-links from charging.
  */
 export const modularEnergyBrand = {
- /** Primary positioning line as what the platform is, in one sentence. */
+ /** Primary positioning line: what the platform is, in one sentence. */
  positioning:
  "One 2.56 kWh Energy Module, repeated at three scales — carried, stacked or mounted outdoors.",
  /** Short form for nav, cards and cross-links. */
@@ -46,7 +46,7 @@ export const modularEnergyBrand = {
  /** How this relates to what Precifarm sells today. */
  relationToCharging:
  "Modular energy is the home and shop storage layer. Pulse and Spark charge the car; Corridor and Depot serve the network; MegaPack is engineered per project.",
- /** Honest status language as reuse verbatim rather than inventing new phrasing. */
+ /** Honest status language: reuse verbatim rather than inventing new phrasing. */
  status: {
  today: "Available to install today",
  roadmap: "On the platform roadmap",
@@ -54,7 +54,7 @@ export const modularEnergyBrand = {
  },
 } as const;
 
-/** Why the platform is modular as the argument behind the product family. */
+/** Why the platform is modular: the argument behind the product family. */
 export const modularEnergyPrinciples = [
  {
  id: "one-block",
@@ -127,7 +127,7 @@ export const modularEnergyPage = {
  "P1 Go, P2 Home and Mini Stack are three scales of the same Energy Module: a pack you carry through a dip, a tower beside the consumer board, or an outdoor enclosure at a street-front shop. One capacity block means one spare part and one service procedure across the family.",
  primaryCta: { href: "/contact", label: "Talk to us about energy" },
  secondaryCta: { href: "/charging/home", label: "See what installs today" },
- /** Three-scale hero as carried, stacked, mounted outdoors */
+ /** Three-scale hero: carried, stacked, mounted outdoors */
  familyImages: [
  {
  src: productRenderPaths.p1Go,
@@ -282,7 +282,7 @@ export const modularEnergyPage = {
  eyebrow: "Kenya first",
  title: "Four Kenyan settings the platform is drawn around",
  description:
- "Where the hardware goes changes everything about it as indoor or outdoor, wall or plinth, essential loads or a whole charging hub.",
+ "Where the hardware goes changes everything about it: indoor or outdoor, wall or plinth, essential loads or a whole charging hub.",
  cards: [
  {
  setting: "Urban home",
@@ -339,7 +339,7 @@ export const modularEnergyPage = {
  columns: ["Charger", "How they work together"] as const,
  rows: [
  ["Pulse · 7 kW wallbox", "Charges the car overnight on your meter. P2 Home or Mini Stack covers the house when the grid dips and puts daytime solar surplus to use."],
- ["Spark · 3.3 kW portable", "The charger you keep in the boot. P1 Go is a backup pack with a Type 2 trickle lead for emergencies as it does not replace Spark."],
+ ["Spark · 3.3 kW portable", "The charger you keep in the boot. P1 Go is a backup pack with a Type 2 trickle lead for emergencies; it does not replace Spark."],
  ["Corridor / Depot", "Public DC and fleet AC on the network. Modular energy is the home and shop layer; hubs that need storage get MegaPack, engineered per site."],
  ],
  },
@@ -376,7 +376,7 @@ export const modularEnergyPage = {
  cta: {
  title: "Tell us your loads and outage hours. We will tell you what installs today.",
  description:
- "Send us the appliances you need through a dip and how long the power usually stays off. We will size it, quote what we can commission now as Pulse, storage, solar as and say plainly what is still on the platform roadmap.",
+ "Send us the appliances you need through a dip and how long the power usually stays off. We will size it, quote what we can commission now (Pulse, storage, solar) and say plainly what is still on the platform roadmap.",
  primaryHref: "/contact",
  primaryLabel: "Contact Precifarm",
  secondaryHref: "/charging/home",
@@ -389,7 +389,7 @@ export type ModularEnergyProduct = {
  tag: string;
  title: string;
  description: string;
- /** One line on who this is for as shown above the hero headline. */
+ /** One line on who this is for, shown above the hero headline. */
  audience: string;
  image: string;
  imageAlt: string;
@@ -444,11 +444,11 @@ export const modularEnergyProducts: Record<ModularEnergyProductSlug, ModularEner
  "P1 Go is not on sale. If your problem is charging an EV rather than riding out an outage, these are the products we commission today.",
  },
  },
- faqSectionTitle: "P1 Go as charging role, solar and when it will be available",
+ faqSectionTitle: "P1 Go: charging role, solar and when it will be available",
  scene: {
  src: productRenderPaths.p1GoSolar,
  alt: "Precifarm P1 Go with foldable solar panel for backup during a power dip",
- caption: "Typical use as keep the router, laptop and phones running when Kenya Power dips.",
+ caption: "Typical use: keep the router, laptop and phones running when Kenya Power dips.",
  },
  specColumns: ["Item", "Target"],
  specs: [
@@ -459,7 +459,7 @@ export const modularEnergyProducts: Record<ModularEnergyProductSlug, ModularEner
  ["USB", "USB-C and USB-A"],
  ["Solar", "Foldable panel included · 100–200 W · XT60 input"],
  ["Charge sources", "Grid · car 12 V · included solar panel"],
- ["EV", "Type 2 trickle only as not daily charging"],
+ ["EV", "Type 2 trickle only, not daily charging"],
  ],
  specCaption: "Prototype targets for P1 Go. Nothing here is certified or final.",
  features: [
@@ -483,7 +483,7 @@ export const modularEnergyProducts: Record<ModularEnergyProductSlug, ModularEner
  worksWith: [
  {
  name: "Spark · 3.3 kW portable charger",
- text: "The boot charger for a typical day as about 180 minutes on a 13 A socket.",
+ text: "The boot charger for a typical day: about 180 minutes on a 13 A socket.",
  href: "/charging",
  },
  {
@@ -516,7 +516,7 @@ export const modularEnergyProducts: Record<ModularEnergyProductSlug, ModularEner
  {
  question: "When can I buy one?",
  answer:
- "Not yet as P1 Go is conceptual. Get in touch if you want to be part of early access conversations, and we will tell you what we can supply in the meantime.",
+ "Not yet. P1 Go is conceptual. Get in touch if you want to be part of early access conversations, and we will tell you what we can supply in the meantime.",
  },
  ],
  },

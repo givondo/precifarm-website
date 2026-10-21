@@ -9,7 +9,7 @@ import { chargingHub } from "@/lib/charging-hub";
 import { modularEnergyPaths } from "@/lib/modular-energy-page";
 import { socialHandles, socialProfileUrls } from "@/lib/social";
 
-/** Browser tab title for the homepage as keep in sync with layout metadata */
+/** Browser tab title for the homepage: keep in sync with layout metadata */
 export const defaultSiteTitle = homePageTitle;
 
 export const siteConfig = {

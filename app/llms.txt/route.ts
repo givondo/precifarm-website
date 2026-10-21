@@ -11,7 +11,7 @@ export async function GET() {
 - ${siteConfig.url}
 
 ## What Precifarm is
-Precifarm installs, finances and runs EV charging in Kenya as from home charging to highway charging, paid with M-Pesa.
+Precifarm installs, finances and runs EV charging in Kenya, from home charging to highway charging, paid with M-Pesa.
 
 ## Chargers
 - Spark charger: portable 3.3 kW · typical 60 km day in about 180 minutes · from KES 25,000
@@ -23,14 +23,14 @@ Precifarm installs, finances and runs EV charging in Kenya as from home charging
 
 Lipa Pole Pole is M-Pesa financing for Pulse charger and Pod energy storage, not a charger.
 
-## Modular energy (conceptual as not on sale)
+## Modular energy (conceptual, not on sale)
 - Platform overview: ${siteConfig.url}${modularEnergyPaths.overview}
 - P1 Go (portable): ${siteConfig.url}${modularEnergyPaths.p1Go}
 - P2 Home (home tower): ${siteConfig.url}${modularEnergyPaths.p2Home}
 - Mini Stack (outdoor SME): ${siteConfig.url}${modularEnergyPaths.miniStack}
 - MegaPack (project BESS): ${siteConfig.url}${modularEnergyPaths.megapack}
 
-Mini Stack is modular-energy outdoor backup as not Pod energy storage (the home charger on /charging/home).
+Mini Stack is modular-energy outdoor backup, not Pod energy storage (the home charger on /charging/home).
 
 ## Published cost figures
 - A home charging day (~60 km) costs about KES 140 versus ~KES 1,000 diesel per day
@@ -84,7 +84,7 @@ Mini Stack is modular-energy outdoor backup as not Pod energy storage (the home 
 ## Topics we publish authoritative content on
 - From home charging to highway charging in Kenya
 - Pulse charger, Pod energy storage and Spark charger
-- Modular energy platform (P1 Go, P2 Home, Mini Stack, MegaPack as design intent)
+- Modular energy platform (P1 Go, P2 Home, Mini Stack, MegaPack: design intent)
 - Sustainability commitments and impact reporting
 - Public DC from KES 39/kWh and a home charging day about KES 140
 - M-Pesa and Lipa Pole Pole financing

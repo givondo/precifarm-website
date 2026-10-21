@@ -3,7 +3,7 @@ import { chargingHub } from "@/lib/charging-hub";
 import type { KnowledgeEntity } from "@/lib/seo/types";
 
 /**
- * Seed knowledge graph as extensible via CMS.
+ * Seed knowledge graph, extensible via CMS.
  * Domain: EV charging, energy, and electric transport (Precifarm).
  */
 export const entityRegistry: KnowledgeEntity[] = [
@@ -13,7 +13,7 @@ export const entityRegistry: KnowledgeEntity[] = [
  type: "organization",
  name: "Precifarm",
  description:
- "Kenyan electric mobility infrastructure company as charging, storage and operations for homes, fleets and highways.",
+ "Kenyan electric mobility infrastructure company: charging, storage and operations for homes, fleets and highways.",
  url: siteConfig.url,
  relatedIds: ["service-charge-map", "service-home-charging", "product-pulse", "product-corridor", "service-sustainability", "product-modular-energy"],
  },
@@ -73,7 +73,7 @@ export const entityRegistry: KnowledgeEntity[] = [
  type: "equipment",
  name: "Boda Hub",
  description:
- "Battery swap for electric bodas as attendant or partner sites today; automated self-service lockers on the product roadmap.",
+ "Battery swap for electric bodas: attendant or partner sites today; automated self-service lockers on the product roadmap.",
  url: absoluteUrl("/charging/boda-hub"),
  relatedIds: ["service-fleet-charging"],
  },
@@ -114,7 +114,7 @@ export const entityRegistry: KnowledgeEntity[] = [
  slug: "hub-charging",
  type: "service",
  name: "Highway charging",
- description: "Corridor charging at Precifarm hubs as about 60 kWh in 30 minutes, paid with M-Pesa.",
+ description: "Corridor charging at Precifarm hubs: about 60 kWh in 30 minutes, paid with M-Pesa.",
  url: absoluteUrl("/charging"),
  relatedIds: ["equipment-ev-charger", "location-nairobi", "location-kisumu", "service-charge-map"],
  },
@@ -174,7 +174,7 @@ export const entityRegistry: KnowledgeEntity[] = [
  type: "equipment",
  name: "Modular energy platform",
  description:
- "Conceptual home and shop storage family as P1 Go, P2 Home and Mini Stack share one 2.56 kWh Energy Module. Not on sale yet.",
+ "Conceptual home and shop storage family: P1 Go, P2 Home and Mini Stack share one 2.56 kWh Energy Module. Not on sale yet.",
  url: absoluteUrl("/charging/modular-energy"),
  relatedIds: ["product-pod", "service-home-charging", "product-megapack"],
  },
@@ -183,7 +183,7 @@ export const entityRegistry: KnowledgeEntity[] = [
  slug: "megapack",
  type: "equipment",
  name: "MegaPack",
- description: "Project-engineered BESS for industrial sites, EV hubs and grid-connected plants as quoted per site.",
+ description: "Project-engineered BESS for industrial sites, EV hubs and grid-connected plants, quoted per site.",
  url: absoluteUrl("/charging/modular-energy/megapack"),
  relatedIds: ["product-modular-energy", "service-fleet-charging"],
  },

@@ -282,7 +282,7 @@ export default function ModularEnergyView() {
             <p className="border-b border-border bg-muted/30 px-5 py-3 text-sm text-forest-600 sm:px-6">
               {page.familyTable.caption}
             </p>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto" tabIndex={0} role="region" aria-label={`${page.familyTable.title} (scrolls sideways)`}>
               <table className="w-full min-w-[36rem] text-left text-sm">
                 <thead className="bg-forest-800 text-white">
                   <tr>
@@ -382,11 +382,11 @@ export default function ModularEnergyView() {
         <div className="page-container flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
           <span className="font-semibold text-white/70">Explore</span>
           {modularEnergyNav.products.map((item) => (
-            <Link key={item.href} href={item.href} className="font-medium hover:text-charge-300">
+            <Link key={item.href} href={item.href} className="font-medium text-white hover:text-charge-300">
               {item.label}
             </Link>
           ))}
-          <Link href={modularEnergyNav.megapack.href} className="font-medium hover:text-charge-300">
+          <Link href={modularEnergyNav.megapack.href} className="font-medium text-white hover:text-charge-300">
             {modularEnergyNav.megapack.label}
           </Link>
         </div>

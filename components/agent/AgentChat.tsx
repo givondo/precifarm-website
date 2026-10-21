@@ -119,7 +119,7 @@ function Trace({ trace }: { trace: TraceEntry[] }) {
           <li key={i} className="rounded-md border border-white/[0.07] bg-white/[0.03] p-2.5">
             <div className="flex flex-wrap items-center gap-2">
               <span className="font-mono text-[11px] text-white/85">{toolLabel[t.tool] ?? t.tool}</span>
-              <span className="font-mono text-[10px] text-white/35">{t.tool}()</span>
+              <span className="font-mono text-[10px] text-white/60">{t.tool}()</span>
               <span className={`ml-auto rounded border px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider ${evidenceStyle[t.result.label]}`}>
                 {t.result.label}
               </span>
@@ -270,7 +270,7 @@ export default function AgentChat({ compact = false }: { compact?: boolean }) {
             {msg.trace ? <Trace trace={msg.trace} /> : null}
             {msg.role === "assistant" && msg.id !== "welcome" ? (
               <div className="mt-2 flex items-center justify-between gap-3">
-                {msg.meta ? <p className="font-mono text-[10px] uppercase tracking-wider text-white/40">{msg.meta}</p> : <span />}
+                {msg.meta ? <p className="font-mono text-[10px] uppercase tracking-wider text-white/60">{msg.meta}</p> : <span />}
                 <button
                   type="button"
                   onClick={() => void copy(msg)}
@@ -280,7 +280,7 @@ export default function AgentChat({ compact = false }: { compact?: boolean }) {
                 </button>
               </div>
             ) : msg.meta ? (
-              <p className="mt-2 font-mono text-[10px] uppercase tracking-wider text-white/40">{msg.meta}</p>
+              <p className="mt-2 font-mono text-[10px] uppercase tracking-wider text-white/60">{msg.meta}</p>
             ) : null}
           </div>
         ))}
@@ -332,21 +332,21 @@ export default function AgentChat({ compact = false }: { compact?: boolean }) {
             rows={2}
             maxLength={6000}
             placeholder="e.g. Size a 7 kW Pulse install for 80 km/day in Nairobi with unreliable grid…"
-            className="min-h-[52px] flex-1 resize-y rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/35 focus:border-charge-500 focus:outline-none"
+            className="min-h-[52px] flex-1 resize-y rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/55 focus:border-charge-500 focus:outline-none"
           />
           <button type="button" onClick={() => void send()} disabled={loading || !input.trim()} className="btn-primary shrink-0 disabled:opacity-50">
             Send
           </button>
         </div>
-        <p className="mt-3 text-[11px] leading-relaxed text-white/40">
+        <p className="mt-3 text-[11px] leading-relaxed text-white/60">
           Every number comes from an engineering tool and carries an evidence label. Not a substitute for a site survey or a
           qualified professional.{" "}
           {compact ? (
-            <Link href={agentPublic.chatPath} className="underline underline-offset-2 hover:text-white/70">
+            <Link href={agentPublic.chatPath} className="text-white/80 underline underline-offset-2 hover:text-white">
               Open full workspace
             </Link>
           ) : (
-            <Link href="/download" className="underline underline-offset-2 hover:text-white/70">
+            <Link href="/download" className="text-white/80 underline underline-offset-2 hover:text-white">
               Local OpenCode setup
             </Link>
           )}
