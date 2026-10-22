@@ -403,7 +403,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  path: legalHubPath,
  title: "Legal & policies | Precifarm",
  description:
- "Terms of use, privacy, cookies, and R&D policies for precifarm.com — operated by PreciFarm AI Ltd in Kenya.",
+ "Terms of use, privacy, cookies and R&D policies for precifarm.com, operated by Precifarm AI Ltd in Kenya.",
  breadcrumbs: [
  { name: "Home", href: "/" },
  { name: "Legal & policies", href: legalHubPath },

@@ -1,6 +1,6 @@
 # Deploy to Google Cloud (precifarm.com)
 
-**Canonical hosting:** Google Cloud Run + Cloud SQL. Netlify and Vercel are **deprecated** for PreciFarm.
+**Canonical hosting:** Google Cloud Run + Cloud SQL. Netlify and Vercel are **deprecated** for Precifarm.
 
 | Service | Cloud Run name | Public URL |
 |---|---|---|
@@ -55,7 +55,7 @@ gcloud services enable run.googleapis.com artifactregistry.googleapis.com `
 
 gcloud artifacts repositories create precifarm `
   --repository-format=docker --location=$REGION `
-  --description="PreciFarm containers"
+  --description="Precifarm containers"
 
 gcloud auth configure-docker "$REGION-docker.pkg.dev"
 ```

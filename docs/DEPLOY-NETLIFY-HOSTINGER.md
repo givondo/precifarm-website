@@ -1,6 +1,6 @@
 # Deprecated — Netlify deployment
 
-**This guide is obsolete.** PreciFarm hosting moved to Google Cloud.
+**This guide is obsolete.** Precifarm hosting moved to Google Cloud.
 
 Use **[DEPLOY-GCP.md](./DEPLOY-GCP.md)** instead.
 

@@ -12,7 +12,7 @@ export const legalEffectiveDate = "16 October 2026";
 
 export const legalEntity = {
   publicName: "Precifarm",
-  legalName: "PreciFarm AI Ltd",
+  legalName: "Precifarm AI Ltd",
   country: "Kenya",
   siteUrl: "https://precifarm.com",
 } as const;
