@@ -4,7 +4,6 @@ import { homepageAisoBlocks, chargingHowToBlock } from "@/lib/seo/aiso/blocks";
 import { entityRegistry, internalLinksForPath } from "@/lib/seo/entities/registry";
 import { publicRoutes, siteConfig } from "@/lib/seo/config";
 import { cmsGetSeoContent, cmsListSeoEntities } from "@/lib/seo/cms-client";
-import { pathWithoutLocale } from "@/lib/seo/i18n";
 
 function faqsFromBlocks(blocks: { type: string; items?: unknown[] }[]) {
   const faqBlock = blocks.find((b) => b.type === "faq");
@@ -15,8 +14,7 @@ async function resolveCmsKnowledge(path: string, locale: string) {
   const guideMatch = path.match(/^\/guides\/([^/]+)$/);
   const faqMatch = path.match(/^\/faq\/([^/]+)$/);
   const locationMatch = path.match(/^\/locations\/([^/]+)$/);
-  const swPrefix = path.startsWith("/sw");
-  const effectiveLocale = swPrefix ? "sw-KE" : locale;
+  const effectiveLocale = locale;
 
   let slug: string | null = null;
   if (guideMatch) slug = guideMatch[1];
@@ -55,11 +53,12 @@ async function resolveCmsKnowledge(path: string, locale: string) {
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const rawPath = searchParams.get("path") ?? "/";
-  const path = pathWithoutLocale(rawPath.startsWith("/sw") ? rawPath : rawPath);
-  const locale = searchParams.get("locale") ?? (rawPath.startsWith("/sw") ? "sw-KE" : "en-KE");
+  // Swahili pages are retired; /sw paths map to their English page.
+  const path = rawPath === "/sw" ? "/" : rawPath.startsWith("/sw/") ? rawPath.slice(3) : rawPath;
+  const locale = "en-KE";
 
   const route = publicRoutes.find((r) => r.path === path);
-  const cmsKnowledge = await resolveCmsKnowledge(rawPath.startsWith("/sw") ? rawPath.replace(/^\/sw/, "") || "/" : path, locale);
+  const cmsKnowledge = await resolveCmsKnowledge(path, locale);
   const entities = (await cmsListSeoEntities()).slice(0, 20);
   const entityFallback = entities.length ? entities : entityRegistry.slice(0, 20);
 

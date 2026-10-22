@@ -1,4 +1,5 @@
 /** Simple markdown subset renderer for CMS guide bodies — no external deps */
+import { formatInline } from "@/lib/seo/markdown-inline";
 
 type MarkdownContentProps = { md: string };
 
@@ -15,7 +16,7 @@ export default function MarkdownContent({ md }: MarkdownContentProps) {
     nodes.push(
       <ListTag key={`list-${key++}`} className="my-4 list-inside space-y-2 text-sm text-forest-600">
         {listItems.map((item) => (
-          <li key={item}>{item}</li>
+          <li key={item} dangerouslySetInnerHTML={{ __html: formatInline(item) }} />
         ))}
       </ListTag>,
     );
@@ -73,10 +74,4 @@ export default function MarkdownContent({ md }: MarkdownContentProps) {
 
   flushList();
   return <>{nodes}</>;
-}
-
-function formatInline(text: string): string {
-  return text
-    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
-    .replace(/`(.+?)`/g, "<code>$1</code>");
 }

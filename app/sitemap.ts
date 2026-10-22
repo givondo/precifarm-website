@@ -3,6 +3,7 @@ import { BOOKING_FAQ_SLUG, BOOKING_GUIDE_SLUG } from "@/lib/charging-faqs";
 import { absoluteUrl } from "@/lib/seo/config";
 import { cmsListSeoContent, type CmsSeoContent } from "@/lib/seo/cms-client";
 import { buildStaticSitemapEntries } from "@/lib/seo/sitemap";
+import { staticGuides } from "@/lib/seo/static-guides";
 
 export const revalidate = 3600;
 
@@ -35,19 +36,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let dynamicEntries: MetadataRoute.Sitemap = [];
 
   try {
-    const [items, swahiliFaqs] = await Promise.all([
-      cmsListSeoContent({ status: "published", locale: "en-KE" }),
-      cmsListSeoContent({ status: "published", locale: "sw-KE" }),
-    ]);
-
-    const swahiliEntries: MetadataRoute.Sitemap = swahiliFaqs
-      .filter((item) => item.contentType === "faq" && item.slug !== BOOKING_FAQ_SLUG)
-      .map((item) => ({
-        url: absoluteUrl(`/sw/faq/${item.slug}`),
-        lastModified: item.updatedAt,
-        changeFrequency: "weekly" as const,
-        priority: 0.5,
-      }));
+    const items = await cmsListSeoContent({ status: "published", locale: "en-KE" });
 
     const contentEntries: MetadataRoute.Sitemap = items
       .filter(
@@ -63,10 +52,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.7,
       }));
 
-    dynamicEntries = [...contentEntries, ...swahiliEntries];
+    dynamicEntries = contentEntries;
   } catch {
     // CMS unavailable at build time — static sitemap only
   }
 
-  return dedupeSitemap([...staticEntries, ...dynamicEntries]);
+  const guideEntries: MetadataRoute.Sitemap = staticGuides.map((guide) => ({
+    url: absoluteUrl(`/guides/${guide.slug}`),
+    lastModified: guide.updatedAt,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
+  return dedupeSitemap([...staticEntries, ...dynamicEntries, ...guideEntries]);
 }

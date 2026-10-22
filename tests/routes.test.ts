@@ -15,6 +15,17 @@ test("retired and legacy paths redirect permanently to live pages", async () => 
   for (const r of redirects) assert.ok(!sources.includes(r.destination), `${r.source} redirects to another redirect (${r.destination})`);
 });
 
+test("Swahili pages are retired: every /sw URL redirects to its English page", async () => {
+  const config = (await import("@/next.config")).default;
+  const redirects = await config.redirects!();
+  const to = (src: string) => redirects.find((r: { source: string }) => r.source === src);
+  assert.equal(to("/sw")?.destination, "/");
+  assert.equal(to("/sw/:path*")?.destination, "/:path*");
+  const { existsSync } = await import("node:fs");
+  const { resolve } = await import("node:path");
+  assert.ok(!existsSync(resolve(import.meta.dirname, "../app/sw")), "app/sw still exists");
+});
+
 test("security headers are sent on every route", async () => {
   const config = (await import("@/next.config")).default;
   const all = (await config.headers!()).find((h: { source: string }) => h.source === "/:path*");

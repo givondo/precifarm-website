@@ -1,6 +1,7 @@
 ﻿import { siteConfig } from "@/lib/seo/config";
 import { contact } from "@/lib/contact";
 import { modularEnergyPaths } from "@/lib/modular-energy-page";
+import { staticGuides } from "@/lib/seo/static-guides";
 
 export async function GET() {
  const body = `# ${siteConfig.name}
@@ -11,7 +12,14 @@ export async function GET() {
 - ${siteConfig.url}
 
 ## What Precifarm is
-Precifarm installs, finances and runs EV charging in Kenya, from home charging to highway charging, paid with M-Pesa.
+Precifarm (Precifarm AI Ltd) is an EV charging company based in Nairobi, Kenya, founded in August 2025. It designs, installs and finances EV charging, from home chargers to highway DC fast charging and electric boda battery swap, paid with M-Pesa. Lead engineer: Sayia David Givondo, B.Eng.
+
+## Quick answers
+- Home EV charger in Kenya: Pulse 7 kW wallbox from KES 79,000, or from KES 3,300/month with Lipa Pole Pole on M-Pesa: ${siteConfig.url}/charging/home
+- Where to charge in Kenya: ${siteConfig.url}/guides/ev-charging-stations-kenya
+- Kenya Power e-mobility tariff: KES 16/kWh, KES 8/kWh off-peak, before levies and VAT (Gazette Notice 15188, 18 September 2026): ${siteConfig.url}/guides/kenya-power-ev-charging-tariff
+- Electric boda battery swap: ${siteConfig.url}/guides/electric-boda-battery-swap-kenya
+- Status: Nairobi to Kisumu is the first planned Corridor route. Modular energy products are concepts, not on sale. Consumer cost figures such as a KES 140 home charging day are illustrative.
 
 ## Chargers
 - Spark charger: portable 3.3 kW · typical 60 km day in about 180 minutes · from KES 25,000
@@ -55,6 +63,9 @@ Mini Stack is modular-energy outdoor backup, not Pod energy storage (the home ch
 - Desktop download: ${siteConfig.url}/download
 - Contact: ${siteConfig.url}/contact
 
+## Guides
+${staticGuides.map((g) => `- ${g.title}: ${siteConfig.url}/guides/${g.slug}`).join("\n")}
+
 ## Content hubs
 - FAQ index: ${siteConfig.url}/faq
 - Guides index: ${siteConfig.url}/guides
@@ -70,10 +81,6 @@ Mini Stack is modular-energy outdoor backup, not Pod energy storage (the home ch
 - SEO health audit: ${siteConfig.url}/api/seo/health
 - RSS feed: ${siteConfig.url}/feed.xml
 - Sitemap: ${siteConfig.url}/sitemap.xml
-
-## Languages
-- English: ${siteConfig.url}/
-- Kiswahili: ${siteConfig.url}/sw
 
 ## Precifarm Agent
 - Precifarm Agent: ${siteConfig.url}/agent

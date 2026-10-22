@@ -9,6 +9,7 @@ import {
   type CmsSeoContent,
 } from "@/lib/seo/cms-client";
 import { siteConfig } from "@/lib/seo/config";
+import { staticGuides } from "@/lib/seo/static-guides";
 import type { FaqItem } from "@/lib/seo/types";
 
 const GUIDE_TYPES = new Set(["guide", "howto", "article"]);
@@ -84,12 +85,12 @@ function sortByPublishedDesc(a: CmsSeoContent, b: CmsSeoContent): number {
   return bTime - aTime;
 }
 
+/** CMS guides plus the guides published from the website (a CMS guide with the same slug wins). */
 export async function getPublishedGuides(): Promise<CmsSeoContent[]> {
   const items = await cmsListSeoContent({ status: "published", locale: siteConfig.locale });
-  return items
-    .filter(isGuideContent)
-    .filter((item) => item.slug !== BOOKING_GUIDE_SLUG)
-    .sort(sortByPublishedDesc);
+  const cms = items.filter(isGuideContent).filter((item) => item.slug !== BOOKING_GUIDE_SLUG);
+  const cmsSlugs = new Set(cms.map((item) => item.slug));
+  return [...cms, ...staticGuides.filter((g) => !cmsSlugs.has(g.slug))].sort(sortByPublishedDesc);
 }
 
 export async function getPublishedFaqs(): Promise<CmsSeoContent[]> {

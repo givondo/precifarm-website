@@ -1,62 +1,12 @@
 import { absoluteUrl } from "@/lib/seo/config";
 
-export type SiteLocale = {
-  code: string;
-  hreflang: string;
-  pathPrefix: string;
-  label: string;
-};
-
-export const siteLocales: SiteLocale[] = [
-  { code: "en-KE", hreflang: "en-KE", pathPrefix: "", label: "English" },
-  { code: "sw-KE", hreflang: "sw-KE", pathPrefix: "/sw", label: "Kiswahili" },
-];
-
-export function localeFromPath(path: string): SiteLocale {
-  if (path === "/sw" || path.startsWith("/sw/")) {
-    return siteLocales.find((l) => l.code === "sw-KE")!;
-  }
-  return siteLocales.find((l) => l.code === "en-KE")!;
-}
-
-export function pathWithoutLocale(path: string): string {
-  if (path === "/sw") return "/";
-  if (path.startsWith("/sw/")) return path.slice(3) || "/";
-  return path;
-}
-
 /**
- * Build hreflang alternates for a page path. Accepts either a logical path or an
- * already-localised one (`/sw/faq/x`) — the locale prefix is stripped first so
- * Swahili pages don't advertise themselves as `/sw/sw/...`.
+ * precifarm.com is published in Kenyan English only. Kenyans search in English, so the Swahili pages were
+ * retired and /sw URLs redirect to their English pages (next.config.ts). Each page lists itself as en-KE and
+ * as the x-default.
  */
 export function hreflangAlternates(path: string): Record<string, string> {
-  const withPrefix = path.startsWith("/") ? path : `/${path}`;
-  const normalized = pathWithoutLocale(withPrefix);
-  // Only /sw and the Swahili FAQ pages exist. Advertising /sw/<path> for every English page sent search
-  // engines to redirects and 404s, so a Swahili alternate is listed only where that page is known to exist:
-  // the home page, and a Swahili page describing itself.
-  const swahiliExists = normalized === "/" || localeFromPath(withPrefix).code === "sw-KE";
-  const languages: Record<string, string> = {};
-  for (const locale of siteLocales) {
-    if (locale.code === "sw-KE" && !swahiliExists) continue;
-    const localized =
-      locale.pathPrefix === ""
-        ? normalized
-        : normalized === "/"
-          ? locale.pathPrefix
-          : `${locale.pathPrefix}${normalized}`;
-    languages[locale.hreflang] = absoluteUrl(localized);
-  }
-  languages["x-default"] = absoluteUrl(normalized);
-  return languages;
+  const normalized = path.startsWith("/") ? path : `/${path}`;
+  const url = absoluteUrl(normalized);
+  return { "en-KE": url, "x-default": url };
 }
-
-export const swahiliUi = {
-  homeTagline: "Kuchaji umeme kutoka nyumbani hadi barabarani.",
-  bookCta: "Angalia huduma za kuchaji",
-  chargingHubCta: "Charging Hub",
-  guides: "Miongozo",
-  faq: "Maswali",
-  locations: "Maeneo",
-} as const;

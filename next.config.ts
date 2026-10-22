@@ -81,11 +81,9 @@ const nextConfig: NextConfig = {
  { source: "/products/:path*", destination: "/charging", permanent: true },
  { source: "/blog", destination: "/guides", permanent: true },
  { source: "/blog/:path*", destination: "/guides", permanent: true },
- // Swahili stubs → English routes (only /sw and /sw/faq/:slug exist today)
- { source: "/sw/training", destination: "/training", permanent: true },
- { source: "/sw/download", destination: "/download", permanent: true },
- { source: "/sw/faq", destination: "/faq", permanent: true },
- { source: "/sw/charging/:path*", destination: "/charging/:path*", permanent: true },
+ // Swahili pages retired (Kenyans search in English): every /sw URL goes to its English page
+ { source: "/sw", destination: "/", permanent: true },
+ { source: "/sw/:path*", destination: "/:path*", permanent: true },
  ];
  },
  async headers() {

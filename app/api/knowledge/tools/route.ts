@@ -18,7 +18,7 @@ export async function GET() {
           type: "object",
           properties: {
             path: { type: "string", default: "/" },
-            locale: { type: "string", enum: ["en-KE", "sw-KE"], default: "en-KE" },
+            locale: { type: "string", enum: ["en-KE"], default: "en-KE" },
           },
         },
         endpoint: `${siteConfig.url}/api/knowledge?path={path}&locale={locale}`,

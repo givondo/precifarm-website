@@ -14,7 +14,7 @@ export const defaultSiteTitle = homePageTitle;
 
 export const siteConfig = {
  name: "Precifarm",
- legalName: "Precifarm",
+ legalName: "Precifarm AI Ltd",
  /** Shown in the browser tab on the homepage */
  defaultTitle: defaultSiteTitle,
  tagline: "Electric mobility infrastructure for Africa",
@@ -24,18 +24,18 @@ export const siteConfig = {
  region: "KE",
  timezone: "Africa/Nairobi",
  defaultDescription:
- "EV charging in Kenya — home Pulse installs, fleet hubs and Corridor DC. Financed from KES 3,300/month on M-Pesa. Designed, installed and operated by Precifarm.",
+ "EV charging in Kenya: home EV chargers from KES 79,000, fleet depot and highway DC fast charging, and boda battery swap. Pay with M-Pesa or Lipa Pole Pole.",
  defaultKeywords: [
  "EV charging Kenya",
- "home charging Kenya",
+ "EV charging stations Nairobi",
+ "home EV charger Kenya",
+ "EV charger installation Nairobi",
+ "electric car charging cost Kenya",
+ "Kenya Power EV tariff",
+ "DC fast charging Kenya",
+ "electric boda battery swap",
  "Pulse charger",
- "Pod energy storage",
- "highway charging Kenya",
- "Corridor charging",
- "Lipa na M-Pesa EV",
  "Lipa Pole Pole",
- "public DC KES 39 kWh",
- "Precifarm Charging Hub",
  ] as const,
  contact: {
  email: contact.email,
@@ -94,7 +94,6 @@ export const publicRoutes = [
  { path: "/guides", label: "Guides", changefreq: "weekly" as const, priority: 0.8 },
  { path: "/faq", label: "FAQ", changefreq: "weekly" as const, priority: 0.75 },
  { path: "/locations", label: "Locations", changefreq: "weekly" as const, priority: 0.78 },
- { path: "/sw", label: "Kiswahili", changefreq: "weekly" as const, priority: 0.6 },
 ] as const;
 
 export type PublicRoute = (typeof publicRoutes)[number];

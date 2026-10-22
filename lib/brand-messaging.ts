@@ -43,7 +43,7 @@ export const audienceCopy = {
 } as const;
 
 /** Browser tab title — keep in sync with lib/seo/config.ts; hero H1 uses homeHero.headline */
-export const homePageTitle = "Precifarm | EV charging Infrastructure" as const;
+export const homePageTitle = "EV Charging in Kenya: Home Chargers & Fast Charging | Precifarm" as const;
 
 export const announcementBar = {
  text: "Pulse charger from KES 79,000 · Public DC charging in <30 min · Lipa Pole Pole financing available",
@@ -57,7 +57,7 @@ export const announcementBar = {
 
 export const homeHero = {
  eyebrow: "Precifarm EV Charging",
- headline: "Powering the shift to electric transport.",
+ headline: "EV charging for Kenya, from your home to the highway.",
  headlineAccent: "",
  whatWeDo:
  "Fast, reliable charging for electric cars and motorcycles, fully installed and financed from KES 3,300/month.",
@@ -363,6 +363,7 @@ export const siteNavGroups = [
  links: [
  { href: "/evs", label: "Kenya EV guide", description: "17 models · charging requirements" },
  { href: "/agent", label: "Precifarm Agent", description: "AI electrical & energy engineer" },
+ { href: "/guides", label: "Guides", description: "Charging costs, tariffs and installs" },
  { href: "/research", label: "R&D", description: "Wireless EV charging research" },
  { href: "/about", label: "About us" },
  { href: "/faq", label: "FAQ" },
@@ -375,9 +376,20 @@ export const footerNavGroups = [
  {
  title: "Charging",
  links: [
- { href: "/charging/home", label: "Pulse charger · home" },
+ { href: "/charging/home", label: "Home EV chargers" },
+ { href: "/hub", label: "Charging stations map" },
  { href: "/charging", label: "All chargers" },
- { href: "/charging/boda-hub", label: "Boda Hub" },
+ { href: "/charging/boda-hub", label: "Boda battery swap" },
+ ],
+ },
+ {
+ title: "Guides",
+ links: [
+ { href: "/guides/ev-charging-stations-kenya", label: "EV charging stations in Kenya" },
+ { href: "/guides/kenya-power-ev-charging-tariff", label: "Kenya Power EV tariff" },
+ { href: "/guides/charge-electric-car-at-home-kenya", label: "Charge an EV at home" },
+ { href: "/guides/electric-boda-battery-swap-kenya", label: "Electric boda battery swap" },
+ { href: "/guides", label: "All guides" },
  ],
  },
  {

@@ -17,19 +17,14 @@ function pageExists(path: string): boolean {
   return walk(resolve(root, "app"), parts);
 }
 
-test("hreflang: a Swahili alternate is listed only where a Swahili page exists", async () => {
+test("hreflang: English only, each page is its own en-KE and x-default", async () => {
   const { hreflangAlternates } = await import("@/lib/seo/i18n");
-  const home = hreflangAlternates("/");
-  assert.equal(home["sw-KE"], "https://precifarm.com/sw");
-  assert.equal(home["x-default"], "https://precifarm.com/");
-  for (const p of ["/hub", "/charging/home", "/about", "/guides/x", "/faq/x"]) {
+  for (const p of ["/", "/hub", "/charging/home", "/about", "/guides/x", "/faq/x"]) {
     const alt = hreflangAlternates(p);
-    assert.equal(alt["sw-KE"], undefined, p);
+    assert.deepEqual(Object.keys(alt).sort(), ["en-KE", "x-default"], p);
     assert.equal(alt["en-KE"], "https://precifarm.com" + p);
+    assert.equal(alt["x-default"], alt["en-KE"]);
   }
-  const swFaq = hreflangAlternates("/sw/faq/ev-charging-economics-faq");
-  assert.equal(swFaq["sw-KE"], "https://precifarm.com/sw/faq/ev-charging-economics-faq");
-  assert.equal(swFaq["en-KE"], "https://precifarm.com/faq/ev-charging-economics-faq");
 });
 
 test("robots: crawlers may fetch scripts, styles and the share image; the API stays out", async () => {

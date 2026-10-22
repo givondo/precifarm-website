@@ -9,6 +9,7 @@ import { BOOKING_GUIDE_SLUG } from "@/lib/charging-faqs";
 import { faqsFromCmsContent } from "@/lib/seo/cms-content";
 import { cmsGetSeoContent, cmsListSeoContent, type CmsSeoContent } from "@/lib/seo/cms-client";
 import { siteConfig } from "@/lib/seo/config";
+import { getStaticGuide, staticGuides } from "@/lib/seo/static-guides";
 import { internalLinksForPath } from "@/lib/seo/entities/registry";
 import { createPageSeo } from "@/lib/seo/metadata";
 import { articleSchema, omitSchemaTypes } from "@/lib/seo/schema";
@@ -40,15 +41,24 @@ function buildSeo(slug: string, content: CmsSeoContent) {
 
 export async function generateStaticParams() {
   const items = await cmsListSeoContent({ status: "published", locale: siteConfig.locale });
-  return items
-    .filter((item) => ["guide", "howto", "article"].includes(item.contentType))
-    .filter((item) => item.slug !== BOOKING_GUIDE_SLUG)
-    .map((item) => ({ slug: item.slug }));
+  const slugs = new Set(
+    items
+      .filter((item) => ["guide", "howto", "article"].includes(item.contentType))
+      .filter((item) => item.slug !== BOOKING_GUIDE_SLUG)
+      .map((item) => item.slug),
+  );
+  for (const guide of staticGuides) slugs.add(guide.slug);
+  return [...slugs].map((slug) => ({ slug }));
+}
+
+/** The CMS guide for a slug, or the website's own guide when the CMS has none. */
+async function getGuide(slug: string) {
+  return (await cmsGetSeoContent(slug)) ?? getStaticGuide(slug) ?? null;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const content = await cmsGetSeoContent(slug);
+  const content = await getGuide(slug);
   if (!content) return {};
   return buildSeo(slug, content).metadata;
 }
@@ -58,7 +68,7 @@ export default async function GuidePage({ params }: Props) {
   if (slug === BOOKING_GUIDE_SLUG) {
     notFound();
   }
-  const content = await cmsGetSeoContent(slug);
+  const content = await getGuide(slug);
   if (!content || !["guide", "howto", "article"].includes(content.contentType)) {
     notFound();
   }
