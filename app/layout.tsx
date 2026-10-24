@@ -34,9 +34,9 @@ export const metadata: Metadata = {
     template: `%s · ${siteConfig.name}`,
   },
   applicationName: siteConfig.name,
-  authors: [{ name: siteConfig.legalName, url: siteConfig.url }],
-  creator: siteConfig.legalName,
-  publisher: siteConfig.legalName,
+  authors: [{ name: siteConfig.companyName, url: siteConfig.url }],
+  creator: siteConfig.companyName,
+  publisher: siteConfig.companyName,
   formatDetection: { email: false, address: false, telephone: false },
   category: "technology",
   alternates: {

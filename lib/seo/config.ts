@@ -14,6 +14,9 @@ export const defaultSiteTitle = homePageTitle;
 
 export const siteConfig = {
  name: "Precifarm",
+ /** Company name in public copy. */
+ companyName: "Precifarm AI",
+ /** Legal name: legal documents and the legalName field in structured data only. */
  legalName: "Precifarm AI Ltd",
  /** Shown in the browser tab on the homepage */
  defaultTitle: defaultSiteTitle,

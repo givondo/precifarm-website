@@ -64,3 +64,23 @@ test("page registry: unique paths and titles, titles fit a search result, descri
     assert.ok(pageExists(p.path) || p.path === "/", `registry lists ${p.path} but there is no page`);
   }
 });
+
+test("the legal name Precifarm AI Ltd appears only in legal content and structured-data legal fields", async () => {
+  const { readFileSync, readdirSync, statSync } = await import("node:fs");
+  const { join } = await import("node:path");
+  const allowed = ["lib/legal/", "lib/seo/config.ts", "lib/seo/pages/registry.ts"];
+  const hits: string[] = [];
+  const walk = (dir: string) => {
+    for (const name of readdirSync(join(root, dir))) {
+      const rel = join(dir, name);
+      if (statSync(join(root, rel)).isDirectory()) walk(rel);
+      else if (/\.(ts|tsx)$/.test(name) && readFileSync(join(root, rel), "utf8").includes("Precifarm AI Ltd")) hits.push(rel);
+    }
+  };
+  for (const d of ["app", "components", "lib"]) walk(d);
+  for (const h of hits) assert.ok(allowed.some((a) => h.startsWith(a)), `${h} uses the legal name outside legal content`);
+  const { pageSeoRegistry } = await import("@/lib/seo/pages/registry");
+  for (const p of pageSeoRegistry.filter((x) => !x.path.startsWith("/legal"))) {
+    assert.ok(!`${p.title} ${p.description}`.includes("Precifarm AI Ltd"), `${p.path} names the legal entity`);
+  }
+});

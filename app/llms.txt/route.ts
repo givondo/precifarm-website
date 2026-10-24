@@ -12,7 +12,7 @@ export async function GET() {
 - ${siteConfig.url}
 
 ## What Precifarm is
-Precifarm (Precifarm AI Ltd) is an EV charging company based in Nairobi, Kenya, founded in August 2025. It designs, installs and finances EV charging, from home chargers to highway DC fast charging and electric boda battery swap, paid with M-Pesa. Lead engineer: Sayia David Givondo, B.Eng.
+Precifarm AI (Precifarm for short) is an EV charging company based in Nairobi, Kenya, founded in August 2025. It designs, installs and finances EV charging, from home chargers to highway DC fast charging and electric boda battery swap, paid with M-Pesa. Lead engineer: Sayia David Givondo, B.Eng.
 
 ## Quick answers
 - Home EV charger in Kenya: Pulse 7 kW wallbox from KES 79,000, or from KES 3,300/month with Lipa Pole Pole on M-Pesa: ${siteConfig.url}/charging/home

@@ -9,9 +9,9 @@ export function organizationSchema(): JsonLd {
     "@context": SCHEMA_CONTEXT,
     "@type": "Organization",
     "@id": `${siteConfig.url}/#organization`,
-    name: siteConfig.name,
+    name: siteConfig.companyName,
     legalName: siteConfig.legalName,
-    alternateName: ["Precifarm AI", "Precifarm Kenya"],
+    alternateName: [siteConfig.name, "Precifarm Kenya"],
     url: siteConfig.url,
     logo: absoluteUrl("/images/precifarm-logo.png"),
     description: siteConfig.defaultDescription,
@@ -442,7 +442,8 @@ export function jobPostingSchema(input: {
     datePosted: input.datePosted ?? new Date().toISOString().slice(0, 10),
     hiringOrganization: {
       "@type": "Organization",
-      name: siteConfig.legalName,
+      name: siteConfig.companyName,
+      legalName: siteConfig.legalName,
       sameAs: siteConfig.url,
     },
     jobLocation: {

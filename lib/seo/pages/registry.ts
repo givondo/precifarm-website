@@ -336,8 +336,8 @@ export const pageSeoRegistry: PageSeoInput[] = [
  },
  {
  path: "/about",
- title: "About Precifarm AI Ltd: EV Charging Company in Nairobi",
- description: "Precifarm AI Ltd is a Nairobi EV charging company. We design, install and finance home, fleet and highway EV charging in Kenya, with M-Pesa on every product.",
+ title: "About Precifarm AI: EV Charging Company in Nairobi",
+ description: "Precifarm AI is a Nairobi EV charging company. We design, install and finance home, fleet and highway EV charging in Kenya, with M-Pesa on every product.",
  faqs: [
  {
  question: "What does Precifarm do?",
