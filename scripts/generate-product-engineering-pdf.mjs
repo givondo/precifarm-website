@@ -45,7 +45,7 @@ const IMAGE_FILES = [
   ["depot", "renders/depot-22kw-hero.png"],
   ["corridor", "products/corridor-v6.jpg"],
   ["corridor-safety", "renders/corridor-power-cabinet-hero.png"],
-  ["boda", "renders/boda-hub-hero.png"],
+  ["boda", "renders/boda-hub-revb-hero.jpg"],
   ["boda-locker-family", "products/boda-hub-locker-family-v3.png"],
   ["boda-bay-module", "products/boda-hub-bay-module-v2.png"],
   ["boda-site-petrol", "products/boda-hub-site-petrol.png"],

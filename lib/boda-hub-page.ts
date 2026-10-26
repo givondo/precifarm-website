@@ -34,7 +34,7 @@ export const bodaHubPageContent = {
  "Automated battery-swap smart lockers for electric motorcycles: find a hub, reserve a pack, scan, swap and pay with M-Pesa.",
  image: {
  src: productRenderPaths.bodaHubStudio,
- alt: "Boda Hub smart lockers at a partner site with electric motorcycles",
+ alt: "Boda Hub battery-swap locker on its swap pad, with safety bollards and the rider screen on the side totem",
  },
  primaryCta: { href: bodaHubPaths.contact, label: "Talk to Precifarm" },
  secondaryCta: { href: bodaHubPaths.hub, label: "See live Boda sites" },
@@ -66,7 +66,7 @@ export const bodaHubPageContent = {
  "Quiet streets get a compact cabinet. Busy hubs get a standard. Peak stages get a bank. Same shell, same doors, same software.",
  image: {
  src: productRenderPaths.bodaHub,
- alt: "Boda Hub standard locker with closed doors",
+ alt: "Boda Hub standard locker with one door open and an Energy Module ready to swap",
  },
  configs: [
  {

@@ -58,12 +58,12 @@ export const productImages = {
   },
   boda: {
     src: productRenderPaths.bodaHub,
-    alt: "Precifarm Boda Hub smart locker for electric motorcycle battery swap",
+    alt: "Precifarm Boda Hub smart locker for electric motorcycle battery swap, one door open with an Energy Module ready",
     brand: "none" as const,
   },
   bodaStudio: {
     src: productRenderPaths.bodaHubStudio,
-    alt: "Precifarm Boda Hub smart locker at a Kenyan petrol station with electric motorcycles",
+    alt: "Precifarm Boda Hub battery-swap locker on its swap pad, with safety bollards and the rider screen on the side totem",
     brand: "none" as const,
   },
   depot: {
