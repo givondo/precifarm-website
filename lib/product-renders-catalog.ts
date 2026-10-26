@@ -4,7 +4,7 @@
  */
 
 export const productRenderPaths = {
-  pulse7kW: "/images/renders/pulse-7kw-hero.png",
+  pulse7kW: "/images/renders/pulse-7kw-hero-rc3.png",
   pulsePlus22kW: "/images/renders/depot-22kw-hero.png",
   bodaHub: "/images/renders/boda-hub-hero.png",
   bodaHubFront: "/images/renders/boda-hub-front.png",
@@ -23,7 +23,7 @@ export const productRenderPaths = {
 
 /** Source filenames in the design export (for designers / asset handoff). */
 export const productRenderSourceIds = {
-  pulse7kW: "Precifarm_01_Pulse_7kW",
+  pulse7kW: "PF-PUL-RC3_web_pulse_7kw_hero",
   pulsePlus22kW: "Precifarm_02_PulsePlus_22kW",
   bodaHub: "Precifarm_03_Boda_Hub",
   corridorForecourt: "Precifarm_04_Corridor_Forecourt",
