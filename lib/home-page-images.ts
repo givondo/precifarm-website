@@ -5,8 +5,8 @@
 
 export const homePageImages = {
   featuredPulse: {
-    src: "/images/renders/pulse-7kw-hero.png",
-    alt: "Precifarm Pulse 7 kW home wallbox with holstered Type 2 cable and green Precifarm branding",
+    src: "/images/renders/pulse-7kw-hero-rc3.png",
+    alt: "Precifarm Pulse 7 kW home wallbox with its Type 2 cable coiled on the holster wrap hook",
   },
   podHomeHero: {
     src: "/images/products/pod-home-hero-v3-garage-4x3.png",
