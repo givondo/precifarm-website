@@ -39,7 +39,7 @@ const DOC = {
 const IMAGE_FILES = [
   ["ecosystem-hero", "renders/energy-storage-family-hero.png"],
   ["spark", "products/spark-v3.png"],
-  ["pulse", "renders/pulse-7kw-hero.png"],
+  ["pulse", "renders/pulse-7kw-hero-rc3.png"],
   ["pod", "renders/p2-home-hero.png"],
   ["pod-garage", "products/pod-home-hero-v3-garage-4x3.png"],
   ["depot", "renders/depot-22kw-hero.png"],
