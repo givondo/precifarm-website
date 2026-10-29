@@ -125,7 +125,10 @@ function ProgrammeCard({ area }: { area: ResearchArea }) {
             <p className="mt-1.5 text-sm font-medium leading-relaxed text-forest-900">{area.goal}</p>
           </div>
 
-          <dl className="mt-6 divide-y divide-border rounded-xl border border-border">
+          <p className="mt-6 font-mono text-[10px] font-semibold uppercase tracking-widest text-forest-500">
+            Targets, not results
+          </p>
+          <dl className="mt-2 divide-y divide-border rounded-xl border border-border">
             {area.targets.map((t) => (
               <div key={t.label} className="flex items-baseline justify-between gap-4 px-4 py-2.5">
                 <dt className="text-sm text-forest-600">{t.label}</dt>
