@@ -23,7 +23,7 @@ export const hubImages = {
   /** Fleet depot AC pedestal */
   fleetCanopy: {
     image: depotImage,
-    imageAlt: "Precifarm Depot 22 kW AC charging pedestal with Type 2 cable in the holster",
+    imageAlt: "Precifarm Pulse+ 22 kW AC wallbox with the Type 2 connector in its dock",
     objectPosition: "object-center",
   },
   /** Charging and energy product family */

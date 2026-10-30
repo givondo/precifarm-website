@@ -68,7 +68,7 @@ export const productImages = {
   },
   depot: {
     src: productRenderPaths.pulsePlus22kW,
-    alt: "Precifarm 22 kW AC charging pedestal (Pulse Plus) with dual holsters and session display",
+    alt: "Precifarm Pulse+ 22 kW three-phase wallbox with its tethered Type 2 cord coiled on the wall dock",
     brand: "none" as const,
   },
   corridor: {

@@ -36,7 +36,7 @@ export const chargingHubPage = {
       },
       {
         src: productImages.depot.src,
-        alt: "Precifarm Depot 22 kW AC charging pedestal at a fleet or partner site",
+        alt: "Precifarm Pulse+ 22 kW AC wallbox for fleet and partner sites",
         label: "Partner & fleet",
       },
     ] as const,

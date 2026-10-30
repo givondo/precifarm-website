@@ -42,7 +42,7 @@ const IMAGE_FILES = [
   ["pulse", "renders/pulse-7kw-hero-rc3.png"],
   ["pod", "renders/p2-home-hero.png"],
   ["pod-garage", "products/pod-home-hero-v3-garage-4x3.png"],
-  ["depot", "renders/depot-22kw-hero.png"],
+  ["depot", "renders/pulse-plus-22kw-hero-rb.png"],
   ["corridor", "products/corridor-v6.jpg"],
   ["corridor-safety", "renders/corridor-power-cabinet-hero.png"],
   ["boda", "renders/boda-hub-revb-hero.jpg"],
