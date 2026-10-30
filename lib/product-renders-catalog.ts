@@ -5,7 +5,7 @@
 
 export const productRenderPaths = {
   pulse7kW: "/images/renders/pulse-7kw-hero-rc3.png",
-  pulsePlus22kW: "/images/renders/depot-22kw-hero.png",
+  pulsePlus22kW: "/images/renders/pulse-plus-22kw-hero-rb.png",
   bodaHub: "/images/renders/boda-hub-revb-hero.jpg",
   bodaHubFront: "/images/renders/boda-hub-revb-front.jpg",
   bodaHubStudio: "/images/renders/boda-hub-revb-site-16x9.jpg",

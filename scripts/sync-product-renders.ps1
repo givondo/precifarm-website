@@ -25,7 +25,6 @@ $dest = Join-Path $PSScriptRoot "..\public\images\renders"
 New-Item -ItemType Directory -Force -Path $dest | Out-Null
 
 $pairs = @(
-  @("depot-22kw-hero.png", "*Precifarm_02_PulsePlus_22kW_hero_transparent*"),
   @("corridor-forecourt-hero.png", "*Precifarm_04_Corridor_Forecourt_hero_transparent*"),
   @("corridor-dispenser-hero.png", "*Precifarm_05_Corridor_Dispenser_hero_transparent*"),
   @("corridor-power-cabinet-hero.png", "*Precifarm_06_Corridor_Power_Cabinet_hero_transparent*"),
