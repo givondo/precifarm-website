@@ -60,7 +60,7 @@ const cityMeta: Record<
 > = {
   nairobi: {
     region: "nairobi-metro",
-    services: ["Home", "Corridor DC", "Boda Hub", "Depot", "Partners"],
+    services: ["Home", "Corridor DC", "Boda Hub", "Fleet AC", "Partners"],
     status: "live",
     county: "Nairobi County",
     description: "Capital hub — home installs, Boda Hub swap and corridor access west and coast.",

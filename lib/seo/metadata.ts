@@ -103,7 +103,7 @@ export function createPageSeo(input: PageSeoInput): GeneratedPageSeo {
       }),
       howToSchema({
         name: chargingHowToBlock.title,
-        description: "Request a certified Pulse charger or Pod energy storage installation on Precifarm with M-Pesa.",
+        description: "Request a Pulse charger installation from Precifarm, with M-Pesa and Lipa Pole Pole.",
         steps: (chargingHowToBlock.items ?? [])
           .filter((step): step is string => typeof step === "string")
           .map((step, index) => ({

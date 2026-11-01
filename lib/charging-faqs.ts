@@ -39,73 +39,73 @@ export const consumerChargingFaqs: ChargingFaq[] = [
  id: "home-day-cost",
  question: "How much does home charging cost per day?",
  answer:
- "A typical Nairobi driving day of about 60 km (a home charging day) costs roughly KES 140 in electricity at home versus ~KES 1,000 in diesel per day, a typical saving of about KES 860 a day. On a Pulse charger, that day refills in about 90 minutes. Actual cost depends on your Kenya Power tariff, vehicle efficiency and kilometres driven.",
+ "A typical Nairobi driving day of about 60 km (a home charging day) costs roughly KES 140 in electricity at home versus ~KES 1,000 in diesel per day, a typical saving of about KES 860 a day. On a Pulse charger, that day refills in under two hours. Actual cost depends on your Kenya Power tariff, vehicle efficiency and kilometres driven.",
  },
  {
  id: "pulse-price",
  question: "How much is a Pulse charger?",
  answer:
- "The Pulse charger starts from KES 79,000, with Lipa Pole Pole instalments on M-Pesa. A typical 60 km day refills in about 90 minutes at 7 kW. The quoted price follows a private-house survey; consumer-unit upgrades, extra cabling or civil works are priced separately if they are needed.",
+ "The Pulse charger starts from KES 79,000, with Lipa Pole Pole instalments on M-Pesa. A typical 60 km day refills in under two hours at 7 kW. The quoted price follows a private-house survey; consumer-unit upgrades, extra cabling or civil works are priced separately if they are needed.",
  },
  {
  id: "public-dc-price",
  question: "How much is public DC charging?",
  answer:
- "Public DC at Precifarm Depot charging stations and Corridor charging sites is from KES 39/kWh. Corridor charging adds about 60 kWh in 30 minutes at 120 kW DC. The session price is shown in Precifarm Agent and at the charger before you start. Charging on your own home meter is usually cheaper per kWh than public DC.",
+ "At Precifarm Corridor charging sites the price per kWh is set for each site at commissioning and shown before you start, at the charger and in M-Pesa. The first Corridor sites, starting on Nairobi to Kisumu, are pilots in development. As an illustration, a car that accepts about 120 kW can add around 60 kWh in 30 minutes. Charging on your own home meter is usually cheaper per kWh than public DC.",
  },
  {
  id: "home-vs-public",
  question: "Why is home charging cheaper than public DC?",
  answer:
- "At home you pay your household electricity tariff on your own meter. Public Depot charging stations and Corridor charging sites recover charger hardware, Kenya Power demand, monitoring and uptime, so the published public rate starts from KES 39/kWh, still typically far below diesel for the same kilometres.",
+ "At home you pay your household electricity tariff on your own meter. Public Corridor charging sites recover charger hardware, Kenya Power demand, monitoring and uptime, so the public price per kWh is higher than a home tariff, and is set for each site at commissioning.",
  },
  {
  id: "lipa-pole-pole",
  question: "What is Lipa Pole Pole?",
  answer:
- "Lipa Pole Pole is Precifarm instalment financing on M-Pesa, from KES 3,300/month. Pay a deposit and spread the balance on any phone. No bank account required. It applies to Pulse charger and Pod energy storage installations, not to public charging sessions.",
+ "Lipa Pole Pole is Precifarm instalment financing on M-Pesa, from KES 3,300/month. Pay a deposit and spread the balance on any phone. No bank account required. It applies to Pulse charger installations, not to public charging sessions.",
  },
  {
  id: "get-home-charger",
  question: "How do I get a home charger?",
  answer:
- "Visit precifarm.com/charging/home or open Precifarm Agent, request a Pulse charger or Pod energy storage survey, and pay the deposit via M-Pesa. Certified installation and commissioning typically take one day after survey approval. Three-year aftersale care is included on every home unit.",
+ "Visit precifarm.com/charging/home or open Precifarm Agent, request a Pulse charger survey, and pay the deposit via M-Pesa. Certified installation and commissioning typically take one day after survey approval. Three-year aftersale care is included on every home unit.",
  },
  {
  id: "house-installation-includes",
  question: "What is included in a private house installation?",
  answer:
- "Remote intake and property survey, a written quote and single-line diagram, Pulse charger or Pod energy storage supply and installation (Type 2 AC for your vehicle), commissioning, handover, remote monitoring and three-year aftersale support. Optional Pod energy storage with solar and LiFePO₄ storage. Kenya Power service upgrades and unusual civil works are not included unless they appear on the quote.",
+ "Remote intake and property survey, a written quote and single-line diagram, Pulse charger supply and installation (Type 2 AC for your vehicle), commissioning, handover, remote monitoring and three-year aftersale support. Kenya Power service upgrades and unusual civil works are not included unless they appear on the quote.",
  },
  {
- id: "pulse-vs-pod",
- question: "What is the difference between the Pulse charger and Pod energy storage?",
+ id: "pulse-safety",
+ question: "How does the Pulse charger keep a home installation safe?",
  answer:
- "The Pulse charger is a 7 kW wall unit that refills a typical 60 km day in about 90 minutes on your home meter. Pod energy storage adds 5 or 10 kWh of built-in storage, and optional rooftop solar, so you can keep charging when the grid is weak or when the roof is producing.",
+ "Charging current never runs through a circuit board. An independent safety processor and a hardware watchdog control the contactor, the unit detects 6 mA DC residual current and welded contacts, and it checks earth and supply before every session. It is installed on its own circuit behind a Type A RCD, and load management trims the charging current so your main fuse does not trip.",
  },
  {
- id: "spark",
- question: "What is the Spark charger?",
+ id: "pulse-plus",
+ question: "What is the Pulse+ charger?",
  answer:
- "The Spark charger is a 3.3 kW portable unit that refills a typical day in about 180 minutes from a normal socket and travels in the boot. Use it where you have a suitable outlet. It is not a public Corridor charging session, and you pay the electricity at that site.",
+ "Pulse+ is the 22 kW three-phase member of the Pulse family for fleet yards, workplaces and apartment parking. It adapts to each car: 22 kW where the car accepts it, 11 kW on most three-phase cars, and 7.4 kW in single-phase mode, and up to ten units can share one site meter. Pulse+ is in development; fleets and site hosts can register interest for a site quote.",
  },
  {
  id: "home-charge-time",
  question: "How long does home charging take?",
  answer:
- "A typical Nairobi day of about 60 km is roughly 10 kWh. On a Pulse charger at 7 kW, that refills in about 90 minutes. Plug in overnight and most drivers wake up full. A Spark charger from a normal socket takes about 180 minutes for the same day.",
+ "A typical Nairobi day of about 60 km is roughly 10 kWh. On a Pulse charger at 7 kW it takes under two hours from the meter. Plug in overnight and most drivers wake up full.",
  },
  {
  id: "pay-public",
  question: "How do I pay at a public charger?",
  answer:
- "Start the session in Precifarm Agent or at the charger and pay with M-Pesa. The price per kWh is shown before you start. Public DC at Depot charging stations and Corridor charging sites is from KES 39/kWh.",
+ "Start the session in Precifarm Agent or at the charger and pay with M-Pesa. The price per kWh is shown before you start and is set for each Corridor site at commissioning.",
  },
  {
  id: "solar-vs-grid",
  question: "Does rooftop solar replace Kenya Power at home?",
  answer:
- "No. Pod energy storage with solar and home storage cuts grid cost and adds backup; they do not replace a working supply or a site survey. House charging stays on your meter. Solar is sized to your roof and daily mileage, not as a substitute for the grid.",
+ "No. Rooftop solar can cut what you pay for charging, but it does not replace a working supply or a site survey. House charging stays on your meter. Solar is sized to your roof and daily mileage, not as a substitute for the grid.",
  },
  {
  id: "payment-methods",
@@ -131,28 +131,28 @@ export const consumerChargingFaqs: ChargingFaq[] = [
  "Precifarm Agent is the AI electrical and energy engineering workspace for EV charging, solar, batteries and electrical systems. Desktop coming soon — request access at precifarm.com/download.",
  },
  {
- id: "depot",
- question: "What is a Depot charging station?",
+ id: "corridor",
+ question: "What is Corridor charging?",
  answer:
- "Depot is a 22 kW AC pedestal for fleets that park for hours: vans, shuttles and yard vehicles. It adds 40+ kWh in about 120 minutes. Public DC at Depot and Corridor sites is from KES 39/kWh on M-Pesa. See Partners for fleet electrification.",
+ "Corridor is Precifarm's DC fast charging for highways and towns: two CCS2 guns on overhead cable trolleys, with on-site battery storage so the site needs a smaller grid connection. Each site is engineered around a power study with Kenya Power. The first Corridor sites, starting on Nairobi to Kisumu, are pilots in development; the price per kWh will be set for each site at commissioning.",
  },
  {
  id: "boda-hub",
  question: "What is Boda Hub?",
  answer:
- "Boda Hub is battery swap or kerbside charge for electric motorcycles, typically under five minutes back on the road. Live sites are listed on the Charging Hub. Automated self-service lockers (find → reserve → scan → swap → pay) are on the product roadmap under engineering validation. See precifarm.com/charging/boda-hub. Compatibility depends on validated platforms at each site.",
+ "Boda Hub is battery swapping for electric motorcycles: at partner-run sites a swap takes under five minutes. The Automated Boda Hub cabinet, with a controller in every bay and charging only when the door is closed and latched, is in development. Each site uses one battery make; mixed brands are not accepted. See precifarm.com/charging/boda-hub.",
  },
  {
- id: "modular-energy",
- question: "What is Precifarm modular energy?",
+ id: "wireless",
+ question: "Does Precifarm sell wireless EV charging?",
  answer:
- "P1 Go, P2 Home and Mini Stack are a conceptual energy-storage family: portable backup, a home tower and outdoor SME backup. They are not on sale yet and Mini Stack is not Pod energy storage (the home charger + battery on the home charging page). See precifarm.com/charging/modular-energy.",
+ "No. Wireless charging is a Precifarm research programme. The first research target is stationary charging for light-duty cars at home and in fleet depots, with a later study for e-bodas. No transfer efficiency has been measured yet and nothing is for sale. The Pulse charger is what we install today.",
  },
  {
  id: "training",
  question: "Do you train technicians on Precifarm chargers?",
  answer:
- "Yes. T1 site safety, T2 field technician and T3 commissioning programmes map to Pulse, Pod, Depot, Boda Hub and Corridor. Nairobi classroom plus field modules on live hubs. Enquire at precifarm.com/training.",
+ "Yes. T1 site safety, T2 field technician and T3 commissioning programmes map to Pulse, Pulse+, Boda Hub and Corridor. Nairobi classroom plus field modules. Enquire at precifarm.com/training.",
  },
 ];
 
@@ -171,14 +171,14 @@ export const faqIndexChargingFaqs: FaqItem[] = pickFaqs(
  "public-dc-price",
  "lipa-pole-pole",
  "get-home-charger",
- "pulse-vs-pod",
- "spark",
+ "pulse-safety",
+ "pulse-plus",
  "ai-companion",
  "pay-public",
  "charging-hub",
- "depot",
+ "corridor",
  "boda-hub",
- "modular-energy",
+ "wireless",
  "training",
  "solar-vs-grid",
  "payment-methods",
@@ -191,7 +191,7 @@ export const privateHouseScopeFaqs: FaqItem[] = [
  {
  question: "Is this different from a public charging hub?",
  answer:
- "Yes. House-based private charging is on your property for your vehicle only, billed on your meter. Public Depot charging stations and Corridor charging sites on the Charging Hub serve public sessions at the published public DC rate (from KES 39/kWh).",
+ "Yes. House-based private charging is on your property for your vehicle only, billed on your meter. Public Corridor charging sites serve public sessions at the public DC price shown before each session.",
  },
  {
  question: "Can you install at an apartment?",
@@ -201,7 +201,7 @@ export const privateHouseScopeFaqs: FaqItem[] = [
  {
  question: "What about a whole estate or school?",
  answer:
- "Multi-bay sites for organisations use Depot charging stations. See fleet charging on the Partners page. That is not Pulse charger or Pod energy storage home charging. Those sites are sized to fleet and visitor demand in a written engineering assessment.",
+ "Multi-bay sites for organisations use Pulse+ three-phase chargers (in development) with shared load management. See fleet charging on the Partners page. That is not Pulse home charging. Those sites are sized to fleet and visitor demand in a written engineering assessment.",
  },
  {
  question: "How long does a house installation take?",
@@ -211,7 +211,7 @@ export const privateHouseScopeFaqs: FaqItem[] = [
 ];
 
 export const privateHouseChargingFaqs: FaqItem[] = [
- ...pickFaqs(["pulse-vs-pod", "house-installation-includes"], consumerChargingFaqs),
+ ...pickFaqs(["pulse-safety", "house-installation-includes"], consumerChargingFaqs),
  ...privateHouseScopeFaqs,
 ];
 
@@ -230,7 +230,7 @@ export const hubEngineeringFaqs: FaqItem[] = [
  {
  question: "Who is the engineering package for?",
  answer:
- "Homeowners sizing Pulse or Pod with solar, fleet and property partners planning Depot or Boda Hub yards, highway hosts scoping Corridor T-canopy DC, and sites exploring modular energy storage. The package covers EV charging and energy systems — not passenger booking or bus timetable products.",
+ "Homeowners sizing a Pulse charger, fleet and property partners planning Pulse+ or Boda Hub yards, and highway hosts scoping Corridor DC with on-site storage. The package covers EV charging and energy systems, not passenger booking or bus timetable products.",
  },
  {
  question: "Does solar replace the Kenya Power connection?",
@@ -250,6 +250,6 @@ export const hubEngineeringFaqs: FaqItem[] = [
  {
  question: "Are the engineering cost figures a quotation?",
  answer:
- "No. Planning bands in the design doc (chargers, canopy PV, storage, connection) and handbook worked examples are illustrative. Live public DC is from KES 39/kWh at Depot charging stations and Corridor charging sites. The Pulse charger starts from KES 79,000. Request a site-specific cost sheet after survey.",
+ "No. Planning bands in the design doc (chargers, canopy PV, storage, connection) and handbook worked examples are illustrative. Corridor prices are set per site at commissioning. The Pulse charger starts from KES 79,000. Request a site-specific cost sheet after survey.",
  },
 ];

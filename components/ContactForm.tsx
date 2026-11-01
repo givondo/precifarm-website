@@ -2,18 +2,9 @@
 
 import { useState } from "react";
 import { getAnonymousId } from "@/lib/analytics";
-import { megapackInterest } from "@/lib/megapack-page";
+import { contactInterestList } from "@/lib/contact-interests";
 
-const interests = [
-  "Home charger installation (Pulse charger or Pod energy storage)",
-  megapackInterest,
-  "Host a charging hub site",
-  "Fleet or depot charging",
-  "Boda swap or kerbside charging",
-  "Dealer or installation partnership",
-  "Finance or OEM partnership",
-  "General enquiry",
-];
+const interests = contactInterestList;
 
 type ContactFormProps = {
   defaultInterest?: string;
@@ -99,7 +90,7 @@ export default function ContactForm({ defaultInterest }: ContactFormProps) {
     <form className="card p-6" onSubmit={handleSubmit}>
       <h2 className="text-lg font-semibold text-forest-900">Send us a message</h2>
       <p className="mt-2 text-sm leading-relaxed text-forest-600/80">
-        Home charger, hub hosting, fleet depot, Boda swap or partnership — we route your enquiry
+        Home charger, fleet charging, Corridor site hosting, Boda swap, private AI or partnership: we route your enquiry
         to the right Precifarm team.
       </p>
 

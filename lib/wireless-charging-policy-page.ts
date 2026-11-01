@@ -10,7 +10,7 @@ export const wirelessChargingPolicyFaqs: FaqItem[] = [
   {
     question: "Is this policy a product datasheet?",
     answer:
-      "No. It explains how Precifarm runs wireless charging research and how we compare against industry references. Sellable products remain wired Pulse, Pod, Spark, Depot, Boda Hub and Corridor.",
+      "No. It explains how Precifarm runs wireless charging research and how we compare against industry references. What we sell today is the wired Pulse charger, with Lipa Pole Pole on M-Pesa.",
   },
   {
     question: "When will Precifarm match OEM wireless charging?",
@@ -59,7 +59,7 @@ export const wirelessIndustryBenchmarks = [
   {
     source: "Fleet & depot WPT pilots (global)",
     benchmark: "Higher-power static bays (often 50 kW+) in limited bus and depot trials",
-    note: "Precifarm depot research looks at alignment-first yards, not replacing commissioned Depot AC today.",
+    note: "Precifarm depot research looks at alignment-first yards, not replacing wired fleet AC charging.",
   },
   {
     source: "Published efficiency literature",
@@ -77,7 +77,7 @@ export const wirelessChargingPolicyPage = {
   scope: {
     title: "1. Scope",
     paragraphs: [
-      "This policy applies to Precifarm’s wireless EV charging research programme only. It does not amend warranties, install terms, or pricing for Pulse, Pod, Spark, Depot, Boda Hub, Corridor, or Lipa Pole Pole.",
+      "This policy applies to Precifarm’s wireless EV charging research programme only. It does not amend warranties, install terms, or pricing for Pulse, Pulse+, Boda Hub, Corridor or Lipa Pole Pole.",
       "Wireless charging pads, receivers, and related software described here are not products for sale unless a separate product page and commercial terms say otherwise.",
     ],
   },

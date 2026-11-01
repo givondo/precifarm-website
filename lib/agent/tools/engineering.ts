@@ -155,7 +155,7 @@ export const engineeringToolDefinitions = [
     {
       productId: {
         type: "string",
-        enum: ["pulse", "spark", "pod", "depot", "corridor", "boda-hub", "lipa-pole-pole", "all"],
+        enum: ["pulse", "pulse-plus", "corridor", "boda-hub", "lipa-pole-pole", "all"],
         description: "Product to look up, or all",
       },
     },

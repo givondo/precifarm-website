@@ -13,6 +13,7 @@ import {
   IconMap,
   IconMenu,
   IconPhone,
+  IconUsers,
 } from "@/components/header/mobile-nav-icons";
 import Logo from "@/components/Logo";
 import { headerCta, siteNavGroups } from "@/lib/brand-messaging";
@@ -27,10 +28,10 @@ type NavGroup = {
 };
 
 const groupIcons: Record<(typeof siteNavGroups)[number]["title"], ReactNode> = {
-  Charging: <IconMap />,
-  Energy: <IconBolt />,
-  "For business": <IconPhone />,
-  Company: <IconGrid />,
+  "EV Charging": <IconBolt />,
+  "Swapping & R&D": <IconMap />,
+  "AI Platform": <IconGrid />,
+  Company: <IconUsers />,
 };
 
 const navGroups: NavGroup[] = siteNavGroups.map((group) => ({

@@ -36,7 +36,7 @@ export const careerOpenings: CareerOpening[] = [
     location: "Nairobi · Kisumu · route corridor",
     type: "Full-time",
     summary:
-      "Install, commission and maintain Pulse, Pod, Depot and Corridor chargers. You keep uptime high so homes and highway stops stay online.",
+      "Install, commission and maintain Pulse, Pulse+ and Corridor chargers. You keep uptime high so homes and highway stops stay online.",
     points: [
       "Electrical or renewable energy background with field experience",
       "Comfortable with CCS2 chargers, monitoring and fault recovery",

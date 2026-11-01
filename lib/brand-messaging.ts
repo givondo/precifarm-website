@@ -4,7 +4,6 @@
  * uncommissioned hubs as traction.
  */
 
-import { modularEnergyBrand, modularEnergyNav, modularEnergyPaths } from "@/lib/modular-energy-page";
 import { trainingNavLabel } from "@/lib/training";
 import { sitePricing } from "@/lib/site-copy";
 
@@ -16,19 +15,18 @@ export const brand = {
  africa: "Built for Kenya. Engineered for Africa.",
  payment: "One network. One account. M-Pesa everywhere.",
  energy: "Generate. Store. Charge. Move.",
- /** Modular energy platform: keep in sync with modularEnergyBrand. */
- energyPlatform: modularEnergyBrand.shortLine,
+ energyPlatform: "Energy infrastructure and private AI, engineered in Kenya.",
  fleet: "Electrify your fleet. We'll engineer the system.",
  network: "Find EV charging across Kenya.",
  visionCta: "Let's build the electric network.",
  words25:
  "Precifarm designs, finances, deploys and operates EV charging and energy systems for homes, fleets and highway corridors.",
  words50:
- "Precifarm is an electric mobility infrastructure company. We design, finance, deploy and operate charging, storage and energy systems, from a portable Spark charger to highway Corridor DC, with M-Pesa payments and one ops team behind every unit.",
+ "Precifarm is an electric mobility infrastructure company. We design, finance, deploy and operate charging, storage and energy systems, from a Pulse charger on the driveway to Corridor DC fast charging, with M-Pesa payments and one ops team behind every unit.",
  words100:
- "Precifarm builds the infrastructure behind electric transport in Kenya, with a design path to Africa. We combine grid and solar power, battery storage, EV charging, software monitoring, M-Pesa payments and Lipa Pole Pole financing into one operating system for homes, fleets and highway corridors. Precifarm handles site engineering, commissioning, uptime and settlement. Nairobi–Kisumu is the first corridor we prove before the next is financed.",
+ "Precifarm builds the infrastructure behind electric transport in Kenya, with a design path to Africa. We combine grid and solar power, battery storage, EV charging, software monitoring, M-Pesa payments and Lipa Pole Pole financing into one operating system for homes, fleets and highway corridors. Precifarm handles site engineering, commissioning, uptime and settlement. The first Corridor sites, starting on Nairobi to Kisumu, are pilots we prove before the next is financed.",
  llm:
- "Precifarm is a Kenyan electric mobility infrastructure company. It installs, finances and runs EV charging from home charging to highway charging. Chargers: Spark charger (portable 3.3 kW, about 180 minutes for a typical day), Pulse charger (7 kW home, about 90 minutes, from KES 79,000), Pod energy storage (home charger + 5 or 10 kWh storage, from KES 295,000), Boda Hub (swap under 5 minutes), Depot charging station (22 kW fleet AC, about 120 minutes for 40+ kWh), Corridor charging (120 kW+ highway DC, fast highway top-up in about 30 minutes). Lipa Pole Pole is M-Pesa financing for Pulse charger and Pod energy storage, not a charger. Public DC from KES 39/kWh. A home charging day costs about KES 140 versus ~KES 1,000 diesel per day. Charging Hub at precifarm.com/hub. M-Pesa on every product. Precifarm Agent desktop coming soon at precifarm.com/download. Modular energy (P1 Go, P2 Home, Mini Stack, MegaPack) is on the engineering roadmap — confirm availability on product pages before quoting.",
+ "Precifarm is a Kenyan electric mobility infrastructure company with two pillars. Energy infrastructure: Pulse charger (7 kW home wallbox, available, from KES 79,000, a typical 60 km day in under two hours), Pulse+ charger (22 kW three-phase AC for fleets and workplaces, in development), Corridor charging (DC fast charging with two CCS2 guns and on-site storage, first sites are pilots in development starting on Nairobi to Kisumu, price per kWh set per site and shown before you start), Boda Hub (battery swapping for electric motorcycles, partner-run pilot sites, swap under 5 minutes; the Automated Boda Hub cabinet is in development) and wireless EV charging research (light-duty cars first, not a product). AI systems: Agent Harness (private, local-first AI agents on your own machine, in development) and Precifarm Agent (hosted engineering assistant at precifarm.com/agent). Lipa Pole Pole is M-Pesa financing for the Pulse charger, from KES 3,300/month, not a charger. A home charging day costs about KES 140 versus about KES 1,000 in diesel. M-Pesa on every product.",
 } as const;
 
 export const audienceCopy = {
@@ -77,8 +75,8 @@ export const homeHero = {
 
 export const heroStats = [
  {
- stat: "90 min",
- label: "Full charge overnight with a Pulse charger — covers a typical ~60 km Nairobi day",
+ stat: "Under 2 hours",
+ label: "Puts back a typical ~60 km Nairobi day with a Pulse charger. Plug in after work, ready by morning",
  },
  {
  stat: `Drive 60 km for about ${sitePricing.homeDay}`,
@@ -90,9 +88,9 @@ export const homeNetworkTeaser = {
  eyebrow: "Charging Hub",
  title: "See what is open before you drive.",
  description:
- "Highway DC, boda swap and partner stops on one map — each site labelled live or coming soon. Public DC from KES 39/kWh where available.",
+ "Highway DC, boda swap and partner stops on one map — each site labelled live or coming soon. Price per kWh shown before you start.",
  stats: [
- { stat: "KES 39", label: "Public DC from, per kWh" },
+ { stat: "Upfront", label: "Price per kWh shown before you charge" },
  { stat: "M-Pesa", label: "Session pay at commissioned sites" },
  ],
  primaryHref: "/hub#map",
@@ -109,20 +107,20 @@ export const scenarioSection = {
 } as const;
 
 export const productRangeSection = {
- eyebrow: "Flagship chargers",
+ eyebrow: "Charging",
  title: "Charge your way.",
  description:
  "From your driveway to the highway, Precifarm makes EV charging simple, affordable and reliable.",
- subline: "Choose the charger that fits your life.",
+ subline: "Choose the charger that fits your site.",
  compactTitle: "Also in the range",
- compactDescription: "Boda Hub for two-wheelers, Depot for fleet yards, plus Lipa Pole Pole M-Pesa financing on Pulse charger and Pod energy storage.",
+ compactDescription: "Boda Hub battery swapping for two-wheelers, plus Lipa Pole Pole M-Pesa financing on the Pulse charger.",
  footer: {
  title: "One ecosystem. Every journey.",
  items: [
- { name: "Spark", line: "Charge anywhere." },
  { name: "Pulse charger", line: "Charge at home." },
- { name: "Pod", line: "Store your power." },
+ { name: "Pulse+", line: "Charge the fleet." },
  { name: "Corridor", line: "Go farther." },
+ { name: "Boda Hub", line: "Swap and ride." },
  ],
  accountLine: "One Precifarm account. M-Pesa on every product.",
  cta: { href: "/charging", label: "Explore charging" },
@@ -138,32 +136,35 @@ export const homeScenarios = [
  {
  id: "home",
  title: "Home",
- audience: "Homeowners & drivers",
- text: "Plug in on your driveway overnight. Add Pod energy storage when the grid dips, and keep a Spark charger in the boot for days away from home.",
- products: "Pulse charger · Pod · Spark charger",
- productIds: ["pulse", "pod", "spark"],
+ audience: "Homeowners and drivers",
+ status: "available",
+ text: "Plug in on your driveway overnight. We survey, install and look after the Pulse charger, and Lipa Pole Pole spreads the cost on M-Pesa.",
+ products: "Pulse charger · Lipa Pole Pole",
+ productIds: ["pulse", "financing"],
  href: "/charging/home",
- cta: "Home charging & Lipa Pole Pole",
+ cta: "Home charging",
  },
  {
  id: "fleet",
- title: "Fleet",
- audience: "Depots & boda operators",
- text: "Charge vans and buses on 22 kW Depot pedestals while they sit in the yard. Boda Hub smart lockers swap batteries for electric motorcycles in minutes.",
- products: "Depot charging station · Boda Hub",
- productIds: ["depot", "boda"],
+ title: "Fleet and two-wheelers",
+ audience: "Depots, workplaces and boda operators",
+ status: "pilot",
+ text: "Pulse+ brings 22 kW three-phase charging to yards and workplaces (in development). Boda Hub swaps batteries for electric motorcycles at partner-run pilot sites.",
+ products: "Pulse+ · Boda Hub",
+ productIds: ["pulsePlus", "boda"],
  href: "/partners",
- cta: "Fleet & boda programmes",
+ cta: "Fleet and boda programmes",
  },
  {
  id: "highway",
  title: "Highway",
- audience: "Intercity drivers",
- text: "Pull in for 120 kW+ Corridor DC fast charging on long routes. We engineer and operate the site — you pay each session with M-Pesa.",
+ audience: "Intercity drivers and site hosts",
+ status: "pilot",
+ text: "Corridor DC fast charging with on-site storage, engineered around each site's grid. The first sites, starting on Nairobi to Kisumu, are pilots in development.",
  products: "Corridor charging · M-Pesa session pay",
  productIds: ["corridor"],
- href: "/partners",
- cta: "Highway corridor programmes",
+ href: "/charging/corridor",
+ cta: "Corridor charging",
  },
 ] as const;
 
@@ -188,7 +189,7 @@ export const homeSupport = [
  {
  label: "Lipa Pole Pole",
  stat: "From KES 3,300/mo",
- text: "Own Pulse charger or Pod energy storage on M-Pesa instalments. No bank account required.",
+ text: "Own a Pulse charger on M-Pesa instalments. No bank account required.",
  },
  {
  label: "Aftersale care",
@@ -302,7 +303,7 @@ export const africaSection = {
  eyebrow: "Kenya first",
  title: "Built for Kenya. Engineered for Africa.",
  description:
- "We start on Nairobi–Kisumu. Expansion beyond route one waits on utilisation, uptime and partner return. The engineering is made for African grids and distances; the network is not claimed where it is not built.",
+ "We start with pilot sites on Nairobi to Kisumu. Expansion beyond route one waits on utilisation, uptime and partner return. The engineering is made for African grids and distances; the network is not claimed where it is not built.",
 } as const;
 
 export const finalCta = {
@@ -317,7 +318,7 @@ export const partnerLines = [
  { id: "fleets", title: "Fleets", line: "Electrify operations without buying a charger catalogue.", href: "/partners#fleet-logistics" },
  { id: "hosts", title: "Property owners", line: "You provide the site. We build and operate the hub.", href: "/partners#hub-hosts" },
  { id: "energy", title: "Energy partners", line: "Grid, solar and storage as one site design.", href: "/partners" },
- { id: "dealers", title: "Dealers & installers", line: "Deploy Pulse charger, Pod energy storage and Depot with Precifarm engineering.", href: "/partners#dealers-installers" },
+ { id: "dealers", title: "Dealers & installers", line: "Deploy Pulse and Pulse+ chargers with Precifarm engineering.", href: "/partners#dealers-installers" },
 ] as const;
 
 export const headerCta = {
@@ -328,43 +329,36 @@ export const headerCta = {
 
 export const siteNavGroups = [
  {
- title: "Charging",
+ title: "EV Charging",
  links: [
  { href: "/charging/home", label: "Pulse charger", description: "7 kW home · from KES 79,000" },
- { href: "/charging", label: "All chargers", description: "Spark, Pod, Depot, Corridor" },
- { href: "/charging/boda-hub", label: "Boda Hub", description: "Battery swap under 5 minutes" },
+ { href: "/charging/pulse-plus", label: "Pulse+ charger", description: "22 kW three phase · in development" },
+ { href: "/charging/corridor", label: "Corridor charging", description: "DC fast charging · pilot" },
+ { href: "/charging", label: "All charging", description: "Home, fleet and highway" },
  ],
  },
  {
- title: "Energy",
+ title: "Swapping & R&D",
  links: [
- {
- href: modularEnergyNav.overview.href,
- label: "Modular energy",
- description: "P1 Go · P2 Home · Mini Stack",
- },
- {
- href: modularEnergyPaths.p2Home,
- label: "P2 Home",
- description: "Home tower · 1–4 modules",
- },
- ],
- },
- {
- title: "For business",
- links: [
- { href: "/partners", label: "Fleet & partners", description: "Depot and corridor programmes" },
+ { href: "/charging/boda-hub", label: "Boda Hub", description: "Battery swap for e-bodas · pilot" },
+ { href: "/research", label: "Wireless EV charging", description: "Research programme" },
  { href: "/charging/engineering", label: "Engineering", description: "Site design and commissioning" },
- { href: "/training", label: trainingNavLabel, description: "T1 · T2 · T3 certification" },
+ ],
+ },
+ {
+ title: "AI Platform",
+ links: [
+ { href: "/ai", label: "Agent Harness", description: "Private AI on your own machine · in development" },
+ { href: "/agent", label: "Precifarm Agent", description: "Hosted energy engineering assistant" },
  ],
  },
  {
  title: "Company",
  links: [
- { href: "/evs", label: "Kenya EV guide", description: "17 models · charging requirements" },
- { href: "/agent", label: "Precifarm Agent", description: "AI electrical & energy engineer" },
+ { href: "/partners", label: "Fleet & partners", description: "Fleet, boda and corridor programmes" },
+ { href: "/training", label: trainingNavLabel, description: "T1 · T2 · T3 certification" },
+ { href: "/evs", label: "Kenya EV guide", description: "Models and charging requirements" },
  { href: "/guides", label: "Guides", description: "Charging costs, tariffs and installs" },
- { href: "/research", label: "R&D", description: "Wireless EV charging research" },
  { href: "/about", label: "About us" },
  { href: "/faq", label: "FAQ" },
  { href: "/contact", label: "Contact us" },
@@ -393,10 +387,12 @@ export const footerNavGroups = [
  ],
  },
  {
- title: "Energy",
+ title: "Programmes",
  links: [
- { href: modularEnergyPaths.overview, label: "Modular energy overview" },
- { href: modularEnergyPaths.p2Home, label: "P2 Home" },
+ { href: "/charging/pulse-plus", label: "Pulse+ 22 kW" },
+ { href: "/charging/corridor", label: "Corridor DC" },
+ { href: "/research", label: "Wireless EV charging" },
+ { href: "/ai", label: "Agent Harness" },
  ],
  },
  {
@@ -411,7 +407,6 @@ export const footerNavGroups = [
  links: [
  { href: "/evs", label: "Kenya EV guide" },
  { href: "/agent", label: "Precifarm Agent" },
- { href: "/research", label: "R&D · wireless charging" },
  { href: "/training", label: `${trainingNavLabel} · T1–T3` },
  { href: "/about", label: "About us" },
  { href: "/faq", label: "FAQ" },
@@ -422,12 +417,11 @@ export const footerNavGroups = [
 
 export const footerProducts = [
  { label: "Pulse charger", href: "/charging/home" },
- { label: "Pod", href: "/charging/home" },
- { label: "Spark charger", href: "/charging/home" },
- { label: "Corridor DC", href: "/partners" },
+ { label: "Pulse+ charger", href: "/charging/pulse-plus" },
+ { label: "Corridor DC", href: "/charging/corridor" },
  { label: "Boda Hub", href: "/charging/boda-hub" },
- { label: "Depot", href: "/charging" },
- { label: "MegaPack", href: "/charging/modular-energy/megapack" },
+ { label: "Lipa Pole Pole", href: "/charging/home" },
+ { label: "Agent Harness", href: "/ai" },
 ] as const;
 
 export const footerLegalLinks = [
@@ -440,7 +434,7 @@ export const footerLegalLinks = [
 export const footerSection = {
  tagline: "Powering the shift to electric transport.",
  taglineSupport:
- "We design, install, finance and operate EV charging in Kenya — home, fleet and highway, with M-Pesa on every product.",
+ "We design, install, finance and operate EV charging and battery swapping in Kenya, and build private AI for engineering teams. M-Pesa on every product.",
  productsHeading: "Explore the range",
  socialLabel: "Follow Precifarm",
  meta: `${brand.africa} · M-Pesa on every product`,

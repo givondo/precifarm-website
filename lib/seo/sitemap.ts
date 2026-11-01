@@ -1,5 +1,4 @@
 import { absoluteUrl, publicRoutes } from "@/lib/seo/config";
-import { modularEnergyPaths } from "@/lib/modular-energy-page";
 import { homePageImages } from "@/lib/home-page-images";
 import { productImages } from "@/lib/product-images";
 import { productRenderPaths } from "@/lib/product-renders-catalog";
@@ -24,26 +23,17 @@ export function buildStaticSitemapEntries(lastModified = new Date()): SitemapEnt
  */
 export function buildImageSitemapEntries(): Record<string, string[]> {
   return {
-    "/": [
-      homePageImages.featuredPulse.src,
-      homePageImages.podHomeHero.src,
-      productImages.corridor.src,
-      productImages.spark.src,
-    ].map(absoluteUrl),
+    "/": [homePageImages.featuredPulse.src, productImages.pulsePlus.src, productImages.corridor.src].map(absoluteUrl),
     "/charging/home": [productImages.pulse.src, productImages.financing.src].map(absoluteUrl),
-    "/charging": [productImages.corridor.src, productImages.depot.src, productImages.boda.src].map(
+    "/charging": [productImages.pulse.src, productImages.pulsePlus.src, productImages.corridor.src, productImages.boda.src].map(
       absoluteUrl,
     ),
+    "/charging/pulse-plus": [productImages.pulsePlus.src].map(absoluteUrl),
+    "/charging/corridor": [productImages.corridor.src, productImages.corridorForecourt.src].map(absoluteUrl),
     "/charging/boda-hub": [
       productRenderPaths.bodaHubStudio,
       productRenderPaths.bodaHub,
-      productRenderPaths.energyModuleEm256,
       productRenderPaths.bodaHubFront,
-    ].map(absoluteUrl),
-    [modularEnergyPaths.overview]: [
-      productImages.familyHero.src,
-      productImages.p1Go.src,
-      productImages.podCharging.src,
     ].map(absoluteUrl),
   };
 }

@@ -54,21 +54,9 @@ const nextConfig: NextConfig = {
  // Direct /learn redirect avoids a /learn → /guides → /guides chain.
  { source: "/guides/book-nairobi-kisumu-coach", destination: "/faq", permanent: true },
  { source: "/learn/book-nairobi-kisumu-coach", destination: "/faq", permanent: true },
- {
- source: "/charging/modular-energy/megapack-grid",
- destination: "/charging/modular-energy/megapack",
- permanent: true,
- },
- {
- source: "/charging/modular-energy/pod",
- destination: "/charging/modular-energy/mini-stack",
- permanent: true,
- },
- { source: "/charging/modular-energy/pod-stack",
- destination: "/charging/modular-energy/mini-stack",
- permanent: true,
- },
- { source: "/ai", destination: "/agent", permanent: true },
+ // Six-programme pivot (1 Nov 2026): the modular energy family is retired from the site.
+ { source: "/charging/modular-energy", destination: "/charging", permanent: true },
+ { source: "/charging/modular-energy/:path*", destination: "/charging", permanent: true },
  { source: "/ai-agent", destination: "/agent", permanent: true },
  { source: "/precifarm-agent", destination: "/agent", permanent: true },
  // Legacy marketing site / WordPress (GSC 5xx & 404 cleanup)
@@ -77,7 +65,6 @@ const nextConfig: NextConfig = {
  { source: "/privacy", destination: "/legal/privacy", permanent: true },
  { source: "/cities/:slug", destination: "/locations/:slug", permanent: true },
  { source: "/products/commercial", destination: "/partners", permanent: true },
- { source: "/products/solar-irrigation", destination: "/charging/modular-energy", permanent: true },
  { source: "/products/:path*", destination: "/charging", permanent: true },
  { source: "/blog", destination: "/guides", permanent: true },
  { source: "/blog/:path*", destination: "/guides", permanent: true },

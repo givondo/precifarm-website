@@ -92,36 +92,35 @@ export type ResearchArea = {
 export const researchAreas: readonly ResearchArea[] = [
   {
     id: "wireless-ev",
-    title: "Wireless charging for e-bodas and cars",
+    title: "Wireless charging for cars, then e-bodas",
     horizon: "Now",
     workingTowards: "G2",
     progress: 38,
-    stage: "Architecture and bench preparation",
+    stage: "Modelling and bench preparation",
     question:
-      "Can a parked electric motorcycle top up without a plug, safely, through dust, rain and imperfect parking?",
+      "Can a parked car charge without a plug, safely, at home or in a fleet depot, through dust, rain and imperfect parking?",
     summary:
-      "Inductive pads built into Boda Hub stands first, then the 7 to 11 kW passenger class. Coil and compensation design, alignment guidance, foreign and living object protection, and M-Pesa metering per session. Pulse wired charging is what we install today.",
+      "Stationary inductive charging for light-duty cars first, at home and in fleet depots, then a later study for e-bodas. Coil and compensation design, alignment, foreign and living object protection, and field exposure. This is research, not a product: the Pulse wired charger is what we install today.",
     goal:
-      "A measured, safe 3.3 kW e-boda wireless stand ready for a hosted Boda Hub pilot by Q3 2027, and a product decision on it by Q4 2027.",
+      "A measured, safe car pad on the bench, with efficiency, misalignment and foreign-object results recorded against SAE J2954 and IEC 61980. No product or sale date is promised.",
     targets: [
-      { label: "Power class (e-boda track)", value: "3.3 kW" },
-      { label: "DC to battery efficiency", value: "≥ 85% at nominal alignment" },
-      { label: "Lateral misalignment tolerance", value: "± 50 mm" },
-      { label: "Foreign object detection", value: "100% of standard test objects" },
-      { label: "Field exposure", value: "Within ICNIRP public reference levels" },
+      { label: "First vehicle class", value: "Light-duty cars" },
+      { label: "Research power class", value: "About 7.7 kVA input" },
+      { label: "Transfer efficiency", value: "Not yet measured; reported with its boundary" },
+      { label: "Foreign object detection", value: "Target: 100% of standard test objects" },
+      { label: "Field exposure", value: "Target: within ICNIRP public reference levels" },
     ],
     milestones: [
-      { when: "Q4 2026", title: "Coil, ferrite and compensation topology simulated in the 85 kHz band", status: "active" },
-      { when: "Q4 2026", title: "3.3 kW bench rig assembled; first efficiency and thermal map", status: "next" },
-      { when: "Q1 2027", title: "Foreign and living object protection on the bench", status: "next" },
-      { when: "Q2 2027", title: "EMC pre-compliance against IEC 61980; bench report published (G2)", status: "next" },
-      { when: "Q3 2027", title: "One hosted Boda Hub stand, 90 days metered on M-Pesa (G3)", status: "later" },
-      { when: "Q4 2027", title: "G4 decision for e-boda; passenger 11 kW track sized from bench data", status: "later" },
+      { when: "Step 1", title: "Coil, ferrite and LCC compensation modelled for a car pad (simulation only)", status: "active" },
+      { when: "Step 2", title: "Reduced-power car pad bench rig; first efficiency and thermal map", status: "next" },
+      { when: "Step 3", title: "Foreign and living object protection on the bench", status: "next" },
+      { when: "Step 4", title: "EMC pre-compliance against IEC 61980; bench report published (G2)", status: "later" },
+      { when: "Step 5", title: "E-boda pad study sized from the car bench data", status: "later" },
     ],
     needs: [
       "Power electronics lab time and an EMC pre-compliance test house",
       "Litz wire and ferrite supply for prototype coils",
-      "An e-boda maker willing to integrate a receiver coil",
+      "A fleet or vehicle maker willing to fit a receiver pad to a test car",
     ],
     href: "/research/wireless-ev-charging-policy",
     hrefLabel: "Wireless research policy",
@@ -167,9 +166,9 @@ export const researchAreas: readonly ResearchArea[] = [
     progress: 22,
     stage: "Site modelling",
     question:
-      "What mix of grid, solar and battery keeps a Corridor or Depot hub reliable and profitable on a weak rural feeder?",
+      "What mix of grid, solar and battery keeps a Corridor site reliable and profitable on a weak rural feeder?",
     summary:
-      "Hourly models of hub load, PV yield and battery duty cycle for the first Corridor on the Nairobi to Kisumu route, with honest live and planned labelling on Charging Hub.",
+      "Hourly models of site load, PV yield and battery duty cycle for the first Corridor pilot sites on the Nairobi to Kisumu route, with honest live and planned labelling.",
     goal:
       "A validated sizing and dispatch method, checked against metered site data, that every new hub uses before construction from 2027.",
     targets: [
@@ -181,7 +180,7 @@ export const researchAreas: readonly ResearchArea[] = [
       { when: "Q4 2026", title: "Load and PV yield model for the first Corridor site", status: "active" },
       { when: "Q1 2027", title: "Storage duty cycle simulated against Corridor DC session profiles", status: "next" },
       { when: "Q2 2027", title: "Revenue-grade metering on a live site; model validated (G2)", status: "next" },
-      { when: "Q4 2027", title: "Dispatch controller pilot with MegaPack storage (G3)", status: "later" },
+      { when: "Q4 2027", title: "Dispatch controller pilot with Corridor site storage (G3)", status: "later" },
     ],
     needs: ["A site host with a weak feeder and a year of outage logs", "Utility tariff and demand charge data"],
     href: "/sustainability",
@@ -195,21 +194,21 @@ export const researchAreas: readonly ResearchArea[] = [
     progress: 12,
     stage: "Data framing",
     question:
-      "Can swap and charge data predict the health of a 2.56 kWh Energy Module well enough to price swaps fairly and move tired modules into stationary storage?",
+      "Can swap and charge data predict the health of a boda battery pack well enough to price swaps fairly and move tired packs into stationary storage?",
     summary:
-      "State of health estimation from Boda Hub swap cycles and BMS telemetry, a capacity test protocol, and retirement rules that move modules from motorcycles to Pod and Mini Stack duty.",
+      "State of health estimation from Boda Hub swap cycles and BMS telemetry, a capacity test protocol, and retirement rules that move packs from motorcycles to stationary duty such as Corridor site storage.",
     goal:
       "State of health estimated within ± 3% of a capacity test, and a second-life rule set proven on a stationary pilot by 2028.",
     targets: [
       { label: "State of health accuracy", value: "± 3% vs capacity test" },
       { label: "Usable second-life capacity", value: "≥ 70% of nameplate" },
-      { label: "Modules traced end to end", value: "100%" },
+      { label: "Packs traced end to end", value: "100%" },
     ],
     milestones: [
-      { when: "Q1 2027", title: "Telemetry schema and logging on every Energy Module", status: "next" },
+      { when: "Q1 2027", title: "Telemetry schema and logging on every swap pack", status: "next" },
       { when: "Q2 2027", title: "Capacity test protocol and first reference dataset (G1)", status: "next" },
-      { when: "Q4 2027", title: "Health model validated against cycled modules (G2)", status: "later" },
-      { when: "2028", title: "Second-life stationary pilot in Pod duty (G3)", status: "later" },
+      { when: "Q4 2027", title: "Health model validated against cycled packs (G2)", status: "later" },
+      { when: "2028", title: "Second-life stationary pilot (G3)", status: "later" },
     ],
     needs: ["Cell cycling equipment or a university battery lab", "Swap data volume from Boda Hub sites"],
     href: "/charging/boda-hub",
@@ -254,12 +253,12 @@ export const researchGoals = [
   {
     year: "2027",
     title: "First Kenyan pilots",
-    text: "One wireless e-boda stand and Agent-assisted home surveys running with partners for 90 days or more.",
+    text: "A wireless car pad bench report, and Agent-assisted home surveys running with partners for 90 days or more.",
   },
   {
     year: "2028",
     title: "Decisions on data",
-    text: "Product, licence or stop decisions on wireless e-boda charging and second-life storage, made on field data.",
+    text: "Continue, licence or stop decisions on wireless charging and second-life storage, made on measured data.",
   },
   {
     year: "2029",
@@ -277,9 +276,9 @@ export const researchRoadmap = {
   rows: [
     {
       programme: "Wireless charging",
-      Now: "Bench rig, object protection, EMC pre-compliance",
-      Next: "Boda Hub stand pilot, product decision",
-      Later: "Passenger 11 kW bench and depot study",
+      Now: "Car pad modelling and bench rig preparation",
+      Next: "Car pad bench results, object protection, EMC pre-compliance",
+      Later: "E-boda pad study; continue or stop decision on data",
     },
     {
       programme: "Precifarm Agent",
@@ -295,7 +294,7 @@ export const researchRoadmap = {
     },
     {
       programme: "Battery health",
-      Now: "Telemetry schema on Energy Modules",
+      Now: "Telemetry schema on swap packs",
       Next: "Capacity protocol and health model",
       Later: "Second-life stationary pilot",
     },
@@ -319,7 +318,7 @@ export const researchCollaboration = [
   },
   {
     who: "Suppliers and OEMs",
-    offer: "Receiver integration on e-bodas, ferrite and litz supply, bidirectional-capable vehicles for testing.",
+    offer: "Receiver pad integration on test cars, ferrite and litz supply, bidirectional-capable vehicles for testing.",
   },
   {
     who: "Engineers and installers",
@@ -331,7 +330,7 @@ export const researchPageFaqs: FaqItem[] = [
   {
     question: "Can I buy wireless charging from Precifarm?",
     answer:
-      "Wireless charging is a research programme. Pulse, Pod, Spark, Depot, Boda Hub and Corridor are the wired chargers we install today, with M-Pesa.",
+      "No. Wireless charging is a research programme and nothing is for sale. The Pulse charger is the wired charger we install today, with Lipa Pole Pole on M-Pesa; Pulse+ and Corridor are in development and pilot."
   },
   {
     question: "What does the progress bar mean?",

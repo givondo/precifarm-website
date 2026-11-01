@@ -6,55 +6,10 @@
 import { productRenderPaths } from "@/lib/product-renders-catalog";
 
 export const productImages = {
-  chargingEcosystemHero: {
-    src: productRenderPaths.energyStorageFamily,
-    alt: "Precifarm charging and energy family — Pulse charger, Spark charger, P1 Go, Pod, Corridor, Depot and Boda Hub",
-    brand: "none" as const,
-  },
-  p1Go: {
-    src: productRenderPaths.p1Go,
-    alt: "Precifarm P1 Go portable power station with foldable solar panel and green-accent display",
-    brand: "none" as const,
-  },
-  homeEnergyFullSystem: {
-    src: productRenderPaths.p2Home,
-    alt: "Precifarm P2 Home tower with Pulse charger — home energy and EV charging",
-    brand: "pod" as const,
-  },
-  spark: {
-    src: "/images/products/spark-v3.png",
-    alt: "Precifarm Spark portable EV charger: Type 2 connector, control box and industrial plug",
-    brand: "spark" as const,
-  },
   pulse: {
     src: productRenderPaths.pulse7kW,
     alt: "Precifarm Pulse 7 kW home wallbox with holstered Type 2 cable and green Precifarm branding",
     brand: "pulse" as const,
-  },
-  pod: {
-    src: productRenderPaths.p2Home,
-    alt: "Precifarm P2 Home backup tower — modular home energy beside the consumer board",
-    brand: "pod" as const,
-  },
-  podHomeHero: {
-    src: productRenderPaths.p2Home,
-    alt: "Precifarm P2 Home tower for home backup and EV-ready essential loads",
-    brand: "pod" as const,
-  },
-  podHomeHeroWide: {
-    src: productRenderPaths.p2Home,
-    alt: "Precifarm P2 Home modular tower for Kenyan home energy and backup",
-    brand: "none" as const,
-  },
-  podCharging: {
-    src: productRenderPaths.miniStack,
-    alt: "Precifarm Mini Stack outdoor modular energy enclosure with service door",
-    brand: "none" as const,
-  },
-  familyHero: {
-    src: productRenderPaths.energyStorageFamily,
-    alt: "Precifarm energy storage family — P1 Go, P2 Home, Mini Stack and corridor-scale cabinet",
-    brand: "none" as const,
   },
   boda: {
     src: productRenderPaths.bodaHub,
@@ -66,15 +21,15 @@ export const productImages = {
     alt: "Precifarm Boda Hub battery-swap locker on its swap pad, with safety bollards and the rider screen on the side totem",
     brand: "none" as const,
   },
-  depot: {
+  pulsePlus: {
     src: productRenderPaths.pulsePlus22kW,
     alt: "Precifarm Pulse+ 22 kW three-phase wallbox with its tethered Type 2 cord coiled on the wall dock",
     brand: "none" as const,
   },
   corridor: {
-    /** T-canopy DC product shot — matches public Corridor copy (120 kW+, dual CCS2, M-Pesa). */
+    /** Corridor concept visualisation: two CCS2 guns, M-Pesa tap-to-pay. */
     src: "/images/products/corridor-v6.jpg",
-    alt: "Precifarm Corridor 120 kW DC fast charger with T-canopy, dual CCS2 holsters and M-Pesa tap-to-pay on the display",
+    alt: "Precifarm Corridor DC fast charger concept with dual CCS2 holsters and M-Pesa tap-to-pay on the display",
     brand: "corridor" as const,
   },
   corridorDispenserRender: {
@@ -90,31 +45,6 @@ export const productImages = {
   corridorPowerCabinet: {
     src: productRenderPaths.corridorPowerCabinet,
     alt: "Precifarm Corridor power cabinet for highway DC charging",
-    brand: "none" as const,
-  },
-  corridorSafety: {
-    src: productRenderPaths.corridorPowerCabinet,
-    alt: "Precifarm Corridor DC fast charging — power conversion and safety enclosure",
-    brand: "none" as const,
-  },
-  energyModule: {
-    src: productRenderPaths.energyModuleEm256,
-    alt: "Precifarm 2.56 kWh Energy Module — swap pack for Boda Hub and modular energy",
-    brand: "none" as const,
-  },
-  p1GoSolar: {
-    src: productRenderPaths.p1GoSolar,
-    alt: "Precifarm P1 Go with foldable solar panel for portable backup",
-    brand: "none" as const,
-  },
-  miniStack: {
-    src: productRenderPaths.miniStack,
-    alt: "Precifarm Mini Stack outdoor backup unit with service door and sun-shield canopy",
-    brand: "none" as const,
-  },
-  commercialCabinet: {
-    src: productRenderPaths.commercialCabinet,
-    alt: "Precifarm C215 commercial energy cabinet for site-scale storage",
     brand: "none" as const,
   },
   financing: {

@@ -128,7 +128,7 @@ export default async function GuidePage({ params }: Props) {
 
         <PageCTA
           title="Ready to charge?"
-          description="Explore Pulse charger, Pod energy storage and Corridor charging — or open the Charging Hub to find public DC near you."
+          description="Explore the Pulse charger, Pulse+ and Corridor charging, or open the Charging Hub to find public DC near you."
           primaryHref="/charging"
           primaryLabel="Explore charging"
           secondaryHref="/hub"

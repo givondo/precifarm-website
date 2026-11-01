@@ -10,6 +10,6 @@ export const homePageImages = {
   },
   podHomeHero: {
     src: "/images/products/pod-home-hero-v3-garage-4x3.png",
-    alt: "Precifarm Pod and Pulse charger in a Kenyan home garage with solar and grid backup",
+    alt: "Precifarm Pulse charger in a Kenyan home garage",
   },
 } as const;

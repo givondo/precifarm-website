@@ -22,7 +22,7 @@ export const chargingHowToBlock: AisoContentBlock = {
   title: "How to get a Precifarm home charger",
   items: [
     "Visit precifarm.com/charging/home or open Precifarm Agent.",
-    "Choose the Pulse charger or Pod energy storage and request a site survey.",
+    "Choose the Pulse charger and request a site survey.",
     "Pay the deposit via M-Pesa (Lipa Pole Pole instalments available).",
     "Precifarm installs and commissions your charger — typically within one day after survey approval.",
   ],
@@ -31,14 +31,14 @@ export const chargingHowToBlock: AisoContentBlock = {
 /** Default homepage AISO blocks */
 export const homepageAisoBlocks: AisoContentBlock[] = [
   buildExecutiveSummary(
-    "Precifarm designs, finances, deploys and operates electric mobility infrastructure in Kenya — from a Spark charger in the boot to Corridor DC on the highway. One account, M-Pesa on every product, Lipa Pole Pole on any phone.",
+    "Precifarm builds energy infrastructure for electric transport in Kenya, from the Pulse home charger to Corridor DC pilots on the highway and Boda Hub battery swapping, plus private AI systems for engineering. M-Pesa on every product and Lipa Pole Pole on any phone.",
   ),
   buildKeyFacts("Key facts", [
-    "Chargers: Spark charger · Pulse charger · Pod energy storage · Boda Hub · Depot · Corridor. Lipa Pole Pole finances Pulse charger and Pod energy storage on M-Pesa.",
+    "Programmes: Pulse charger (available) · Pulse+ (in development) · Corridor DC (pilot in development) · Boda Hub (pilot) · Wireless charging (research) · Agent Harness (in development). Lipa Pole Pole finances the Pulse charger on M-Pesa.",
     "Pulse charger from KES 79,000 · Lipa Pole Pole on M-Pesa",
-    "Public DC from KES 39/kWh at Depot charging stations and Corridor charging",
+    "Corridor DC price per kWh set per site at commissioning and shown before you start",
     "A home charging day of ~60 km ≈ KES 140 vs ~KES 1,000 diesel per day",
-    "Pulse charger or Pod energy storage: typical day in about 90 minutes. Corridor: fast highway top-up in 30 minutes.",
+    "Pulse charger: a typical 60 km day in under two hours from the meter.",
     "Certified home installation typically in one day · three-year aftersale care",
     "Precifarm Agent desktop — request access at precifarm.com/download. Coming soon for Windows and macOS.",
   ]),
@@ -47,7 +47,7 @@ export const homepageAisoBlocks: AisoContentBlock[] = [
 
 export const homepageRelatedLinks = [
   { href: "/charging", label: "Charging", reason: "Home, fleet and highway charging" },
-  { href: "/charging/home", label: "Home EV charging", reason: "Pulse charger and Pod energy storage" },
+  { href: "/charging/home", label: "Home EV charging", reason: "Pulse charger and Lipa Pole Pole" },
   { href: chargingHub.path, label: chargingHub.label, reason: "Find public chargers in Kenya" },
   { href: "/evs", label: "Kenya EV guide", reason: "Compare EVs and charging fit" },
   { href: "/training", label: "EV charging training", reason: "EV charging technician certification" },

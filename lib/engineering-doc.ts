@@ -41,11 +41,11 @@ export const engineeringDoc = {
   highlights: [
     {
       title: "Home & hybrid",
-      text: "Pulse wallbox and Pod storage on the customer meter — optional rooftop solar for weak-grid evenings. Sized to daily mileage.",
+      text: "Pulse wallbox on the customer meter, with load management to stay within the supply. Sized to daily mileage.",
     },
     {
       title: "Fleet & depots",
-      text: "Depot AC and Boda Hub swap sized to duty cycle. Yard layout, import limit and M-Pesa billing in one pack.",
+      text: "Pulse+ AC and Boda Hub swap sized to duty cycle. Yard layout, import limit and M-Pesa billing in one pack.",
     },
     {
       title: "Highway & route",

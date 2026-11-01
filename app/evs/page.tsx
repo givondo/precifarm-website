@@ -3,7 +3,7 @@ import Link from "next/link";
 import KenyaEvComparisonTable from "@/components/evs/KenyaEvComparisonTable";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import JsonLd from "@/components/seo/JsonLd";
-import SpecTable from "@/components/modular-energy/SpecTable";
+import SpecTable from "@/components/ui/SpecTable";
 import PageHero from "@/components/ui/PageHero";
 import SectionHeader from "@/components/ui/SectionHeader";
 import {
@@ -139,7 +139,7 @@ export default function KenyaEvCompatibilityPage() {
           </h2>
           <p className="mt-3 text-base leading-relaxed text-forest-500">
             Connect your vehicle in Precifarm Agent, check compatible chargers on the Charging Hub, pay with M-Pesa — or
-            book a home survey for Pulse charger or Pod energy storage.
+            book a home survey for the Pulse charger.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
             <Link href="/agent" className="btn-primary">

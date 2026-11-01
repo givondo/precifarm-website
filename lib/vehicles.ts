@@ -1,23 +1,23 @@
 import { productImages } from "@/lib/product-images";
 import { productRenderPaths } from "@/lib/product-renders-catalog";
 
-const homeSolarImage = productRenderPaths.p2Home;
+const homeSolarImage = productImages.pulse.src;
 const corridorImage = productImages.corridor.src;
 const depotImage = productRenderPaths.pulsePlus22kW;
-const familyImage = productRenderPaths.energyStorageFamily;
+const familyImage = productImages.corridorForecourt.src;
 
 export const hubImages = {
   /** Home solar + storage + wall charging — passenger EV, not a bus */
   homeSolar: {
     image: homeSolarImage,
     imageAlt:
-      "Home with rooftop solar panels, battery storage and a wall charger powering an electric car",
+      "Precifarm Pulse 7 kW home wallbox with its holstered Type 2 cable",
     objectPosition: "object-[42%_48%]",
   },
   /** Corridor DC fast charger product */
   intercityCharger: {
     image: corridorImage,
-    imageAlt: "Precifarm Corridor 120 kW DC fast charger with dual CCS2 holsters and M-Pesa on the display",
+    imageAlt: "Precifarm Corridor DC fast charger with dual CCS2 holsters and M-Pesa on the display",
     objectPosition: "object-center",
   },
   /** Fleet depot AC pedestal */
@@ -30,7 +30,7 @@ export const hubImages = {
   intercityWide: {
     image: familyImage,
     imageAlt:
-      "Precifarm charging and energy family — Pulse, Spark, P1 Go, Pod, Corridor, Depot and Boda Hub",
+      "Precifarm Corridor DC fast charging bay at a Kenyan highway service area (concept render)",
     objectPosition: "object-center",
   },
   /** Highway DC product showcase */

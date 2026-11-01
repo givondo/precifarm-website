@@ -7,7 +7,7 @@ import ProductShowcaseRow from "@/components/ProductShowcaseRow";
 import PageCTA from "@/components/ui/PageCTA";
 import PageHero from "@/components/ui/PageHero";
 import SectionHeader from "@/components/ui/SectionHeader";
-import SpecTable from "@/components/modular-energy/SpecTable";
+import SpecTable from "@/components/ui/SpecTable";
 import { engineeringDoc } from "@/lib/engineering-doc";
 import { engineeringPage, engineeringPageFaqs } from "@/lib/engineering-page";
 import { productNames } from "@/lib/home-products";

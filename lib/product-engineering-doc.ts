@@ -1,7 +1,12 @@
 import { documentBrand } from "@/lib/document-brand";
 import { productRenderPaths } from "@/lib/product-renders-catalog";
 
-/** Illustrated product & service reference — every Precifarm product with its engineering numbers. */
+/**
+ * Illustrated product and service reference, v1.1 of 16 October 2026.
+ * SUPERSEDED by the six-programme pivot (1 November 2026): this edition still describes Spark, Pod, Depot and
+ * modular energy, which are no longer offered. It is not linked from any page. Regenerate a new edition from
+ * the PRECIFARM_MASTER register before linking it again.
+ */
 export const productEngineeringDoc = {
   id: "PF-PRODUCT-ENG-001",
   version: "1.1",
@@ -68,7 +73,7 @@ export const productEngineeringDoc = {
   related: [
     { href: "/charging", label: "Charging services" },
     { href: "/charging/engineering", label: "Engineering design package" },
-    { href: "/charging/modular-energy", label: "Modular energy" },
+    { href: "/research", label: "Research and development" },
     { href: "/agent", label: "Precifarm Agent" },
   ],
 } as const;

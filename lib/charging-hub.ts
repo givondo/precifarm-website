@@ -18,7 +18,7 @@ export const chargingHubPage = {
     eyebrow: "Kenya · live map",
     title: "Highway DC, boda swap and partner stops — each one labelled open or coming soon",
     description:
-      "Browse free on the web. Check plug type, public DC from KES 39/kWh and whether the bay is live before you drive — then pay with M-Pesa.",
+      "Browse free on the web. Check plug type, the price per kWh and whether the bay is live before you drive — then pay with M-Pesa.",
     image: {
       src: productImages.corridor.src,
       alt: "Precifarm Charging Hub — highway DC, boda battery swap and partner charging stops across Kenya",
@@ -35,7 +35,7 @@ export const chargingHubPage = {
         label: "Boda swap",
       },
       {
-        src: productImages.depot.src,
+        src: productImages.pulsePlus.src,
         alt: "Precifarm Pulse+ 22 kW AC wallbox for fleet and partner sites",
         label: "Partner & fleet",
       },
@@ -46,7 +46,7 @@ export const chargingHubPage = {
     secondaryLabel: "Host a charger",
   },
   stats: [
-    { value: sitePricing.publicDcFrom, label: "Public fast charge from" },
+    { value: sitePricing.publicDcPrice, label: "Public fast charge price" },
     { value: "Under 5 min", label: "Boda battery swap" },
     { value: "M-Pesa", label: "Pay before you charge" },
   ],
@@ -84,7 +84,7 @@ export const chargingHubPage = {
         id: "highway",
         title: "Highway fast charge",
         stat: "~60 kWh in 30 min",
-        detail: "Fast top-up on major routes. From " + sitePricing.publicDcFrom + " on M-Pesa.",
+        detail: "Fast top-up on major routes. Price per kWh shown before you start; pay on M-Pesa.",
         imageKey: "corridor" as const,
         status: "pilot" as const,
       },
@@ -92,7 +92,7 @@ export const chargingHubPage = {
         id: "boda",
         title: "Boda battery swap",
         stat: "Under 5 min",
-        detail: "Drop a flat pack and pick up a charged one in Nairobi, Kisumu and Nakuru.",
+        detail: "Drop a flat pack and pick up a charged one at partner-run swap sites.",
         imageKey: "boda" as const,
         status: "pilot" as const,
       },
@@ -171,7 +171,7 @@ export const chargingHubPage = {
   },
   faq: {
     title: "Common questions",
-    lead: "Public charging on the Charging Hub. Home Pulse and Pod installs are on ",
+    lead: "Public charging on the Charging Hub. Home Pulse installs are on ",
     homeHref: "/charging/home",
     homeLabel: "home charging",
   },

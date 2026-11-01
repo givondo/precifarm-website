@@ -22,15 +22,15 @@ export const engineeringPage = {
     cards: [
       {
         title: "Home & hybrid",
-        text: "Pulse on your meter, Pod when the grid dips, optional rooftop solar. Sized to daily mileage — not speculative public capacity.",
+        text: "Pulse on your meter with load management, optional rooftop solar. Sized to daily mileage, not speculative public capacity.",
       },
       {
         title: "Fleet & depots",
-        text: "Depot AC where vehicles park for hours, Boda Hub swap for two-wheelers. Yard layout, billing and uptime in one engineering pack.",
+        text: "Pulse+ three-phase AC where vehicles park for hours (in development), Boda Hub swap for two-wheelers. Yard layout, billing and uptime in one engineering pack.",
       },
       {
         title: "Highway & route",
-        text: "Corridor T-canopy DC where the route needs it. Import limits, dwell and M-Pesa sessions engineered for public and fleet EV traffic.",
+        text: "Corridor DC with on-site storage where the route needs it. Import limits, dwell and M-Pesa sessions engineered for public and fleet EV traffic.",
       },
     ],
   },
@@ -40,10 +40,10 @@ export const engineeringPage = {
     caption: "Planning assumptions — every job starts with survey and a written quote.",
     columns: ["Setting", "Typical hardware", "Engineering focus"] as const,
     rows: [
-      ["Urban home", "Pulse · Pod · Spark", "Consumer unit, cable route, meter, optional PV"],
-      ["Fleet yard", "Depot · Boda Hub", "Duty cycle, bay count, import limit, M-Pesa billing"],
-      ["Highway stop", "Corridor T-canopy", "Dwell layout, dual CCS2, public DC tariff, CSMS"],
-      ["Partner retail", "Depot or host AC", "Footfall, landlord meter, session settlement"],
+      ["Urban home", "Pulse", "Consumer unit, cable route, meter, optional PV"],
+      ["Fleet yard", "Pulse+ · Boda Hub", "Duty cycle, bay count, import limit, M-Pesa billing"],
+      ["Highway stop", "Corridor DC", "Dwell layout, dual CCS2, site storage, public DC tariff, CSMS"],
+      ["Partner retail", "Pulse+ or host AC", "Footfall, landlord meter, session settlement"],
     ],
   },
   energyStack: {
@@ -56,7 +56,7 @@ export const engineeringPage = {
       ["Grid", "Kenya Power connection and e-mobility tariff first", "Available"],
       ["Solar", "Canopy or rooftop PV — cost, shade, daytime yield", "Available"],
       ["Storage", "LiFePO₄ to peak-shave and back up charging loads", "Available"],
-      ["Charging", "Corridor DC, Depot AC, Pulse wallbox — sized to duty cycle", "Available"],
+      ["Charging", "Pulse wallbox available; Pulse+ AC and Corridor DC in development and pilot", "Available"],
       ["Software", "OCPP monitoring, status, session records, M-Pesa", "In service"],
     ],
   },
@@ -65,17 +65,16 @@ export const engineeringPage = {
     title: "Which charger for which job.",
     products: [
       { id: "pulse", ...productImages.pulse, href: "/charging/home" },
-      { id: "corridor", ...productImages.corridor, href: "/charging" },
-      { id: "depot", ...productImages.depot, href: "/partners" },
+      { id: "corridor", ...productImages.corridor, href: "/charging/corridor" },
+      { id: "pulsePlus", ...productImages.pulsePlus, href: "/charging/pulse-plus" },
       { id: "boda", ...productImages.boda, href: "/charging/boda-hub" },
     ] as const,
     columns: ["Product", "Best for", "Engineering note"] as const,
     rows: [
       ["Pulse · 7 kW", "Home daily charging", "Type 2 AC on customer meter · from KES 79,000"],
-      ["Pod + solar", "Weak-grid evenings", "Hybrid sub-board · optional rooftop PV"],
-      ["Depot · 22 kW", "Fleet yards", "AC overnight · ~120 min for 40+ kWh"],
-      ["Corridor · 120 kW+", "Highway DC", "T-canopy · ~60 kWh in 30 min · from KES 39/kWh"],
-      ["Boda Hub", "E-motorbike swap", "Kerbside or depot · under 5 minutes"],
+      ["Pulse+ · 22 kW", "Fleet yards (in development)", "Three-phase AC overnight · 11 kW on most cars"],
+      ["Corridor DC", "Highway DC (pilot in development)", "Two CCS2 guns, site storage · priced per site"],
+      ["Boda Hub", "E-motorbike swap (pilot)", "Partner-run sites · under 5 minutes"],
     ],
   },
   holdPoints: {
@@ -112,7 +111,7 @@ export const engineeringPage = {
   faqs: {
     eyebrow: "Planning questions",
     title: "Common engineering questions.",
-    description: `Illustrative planning only — not quotations. Public DC from ${sitePricing.publicDcFrom}.`,
+    description: `Illustrative planning only, not quotations. Corridor prices are set per site at commissioning.`,
     ids: ["who-for", "solar-window", "batteries-hub", "cost-quote"] as const,
   },
   download: {
@@ -135,7 +134,7 @@ export const engineeringPageFaqs = [
     id: "who-for",
     question: "Who is the engineering package for?",
     answer:
-      "Homeowners sizing Pulse or Pod with solar, fleet and property partners planning Depot or Boda Hub yards, highway hosts scoping Corridor T-canopy DC, and sites exploring modular energy storage. The package covers EV charging and energy systems — not passenger booking or bus timetable products.",
+      "Homeowners sizing a Pulse charger, fleet and property partners planning Pulse+ or Boda Hub yards, and highway hosts scoping Corridor DC with site storage. The package covers EV charging and energy systems, not passenger booking or bus timetable products.",
   },
   {
     id: "solar-window",
@@ -153,6 +152,6 @@ export const engineeringPageFaqs = [
     id: "cost-quote",
     question: "Are the engineering cost figures a quotation?",
     answer:
-      "No. Planning bands and worked examples in the PDF are illustrative. Live public DC is from KES 39/kWh. Pulse starts from KES 79,000. Request a site-specific cost sheet after survey.",
+      "No. Planning bands and worked examples in the PDF are illustrative. Corridor prices are set per site at commissioning. Pulse starts from KES 79,000. Request a site-specific cost sheet after survey.",
   },
 ] as const;

@@ -246,47 +246,35 @@ export const kenyaEvCompatibilityPage = {
     "Battery size, DC speed, charging time and practical range vary by manufacturing batch, import spec, software limits and local charger hardware. Charging times show a typical daily top-up — not a full 0–100% pack charge.",
   chargingTimeNote: "Daily top-up · Home = Pulse charger · DC = public fast charge · Swap = Boda Hub",
   chargingKey:
-    "Precifarm charging fit — Home: Pulse charger or Pod energy storage · Destination: public charging map or Depot · Corridor: highway DC · High-power corridor: 120 kW+ sessions · Boda Hub: battery swap under 5 min · Workplace: fleet Depot site.",
+    "Precifarm charging fit: Home, Pulse charger · Workplace and fleet yard, Pulse+ (in development) · Highway, Corridor DC (pilot sites in development) · Boda Hub: battery swap under 5 min at partner-run sites.",
   chargingRequirementsSection: {
     eyebrow: "Charging requirements",
     title: "What your EV needs from Precifarm",
     description:
-      "Match plug type, power level and session length to the charger we install — home Type 2 AC, fleet depot AC, highway DC or boda swap.",
+      "Match plug type, power level and session length to the charger we install: home Type 2 AC, fleet three-phase AC, highway DC or boda swap.",
     columns: ["Need", "Typical requirement", "Precifarm product"] as const,
     products: [
       {
         need: "Daily home top-up",
-        requirement: "Type 2 · 7 kW AC · ~90 min for a Nairobi day",
+        requirement: "Type 2 · 7 kW AC · under two hours for a Nairobi day",
         product: "Pulse charger",
         href: "/charging/home",
       },
       {
-        need: "Home + outage backup",
-        requirement: "Type 2 + 5–10 kWh storage",
-        product: "Pod energy storage",
-        href: "/charging/home",
-      },
-      {
-        need: "Portable top-up",
-        requirement: "3.3 kW AC (Type 2 or domestic)",
-        product: "Spark charger",
-        href: "/charging",
-      },
-      {
         need: "Fleet yard overnight",
-        requirement: "22 kW AC · Type 2",
-        product: "Depot charging station",
-        href: "/partners",
+        requirement: "22 kW AC three phase · Type 2 (11 kW on most cars)",
+        product: "Pulse+ charger (in development)",
+        href: "/charging/pulse-plus",
       },
       {
         need: "Highway fast charge",
-        requirement: "CCS2 DC · 60–120 kW+ (CHAdeMO where equipped)",
-        product: "Corridor charging",
-        href: "/charging",
+        requirement: "CCS2 DC fast charging (CHAdeMO where equipped)",
+        product: "Corridor charging (pilot sites in development)",
+        href: "/charging/corridor",
       },
       {
         need: "E-boda continuity",
-        requirement: "Swap or slow AC · 2–4 kWh pack",
+        requirement: "Swap at partner-run sites · one battery make per site",
         product: "Boda Hub",
         href: "/charging/boda-hub",
       },

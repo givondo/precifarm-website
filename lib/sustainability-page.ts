@@ -20,7 +20,7 @@ export const sustainabilityHeroMetrics = [
  {
  value: sitePricing.lipaFrom,
  label: "Lipa Pole Pole on M-Pesa",
- note: "Instalments on Pulse charger and Pod energy storage",
+ note: "Instalments on the Pulse charger",
  },
  {
  value: "100%",
@@ -42,7 +42,7 @@ export const whyItMattersCards = [
  icon: "households",
  title: "Households",
  headline: "Pay over months, not all at once",
- text: "Lipa Pole Pole on M-Pesa shows the full Pulse and Pod price before you confirm, then splits it into monthly instalments.",
+ text: "Lipa Pole Pole on M-Pesa shows the full Pulse price before you confirm, then splits it into monthly instalments.",
  },
  {
  id: "businesses",
@@ -119,14 +119,14 @@ export const reportingPublished = [
  },
  {
  id: "lfp",
- title: "Pod battery specs",
- detail: "Battery type and size on home product pages.",
+ title: "Pulse charger specs",
+ detail: "Ratings and protection on the home charging page, labelled as design targets until tested.",
  href: "/charging/home",
  },
  {
  id: "aftersale",
  title: "Three-year aftersale care",
- detail: "Coverage on Pulse and Pod home installs we complete.",
+ detail: "Coverage on Pulse home installs we complete.",
  href: "/contact",
  },
  {
@@ -146,7 +146,7 @@ export const reportingPlanned = [
  {
  id: "pcf",
  title: "Independent carbon study",
- detail: "An outside review of Pulse, Pod and Corridor.",
+ detail: "An outside review of Pulse and Corridor.",
  },
  {
  id: "takeback",
@@ -172,9 +172,9 @@ export const sustainabilityPage = {
  lead:
  "By 2050, we aim to help replace 1 billion kilometres of fossil-fuel driving with electric kilometres across Kenya.",
  description:
- "Pulse lets you charge your EV at home, while Pod stores backup energy so you can keep charging when the grid is unreliable. You can get either one through Lipa Pole Pole on M-Pesa, with the full price shown upfront before you commit. Charging Hub labels every site Open, Coming Soon, or Partner.",
- image: productImages.podHomeHero,
- imageCaption: "Pulse charger and Pod energy storage in a Kenyan home garage.",
+ "Pulse lets you charge your EV at home, and Lipa Pole Pole spreads the cost on M-Pesa with the full price shown before you commit. Every product is labelled by its stage: available, pilot, in development or research.",
+ image: productImages.pulse,
+ imageCaption: "Pulse charger, 7 kW home wallbox.",
  primaryCta: { href: siteCtas.exploreCharging.href, label: siteCtas.exploreCharging.label },
  secondaryCta: { href: "#commitment", label: "See the 2030 goals" },
  },
@@ -194,7 +194,7 @@ export const sustainabilityPage = {
  eyebrow: "Batteries",
  title: "We maintain, repair and reuse packs before they are recycled.",
  description:
- "Pod energy storage and boda swap batteries are watched and serviced in the field. A contracted recycling partner in Kenya is a 2030 goal, not a live take-back scheme. Modular Mini Stack is conceptual and not on sale.",
+ "Boda swap batteries and Corridor site storage are watched and serviced in the field. A contracted recycling partner in Kenya is a 2030 goal, not a live take-back scheme.",
  },
  commitmentSection: {
  eyebrow: "2030 goals",
@@ -231,11 +231,11 @@ export const sustainabilityPage = {
  {
  id: "3",
  shortName: "Lipa Pole Pole",
- headline: "Lipa Pole Pole from " + sitePricing.lipaFrom + " on Pulse and Pod",
+ headline: "Lipa Pole Pole from " + sitePricing.lipaFrom + " on the Pulse charger",
  goal: "Pay for home charging in M-Pesa instalments",
- target: "Offer Lipa Pole Pole on every Pulse and Pod home survey we complete",
+ target: "Offer Lipa Pole Pole on every Pulse home survey we complete",
  by: "2030",
- today: "From " + sitePricing.lipaFrom + " on Pulse charger and Pod energy storage",
+ today: "From " + sitePricing.lipaFrom + " on the Pulse charger",
  progress: "done" as GoalProgress,
  },
  ],
@@ -256,11 +256,11 @@ export const sustainabilityPage = {
  {
  id: "4",
  shortName: "Solar on hubs",
- headline: "Solar panels and Pod energy storage on hubs that need them",
- goal: "Solar and storage on operated hubs that need it",
- target: "Solar plus Pod storage on every hub that needs it",
+ headline: "Solar panels and battery storage on charging sites that need them",
+ goal: "Solar and storage on operated sites that need it",
+ target: "Solar plus storage on every Corridor site that needs it",
  by: "2030",
- today: "We can add solar and Pod storage when we survey a site. Not every live hub has them yet.",
+ today: "Corridor site designs include on-site storage. No Corridor site is commissioned yet.",
  progress: "underway" as GoalProgress,
  },
  ],
@@ -281,9 +281,9 @@ export const sustainabilityPage = {
  {
  id: "6",
  shortName: "Carbon study",
- headline: "An independent carbon study for Pulse, Pod and Corridor",
+ headline: "An independent carbon study for Pulse and Corridor",
  goal: "Published carbon footprints for key products",
- target: "An outside review of Pulse, Pod and Corridor",
+ target: "An outside review of Pulse and Corridor",
  by: "2030",
  today: "Product specs are on the site. No independent carbon study has started.",
  progress: "planned" as GoalProgress,

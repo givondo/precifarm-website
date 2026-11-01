@@ -42,10 +42,10 @@ export const trainingIntro = {
   description:
     "Certification for hub staff, installers and field engineers on the chargers Precifarm deploys in Kenya.",
   lead:
-    "Three tiers in sequence: site safety (T1), routine maintenance (T2), then commissioning and diagnostics (T3). Mapped to Pulse, Pod, Depot, Boda Hub and Corridor — not generic classroom theory.",
+    "Three tiers in sequence: site safety (T1), routine maintenance (T2), then commissioning and diagnostics (T3). Mapped to Pulse, Pulse+, Boda Hub and Corridor, not generic classroom theory.",
   whoShouldAttend: [
     "Hub operators and site hosts",
-    "Home installation crews for Pulse and Pod",
+    "Home installation crews for Pulse",
     "Fleet, depot and boda operators",
     "Field engineers and electricians servicing chargers",
   ],
@@ -182,7 +182,7 @@ export const evChargingTracks: EvChargingTrack[] = [
     id: "home",
     title: "Home charging",
     description:
-      "Pulse charger and Pod energy storage installs — survey through three-year aftersale service, Lipa Pole Pole on M-Pesa.",
+      "Pulse charger installs, from survey through three-year aftersale service, with Lipa Pole Pole on M-Pesa.",
     tiers: ["t2", "t3"],
     roles: "Install engineers, survey teams, warranty service technicians",
     topics: [
@@ -195,7 +195,7 @@ export const evChargingTracks: EvChargingTrack[] = [
     id: "private-site",
     title: "Fleet charging",
     description:
-      "Depot charging stations for yards, campuses and industrial sites — dedicated charging for fleets and staff vehicles.",
+      "Pulse+ three-phase charging (in development) for yards, campuses and industrial sites: dedicated charging for fleets and staff vehicles.",
     tiers: ["t2", "t3"],
     roles: "Project engineers, estate facilities teams, fleet managers",
     topics: [
@@ -208,7 +208,7 @@ export const evChargingTracks: EvChargingTrack[] = [
     id: "fleet",
     title: "Boda Hub & last-mile",
     description:
-      "Battery swap and kerbside charge for electric bodas — under 5 minutes back on the road.",
+      "Battery swap for electric bodas at partner-run pilot sites, under 5 minutes back on the road.",
     tiers: ["t1", "t2"],
     roles: "Boda operators, depot supervisors, last-mile partners",
     topics: [
@@ -233,21 +233,21 @@ export const trainingTrackMatrix: {
     t1: "Required",
     t2: "Required",
     t3: "Required",
-    note: "All tiers needed for Corridor hubs on Nairobi–Kisumu",
+    note: "All tiers needed for Corridor sites, starting with the Nairobi to Kisumu pilots",
   },
   {
     track: "Home charging",
     t1: "—",
     t2: "Required",
     t3: "Recommended",
-    note: "T3 for lead installers and Pulse / Pod commissioning",
+    note: "T3 for lead installers and Pulse commissioning",
   },
   {
     track: "Fleet charging",
     t1: "—",
     t2: "Required",
     t3: "Recommended",
-    note: "T3 for Depot sites with load management and storage",
+    note: "T3 for Pulse+ sites with shared load management",
   },
   {
     track: "Boda Hub & last-mile",
@@ -260,7 +260,7 @@ export const trainingTrackMatrix: {
 
 export const trainingDeliveryDetails = [
   { item: "Classroom venue", detail: "Nairobi — Precifarm training facility" },
-  { item: "Field modules", detail: "Live Precifarm hubs on the Nairobi–Kisumu corridor" },
+  { item: "Field modules", detail: "Precifarm installation and pilot sites" },
   { item: "Cohort size", detail: "6–16 participants per intake (partner cohorts on request)" },
   { item: "Language", detail: "English (Kiswahili support materials on request)" },
   { item: "Equipment", detail: "Same DC charger models and CSMS used on deployed hubs" },
@@ -285,7 +285,7 @@ export const trainingPrerequisites = [
 ] as const;
 
 export const trainingDelivery = [
-  "Classes run in Nairobi with field modules on the Nairobi–Kisumu corridor.",
+  "Classes run in Nairobi with field modules at installation and pilot sites.",
   "Partner cohorts available on request for operators and site hosts.",
   "Certificates issued per tier with annual refresher for T2 and T3.",
   "Training content aligned to chargers and CSMS deployed on Precifarm hubs.",
@@ -306,8 +306,8 @@ export function trainingEnquiryMailto(): string {
       "Current tier (if any): T1 / T2 / T3 / None",
       "Modules needed (tick all that apply):",
       "  [ ] Highway charging (Corridor)",
-      "  [ ] Home charging (Pulse / Pod)",
-      "  [ ] Fleet charging (Depot)",
+      "  [ ] Home charging (Pulse)",
+      "  [ ] Fleet charging (Pulse+)",
       "  [ ] Boda Hub & last-mile",
       "Preferred month or dates:",
       "",

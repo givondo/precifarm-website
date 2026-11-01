@@ -6,7 +6,6 @@
 import { homePageTitle } from "@/lib/brand-messaging";
 import { contact } from "@/lib/contact";
 import { chargingHub } from "@/lib/charging-hub";
-import { modularEnergyPaths } from "@/lib/modular-energy-page";
 import { socialHandles, socialProfileUrls } from "@/lib/social";
 
 /** Browser tab title for the homepage: keep in sync with layout metadata */
@@ -27,7 +26,7 @@ export const siteConfig = {
  region: "KE",
  timezone: "Africa/Nairobi",
  defaultDescription:
- "EV charging in Kenya: home EV chargers from KES 79,000, fleet depot and highway DC fast charging, and boda battery swap. Pay with M-Pesa or Lipa Pole Pole.",
+ "EV charging in Kenya: the Pulse home charger from KES 79,000 with Lipa Pole Pole on M-Pesa, plus fleet AC, highway DC fast charging pilots and boda battery swap.",
  defaultKeywords: [
  "EV charging Kenya",
  "EV charging stations Nairobi",
@@ -67,12 +66,10 @@ export const publicRoutes = [
  { path: chargingHub.path, label: chargingHub.label, changefreq: "weekly" as const, priority: 0.9 },
  { path: "/charging", label: "Charging", changefreq: "monthly" as const, priority: 0.95 },
  { path: "/charging/home", label: "Home charging", changefreq: "monthly" as const, priority: 0.82 },
+ { path: "/charging/pulse-plus", label: "Pulse+ charger", changefreq: "monthly" as const, priority: 0.8 },
+ { path: "/charging/corridor", label: "Corridor charging", changefreq: "monthly" as const, priority: 0.8 },
  { path: "/charging/boda-hub", label: "Automated Boda Hub", changefreq: "monthly" as const, priority: 0.82 },
- { path: modularEnergyPaths.overview, label: "Modular energy", changefreq: "monthly" as const, priority: 0.8 },
- { path: modularEnergyPaths.p1Go, label: "P1 Go", changefreq: "monthly" as const, priority: 0.72 },
- { path: modularEnergyPaths.p2Home, label: "P2 Home", changefreq: "monthly" as const, priority: 0.72 },
- { path: modularEnergyPaths.miniStack, label: "Mini Stack", changefreq: "monthly" as const, priority: 0.72 },
- { path: modularEnergyPaths.megapack, label: "MegaPack", changefreq: "monthly" as const, priority: 0.78 },
+ { path: "/ai", label: "AI platform", changefreq: "monthly" as const, priority: 0.78 },
  { path: "/evs", label: "Kenya EV guide", changefreq: "weekly" as const, priority: 0.84 },
  { path: "/charging/engineering", label: "Engineering Design Package", changefreq: "monthly" as const, priority: 0.8 },
  { path: "/partners", label: "Partners", changefreq: "monthly" as const, priority: 0.8 },

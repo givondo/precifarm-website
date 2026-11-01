@@ -1,11 +1,10 @@
 ﻿/**
  * Precifarm Automated Boda Hub: public product page.
  * Brand voice: short, Kenya-first, infrastructure not jargon.
- * Silver lockers · 2.56 kWh Energy Module · partner-hosted.
+ * Silver lockers · one battery make per site · partner-hosted.
  * Not live as unattended self-service yet.
  */
 
-import { modularEnergyPaths } from "@/lib/modular-energy-page";
 import { productRenderPaths } from "@/lib/product-renders-catalog";
 
 export const bodaHubPath = "/charging/boda-hub" as const;
@@ -17,11 +16,10 @@ export const bodaHubPaths = {
  agent: "/agent",
  contact: "/contact?interest=boda-hub",
  engineering: "/charging/engineering",
- modularEnergy: modularEnergyPaths.overview,
 } as const;
 
 export const bodaHubStatusNote =
- "Self-service lockers are in design and testing. Partner-run Boda Hub sites are already listed on Charging Hub.";
+ "The Automated Boda Hub cabinet is in development. Swaps today run at partner-run sites, which are pilots.";
 
 export const bodaHubDisclaimer =
  "Pilots follow Kenyan safety and electrical rules, checked with licensed professionals before unattended public use.";
@@ -44,7 +42,7 @@ export const bodaHubPageContent = {
  body: "Riders use one Precifarm account and pay every swap with M-Pesa. Partners host the site; Precifarm builds the lockers, software and care around it.",
  },
  lead:
- "Boda Hub is outdoor energy infrastructure for electric motorcycles: silver smart lockers, one shared 2.56 kWh Energy Module in every door, and remote care from the same Precifarm network that already runs home, fleet and highway charging.",
+ "Boda Hub is outdoor energy infrastructure for electric motorcycles: silver smart lockers with a controller in every door, one approved battery make per site, and remote care from the same Precifarm team behind home, fleet and highway charging.",
  highlights: [
  {
  label: "Riders",
@@ -61,30 +59,24 @@ export const bodaHubPageContent = {
  ] as const,
  lockers: {
  eyebrow: "The lockers",
- title: "One machine. Three sizes.",
+ title: "One machine. Twenty bays.",
  description:
- "Quiet streets get a compact cabinet. Busy hubs get a standard. Peak stages get a bank. Same shell, same doors, same software.",
+ "One cabinet design with 20 charging bays. Riders swap at the 16 lower doors; the top row charges packs that an attendant moves down as the lower doors empty, so nobody lifts a heavy pack above shoulder height. Busy sites add a second cabinet beside the first. In development.",
  image: {
  src: productRenderPaths.bodaHub,
- alt: "Boda Hub standard locker with one door open and an Energy Module ready to swap",
+ alt: "Boda Hub locker with one door open and a charged pack ready to swap (design render)",
  },
  configs: [
  {
- name: "Compact",
- bays: "8 doors",
- modules: "~20 kWh",
- for: "Shops and neighbourhood stages",
- },
- {
- name: "Standard",
- bays: "12 doors",
- modules: "~30 kWh",
- for: "Petrol stations and urban hubs",
+ name: "Cabinet",
+ bays: "20 charging bays",
+ modules: "16 rider doors, one pack per door",
+ for: "Shops, stages, petrol stations and urban hubs",
  },
  {
  name: "Locker bank",
- bays: "24+ doors",
- modules: "Two+ cabinets",
+ bays: "40+ bays",
+ modules: "Two or more cabinets",
  for: "Fleet yards and busy corridors",
  },
  ] as const,
@@ -102,28 +94,28 @@ export const bodaHubPageContent = {
  ] as const,
  },
  module: {
- eyebrow: "Energy Module",
- title: "One pack. Every door.",
+ eyebrow: "Battery packs",
+ title: "One battery make per site.",
  description:
- "The 2.56 kWh Energy Module is the battery riders swap, the same block used across Precifarm modular energy. One spare. One training path. One network.",
+ "Each site is built around one approved pack and its matching charger. A door charges a pack only after its battery system is recognised, so mixed brands are never charged by guesswork.",
  facts: [
- { label: "Capacity", value: "2.56 kWh" },
+ { label: "Capacity", value: "Set by the pack maker" },
  { label: "Use", value: "Swap pack" },
- { label: "Fit", value: "Slide-in" },
- { label: "Family", value: "Modular energy" },
+ { label: "Fit", value: "Slide-in dock" },
+ { label: "Rule", value: "One make per site" },
  ] as const,
  points: [
- "Every Boda Hub door is built for this module",
- "Shared with P1 Go, P2 Home and Mini Stack",
+ "Every door at a site is built for that site's pack",
+ "Mixed brands are not accepted",
  "Grow a site by adding doors, not new battery types",
- "Service teams learn one pack, not a catalogue of packs",
+ "Service teams learn one pack per site",
  ] as const,
  image: {
- src: productRenderPaths.energyModuleEm256,
- alt: "Precifarm 2.56 kWh Energy Module",
+ src: productRenderPaths.bodaHub,
+ alt: "Boda Hub locker with an open bay (design render)",
  },
- href: bodaHubPaths.modularEnergy,
- hrefLabel: "Explore modular energy",
+ href: bodaHubPaths.engineering,
+ hrefLabel: "Engineering design basis",
  },
  build: {
  eyebrow: "Hardware",
@@ -137,7 +129,7 @@ export const bodaHubPageContent = {
  },
  {
  name: "Smart doors",
- text: "Each door locks, charges and watches its own Energy Module.",
+ text: "Each door locks, charges and watches its own pack, and charges only when it is closed and latched.",
  },
  {
  name: "Safety first",
@@ -168,7 +160,7 @@ export const bodaHubPageContent = {
  },
  {
  name: "Take charged",
- text: "One door opens. Slide out the Energy Module.",
+ text: "One door opens. Slide out the charged pack.",
  },
  {
  name: "Return empty",
@@ -181,8 +173,8 @@ export const bodaHubPageContent = {
  ] as const,
  uiScreens: [
  { title: "Welcome", line: "Scan your Precifarm app" },
- { title: "Bay 04", line: "Take charged module" },
- { title: "Return", line: "Insert empty module" },
+ { title: "Bay 04", line: "Take charged pack" },
+ { title: "Return", line: "Insert empty pack" },
  { title: "Done", line: "Have a good ride" },
  ] as const,
  },
@@ -241,9 +233,9 @@ export const bodaHubPageContent = {
  },
  batteries: {
  eyebrow: "Compatibility",
- title: "One module first. Others earn a place.",
+ title: "One make first. Others earn a place.",
  description:
- "Phase 1 is the Precifarm 2.56 kWh Energy Module. Other battery types join only after fit, power, communication, safety and commercial checks. We will not claim every e-boda pack works.",
+ "Each site starts with one battery make and its charger. Another make joins only after fit, power, communication, safety and commercial checks. We will not claim every e-boda pack works.",
  },
  roadmap: {
  eyebrow: "Roadmap",
@@ -277,12 +269,12 @@ export const bodaHubPageContent = {
  {
  question: "Can I use Automated Boda Hub today?",
  answer:
- "Not as self-service yet. This page is the product we are building. Live Boda Hub listings on Charging Hub still run with staff or partners on site.",
+ "Not as self-service yet. The Automated Boda Hub cabinet is in development. Swaps today run at partner-run pilot sites with staff or partners on site.",
  },
  {
  question: "What battery does it use?",
  answer:
-        "Precifarm's 2.56 kWh Energy Module — the same capacity block used in modular energy. Every locker door is built around it.",
+        "One approved battery make per site, with its matching charger. Every door at that site is built around it.",
  },
  {
  question: "Is this a different brand from Boda Hub?",
@@ -290,9 +282,9 @@ export const bodaHubPageContent = {
  "No. Same Precifarm silver cabinet language and blue lights, automated for self-service, not a new brand.",
  },
  {
- question: "Are Compact, Standard and Bank different products?",
+ question: "Are the cabinet and the locker bank different products?",
  answer:
- "No. One locker design in three footprints. Busy sites add cabinets beside the first.",
+ "No. One cabinet design. Busy sites add cabinets beside the first.",
  },
  {
  question: "Does Precifarm staff every hub?",
@@ -302,7 +294,7 @@ export const bodaHubPageContent = {
  {
  question: "Will my other motorcycle battery work?",
  answer:
- "Only after that pack type is tested and approved. We start with the 2.56 kWh Energy Module.",
+ "Only after that pack type is tested and approved for a site. Each site starts with one make.",
  },
  {
  question: "What if there is no internet?",
