@@ -11,7 +11,7 @@ const specs = {
       "headline": "7 kW home wallbox",
       "status": "available",
       "maturity": "DESIGN",
-      "approval": "pending",
+      "approval": "Approved by Sayia David Givondo, 2026-11-01 08:44 EAT (\"approve and proceed\")",
       "spec_doc": "PRF-PULSE7K2-SYS-SPEC-001-R00",
       "claims": [
         {
@@ -78,7 +78,7 @@ const specs = {
       "headline": "22 kW three-phase wallbox",
       "status": "development",
       "maturity": "DESIGN",
-      "approval": "pending",
+      "approval": "Approved by Sayia David Givondo, 2026-11-01 08:44 EAT (\"approve and proceed\")",
       "spec_doc": "PRF-PULSEPLUS-SYS-SPEC-001-R00",
       "claims": [
         {
@@ -145,7 +145,7 @@ const specs = {
       "headline": "DC fast charging for highways and towns",
       "status": "pilot",
       "maturity": "DESIGN",
-      "approval": "pending",
+      "approval": "Approved by Sayia David Givondo, 2026-11-01 08:44 EAT (\"approve and proceed\")",
       "spec_doc": "PRF-CORRIDOR-SYS-SPEC-001-R00",
       "claims": [
         {
@@ -198,7 +198,7 @@ const specs = {
       "headline": "Battery swapping for electric motorcycles",
       "status": "pilot",
       "maturity": "DESIGN",
-      "approval": "pending",
+      "approval": "Approved by Sayia David Givondo, 2026-11-01 08:44 EAT (\"approve and proceed\")",
       "spec_doc": "PRF-BODAHUB-SYS-SPEC-001-R00",
       "claims": [
         {
@@ -251,7 +251,7 @@ const specs = {
       "headline": "Stationary inductive charging research",
       "status": "research",
       "maturity": "RESEARCH",
-      "approval": "pending",
+      "approval": "Approved by Sayia David Givondo, 2026-11-01 08:44 EAT (\"approve and proceed\")",
       "spec_doc": "PRF-WPT-SYS-SPEC-001-R00",
       "claims": [
         {
@@ -283,7 +283,7 @@ const specs = {
       "headline": "Private AI agents on your own machine",
       "status": "development",
       "maturity": "DESIGN",
-      "approval": "pending",
+      "approval": "Approved by Sayia David Givondo, 2026-11-01 08:44 EAT (\"approve and proceed\")",
       "spec_doc": "PRF-AGENTH-SYS-SPEC-001-R00",
       "claims": [
         {
@@ -317,7 +317,7 @@ const specs = {
       ]
     }
   ],
-  "source_commit": "f4f4ae9"
+  "source_commit": "9212fb4"
 } as const;
 
 export default specs;

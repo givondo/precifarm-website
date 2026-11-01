@@ -78,3 +78,8 @@ test("Corridor DC carries no public price until a site is commissioned and coste
   for (const d of ["app", "lib", "components"]) walk(join(root, d));
   assert.deepEqual(hits, [], `KES 39 price still published in ${hits.join(", ")}`);
 });
+
+test("every published programme claim list carries David's approval", async () => {
+  const { programmes } = await import("@/lib/programmes");
+  for (const p of programmes) assert.match(p.approval, /^Approved by Sayia David Givondo/, `${p.code} claims are not approved`);
+});
