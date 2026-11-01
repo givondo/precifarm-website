@@ -1,16 +1,11 @@
-﻿/**
- * Product schema catalog: verified published prices and specs only.
- * Conceptual modular-energy items deliberately omit Offer so they are never
- * implied as for sale.
+/**
+ * Product schema catalogue: published prices and specs only.
+ * Only products on sale carry an Offer. Pilots, products in development and
+ * research programmes are described without an Offer so they are never implied
+ * as for sale. Ratings follow the PRECIFARM_MASTER register (lib/programmes.ts).
  */
 
 import { homeProducts, productNames } from "@/lib/home-products";
-import {
- modularEnergyPaths,
- modularEnergyProducts,
- modularEnergyStatusNote,
-} from "@/lib/modular-energy-page";
-import { megapackPageContent, megapackStatusNote } from "@/lib/megapack-page";
 import { productImages } from "@/lib/product-images";
 import type { ProductSchemaInput } from "@/lib/seo/schema";
 import { productSchema } from "@/lib/seo/schema";
@@ -22,7 +17,7 @@ function byId(id: string) {
  return product;
 }
 
-/** Commercial charging products with verified published prices. */
+/** Charging and swapping programmes. Pulse is the only one with an Offer. */
 export const commercialProductCatalog = {
  pulse: {
  name: productNames.pulse,
@@ -32,9 +27,9 @@ export const commercialProductCatalog = {
  sku: "pulse-7kw",
  category: "Home EV Charger",
  additionalProperty: [
- { name: "Power", value: "7 kW AC" },
- { name: "Connector", value: "Type 2" },
- { name: "Typical day charge", value: "about 90 minutes for ~60 km" },
+ { name: "Power", value: "Up to 7 kW class AC (32 A, single phase), design target" },
+ { name: "Connector", value: "Type 2, tethered" },
+ { name: "Typical day charge", value: "under two hours for ~60 km" },
  { name: "Financing", value: "Lipa Pole Pole on M-Pesa from KES 3,300/month" },
  ],
  offer: {
@@ -43,75 +38,34 @@ export const commercialProductCatalog = {
  availability: "InStock" as const,
  },
  },
- pod: {
- name: productNames.pod,
- description: byId("pod").tagline,
- path: "/charging/home",
- image: productImages.podHomeHero.src,
- sku: "pod-home-storage",
- category: "Home Energy Storage + EV Charging",
- additionalProperty: [
- { name: "Storage", value: "5 or 10 kWh LiFePO₄" },
- { name: "Typical day charge", value: "about 90 minutes for ~60 km" },
- { name: "Financing", value: "Lipa Pole Pole on M-Pesa" },
- ],
- offer: {
- price: "295000",
- priceCurrency: "KES",
- availability: "InStock" as const,
- },
- },
- spark: {
- name: productNames.spark,
- description: byId("spark").tagline,
- path: "/charging",
- image: productImages.spark.src,
- sku: "spark-3-3kw",
- category: "Portable EV Charger",
- additionalProperty: [
- { name: "Power", value: "3.3 kW" },
- { name: "Connector", value: "Type 2" },
- { name: "Typical day charge", value: "about 180 minutes for ~60 km" },
- ],
- offer: {
- price: "25000",
- priceCurrency: "KES",
- availability: "InStock" as const,
- },
- },
- depot: {
- name: productNames.depot,
- description: byId("depot").tagline,
- path: "/partners",
- image: productImages.depot.src,
- sku: "depot-22kw",
+ pulsePlus: {
+ name: productNames.pulsePlus,
+ description: byId("pulsePlus").tagline,
+ path: "/charging/pulse-plus",
+ image: productImages.pulsePlus.src,
+ sku: "pulse-plus-22kw",
  category: "Fleet EV Charger",
  additionalProperty: [
- { name: "Power", value: "22 kW AC" },
- { name: "Session energy", value: "40+ kWh in about 120 minutes" },
- { name: "Public DC rate", value: "from KES 39/kWh" },
+ { name: "Power", value: "Up to 22 kW AC three phase, design target" },
+ { name: "Connector", value: "Type 2, tethered" },
+ { name: "Availability", value: "In development, not yet on sale" },
  ],
- // Hardware unit price is not published; do not invent an Offer.
+ // In development: no Offer.
  },
  corridor: {
  name: productNames.corridor,
  description: byId("corridor").tagline,
- path: "/hub",
+ path: "/charging/corridor",
  image: productImages.corridor.src,
- sku: "corridor-120kw",
- category: "Highway DC Fast Charger",
+ sku: "corridor-dc",
+ category: "DC Fast Charger",
  additionalProperty: [
- { name: "Power", value: "120 kW+ DC" },
  { name: "Connectors", value: "Dual CCS2" },
- { name: "Session energy", value: "about 60 kWh in 30 minutes" },
- { name: "Public DC rate", value: "from KES 39/kWh" },
+ { name: "Site storage", value: "On-site battery, sized per site" },
+ { name: "Public DC rate", value: "from KES 39/kWh at commissioned sites" },
+ { name: "Availability", value: "Pilot sites in development" },
  ],
- offer: {
- price: "39",
- priceCurrency: "KES",
- unitText: "kWh",
- availability: "InStock" as const,
- },
+ // Pilot: no commissioned site yet, so no Offer.
  },
  boda: {
  name: productNames.boda,
@@ -121,117 +75,25 @@ export const commercialProductCatalog = {
  sku: "boda-hub",
  category: "Electric Motorcycle Battery Swap",
  additionalProperty: [
- { name: "Turnaround", value: "under 5 minutes" },
- { name: "Modes", value: "Battery swap or kerbside charge" },
- { name: "Roadmap", value: "Automated self-service lockers under engineering validation" },
+ { name: "Turnaround", value: "under 5 minutes at partner-run sites" },
+ { name: "Batteries", value: "One battery make per site" },
+ { name: "Availability", value: "Partner-run pilots; Automated Boda Hub cabinet in development" },
  ],
  // Fleet pricing only; no catalogue unit price.
  },
 } as const satisfies Record<string, ProductSchemaInput>;
 
-function conceptualProduct(
- name: string,
- description: string,
- path: string,
- image: string,
- category: string,
- additionalProperty: { name: string; value: string }[],
-): ProductSchemaInput {
- return {
- name,
- description: `${description} ${modularEnergyStatusNote}`,
- path,
- image,
- category,
- additionalProperty,
- // No offer: conceptual, not on sale.
- };
-}
-
-/** Modular energy family as Product without Offer. */
-export const conceptualProductCatalog: Record<string, ProductSchemaInput> = {
- "p1-go": conceptualProduct(
- modularEnergyProducts["p1-go"].name,
- modularEnergyProducts["p1-go"].description,
- modularEnergyPaths.p1Go,
- modularEnergyProducts["p1-go"].image,
- "Portable Backup Power",
- modularEnergyProducts["p1-go"].highlights.map((h) => ({
- name: h.label,
- value: h.value,
- })),
- ),
- "p2-home": conceptualProduct(
- modularEnergyProducts["p2-home"].name,
- modularEnergyProducts["p2-home"].description,
- modularEnergyPaths.p2Home,
- modularEnergyProducts["p2-home"].image,
- "Home Battery Storage",
- modularEnergyProducts["p2-home"].highlights.map((h) => ({
- name: h.label,
- value: h.value,
- })),
- ),
- "mini-stack": conceptualProduct(
- modularEnergyProducts["mini-stack"].name,
- modularEnergyProducts["mini-stack"].description,
- modularEnergyPaths.miniStack,
- modularEnergyProducts["mini-stack"].image,
- "Outdoor SME Battery Storage",
- modularEnergyProducts["mini-stack"].highlights.map((h) => ({
- name: h.label,
- value: h.value,
- })),
- ),
- megapack: {
- name: "MegaPack",
- description: `${megapackPageContent.hero.description} ${megapackStatusNote}`,
- path: modularEnergyPaths.megapack,
- image: megapackPageContent.hero.image.src,
- category: "Project-Engineered Battery Energy Storage",
- additionalProperty: [{ name: "Availability", value: "Project-engineered, not a catalogue SKU" }],
- },
-};
+/** Retained for API compatibility; the modular energy family is no longer on the site. */
+export const conceptualProductCatalog: Record<string, ProductSchemaInput> = {};
 
 export function commercialProductsOnPath(path: string): ProductSchemaInput[] {
  return Object.values(commercialProductCatalog).filter((product) => product.path === path);
 }
 
 export function productSchemasForPath(path: string): JsonLd[] {
- const commercial = commercialProductsOnPath(path).map(productSchema);
-
- if (path === modularEnergyPaths.overview) {
- return [
- ...commercial,
- productSchema(conceptualProductCatalog["p1-go"]),
- productSchema(conceptualProductCatalog["p2-home"]),
- productSchema(conceptualProductCatalog["mini-stack"]),
- productSchema(conceptualProductCatalog.megapack),
- ];
- }
-
- if (path === modularEnergyPaths.p1Go) return [...commercial, productSchema(conceptualProductCatalog["p1-go"])];
- if (path === modularEnergyPaths.p2Home) return [...commercial, productSchema(conceptualProductCatalog["p2-home"])];
- if (path === modularEnergyPaths.miniStack) {
- return [...commercial, productSchema(conceptualProductCatalog["mini-stack"])];
- }
- if (path === modularEnergyPaths.megapack) {
- return [...commercial, productSchema(conceptualProductCatalog.megapack)];
- }
-
- if (path === "/charging/boda-hub") {
- return [productSchema(commercialProductCatalog.boda)];
- }
-
- // /charging is the category hub: Spark is primary; Depot/Corridor/Boda also appear there.
+ // /charging is the category hub: every charging and swapping programme appears there.
  if (path === "/charging") {
- return [
- productSchema(commercialProductCatalog.spark),
- productSchema(commercialProductCatalog.depot),
- productSchema(commercialProductCatalog.corridor),
- productSchema(commercialProductCatalog.boda),
- ];
+ return Object.values(commercialProductCatalog).map(productSchema);
  }
-
- return commercial;
+ return commercialProductsOnPath(path).map(productSchema);
 }

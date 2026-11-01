@@ -4,7 +4,7 @@ import { contact } from "@/lib/contact";
 import ContactForm from "@/components/ContactForm";
 import JsonLd from "@/components/seo/JsonLd";
 import PageHero from "@/components/ui/PageHero";
-import { megapackInterest } from "@/lib/megapack-page";
+import { interestFromQuery } from "@/lib/contact-interests";
 import { pageJsonLd, pageMetadata } from "@/lib/seo/pages/helpers";
 
 export const metadata: Metadata = pageMetadata("/contact");
@@ -37,8 +37,7 @@ export default async function ContactPage({
   searchParams: Promise<{ interest?: string }>;
 }) {
   const { interest } = await searchParams;
-  const defaultInterest =
-    interest === "megapack" || interest === "megapack-grid" ? megapackInterest : undefined;
+  const defaultInterest = interestFromQuery(interest);
 
   return (
     <>

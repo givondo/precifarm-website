@@ -4,7 +4,7 @@ import HubSchematic from "@/components/HubSchematic";
 const links = [
   {
     title: "Operators & fleets",
-    text: "Depot pedestals, Corridor DC and fleet billing via Lipa Pole Pole.",
+    text: "Pulse+ for depots, Corridor DC fast charging and fleet billing on M-Pesa.",
     href: "/partners",
     cta: "Partner with us",
   },

@@ -20,7 +20,7 @@ export async function GET() {
     instructions: [
       "Use Precifarm engineering tools for numeric work when available.",
       "Label outputs: calculated, estimated, assumed, needs site check.",
-      "Commercial products: Pulse, Pod, Spark, Depot, Boda Hub, Corridor — wireless pads are R&D only.",
+      "Programmes: Pulse charger (available), Pulse+ (in development), Corridor (pilot in development), Boda Hub (pilot), wireless charging (research only), Agent Harness (in development).",
     ],
     links: {
       product: "https://precifarm.com/agent",

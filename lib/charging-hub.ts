@@ -35,7 +35,7 @@ export const chargingHubPage = {
         label: "Boda swap",
       },
       {
-        src: productImages.depot.src,
+        src: productImages.pulsePlus.src,
         alt: "Precifarm Pulse+ 22 kW AC wallbox for fleet and partner sites",
         label: "Partner & fleet",
       },
@@ -92,7 +92,7 @@ export const chargingHubPage = {
         id: "boda",
         title: "Boda battery swap",
         stat: "Under 5 min",
-        detail: "Drop a flat pack and pick up a charged one in Nairobi, Kisumu and Nakuru.",
+        detail: "Drop a flat pack and pick up a charged one at partner-run swap sites.",
         imageKey: "boda" as const,
         status: "pilot" as const,
       },
@@ -171,7 +171,7 @@ export const chargingHubPage = {
   },
   faq: {
     title: "Common questions",
-    lead: "Public charging on the Charging Hub. Home Pulse and Pod installs are on ",
+    lead: "Public charging on the Charging Hub. Home Pulse installs are on ",
     homeHref: "/charging/home",
     homeLabel: "home charging",
   },

@@ -66,6 +66,11 @@ export const productImages = {
     alt: "Precifarm Boda Hub battery-swap locker on its swap pad, with safety bollards and the rider screen on the side totem",
     brand: "none" as const,
   },
+  pulsePlus: {
+    src: productRenderPaths.pulsePlus22kW,
+    alt: "Precifarm Pulse+ 22 kW three-phase wallbox with its tethered Type 2 cord coiled on the wall dock",
+    brand: "none" as const,
+  },
   depot: {
     src: productRenderPaths.pulsePlus22kW,
     alt: "Precifarm Pulse+ 22 kW three-phase wallbox with its tethered Type 2 cord coiled on the wall dock",

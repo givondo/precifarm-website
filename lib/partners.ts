@@ -17,7 +17,7 @@ export const partnersPage = {
 } as const;
 
 export const partnerHighlights = [
-  { stat: "Spark–Corridor", label: "from home charging to highway charging" },
+  { stat: "Pulse to Corridor", label: "from home charging to highway charging" },
   { stat: "Home · Fleet · Highway", label: "one partner for every charging scenario" },
   { stat: "24/7", label: "remote monitoring on commissioned sites" },
   { stat: "M-Pesa", label: "session pay, Lipa Pole Pole and fleet billing" },
@@ -38,7 +38,7 @@ export const partnerTypes: PartnerType[] = [
     title: "Hub site hosts",
     summary:
       "Turn a strong corridor location — fuel station, yard, mall or roadside stop — into recurring EV traffic and shared revenue.",
-    products: "Depot · Corridor",
+    products: "Pulse+ · Corridor",
     points: [
       "Precifarm designs, builds, owns and operates the charging equipment",
       "Revenue share on kWh sold and on-site retail dwell",
@@ -53,9 +53,9 @@ export const partnerTypes: PartnerType[] = [
     title: "Fleet & logistics",
     summary:
       "Contract dependable depot and corridor charging for vans, buses and delivery fleets — without per-session payment friction.",
-    products: "Depot · Corridor",
+    products: "Pulse+ · Corridor",
     points: [
-      "Depot overnight and corridor DC sized to your duty cycle",
+      "Pulse+ overnight AC and Corridor DC sized to your duty cycle (in development and pilot)",
       "Fleet invoicing and session reporting on M-Pesa",
       "More stable energy cost compared with volatile diesel prices",
       "Site engineering where yard charging and highway top-ups connect",
@@ -82,11 +82,11 @@ export const partnerTypes: PartnerType[] = [
     id: "dealers-installers",
     title: "Dealers & installers",
     summary:
-      "Sell and install Pulse charger and Pod energy storage home units under Precifarm engineering standards — certified crews, Lipa Pole Pole finance and three-year aftersale care.",
-    products: "Pulse · Pod · Spark",
+      "Sell and install Pulse charger home units under Precifarm engineering standards — certified crews, Lipa Pole Pole finance and three-year aftersale care.",
+    products: "Pulse · Lipa Pole Pole",
     points: [
       "Survey-to-commission workflow with Precifarm-approved installation checklists",
-      "Lipa Pole Pole M-Pesa instalments for Pulse charger and Pod energy storage — deposit, monthly and total shown upfront",
+      "Lipa Pole Pole M-Pesa instalments for the Pulse charger, with deposit, monthly and total shown up front",
       "Lead referral from precifarm.com and Precifarm Agent",
       "Training tiers T1–T3 for field and hub operations",
     ],
@@ -98,7 +98,7 @@ export const partnerTypes: PartnerType[] = [
     title: "Financiers & OEMs",
     summary:
       "Back charging infrastructure with contracted kWh demand and shared operating data — not projections alone.",
-    products: "Corridor · Depot",
+    products: "Corridor · Pulse+",
     points: [
       "Projects underwritten on binding energy and utilisation commitments",
       "Vehicle-neutral network — CCS2, CHAdeMO and AC where appropriate",
@@ -148,38 +148,30 @@ export const partnerCommitments = [
   },
   {
     title: "Open to any capable vehicle",
-    text: `No OEM lock-in. Any compatible EV can use Depot, Corridor and public AC bays on the ${chargingHub.name}.`,
+    text: `No OEM lock-in. Any compatible EV can use Precifarm Corridor and public AC bays listed on the ${chargingHub.name}.`,
   },
 ] as const;
 
 export const partnerProductFit = [
   {
-    product: "Pulse & Pod",
-    power: "7 kW home · Pod with storage",
+    product: "Pulse",
+    power: "7 kW home · available",
     bestFor: "Residential installs, dealer networks",
     image: productImages.pulse.src,
     imageAlt: productImages.pulse.alt,
     brand: productImages.pulse.brand,
   },
   {
-    product: "Spark",
-    power: "3.3 kW portable",
-    bestFor: "Boot top-ups, last-mile and backup charge",
-    image: productImages.spark.src,
-    imageAlt: productImages.spark.alt,
-    brand: productImages.spark.brand,
-  },
-  {
-    product: "Depot",
-    power: "22 kW AC pedestal",
+    product: "Pulse+",
+    power: "22 kW AC three phase · in development",
     bestFor: "Fleet yards, workplaces, campus car parks",
-    image: productImages.depot.src,
-    imageAlt: productImages.depot.alt,
-    brand: productImages.depot.brand,
+    image: productImages.pulsePlus.src,
+    imageAlt: productImages.pulsePlus.alt,
+    brand: productImages.pulsePlus.brand,
   },
   {
     product: "Boda Hub",
-    power: "Swap & kerbside",
+    power: "Battery swap · pilot",
     bestFor: "Last-mile operators, high-turnover boda fleets",
     image: productImages.boda.src,
     imageAlt: productImages.boda.alt,
@@ -187,7 +179,7 @@ export const partnerProductFit = [
   },
   {
     product: "Corridor",
-    power: "120 kW+ DC",
+    power: "DC fast charging · pilot in development",
     bestFor: "Highway stops, intercity corridors",
     image: productImages.corridor.src,
     imageAlt: productImages.corridor.alt,

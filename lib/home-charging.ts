@@ -10,7 +10,7 @@ export const homeChargingHighlight = {
   title: "Wake up charged at home",
   paragraphs: [
     `7 kW Pulse charger on your driveway — sized to your EV and meter, with no public queues. From ${sitePricing.pulseFrom}, or Lipa Pole Pole from ${sitePricing.lipaFrom} on M-Pesa.`,
-    "Add Pod energy storage or rooftop solar when you want backup and lower daytime cost.",
+    "Pulse trims its current to stay inside your supply, so the main fuse never trips while the car charges.",
     "Survey, install and 3 years of aftersale from the same team that engineers and runs our route hubs.",
   ],
   primaryLabel: "Explore Pulse charger",
@@ -24,12 +24,12 @@ export const homeChargingHighlight = {
 export const privateHouseChargingPage = {
   hero: {
     eyebrow: "Home charging",
-    title: "Pulse charger and Pod on your property",
+    title: "Pulse charger on your property",
     description:
-      "Wallbox or storage on your land, for your car — survey, install and three-year care from one team. Lipa Pole Pole on M-Pesa.",
+      "A tethered Type 2 wallbox on your land, for your car: survey, install and three-year care from one team. Lipa Pole Pole on M-Pesa.",
   },
   lead:
-    "We size the unit to your EV and your meter, install on your parking spot, and keep it online. Optional Spark for top-ups away from home.",
+    "We size the unit to your EV and your meter, install on your parking spot, and keep it online.",
   notThisPage:
     "Residential only. Fleet depots → Partners. Public DC → Charging Hub.",
   image: {
@@ -43,16 +43,16 @@ export const privateHouseChargingPage = {
       text: "Private parking — no public access or shared queues.",
     },
     {
-      title: "Typical day in ~90 min",
-      text: "About 60 km on a Pulse charger or Pod at home.",
+      title: "Typical day in under two hours",
+      text: "About 60 km put back overnight on a Pulse charger at home.",
     },
     {
       title: "Lipa Pole Pole",
       text: `Pulse charger from ${sitePricing.pulseFrom}. Instalments from ${sitePricing.lipaFrom} on M-Pesa.`,
     },
     {
-      title: "Weak grid cover",
-      text: "Pod adds 5 or 10 kWh when Kenya Power dips.",
+      title: "Safe by design",
+      text: "Charging current never runs through a circuit board. An independent safety processor controls the contactor.",
     },
   ],
   included: [
@@ -107,27 +107,27 @@ export const privateHouseChargingProcess = [
 export const privateHouseChargingPackages = [
   {
     name: "Pulse charger",
-    bestFor: "House with stable supply — typical 60 km day in about 90 minutes",
+    bestFor: "Buy outright: a typical 60 km day in under two hours",
     includes: [
       "7 kW Pulse charger wallbox on your property",
       "Installation from consumer unit to parking spot",
-      "Lipa Pole Pole on M-Pesa · from KES 79,000",
+      "From KES 79,000, paid on survey approval",
     ],
     image: productImages.pulse.src,
     imageAlt: productImages.pulse.alt,
     brand: productImages.pulse.brand,
   },
   {
-    name: "Pod energy storage",
-    bestFor: "Weak-grid evenings — storage keeps a typical day charging in about 90 minutes",
+    name: "Pulse charger on Lipa Pole Pole",
+    bestFor: "Spread the cost: the same Pulse install, paid in M-Pesa instalments",
     includes: [
-      "Pod energy storage with 5 or 10 kWh LiFePO₄ at the house",
-      "Optional rooftop solar",
-      "Lipa Pole Pole on M-Pesa · from KES 295,000",
+      "7 kW Pulse charger wallbox on your property",
+      "Installation from consumer unit to parking spot",
+      `Lipa Pole Pole on M-Pesa · from ${sitePricing.lipaFrom}, with deposit, monthly amount and total shown first`,
     ],
-    image: productImages.podHomeHero.src,
-    imageAlt: productImages.podHomeHero.alt,
-    brand: productImages.pod.brand,
+    image: productImages.financing.src,
+    imageAlt: productImages.financing.alt,
+    brand: productImages.financing.brand,
   },
 ] as const;
 
@@ -139,8 +139,6 @@ export const homeSurveyForm = {
     "Tell us about your house and vehicle. We visit the site, send a quote, and can start Lipa Pole Pole on M-Pesa after you approve.",
   products: [
     { id: "pulse", label: "Pulse charger — home charging" },
-    { id: "pod", label: "Pod energy storage — home charging plus backup" },
-    { id: "spark", label: "Spark portable charger" },
     { id: "unsure", label: "Not sure yet" },
   ],
   propertyTypes: ["Detached house", "Townhouse", "Gated community", "Other"],
@@ -162,7 +160,7 @@ export function privateHouseSurveyMailto(): string {
       "Property type (detached / townhouse / gated community house):",
       "Vehicle make and model:",
       "Private parking (driveway / car port / dedicated bay):",
-      "Interest: Pulse charger / Pod energy storage / optional rooftop solar",
+      "Interest: Pulse charger / Lipa Pole Pole instalments",
       "Contact phone:",
       "",
       "Additional notes:",

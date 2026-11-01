@@ -1,7 +1,12 @@
-﻿import { siteConfig } from "@/lib/seo/config";
+import { siteConfig } from "@/lib/seo/config";
 import { contact } from "@/lib/contact";
-import { modularEnergyPaths } from "@/lib/modular-energy-page";
+import { programmes } from "@/lib/programmes";
+import { productStatusCopy } from "@/lib/product-status";
 import { staticGuides } from "@/lib/seo/static-guides";
+
+const programmeLines = programmes
+ .map((p) => `- ${p.name} (${productStatusCopy[p.status].label}): ${p.headline}. ${p.summary} ${siteConfig.url}${p.href}`)
+ .join("\n");
 
 export async function GET() {
  const body = `# ${siteConfig.name}
@@ -12,44 +17,36 @@ export async function GET() {
 - ${siteConfig.url}
 
 ## What Precifarm is
-Precifarm AI (Precifarm for short) is an EV charging company based in Nairobi, Kenya, founded in August 2025. It designs, installs and finances EV charging, from home chargers to highway DC fast charging and electric boda battery swap, paid with M-Pesa. Lead engineer: Sayia David Givondo, B.Eng.
+Precifarm AI (Precifarm for short) is a Nairobi company founded in August 2025 with two pillars: energy infrastructure for electric transport (EV charging and electric boda battery swapping, paid with M-Pesa) and AI systems that engineer it. Lead engineer: Sayia David Givondo, B.Eng.
 
 ## Quick answers
 - Home EV charger in Kenya: Pulse 7 kW wallbox from KES 79,000, or from KES 3,300/month with Lipa Pole Pole on M-Pesa: ${siteConfig.url}/charging/home
 - Where to charge in Kenya: ${siteConfig.url}/guides/ev-charging-stations-kenya
 - Kenya Power e-mobility tariff: KES 16/kWh, KES 8/kWh off-peak, before levies and VAT (Gazette Notice 15188, 18 September 2026): ${siteConfig.url}/guides/kenya-power-ev-charging-tariff
 - Electric boda battery swap: ${siteConfig.url}/guides/electric-boda-battery-swap-kenya
-- Status: Nairobi to Kisumu is the first planned Corridor route. Modular energy products are concepts, not on sale. Consumer cost figures such as a KES 140 home charging day are illustrative.
+- Status: the Pulse charger is available. Pulse+ and the Agent Harness are in development. Corridor DC sites, starting on Nairobi to Kisumu, are pilots in development; no Corridor site is commissioned yet. Boda Hub swap sites are partner-run pilots. Wireless charging is research only. Consumer cost figures such as a KES 140 home charging day are illustrative.
 
-## Chargers
-- Spark charger: portable 3.3 kW · typical 60 km day in about 180 minutes · from KES 25,000
-- Pulse charger: 7 kW home wallbox · typical day in about 90 minutes · from KES 79,000 · Lipa Pole Pole
-- Pod energy storage: home charger + 5 or 10 kWh storage · from KES 295,000 · Lipa Pole Pole
-- Boda Hub: battery swap or kerbside · under 5 minutes
-- Depot charging station: 22 kW fleet AC · 40+ kWh in about 120 minutes
-- Corridor charging: 120 kW+ highway DC · about 60 kWh in 30 minutes · public DC from KES 39/kWh
+## Programmes
+${programmeLines}
 
-Lipa Pole Pole is M-Pesa financing for Pulse charger and Pod energy storage, not a charger.
-
-## Modular energy (conceptual, not on sale)
-- Platform overview: ${siteConfig.url}${modularEnergyPaths.overview}
-- P1 Go (portable): ${siteConfig.url}${modularEnergyPaths.p1Go}
-- P2 Home (home tower): ${siteConfig.url}${modularEnergyPaths.p2Home}
-- Mini Stack (outdoor SME): ${siteConfig.url}${modularEnergyPaths.miniStack}
-- MegaPack (project BESS): ${siteConfig.url}${modularEnergyPaths.megapack}
-
-Mini Stack is modular-energy outdoor backup, not Pod energy storage (the home charger on /charging/home).
+Lipa Pole Pole is M-Pesa instalment financing for the Pulse charger, not a charger.
+Spark, Pod energy storage, the Depot charging station and the modular energy family are no longer offered.
+Ratings on product pages are design targets unless a page states they are tested.
 
 ## Published cost figures
-- A home charging day (~60 km) costs about KES 140 versus ~KES 1,000 diesel per day
-- Public DC from KES 39/kWh at Depot charging stations and Corridor charging
+- A home charging day (~60 km) costs about KES 140 versus ~KES 1,000 diesel per day (illustrative)
+- Public DC from KES 39/kWh at commissioned Corridor charging sites
 - Session price is shown before you charge
 
 ## Primary pages
 - Home: ${siteConfig.url}/
 - Charging Hub: ${siteConfig.url}/hub
 - Charging: ${siteConfig.url}/charging
-- Home charging: ${siteConfig.url}/charging/home
+- Pulse charger (home charging): ${siteConfig.url}/charging/home
+- Pulse+ charger: ${siteConfig.url}/charging/pulse-plus
+- Corridor charging: ${siteConfig.url}/charging/corridor
+- Boda Hub: ${siteConfig.url}/charging/boda-hub
+- AI platform (Agent Harness): ${siteConfig.url}/ai
 - Kenya EV guide: ${siteConfig.url}/evs
 - Engineering package: ${siteConfig.url}/charging/engineering
 - Sustainability: ${siteConfig.url}/sustainability
@@ -87,16 +84,18 @@ ${staticGuides.map((g) => `- ${g.title}: ${siteConfig.url}/guides/${g.slug}`).jo
 - Web workspace: ${siteConfig.url}/agent/chat
 - OpenCode local setup: ${siteConfig.url}/download
 - Request access: ${siteConfig.url}/contact?interest=agent-desktop
+- Precifarm Agent's web workspace runs on a hosted model. The Agent Harness is the separate local, private platform: ${siteConfig.url}/ai
 
 ## Topics we publish authoritative content on
 - From home charging to highway charging in Kenya
-- Pulse charger, Pod energy storage and Spark charger
-- Modular energy platform (P1 Go, P2 Home, Mini Stack, MegaPack: design intent)
+- Pulse and Pulse+ AC chargers, Corridor DC fast charging
+- Wireless EV charging research
+- Private, local AI for engineering (Agent Harness)
 - Sustainability commitments and impact reporting
 - Public DC from KES 39/kWh and a home charging day about KES 140
 - M-Pesa and Lipa Pole Pole financing
 - Charging Hub and partner networks
-- Fleet Depot charging and Boda Hub
+- Fleet charging and Boda Hub battery swapping
 - Partner operator and site-host networks
 
 ## Contact

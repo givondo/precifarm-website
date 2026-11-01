@@ -8,6 +8,8 @@ import ProductPhoto from "@/components/ProductPhoto";
 import CheckItem from "@/components/ui/CheckItem";
 import PageCTA from "@/components/ui/PageCTA";
 import PageHero from "@/components/ui/PageHero";
+import ProgrammeSpecTable from "@/components/programmes/ProgrammeSpecTable";
+import { programme } from "@/lib/programmes";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { contact } from "@/lib/contact";
 import {
@@ -132,10 +134,14 @@ export default function HomeChargingPage() {
           </div>
 
           <div>
+            <ProgrammeSpecTable programme={programme("pulse")} title="Pulse charger specification" />
+          </div>
+
+          <div>
             <SectionHeader
               eyebrow="Packages"
-              title="Pulse or Pod"
-              description="Wallbox first, or storage when the grid is unreliable."
+              title="Buy outright or spread the cost"
+              description="The same Pulse install either way. Lipa Pole Pole spreads it over M-Pesa instalments."
             />
             <div className="mt-8 grid gap-6 sm:grid-cols-2">
               {privateHouseChargingPackages.map((pkg) => (

@@ -4,7 +4,7 @@ export const guidesPage = {
   eyebrow: "Guides · Kenya",
   title: "Home install, highway DC and M-Pesa — step by step",
   description:
-    "For Kenyan drivers and installers: Pulse charger and Pod energy storage at home, Corridor sessions on the highway, Charging Hub labels and Precifarm Agent.",
+    "For Kenyan drivers and installers: Pulse charger at home, Corridor pilot sites on the highway, Charging Hub labels and Precifarm Agent.",
   cta: {
     title: "Ready to charge?",
     description: "Browse the charging range or open the Charging Hub to see what is live near you.",
@@ -34,6 +34,6 @@ export const contactPage = {
   eyebrow: "Contact · Kenya",
   title: "Home survey, fleet depot or highway hub — tell us which you need",
   description:
-    "We respond within one business day. Homeowners get a Pulse or Pod survey; fleets and site hosts get engineering scoped to grid, solar and the duty cycle.",
+    "We respond within one business day. Homeowners get a Pulse survey; fleets and site hosts get engineering scoped to grid, solar and the duty cycle.",
   primaryCta: { href: "/charging/home", label: "Request a home survey" },
 } as const;

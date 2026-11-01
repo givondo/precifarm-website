@@ -27,7 +27,7 @@ export const agentPageFaqs: FaqItem[] = [
   {
     question: "Who is it for?",
     answer:
-      "Engineers, technicians, installers and energy businesses working on EV charging, solar and storage, including Precifarm Pulse, Pod, Spark, Depot, Boda Hub and Corridor projects.",
+      "Engineers, technicians, installers and energy businesses working on EV charging, solar and storage, including Precifarm Pulse, Pulse+, Boda Hub and Corridor projects.",
   },
   {
     question: "Can it replace a site survey?",
@@ -237,7 +237,7 @@ export const agentPage = {
       },
       {
         title: "Sites & fleets",
-        items: ["Home systems", "Depots", "Boda Hubs", "Highway charging"],
+        items: ["Home systems", "Fleet yards", "Boda Hubs", "Highway charging"],
       },
     ] as const,
   },

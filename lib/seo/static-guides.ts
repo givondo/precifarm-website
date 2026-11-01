@@ -124,9 +124,9 @@ The Ministry of Roads and Transport put registered EVs at 24,754 at the end of 2
 - **Type 1 and CHAdeMO:** Japanese imports such as the used Nissan Leaf use Type 1 for AC and CHAdeMO for DC. Many public DC chargers in Kenya are CCS2 only, so Leaf drivers should confirm a CHAdeMO connector before a trip.
 
 ## How long charging takes
-- **Home wallbox (7 kW AC):** a typical day of driving in about 90 minutes on a Pulse charger.
-- **Fleet AC (22 kW):** 40 kWh or more in about 120 minutes at a Depot charging station.
-- **Highway DC (120 kW and above):** about 60 kWh in 30 minutes on Corridor charging, depending on the car.
+- **Home wallbox (7 kW AC):** a typical day of driving in under two hours on a Pulse charger.
+- **Fleet AC (22 kW three phase):** about 40 kWh in 2 hours on a car that accepts 22 kW, or about 4 hours on the many cars limited to 11 kW.
+- **Highway DC fast charging:** as an illustration, a car that accepts about 120 kW can add around 60 kWh in 30 minutes; most cars taper as the battery fills.
 
 ## What public charging costs
 Each operator sets its own price per kWh, which is higher than Kenya Power's tariff because it covers the charger, the site and the service. Precifarm public DC charging is from **${sitePricing.publicDcFrom}** at commissioned sites, paid with M-Pesa. See the [Kenya Power EV tariff](/guides/kenya-power-ev-charging-tariff) for what energy costs at the meter.
@@ -135,7 +135,7 @@ Each operator sets its own price per kWh, which is higher than Kenya Power's tar
 The [Precifarm Charging Hub](/hub) map shows charging and swap sites across Kenya with a status on each. Availability on the map is illustrative, not real-time, so call the site before a long trip.
 
 ## Driving Nairobi to Kisumu or Nairobi to Mombasa
-Nairobi to Kisumu is Precifarm's first planned Corridor charging route. The road distance is about 350 km, so most EVs need one DC fast charging stop or a full charge at both ends; confirm a working charger on the route before you set off.`,
+Nairobi to Kisumu is the route for Precifarm's first Corridor charging pilots, which are in development. The road distance is about 350 km, so most EVs need one DC fast charging stop or a full charge at both ends; confirm a working charger on the route before you set off.`,
     faqs: [
       {
         question: "How many EV charging stations are there in Kenya?",
@@ -169,12 +169,11 @@ Nairobi to Kisumu is Precifarm's first planned Corridor charging route. The road
     updatedAt: "2026-10-22T06:00:00+03:00",
     sources: [S.techishTariff, S.citizenTariff],
     bodyMd: `## The short answer
-You can charge an electric car at home in Kenya from a normal socket, but it is slow. A 7 kW wallbox on its own circuit, such as the Pulse charger, covers a typical 60 km day in about 90 minutes, for an illustrative **${sitePricing.homeDay}** a day in electricity. Pulse is from **${sitePricing.pulseFrom}**, or from **${sitePricing.lipaFrom}** with Lipa Pole Pole on M-Pesa.
+You can charge an electric car at home in Kenya from a normal socket, but it is slow. A 7 kW wallbox on its own circuit, such as the Pulse charger, covers a typical 60 km day in under two hours, for an illustrative **${sitePricing.homeDay}** a day in electricity. Pulse is from **${sitePricing.pulseFrom}**, or from **${sitePricing.lipaFrom}** with Lipa Pole Pole on M-Pesa.
 
-## Normal socket, portable charger or wallbox
+## Normal socket or wallbox
 - **Normal 13 A socket:** the cable that comes with many cars draws about 2.3 kW and adds roughly 10 to 15 km of range an hour. Use a socket in good condition on a circuit with nothing else heavy on it.
-- **Portable charger (3.3 kW):** the Spark charger, from KES 25,000, covers a typical day in about 180 minutes.
-- **Wallbox (7 kW):** the Pulse charger covers a typical day in about 90 minutes and is the usual choice for a home.
+- **Wallbox (7 kW):** the Pulse charger covers a typical day in under two hours and is the usual choice for a home.
 
 ## What your electricity supply needs
 A 7 kW wallbox draws about 32 A on a single-phase 240 V supply. An electrician should check four things before installation: that the incoming supply and main breaker have spare capacity, that the earthing is sound, that the charger has its own circuit and breaker, and that the circuit has the residual current protection EV charging needs (IEC 60364-7-722). Precifarm's site survey covers all four, and flags when Kenya Power needs to upgrade the supply.
@@ -183,7 +182,7 @@ A 7 kW wallbox draws about 32 A on a single-phase 240 V supply. An electrician s
 An illustrative figure is about **${sitePricing.homeDay}** for a typical 60 km day, against roughly ${sitePricing.dieselDay} of diesel. Kenya Power's e-mobility tariff is KES 16 per kWh, or KES 8 per kWh off-peak, before levies and VAT; see the [Kenya Power EV tariff guide](/guides/kenya-power-ev-charging-tariff).
 
 ## Charging from solar
-A typical day of driving uses about 10 kWh. In Nairobi, each kilowatt of solar panels produces very roughly 4 to 5 kWh a day (a planning assumption that varies with roof, season and shading), so about 2.5 kW of panels covers one day of driving on average. The sun shines while most cars are away, so a battery helps: Pod energy storage pairs a home charger with 5 or 10 kWh of storage, from KES 295,000, with Lipa Pole Pole available.
+A typical day of driving uses about 10 kWh. In Nairobi, each kilowatt of solar panels produces very roughly 4 to 5 kWh a day (a planning assumption that varies with roof, season and shading), so about 2.5 kW of panels covers one day of driving on average. The sun shines while most cars are away, so solar suits homes where the car is parked during the day; the survey sizes panels to your roof and mileage.
 
 ## The installation steps
 1. Request a home survey at [precifarm.com/charging/home](/charging/home).
@@ -198,7 +197,7 @@ A typical day of driving uses about 10 kWh. In Nairobi, each kilowatt of solar p
       },
       {
         question: "How much does a home EV charger cost in Kenya?",
-        answer: `The Pulse 7 kW wallbox is from ${sitePricing.pulseFrom}, or from ${sitePricing.lipaFrom} with Lipa Pole Pole on M-Pesa. The Spark 3.3 kW portable charger is from KES 25,000.`,
+        answer: `The Pulse 7 kW wallbox is from ${sitePricing.pulseFrom}, or from ${sitePricing.lipaFrom} with Lipa Pole Pole on M-Pesa.`,
       },
       {
         question: "How much does it cost to charge an electric car at home in Kenya?",
@@ -236,7 +235,7 @@ Prices change often and depend on the financing deal. As one example, in July 20
 - **Kerbside charging:** charging the bike in place while you wait, for riders near a charger.
 
 ## The Precifarm Boda Hub
-The [Precifarm Boda Hub](/charging/boda-hub) offers battery swap or kerbside charging in under 5 minutes, paid with M-Pesa. An automated smart-locker version, where riders find a hub, reserve a pack, scan and swap on their own, is in design and testing.`,
+The [Precifarm Boda Hub](/charging/boda-hub) offers battery swaps in under 5 minutes at partner-run pilot sites, paid with M-Pesa. An automated smart-locker version, where riders find a hub, reserve a pack, scan and swap on their own, is in development. Each site uses one battery make.`,
     faqs: [
       {
         question: "How does battery swapping work for electric boda bodas?",

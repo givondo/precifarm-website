@@ -37,8 +37,7 @@ export const termsOfUseSections: readonly LegalSection[] = [
   {
     title: "3. Products vs research",
     bullets: [
-      "Commercial beachhead: wired EV charging and related services we commission (e.g. Pulse, Pod, Spark, Depot, Boda Hub, Corridor) as described on product pages.",
-      "Modular energy (P1 Go, P2 Home, Mini Stack, MegaPack): conceptual unless a page states it is on sale.",
+      "Commercial beachhead: wired EV charging and related services we commission (e.g. Pulse, Pulse+, Boda Hub, Corridor) as described on product pages.",
       "Wireless EV charging: research only — see the Wireless EV charging R&D policy.",
       "Precifarm Agent: software with early access; outputs are aids for professionals, not automatic sign-off for safety-critical work.",
     ],

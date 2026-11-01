@@ -1,4 +1,4 @@
-﻿import { absoluteUrl, publicRoutes, siteConfig } from "@/lib/seo/config";
+import { absoluteUrl, publicRoutes, siteConfig } from "@/lib/seo/config";
 import { chargingHub } from "@/lib/charging-hub";
 import type { KnowledgeEntity } from "@/lib/seo/types";
 
@@ -13,9 +13,9 @@ export const entityRegistry: KnowledgeEntity[] = [
  type: "organization",
  name: "Precifarm",
  description:
- "Kenyan electric mobility infrastructure company: charging, storage and operations for homes, fleets and highways.",
+ "Kenyan company with two pillars: energy infrastructure for electric transport (EV charging and boda battery swapping) and private AI systems for engineering.",
  url: siteConfig.url,
- relatedIds: ["service-charge-map", "service-home-charging", "product-pulse", "product-corridor", "service-sustainability", "product-modular-energy"],
+ relatedIds: ["service-charge-map", "service-home-charging", "product-pulse", "product-pulse-plus", "product-corridor", "product-boda", "product-agent-harness", "service-sustainability"],
  },
  {
  id: "product-pulse",
@@ -23,29 +23,9 @@ export const entityRegistry: KnowledgeEntity[] = [
  type: "equipment",
  name: "Pulse charger",
  description:
- "7 kW home wallbox. A typical 60 km day refills in about 90 minutes. From KES 79,000 with Lipa Pole Pole on M-Pesa.",
+ "7 kW home wallbox. A typical 60 km day refills in under two hours. From KES 79,000 with Lipa Pole Pole on M-Pesa.",
  url: absoluteUrl("/charging/home"),
  relatedIds: ["service-home-charging", "equipment-ev-charger"],
- },
- {
- id: "product-pod",
- slug: "pod",
- type: "equipment",
- name: "Pod energy storage",
- description:
- "Home charger with 5 or 10 kWh storage for weak-grid evenings. From KES 295,000 with Lipa Pole Pole on M-Pesa.",
- url: absoluteUrl("/charging/home"),
- relatedIds: ["service-home-charging", "product-pulse"],
- },
- {
- id: "product-spark",
- slug: "spark",
- type: "equipment",
- name: "Spark charger",
- description:
- "Portable 3.3 kW charger for the boot. A typical 60 km day refills in about 180 minutes. From KES 25,000.",
- url: absoluteUrl("/charging"),
- relatedIds: ["service-home-charging", "product-pulse"],
  },
  {
  id: "product-corridor",
@@ -53,18 +33,18 @@ export const entityRegistry: KnowledgeEntity[] = [
  type: "equipment",
  name: "Corridor charging",
  description:
- "120 kW+ highway DC. Adds about 60 kWh in 30 minutes. Public DC from KES 39/kWh, paid with M-Pesa.",
- url: absoluteUrl("/charging"),
+ "DC fast charging with two CCS2 guns and on-site storage, engineered per site. First sites, starting on Nairobi to Kisumu, are pilots in development. Public DC from KES 39/kWh at commissioned sites.",
+ url: absoluteUrl("/charging/corridor"),
  relatedIds: ["service-hub-charging", "equipment-ev-charger"],
  },
  {
- id: "product-depot",
- slug: "depot",
+ id: "product-pulse-plus",
+ slug: "pulse-plus",
  type: "equipment",
- name: "Depot charging station",
+ name: "Pulse+ charger",
  description:
- "22 kW AC pedestal for fleets. Adds 40+ kWh in about 120 minutes while vehicles are parked. Public DC from KES 39/kWh.",
- url: absoluteUrl("/partners"),
+ "22 kW three-phase AC wallbox for fleet yards, workplaces and apartments; 11 kW and 7.4 kW modes; up to ten units on one site meter. In development.",
+ url: absoluteUrl("/charging/pulse-plus"),
  relatedIds: ["service-fleet-charging", "product-corridor"],
  },
  {
@@ -73,9 +53,19 @@ export const entityRegistry: KnowledgeEntity[] = [
  type: "equipment",
  name: "Boda Hub",
  description:
- "Battery swap for electric bodas: attendant or partner sites today; automated self-service lockers on the product roadmap.",
+ "Battery swap for electric bodas: partner-run pilot sites today; the Automated Boda Hub cabinet is in development. One battery make per site.",
  url: absoluteUrl("/charging/boda-hub"),
  relatedIds: ["service-fleet-charging"],
+ },
+ {
+ id: "product-agent-harness",
+ slug: "agent-harness",
+ type: "service",
+ name: "Agent Harness",
+ description:
+ "Local-first platform for running open-weight AI models and agent workflows privately on your own machine, with human sign-off before export. In development.",
+ url: absoluteUrl("/ai"),
+ relatedIds: ["service-mobile-app"],
  },
  {
  id: "equipment-ev-charger",
@@ -114,8 +104,8 @@ export const entityRegistry: KnowledgeEntity[] = [
  slug: "hub-charging",
  type: "service",
  name: "Highway charging",
- description: "Corridor charging at Precifarm hubs: about 60 kWh in 30 minutes, paid with M-Pesa.",
- url: absoluteUrl("/charging"),
+ description: "Corridor DC fast charging, paid with M-Pesa. The first sites are pilots in development.",
+ url: absoluteUrl("/charging/corridor"),
  relatedIds: ["equipment-ev-charger", "location-nairobi", "location-kisumu", "service-charge-map"],
  },
  {
@@ -134,10 +124,10 @@ export const entityRegistry: KnowledgeEntity[] = [
  type: "service",
  name: "Home charging",
  description:
- "Pulse charger and Pod energy storage on private property. A home charging day costs about KES 140 versus ~KES 1,000 diesel per day.",
+ "Pulse charger on private property. A home charging day costs about KES 140 versus ~KES 1,000 diesel per day (illustrative).",
  url: absoluteUrl("/charging/home"),
- aliases: ["Private house charging", "Pulse charger", "Pod energy storage"],
- relatedIds: ["service-hub-charging", "product-pulse", "product-pod"],
+ aliases: ["Private house charging", "Pulse charger"],
+ relatedIds: ["service-hub-charging", "product-pulse"],
  },
  {
  id: "service-fleet-charging",
@@ -146,7 +136,7 @@ export const entityRegistry: KnowledgeEntity[] = [
  name: "Fleet & Partner Charging",
  description: "Energy services for fleet operators, site hosts and installation partners.",
  url: absoluteUrl("/partners"),
- relatedIds: ["service-hub-charging", "equipment-ev-charger", "product-depot"],
+ relatedIds: ["service-hub-charging", "equipment-ev-charger", "product-pulse-plus"],
  },
  {
  id: "service-mobile-app",
@@ -166,26 +156,7 @@ export const entityRegistry: KnowledgeEntity[] = [
  description:
  "2030 commitments on cleaner kilometres, grid-smart energy, circularity and honest impact reporting for Kenya.",
  url: absoluteUrl("/sustainability"),
- relatedIds: ["service-home-charging", "service-charge-map", "product-pod"],
- },
- {
- id: "product-modular-energy",
- slug: "modular-energy",
- type: "equipment",
- name: "Modular energy platform",
- description:
- "Conceptual home and shop storage family: P1 Go, P2 Home and Mini Stack share one 2.56 kWh Energy Module. Not on sale yet.",
- url: absoluteUrl("/charging/modular-energy"),
- relatedIds: ["product-pod", "service-home-charging", "product-megapack"],
- },
- {
- id: "product-megapack",
- slug: "megapack",
- type: "equipment",
- name: "MegaPack",
- description: "Project-engineered BESS for industrial sites, EV hubs and grid-connected plants, quoted per site.",
- url: absoluteUrl("/charging/modular-energy/megapack"),
- relatedIds: ["product-modular-energy", "service-fleet-charging"],
+ relatedIds: ["service-home-charging", "service-charge-map", "product-pulse"],
  },
  {
  id: "location-nairobi",
@@ -242,18 +213,20 @@ export function internalLinksForPath(path: string): { href: string; label: strin
  case "/":
  add(chargingHub.path, chargingHub.label, "Find hubs and partner chargers");
  add("/charging", "EV charging", "Home, fleet and highway charging");
- add("/charging/home", "Home EV charging", "Pulse charger and Pod energy storage");
+ add("/charging/home", "Home EV charging", "Pulse charger and Lipa Pole Pole");
  add("/evs", "Kenya EV guide", "Compare EVs and charging fit");
  add("/faq", "FAQ", "Charging and installation answers");
  return links.slice(0, 5);
  case "/hub":
  add("/charging", "EV charging", "From home charging to highway charging");
- add("/charging/home", "Home EV charging", "Pulse charger and Pod energy storage");
+ add("/charging/home", "Home EV charging", "Pulse charger and Lipa Pole Pole");
  add("/locations", "Locations", "City guides across Kenya");
  break;
  case "/charging":
  add(chargingHub.path, chargingHub.label, "See hub locations");
- add("/charging/home", "Home EV charging", "Pulse charger and Pod energy storage");
+ add("/charging/home", "Home EV charging", "Pulse charger and Lipa Pole Pole");
+ add("/charging/pulse-plus", "Pulse+ charger", "22 kW fleet and workplace AC");
+ add("/charging/corridor", "Corridor charging", "DC fast charging pilots");
  add("/charging/boda-hub", "Automated Boda Hub", "Self-service e-motorcycle battery swap");
  add("/partners", "Fleet EV charging", "Partner operator services");
  add("/evs", "Kenya EV guide", "Which charger fits your EV");
@@ -292,13 +265,13 @@ export function internalLinksForPath(path: string): { href: string; label: strin
  break;
  case "/agent":
  add("/download", "Desktop download", "Request early access");
- add("/charging/home", "Home EV charging", "Pulse charger and Pod energy storage installs");
- add("/charging", "EV charging", "Spark charger to Corridor");
+ add("/charging/home", "Home EV charging", "Pulse charger installs");
+ add("/charging", "EV charging", "Pulse charger to Corridor");
  break;
  case "/download":
  add("/agent", "Precifarm Agent", "Product overview");
  add("/contact", "Contact", "Request desktop access");
- add("/charging", "EV charging", "Spark charger to Corridor");
+ add("/charging", "EV charging", "Pulse charger to Corridor");
  break;
  case "/partners":
  add("/charging", "EV charging", "From home charging to highway charging");
@@ -307,18 +280,23 @@ export function internalLinksForPath(path: string): { href: string; label: strin
  break;
  case "/sustainability":
  add("/charging", "EV charging", "Infrastructure behind cleaner kilometres");
- add("/charging/modular-energy", "Modular energy", "Home and shop storage platform");
+ add("/research", "Research", "Wireless charging and battery health");
  add("/faq", "FAQ", "Charging and energy answers");
  break;
- case "/charging/modular-energy":
- add("/charging/home", "Home charging", "What installs today");
- add("/charging/modular-energy/megapack", "MegaPack", "Project-engineered BESS");
- add("/sustainability", "Sustainability", "Impact commitments and reporting");
- break;
- case "/charging/modular-energy/megapack":
- add("/charging/modular-energy", "Modular energy", "Platform overview");
- add("/partners", "Partners", "Fleet and site-host projects");
+ case "/charging/pulse-plus":
+ add("/charging/home", "Pulse charger", "7 kW home wallbox");
+ add("/partners", "Fleet EV charging", "Partner operator services");
  add("/charging/engineering", "Engineering", "Site design basis");
+ break;
+ case "/charging/corridor":
+ add("/partners", "Host a site", "Site-host and fleet programmes");
+ add("/charging/engineering", "Engineering", "Site design basis");
+ add("/charging", "EV charging", "From home charging to highway charging");
+ break;
+ case "/ai":
+ add("/agent", "Precifarm Agent", "Hosted engineering assistant");
+ add("/research", "Research", "R&D programmes");
+ add("/contact", "Contact", "Talk to the team");
  break;
  default:
  break;

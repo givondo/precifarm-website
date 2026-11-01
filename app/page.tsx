@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import HomeAnnouncement from "@/components/home/HomeAnnouncement";
 import HomeHero from "@/components/home/HomeHero";
+import HomePillars from "@/components/home/HomePillars";
 import HomeChargingCta from "@/components/home/HomeChargingCta";
 import HomeScenarios from "@/components/home/HomeScenarios";
 import HomeWhyPrecifarm from "@/components/home/HomeWhyPrecifarm";
@@ -37,6 +38,7 @@ export default async function Home() {
       <div className="bg-white">
         <HomeAnnouncement />
         <HomeHero />
+        <HomePillars />
         <HomeScenarios />
         <HomeChargingCta />
         <HomeWhyPrecifarm />

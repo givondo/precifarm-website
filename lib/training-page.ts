@@ -16,7 +16,7 @@ export const trainingPage = {
     eyebrow: trainingNavLabel,
     title: "EV charging training — T1, T2 and T3.",
     description:
-      "Certify hub staff, installers and field engineers on Pulse charger, Pod energy storage, Depot, Boda Hub and Corridor: Nairobi classroom and live field modules.",
+      "Certify hub staff, installers and field engineers on the Pulse charger, Pulse+, Boda Hub and Corridor: Nairobi classroom and field modules.",
     primaryLabel: "Enquire about a cohort",
     secondaryLabel: "Engineering design basis",
     secondaryHref: "/charging/engineering",
@@ -47,11 +47,11 @@ export const trainingPage = {
     cards: [
       {
         title: "Same kit you operate",
-        text: "Courseware follows Pulse, Pod, Depot, Boda Hub and Corridor — the models Precifarm commissions in Kenya, not a generic OEM slide deck.",
+        text: "Courseware follows Pulse, Pulse+, Boda Hub and Corridor: the equipment Precifarm installs and pilots in Kenya, not a generic OEM slide deck.",
       },
       {
         title: "Field modules on route",
-        text: "T2 and T3 include supervised work on live hubs along the Nairobi–Kisumu corridor — CSMS, M-Pesa sessions and fault drills included.",
+        text: "T2 and T3 include supervised work at installation and pilot sites, with CSMS, M-Pesa sessions and fault drills included.",
       },
       {
         title: "Clear scope of work",
@@ -90,7 +90,7 @@ export const trainingPage = {
     products: [
       { id: "corridor", ...productImages.corridor, label: "Corridor · highway DC" },
       { id: "pulse", ...productImages.pulse, label: "Pulse · home 7 kW" },
-      { id: "depot", ...productImages.depot, label: "Depot · fleet 22 kW" },
+      { id: "pulsePlus", ...productImages.pulsePlus, label: "Pulse+ · fleet 22 kW (in development)" },
       { id: "boda", ...productImages.boda, label: "Boda Hub · swap" },
     ] as const,
     trackCards: evChargingTracks.map((track) => ({
@@ -143,7 +143,7 @@ export const trainingPageFaqs = [
     id: "who-for",
     question: "Who should attend Precifarm EV charging training?",
     answer:
-      "Hub operators and site hosts (T1), installation crews and maintenance leads for Pulse, Pod and Depot (T2), and commissioning engineers authorised to sign off Corridor and depot handover (T3). Fleet managers often send bay staff at T1 plus one T2 lead per site.",
+      "Hub operators and site hosts (T1), installation crews and maintenance leads for Pulse and Pulse+ (T2), and commissioning engineers authorised to sign off Corridor and depot handover (T3). Fleet managers often send bay staff at T1 plus one T2 lead per site.",
   },
   {
     id: "prerequisites",
@@ -155,7 +155,7 @@ export const trainingPageFaqs = [
     id: "hardware",
     question: "Is training aligned to Precifarm chargers only?",
     answer:
-      "Yes. Modules reference Pulse, Pod, Depot, Boda Hub and Corridor hardware, Precifarm CSMS and M-Pesa session flows deployed on commissioned sites — not generic classroom simulators.",
+      "Yes. Modules reference Pulse, Pulse+, Boda Hub and Corridor hardware, Precifarm CSMS and M-Pesa session flows — not generic classroom simulators.",
   },
   {
     id: "refresher",
@@ -167,7 +167,7 @@ export const trainingPageFaqs = [
     id: "partner-cohorts",
     question: "Can we run a private cohort for our fleet or dealer network?",
     answer:
-      "Yes. Partner cohorts of 6–16 participants can be scheduled on request with custom dates. Field modules use live Precifarm hubs on the Nairobi–Kisumu corridor where applicable.",
+      "Yes. Partner cohorts of 6–16 participants can be scheduled on request with custom dates. Field modules use Precifarm installation and pilot sites where applicable.",
   },
 ] as const;
 

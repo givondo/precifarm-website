@@ -19,7 +19,7 @@ const breadcrumbs = [
 const productImageByKey = {
   corridor: productImages.corridor,
   boda: productImages.boda,
-  depot: productImages.depot,
+  depot: productImages.pulsePlus,
 } as const;
 
 function HighlightIcon({ id }: { id: string }) {

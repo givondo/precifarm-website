@@ -4,9 +4,10 @@ import { useState, type ReactNode } from "react";
 import Input from "@/components/ui/Input";
 import { getAnonymousId } from "@/lib/analytics";
 import { contact } from "@/lib/contact";
+import { contactInterests } from "@/lib/contact-interests";
 import { homeSurveyForm, privateHouseChargingPage } from "@/lib/home-charging";
 
-const HOME_INTEREST = "Home charger installation (Pulse charger or Pod energy storage)";
+const HOME_INTEREST = contactInterests.home;
 
 type ProductId = (typeof homeSurveyForm.products)[number]["id"];
 

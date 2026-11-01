@@ -1,25 +1,25 @@
-/** Homepage product range — aligned with mobile app / catalogue 2026 */
+/** Product range: the charging and swapping programmes on sale or in pilot. Status follows the PRECIFARM_MASTER maturity register. */
 
 import { homeNetworkTeaser } from "@/lib/brand-messaging";
 import { productImages } from "@/lib/product-images";
+import type { ProductStatusKind } from "@/lib/product-status";
 
 export const productNames = {
-  spark: "Spark charger",
   pulse: "Pulse charger",
-  pod: "Pod energy storage",
+  pulsePlus: "Pulse+ charger",
   boda: "Boda Hub",
-  depot: "Depot charging station",
   corridor: "Corridor charging",
   financing: "Lipa Pole Pole",
 } as const;
 
-/** Illustrative charge times for public copy — based on ~10 kWh typical Nairobi day (~60 km) unless noted. */
+/**
+ * Illustrative charge times for public copy. Pulse: a ~10 kWh typical Nairobi day (~60 km) needs about
+ * 12 kWh from the meter, about 103 minutes at 7 kW, so "under two hours" (engineering register SSOT V02).
+ */
 export const productChargeTimes = {
-  spark: "about 180 minutes",
-  pulse: "about 90 minutes",
-  pod: "about 90 minutes",
+  pulse: "under two hours",
+  pulsePlus: "about 2 hours for 40 kWh on a 22 kW car, about 4 hours on an 11 kW car",
   boda: "under 5 minutes",
-  depot: "about 120 minutes",
   corridor: "about 30 minutes",
 } as const;
 
@@ -30,35 +30,24 @@ export type HomeProduct = {
   name: string;
   summary: string;
   tagline: string;
-  category: "portable" | "home" | "boda" | "commercial" | "highway" | "financing";
+  category: "home" | "boda" | "commercial" | "highway" | "financing";
+  status: ProductStatusKind;
   priceLabel: string;
   href: string;
   image: string;
   imageAlt: string;
-  imageBrand?: "corridor" | "pulse" | "spark" | "pod" | "none";
+  imageBrand?: "corridor" | "pulse" | "none";
 };
 
 export const homeProducts: HomeProduct[] = [
   {
-    id: "spark",
-    name: productNames.spark,
-    summary: "Keep one in the boot for days away from home — office, visit, upcountry, anywhere with a socket.",
-    tagline:
-      "Spark is the portable lead for when you are not at your own wallbox. Small enough to carry, simple enough to use.",
-    category: "portable",
-    priceLabel: "From KES 25,000",
-    href: "/charging",
-    image: productImages.spark.src,
-    imageAlt: productImages.spark.alt,
-    imageBrand: productImages.spark.brand,
-  },
-  {
     id: "pulse",
     name: productNames.pulse,
-    summary: "Plug in when you get home. By morning the car is ready — petrol stops being part of the weekday.",
+    summary: "Plug in when you get home. By morning the car is ready, and petrol stops being part of the weekday.",
     tagline:
-      "The Pulse charger is the wallbox most homeowners start with. We install it, you charge overnight, Lipa Pole Pole if you want to spread the cost.",
+      "The Pulse charger is the wallbox most homeowners start with. We survey, install and look after it; Lipa Pole Pole spreads the cost on M-Pesa.",
     category: "home",
+    status: "available",
     priceLabel: "KES 79,000 · Lipa Pole Pole",
     href: "/charging/home",
     image: productImages.pulse.src,
@@ -66,25 +55,27 @@ export const homeProducts: HomeProduct[] = [
     imageBrand: productImages.pulse.brand,
   },
   {
-    id: "pod",
-    name: productNames.pod,
-    summary: "When Kenya Power dips, Pod keeps the car charging and the essentials running at home.",
+    id: "pulsePlus",
+    name: productNames.pulsePlus,
+    summary: "22 kW three-phase charging for fleet yards, workplaces and apartment parking.",
     tagline:
-      "Pod is for streets where the grid cannot be trusted — home charging plus storage so one outage does not ruin the evening.",
-    category: "home",
-    priceLabel: "From KES 295,000 · Lipa Pole Pole",
-    href: "/charging/home",
-    image: productImages.podHomeHero.src,
-    imageAlt: productImages.podHomeHero.alt,
-    imageBrand: productImages.podHomeHero.brand,
+      "Pulse+ is the three-phase member of the Pulse family. It adapts to each car, shares one site meter across up to ten units, and is in development.",
+    category: "commercial",
+    status: "development",
+    priceLabel: "Quoted per site",
+    href: "/charging/pulse-plus",
+    image: productImages.pulsePlus.src,
+    imageAlt: productImages.pulsePlus.alt,
+    imageBrand: productImages.pulsePlus.brand,
   },
   {
     id: "boda",
     name: productNames.boda,
-    summary: "Keep your bike moving — smart lockers for e-bodas.",
+    summary: "Keep your bike moving: swap a flat pack for a charged one and pay on M-Pesa.",
     tagline:
-      "Boda Hub is Precifarm’s outdoor smart locker network for electric motorcycles — partner-hosted sites, 2.56 kWh Energy Module, M-Pesa on every swap.",
+      "Boda Hub swap sites are run with partners today. The Automated Boda Hub cabinet, with a controller in every bay, is in development.",
     category: "boda",
+    status: "pilot",
     priceLabel: "Fleet pricing",
     href: "/charging/boda-hub",
     image: productImages.boda.src,
@@ -92,27 +83,15 @@ export const homeProducts: HomeProduct[] = [
     imageBrand: productImages.boda.brand,
   },
   {
-    id: "depot",
-    name: productNames.depot,
-    summary: "22 kW AC pedestal for fleet yards and depots.",
-    tagline:
-      "The Depot charging station is a 22 kW AC pedestal that adds 40+ kWh in about 120 minutes while the fleet is parked.",
-    category: "commercial",
-    priceLabel: "KES 39/kWh",
-    href: "/hub",
-    image: productImages.depot.src,
-    imageAlt: productImages.depot.alt,
-    imageBrand: productImages.depot.brand,
-  },
-  {
     id: "corridor",
     name: productNames.corridor,
-    summary: "On Nairobi–Kisumu, pull in, top up fast, pay with M-Pesa, and carry on.",
+    summary: "DC fast charging for highways and towns, engineered around each site's grid connection.",
     tagline:
-      "Corridor is a T-canopy highway DC hub — cables from overhead, 120 kW+ to the car, dual CCS2 for two bays.",
+      "Corridor puts two CCS2 guns on overhead cable trolleys with on-site storage. The first sites are pilots in development.",
     category: "highway",
-    priceLabel: "KES 39/kWh",
-    href: "/hub",
+    status: "pilot",
+    priceLabel: "From KES 39/kWh",
+    href: "/charging/corridor",
     image: productImages.corridor.src,
     imageAlt: productImages.corridor.alt,
     imageBrand: productImages.corridor.brand,
@@ -120,9 +99,10 @@ export const homeProducts: HomeProduct[] = [
   {
     id: "financing",
     name: productNames.financing,
-    summary: "M-Pesa instalments for Pulse charger and Pod energy storage — no bank account.",
-    tagline: "Lipa Pole Pole lets you pay in M-Pesa instalments, with the deposit, monthly amount and total shown.",
+    summary: "M-Pesa instalments for the Pulse charger. No bank account needed.",
+    tagline: "Lipa Pole Pole lets you pay in M-Pesa instalments, with the deposit, monthly amount and total shown up front.",
     category: "financing",
+    status: "available",
     priceLabel: "From KES 3,300/month",
     href: "/charging/home",
     image: productImages.financing.src,
@@ -132,15 +112,14 @@ export const homeProducts: HomeProduct[] = [
 ];
 
 export const categoryLabels: Record<HomeProduct["category"], string> = {
-  portable: "Portable",
   home: "Home",
   boda: "Boda Hub",
-  commercial: "Depot",
+  commercial: "Fleet and workplace",
   highway: "Highway",
   financing: "Financing",
 };
 
-export const flagshipIds = ["pulse", "pod", "corridor", "spark"] as const;
+export const flagshipIds = ["pulse", "pulsePlus", "corridor"] as const;
 
 export type FlagshipProductId = (typeof flagshipIds)[number];
 
@@ -164,54 +143,41 @@ export const flagshipProductDetails: Record<FlagshipProductId, FlagshipProductDe
     headline: "7 kW Home Charger",
     hook: "Charge at home. Wake up ready.",
     description:
-      "Your everyday EV charger. Plug in at night and start every morning with a full battery — without depending on public chargers.",
+      "Your everyday EV charger. Plug in at night and start every morning with a full battery, without depending on public chargers.",
     priceLabel: "KES 79,000 · From KES 3,300/month",
     specs: ["7 kW AC", "Type 2", "Home"],
     bestFor: "Daily drivers",
     ctaLabel: "Get Pulse charger",
     href: "/charging/home",
   },
-  pod: {
-    id: "pod",
-    shortName: "Pod",
-    headline: "Modular Home Energy + EV Charging",
-    hook: "Charge your car. Power your home.",
+  pulsePlus: {
+    id: "pulsePlus",
+    shortName: "Pulse+",
+    headline: "22 kW Three-Phase Charger",
+    hook: "Charge the fleet while it is parked.",
     description:
-      "EV charging meets backup power. Pod stores energy for your car and essential home loads — keeping you moving when the grid goes down.",
-    priceLabel: "From KES 295,000 · Lipa Pole Pole",
-    specs: ["Battery", "EV charging", "Backup", "Modular"],
-    bestFor: "Energy independence",
-    ctaLabel: "Get Pod",
-    href: "/charging/home",
+      "Three-phase AC for yards, workplaces and apartments. Adapts to each car's on-board charger and shares one site meter across up to ten units. In development.",
+    priceLabel: "Quoted per site",
+    specs: ["22 kW AC", "Type 2", "Fleet"],
+    bestFor: "Fleets and workplaces",
+    ctaLabel: "Register interest",
+    href: "/charging/pulse-plus",
   },
   corridor: {
     id: "corridor",
     shortName: "Corridor",
-    headline: "120 kW+ DC Fast Charging",
+    headline: "DC Fast Charging",
     hook: "Charge fast. Keep moving.",
     description:
-      "Built for Kenya's highways. A T-canopy with overhead cables and dual CCS2 — add range in minutes, pay with M-Pesa and keep moving.",
-    priceLabel: "KES 39/kWh",
-    specs: ["120 kW+ DC", "T-canopy", "Highway", "M-Pesa"],
-    bestFor: "Long-distance driving & fleets",
-    ctaLabel: "Find a charger",
-    href: "/hub",
-  },
-  spark: {
-    id: "spark",
-    shortName: "Spark",
-    headline: "3.3 kW Portable EV Charger",
-    hook: "Your charger. In your boot.",
-    description:
-      "No wallbox? No problem. Take Spark to work, upcountry or anywhere you have a suitable socket.",
-    priceLabel: "From KES 25,000",
-    specs: ["3.3 kW", "Portable", "Type 2"],
-    bestFor: "Charging on the go",
-    ctaLabel: "Get Spark",
-    href: "/charging",
+      "Two CCS2 guns on overhead cable trolleys with on-site storage, engineered around each site's grid. First sites are pilots in development.",
+    priceLabel: "From KES 39/kWh",
+    specs: ["DC", "CCS2", "Highway", "M-Pesa"],
+    bestFor: "Long-distance driving and fleets",
+    ctaLabel: "Host a Corridor site",
+    href: "/charging/corridor",
   },
 };
 
-export const compactRangeIds = ["boda", "depot"] as const;
+export const compactRangeIds = ["boda", "financing"] as const;
 
 export { homeNetworkTeaser };

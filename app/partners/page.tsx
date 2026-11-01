@@ -116,7 +116,7 @@ export default function PartnersPage() {
         <SectionHeader
           eyebrow="Product fit"
           title="Which charger fits your partnership?"
-          description="Spark through Corridor — M-Pesa and remote monitoring on every unit we commission."
+          description="Pulse to Corridor: M-Pesa and remote monitoring on every unit we commission."
         />
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {partnerProductFit.map((row) => (
