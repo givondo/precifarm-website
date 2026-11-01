@@ -155,7 +155,7 @@ export const trainingPageFaqs = [
     id: "hardware",
     question: "Is training aligned to Precifarm chargers only?",
     answer:
-      "Yes. Modules reference Pulse, Pulse+, Boda Hub and Corridor hardware, Precifarm CSMS and M-Pesa session flows — not generic classroom simulators.",
+      "Yes. Modules reference Pulse, Pulse+, Boda Hub and Corridor hardware, Precifarm CSMS and M-Pesa session flows, not generic classroom simulators.",
   },
   {
     id: "refresher",
@@ -167,7 +167,7 @@ export const trainingPageFaqs = [
     id: "partner-cohorts",
     question: "Can we run a private cohort for our fleet or dealer network?",
     answer:
-      "Yes. Partner cohorts of 6–16 participants can be scheduled on request with custom dates. Field modules use Precifarm installation and pilot sites where applicable.",
+      "Yes. Partner cohorts of 6 to 16 participants can be scheduled on request with custom dates. Field modules use Precifarm installation and pilot sites where applicable.",
   },
 ] as const;
 

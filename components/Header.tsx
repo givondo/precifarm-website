@@ -13,6 +13,7 @@ import {
   IconMap,
   IconMenu,
   IconPhone,
+  IconUsers,
 } from "@/components/header/mobile-nav-icons";
 import Logo from "@/components/Logo";
 import { headerCta, siteNavGroups } from "@/lib/brand-messaging";

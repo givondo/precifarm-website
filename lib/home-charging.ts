@@ -58,10 +58,9 @@ export const privateHouseChargingPage = {
   included: [
     "Remote intake and private-property survey (earthing, consumer unit, cable route, parking)",
     "Written quote and single-line diagram for your house",
-    "Pulse charger or Pod energy storage supply and installation on your property",
+    "Pulse charger supply and installation on your property",
     "Commissioning, safety test and handover to the homeowner",
     "Remote monitoring and three-year aftersale support",
-    "Optional Spark charger for top-ups away from home",
   ],
   propertyTypes: [
     "Detached house with private driveway or car port",
@@ -93,7 +92,7 @@ export const privateHouseChargingProcess = [
   {
     step: "4",
     stage: "Install",
-    detail: "Pulse charger or Pod energy storage mounted at your house, tested and connected to monitoring.",
+    detail: "Pulse charger mounted at your house, tested and connected to monitoring.",
     timing: "1–2 days",
   },
   {

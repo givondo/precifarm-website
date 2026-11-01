@@ -26,7 +26,7 @@ export const siteConfig = {
  region: "KE",
  timezone: "Africa/Nairobi",
  defaultDescription:
- "EV charging in Kenya: the Pulse home EV charger from KES 79,000 with Lipa Pole Pole on M-Pesa, plus fleet AC, highway DC fast charging pilots and electric boda battery swap.",
+ "EV charging in Kenya: the Pulse home charger from KES 79,000 with Lipa Pole Pole on M-Pesa, plus fleet AC, highway DC fast charging pilots and boda battery swap.",
  defaultKeywords: [
  "EV charging Kenya",
  "EV charging stations Nairobi",

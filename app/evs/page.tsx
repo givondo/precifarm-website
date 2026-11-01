@@ -3,7 +3,7 @@ import Link from "next/link";
 import KenyaEvComparisonTable from "@/components/evs/KenyaEvComparisonTable";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import JsonLd from "@/components/seo/JsonLd";
-import SpecTable from "@/components/modular-energy/SpecTable";
+import SpecTable from "@/components/ui/SpecTable";
 import PageHero from "@/components/ui/PageHero";
 import SectionHeader from "@/components/ui/SectionHeader";
 import {

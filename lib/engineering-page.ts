@@ -134,7 +134,7 @@ export const engineeringPageFaqs = [
     id: "who-for",
     question: "Who is the engineering package for?",
     answer:
-      "Homeowners sizing a Pulse charger, fleet and property partners planning Pulse+ or Boda Hub yards, and highway hosts scoping Corridor DC with site storage. The package covers EV charging and energy systems — not passenger booking or bus timetable products.",
+      "Homeowners sizing a Pulse charger, fleet and property partners planning Pulse+ or Boda Hub yards, and highway hosts scoping Corridor DC with site storage. The package covers EV charging and energy systems, not passenger booking or bus timetable products.",
   },
   {
     id: "solar-window",

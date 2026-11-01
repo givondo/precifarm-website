@@ -251,7 +251,7 @@ export const kenyaEvCompatibilityPage = {
     eyebrow: "Charging requirements",
     title: "What your EV needs from Precifarm",
     description:
-      "Match plug type, power level and session length to the charger we install — home Type 2 AC, fleet three-phase AC, highway DC or boda swap.",
+      "Match plug type, power level and session length to the charger we install: home Type 2 AC, fleet three-phase AC, highway DC or boda swap.",
     columns: ["Need", "Typical requirement", "Precifarm product"] as const,
     products: [
       {

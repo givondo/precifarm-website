@@ -106,7 +106,8 @@ export function evidenceNote(c: SpecClaim): string {
   if (c.verification === "tested" || c.verification === "certified") return "Tested";
   if (c.evidence === "illustrative") return "Illustrative";
   if (c.evidence === "unknown") return "Not yet measured";
-  if (c.verification === "inspected") return "Design value, checked in CAD";
+  if (c.evidence === "actual") return "Recorded";
+  if (c.verification === "inspected") return "Design value, checked against design files";
   if (c.verification === "calculated" || c.verification === "simulated") return "Design target, calculated";
   return "Design target";
 }

@@ -82,7 +82,7 @@ export const partnerTypes: PartnerType[] = [
     id: "dealers-installers",
     title: "Dealers & installers",
     summary:
-      "Sell and install Pulse charger home units under Precifarm engineering standards — certified crews, Lipa Pole Pole finance and three-year aftersale care.",
+      "Sell and install Pulse charger home units under Precifarm engineering standards, with certified crews, Lipa Pole Pole finance and three-year aftersale care.",
     products: "Pulse · Lipa Pole Pole",
     points: [
       "Survey-to-commission workflow with Precifarm-approved installation checklists",

@@ -56,7 +56,7 @@ export const pulsePlusPage: ProgrammePageContent = {
     "An upstream four-pole Type A 30 mA RCD per unit, installed by a licensed electrician as part of every Precifarm install.",
     "Charging time depends on the car: a car limited to 11 kW AC takes about twice as long as one that accepts 22 kW.",
   ],
-  cta: { href: "/contact?topic=pulse-plus", label: "Register interest" },
+  cta: { href: "/contact?interest=pulse-plus", label: "Register interest" },
   secondaryCta: { href: "/partners", label: "Fleet programmes" },
   closing: {
     title: "Planning fleet or workplace charging?",
@@ -101,7 +101,7 @@ export const corridorPage: ProgrammePageContent = {
     "A power study with Kenya Power before any commitment; the grid connection is sized per site.",
     "Charging speed depends on the car: each vehicle draws only what its battery accepts.",
   ],
-  cta: { href: "/contact?topic=corridor-host", label: "Host a Corridor site" },
+  cta: { href: "/contact?interest=corridor", label: "Host a Corridor site" },
   secondaryCta: { href: "/charging/engineering", label: "Engineering approach" },
   closing: {
     title: "Have a site on a busy route?",
@@ -148,7 +148,7 @@ export const harnessPage: ProgrammePageContent = {
     "Precifarm Agent on this website is a separate, hosted assistant and does not run privately.",
     "Results are drafts until a qualified person reviews them; the harness never approves its own work.",
   ],
-  cta: { href: "/contact?topic=agent-harness", label: "Request early access" },
+  cta: { href: "/contact?interest=ai", label: "Request early access" },
   secondaryCta: { href: "/agent", label: "Try Precifarm Agent (hosted)" },
   closing: {
     title: "Want private AI agents for your team?",
