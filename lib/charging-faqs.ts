@@ -51,13 +51,13 @@ export const consumerChargingFaqs: ChargingFaq[] = [
  id: "public-dc-price",
  question: "How much is public DC charging?",
  answer:
- "Public DC at commissioned Precifarm Corridor charging sites is from KES 39/kWh, with the session price shown at the charger before you start. The first Corridor sites, starting on Nairobi to Kisumu, are pilots in development. As an illustration, a car that accepts about 120 kW can add around 60 kWh in 30 minutes. Charging on your own home meter is usually cheaper per kWh than public DC.",
+ "At Precifarm Corridor charging sites the price per kWh is set for each site at commissioning and shown before you start, at the charger and in M-Pesa. The first Corridor sites, starting on Nairobi to Kisumu, are pilots in development. As an illustration, a car that accepts about 120 kW can add around 60 kWh in 30 minutes. Charging on your own home meter is usually cheaper per kWh than public DC.",
  },
  {
  id: "home-vs-public",
  question: "Why is home charging cheaper than public DC?",
  answer:
- "At home you pay your household electricity tariff on your own meter. Public Corridor charging sites recover charger hardware, Kenya Power demand, monitoring and uptime, so the published public rate starts from KES 39/kWh, still typically far below diesel for the same kilometres.",
+ "At home you pay your household electricity tariff on your own meter. Public Corridor charging sites recover charger hardware, Kenya Power demand, monitoring and uptime, so the public price per kWh is higher than a home tariff, and is set for each site at commissioning.",
  },
  {
  id: "lipa-pole-pole",
@@ -99,7 +99,7 @@ export const consumerChargingFaqs: ChargingFaq[] = [
  id: "pay-public",
  question: "How do I pay at a public charger?",
  answer:
- "Start the session in Precifarm Agent or at the charger and pay with M-Pesa. The price per kWh is shown before you start. Public DC at commissioned Corridor charging sites is from KES 39/kWh.",
+ "Start the session in Precifarm Agent or at the charger and pay with M-Pesa. The price per kWh is shown before you start and is set for each Corridor site at commissioning.",
  },
  {
  id: "solar-vs-grid",
@@ -134,7 +134,7 @@ export const consumerChargingFaqs: ChargingFaq[] = [
  id: "corridor",
  question: "What is Corridor charging?",
  answer:
- "Corridor is Precifarm's DC fast charging for highways and towns: two CCS2 guns on overhead cable trolleys, with on-site battery storage so the site needs a smaller grid connection. Each site is engineered around a power study with Kenya Power. The first Corridor sites, starting on Nairobi to Kisumu, are pilots in development; public DC will be from KES 39/kWh at commissioned sites.",
+ "Corridor is Precifarm's DC fast charging for highways and towns: two CCS2 guns on overhead cable trolleys, with on-site battery storage so the site needs a smaller grid connection. Each site is engineered around a power study with Kenya Power. The first Corridor sites, starting on Nairobi to Kisumu, are pilots in development; the price per kWh will be set for each site at commissioning.",
  },
  {
  id: "boda-hub",
@@ -191,7 +191,7 @@ export const privateHouseScopeFaqs: FaqItem[] = [
  {
  question: "Is this different from a public charging hub?",
  answer:
- "Yes. House-based private charging is on your property for your vehicle only, billed on your meter. Public Corridor charging sites serve public sessions at the published public DC rate (from KES 39/kWh).",
+ "Yes. House-based private charging is on your property for your vehicle only, billed on your meter. Public Corridor charging sites serve public sessions at the public DC price shown before each session.",
  },
  {
  question: "Can you install at an apartment?",
@@ -250,6 +250,6 @@ export const hubEngineeringFaqs: FaqItem[] = [
  {
  question: "Are the engineering cost figures a quotation?",
  answer:
- "No. Planning bands in the design doc (chargers, canopy PV, storage, connection) and handbook worked examples are illustrative. Public DC will be from KES 39/kWh at commissioned Corridor charging sites. The Pulse charger starts from KES 79,000. Request a site-specific cost sheet after survey.",
+ "No. Planning bands in the design doc (chargers, canopy PV, storage, connection) and handbook worked examples are illustrative. Corridor prices are set per site at commissioning. The Pulse charger starts from KES 79,000. Request a site-specific cost sheet after survey.",
  },
 ];

@@ -33,7 +33,7 @@ export const entityRegistry: KnowledgeEntity[] = [
  type: "equipment",
  name: "Corridor charging",
  description:
- "DC fast charging with two CCS2 guns and on-site storage, engineered per site. First sites, starting on Nairobi to Kisumu, are pilots in development. Public DC from KES 39/kWh at commissioned sites.",
+ "DC fast charging with two CCS2 guns and on-site storage, engineered per site. First sites, starting on Nairobi to Kisumu, are pilots in development. Price per kWh set per site and shown before you start.",
  url: absoluteUrl("/charging/corridor"),
  relatedIds: ["service-hub-charging", "equipment-ev-charger"],
  },

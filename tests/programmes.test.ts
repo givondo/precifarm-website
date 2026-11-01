@@ -62,3 +62,19 @@ test("hosted Precifarm Agent is never described as private", async () => {
   const hosted = harnessPage.requirements.find((r) => r.includes("Precifarm Agent"));
   assert.ok(hosted && /hosted/i.test(hosted) && /does not run privately/i.test(hosted));
 });
+
+test("Corridor DC carries no public price until a site is commissioned and costed", async () => {
+  const { readdirSync, readFileSync, statSync } = await import("node:fs");
+  const { resolve, join } = await import("node:path");
+  const root = resolve(import.meta.dirname, "..");
+  const hits: string[] = [];
+  const walk = (d: string) => {
+    for (const n of readdirSync(d)) {
+      const p = join(d, n);
+      if (statSync(p).isDirectory()) walk(p);
+      else if (/\.(ts|tsx|md|mdx)$/.test(n) && /KES ?39|39\/kWh/.test(readFileSync(p, "utf8"))) hits.push(p.slice(root.length + 1));
+    }
+  };
+  for (const d of ["app", "lib", "components"]) walk(join(root, d));
+  assert.deepEqual(hits, [], `KES 39 price still published in ${hits.join(", ")}`);
+});

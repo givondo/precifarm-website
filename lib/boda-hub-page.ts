@@ -59,30 +59,24 @@ export const bodaHubPageContent = {
  ] as const,
  lockers: {
  eyebrow: "The lockers",
- title: "One machine. Three sizes.",
+ title: "One machine. Twenty bays.",
  description:
- "One cabinet design in two sizes, with a bank of cabinets for peak stages. Same shell, same doors, same software. Sizes are being finalised in development.",
+ "One cabinet design with 20 charging bays. Riders swap at the 16 lower doors; the top row charges packs that an attendant moves down as the lower doors empty, so nobody lifts a heavy pack above shoulder height. Busy sites add a second cabinet beside the first. In development.",
  image: {
  src: productRenderPaths.bodaHub,
  alt: "Boda Hub locker with one door open and a charged pack ready to swap (design render)",
  },
  configs: [
  {
- name: "Standard",
- bays: "12 doors",
- modules: "One pack per door",
- for: "Shops, stages and petrol stations",
- },
- {
- name: "Large",
- bays: "20 doors",
- modules: "One pack per door",
- for: "Busy urban hubs",
+ name: "Cabinet",
+ bays: "20 charging bays",
+ modules: "16 rider doors, one pack per door",
+ for: "Shops, stages, petrol stations and urban hubs",
  },
  {
  name: "Locker bank",
- bays: "24+ doors",
- modules: "Two+ cabinets",
+ bays: "40+ bays",
+ modules: "Two or more cabinets",
  for: "Fleet yards and busy corridors",
  },
  ] as const,
@@ -288,9 +282,9 @@ export const bodaHubPageContent = {
  "No. Same Precifarm silver cabinet language and blue lights, automated for self-service, not a new brand.",
  },
  {
- question: "Are Standard, Large and Bank different products?",
+ question: "Are the cabinet and the locker bank different products?",
  answer:
- "No. One locker design in two sizes. Busy sites add cabinets beside the first.",
+ "No. One cabinet design. Busy sites add cabinets beside the first.",
  },
  {
  question: "Does Precifarm staff every hub?",

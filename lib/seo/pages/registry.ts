@@ -77,7 +77,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  path: "/charging",
  title: "EV Charging Solutions in Kenya: Home, Fleet & Highway",
  description: "EV charging in Kenya: the Pulse home wallbox (available), Pulse+ fleet AC (in development), Corridor DC fast charging pilots and Boda Hub battery swap, on M-Pesa.",
- keywords: ["EV charging Kenya", "fleet charging", "home AC charger installation", "KES 39 kWh"],
+ keywords: ["EV charging Kenya", "fleet charging", "home AC charger installation",],
  faqs: chargingServicesFaqs,
  breadcrumbs: [
  { name: "Home", href: "/" },
@@ -186,7 +186,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  {
  question: "Can I charge at a Corridor site today?",
  answer:
- "Not yet. The first Corridor sites are pilots in development; none is commissioned. Public DC will be from KES 39/kWh at commissioned sites, paid with M-Pesa.",
+ "Not yet. The first Corridor sites are pilots in development; none is commissioned. The price per kWh will be set for each site at commissioning and paid with M-Pesa.",
  },
  {
  question: "Can I host a Corridor site?",
@@ -531,7 +531,6 @@ export const pageSeoRegistry: PageSeoInput[] = [
  "Precifarm FAQ",
  "EV charging Kenya cost",
  "home charger Kenya price",
- "KES 39 kWh",
  "Lipa Pole Pole financing",
  ],
  breadcrumbs: [

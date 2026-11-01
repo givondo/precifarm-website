@@ -60,7 +60,7 @@ export const whereYouCharge = {
         { bold: "pilots in development" },
         ".",
       ] as const satisfies readonly CopyPart[],
-      products: `Corridor · DC fast charging · From ${sitePricing.publicDcFrom} at commissioned sites`,
+      products: "Corridor · DC fast charging · price shown before you start",
       cta: { href: "/charging/corridor", label: "Corridor charging" },
       offeringsKey: "routeHub" as const,
     },

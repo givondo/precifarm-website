@@ -90,7 +90,7 @@ export const homeProducts: HomeProduct[] = [
       "Corridor puts two CCS2 guns on overhead cable trolleys with on-site storage. The first sites are pilots in development.",
     category: "highway",
     status: "pilot",
-    priceLabel: "From KES 39/kWh",
+    priceLabel: "Price per kWh shown upfront",
     href: "/charging/corridor",
     image: productImages.corridor.src,
     imageAlt: productImages.corridor.alt,
@@ -170,7 +170,7 @@ export const flagshipProductDetails: Record<FlagshipProductId, FlagshipProductDe
     hook: "Charge fast. Keep moving.",
     description:
       "Two CCS2 guns on overhead cable trolleys with on-site storage, engineered around each site's grid. First sites are pilots in development.",
-    priceLabel: "From KES 39/kWh",
+    priceLabel: "Price per kWh shown upfront",
     specs: ["DC", "CCS2", "Highway", "M-Pesa"],
     bestFor: "Long-distance driving and fleets",
     ctaLabel: "Host a Corridor site",

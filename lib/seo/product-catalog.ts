@@ -62,7 +62,7 @@ export const commercialProductCatalog = {
  additionalProperty: [
  { name: "Connectors", value: "Dual CCS2" },
  { name: "Site storage", value: "On-site battery, sized per site" },
- { name: "Public DC rate", value: "from KES 39/kWh at commissioned sites" },
+ { name: "Public DC rate", value: "set per site at commissioning" },
  { name: "Availability", value: "Pilot sites in development" },
  ],
  // Pilot: no commissioned site yet, so no Offer.

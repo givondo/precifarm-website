@@ -36,7 +36,7 @@ export const homepageAisoBlocks: AisoContentBlock[] = [
   buildKeyFacts("Key facts", [
     "Programmes: Pulse charger (available) · Pulse+ (in development) · Corridor DC (pilot in development) · Boda Hub (pilot) · Wireless charging (research) · Agent Harness (in development). Lipa Pole Pole finances the Pulse charger on M-Pesa.",
     "Pulse charger from KES 79,000 · Lipa Pole Pole on M-Pesa",
-    "Public DC from KES 39/kWh at commissioned Corridor charging sites",
+    "Corridor DC price per kWh set per site at commissioning and shown before you start",
     "A home charging day of ~60 km ≈ KES 140 vs ~KES 1,000 diesel per day",
     "Pulse charger: a typical 60 km day in under two hours from the meter.",
     "Certified home installation typically in one day · three-year aftersale care",

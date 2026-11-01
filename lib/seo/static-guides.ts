@@ -78,7 +78,7 @@ EPRA's Gazette Notice 15188 of 18 September 2026 removed the old limit of 15,000
 An illustrative figure for a typical 60 km day of home charging on a Pulse charger is about **${sitePricing.homeDay}**, against roughly ${sitePricing.dieselDay} of diesel for the same distance. Charging in off-peak hours, for example after 10pm on a weekday, is when energy on the e-mobility tariff costs least. Read [how to charge an electric car at home in Kenya](/guides/charge-electric-car-at-home-kenya) for the installation side.
 
 ## Public charging is priced differently
-A public charger sells energy at the operator's own price, which covers the charger, the site, the grid connection and the service as well as Kenya Power's bill. Precifarm public DC charging is from **${sitePricing.publicDcFrom}** at commissioned sites; see [EV charging stations in Kenya](/guides/ev-charging-stations-kenya) for where to charge.`,
+A public charger sells energy at the operator's own price, which covers the charger, the site, the grid connection and the service as well as Kenya Power's bill. At Precifarm Corridor sites the price per kWh is set for each site at commissioning and shown before you start; see [EV charging stations in Kenya](/guides/ev-charging-stations-kenya) for where to charge.`,
     faqs: [
       {
         question: "How much does Kenya Power charge for EV charging?",
@@ -129,7 +129,7 @@ The Ministry of Roads and Transport put registered EVs at 24,754 at the end of 2
 - **Highway DC fast charging:** as an illustration, a car that accepts about 120 kW can add around 60 kWh in 30 minutes; most cars taper as the battery fills.
 
 ## What public charging costs
-Each operator sets its own price per kWh, which is higher than Kenya Power's tariff because it covers the charger, the site and the service. Precifarm public DC charging is from **${sitePricing.publicDcFrom}** at commissioned sites, paid with M-Pesa. See the [Kenya Power EV tariff](/guides/kenya-power-ev-charging-tariff) for what energy costs at the meter.
+Each operator sets its own price per kWh, which is higher than Kenya Power's tariff because it covers the charger, the site and the service. At Precifarm Corridor sites the price per kWh is set for each site at commissioning, shown before you start and paid with M-Pesa. See the [Kenya Power EV tariff](/guides/kenya-power-ev-charging-tariff) for what energy costs at the meter.
 
 ## Find a charger on the Charging Hub map
 The [Precifarm Charging Hub](/hub) map shows charging and swap sites across Kenya with a status on each. Availability on the map is illustrative, not real-time, so call the site before a long trip.
@@ -149,7 +149,7 @@ Nairobi to Kisumu is the route for Precifarm's first Corridor charging pilots, w
       },
       {
         question: "How much does it cost to charge at a public charger in Kenya?",
-        answer: `Each operator sets its own price per kWh. Precifarm public DC charging is from ${sitePricing.publicDcFrom} at commissioned sites, paid with M-Pesa.`,
+        answer: `Each operator sets its own price per kWh. At Precifarm Corridor sites the price per kWh is set for each site at commissioning, shown before you start and paid with M-Pesa.`,
       },
       {
         question: "Can a Nissan Leaf use public fast chargers in Kenya?",

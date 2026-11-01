@@ -73,7 +73,7 @@ export const engineeringPage = {
     rows: [
       ["Pulse · 7 kW", "Home daily charging", "Type 2 AC on customer meter · from KES 79,000"],
       ["Pulse+ · 22 kW", "Fleet yards (in development)", "Three-phase AC overnight · 11 kW on most cars"],
-      ["Corridor DC", "Highway DC (pilot in development)", "Two CCS2 guns, site storage · from KES 39/kWh at commissioned sites"],
+      ["Corridor DC", "Highway DC (pilot in development)", "Two CCS2 guns, site storage · priced per site"],
       ["Boda Hub", "E-motorbike swap (pilot)", "Partner-run sites · under 5 minutes"],
     ],
   },
@@ -111,7 +111,7 @@ export const engineeringPage = {
   faqs: {
     eyebrow: "Planning questions",
     title: "Common engineering questions.",
-    description: `Illustrative planning only — not quotations. Public DC from ${sitePricing.publicDcFrom}.`,
+    description: `Illustrative planning only, not quotations. Corridor prices are set per site at commissioning.`,
     ids: ["who-for", "solar-window", "batteries-hub", "cost-quote"] as const,
   },
   download: {
@@ -152,6 +152,6 @@ export const engineeringPageFaqs = [
     id: "cost-quote",
     question: "Are the engineering cost figures a quotation?",
     answer:
-      "No. Planning bands and worked examples in the PDF are illustrative. Live public DC is from KES 39/kWh. Pulse starts from KES 79,000. Request a site-specific cost sheet after survey.",
+      "No. Planning bands and worked examples in the PDF are illustrative. Corridor prices are set per site at commissioning. Pulse starts from KES 79,000. Request a site-specific cost sheet after survey.",
   },
 ] as const;

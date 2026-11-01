@@ -35,7 +35,7 @@ Ratings on product pages are design targets unless a page states they are tested
 
 ## Published cost figures
 - A home charging day (~60 km) costs about KES 140 versus ~KES 1,000 diesel per day (illustrative)
-- Public DC from KES 39/kWh at commissioned Corridor charging sites
+- Corridor DC price per kWh set per site at commissioning and shown before you start
 - Session price is shown before you charge
 
 ## Primary pages
@@ -92,7 +92,7 @@ ${staticGuides.map((g) => `- ${g.title}: ${siteConfig.url}/guides/${g.slug}`).jo
 - Wireless EV charging research
 - Private, local AI for engineering (Agent Harness)
 - Sustainability commitments and impact reporting
-- Public DC from KES 39/kWh and a home charging day about KES 140
+- A home charging day costs about KES 140; Corridor DC is priced per site
 - M-Pesa and Lipa Pole Pole financing
 - Charging Hub and partner networks
 - Fleet charging and Boda Hub battery swapping

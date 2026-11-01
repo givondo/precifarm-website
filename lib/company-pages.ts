@@ -19,7 +19,7 @@ export const faqPage = {
   eyebrow: "FAQ · Kenya",
   title: "Prices, plugs, Lipa Pole Pole and what is live today",
   description:
-    "Straight answers on Pulse from KES 79,000, a home day about KES 140, public DC from KES 39/kWh, Charging Hub status labels and Precifarm Agent on desktop.",
+    "Straight answers on Pulse from KES 79,000, a home day about KES 140, how public DC is priced, Charging Hub status labels and Precifarm Agent on desktop.",
   cta: {
     title: "Still have questions?",
     description: "Request a home survey, request Precifarm Agent desktop access, or reach us on phone, email and WhatsApp.",

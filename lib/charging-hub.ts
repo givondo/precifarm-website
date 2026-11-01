@@ -18,7 +18,7 @@ export const chargingHubPage = {
     eyebrow: "Kenya · live map",
     title: "Highway DC, boda swap and partner stops — each one labelled open or coming soon",
     description:
-      "Browse free on the web. Check plug type, public DC from KES 39/kWh and whether the bay is live before you drive — then pay with M-Pesa.",
+      "Browse free on the web. Check plug type, the price per kWh and whether the bay is live before you drive — then pay with M-Pesa.",
     image: {
       src: productImages.corridor.src,
       alt: "Precifarm Charging Hub — highway DC, boda battery swap and partner charging stops across Kenya",
@@ -46,7 +46,7 @@ export const chargingHubPage = {
     secondaryLabel: "Host a charger",
   },
   stats: [
-    { value: sitePricing.publicDcFrom, label: "Public fast charge from" },
+    { value: sitePricing.publicDcPrice, label: "Public fast charge price" },
     { value: "Under 5 min", label: "Boda battery swap" },
     { value: "M-Pesa", label: "Pay before you charge" },
   ],
@@ -84,7 +84,7 @@ export const chargingHubPage = {
         id: "highway",
         title: "Highway fast charge",
         stat: "~60 kWh in 30 min",
-        detail: "Fast top-up on major routes. From " + sitePricing.publicDcFrom + " on M-Pesa.",
+        detail: "Fast top-up on major routes. Price per kWh shown before you start; pay on M-Pesa.",
         imageKey: "corridor" as const,
         status: "pilot" as const,
       },

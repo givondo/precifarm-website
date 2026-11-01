@@ -16,35 +16,42 @@ const specs = {
       "claims": [
         {
           "label": "Charging power",
-          "text": "Up to 7 kW class (32 A, single phase)",
+          "text": "32 A single phase: about 7.4 kW at 230 V, up to 7.7 kW on Kenya Power's 240 V supply",
           "spec_id": "PUL-03",
           "evidence": "target",
           "verification": "calculated"
         },
         {
+          "label": "Your car",
+          "text": "Charges as fast as your car's on-board charger allows; many accept 6.6 to 7.4 kW",
+          "spec_id": "PUL-20",
+          "evidence": "planning assumption",
+          "verification": "none"
+        },
+        {
           "label": "Connector",
-          "text": "Tethered Type 2, 5 m (7 m option)",
+          "text": "Tethered Type 2 (IEC 62196-2), 5 m standard, 7 m option",
           "spec_id": "PUL-04",
           "evidence": "target",
           "verification": "none"
         },
         {
           "label": "DC fault protection",
-          "text": "6 mA DC residual current detection in the unit",
+          "text": "6 mA DC residual current detection in the unit (RDC-DD), with a Type A RCD upstream",
           "spec_id": "PUL-05",
           "evidence": "target",
           "verification": "none"
         },
         {
           "label": "Load management",
-          "text": "Trims current to stay within your supply",
+          "text": "Trims charging current so your main supply never overloads",
           "spec_id": "PUL-09",
           "evidence": "target",
           "verification": "none"
         },
         {
           "label": "Connectivity",
-          "text": "Wi-Fi, Bluetooth, OCPP 1.6J; charges offline",
+          "text": "Wi-Fi, Bluetooth and OCPP 1.6J; keeps charging safely offline",
           "spec_id": "PUL-15",
           "evidence": "target",
           "verification": "none"
@@ -57,8 +64,8 @@ const specs = {
           "verification": "inspected"
         },
         {
-          "label": "Ingress",
-          "text": "IP65 design target",
+          "label": "Weather",
+          "text": "Designed for IP65; rating to be confirmed by accredited testing",
           "spec_id": "PUL-11",
           "evidence": "target",
           "verification": "none"
@@ -76,28 +83,35 @@ const specs = {
       "claims": [
         {
           "label": "Charging power",
-          "text": "Up to 22 kW three phase; 11 kW and 7.4 kW modes",
+          "text": "Up to 22 kW on three phases; 11 kW and 7.4 kW single-phase modes",
           "spec_id": "PP-03",
           "evidence": "target",
           "verification": "calculated"
         },
         {
+          "label": "Your car",
+          "text": "Most cars take 11 kW on three phases; 22 kW needs a car with a 22 kW on-board charger",
+          "spec_id": "PP-13",
+          "evidence": "planning assumption",
+          "verification": "none"
+        },
+        {
           "label": "Supply",
-          "text": "400 V three phase plus neutral",
+          "text": "Three phase plus neutral on Kenya Power's 415 V supply",
           "spec_id": "PP-01",
           "evidence": "target",
           "verification": "none"
         },
         {
           "label": "DC fault protection",
-          "text": "6 mA DC detection on all four conductors",
+          "text": "6 mA DC detection on all four conductors, with a four-pole Type A RCD upstream",
           "spec_id": "PP-05",
           "evidence": "target",
           "verification": "none"
         },
         {
           "label": "Load sharing",
-          "text": "Up to 10 units on one site meter",
+          "text": "Up to 10 units share one site meter",
           "spec_id": "PP-06",
           "evidence": "target",
           "verification": "none"
@@ -117,8 +131,8 @@ const specs = {
           "verification": "inspected"
         },
         {
-          "label": "Ingress",
-          "text": "IP65 design target",
+          "label": "Weather",
+          "text": "Designed for IP65; rating to be confirmed by accredited testing",
           "spec_id": "PP-08",
           "evidence": "target",
           "verification": "none"
@@ -142,6 +156,13 @@ const specs = {
           "verification": "none"
         },
         {
+          "label": "Power equipment",
+          "text": "Power conversion from established equipment makers, specified to IEC 61851-23",
+          "spec_id": "COR-15",
+          "evidence": "target",
+          "verification": "none"
+        },
+        {
           "label": "Site storage",
           "text": "On-site battery so the site needs a smaller grid connection",
           "spec_id": "COR-03",
@@ -156,9 +177,9 @@ const specs = {
           "verification": "none"
         },
         {
-          "label": "Tariff",
-          "text": "From KES 39/kWh at commissioned sites",
-          "spec_id": "COR-13",
+          "label": "Price",
+          "text": "Price per kWh shown before you start; set for each site at commissioning",
+          "spec_id": "COR-16",
           "evidence": "target",
           "verification": "none"
         },
@@ -188,6 +209,13 @@ const specs = {
           "verification": "none"
         },
         {
+          "label": "Cabinet",
+          "text": "20 charging bays; riders swap at the 16 lower doors",
+          "spec_id": "BH-01",
+          "evidence": "target",
+          "verification": "inspected"
+        },
+        {
           "label": "Safety",
           "text": "Each bay charges only with its door closed and latched",
           "spec_id": "BH-07",
@@ -196,7 +224,7 @@ const specs = {
         },
         {
           "label": "Fire safety",
-          "text": "Smoke detection stops charging in every bay; independent fire power supply",
+          "text": "Smoke detection stops charging in every bay, on an independent fire power supply",
           "spec_id": "BH-08",
           "evidence": "target",
           "verification": "simulated"
@@ -281,15 +309,15 @@ const specs = {
         },
         {
           "label": "Hardware",
-          "text": "Starts on an ordinary laptop",
-          "spec_id": "AH-04",
-          "evidence": "actual",
-          "verification": "inspected"
+          "text": "Starts with small models on an ordinary laptop; larger models need more memory or a GPU",
+          "spec_id": "AH-09",
+          "evidence": "target",
+          "verification": "none"
         }
       ]
     }
   ],
-  "source_commit": "b9e4ac7"
+  "source_commit": "f4f4ae9"
 } as const;
 
 export default specs;

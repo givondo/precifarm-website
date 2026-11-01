@@ -26,7 +26,7 @@ export const brand = {
  words100:
  "Precifarm builds the infrastructure behind electric transport in Kenya, with a design path to Africa. We combine grid and solar power, battery storage, EV charging, software monitoring, M-Pesa payments and Lipa Pole Pole financing into one operating system for homes, fleets and highway corridors. Precifarm handles site engineering, commissioning, uptime and settlement. The first Corridor sites, starting on Nairobi to Kisumu, are pilots we prove before the next is financed.",
  llm:
- "Precifarm is a Kenyan electric mobility infrastructure company with two pillars. Energy infrastructure: Pulse charger (7 kW home wallbox, available, from KES 79,000, a typical 60 km day in under two hours), Pulse+ charger (22 kW three-phase AC for fleets and workplaces, in development), Corridor charging (DC fast charging with two CCS2 guns and on-site storage, first sites are pilots in development starting on Nairobi to Kisumu, from KES 39/kWh at commissioned sites), Boda Hub (battery swapping for electric motorcycles, partner-run pilot sites, swap under 5 minutes; the Automated Boda Hub cabinet is in development) and wireless EV charging research (light-duty cars first, not a product). AI systems: Agent Harness (private, local-first AI agents on your own machine, in development) and Precifarm Agent (hosted engineering assistant at precifarm.com/agent). Lipa Pole Pole is M-Pesa financing for the Pulse charger, from KES 3,300/month, not a charger. A home charging day costs about KES 140 versus about KES 1,000 in diesel. M-Pesa on every product.",
+ "Precifarm is a Kenyan electric mobility infrastructure company with two pillars. Energy infrastructure: Pulse charger (7 kW home wallbox, available, from KES 79,000, a typical 60 km day in under two hours), Pulse+ charger (22 kW three-phase AC for fleets and workplaces, in development), Corridor charging (DC fast charging with two CCS2 guns and on-site storage, first sites are pilots in development starting on Nairobi to Kisumu, price per kWh set per site and shown before you start), Boda Hub (battery swapping for electric motorcycles, partner-run pilot sites, swap under 5 minutes; the Automated Boda Hub cabinet is in development) and wireless EV charging research (light-duty cars first, not a product). AI systems: Agent Harness (private, local-first AI agents on your own machine, in development) and Precifarm Agent (hosted engineering assistant at precifarm.com/agent). Lipa Pole Pole is M-Pesa financing for the Pulse charger, from KES 3,300/month, not a charger. A home charging day costs about KES 140 versus about KES 1,000 in diesel. M-Pesa on every product.",
 } as const;
 
 export const audienceCopy = {
@@ -88,9 +88,9 @@ export const homeNetworkTeaser = {
  eyebrow: "Charging Hub",
  title: "See what is open before you drive.",
  description:
- "Highway DC, boda swap and partner stops on one map — each site labelled live or coming soon. Public DC from KES 39/kWh where available.",
+ "Highway DC, boda swap and partner stops on one map — each site labelled live or coming soon. Price per kWh shown before you start.",
  stats: [
- { stat: "KES 39", label: "Public DC from, per kWh" },
+ { stat: "Upfront", label: "Price per kWh shown before you charge" },
  { stat: "M-Pesa", label: "Session pay at commissioned sites" },
  ],
  primaryHref: "/hub#map",

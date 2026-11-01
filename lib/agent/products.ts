@@ -50,7 +50,7 @@ export const precifarmProducts: readonly PrecifarmProduct[] = [
     segment: "highway",
     rating: "DC fast charging, two bays; power sized per site",
     connector: "Dual CCS2",
-    price: "From KES 39/kWh at commissioned sites, M-Pesa per session",
+    price: "Price per kWh set per site at commissioning and shown before each session; M-Pesa",
     status: "pilot",
     useWhen: "Intercity trips. The first Corridor sites, starting on Nairobi to Kisumu, are pilots in development; none is commissioned yet.",
     href: "/charging/corridor",
