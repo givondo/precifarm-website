@@ -3,6 +3,7 @@ import { agentRuntime } from "@/lib/agent/config";
 import type { ChatMessage } from "@/lib/agent/deepseek";
 import { runPrecifarmAgentTurn } from "@/lib/agent/deepseek";
 import { promptViaOpenCode } from "@/lib/agent/opencode-bridge";
+import { clientIp, createRateLimiter } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -14,23 +15,10 @@ type Body = {
 };
 
 /* Best-effort per-instance limiter so a public page cannot drain the API key. */
-const hits = new Map<string, number[]>();
-
-function rateLimited(ip: string): boolean {
-  const now = Date.now();
-  const { requests, windowMs } = agentRuntime.rateLimit;
-  const recent = (hits.get(ip) ?? []).filter((t) => now - t < windowMs);
-  recent.push(now);
-  hits.set(ip, recent);
-  if (hits.size > 5000) {
-    for (const [k, v] of hits) if (!v.some((t) => now - t < windowMs)) hits.delete(k);
-  }
-  return recent.length > requests;
-}
+const rateLimited = createRateLimiter(agentRuntime.rateLimit);
 
 export async function POST(request: Request) {
-  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
-  if (rateLimited(ip)) {
+  if (rateLimited(clientIp(request))) {
     return NextResponse.json(
       { error: "Too many requests. Please wait a few minutes and try again." },
       { status: 429 },

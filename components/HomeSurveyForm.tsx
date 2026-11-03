@@ -6,6 +6,7 @@ import { getAnonymousId } from "@/lib/analytics";
 import { contact } from "@/lib/contact";
 import { contactInterests } from "@/lib/contact-interests";
 import { homeSurveyForm, privateHouseChargingPage } from "@/lib/home-charging";
+import HoneypotField from "@/components/forms/HoneypotField";
 
 const HOME_INTEREST = contactInterests.home;
 
@@ -110,6 +111,7 @@ export default function HomeSurveyForm() {
       message,
       channel: "web-private-house",
       anonymousId: getAnonymousId(),
+      website: String(data.get("website") ?? ""),
     };
 
     try {
@@ -164,12 +166,13 @@ export default function HomeSurveyForm() {
   }
 
   return (
-    <form className="card p-6 sm:p-8" onSubmit={handleSubmit}>
+    <form className="card relative p-6 sm:p-8" onSubmit={handleSubmit}>
+      <HoneypotField />
       <h2 className="heading-display text-xl text-forest-900 sm:text-2xl">{homeSurveyForm.title}</h2>
       <p className="mt-3 text-sm leading-relaxed text-forest-600">{homeSurveyForm.description}</p>
 
       {error ? (
-        <p className="mt-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">{error}</p>
+        <p role="alert" className="mt-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">{error}</p>
       ) : null}
 
       <fieldset className="mt-8">

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { CmsError, cmsFetch, isCmsEnabled } from "@/lib/cms";
+import { guardFormSubmission } from "@/lib/form-guard";
 
 /** Proxy home survey intake to CMS install pipeline. */
 export async function POST(request: Request) {
@@ -17,6 +18,15 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid JSON." }, { status: 400 });
   }
 
+  const guard = guardFormSubmission(request, body);
+  if (!guard.ok) {
+    if (guard.kind === "rate-limited")
+      return NextResponse.json({ error: "Too many requests. Please wait a few minutes or call us." }, { status: 429 });
+    // Bots get the same answer a person would, so the trap is not revealed.
+    if (guard.kind === "bot") return NextResponse.json({ received: true, installOrder: null }, { status: 201 });
+    return NextResponse.json({ error: "Invalid request." }, { status: 400 });
+  }
+
   try {
     const data = await cmsFetch<{
       received: boolean;
@@ -29,7 +39,7 @@ export async function POST(request: Request) {
       } | null;
     }>("/installs/survey", {
       method: "POST",
-      body: JSON.stringify(body),
+      body: JSON.stringify(guard.body),
     });
     return NextResponse.json(data, { status: 201 });
   } catch (err) {
