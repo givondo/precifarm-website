@@ -2,24 +2,28 @@
 
 import { useEffect, useState } from "react";
 import { agentPage } from "@/lib/agent-page";
+import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 
 export default function AgentExampleDemo() {
   const ex = agentPage.example;
-  const [step, setStep] = useState(0);
+  const reducedMotion = usePrefersReducedMotion();
+  const [animatedStep, setStep] = useState(0);
   const [running, setRunning] = useState(true);
 
   useEffect(() => {
-    if (!running) return;
-    if (step >= ex.steps.length) return;
+    if (reducedMotion || !running) return;
+    if (animatedStep >= ex.steps.length) return;
     const id = window.setTimeout(() => setStep((s) => s + 1), 900);
     return () => window.clearTimeout(id);
-  }, [step, running, ex.steps.length]);
+  }, [animatedStep, running, reducedMotion, ex.steps.length]);
 
   function runAgain() {
     setStep(0);
     setRunning(true);
   }
 
+  // Reduced motion: the whole worked example is shown at once, with full contrast.
+  const step = reducedMotion ? ex.steps.length : animatedStep;
   const showRec = step >= ex.steps.length;
 
   return (
@@ -61,7 +65,7 @@ export default function AgentExampleDemo() {
           <div
             className={`mt-4 transition-opacity duration-500 ${showRec ? "opacity-100" : "opacity-30"}`}
           >
-            <p className="heading-display text-2xl text-white">{ex.recommendation.charger}</p>
+            <p className="heading-display heading-inverted text-2xl">{ex.recommendation.charger}</p>
             <p className="mt-2 font-mono text-sm text-white/60">
               Estimated charging time · {ex.recommendation.time}
             </p>

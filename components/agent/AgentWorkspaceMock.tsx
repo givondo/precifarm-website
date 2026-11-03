@@ -2,14 +2,21 @@
 
 import { useEffect, useState } from "react";
 import { agentPage } from "@/lib/agent-page";
+import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 
-/** Hero workspace mock — Agent actively working a residential EV brief */
+/**
+ * Hero workspace mock: an illustrative residential EV brief, not a live run.
+ * The task cycling is a scripted animation, so the panel carries a visible
+ * "Illustrative example" label and stays still for reduced-motion visitors.
+ */
 export default function AgentWorkspaceMock() {
   const mock = agentPage.heroMock;
+  const reducedMotion = usePrefersReducedMotion();
   const [activeTask, setActiveTask] = useState(4);
   const [tab, setTab] = useState(0);
 
   useEffect(() => {
+    if (reducedMotion) return;
     const id = window.setInterval(() => {
       setActiveTask((t) => {
         const next = t >= mock.tasks.length - 1 ? 3 : t + 1;
@@ -17,18 +24,24 @@ export default function AgentWorkspaceMock() {
       });
     }, 2200);
     return () => window.clearInterval(id);
-  }, [mock.tasks.length]);
+  }, [mock.tasks.length, reducedMotion]);
 
   return (
-    <div className="agent-workspace overflow-hidden rounded-2xl border border-border bg-[#0c0f12] text-left shadow-[0_24px_80px_-24px_rgba(15,23,42,0.45)]">
-      <div className="flex items-center justify-between border-b border-white/10 px-4 py-3 sm:px-5">
-        <div className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-charge-500" aria-hidden />
+    <figure
+      className="agent-workspace overflow-hidden rounded-2xl border border-border bg-[#0c0f12] text-left shadow-[0_24px_80px_-24px_rgba(15,23,42,0.45)]"
+      aria-label="Illustrative example of the Precifarm Agent workspace. Scripted, not a live run."
+    >
+      <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1.5 border-b border-white/10 px-4 py-3 sm:px-5">
+        <div className="flex items-center gap-2 whitespace-nowrap">
+          <span className="h-2 w-2 shrink-0 rounded-full bg-charge-500" aria-hidden />
           <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80">
             Precifarm Agent
           </p>
+          <span className="shrink-0 rounded border border-white/20 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-white/70">
+            <span className="hidden sm:inline">Illustrative </span>Example
+          </span>
         </div>
-        <p className="truncate font-mono text-[11px] text-white/45 sm:text-xs">
+        <p className="min-w-0 max-w-full truncate font-mono text-[11px] text-white/60 sm:text-xs">
           Project · {mock.project}
         </p>
       </div>
@@ -119,6 +132,6 @@ export default function AgentWorkspaceMock() {
           </p>
         </div>
       </div>
-    </div>
+    </figure>
   );
 }
