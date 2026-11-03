@@ -27,7 +27,8 @@
     "pdf:product-engineering": "node scripts/generate-product-engineering-pdf.mjs",
     "pdf:all": "node scripts/generate-all-pdfs.mjs",
     "figures:enhance": "node scripts/enhance-figure-design.mjs && node scripts/normalize-figure-svgs.mjs",
-    "test": "node --import ./tests/setup/register.mjs --test tests/*.test.ts"
+    "test": "node --import ./tests/setup/register.mjs --test tests/*.test.ts",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@react-google-maps/api": "^2.20.8",
@@ -39,6 +40,8 @@
     "react-leaflet": "^5.0.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.12.1",
+    "@playwright/test": "^1.64.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

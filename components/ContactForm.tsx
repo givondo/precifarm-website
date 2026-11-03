@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { getAnonymousId } from "@/lib/analytics";
 import { contactInterestList } from "@/lib/contact-interests";
+import HoneypotField from "@/components/forms/HoneypotField";
 
 const interests = contactInterestList;
 
@@ -32,6 +33,7 @@ export default function ContactForm({ defaultInterest }: ContactFormProps) {
       message: String(data.get("message") ?? "").trim(),
       channel: "web",
       anonymousId: getAnonymousId(),
+      website: String(data.get("website") ?? ""),
     };
 
     try {
@@ -87,7 +89,8 @@ export default function ContactForm({ defaultInterest }: ContactFormProps) {
   }
 
   return (
-    <form className="card p-6" onSubmit={handleSubmit}>
+    <form className="card relative p-6" onSubmit={handleSubmit}>
+      <HoneypotField />
       <h2 className="text-lg font-semibold text-forest-900">Send us a message</h2>
       <p className="mt-2 text-sm leading-relaxed text-forest-600/80">
         Home charger, fleet charging, Corridor site hosting, Boda swap, private AI or partnership: we route your enquiry
@@ -95,7 +98,7 @@ export default function ContactForm({ defaultInterest }: ContactFormProps) {
       </p>
 
       {error ? (
-        <p className="mt-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
+        <p role="alert" className="mt-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
           {error}
         </p>
       ) : null}

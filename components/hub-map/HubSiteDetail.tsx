@@ -25,9 +25,10 @@ export function HubSiteDetail({ hub, directionsClassName = "btn-primary hub-map-
         <span
           className="hub-map-sidebar-badge"
           style={{
-            color: avail.color,
-            borderColor: `${avail.color}40`,
-            backgroundColor: `${avail.color}12`,
+            // Pin colours (e.g. #22c55e) are too light for text on a pale tint; the colour cue stays in border and fill.
+            color: "var(--color-forest-700)",
+            borderColor: `${avail.color}80`,
+            backgroundColor: `${avail.color}1f`,
           }}
         >
           {avail.label}

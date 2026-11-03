@@ -1,0 +1,43 @@
+# 17 Change log
+
+## Phase B1, second pass (3 November 2026)
+
+No URL, product claim or calculation changed. Dev dependencies added: `@playwright/test` 1.64.1, `@axe-core/playwright` 4.12.1 (matched to the axe-core already in the lockfile). Installed with npm 11 so the lockfile keeps its `libc` fields, which the Alpine Docker image needs to pick musl binaries.
+
+| Change | Files | Why | Verified by |
+|---|---|---|---|
+| Contact and survey routes rate-limited (5 per address per 10 min) with a honeypot that is never forwarded | `lib/rate-limit.ts`, `lib/form-guard.ts`, `components/forms/HoneypotField.tsx`, both API routes and forms | Security finding S-2 | `tests/form-guard.test.ts`; e2e contact tests with the API mocked |
+| Agent chat route uses the shared limiter | `app/api/agent/chat/route.ts` | One implementation | Same limits as before |
+| Form errors announced to screen readers | `ContactForm.tsx`, `HomeSurveyForm.tsx` | Errors were silent for assistive technology | e2e rate-limit test reads the alert |
+| Tables no longer cut off on phones | `components/training/TrainingTables.tsx`, `app/charging/engineering/page.tsx` | Grid items with `min-width: auto` let 640 px tables widen the column to 530 to 638 px, clipped by `overflow-x: clip` | Captures at 390 px now 390 wide; 1440 px pixel-identical; e2e clipping check fails on the old build and passes on this one |
+| Installation-process table on `/charging/home` keyboard-scrollable | `app/charging/home/page.tsx` | axe scrollable-region-focusable at 390 px | e2e axe |
+| Hub sheet availability badge legible | `components/hub-map/HubSiteDetail.tsx` | Pin green as text on a pale tint, about 2:1 | e2e axe |
+| Playwright and axe suite, `npm run test:e2e` | `playwright.config.ts`, `tests/e2e/` | Repeatable baseline in the repository | 110 pass |
+| Cascade-layer migration attempted and reverted | none kept | Measured 74 genuine conflicts; needs per-page decisions | `appendix-layer-conflicts.md` |
+
+## Phase B1 (3 November 2026, branch `ui-modernisation/phase-a-b`)
+
+No URL, dependency, product claim or calculation changed.
+
+| Change | Files | Why | Verified by |
+|---|---|---|---|
+| Semantic status tokens (`status-available`, `-pilot`, `-development`, `-research`, each with `-bg` and `-ring`) and feedback tokens (`positive`, `warning`, `danger`, `info`) | `app/globals.css`, `lib/product-status.ts` | Status is a maturity claim; one token per meaning stops hues drifting between components | Computed colours of every badge on `/` match the previous Tailwind values exactly; `tests/design-tokens.test.ts` |
+| Hero workspace mock labelled "Illustrative example" ("Example" under 640 px), wrapped in a `figure` whose accessible name says it is scripted, and frozen for reduced motion | `components/agent/AgentWorkspaceMock.tsx` | The panel animates tasks to "done" on a timer; without a label it reads as a live run | Screenshots at 320, 390 and 1440 px; no overflow |
+| Worked example shows every step at once for reduced motion | `components/agent/AgentExampleDemo.tsx`, new `lib/use-reduced-motion.ts` | CSS cannot stop JavaScript timers; faded pending steps also failed contrast | axe on `/agent`: 7 contrast nodes to 0, with and without reduced motion |
+| Recommendation heading on the dark panel uses `heading-inverted` | `components/agent/AgentExampleDemo.tsx` | Rendered near-black on near-black (1.03:1) for every visitor | Computed colour now white; regression test scans all `.tsx` |
+| Map markers named by site (`title` and `alt`) instead of Leaflet's default "Marker" | `components/hub-map/LeafletConnectivityMap.tsx` | Screen readers announced nine identical "Marker" buttons | axe output now names each hub |
+| JSON-LD escapes `<` | `lib/seo/serialize-jsonld.ts`, `components/seo/JsonLd.tsx` | CMS text could close the script tag | `tests/jsonld.test.ts`; 36 of 36 JSON-LD blocks on five pages parse |
+| Audit documents 00 to 05, 17, 18 and status | `docs/ui-modernisation/` | Baseline and plan | |
+
+## Results after the change
+
+| Check | Before | After |
+|---|---|---|
+| Unit tests | 23 pass | 28 pass |
+| Lint | 0 errors, 8 warnings | 0 errors, the same 8 warnings |
+| `tsc --noEmit` | clean | clean |
+| Build (font mock) | pass, 56 pages | pass, 56 pages |
+| axe on `/agent` | 1 rule, 7 nodes | 0 |
+| axe on `/hub` | target-size, 9 nodes | target-size, 9 nodes (accepted, see 18) |
+| Overflow on the 9 re-tested routes at 9 widths | 0 | 0 |
+| `/book` redirect, `/download` claims | pass | pass |

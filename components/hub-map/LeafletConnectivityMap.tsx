@@ -130,6 +130,8 @@ export default function LeafletConnectivityMap({
           key={hub.id}
           position={[hub.lat, hub.lng]}
           icon={hubIcons.get(hub.id)!}
+          title={hub.name}
+          alt={hub.name}
           eventHandlers={{
             click: () => onSelectHub(hub.id),
           }}

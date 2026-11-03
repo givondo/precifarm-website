@@ -462,8 +462,10 @@ export function TrainingTableSection({
   children: ReactNode;
   className?: string;
 }) {
+  // min-w-0: inside a grid or flex parent, the table's min-width would otherwise widen the whole
+  // column past the screen (clipped by overflow-x: clip on body) instead of scrolling in its region.
   return (
-    <div className={className}>
+    <div className={`min-w-0 ${className}`}>
       <SectionHeader eyebrow={eyebrow} title={title} description={description} />
       <div className="mt-8">{children}</div>
     </div>

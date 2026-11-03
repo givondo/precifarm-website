@@ -1,4 +1,5 @@
 import type { JsonLd } from "@/lib/seo/types";
+import { serializeJsonLd } from "@/lib/seo/serialize-jsonld";
 
 type JsonLdProps = {
   data: JsonLd | JsonLd[];
@@ -14,7 +15,7 @@ export default function JsonLd({ data }: JsonLdProps) {
         <script
           key={`jsonld-${index}-${String(node["@type"] ?? index)}`}
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(node) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(node) }}
         />
       ))}
     </>

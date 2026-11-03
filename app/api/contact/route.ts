@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { CmsError, cmsFetch, isCmsEnabled } from "@/lib/cms";
+import { guardFormSubmission } from "@/lib/form-guard";
 
 /** Proxy contact form to CMS. */
 export async function POST(request: Request) {
@@ -17,6 +18,15 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid JSON." }, { status: 400 });
   }
 
+  const guard = guardFormSubmission(request, body);
+  if (!guard.ok) {
+    if (guard.kind === "rate-limited")
+      return NextResponse.json({ error: "Too many messages. Please wait a few minutes or email us directly." }, { status: 429 });
+    // Bots get the same answer a person would, so the trap is not revealed.
+    if (guard.kind === "bot") return NextResponse.json({ id: "", received: true }, { status: 201 });
+    return NextResponse.json({ error: "Invalid request." }, { status: 400 });
+  }
+
   try {
     const data = await cmsFetch<{
       id: string;
@@ -24,7 +34,7 @@ export async function POST(request: Request) {
       installOrder?: { reference?: string; product?: string; stage?: string; duplicate?: boolean } | null;
     }>("/contact", {
       method: "POST",
-      body: JSON.stringify(body),
+      body: JSON.stringify(guard.body),
     });
     return NextResponse.json(data, { status: 201 });
   } catch (err) {
