@@ -23,7 +23,9 @@ test("no published figure is presented as tested without a test record", async (
   for (const p of programmes)
     for (const c of p.claims) {
       if (c.verification !== "tested" && c.verification !== "certified") assert.notEqual(evidenceNote(c), "Tested", `${p.code} ${c.spec_id}`);
-      assert.ok(!/certified|tested/i.test(c.text) || /target|not/i.test(c.text), `${p.code} ${c.spec_id} text implies a test: ${c.text}`);
+      // "certified OEM" names bought-in equipment that must carry its maker's certification (HD-026); it is not a Precifarm test claim.
+      const text = c.text.replace(/certified OEM/gi, "OEM");
+      assert.ok(!/certified|tested/i.test(text) || /target|not/i.test(text), `${p.code} ${c.spec_id} text implies a test: ${c.text}`);
     }
 });
 
