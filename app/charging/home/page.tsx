@@ -104,7 +104,12 @@ export default function HomeChargingPage() {
             />
             <div className="training-table-shell mt-8">
               <div className="training-table-wrap">
-                <div className="training-table-scroll">
+                <div
+                  className="training-table-scroll"
+                  tabIndex={0}
+                  role="region"
+                  aria-label="Home charging installation process (scrolls sideways)"
+                >
                   <table className="training-table w-full text-left text-sm" style={{ minWidth: "720px" }}>
                     <caption className="training-table-caption">
                       <span className="training-table-caption-label">Home charging installation process</span>
