@@ -64,6 +64,30 @@
 
   --color-solar-500: #f59e0b;
   --color-solar-400: #fbbf24;
+
+  /*
+   * Semantic status tokens (lib/product-status.ts). One meaning per token: components name
+   * the maturity, never a hue. Values are exactly the colours in use before tokens were added
+   * (site green-50/200 overrides above, Tailwind v4 defaults for green-900, amber and sky).
+   */
+  --color-status-available: oklch(39.3% 0.095 152.535);
+  --color-status-available-bg: #f0fdf4;
+  --color-status-available-ring: #bbf7d0;
+  --color-status-pilot: oklch(27.9% 0.077 45.635);
+  --color-status-pilot-bg: oklch(98.7% 0.022 95.277);
+  --color-status-pilot-ring: oklch(92.4% 0.12 95.746);
+  --color-status-development: oklch(29.3% 0.066 243.157);
+  --color-status-development-bg: oklch(97.7% 0.013 236.62);
+  --color-status-development-ring: oklch(90.1% 0.058 230.902);
+  --color-status-research: #171717;
+  --color-status-research-bg: #f5f5f5;
+  --color-status-research-ring: #e5e5e5;
+
+  /* Feedback tokens for forms, alerts and engineering warnings. */
+  --color-positive: #15803d;
+  --color-warning: #b45309;
+  --color-danger: #b91c1c;
+  --color-info: #1d4ed8;
 }
 
 html {
