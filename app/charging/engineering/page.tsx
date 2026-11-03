@@ -129,7 +129,8 @@ export default function ChargingEngineeringPage() {
 
       <section className="border-b border-border bg-white section-pad">
         <div className="page-container grid gap-14 lg:grid-cols-2">
-          <div>
+          {/* min-w-0 lets the table scroll in its region instead of widening the grid column past the screen. */}
+          <div className="min-w-0">
             <SectionHeader eyebrow={holdPoints.eyebrow} title={holdPoints.title} />
             <div className="mt-8">
               <SpecTable
@@ -139,7 +140,7 @@ export default function ChargingEngineeringPage() {
               />
             </div>
           </div>
-          <div>
+          <div className="min-w-0">
             <SectionHeader eyebrow={process.eyebrow} title={process.title} />
             <ol className="mt-8 space-y-5">
               {process.steps.map((item) => (
