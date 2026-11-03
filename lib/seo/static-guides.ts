@@ -75,7 +75,7 @@ The tariff covers e-mobility customers supplied at 240 V or 415 V. Reporting on 
 EPRA's Gazette Notice 15188 of 18 September 2026 removed the old limit of 15,000 kWh a month on the tariff. Each e-mobility customer now has an Energy Consumption Threshold: the average monthly use over the previous six months plus 6%, or the average of the first three months for a new customer. Off-peak discounts apply to units above that threshold. Reports say the change is backdated to 1 July 2025; Kenya Power has not said how past bills will be adjusted.
 
 ## What it means if you charge at home
-An illustrative figure for a typical 60 km day of home charging on a Pulse charger is about **${sitePricing.homeDay}**, against roughly ${sitePricing.dieselDay} of diesel for the same distance. Charging in off-peak hours, for example after 10pm on a weekday, is when energy on the e-mobility tariff costs least. Read [how to charge an electric car at home in Kenya](/guides/charge-electric-car-at-home-kenya) for the installation side.
+A typical 60 km day of home charging on a Pulse charger costs about **${sitePricing.homeDay}**, against roughly ${sitePricing.dieselDay} of diesel for the same distance. Charging in off-peak hours, for example after 10pm on a weekday, is when energy on the e-mobility tariff costs least. Read [how to charge an electric car at home in Kenya](/guides/charge-electric-car-at-home-kenya) for the installation side.
 
 ## Public charging is priced differently
 A public charger sells energy at the operator's own price, which covers the charger, the site, the grid connection and the service as well as Kenya Power's bill. At Precifarm Corridor sites the price per kWh is set for each site at commissioning and shown before you start; see [EV charging stations in Kenya](/guides/ev-charging-stations-kenya) for where to charge.`,
@@ -132,10 +132,10 @@ The Ministry of Roads and Transport put registered EVs at 24,754 at the end of 2
 Each operator sets its own price per kWh, which is higher than Kenya Power's tariff because it covers the charger, the site and the service. At Precifarm Corridor sites the price per kWh is set for each site at commissioning, shown before you start and paid with M-Pesa. See the [Kenya Power EV tariff](/guides/kenya-power-ev-charging-tariff) for what energy costs at the meter.
 
 ## Find a charger on the Charging Hub map
-The [Precifarm Charging Hub](/hub) map shows charging and swap sites across Kenya with a status on each. Availability on the map is illustrative, not real-time, so call the site before a long trip.
+The [Precifarm Charging Hub](/hub) map shows charging and swap sites across Kenya. Call the site before a long trip to confirm a charger is free.
 
 ## Driving Nairobi to Kisumu or Nairobi to Mombasa
-Nairobi to Kisumu is the route for Precifarm's first Corridor charging pilots, which are in development. The road distance is about 350 km, so most EVs need one DC fast charging stop or a full charge at both ends; confirm a working charger on the route before you set off.`,
+Nairobi to Kisumu is the route for Precifarm's first Corridor charging site, which is being prepared. The road distance is about 350 km, so most EVs need one DC fast charging stop or a full charge at both ends; confirm a working charger on the route before you set off.`,
     faqs: [
       {
         question: "How many EV charging stations are there in Kenya?",
@@ -169,7 +169,7 @@ Nairobi to Kisumu is the route for Precifarm's first Corridor charging pilots, w
     updatedAt: "2026-10-22T06:00:00+03:00",
     sources: [S.techishTariff, S.citizenTariff],
     bodyMd: `## The short answer
-You can charge an electric car at home in Kenya from a normal socket, but it is slow. A 7 kW wallbox on its own circuit, such as the Pulse charger, covers a typical 60 km day in under two hours, for an illustrative **${sitePricing.homeDay}** a day in electricity. Pulse is from **${sitePricing.pulseFrom}**, or from **${sitePricing.lipaFrom}** with Lipa Pole Pole on M-Pesa.
+You can charge an electric car at home in Kenya from a normal socket, but it is slow. A 7 kW wallbox on its own circuit, such as the Pulse charger, covers a typical 60 km day in under two hours, for about **${sitePricing.homeDay}** a day in electricity. Pulse is from **${sitePricing.pulseFrom}**, or from **${sitePricing.lipaFrom}** with Lipa Pole Pole on M-Pesa.
 
 ## Normal socket or wallbox
 - **Normal 13 A socket:** the cable that comes with many cars draws about 2.3 kW and adds roughly 10 to 15 km of range an hour. Use a socket in good condition on a circuit with nothing else heavy on it.
@@ -179,10 +179,10 @@ You can charge an electric car at home in Kenya from a normal socket, but it is 
 A 7 kW wallbox draws about 32 A on a single-phase 240 V supply. An electrician should check four things before installation: that the incoming supply and main breaker have spare capacity, that the earthing is sound, that the charger has its own circuit and breaker, and that the circuit has the residual current protection EV charging needs (IEC 60364-7-722). Precifarm's site survey covers all four, and flags when Kenya Power needs to upgrade the supply.
 
 ## What it costs to run
-An illustrative figure is about **${sitePricing.homeDay}** for a typical 60 km day, against roughly ${sitePricing.dieselDay} of diesel. Kenya Power's e-mobility tariff is KES 16 per kWh, or KES 8 per kWh off-peak, before levies and VAT; see the [Kenya Power EV tariff guide](/guides/kenya-power-ev-charging-tariff).
+A typical 60 km day costs about **${sitePricing.homeDay}**, against roughly ${sitePricing.dieselDay} of diesel. Kenya Power's e-mobility tariff is KES 16 per kWh, or KES 8 per kWh off-peak, before levies and VAT; see the [Kenya Power EV tariff guide](/guides/kenya-power-ev-charging-tariff).
 
 ## Charging from solar
-A typical day of driving uses about 10 kWh. In Nairobi, each kilowatt of solar panels produces very roughly 4 to 5 kWh a day (a planning assumption that varies with roof, season and shading), so about 2.5 kW of panels covers one day of driving on average. The sun shines while most cars are away, so solar suits homes where the car is parked during the day; the survey sizes panels to your roof and mileage.
+A typical day of driving uses about 10 kWh. In Nairobi, each kilowatt of solar panels produces roughly 4 to 5 kWh a day, depending on roof, season and shading, so about 2.5 kW of panels covers one day of driving on average. The sun shines while most cars are away, so solar suits homes where the car is parked during the day; the survey sizes panels to your roof and mileage.
 
 ## The installation steps
 1. Request a home survey at [precifarm.com/charging/home](/charging/home).
@@ -201,7 +201,7 @@ A typical day of driving uses about 10 kWh. In Nairobi, each kilowatt of solar p
       },
       {
         question: "How much does it cost to charge an electric car at home in Kenya?",
-        answer: `About ${sitePricing.homeDay} for a typical 60 km day, against roughly ${sitePricing.dieselDay} of diesel for the same distance (illustrative figures; a survey quote gives your own).`,
+        answer: `About ${sitePricing.homeDay} for a typical 60 km day, against roughly ${sitePricing.dieselDay} of diesel for the same distance. A survey quote gives your own figures.`,
       },
       {
         question: "Do I need to upgrade my Kenya Power supply for an EV charger?",
@@ -235,7 +235,7 @@ Prices change often and depend on the financing deal. As one example, in July 20
 - **Kerbside charging:** charging the bike in place while you wait, for riders near a charger.
 
 ## The Precifarm Boda Hub
-The [Precifarm Boda Hub](/charging/boda-hub) offers battery swaps in under 5 minutes at partner-run pilot sites, paid with M-Pesa. An automated smart-locker version, where riders find a hub, reserve a pack, scan and swap on their own, is in development. Each site uses one battery make.`,
+The [Precifarm Boda Hub](/charging/boda-hub) offers battery swaps in under 5 minutes at partner-run sites, paid with M-Pesa. The Automated Boda Hub smart-locker cabinet is designed so riders can find a hub, reserve a pack, scan and swap on their own. Each site uses one battery make.`,
     faqs: [
       {
         question: "How does battery swapping work for electric boda bodas?",

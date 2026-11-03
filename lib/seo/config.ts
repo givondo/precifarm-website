@@ -19,14 +19,14 @@ export const siteConfig = {
  legalName: "Precifarm AI Ltd",
  /** Shown in the browser tab on the homepage */
  defaultTitle: defaultSiteTitle,
- tagline: "Electric mobility infrastructure for Africa",
+ tagline: "Powering the shift to electric transport",
  url: process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ?? "https://precifarm.com",
  locale: "en-KE",
  language: "en",
  region: "KE",
  timezone: "Africa/Nairobi",
  defaultDescription:
- "EV charging in Kenya: the Pulse home charger from KES 79,000 with Lipa Pole Pole on M-Pesa, plus fleet AC, highway DC fast charging pilots and boda battery swap.",
+ "EV charging in Kenya: the Pulse home charger from KES 79,000 with Lipa Pole Pole on M-Pesa, plus fleet AC, highway DC fast charging and boda battery swap.",
  defaultKeywords: [
  "EV charging Kenya",
  "EV charging stations Nairobi",
@@ -69,7 +69,6 @@ export const publicRoutes = [
  { path: "/charging/pulse-plus", label: "Pulse+ charger", changefreq: "monthly" as const, priority: 0.8 },
  { path: "/charging/corridor", label: "Corridor charging", changefreq: "monthly" as const, priority: 0.8 },
  { path: "/charging/boda-hub", label: "Automated Boda Hub", changefreq: "monthly" as const, priority: 0.82 },
- { path: "/ai", label: "AI platform", changefreq: "monthly" as const, priority: 0.78 },
  { path: "/evs", label: "Kenya EV guide", changefreq: "weekly" as const, priority: 0.84 },
  { path: "/charging/engineering", label: "Engineering Design Package", changefreq: "monthly" as const, priority: 0.8 },
  { path: "/partners", label: "Partners", changefreq: "monthly" as const, priority: 0.8 },

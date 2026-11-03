@@ -5,9 +5,9 @@ import { agentPage } from "@/lib/agent-page";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 
 /**
- * Hero workspace mock: an illustrative residential EV brief, not a live run.
+ * Hero workspace mock: a scripted residential EV brief.
  * The task cycling is a scripted animation, so the panel carries a visible
- * "Illustrative example" label and stays still for reduced-motion visitors.
+ * The task cycling stays still for reduced-motion visitors.
  */
 export default function AgentWorkspaceMock() {
   const mock = agentPage.heroMock;
@@ -29,7 +29,7 @@ export default function AgentWorkspaceMock() {
   return (
     <figure
       className="agent-workspace overflow-hidden rounded-2xl border border-border bg-[#0c0f12] text-left shadow-[0_24px_80px_-24px_rgba(15,23,42,0.45)]"
-      aria-label="Illustrative example of the Precifarm Agent workspace. Scripted, not a live run."
+      aria-label="Precifarm Agent workspace: a residential EV charging brief"
     >
       <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1.5 border-b border-white/10 px-4 py-3 sm:px-5">
         <div className="flex items-center gap-2 whitespace-nowrap">
@@ -37,9 +37,6 @@ export default function AgentWorkspaceMock() {
           <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80">
             Precifarm Agent
           </p>
-          <span className="shrink-0 rounded border border-white/20 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-white/70">
-            <span className="hidden sm:inline">Illustrative </span>Example
-          </span>
         </div>
         <p className="min-w-0 max-w-full truncate font-mono text-[11px] text-white/60 sm:text-xs">
           Project · {mock.project}

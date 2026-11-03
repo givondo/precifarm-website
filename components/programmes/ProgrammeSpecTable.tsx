@@ -1,6 +1,6 @@
-import { evidenceNote, programmeSpecsGenerated, type Programme } from "@/lib/programmes";
+import type { Programme } from "@/lib/programmes";
 
-/** Specification table generated from the PRECIFARM_MASTER engineering register. Each row says how the figure is known. */
+/** Specification table generated from the PRECIFARM_MASTER engineering register (approved public claims only). */
 export default function ProgrammeSpecTable({ programme, title = "Specification" }: { programme: Programme; title?: string }) {
   return (
     <div>
@@ -12,27 +12,18 @@ export default function ProgrammeSpecTable({ programme, title = "Specification" 
             <tr>
               <th scope="col" className="px-4 py-3 font-semibold sm:px-6">Item</th>
               <th scope="col" className="px-4 py-3 font-semibold sm:px-6">Value</th>
-              <th scope="col" className="hidden px-4 py-3 font-semibold sm:table-cell sm:px-6">How we know</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border">
             {programme.claims.map((c) => (
               <tr key={c.spec_id} className="align-top">
                 <th scope="row" className="px-4 py-3 font-medium text-forest-900 sm:px-6">{c.label}</th>
-                <td className="px-4 py-3 text-forest-700 sm:px-6">
-                  {c.text}
-                  <span className="mt-1 block text-xs text-forest-500 sm:hidden">{evidenceNote(c)}</span>
-                </td>
-                <td className="hidden px-4 py-3 text-xs text-forest-500 sm:table-cell sm:px-6">{evidenceNote(c)}</td>
+                <td className="px-4 py-3 text-forest-700 sm:px-6">{c.text}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      <p className="mt-3 text-xs leading-relaxed text-forest-500">
-        Figures come from Precifarm&apos;s engineering register (updated {programmeSpecsGenerated}). Design targets are not test
-        results, and no certification is claimed unless a row says Tested.
-      </p>
     </div>
   );
 }

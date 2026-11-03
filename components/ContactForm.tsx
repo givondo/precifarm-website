@@ -93,7 +93,7 @@ export default function ContactForm({ defaultInterest }: ContactFormProps) {
       <HoneypotField />
       <h2 className="text-lg font-semibold text-forest-900">Send us a message</h2>
       <p className="mt-2 text-sm leading-relaxed text-forest-600/80">
-        Home charger, fleet charging, Corridor site hosting, Boda swap, private AI or partnership: we route your enquiry
+        Home charger, fleet charging, Corridor site hosting, Boda swap, Precifarm Agent or partnership: we route your enquiry
         to the right Precifarm team.
       </p>
 

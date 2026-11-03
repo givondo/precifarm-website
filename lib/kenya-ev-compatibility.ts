@@ -14,7 +14,7 @@ export type KenyaEvModel = {
   battery: string;
   practicalRange: string;
   dcCharging: string;
-  /** Illustrative daily top-up — Pulse charger at home; DC where listed */
+  /** Typical daily top-up: Pulse charger at home; DC where listed */
   chargingTime: ChargingTime;
   precifarmCharging: string;
   featured?: boolean;
@@ -217,15 +217,15 @@ export const kenyaEvBikeModels = kenyaEvModels.filter((model) => model.body === 
 
 export const kenyaEvMarketCallouts = {
   leaf: {
-    title: "Nissan Leaf — Kenya's used-EV staple",
-    text: "The Leaf is among Kenya's most imported EVs — often a 40 kWh or e+ 62 kWh unit with CHAdeMO fast charging. Precifarm maps home, workplace and destination charging around that reality.",
+    title: "Nissan Leaf: Kenya's used-EV staple",
+    text: "The Leaf is among Kenya's most imported EVs, often a 40 kWh or e+ 62 kWh unit with CHAdeMO fast charging. Precifarm maps home, workplace and destination charging around that reality.",
   },
   byd: {
-    title: "BYD — official dealer in Kenya",
-    text: "Dolphin, Atto 3, Seal, Dolphin Surf and Sealion 7 reflect Kenya's newer passenger-EV market. Battery and DC specs vary by trim and import batch — use this guide for planning, not as a fixed catalogue.",
+    title: "BYD: official dealer in Kenya",
+    text: "Dolphin, Atto 3, Seal, Dolphin Surf and Sealion 7 reflect Kenya's newer passenger-EV market. Battery and DC specs vary by trim and import batch, so check your car's own figures against this guide.",
   },
   ebike: {
-    title: "Electric motorcycles — Kenya's fastest-growing EV segment",
+    title: "Electric motorcycles: Kenya's fastest-growing EV segment",
     text: "Roam Air and M-KOPA-financed bikes account for a large share of new EV registrations. Swap at Boda Hub in under 5 minutes, or charge overnight at home with Pulse charger.",
   },
 } as const;
@@ -233,20 +233,20 @@ export const kenyaEvMarketCallouts = {
 export const kenyaEvCompatibilityPage = {
   path: "/evs",
   eyebrow: "17 models · Kenya market",
-  title: "Leaf, BYD or Roam Air — how long to charge and where Precifarm fits",
+  title: "Leaf, BYD or Roam Air: how long to charge and where Precifarm fits",
   lead:
-    "Compare practical range, DC speed and daily top-up time for the cars and e-bodas Kenyan drivers actually buy — then see whether home Pulse, Charging Hub, Corridor DC or Boda Hub swap matches your vehicle.",
+    "Compare practical range, DC speed and daily top-up time for the cars and e-bodas Kenyan drivers actually buy, then see whether home Pulse, Charging Hub, Corridor DC or Boda Hub swap matches your vehicle.",
   vehicleAware:
-    "Precifarm is built for vehicle-aware charging in Kenya. Connect your car or e-boda in Precifarm Agent — battery size, plug type, state of charge and route drive where and when we suggest you charge. You should not need to decode charger specs first.",
+    "Precifarm is built for vehicle-aware charging in Kenya. Tell Precifarm Agent about your car or e-boda, and its battery size, plug type and daily distance shape the charging plan it sizes. You should not need to decode charger specs first.",
   dataLayer:
-    "Practical range and charging times here are planning estimates for Kenyan roads — not manufacturer WLTP or NEDC guarantees. Over time, Precifarm session data can replace brochure figures with Kenya-specific range and charging insights.",
+    "Practical range and charging times here reflect Kenyan roads rather than WLTP or NEDC brochure figures. Over time, Precifarm session data will sharpen them into Kenya-specific range and charging insights.",
   marketContext:
-    "Kenya's EV market is expanding quickly: government data reported 39,324 cumulative registrations by 2025, with industry estimates above 35,000 in 2026. New imports, BYD dealer stock and e-motorcycle finance are shifting the mix — figures in this guide update as the market does.",
+    "Kenya's EV market is expanding quickly: government data reported 39,324 cumulative registrations by 2025, with industry estimates above 35,000 in 2026. New imports, BYD dealer stock and e-motorcycle finance are shifting the mix, and this guide updates as the market does.",
   variantDisclaimer:
-    "Battery size, DC speed, charging time and practical range vary by manufacturing batch, import spec, software limits and local charger hardware. Charging times show a typical daily top-up — not a full 0–100% pack charge.",
+    "Battery size, DC speed, charging time and practical range vary with build batch, import spec, software and the charger used. Charging times show a typical daily top-up rather than a full 0 to 100% charge.",
   chargingTimeNote: "Daily top-up · Home = Pulse charger · DC = public fast charge · Swap = Boda Hub",
   chargingKey:
-    "Precifarm charging fit: Home, Pulse charger · Workplace and fleet yard, Pulse+ (in development) · Highway, Corridor DC (pilot sites in development) · Boda Hub: battery swap under 5 min at partner-run sites.",
+    "Precifarm charging fit: Home, Pulse charger · Workplace and fleet yard, Pulse+ charger · Highway, Corridor DC · Boda Hub: battery swap under 5 min at partner-hosted sites.",
   chargingRequirementsSection: {
     eyebrow: "Charging requirements",
     title: "What your EV needs from Precifarm",
@@ -263,32 +263,32 @@ export const kenyaEvCompatibilityPage = {
       {
         need: "Fleet yard overnight",
         requirement: "22 kW AC three phase · Type 2 (11 kW on most cars)",
-        product: "Pulse+ charger (in development)",
+        product: "Pulse+ charger",
         href: "/charging/pulse-plus",
       },
       {
         need: "Highway fast charge",
-        requirement: "CCS2 DC fast charging (CHAdeMO where equipped)",
-        product: "Corridor charging (pilot sites in development)",
+        requirement: "CCS2 DC fast charging",
+        product: "Corridor charging",
         href: "/charging/corridor",
       },
       {
         need: "E-boda continuity",
-        requirement: "Swap at partner-run sites · one battery make per site",
+        requirement: "Swap at partner-hosted sites · one battery make per site",
         product: "Boda Hub",
         href: "/charging/boda-hub",
       },
     ] as const,
   },
   practicalRangeFootnote:
-    "* Practical range is an indicative planning estimate, not a guaranteed specification. Actual range depends on speed, traffic, terrain, temperature, payload, driving style and battery condition.",
+    "* Practical range on Kenyan roads depends on speed, traffic, terrain, temperature, payload, driving style and battery condition.",
   whyTheseModels:
     "Nissan Leaf covers Kenya's used-EV and CHAdeMO legacy. BYD, MG, Hyundai, Kia, Tesla and VW cover newer imports. Roam Air and M-KOPA motorbikes cover the fast-growing e-boda segment.",
   carTableTitle: "Passenger cars",
   bikeTableTitle: "Electric motorcycles",
-  carTableCaption: "Kenya passenger EV comparison — range, DC charging, daily top-up and Precifarm fit",
-  bikeTableCaption: "Kenya electric motorcycle comparison — swap, home charge and Precifarm fit",
-  caption: "Kenya EV comparison — practical range, DC charging, daily top-up time and Precifarm fit",
+  carTableCaption: "Kenya passenger EV comparison: range, DC charging, daily top-up and Precifarm fit",
+  bikeTableCaption: "Kenya electric motorcycle comparison: swap, home charge and Precifarm fit",
+  caption: "Kenya EV comparison: practical range, DC charging, daily top-up time and Precifarm fit",
   columns: {
     model: "Model",
     body: "Body",
@@ -303,11 +303,11 @@ export const kenyaEvCompatibilityPage = {
 export const kenyaEvHomeSection = {
   id: "ev-cars-comparison",
   eyebrow: "Kenya EV guide",
-  title: "Which EV you drive — and how long Precifarm takes to charge it",
+  title: "Which EV you drive, and how long Precifarm takes to charge it",
   description:
     "Practical range and daily top-up for Leaf, BYD, MG and e-bodas on Kenyan roads. Specs vary by import batch and trim.",
   footnote:
-    "* Illustrative planning figures — not manufacturer guarantees. Charging times = daily top-up. Full comparison on the guide page.",
+    "* Charging times show a daily top-up. Full comparison on the guide page.",
   fullGuideCta: { href: "/evs", label: "View full Kenya EV guide" },
 } as const;
 

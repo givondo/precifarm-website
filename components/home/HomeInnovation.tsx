@@ -10,7 +10,7 @@ const featuredAreas = researchAreas.filter((a) => a.id !== "precifarm-agent").sl
 const exampleBrief = "3-bedroom house in Nairobi. Drives 80 km a day. Power cuts most weeks.";
 const exampleResults = agentPage.heroMock.analysis.filter((row) => row.label !== "Status");
 
-function pilotTarget(area: ResearchArea) {
+function fieldTarget(area: ResearchArea) {
   return area.milestones.find((m) => m.title.includes("(G3)"))?.when;
 }
 
@@ -33,13 +33,13 @@ export default function HomeInnovation() {
         <div className="home-section-grid mt-10 grid gap-4 lg:grid-cols-2">
           <article className="flex flex-col rounded-2xl border border-white/10 bg-white/[0.04] p-6 sm:p-8">
             <p className="flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-widest text-charge-300">
-              <span aria-hidden className="h-2 w-2 rounded-full bg-[#22c55e]" />
-              Precifarm Agent · live
+              <span aria-hidden className="h-2 w-2 rounded-full bg-charge-400" />
+              Precifarm Agent
             </p>
             <h3 className="heading-display heading-inverted mt-3 text-xl sm:text-2xl">An energy engineer in your browser.</h3>
             <p className="mt-3 text-sm leading-relaxed text-white/70">
               Describe your site. It sizes the charger, load and backup with {agentToolCatalogue.length} engineering
-              tools, and labels every number so you can check it.
+              tools, and shows how every number was worked out.
             </p>
 
             <figure className="mt-6 overflow-hidden rounded-xl border border-white/10 bg-black/20">
@@ -59,7 +59,7 @@ export default function HomeInnovation() {
                 ))}
               </dl>
               <figcaption className="border-t border-white/10 px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-charge-300">
-                Calculated by tools · reviewed by an engineer
+                Calculated by engineering tools
               </figcaption>
             </figure>
 
@@ -81,12 +81,12 @@ export default function HomeInnovation() {
               Tomorrow&apos;s charging and storage, tested in Kenya.
             </h3>
             <p className="mt-3 text-sm leading-relaxed text-white/70">
-              Each programme has a measurable goal and a dated path from lab bench to a Kenyan field pilot.
+              Each programme has a measurable goal and a dated path from the lab bench to Kenyan sites.
             </p>
 
             <ul className="mt-6 divide-y divide-white/10 rounded-xl border border-white/10">
               {featuredAreas.map((area) => {
-                const pilot = pilotTarget(area);
+                const field = fieldTarget(area);
                 return (
                   <li key={area.id}>
                     <Link href={`${researchPath}#${area.id}`} className="group block px-4 py-3.5">
@@ -101,9 +101,9 @@ export default function HomeInnovation() {
                       </div>
                       <p className="mt-1.5 flex justify-between gap-3 font-mono text-[11px] text-white/55">
                         <span>
-                          {gateName[area.workingTowards]} stage · {area.progress}%
+                          {gateName[area.workingTowards]} · {area.progress}%
                         </span>
-                        {pilot ? <span>Pilot {pilot}</span> : null}
+                        {field ? <span>In the field {field}</span> : null}
                       </p>
                     </Link>
                   </li>
@@ -113,7 +113,7 @@ export default function HomeInnovation() {
 
             <div className="mt-auto flex flex-wrap items-center gap-x-4 gap-y-3 pt-8">
               <Link href={researchPath} className="btn-primary">
-                See all research
+                See Precifarm R&amp;D
               </Link>
               <Link href="/contact" className="text-sm font-semibold text-white hover:text-charge-300">
                 Partner with us ›

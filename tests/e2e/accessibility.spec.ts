@@ -16,9 +16,7 @@ for (const route of PUBLIC_ROUTES) {
   });
 }
 
-test("Agent hero workspace is labelled as an example, not a live run", async ({ page }) => {
+test("Agent hero workspace has an accessible name", async ({ page }) => {
   await page.goto("/agent");
-  const mock = page.getByRole("figure", { name: /illustrative example/i });
-  await expect(mock).toBeVisible();
-  await expect(mock).toContainText(/example/i);
+  await expect(page.getByRole("figure", { name: /Precifarm Agent workspace/i })).toBeVisible();
 });

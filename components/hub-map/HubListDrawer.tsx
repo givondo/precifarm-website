@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  availabilityConfig,
   hubCapacityLabel,
   siteKindConfig,
   type ChargingHub,
@@ -33,8 +32,7 @@ export default function HubListDrawer({
         </div>
         <ul className="hub-drawer-list">
           {hubs.map((hub) => {
-            const avail = availabilityConfig[hub.availability];
-            const kind = siteKindConfig[hub.siteKind];
+                        const kind = siteKindConfig[hub.siteKind];
             const selected = hub.id === selectedHubId;
 
             return (
@@ -49,13 +47,13 @@ export default function HubListDrawer({
                 >
                   <span
                     className="hub-drawer-dot"
-                    style={{ backgroundColor: hub.siteKind === "swap" ? kind.pinColor : avail.color }}
+                    style={{ backgroundColor: kind.pinColor }}
                     aria-hidden
                   />
                   <span className="min-w-0 flex-1 text-left">
                     <span className="hub-drawer-name">{hub.name}</span>
                     <span className="hub-drawer-meta">
-                      {kind.shortLabel} · {avail.label} · {hubCapacityLabel(hub)}
+                      {kind.shortLabel} · {hubCapacityLabel(hub)}
                       {hub.distanceKm != null && ` · ${formatDistance(hub.distanceKm)}`}
                     </span>
                   </span>

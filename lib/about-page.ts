@@ -3,39 +3,39 @@ import { productImages } from "@/lib/product-images";
 export const aboutPage = {
  hero: {
  eyebrow: "About Precifarm · Kenya",
- title: "EV charging, battery swapping and private AI, engineered in Kenya.",
+ title: "EV charging, battery swapping and AI engineering, built in Kenya.",
  description:
- "We survey, finance, install and operate EV charging for homes, fleets and highways, with M-Pesa on every product. Alongside it we build Precifarm's own AI engineering tools, and run research into wireless charging.",
+ "We survey, finance, install and operate EV charging for homes, fleets and highways, with M-Pesa on every product. Alongside it we build Precifarm Agent, our AI engineering assistant, and develop wireless charging for cars.",
  primaryHref: "/charging",
  primaryLabel: "Explore charging",
  secondaryHref: "/research",
  secondaryLabel: "Research and development",
  },
  highlights: [
- { stat: "Charge", label: "Pulse at home today; Pulse+ and Corridor in development and pilot" },
- { stat: "Swap", label: "Boda Hub battery swapping for electric motorcycles, piloted with partners" },
+ { stat: "Charge", label: "Pulse at home today; Pulse+ for fleets and Corridor on the highway next" },
+ { stat: "Swap", label: "Boda Hub battery swapping for electric motorcycles, run with partners" },
  { stat: "M-Pesa", label: "Lipa Pole Pole instalments on the Pulse charger, and session pay" },
  ],
  pillars: {
  eyebrow: "What Precifarm sells",
  title: "Two pillars: energy infrastructure for electric transport, and AI systems that engineer it.",
  description:
- "The commercial beachhead is EV charging we can survey, install and operate. Every product is labelled by what it is today: available, pilot, in development or research.",
+ "We lead with EV charging we can survey, install and operate today, and build the AI that engineers every site.",
  items: [
  {
  eyebrow: "Energy infrastructure",
  title: "EV charging and battery swapping",
- text: "The Pulse charger is available for homes today. Pulse+ for fleet yards is in development; Corridor DC fast charging and Boda Hub battery swapping are pilots. Wireless charging is a research programme, not a product.",
+ text: "The Pulse charger is installed in homes today. Pulse+ brings three-phase charging to fleet yards and workplaces, Corridor brings DC fast charging to the highway, and Boda Hub swaps batteries for electric motorcycles. Our R&D team is developing wireless charging for cars.",
  href: "/charging",
  cta: "Explore charging",
  image: productImages.pulse,
  },
  {
- eyebrow: "AI systems",
- title: "AI agents for engineering",
- text: "The Agent Harness runs agent workflows on the hosted AI model that suits each task, with a person approving every result. It is in development. Precifarm Agent, our hosted engineering assistant, is in early access.",
- href: "/ai",
- cta: "See the AI platform",
+ eyebrow: "Precifarm Agent",
+ title: "An AI engineer for EV charging and energy design",
+ text: "Precifarm Agent sizes EV charging, solar, batteries, cables and protection with deterministic engineering tools, labels every number with its source, and leaves the sign-off to a qualified engineer.",
+ href: "/agent",
+ cta: "Try Precifarm Agent",
  image: {
  src: "/images/engineering/system-architecture.png",
  alt: "Precifarm engineering system architecture diagram produced with Precifarm's engineering tools",
@@ -52,10 +52,10 @@ export const aboutPage = {
  "Site survey, grid, solar, storage and charging are engineered as one site, not a charger bolted on afterwards.",
  "Lipa Pole Pole and session pay run on M-Pesa, without a bank account.",
  "Remote monitoring and three-year aftersale care cover home units we commission.",
- "Products in development or research are labelled that way on every page.",
+ "One team owns the site from the first survey to daily settlement.",
  ],
  image: productImages.corridorForecourt,
- imageCaption: "Corridor DC fast charging bay (concept render).",
+ imageCaption: "Corridor DC fast charging.",
  },
  operatingModel: {
  eyebrow: "How a site gets built",
@@ -87,9 +87,9 @@ export const aboutPage = {
  },
  principlesSection: {
  eyebrow: "How we work",
- title: "We engineer one system, label what is live, and lead with charging we can actually install.",
+ title: "We engineer one system and lead with charging we can install today.",
  description:
- "The same operating rules apply from a home wallbox to a highway hub, including a clear line between what is sold and what is still in design.",
+ "The same operating rules apply from a home wallbox to a highway hub.",
  },
  principles: [
  {
@@ -105,32 +105,31 @@ export const aboutPage = {
  text: "A charger that is down is a missed morning. Field response and remote monitoring sit behind every unit we commission.",
  },
  {
- title: "Live versus planned stays honest",
- text: "Every product is labelled available, pilot, in development or research. Capacity, prototypes and uncommissioned sites are not traction.",
+ title: "We say what is installed",
+ text: "We count chargers that are installed and sessions that are paid. Plans are described as plans, and figures come from our engineering register.",
  },
  ],
  scope: {
- eyebrow: "What is on sale",
- title: "The Pulse charger is what we sell today. Everything else is labelled by its stage.",
+ eyebrow: "Our range",
+ title: "Order a Pulse charger today, and bring us your fleet, highway or boda site.",
  description:
- "Available means sold and supported now. Pilot means running or being commissioned at named sites. In development means engineered but not released. Research is not a product.",
+ "Homes order Pulse now. Fleets, highway site hosts and boda operators register a site with us and we plan it with them.",
  today: {
- title: "Available and in pilot",
+ title: "Order today",
  items: [
- { name: "Pulse charger", href: "/charging/home", note: "Available · home charging" },
- { name: "Lipa Pole Pole", href: "/charging/home", note: "Available · M-Pesa instalments on Pulse" },
- { name: "Boda Hub", href: "/charging/boda-hub", note: "Pilot · partner-run swap sites" },
- { name: "Corridor DC", href: "/charging/corridor", note: "Pilot in development · Nairobi to Kisumu first" },
- { name: "Precifarm Agent", href: "/agent", note: "Early access · hosted AI design" },
+ { name: "Pulse charger", href: "/charging/home", note: "Home charging · survey and install" },
+ { name: "Lipa Pole Pole", href: "/charging/home", note: "M-Pesa instalments on Pulse" },
+ { name: "Precifarm Agent", href: "/agent", note: "AI design for EV charging and energy" },
  ],
  },
  roadmap: {
- title: "In development and research: not on sale",
- note: "Figures for these programmes are design targets, not tested ratings.",
+ title: "Plan your site with us",
+ note: "Register your site and we include it in our first installations.",
  items: [
- { name: "Pulse+ charger", href: "/charging/pulse-plus", note: "In development · 22 kW three phase" },
- { name: "Agent Harness", href: "/ai", note: "In development · private local AI" },
- { name: "Wireless EV charging", href: "/research", note: "Research programme" },
+ { name: "Pulse+ charger", href: "/charging/pulse-plus", note: "22 kW three phase · fleet yards and workplaces" },
+ { name: "Corridor charging", href: "/charging/corridor", note: "DC fast charging · Nairobi to Kisumu first" },
+ { name: "Boda Hub", href: "/charging/boda-hub", note: "Battery swapping · partner sites" },
+ { name: "Wireless EV charging", href: "/research", note: "R&D · light-duty cars" },
  ],
  },
  },
@@ -148,23 +147,23 @@ export const aboutPage = {
  },
  {
  layer: "Fleet charging",
- precifarm: "Design Pulse+ fleet charging (in development) and Boda Hub swaps, with M-Pesa billing and remote monitoring.",
+ precifarm: "Design Pulse+ fleet charging and Boda Hub swaps, with M-Pesa billing and remote monitoring.",
  partners: "Fleet and boda operators keep vehicles, riders and dispatch.",
  },
  {
  layer: "Highway hubs",
- precifarm: "Build, own and operate Corridor charging once sites are commissioned; the first sites are pilots in development. Sell energy and stand behind uptime.",
+ precifarm: "Build, own and operate Corridor charging, starting with the first site on the Nairobi to Kisumu route. Sell energy and stand behind uptime.",
  partners: "Site hosts provide land or location rights, and may co-invest where the economics fit.",
  },
  {
- layer: "AI systems",
- precifarm: "Build the Agent Harness and Precifarm Agent, with deterministic engineering tools and a person approving every result.",
+ layer: "AI engineering",
+ precifarm: "Build Precifarm Agent, with deterministic engineering tools and a person approving every result.",
  partners: "Engineers and companies keep their data and their sign-off.",
  },
  ],
  cta: {
  title: "Tell us which site you want to electrify.",
- description: "Home survey, fleet yard, highway site, boda swap or private AI: we respond within one business day.",
+ description: "Free EV charging survey for homes, fuel stations, offices, workplaces and depots. We respond within one business day.",
  primaryHref: "/contact",
  primaryLabel: "Contact us",
  secondaryHref: "/charging",

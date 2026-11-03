@@ -1,4 +1,4 @@
-/** Engineering page — site design basis (web); PDF remains canonical for hold points and task sheet */
+/** Engineering page: site design basis (web); the PDF stays canonical for hold points and the task sheet */
 
 import { engineeringDoc } from "@/lib/engineering-doc";
 import { productImages } from "@/lib/product-images";
@@ -7,7 +7,7 @@ import { siteCtas, sitePricing } from "@/lib/site-copy";
 export const engineeringPage = {
   hero: {
     eyebrow: "Engineering",
-    title: "One site design — grid, solar, storage and chargers.",
+    title: "One site design: grid, solar, storage and chargers.",
     description:
       "Precifarm engineers home, fleet and highway charging as a single system: Kenya Power import, optional PV and LiFePO₄, duty-cycle chargers and OCPP commissioning. This page is the web summary; the PDF is the full design basis and task sheet.",
     primaryLabel: engineeringDoc.downloadLabel,
@@ -26,7 +26,7 @@ export const engineeringPage = {
       },
       {
         title: "Fleet & depots",
-        text: "Pulse+ three-phase AC where vehicles park for hours (in development), Boda Hub swap for two-wheelers. Yard layout, billing and uptime in one engineering pack.",
+        text: "Pulse+ three-phase AC where vehicles park for hours, and Boda Hub swaps for two-wheelers. Register your yard: layout, billing and uptime come in one engineering pack.",
       },
       {
         title: "Highway & route",
@@ -37,7 +37,7 @@ export const engineeringPage = {
   siteTypes: {
     eyebrow: "By setting",
     title: "What we engineer on each site type.",
-    caption: "Planning assumptions — every job starts with survey and a written quote.",
+    caption: "Every job starts with a survey and a written quote.",
     columns: ["Setting", "Typical hardware", "Engineering focus"] as const,
     rows: [
       ["Urban home", "Pulse", "Consumer unit, cable route, meter, optional PV"],
@@ -50,14 +50,14 @@ export const engineeringPage = {
     eyebrow: "Energy stack",
     title: "What sits behind the charger.",
     description:
-      "Solar does not replace Kenya Power — it cuts cost and adds resilience. Storage peak-shaves when the feeder cannot deliver the charger's peak kW.",
-    columns: ["Layer", "Role", "Status"] as const,
+      "Solar does not replace Kenya Power; it cuts cost and adds resilience. Storage peak-shaves when the feeder cannot deliver the charger's peak kW.",
+    columns: ["Layer", "Role"] as const,
     rows: [
-      ["Grid", "Kenya Power connection and e-mobility tariff first", "Available"],
-      ["Solar", "Canopy or rooftop PV — cost, shade, daytime yield", "Available"],
-      ["Storage", "LiFePO₄ to peak-shave and back up charging loads", "Available"],
-      ["Charging", "Pulse wallbox available; Pulse+ AC and Corridor DC in development and pilot", "Available"],
-      ["Software", "OCPP monitoring, status, session records, M-Pesa", "In service"],
+      ["Grid", "Kenya Power connection and e-mobility tariff first"],
+      ["Solar", "Canopy or rooftop PV for cost, shade and daytime yield"],
+      ["Storage", "LiFePO₄ to peak-shave and back up charging loads"],
+      ["Charging", "Pulse at home, Pulse+ in yards, Corridor DC on highways and in towns"],
+      ["Software", "OCPP monitoring, session records, M-Pesa"],
     ],
   },
   productFit: {
@@ -72,9 +72,9 @@ export const engineeringPage = {
     columns: ["Product", "Best for", "Engineering note"] as const,
     rows: [
       ["Pulse · 7 kW", "Home daily charging", "Type 2 AC on customer meter · from KES 79,000"],
-      ["Pulse+ · 22 kW", "Fleet yards (in development)", "Three-phase AC overnight · 11 kW on most cars"],
-      ["Corridor DC", "Highway DC (pilot in development)", "Certified OEM charger, 120 to 180 kW · priced per site"],
-      ["Boda Hub", "E-motorbike swap (pilot)", "Partner-run sites · under 5 minutes"],
+      ["Pulse+ · 22 kW", "Fleet yards and workplaces", "Three-phase AC overnight · 11 kW on most cars"],
+      ["Corridor DC", "Highway and town DC", "Certified OEM charger, 120 to 180 kW · priced per site"],
+      ["Boda Hub", "Electric motorcycle swap", "Partner-hosted sites · under 5 minutes"],
     ],
   },
   holdPoints: {
@@ -105,13 +105,13 @@ export const engineeringPage = {
     eyebrow: "Figures",
     title: "Visual design basis.",
     description:
-      "Concept imagery for route hub, system architecture, typical two-bay plan and home hybrid. Not construction drawings — the PDF includes the full annex.",
+      "Route hub, system architecture, typical two-bay plan and home hybrid. The PDF includes the full annex.",
     items: engineeringDoc.figures,
   },
   faqs: {
     eyebrow: "Planning questions",
     title: "Common engineering questions.",
-    description: `Illustrative planning only, not quotations. Corridor prices are set per site at commissioning.`,
+    description: `How we size sites. Corridor prices are set per site at commissioning.`,
     ids: ["who-for", "solar-window", "batteries-hub", "cost-quote"] as const,
   },
   download: {
@@ -140,18 +140,18 @@ export const engineeringPageFaqs = [
     id: "solar-window",
     question: "Does solar replace the Kenya Power connection?",
     answer:
-      "No. A 40–80 kWp canopy in Kenya yields roughly 180–440 kWh/day. Against an illustrative 1,500 kWh/day hub, PV covers about 12–30% of daily energy. Use solar for cost, shade and resilience — not as a substitute for the Kenya Power feeder. Planning assumption.",
+      "No. A 40 to 80 kWp canopy in Kenya yields roughly 180 to 440 kWh a day. For a hub using 1,500 kWh a day, PV covers about 12 to 30% of daily energy. Use solar for cost, shade and resilience alongside the Kenya Power feeder.",
   },
   {
     id: "batteries-hub",
     question: "Why add batteries at a charging hub?",
     answer:
-      "When peak charger demand exceeds the Kenya Power import limit, LiFePO₄ storage covers the gap and smooths demand charges. Example: 120 kWh in 30 minutes at ~240 kW with a 180 kW import limit needs storage for the difference plus reserve. Site-specific — not a bill of quantities.",
+      "When peak charger demand exceeds the Kenya Power import limit, LiFePO₄ storage covers the gap and smooths demand charges. For example, 120 kWh in 30 minutes at about 240 kW with a 180 kW import limit needs storage for the difference plus reserve. Every site is sized on its own.",
   },
   {
     id: "cost-quote",
     question: "Are the engineering cost figures a quotation?",
     answer:
-      "No. Planning bands and worked examples in the PDF are illustrative. Corridor prices are set per site at commissioning. Pulse starts from KES 79,000. Request a site-specific cost sheet after survey.",
+      "No. The bands and worked examples in the PDF show how a site is sized; your quote follows a survey. Corridor prices are set per site at commissioning. Pulse starts from KES 79,000.",
   },
 ] as const;

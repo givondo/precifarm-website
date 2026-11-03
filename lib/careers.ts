@@ -84,7 +84,7 @@ export const careersValues = [
 export const careersPerks = [
   {
     title: "Real infrastructure",
-    text: "Work on live DC hubs, solar and storage — not pilot demos parked in a warehouse.",
+    text: "Work on charging sites, solar and storage in the field, not demos parked in a warehouse.",
   },
   {
     title: "Route-one focus",

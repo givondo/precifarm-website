@@ -154,7 +154,7 @@ export type ProductSchemaInput = {
   /** Additional properties shown as additionalProperty (power, connector, etc.). */
   additionalProperty?: { name: string; value: string }[];
   /**
-   * Omit `offer` for conceptual / not-on-sale products so we never imply
+   * Omit `offer` for products without a published price so we never imply
    * purchasability. When present, only use verified published prices.
    */
   offer?: ProductOfferInput;

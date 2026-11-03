@@ -20,7 +20,7 @@ export const homeAppDownload = {
     },
     {
       title: "Desktop first",
-      text: "Built for the desk. Install when early access opens.",
+      text: "Built for the desk, with the full engineering workspace.",
     },
   ],
   primaryLabel: "Request desktop access",

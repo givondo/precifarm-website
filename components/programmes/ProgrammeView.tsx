@@ -1,11 +1,9 @@
 import Link from "next/link";
 import SiteImage from "@/components/SiteImage";
 import PageCTA from "@/components/ui/PageCTA";
-import StatusBadge from "@/components/ui/StatusBadge";
 import ProgrammeSpecTable from "@/components/programmes/ProgrammeSpecTable";
 import type { ProgrammePageContent } from "@/lib/programme-pages";
 import { programme } from "@/lib/programmes";
-import { productStatusCopy } from "@/lib/product-status";
 
 export default function ProgrammeView({ content }: { content: ProgrammePageContent }) {
   const p = programme(content.id);
@@ -16,10 +14,6 @@ export default function ProgrammeView({ content }: { content: ProgrammePageConte
           <div>
             <p className="text-eyebrow">{content.eyebrow}</p>
             <h1 className="heading-display page-hero-title">{content.title}</h1>
-            <div className="mt-4 flex flex-wrap items-center gap-3">
-              <StatusBadge status={p.status} />
-              <span className="text-xs text-forest-500">{productStatusCopy[p.status].meaning}</span>
-            </div>
             <p className="page-hero-description">{content.intro}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href={content.cta.href} className="btn-primary">
@@ -35,9 +29,15 @@ export default function ProgrammeView({ content }: { content: ProgrammePageConte
           {content.image ? (
             <figure className="overflow-hidden rounded-2xl border border-border bg-white">
               <div className="relative aspect-[4/3] w-full surface-well">
-                <SiteImage src={content.image.src} alt={content.image.alt} fill priority sizes="(max-width: 1024px) 100vw, 50vw" className="object-contain p-4" />
+                <SiteImage
+                  src={content.image.src}
+                  alt={content.image.alt}
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className={content.image.fit === "cover" ? "object-cover" : "object-contain p-4"}
+                />
               </div>
-              <figcaption className="border-t border-border px-4 py-2 text-xs text-forest-500">{content.image.caption}</figcaption>
             </figure>
           ) : (
             <ol className="space-y-3 rounded-2xl border border-border bg-white p-6" aria-label={`${p.name} architecture`}>

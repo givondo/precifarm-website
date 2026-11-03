@@ -1,7 +1,7 @@
 import { engineeringSection } from "@/lib/brand-messaging";
 import { documentBrand } from "@/lib/document-brand";
 
-/** Engineering design package — solar chargers & stations */
+/** Engineering design package: solar chargers and stations */
 export const engineeringDoc = {
   id: "PF-ENG-SOLAR-HUB-001",
   version: "1.1",
@@ -9,7 +9,7 @@ export const engineeringDoc = {
   title: engineeringSection.title,
   subtitle: "Solar-assisted charging design basis and delivery task sheet",
   description:
-    "Design basis for Precifarm home hybrid charging, fleet depots, route hubs and partner sites — energy model, solar and LiFePO₄ sizing, Kenya Power hold points, and a phased site task sheet. Concept reference, not construction drawings.",
+    "Design basis for Precifarm home hybrid charging, fleet depots, route hubs and partner sites: energy model, solar and LiFePO₄ sizing, Kenya Power hold points, and a phased site task sheet.",
   brandCssHref: documentBrand.cssPath,
   logoMarkHref: documentBrand.logoMarkPath,
   downloadHref: "/downloads/precifarm-solar-charger-stations-engineering.pdf",
@@ -20,22 +20,22 @@ export const engineeringDoc = {
     {
       src: "/images/engineering/route-hub.png",
       alt: "Route charging hub with solar canopy, DC chargers, battery storage and electric bus",
-      caption: "Figure 1 — Route hub: solar canopy, CCS2 DC dispensers, LiFePO₄ storage, electric bus.",
+      caption: "Figure 1. Route hub: solar canopy, CCS2 DC charging and LiFePO₄ storage.",
     },
     {
       src: "/images/engineering/system-architecture.png",
       alt: "System architecture diagram of Kenya Power, solar canopy, storage, CCS2 charger and CSMS",
-      caption: "Figure 2 — System architecture: Kenya Power · canopy PV · LiFePO₄ · CCS2 DC · OCPP / CSMS.",
+      caption: "Figure 2. System architecture: Kenya Power · canopy PV · LiFePO₄ · CCS2 DC · OCPP / CSMS.",
     },
     {
       src: "/images/engineering/site-plan.png",
       alt: "Typical two-bay route hub site plan with bus circulation, solar canopy and electrical compound",
-      caption: "Figure 3 — Typical two-bay site plan: queue, CCS2 bays, electrical compound, dwell, expansion bay.",
+      caption: "Figure 3. Typical two-bay site plan: queue, CCS2 bays, electrical compound, dwell, expansion bay.",
     },
     {
       src: "/images/engineering/home-hybrid.png",
       alt: "Private house hybrid EV charging with rooftop solar and wall charger",
-      caption: "Figure 4 — Private house hybrid: grid + rooftop solar + wall charger + home storage.",
+      caption: "Figure 4. Private house hybrid: grid, rooftop solar, wall charger and home storage.",
     },
   ],
   highlights: [
@@ -49,13 +49,13 @@ export const engineeringDoc = {
     },
     {
       title: "Highway & route",
-      text: "Corridor T-canopy DC where intercity routes need it. Import limits, dwell and public DC sessions engineered for highway EV traffic.",
+      text: "Corridor DC from a certified OEM charger where intercity routes need it. Import limits, dwell and public DC sessions engineered for highway EV traffic.",
     },
   ],
   contents: [
     "Home hybrid and private-house design bases",
-    "Solar canopy and LiFePO₄ sizing methods (planning assumptions)",
-    "Concept single-line and typical two-bay site plan",
+    "Solar canopy and LiFePO₄ sizing methods",
+    "Single-line diagram and typical two-bay site plan",
     "Fleet depot and campus station design bases",
     "Highway DC and storage peak-shave worked examples",
     "Kenya Power, EPRA, NEMA and fire hold points",

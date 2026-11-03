@@ -8,7 +8,8 @@ export type ProgrammePageContent = {
   eyebrow: string;
   title: string;
   intro: string;
-  image?: { src: string; alt: string; caption: string };
+  /** cover fills the frame (scenes); contain keeps a cut-out product whole. */
+  image?: { src: string; alt: string; fit?: "contain" | "cover" };
   stack?: readonly { name: string; text: string }[];
   features: readonly { title: string; text: string }[];
   useCases: readonly string[];
@@ -27,9 +28,9 @@ export const pulsePlusPage: ProgrammePageContent = {
   intro:
     "The three-phase member of the Pulse family, for fleet yards, workplaces, apartment parking and partner sites. It shares the Pulse safety architecture and adapts to every car it charges.",
   image: {
-    src: productImages.pulsePlus.src,
-    alt: productImages.pulsePlus.alt,
-    caption: "Engineering render of Pulse+ Rev B. Not a photograph of a production unit.",
+    src: productImages.pulsePlusDepot.src,
+    alt: productImages.pulsePlusDepot.alt,
+    fit: "cover",
   },
   features: [
     {
@@ -56,11 +57,11 @@ export const pulsePlusPage: ProgrammePageContent = {
     "An upstream four-pole Type A 30 mA RCD per unit, installed by a licensed electrician as part of every Precifarm install.",
     "Charging time depends on the car: a car limited to 11 kW AC takes about twice as long as one that accepts 22 kW.",
   ],
-  cta: { href: "/contact?interest=pulse-plus", label: "Register interest" },
+  cta: { href: "/contact?interest=pulse-plus", label: "Plan your site" },
   secondaryCta: { href: "/partners", label: "Fleet programmes" },
   closing: {
     title: "Planning fleet or workplace charging?",
-    text: "Pulse+ is in development. Tell us about your site and vehicles and we will include it in the first deployments.",
+    text: "Tell us about your site and vehicles, and we will survey the supply and plan the bays, load sharing and payments.",
   },
 };
 
@@ -70,11 +71,10 @@ export const corridorPage: ProgrammePageContent = {
   eyebrow: "EV Charging · Highway and town",
   title: "Corridor DC fast charging",
   intro:
-    "DC fast charging for highways and towns. Each Corridor site starts with a certified OEM charger of 120 to 180 kW under the Precifarm brand, with the grid connection, layout and M-Pesa session pay engineered around the site. The first site, starting on Nairobi to Kisumu, is a pilot in development.",
+    "DC fast charging for highways and towns. Each Corridor site starts with a certified OEM charger of 120 to 180 kW under the Precifarm brand, with the grid connection, layout and M-Pesa session pay engineered around the site. The first site is being prepared on the Nairobi to Kisumu route.",
   image: {
     src: productImages.corridor.src,
     alt: productImages.corridor.alt,
-    caption: "Concept visualisation from an earlier Precifarm design. The first site uses a certified OEM charger.",
   },
   features: [
     {
@@ -105,52 +105,6 @@ export const corridorPage: ProgrammePageContent = {
   secondaryCta: { href: "/charging/engineering", label: "Engineering approach" },
   closing: {
     title: "Have a site on a busy route?",
-    text: "We are selecting the first Corridor pilot site. Tell us where your site is and what supply it has today.",
-  },
-};
-
-export const harnessPage: ProgrammePageContent = {
-  id: "harness",
-  path: "/ai",
-  eyebrow: "AI Platform",
-  title: "Agent Harness: AI agents on the right model for each job",
-  intro:
-    "The platform Precifarm builds its engineering agents on. It sends each task to the hosted AI model that suits it, DeepSeek by default with Claude or ChatGPT where a task needs them, runs a bounded team of agents through a visual workflow you can watch, and holds every result for a person to approve before it is exported.",
-  stack: [
-    { name: "Model routing", text: "Hosted models through their providers' APIs, picked per task. DeepSeek is the default." },
-    { name: "Bounded agents", text: "A set team of agent roles working to a plan, never more than the job needs." },
-    { name: "Visual workflows", text: "Each step shown as it runs, with every event journaled for replay and audit." },
-    { name: "Human sign-off", text: "Nothing is exported until a person approves it." },
-  ],
-  features: [
-    {
-      title: "The right model per task",
-      text: "Fast, low-cost models handle routine steps; stronger models are used only where a task needs them, so cost follows the work.",
-    },
-    {
-      title: "Work you can see",
-      text: "Every step, input and output is visible while it runs and kept afterwards, so a reviewer can see how a result was reached.",
-    },
-    {
-      title: "Built for engineering work",
-      text: "Precifarm uses it to turn charging-site briefs into calculated, checked engineering packages that a registered engineer then reviews.",
-    },
-  ],
-  useCases: [
-    "Engineering teams that want AI to draft calculations and packages for a qualified person to check.",
-    "Companies that need an audit trail of what an AI system did and who approved it.",
-    "Precifarm's own site engineering, as its first user.",
-  ],
-  requirementsTitle: "What it is and is not",
-  requirements: [
-    "In development. Early access is by request.",
-    "Prompts and documents are sent to the chosen model provider's API. Precifarm Agent on this website is also a hosted assistant and does not run privately on your machine.",
-    "Results are drafts until a qualified person reviews them; the harness never approves its own work.",
-  ],
-  cta: { href: "/contact?interest=ai", label: "Request early access" },
-  secondaryCta: { href: "/agent", label: "Try Precifarm Agent" },
-  closing: {
-    title: "Want AI agents working on your engineering?",
-    text: "Tell us about your team and the work you want to automate.",
+    text: "Tell us where your site is and what supply it has today, and we will start with a free survey and a Kenya Power study.",
   },
 };

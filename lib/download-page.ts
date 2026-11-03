@@ -32,7 +32,7 @@ export const downloadPageFaqs: FaqItem[] = [
 const platformStatusLabel: Record<(typeof appDownload.platforms)[number]["status"], string> = {
   available: "Available now",
   setup: "OpenCode setup",
-  early_access: "Early access",
+  early_access: "On request",
 };
 
 export const downloadPage = {

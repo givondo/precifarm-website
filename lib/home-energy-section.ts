@@ -1,9 +1,9 @@
-/** Homepage home energy section — compact packages and copy */
+/** Homepage home energy section: compact packages and copy */
 
 import { productImages } from "@/lib/product-images";
 
 export const homeEnergyPricingDisclaimer =
-  "Indicative pricing — your final quote follows a site survey." as const;
+  "Your final quote follows a site survey." as const;
 
 export const homeEnergySection = {
   id: "home-energy",

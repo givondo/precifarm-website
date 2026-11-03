@@ -9,19 +9,19 @@ export const chargingHub = {
   openLabel: "Open Charging Hub",
   nameLower: "charging hub",
   description:
-    "Charging Hub lists Precifarm fast chargers, boda battery swap and partner stops across Kenya, with honest open and coming-soon labels and M-Pesa pay at the bay.",
+    "Charging Hub maps planned Precifarm Corridor locations, boda battery swap sites and partner stops across Kenya, with M-Pesa pay at the bay.",
   url: "https://precifarm.com/hub",
 } as const;
 
 export const chargingHubPage = {
   hero: {
-    eyebrow: "Kenya · live map",
-    title: "Highway DC, boda swap and partner stops — each one labelled open or coming soon",
+    eyebrow: "Kenya · charging map",
+    title: "Highway DC, boda swap and partner stops along your route",
     description:
-      "Browse free on the web. Check plug type, the price per kWh and whether the bay is live before you drive — then pay with M-Pesa.",
+      "Browse free on the web. See where Precifarm Corridor and Boda Hub sites are planned, check partner stops and plug types, and get directions in one tap.",
     image: {
       src: productImages.corridor.src,
-      alt: "Precifarm Charging Hub — highway DC, boda battery swap and partner charging stops across Kenya",
+      alt: "Precifarm Charging Hub: highway DC, boda battery swap and partner charging stops across Kenya",
     },
     stopImages: [
       {
@@ -56,8 +56,8 @@ export const chargingHubPage = {
     items: [
       {
         id: "honest",
-        title: "Open or coming soon",
-        text: "Every site is labelled honestly. Coming-soon sites are never shown as open.",
+        title: "Know before you go",
+        text: "Each site shows what it offers and where it sits on your route.",
       },
       {
         id: "pick",
@@ -109,17 +109,17 @@ export const chargingHubPage = {
   steps: {
     eyebrow: "How it works",
     title: "Three steps to your next charge",
-    description: "Browse free on the web. Use Precifarm Agent for engineering and project work — desktop coming soon.",
+    description: "Browse free on the web. Use Precifarm Agent for engineering and project work.",
     items: [
       {
         step: "1",
         title: "Open Charging Hub",
-        text: "Use precifarm.com/hub in your browser to browse live and coming-soon sites.",
+        text: "Use precifarm.com/hub in your browser to browse sites along your route.",
       },
       {
         step: "2",
         title: "Pick a site",
-        text: "Choose fast charge, boda swap or partner. Check the open or coming-soon label.",
+        text: "Choose fast charge, boda swap or partner. Check the plug type and what the site offers.",
       },
       {
         step: "3",
@@ -131,15 +131,6 @@ export const chargingHubPage = {
     appLabel: "Desktop download",
     guideHref: "/guides",
     guideLabel: "Guides",
-  },
-  statusLabels: {
-    eyebrow: "Site labels",
-    title: "What the labels mean",
-    items: [
-      { label: "Open now", text: "You can charge here today." },
-      { label: "Coming soon", text: "Still being built — not open yet." },
-      { label: "Partner", text: "Run by the shop or station on site." },
-    ],
   },
   siteSelection: {
     eyebrow: "Site selection",
@@ -157,7 +148,7 @@ export const chargingHubPage = {
       },
       {
         title: "Site and dwell",
-        text: "Safe parking, shade and amenities drivers want while charging — worth stopping for, not just a quick plug-in.",
+        text: "Safe parking, shade and amenities drivers want while charging, so the stop is worth making.",
       },
       {
         title: "Durable control",
@@ -177,7 +168,7 @@ export const chargingHubPage = {
   },
   cta: {
     title: "Ready to charge?",
-    description: "Browse the hub for live sites. Want Precifarm Agent on desktop? Request access. Have land for a charger? Talk to us.",
+    description: "Browse the hub for sites on your route. Want Precifarm Agent on desktop? Request access. Have land for a charger? Talk to us.",
     primaryHref: "/download",
     primaryLabel: "Get Precifarm Agent",
     secondaryHref: "/contact",

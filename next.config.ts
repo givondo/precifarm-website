@@ -58,6 +58,8 @@ const nextConfig: NextConfig = {
  { source: "/charging/modular-energy", destination: "/charging", permanent: true },
  { source: "/charging/modular-energy/:path*", destination: "/charging", permanent: true },
  { source: "/ai-agent", destination: "/agent", permanent: true },
+ // HD-046 (3 Nov 2026): the Agent Harness page is retired; the AI page is Precifarm Agent.
+ { source: "/ai", destination: "/agent", permanent: true },
  { source: "/precifarm-agent", destination: "/agent", permanent: true },
  // Legacy marketing site / WordPress (GSC 5xx & 404 cleanup)
  { source: "/financing", destination: "/charging/home", permanent: true },

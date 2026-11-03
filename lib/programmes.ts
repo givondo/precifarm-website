@@ -82,7 +82,10 @@ const meta: Record<ProgrammeCode, { id: ProgrammeId; pillar: Pillar; href: strin
   },
 };
 
-export const programmes: readonly Programme[] = generated.products.map((p) => ({
+/** Programmes published on precifarm.com. AGENTH stays in the engineering register but is not on the site (HD-046). */
+const SITE_CODES: ReadonlySet<ProgrammeCode> = new Set<ProgrammeCode>(["PULSE7K2", "PULSEPLUS", "CORRIDOR", "BODAHUB", "WPT"]);
+
+export const programmes: readonly Programme[] = generated.products.filter((p) => SITE_CODES.has(p.code)).map((p) => ({
   ...meta[p.code],
   code: p.code,
   name: p.name,

@@ -21,6 +21,11 @@ export const productImages = {
     alt: "Precifarm Boda Hub battery-swap locker on its swap pad, with safety bollards and the rider screen on the side totem",
     brand: "none" as const,
   },
+  pulsePlusDepot: {
+    src: "/images/renders/pulse-plus-22kw-depot-rb.jpg",
+    alt: "Three Precifarm Pulse+ 22 kW chargers on a fleet depot wall above marked parking bays",
+    brand: "none" as const,
+  },
   pulsePlus: {
     src: productRenderPaths.pulsePlus22kW,
     alt: "Precifarm Pulse+ 22 kW three-phase wallbox with its tethered Type 2 cord coiled on the wall dock",
@@ -29,7 +34,7 @@ export const productImages = {
   corridor: {
     /** Corridor concept visualisation from the earlier Precifarm-designed dispenser (stopped 2 Nov 2026); the first site uses a certified OEM charger. */
     src: "/images/products/corridor-v6.jpg",
-    alt: "Precifarm Corridor DC fast charger concept with dual CCS2 holsters and M-Pesa tap-to-pay on the display",
+    alt: "Precifarm Corridor DC fast charger with dual CCS2 holsters and M-Pesa tap-to-pay on the display",
     brand: "corridor" as const,
   },
   corridorDispenserRender: {
@@ -48,8 +53,9 @@ export const productImages = {
     brand: "none" as const,
   },
   financing: {
-    src: "/images/products/financing.png",
-    alt: "Lipa Pole Pole M-Pesa instalments for Precifarm home charging",
+    /** Lipa Pole Pole pays for this same Pulse install; the earlier image showed a generic charger. */
+    src: "/images/renders/pulse-7kw-installed-4x3.jpg",
+    alt: "Precifarm Pulse charger installed on a home wall, paid for in M-Pesa instalments with Lipa Pole Pole",
     brand: "none" as const,
   },
 } as const;

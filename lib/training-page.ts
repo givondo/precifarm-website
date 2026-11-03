@@ -47,11 +47,11 @@ export const trainingPage = {
     cards: [
       {
         title: "Same kit you operate",
-        text: "Courseware follows Pulse, Pulse+, Boda Hub and Corridor: the equipment Precifarm installs and pilots in Kenya, not a generic OEM slide deck.",
+        text: "Courseware follows Pulse, Pulse+, Boda Hub and Corridor: the equipment Precifarm installs and operates in Kenya, not a generic OEM slide deck.",
       },
       {
         title: "Field modules on route",
-        text: "T2 and T3 include supervised work at installation and pilot sites, with CSMS, M-Pesa sessions and fault drills included.",
+        text: "T2 and T3 include supervised work at installation sites, with CSMS, M-Pesa sessions and fault drills included.",
       },
       {
         title: "Clear scope of work",
@@ -90,7 +90,7 @@ export const trainingPage = {
     products: [
       { id: "corridor", ...productImages.corridor, label: "Corridor · highway DC" },
       { id: "pulse", ...productImages.pulse, label: "Pulse · home 7 kW" },
-      { id: "pulsePlus", ...productImages.pulsePlus, label: "Pulse+ · fleet 22 kW (in development)" },
+      { id: "pulsePlus", ...productImages.pulsePlus, label: "Pulse+ · fleet 22 kW" },
       { id: "boda", ...productImages.boda, label: "Boda Hub · swap" },
     ] as const,
     trackCards: evChargingTracks.map((track) => ({
@@ -167,7 +167,7 @@ export const trainingPageFaqs = [
     id: "partner-cohorts",
     question: "Can we run a private cohort for our fleet or dealer network?",
     answer:
-      "Yes. Partner cohorts of 6 to 16 participants can be scheduled on request with custom dates. Field modules use Precifarm installation and pilot sites where applicable.",
+      "Yes. Partner cohorts of 6 to 16 participants can be scheduled on request with custom dates. Field modules use Precifarm installation sites where available.",
   },
 ] as const;
 

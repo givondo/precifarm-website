@@ -1,5 +1,19 @@
 # 17 Change log
 
+## Pivot pass, HD-045 and HD-046 (3 November 2026)
+
+David's instruction at 21:54: approve R02, Pulse at up to 7.4 kW, no maturity labels or warnings, Precifarm Agent as the only AI page, pages aligned with the current pivot, improved UI and images.
+
+| Change | Detail |
+|---|---|
+| Agent Harness removed | `/ai` page deleted and redirected to `/agent`; navigation group is now Precifarm Agent (agent and app); harness removed from programme list, SEO registry, entities, sitemap, about page, contact topics and LLM summary |
+| Labels and warnings removed | Status badges on homepage, scenarios, programme pages, Charging Hub and Boda Hub; spec table evidence column and footnote; image captions; Agent example label; disclaimer sentences. Maturity is carried by wording and calls to action ("Book a free survey", "Plan your site", "Host a site", "Partner on a site") |
+| Copy aligned with the pivot | Corridor: certified OEM 120 to 180 kW under the Precifarm brand, first site being prepared on Nairobi to Kisumu, no storage at the first site. Boda Hub: built with site partners; payment by energy with a daily cap (HD-039). Hub map: Precifarm sites shown as planned, no live availability. Announcement bar no longer claims public DC charging |
+| Calls to action | Free EV charging survey for homes, fuel stations, offices, workplaces and depots is the primary action (hero, final CTA, new contact topic) |
+| UI | Homepage range rebuilt as image tiles with a Precifarm Agent feature panel and an R&D tile; hero stats in the display face |
+| Images | Pulse+ page uses the Rev B depot scene; the Lipa Pole Pole card shows the installed Pulse (the old image showed a generic charger); structured-data logo in brand green; 24 unreferenced images for retired products removed (13.2 MB) |
+| Waiting | Spec tables still carry R01 claims until David records the R02 approval in PRECIFARM_MASTER and `lib/generated/product-specs.ts` is regenerated |
+
 ## Brand palette, D1 (3 November 2026)
 
 David chose the Precifarm document brand for the site. Token-level change only: no layout, copy, URL or claim changed. See 06.

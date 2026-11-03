@@ -77,7 +77,6 @@ export default function AgentStackDiagram() {
   return (
     <DiagramFrame
       title="Current software stack"
-      badge="Early access"
       caption="Numbers are computed by the calculators. The model explains them; an engineer signs off."
     >
       <div className="rounded-lg border border-border bg-white px-3 py-3 sm:px-4">

@@ -30,7 +30,7 @@ type NavGroup = {
 const groupIcons: Record<(typeof siteNavGroups)[number]["title"], ReactNode> = {
   "EV Charging": <IconBolt />,
   "Swapping & R&D": <IconMap />,
-  "AI Platform": <IconGrid />,
+  "Precifarm Agent": <IconGrid />,
   Company: <IconUsers />,
 };
 

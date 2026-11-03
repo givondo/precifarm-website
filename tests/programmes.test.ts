@@ -6,10 +6,10 @@ import assert from "node:assert/strict";
 
 const RETIRED = /\bSpark\b|Pod energy storage|\bPod\b|Depot charging station|\bP1 Go\b|\bP2 Home\b|Mini Stack|MegaPack/;
 
-test("six programmes come from the generated engineering export with their register status", async () => {
+test("the site publishes five programmes from the engineering export; the Agent Harness is not on the site (HD-046)", async () => {
   const { programmes } = await import("@/lib/programmes");
   const codes = programmes.map((p) => p.code).sort();
-  assert.deepEqual(codes, ["AGENTH", "BODAHUB", "CORRIDOR", "PULSE7K2", "PULSEPLUS", "WPT"]);
+  assert.deepEqual(codes, ["BODAHUB", "CORRIDOR", "PULSE7K2", "PULSEPLUS", "WPT"]);
   const status = Object.fromEntries(programmes.map((p) => [p.code, p.status]));
   assert.equal(status.PULSE7K2, "available");
   assert.equal(status.PULSEPLUS, "development");
@@ -43,24 +43,34 @@ test("Pulse charge-time claim follows the register: under two hours, not 90 minu
   assert.ok(!/90 ?min/i.test(text), "Pulse still claims about 90 minutes");
 });
 
-test("modular energy routes redirect to /charging and /ai is a page, not a redirect", async () => {
+test("modular energy routes redirect to /charging and /ai redirects to Precifarm Agent", async () => {
   const config = (await import("@/next.config")).default;
   const redirects = await config.redirects!();
   const to = (src: string) => redirects.find((r: { source: string }) => r.source === src);
   assert.equal(to("/charging/modular-energy")?.destination, "/charging");
   assert.equal(to("/charging/modular-energy/:path*")?.destination, "/charging");
-  assert.equal(to("/ai"), undefined, "/ai must not redirect");
+  assert.equal(to("/ai")?.destination, "/agent", "/ai must redirect to /agent");
   const { existsSync } = await import("node:fs");
   const { resolve } = await import("node:path");
   assert.ok(!existsSync(resolve(import.meta.dirname, "../app/charging/modular-energy")), "modular energy pages still exist");
-  for (const p of ["../app/charging/pulse-plus/page.tsx", "../app/charging/corridor/page.tsx", "../app/ai/page.tsx"])
+  for (const p of ["../app/charging/pulse-plus/page.tsx", "../app/charging/corridor/page.tsx", "../app/agent/page.tsx"])
     assert.ok(existsSync(resolve(import.meta.dirname, p)), `${p} missing`);
 });
 
-test("hosted Precifarm Agent is never described as private", async () => {
-  const { harnessPage } = await import("@/lib/programme-pages");
-  const hosted = harnessPage.requirements.find((r) => r.includes("Precifarm Agent"));
-  assert.ok(hosted && /hosted/i.test(hosted) && /does not run privately/i.test(hosted));
+test("no page describes Precifarm AI as private, local or on your own machine", async () => {
+  const { readdirSync, readFileSync, statSync } = await import("node:fs");
+  const { resolve, join } = await import("node:path");
+  const root = resolve(import.meta.dirname, "..");
+  const hits: string[] = [];
+  const walk = (d: string) => {
+    for (const n of readdirSync(d)) {
+      const p = join(d, n);
+      if (statSync(p).isDirectory()) walk(p);
+      else if (/\.(ts|tsx)$/.test(n) && !p.includes("generated") && /local-first|on your own machine|Agent Harness|private AI/i.test(readFileSync(p, "utf8"))) hits.push(p.slice(root.length + 1));
+    }
+  };
+  for (const d of ["app", "lib", "components"]) walk(join(root, d));
+  assert.deepEqual(hits, [], `still describes private or local AI: ${hits.join(", ")}`);
 });
 
 test("Corridor DC carries no public price until a site is commissioned and costed", async () => {

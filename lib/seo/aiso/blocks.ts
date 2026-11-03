@@ -24,23 +24,23 @@ export const chargingHowToBlock: AisoContentBlock = {
     "Visit precifarm.com/charging/home or open Precifarm Agent.",
     "Choose the Pulse charger and request a site survey.",
     "Pay the deposit via M-Pesa (Lipa Pole Pole instalments available).",
-    "Precifarm installs and commissions your charger — typically within one day after survey approval.",
+    "Precifarm installs and commissions your charger, typically within one day of survey approval.",
   ],
 };
 
 /** Default homepage AISO blocks */
 export const homepageAisoBlocks: AisoContentBlock[] = [
   buildExecutiveSummary(
-    "Precifarm builds energy infrastructure for electric transport in Kenya, from the Pulse home charger to Corridor DC pilots on the highway and Boda Hub battery swapping, plus private AI systems for engineering. M-Pesa on every product and Lipa Pole Pole on any phone.",
+    "Precifarm builds energy infrastructure for electric transport in Kenya, from the Pulse home charger to Corridor DC fast charging on the highway and Boda Hub battery swapping, plus Precifarm Agent, an AI engineering assistant. M-Pesa on every product and Lipa Pole Pole on any phone.",
   ),
   buildKeyFacts("Key facts", [
-    "Programmes: Pulse charger (available) · Pulse+ (in development) · Corridor DC (pilot in development) · Boda Hub (pilot) · Wireless charging (research) · Agent Harness (in development). Lipa Pole Pole finances the Pulse charger on M-Pesa.",
+    "Programmes: Pulse charger · Pulse+ · Corridor DC · Boda Hub · wireless charging R&D · Precifarm Agent. Lipa Pole Pole finances the Pulse charger on M-Pesa.",
     "Pulse charger from KES 79,000 · Lipa Pole Pole on M-Pesa",
-    "Corridor DC price per kWh set per site at commissioning and shown before you start",
+    "Corridor DC price per kWh set per site and shown before you start",
     "A home charging day of ~60 km ≈ KES 140 vs ~KES 1,000 diesel per day",
     "Pulse charger: a typical 60 km day in under two hours from the meter.",
     "Certified home installation typically in one day · three-year aftersale care",
-    "Precifarm Agent desktop — request access at precifarm.com/download. Coming soon for Windows and macOS.",
+    "Precifarm Agent at precifarm.com/agent, and for desktop on Windows and macOS at precifarm.com/download.",
   ]),
   buildGeoFaqSet("EV charging", homepageChargingFaqs),
 ];
