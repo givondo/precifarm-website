@@ -47,7 +47,8 @@ export default function Logo({
           style={{ fontSize: word, lineHeight: 1.1 }}
         >
           <span className={onDark ? "text-white" : "text-forest-900"}>Preci</span>
-          <span className={onDark ? "text-charge-300" : "text-charge-600"}>farm</span>
+          {/* The logo keeps its original blue (HD-047), independent of the green UI palette. */}
+          <span className={onDark ? "text-[#93C5FD]" : "text-[#2563EB]"}>farm</span>
         </span>
         <svg
           viewBox="0 0 100 8"

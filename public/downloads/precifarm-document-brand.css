@@ -16,7 +16,7 @@
   --pf-charge: #1f6f4a;
   --pf-charge-soft: #eef7f2;
   --pf-charge-hover: #195a3c;
-  --pf-mark-bg: #eef7f2;
+  --pf-mark-bg: #eff6ff;
 
   /* Aliases for document body styles */
   --ink: var(--pf-ink);

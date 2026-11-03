@@ -40,4 +40,4 @@ Each grey was matched by lightness, not by name, so no text lost contrast.
 
 ## Logo and icons
 
-The chevron mark and the wordmark underline moved from #2563EB to #1F6F4A (separate commit). `app/icon.png`, `public/favicon.png` and `app/apple-icon.png` were recoloured in place: hue moved to the brand green and saturated areas deepened to #1F6F4A, so the touch icon keeps its gradient and construction lines. The Android app icon lives in the mobile repository and is still blue.
+The logo keeps its original blue (HD-047, 3 Nov 2026): chevron mark #2563EB on #EFF6FF, "farm" in #2563EB (#93C5FD on dark), favicon, Apple touch icon, structured-data logo and the downloadable mark. `components/Logo.tsx` pins the wordmark colour so it does not follow the green UI palette. A green version was made and reverted the same evening; it is in git history (commit 2ddbc1b).
