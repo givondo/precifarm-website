@@ -1,5 +1,17 @@
 # 17 Change log
 
+## Brand palette, D1 (3 November 2026)
+
+David chose the Precifarm document brand for the site. Token-level change only: no layout, copy, URL or claim changed. See 06.
+
+| Change | Files | Verified by |
+|---|---|---|
+| Actions, links and eyebrows from blue #2563EB to Precifarm green #1F6F4A; ink #111827; cool greys matched by lightness | `app/globals.css` | e2e axe colour contrast on 24 routes at 1440 and 390 px: 110 pass |
+| Blue glows in hero, page hero, footer and showcase backgrounds now brand green | `app/globals.css` | Before and after captures |
+| Training tier T3 header from charge-700 to ink, so T1 (emerald) and T3 stay distinct | `app/globals.css` | Visual |
+| Share image background from navy to ink and deep green | `app/opengraph-image.tsx` | Build |
+| Logo mark, wordmark underline, favicon and Apple touch icon in brand green (separate commit, revertible on its own) | `components/PrecifarmLogoMark.tsx`, `components/Logo.tsx`, `app/icon.png`, `public/favicon.png`, `app/apple-icon.png` | Pixel check: stroke is exactly #1F6F4A |
+
 ## Phase B1, second pass (3 November 2026)
 
 No URL, product claim or calculation changed. Dev dependencies added: `@playwright/test` 1.64.1, `@axe-core/playwright` 4.12.1 (matched to the axe-core already in the lockfile). Installed with npm 11 so the lockfile keeps its `libc` fields, which the Alpine Docker image needs to pick musl binaries.

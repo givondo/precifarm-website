@@ -11,7 +11,7 @@
 | Surfaces | `background`, `foreground`, `muted`, `border`, `surface` | White, #f5f5f5, #e5e5e5 |
 | Fonts | `font-sans` Geist, `font-display` Plus Jakarta Sans, `font-mono` Geist Mono | |
 
-The live palette is therefore black ink, green links and blue buttons. The Precifarm document brand (green #1F6F4A, ink #111827, grey #6B7280, Helvetica) is not used on the site. Aligning the two is a brand decision for David and is not made on this branch (see 05, decision D1).
+The baseline palette was black ink, green links and blue buttons, unlike the Precifarm document brand (green #1F6F4A, ink #111827, grey #6B7280). On 3 November the site moved to the document brand; see 06. Typeface stays Geist and Plus Jakarta Sans on the web; Helvetica remains the document typeface.
 
 ## Patterns
 
