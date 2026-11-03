@@ -79,3 +79,7 @@ next-env.d.ts
 # local IDE / agent state
 .cursor/
 .agent/
+
+# playwright
+/test-results/
+/playwright-report/
