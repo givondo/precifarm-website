@@ -60,28 +60,28 @@ const cityMeta: Record<
 > = {
   nairobi: {
     region: "nairobi-metro",
-    services: ["Home", "Corridor DC", "Boda Hub", "Fleet AC", "Partners"],
+    services: ["Home", "ARC Corridor", "Boda Hub", "Fleet AC", "Partners"],
     status: "live",
     county: "Nairobi County",
     description: "Capital hub — home installs, Boda Hub swap and corridor access west and coast.",
   },
   kisumu: {
     region: "western",
-    services: ["Corridor DC", "Boda Hub", "Home"],
+    services: ["ARC Corridor", "Boda Hub", "Home"],
     status: "live",
     county: "Kisumu County",
-    description: "Western terminus on Nairobi–Kisumu — Corridor DC, Boda Hub and home surveys.",
+    description: "Western terminus on Nairobi–Kisumu — ARC Corridor, Boda Hub and home surveys.",
   },
   nakuru: {
     region: "western",
-    services: ["Corridor DC", "Boda Hub", "Home"],
+    services: ["ARC Corridor", "Boda Hub", "Home"],
     status: "live",
     county: "Nakuru County",
     description: "En-route stop between Nairobi and Kisumu.",
   },
   mombasa: {
     region: "coast",
-    services: ["Home", "Corridor DC"],
+    services: ["Home", "ARC Corridor"],
     status: "next",
     county: "Mombasa County",
     description: "Coast terminus (next phase) — home charging today; corridor DC follows western proof.",

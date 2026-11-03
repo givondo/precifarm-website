@@ -31,7 +31,7 @@ export const entityRegistry: KnowledgeEntity[] = [
  id: "product-corridor",
  slug: "corridor",
  type: "equipment",
- name: "Corridor charging",
+ name: "ARC Corridor",
  description:
  "DC fast charging from a certified OEM charger of 120 to 180 kW under the Precifarm brand, engineered per site. The first site, on the Nairobi to Kisumu route, is being prepared. Price per kWh set per site and shown before you start.",
  url: absoluteUrl("/charging/corridor"),
@@ -94,7 +94,7 @@ export const entityRegistry: KnowledgeEntity[] = [
  slug: "hub-charging",
  type: "service",
  name: "Highway charging",
- description: "Corridor DC fast charging, paid with M-Pesa. The first site, on the Nairobi to Kisumu route, is being prepared.",
+ description: "ARC Corridor DC fast charging, paid with M-Pesa. The first site, on the Nairobi to Kisumu route, is being prepared.",
  url: absoluteUrl("/charging/corridor"),
  relatedIds: ["equipment-ev-charger", "location-nairobi", "location-kisumu", "service-charge-map"],
  },
@@ -216,7 +216,7 @@ export function internalLinksForPath(path: string): { href: string; label: strin
  add(chargingHub.path, chargingHub.label, "See hub locations");
  add("/charging/home", "Home EV charging", "Pulse charger and Lipa Pole Pole");
  add("/charging/pulse-plus", "Pulse+ charger", "22 kW fleet and workplace AC");
- add("/charging/corridor", "Corridor charging", "DC fast charging on the highway");
+ add("/charging/corridor", "ARC Corridor", "DC fast charging on the highway");
  add("/charging/boda-hub", "Automated Boda Hub", "Self-service e-motorcycle battery swap");
  add("/partners", "Fleet EV charging", "Partner operator services");
  add("/evs", "Kenya EV guide", "Which charger fits your EV");

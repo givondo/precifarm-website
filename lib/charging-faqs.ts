@@ -51,13 +51,13 @@ export const consumerChargingFaqs: ChargingFaq[] = [
  id: "public-dc-price",
  question: "How much is public DC charging?",
  answer:
- "At Precifarm Corridor charging sites the price per kWh is set for each site at commissioning and shown before you start, at the charger and in M-Pesa. The first Corridor site, on the Nairobi to Kisumu route, is being prepared. For example, a car that accepts about 120 kW can add around 60 kWh in 30 minutes. Charging on your own home meter is usually cheaper per kWh than public DC.",
+ "At Precifarm ARC Corridor sites the price per kWh is set for each site at commissioning and shown before you start, at the charger and in M-Pesa. The first Corridor site, on the Nairobi to Kisumu route, is being prepared. For example, a car that accepts about 120 kW can add around 60 kWh in 30 minutes. Charging on your own home meter is usually cheaper per kWh than public DC.",
  },
  {
  id: "home-vs-public",
  question: "Why is home charging cheaper than public DC?",
  answer:
- "At home you pay your household electricity tariff on your own meter. Public Corridor charging sites recover charger hardware, Kenya Power demand, monitoring and uptime, so the public price per kWh is higher than a home tariff, and is set for each site at commissioning.",
+ "At home you pay your household electricity tariff on your own meter. Public ARC Corridor sites recover charger hardware, Kenya Power demand, monitoring and uptime, so the public price per kWh is higher than a home tariff, and is set for each site at commissioning.",
  },
  {
  id: "lipa-pole-pole",
@@ -132,7 +132,7 @@ export const consumerChargingFaqs: ChargingFaq[] = [
  },
  {
  id: "corridor",
- question: "What is Corridor charging?",
+ question: "What is ARC Corridor?",
  answer:
  "Corridor is Precifarm's DC fast charging for highways and towns: a certified OEM DC charger of 120 to 180 kW with CCS2 connectors, under the Precifarm brand. Each site is engineered around a power study with Kenya Power, and storage is added only where that study shows a site needs it. The first Corridor site, on the Nairobi to Kisumu route, is being prepared; the price per kWh is set for each site at commissioning.",
  },
@@ -191,7 +191,7 @@ export const privateHouseScopeFaqs: FaqItem[] = [
  {
  question: "Is this different from a public charging hub?",
  answer:
- "Yes. House-based private charging is on your property for your vehicle only, billed on your meter. Public Corridor charging sites serve public sessions at the public DC price shown before each session.",
+ "Yes. House-based private charging is on your property for your vehicle only, billed on your meter. Public ARC Corridor sites serve public sessions at the public DC price shown before each session.",
  },
  {
  question: "Can you install at an apartment?",
@@ -230,7 +230,7 @@ export const hubEngineeringFaqs: FaqItem[] = [
  {
  question: "Who is the engineering package for?",
  answer:
- "Homeowners sizing a Pulse charger, fleet and property partners planning Pulse+ or Boda Hub yards, and highway hosts scoping Corridor DC sites. The package covers EV charging and energy systems, not passenger booking or bus timetable products.",
+ "Homeowners sizing a Pulse charger, fleet and property partners planning Pulse+ or Boda Hub yards, and highway hosts scoping ARC Corridor sites. The package covers EV charging and energy systems, not passenger booking or bus timetable products.",
  },
  {
  question: "Does solar replace the Kenya Power connection?",

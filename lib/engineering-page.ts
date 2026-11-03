@@ -30,7 +30,7 @@ export const engineeringPage = {
       },
       {
         title: "Highway & route",
-        text: "Corridor DC from a certified OEM charger, with storage only where the power study calls for it. Import limits, dwell and M-Pesa sessions engineered for public and fleet EV traffic.",
+        text: "ARC Corridor from a certified OEM charger, with storage only where the power study calls for it. Import limits, dwell and M-Pesa sessions engineered for public and fleet EV traffic.",
       },
     ],
   },
@@ -42,7 +42,7 @@ export const engineeringPage = {
     rows: [
       ["Urban home", "Pulse", "Consumer unit, cable route, meter, optional PV"],
       ["Fleet yard", "Pulse+ · Boda Hub", "Duty cycle, bay count, import limit, M-Pesa billing"],
-      ["Highway stop", "Corridor DC", "Dwell layout, OEM charger, CCS2, public DC tariff, CSMS"],
+      ["Highway stop", "ARC Corridor", "Dwell layout, OEM charger, CCS2, public DC tariff, CSMS"],
       ["Partner retail", "Pulse+ or host AC", "Footfall, landlord meter, session settlement"],
     ],
   },
@@ -56,7 +56,7 @@ export const engineeringPage = {
       ["Grid", "Kenya Power connection and e-mobility tariff first"],
       ["Solar", "Canopy or rooftop PV for cost, shade and daytime yield"],
       ["Storage", "LiFePO₄ to peak-shave and back up charging loads"],
-      ["Charging", "Pulse at home, Pulse+ in yards, Corridor DC on highways and in towns"],
+      ["Charging", "Pulse at home, Pulse+ in yards, ARC Corridor on highways and in towns"],
       ["Software", "OCPP monitoring, session records, M-Pesa"],
     ],
   },
@@ -73,7 +73,7 @@ export const engineeringPage = {
     rows: [
       ["Pulse · 7 kW", "Home daily charging", "Type 2 AC on customer meter · from KES 79,000"],
       ["Pulse+ · 22 kW", "Fleet yards and workplaces", "Three-phase AC overnight · 11 kW on most cars"],
-      ["Corridor DC", "Highway and town DC", "Certified OEM charger, 120 to 180 kW · priced per site"],
+      ["ARC Corridor", "Highway and town DC", "Certified OEM charger, 120 to 180 kW · priced per site"],
       ["Boda Hub", "Electric motorcycle swap", "Partner-hosted sites · under 5 minutes"],
     ],
   },
@@ -134,7 +134,7 @@ export const engineeringPageFaqs = [
     id: "who-for",
     question: "Who is the engineering package for?",
     answer:
-      "Homeowners sizing a Pulse charger, fleet and property partners planning Pulse+ or Boda Hub yards, and highway hosts scoping Corridor DC sites. The package covers EV charging and energy systems, not passenger booking or bus timetable products.",
+      "Homeowners sizing a Pulse charger, fleet and property partners planning Pulse+ or Boda Hub yards, and highway hosts scoping ARC Corridor sites. The package covers EV charging and energy systems, not passenger booking or bus timetable products.",
   },
   {
     id: "solar-window",

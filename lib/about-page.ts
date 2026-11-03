@@ -54,8 +54,8 @@ export const aboutPage = {
  "Remote monitoring and three-year aftersale care cover home units we commission.",
  "One team owns the site from the first survey to daily settlement.",
  ],
- image: productImages.corridorForecourt,
- imageCaption: "Corridor DC fast charging.",
+ image: productImages.corridor,
+ imageCaption: "ARC Corridor DC fast charging.",
  },
  operatingModel: {
  eyebrow: "How a site gets built",
@@ -127,7 +127,7 @@ export const aboutPage = {
  note: "Register your site and we include it in our first installations.",
  items: [
  { name: "Pulse+ charger", href: "/charging/pulse-plus", note: "22 kW three phase · fleet yards and workplaces" },
- { name: "Corridor charging", href: "/charging/corridor", note: "DC fast charging · Nairobi to Kisumu first" },
+ { name: "ARC Corridor", href: "/charging/corridor", note: "DC fast charging · Nairobi to Kisumu first" },
  { name: "Boda Hub", href: "/charging/boda-hub", note: "Battery swapping · partner sites" },
  { name: "Wireless EV charging", href: "/research", note: "R&D · light-duty cars" },
  ],
@@ -152,7 +152,7 @@ export const aboutPage = {
  },
  {
  layer: "Highway hubs",
- precifarm: "Build, own and operate Corridor charging, starting with the first site on the Nairobi to Kisumu route. Sell energy and stand behind uptime.",
+ precifarm: "Build, own and operate ARC Corridor, starting with the first site on the Nairobi to Kisumu route. Sell energy and stand behind uptime.",
  partners: "Site hosts provide land or location rights, and may co-invest where the economics fit.",
  },
  {

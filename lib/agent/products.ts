@@ -46,7 +46,7 @@ export const precifarmProducts: readonly PrecifarmProduct[] = [
   },
   {
     id: "corridor",
-    name: "Corridor DC fast charging",
+    name: "ARC Corridor DC fast charging",
     segment: "highway",
     rating: "DC fast charging, two bays; power sized per site",
     connector: "Dual CCS2",

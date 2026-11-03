@@ -235,7 +235,7 @@ export const kenyaEvCompatibilityPage = {
   eyebrow: "17 models · Kenya market",
   title: "Leaf, BYD or Roam Air: how long to charge and where Precifarm fits",
   lead:
-    "Compare practical range, DC speed and daily top-up time for the cars and e-bodas Kenyan drivers actually buy, then see whether home Pulse, Charging Hub, Corridor DC or Boda Hub swap matches your vehicle.",
+    "Compare practical range, DC speed and daily top-up time for the cars and e-bodas Kenyan drivers actually buy, then see whether home Pulse, Charging Hub, ARC Corridor or Boda Hub swap matches your vehicle.",
   vehicleAware:
     "Precifarm is built for vehicle-aware charging in Kenya. Tell Precifarm Agent about your car or e-boda, and its battery size, plug type and daily distance shape the charging plan it sizes. You should not need to decode charger specs first.",
   dataLayer:
@@ -246,7 +246,7 @@ export const kenyaEvCompatibilityPage = {
     "Battery size, DC speed, charging time and practical range vary with build batch, import spec, software and the charger used. Charging times show a typical daily top-up rather than a full 0 to 100% charge.",
   chargingTimeNote: "Daily top-up · Home = Pulse charger · DC = public fast charge · Swap = Boda Hub",
   chargingKey:
-    "Precifarm charging fit: Home, Pulse charger · Workplace and fleet yard, Pulse+ charger · Highway, Corridor DC · Boda Hub: battery swap under 5 min at partner-hosted sites.",
+    "Precifarm charging fit: Home, Pulse charger · Workplace and fleet yard, Pulse+ charger · Highway, ARC Corridor · Boda Hub: battery swap under 5 min at partner-hosted sites.",
   chargingRequirementsSection: {
     eyebrow: "Charging requirements",
     title: "What your EV needs from Precifarm",
@@ -269,7 +269,7 @@ export const kenyaEvCompatibilityPage = {
       {
         need: "Highway fast charge",
         requirement: "CCS2 DC fast charging",
-        product: "Corridor charging",
+        product: "ARC Corridor",
         href: "/charging/corridor",
       },
       {

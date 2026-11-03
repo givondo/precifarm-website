@@ -135,7 +135,7 @@ Each operator sets its own price per kWh, which is higher than Kenya Power's tar
 The [Precifarm Charging Hub](/hub) map shows charging and swap sites across Kenya. Call the site before a long trip to confirm a charger is free.
 
 ## Driving Nairobi to Kisumu or Nairobi to Mombasa
-Nairobi to Kisumu is the route for Precifarm's first Corridor charging site, which is being prepared. The road distance is about 350 km, so most EVs need one DC fast charging stop or a full charge at both ends; confirm a working charger on the route before you set off.`,
+Nairobi to Kisumu is the route for Precifarm's first ARC Corridor site, which is being prepared. The road distance is about 350 km, so most EVs need one DC fast charging stop or a full charge at both ends; confirm a working charger on the route before you set off.`,
     faqs: [
       {
         question: "How many EV charging stations are there in Kenya?",

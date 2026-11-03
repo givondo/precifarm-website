@@ -67,7 +67,7 @@ export const publicRoutes = [
  { path: "/charging", label: "Charging", changefreq: "monthly" as const, priority: 0.95 },
  { path: "/charging/home", label: "Home charging", changefreq: "monthly" as const, priority: 0.82 },
  { path: "/charging/pulse-plus", label: "Pulse+ charger", changefreq: "monthly" as const, priority: 0.8 },
- { path: "/charging/corridor", label: "Corridor charging", changefreq: "monthly" as const, priority: 0.8 },
+ { path: "/charging/corridor", label: "ARC Corridor", changefreq: "monthly" as const, priority: 0.8 },
  { path: "/charging/boda-hub", label: "Automated Boda Hub", changefreq: "monthly" as const, priority: 0.82 },
  { path: "/evs", label: "Kenya EV guide", changefreq: "weekly" as const, priority: 0.84 },
  { path: "/charging/engineering", label: "Engineering Design Package", changefreq: "monthly" as const, priority: 0.8 },

@@ -69,7 +69,7 @@ export const corridorPage: ProgrammePageContent = {
   id: "corridor",
   path: "/charging/corridor",
   eyebrow: "EV Charging · Highway and town",
-  title: "Corridor DC fast charging",
+  title: "ARC Corridor DC fast charging",
   intro:
     "DC fast charging for highways and towns. Each Corridor site starts with a certified OEM charger of 120 to 180 kW under the Precifarm brand, with the grid connection, layout and M-Pesa session pay engineered around the site. The first site is being prepared on the Nairobi to Kisumu route.",
   image: {
@@ -101,7 +101,7 @@ export const corridorPage: ProgrammePageContent = {
     "A power study with Kenya Power before any commitment; the grid connection is sized per site.",
     "Charging speed depends on the car: each vehicle draws only what its battery accepts.",
   ],
-  cta: { href: "/contact?interest=corridor", label: "Host a Corridor site" },
+  cta: { href: "/contact?interest=corridor", label: "Host an ARC Corridor site" },
   secondaryCta: { href: "/charging/engineering", label: "Engineering approach" },
   closing: {
     title: "Have a site on a busy route?",

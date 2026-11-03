@@ -31,12 +31,12 @@ export const chargingHowToBlock: AisoContentBlock = {
 /** Default homepage AISO blocks */
 export const homepageAisoBlocks: AisoContentBlock[] = [
   buildExecutiveSummary(
-    "Precifarm builds energy infrastructure for electric transport in Kenya, from the Pulse home charger to Corridor DC fast charging on the highway and Boda Hub battery swapping, plus Precifarm Agent, an AI engineering assistant. M-Pesa on every product and Lipa Pole Pole on any phone.",
+    "Precifarm builds energy infrastructure for electric transport in Kenya, from the Pulse home charger to ARC Corridor DC fast charging on the highway and Boda Hub battery swapping, plus Precifarm Agent, an AI engineering assistant. M-Pesa on every product and Lipa Pole Pole on any phone.",
   ),
   buildKeyFacts("Key facts", [
-    "Programmes: Pulse charger · Pulse+ · Corridor DC · Boda Hub · wireless charging R&D · Precifarm Agent. Lipa Pole Pole finances the Pulse charger on M-Pesa.",
+    "Programmes: Pulse charger · Pulse+ · ARC Corridor · Boda Hub · wireless charging R&D · Precifarm Agent. Lipa Pole Pole finances the Pulse charger on M-Pesa.",
     "Pulse charger from KES 79,000 · Lipa Pole Pole on M-Pesa",
-    "Corridor DC price per kWh set per site and shown before you start",
+    "ARC Corridor price per kWh set per site and shown before you start",
     "A home charging day of ~60 km ≈ KES 140 vs ~KES 1,000 diesel per day",
     "Pulse charger: a typical 60 km day in under two hours from the meter.",
     "Certified home installation typically in one day · three-year aftersale care",

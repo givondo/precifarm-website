@@ -5,6 +5,8 @@ import { productImages } from "@/lib/product-images";
 
 type Tile = {
   href: string;
+  /** Category and status, worded by David (HD-048). */
+  eyebrow: string;
   name: string;
   line: string;
   cta: string;
@@ -16,31 +18,36 @@ type Tile = {
 const charging: Tile[] = [
   {
     href: "/charging/home",
-    name: "Pulse charger",
-    line: "7 kW home wallbox, from KES 79,000 or Lipa Pole Pole on M-Pesa.",
-    cta: "Get a free survey",
+    eyebrow: "Home charging · Available",
+    name: "Pulse 7 kW",
+    line: "Reliable home EV charging, professionally installed. From KES 79,000.",
+    cta: "Explore Pulse",
     image: productImages.pulse,
   },
   {
     href: "/charging/pulse-plus",
-    name: "Pulse+ charger",
-    line: "22 kW three-phase charging for fleet yards and workplaces.",
-    cta: "Plan your site",
-    image: productImages.pulsePlus,
+    eyebrow: "Workplace charging · In development",
+    name: "Pulse+ 22 kW",
+    line: "Three-phase AC charging for workplaces, businesses and fleet parking.",
+    cta: "Explore Pulse+",
+    image: productImages.pulsePlusDepot,
+    fit: "cover",
   },
   {
     href: "/charging/corridor",
-    name: "Corridor charging",
-    line: "DC fast charging for highways and towns, starting on Nairobi to Kisumu.",
-    cta: "Host a site",
+    eyebrow: "DC fast charging · Pilot development",
+    name: "ARC Corridor",
+    line: "Scalable DC fast-charging infrastructure for highways, towns and fleets.",
+    cta: "Explore ARC Corridor",
     image: productImages.corridor,
     fit: "cover",
   },
   {
     href: "/charging/boda-hub",
+    eyebrow: "Battery swapping · In development",
     name: "Boda Hub",
-    line: "Battery swapping for electric motorcycles, in under five minutes.",
-    cta: "Partner on a site",
+    line: "Automated battery-swap lockers designed to keep electric motorcycles moving.",
+    cta: "Explore Boda Hub",
     image: productImages.boda,
     fit: "cover",
   },
@@ -74,11 +81,12 @@ export default function HomePillars() {
                     alt={t.image.alt}
                     fill
                     sizes="(max-width: 640px) 100vw, 50vw"
-                    className={`transition-transform duration-500 group-hover:scale-[1.03] ${t.fit === "cover" ? "object-cover object-top" : "object-contain p-6 sm:p-8"}`}
+                    className={`transition-transform duration-500 group-hover:scale-[1.03] ${t.fit === "cover" ? "object-cover object-center" : "object-contain p-6 sm:p-8"}`}
                   />
                 </div>
                 <div className="flex flex-1 flex-col p-6 sm:p-7">
-                  <h3 className="text-xl font-semibold tracking-tight text-forest-900">{t.name}</h3>
+                  <p className="text-[11px] font-semibold uppercase tracking-widest text-charge-600">{t.eyebrow}</p>
+                  <h3 className="mt-2 text-xl font-semibold tracking-tight text-forest-900">{t.name}</h3>
                   <p className="mt-2 flex-1 text-sm leading-relaxed text-forest-600">{t.line}</p>
                   <span className="mt-5 inline-flex items-center text-sm font-semibold text-charge-600">
                     {t.cta}

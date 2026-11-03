@@ -49,7 +49,7 @@ export const engineeringDoc = {
     },
     {
       title: "Highway & route",
-      text: "Corridor DC from a certified OEM charger where intercity routes need it. Import limits, dwell and public DC sessions engineered for highway EV traffic.",
+      text: "ARC Corridor from a certified OEM charger where intercity routes need it. Import limits, dwell and public DC sessions engineered for highway EV traffic.",
     },
   ],
   contents: [

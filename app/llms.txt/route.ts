@@ -36,7 +36,7 @@ Ratings on product pages come from Precifarm's engineering register.
 
 ## Published cost figures
 - A home charging day (about 60 km) costs about KES 140 versus about KES 1,000 of diesel
-- Corridor DC price per kWh set per site and shown before you start
+- ARC Corridor price per kWh set per site and shown before you start
 - Session price is shown before you charge
 
 ## Primary pages
@@ -45,7 +45,7 @@ Ratings on product pages come from Precifarm's engineering register.
 - Charging: ${siteConfig.url}/charging
 - Pulse charger (home charging): ${siteConfig.url}/charging/home
 - Pulse+ charger: ${siteConfig.url}/charging/pulse-plus
-- Corridor charging: ${siteConfig.url}/charging/corridor
+- ARC Corridor: ${siteConfig.url}/charging/corridor
 - Boda Hub: ${siteConfig.url}/charging/boda-hub
 - Kenya EV guide: ${siteConfig.url}/evs
 - Engineering package: ${siteConfig.url}/charging/engineering
@@ -88,11 +88,11 @@ ${staticGuides.map((g) => `- ${g.title}: ${siteConfig.url}/guides/${g.slug}`).jo
 
 ## Topics we publish authoritative content on
 - From home charging to highway charging in Kenya
-- Pulse and Pulse+ AC chargers, Corridor DC fast charging
+- Pulse and Pulse+ AC chargers, ARC Corridor DC fast charging
 - Wireless EV charging R&D
 - Precifarm Agent: AI engineering for EV charging and energy design
 - Sustainability commitments and impact reporting
-- A home charging day costs about KES 140; Corridor DC is priced per site
+- A home charging day costs about KES 140; ARC Corridor is priced per site
 - M-Pesa and Lipa Pole Pole financing
 - Charging Hub and partner networks
 - Fleet charging and Boda Hub battery swapping

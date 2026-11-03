@@ -1,5 +1,18 @@
 # 17 Change log
 
+## Homepage refresh, HD-048 (4 November 2026)
+
+David's instructions of 3 November, 23:43 onwards.
+
+| Change | Detail |
+|---|---|
+| Hero | "Powering every electric journey." with David's supporting line; buttons "Book a free EV survey" (`/contact?interest=survey`) and "Explore EV charging solutions" (`/charging`) |
+| Hero video | v7 pitch film, made from `Precifarm_Pitch_v7_HQ.mp4` (221 MB): web 1080p H.264 CRF 23 capped at 2.5 Mb/s, 18.9 MB; mobile 720p, 7.3 MB; poster from the opening frame. Object names `videos/precifarm-pitch-v7-web.mp4` and `-mobile.mp4`. Upload with `scripts/upload-hero-video.ps1` before deploying |
+| Hero stats | "Charge at home" and "7× cheaper than fuel" (KES 140 against KES 1,000 a 60 km day, about KES 860 saved). David's draft said 10× and KES 2,000; the approved figures (HD-037) give 7× |
+| Range cards | Category and status eyebrows exactly as David wrote them; titles Pulse 7 kW, Pulse+ 22 kW, ARC Corridor, Boda Hub; "Explore" calls to action |
+| ARC naming | Corridor is now ARC Corridor in every product-name use (navigation, footer, programme page, FAQs, SEO). The URL stays `/charging/corridor` |
+| Images | ARC: R02 dispenser render at dusk, widened to 16:10 (no canopy scenes, by David's instruction); it also replaces the canopy forecourt on the about page, Charging Hub, share images and sitemap. Pulse+: three units on a depot wall. Boda Hub: Rev D renders |
+
 ## Pivot pass, HD-045 and HD-046 (3 November 2026)
 
 David's instruction at 21:54: approve R02, Pulse at up to 7.4 kW, no maturity labels or warnings, Precifarm Agent as the only AI page, pages aligned with the current pivot, improved UI and images.

@@ -55,7 +55,7 @@ export const partnerTypes: PartnerType[] = [
       "Contract dependable depot and corridor charging for vans, buses and delivery fleets, without per-session payment friction.",
     products: "Pulse+ · Corridor",
     points: [
-      "Pulse+ overnight AC and Corridor DC sized to your duty cycle",
+      "Pulse+ overnight AC and ARC Corridor sized to your duty cycle",
       "Fleet invoicing and session reporting on M-Pesa",
       "More stable energy cost compared with volatile diesel prices",
       "Site engineering where yard charging and highway top-ups connect",

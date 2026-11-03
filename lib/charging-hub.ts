@@ -26,7 +26,7 @@ export const chargingHubPage = {
     stopImages: [
       {
         src: productImages.corridor.src,
-        alt: "Precifarm Corridor DC fast charger under a T-canopy with dual CCS2 holsters",
+        alt: productImages.corridor.alt,
         label: "Highway DC",
       },
       {

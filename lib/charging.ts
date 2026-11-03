@@ -7,7 +7,7 @@ export const chargingPage = {
   eyebrow: "Charging",
   title: brand.promise,
   description:
-    "Home, fleet and highway: Pulse charger, Pulse+ charger, Corridor DC fast charging and Boda Hub battery swapping. M-Pesa on every product.",
+    "Home, fleet and highway: Pulse charger, Pulse+ charger, ARC Corridor DC fast charging and Boda Hub battery swapping. M-Pesa on every product.",
 } as const;
 
 type CopyPart = string | { readonly bold: string };
@@ -61,7 +61,7 @@ export const whereYouCharge = {
         " route, is being prepared.",
       ] as const satisfies readonly CopyPart[],
       products: "Corridor · DC fast charging · price shown before you start",
-      cta: { href: "/charging/corridor", label: "Corridor charging" },
+      cta: { href: "/charging/corridor", label: "ARC Corridor" },
       offeringsKey: "routeHub" as const,
     },
   ],
@@ -78,7 +78,7 @@ export const chargingOfferings = {
     image: productImages.corridor.src,
     imageAlt: productImages.corridor.alt,
     caption:
-      "Grid connection, Corridor DC and a stop worth making, in one dependable site for your EV.",
+      "Grid connection, ARC Corridor and a stop worth making, in one dependable site for your EV.",
   },
   home: {
     eyebrow: "Home charging",

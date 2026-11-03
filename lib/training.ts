@@ -169,11 +169,11 @@ export const evChargingTracks: EvChargingTrack[] = [
     id: "route-hub",
     title: "Highway charging",
     description:
-      "Corridor charging at highway sites — CCS2 DC, live status and M-Pesa session pay on commissioned forecourts.",
+      "ARC Corridor at highway sites — CCS2 DC, live status and M-Pesa session pay on commissioned forecourts.",
     tiers: ["t1", "t2", "t3"],
     roles: "Hub operators, route engineers, partner depot leads",
     topics: [
-      "Corridor DC sessions and load sharing",
+      "ARC Corridor sessions and load sharing",
       "Live status and M-Pesa session pay",
       "Uptime targets and honest recovery",
     ],

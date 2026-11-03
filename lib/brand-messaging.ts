@@ -22,11 +22,11 @@ export const brand = {
  words25:
  "Precifarm designs, finances, deploys and operates EV charging and energy systems for homes, fleets and highway corridors.",
  words50:
- "Precifarm is an electric mobility infrastructure company. We design, finance, deploy and operate charging, storage and energy systems, from a Pulse charger on the driveway to Corridor DC fast charging, with M-Pesa payments and one ops team behind every unit.",
+ "Precifarm is an electric mobility infrastructure company. We design, finance, deploy and operate charging, storage and energy systems, from a Pulse charger on the driveway to ARC Corridor DC fast charging, with M-Pesa payments and one ops team behind every unit.",
  words100:
  "Precifarm builds the infrastructure behind electric transport in Kenya, with a design path to Africa. We combine grid and solar power, battery storage, EV charging, software monitoring, M-Pesa payments and Lipa Pole Pole financing into one operating system for homes, fleets and highway corridors. Precifarm handles site engineering, commissioning, uptime and settlement. The first Corridor site is being prepared on the Nairobi to Kisumu route.",
  llm:
- "Precifarm (Precifarm AI) is a Kenyan electric mobility infrastructure company: powering the shift to electric transport. Pulse charger: 7 kW home wallbox, up to 7.4 kW, from KES 79,000, a typical 60 km day in under two hours, with Lipa Pole Pole M-Pesa instalments from KES 3,300/month. Pulse+ charger: 22 kW three-phase AC for fleet yards and workplaces. Corridor charging: DC fast charging from a certified OEM charger of 120 to 180 kW with CCS2 connectors under the Precifarm brand; the first site, on the Nairobi to Kisumu route, is being prepared, with the price per kWh set per site and shown before you start. Boda Hub: battery swapping for electric motorcycles, swap in under 5 minutes, built with site partners. Wireless EV charging: Precifarm R&D on stationary inductive charging for light-duty cars. Precifarm Agent: an AI electrical and energy engineering assistant at precifarm.com/agent that sizes EV charging, solar, batteries, cables and protection with checkable calculations. Free EV charging survey for homes, fuel stations, offices, workplaces and depots. A home charging day costs about KES 140 versus about KES 1,000 in diesel. M-Pesa on every product.",
+ "Precifarm (Precifarm AI) is a Kenyan electric mobility infrastructure company: powering the shift to electric transport. Pulse charger: 7 kW home wallbox, up to 7.4 kW, from KES 79,000, a typical 60 km day in under two hours, with Lipa Pole Pole M-Pesa instalments from KES 3,300/month. Pulse+ charger: 22 kW three-phase AC for fleet yards and workplaces. ARC Corridor: DC fast charging from a certified OEM charger of 120 to 180 kW with CCS2 connectors under the Precifarm brand; the first site, on the Nairobi to Kisumu route, is being prepared, with the price per kWh set per site and shown before you start. Boda Hub: battery swapping for electric motorcycles, swap in under 5 minutes, built with site partners. Wireless EV charging: Precifarm R&D on stationary inductive charging for light-duty cars. Precifarm Agent: an AI electrical and energy engineering assistant at precifarm.com/agent that sizes EV charging, solar, batteries, cables and protection with checkable calculations. Free EV charging survey for homes, fuel stations, offices, workplaces and depots. A home charging day costs about KES 140 versus about KES 1,000 in diesel. M-Pesa on every product.",
 } as const;
 
 export const audienceCopy = {
@@ -54,33 +54,33 @@ export const announcementBar = {
 } as const;
 
 export const homeHero = {
- eyebrow: "Powering the shift to electric transport",
- headline: "EV charging for Kenya, from your home to the highway.",
+ eyebrow: "Precifarm EV charging",
+ headline: "Powering every electric journey.",
  headlineAccent: "",
  whatWeDo:
- "Fast, reliable charging for electric cars and motorcycles, fully installed and financed from KES 3,300/month.",
- primaryCta: { href: "/contact?interest=survey", label: "Book a free survey" },
- secondaryCta: { href: "/charging/home", label: "Pulse home charger" },
+ "From your doorstep to the highway, we're building the charging infrastructure that keeps Kenya moving. Reliable, accessible and designed for the road ahead.",
+ primaryCta: { href: "/contact?interest=survey", label: "Book a free EV survey" },
+ secondaryCta: { href: "/charging", label: "Explore EV charging solutions" },
  caption: "Pulse charger · Kenya",
  video: {
  /** Hosted on GCS — see scripts/upload-hero-video.ps1 & compress-hero-video.mjs */
  src:
- "https://storage.googleapis.com/precifarm-public-media-skilled-orbit/videos/precifarm-ad-v2-web.mp4",
+ "https://storage.googleapis.com/precifarm-public-media-skilled-orbit/videos/precifarm-pitch-v7-web.mp4",
  srcMobile:
- "https://storage.googleapis.com/precifarm-public-media-skilled-orbit/videos/precifarm-ad-v2-mobile.mp4",
- posterSrc: "/images/home-hero-video-wallpaper.jpg",
+ "https://storage.googleapis.com/precifarm-public-media-skilled-orbit/videos/precifarm-pitch-v7-mobile.mp4",
+ posterSrc: "/images/home-hero-video-v7-poster.jpg",
  title: "Precifarm EV charging in Kenya",
  },
 } as const;
 
 export const heroStats = [
  {
- stat: "Under 2 hours",
- label: "Puts back a typical ~60 km Nairobi day with a Pulse charger. Plug in after work, ready by morning",
+ stat: "Charge at home",
+ label: "Convenient, reliable EV charging with a Pulse charger. Plug in after work and most cars are fully charged by morning.",
  },
  {
- stat: `Drive 60 km for about ${sitePricing.homeDay}`,
- label: `Charge at home with a Pulse charger for around ${sitePricing.homeDay} per day, compared with roughly ${sitePricing.dieselDay} in diesel for the same distance.`,
+ stat: "7× cheaper than fuel",
+ label: `A typical 60 km day costs about ${sitePricing.homeDay} on a Pulse charger against about ${sitePricing.dieselDay} in fuel, saving about KES 860 every day.`,
  },
 ] as const;
 
@@ -160,11 +160,11 @@ export const homeScenarios = [
  title: "Highway",
  audience: "Intercity drivers and site hosts",
  status: "pilot",
- text: "Corridor DC fast charging from a certified OEM charger, engineered around each site's grid. The first site is being prepared on the Nairobi to Kisumu route.",
- products: "Corridor charging · M-Pesa session pay",
+ text: "ARC Corridor DC fast charging from a certified OEM charger, engineered around each site's grid. The first site is being prepared on the Nairobi to Kisumu route.",
+ products: "ARC Corridor · M-Pesa session pay",
  productIds: ["corridor"],
  href: "/charging/corridor",
- cta: "Corridor charging",
+ cta: "ARC Corridor",
  },
 ] as const;
 
@@ -333,7 +333,7 @@ export const siteNavGroups = [
  links: [
  { href: "/charging/home", label: "Pulse charger", description: "7 kW home · from KES 79,000" },
  { href: "/charging/pulse-plus", label: "Pulse+ charger", description: "22 kW three phase for fleets" },
- { href: "/charging/corridor", label: "Corridor charging", description: "DC fast charging for highways" },
+ { href: "/charging/corridor", label: "ARC Corridor", description: "DC fast charging for highways" },
  { href: "/charging", label: "All charging", description: "Home, fleet and highway" },
  ],
  },
@@ -390,7 +390,7 @@ export const footerNavGroups = [
  title: "Programmes",
  links: [
  { href: "/charging/pulse-plus", label: "Pulse+ 22 kW" },
- { href: "/charging/corridor", label: "Corridor DC" },
+ { href: "/charging/corridor", label: "ARC Corridor" },
  { href: "/research", label: "Wireless EV charging" },
  { href: "/agent", label: "Precifarm Agent" },
  ],
@@ -417,7 +417,7 @@ export const footerNavGroups = [
 export const footerProducts = [
  { label: "Pulse charger", href: "/charging/home" },
  { label: "Pulse+ charger", href: "/charging/pulse-plus" },
- { label: "Corridor DC", href: "/charging/corridor" },
+ { label: "ARC Corridor", href: "/charging/corridor" },
  { label: "Boda Hub", href: "/charging/boda-hub" },
  { label: "Lipa Pole Pole", href: "/charging/home" },
  { label: "Precifarm Agent", href: "/agent" },

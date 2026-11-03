@@ -4,7 +4,7 @@ import HubSchematic from "@/components/HubSchematic";
 const links = [
   {
     title: "Operators & fleets",
-    text: "Pulse+ for depots, Corridor DC fast charging and fleet billing on M-Pesa.",
+    text: "Pulse+ for depots, ARC Corridor DC fast charging and fleet billing on M-Pesa.",
     href: "/partners",
     cta: "Partner with us",
   },
@@ -37,7 +37,7 @@ export default function HomeHubSpotlight() {
             <p className="mt-4 text-base leading-relaxed text-forest-600">
               Precifarm builds the charging infrastructure and Lipa Pole Pole financing that
               keep EV fleets, site hosts and home installations running — from Pulse charger
-              wallboxes to 120 kW Corridor DC.
+              wallboxes to 120 kW ARC Corridor.
             </p>
             <ul className="mt-8 space-y-4">
               {links.map((item) => (

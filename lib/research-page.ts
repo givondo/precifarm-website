@@ -178,7 +178,7 @@ export const researchAreas: readonly ResearchArea[] = [
     ],
     milestones: [
       { when: "Q4 2026", title: "Load and PV yield model for the first Corridor site", status: "active" },
-      { when: "Q1 2027", title: "Storage duty cycle simulated against Corridor DC session profiles", status: "next" },
+      { when: "Q1 2027", title: "Storage duty cycle simulated against ARC Corridor session profiles", status: "next" },
       { when: "Q2 2027", title: "Revenue-grade metering on a live site; model validated (G2)", status: "next" },
       { when: "Q4 2027", title: "Dispatch controller field trial at a Corridor site with storage (G3)", status: "later" },
     ],

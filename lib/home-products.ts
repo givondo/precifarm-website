@@ -8,7 +8,7 @@ export const productNames = {
   pulse: "Pulse charger",
   pulsePlus: "Pulse+ charger",
   boda: "Boda Hub",
-  corridor: "Corridor charging",
+  corridor: "ARC Corridor",
   financing: "Lipa Pole Pole",
 } as const;
 

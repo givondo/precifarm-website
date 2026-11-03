@@ -3,7 +3,7 @@ export const contactInterests = {
   survey: "Free EV charging survey (home, fuel station, office, workplace or depot)",
  home: "Home charger installation (Pulse charger)",
   "pulse-plus": "Pulse+ fleet or workplace charging",
-  corridor: "Host a Corridor charging site",
+  corridor: "Host an ARC Corridor site",
   "boda-hub": "Boda Hub battery swapping",
   ai: "Precifarm Agent",
   "agent-desktop": "Precifarm Agent access",
