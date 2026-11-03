@@ -25,7 +25,7 @@ export default function Logo({
   const metrics = resolveLogoMetrics(height ?? size);
   const { mark, word, gap, curveGap, curveStroke } = metrics;
   const onDark = variant === "onDark";
-  const curveColor = onDark ? "#93C5FD" : "#2563EB";
+  const curveColor = onDark ? "#7EC09D" : "#1F6F4A";
 
   return (
     <Link

@@ -15,13 +15,13 @@ const palettes: Record<
   { bg: string; stroke: string; strokeWidth: number }
 > = {
   default: {
-    bg: "#EFF6FF",
-    stroke: "#2563EB",
+    bg: "#EEF7F2",
+    stroke: "#1F6F4A",
     strokeWidth: 3.15,
   },
   onDark: {
-    bg: "rgba(147, 197, 253, 0.14)",
-    stroke: "#93C5FD",
+    bg: "rgba(126, 192, 157, 0.14)",
+    stroke: "#7EC09D",
     strokeWidth: 3.15,
   },
 };
