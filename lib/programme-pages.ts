@@ -70,24 +70,24 @@ export const corridorPage: ProgrammePageContent = {
   eyebrow: "EV Charging · Highway and town",
   title: "Corridor DC fast charging",
   intro:
-    "A DC fast charging site engineered as one system: dispensers with two CCS2 guns on overhead cable trolleys, an on-site battery that shrinks the grid connection, and M-Pesa session pay. The first sites, starting on Nairobi to Kisumu, are pilots in development.",
+    "DC fast charging for highways and towns. Each Corridor site starts with a certified OEM charger of 120 to 180 kW under the Precifarm brand, with the grid connection, layout and M-Pesa session pay engineered around the site. The first site, starting on Nairobi to Kisumu, is a pilot in development.",
   image: {
     src: productImages.corridor.src,
     alt: productImages.corridor.alt,
-    caption: "Concept visualisation. The production design follows each site's engineering package.",
+    caption: "Concept visualisation from an earlier Precifarm design. The first site uses a certified OEM charger.",
   },
   features: [
     {
-      title: "Cables from above",
-      text: "Balanced cable trolleys keep the heavy DC cables off the ground and within reach of a car's inlet on either side.",
+      title: "Certified charger",
+      text: "The charger itself is bought from an established maker and certified by them. Precifarm does not build its own DC power conversion for public sites.",
     },
     {
-      title: "Storage on site",
-      text: "A battery on the DC bus covers the busy hour, so a site that would need a large new transformer can run on a smaller grid connection.",
+      title: "Engineered site",
+      text: "Precifarm engineers what surrounds it: the grid connection, protection, bay layout, signage and the operations that keep the site running.",
     },
     {
-      title: "Certified power, engineered sites",
-      text: "Power conversion comes from certified equipment makers. Precifarm engineers the site, the dispenser layout, the storage and the operations around it.",
+      title: "Storage only where needed",
+      text: "The first site has no on-site battery. Storage is added at later sites only where the Kenya Power study shows the grid cannot meet demand.",
     },
   ],
   useCases: [
@@ -97,7 +97,7 @@ export const corridorPage: ProgrammePageContent = {
   ],
   requirementsTitle: "For site hosts",
   requirements: [
-    "A site with space for two bays per dispenser plus the storage and switchgear enclosure.",
+    "Space for the charger, its bays and the switchgear, with safe vehicle access.",
     "A power study with Kenya Power before any commitment; the grid connection is sized per site.",
     "Charging speed depends on the car: each vehicle draws only what its battery accepts.",
   ],
@@ -105,7 +105,7 @@ export const corridorPage: ProgrammePageContent = {
   secondaryCta: { href: "/charging/engineering", label: "Engineering approach" },
   closing: {
     title: "Have a site on a busy route?",
-    text: "We are selecting the first Corridor pilot sites. Tell us where your site is and what supply it has today.",
+    text: "We are selecting the first Corridor pilot site. Tell us where your site is and what supply it has today.",
   },
 };
 
@@ -113,24 +113,23 @@ export const harnessPage: ProgrammePageContent = {
   id: "harness",
   path: "/ai",
   eyebrow: "AI Platform",
-  title: "Agent Harness: private AI on your own machine",
+  title: "Agent Harness: AI agents on the right model for each job",
   intro:
-    "Run open-weight AI models and agent workflows on hardware you control. Pick a model that fits the machine, describe the goal, watch a bounded team of agents work through a visual workflow, and approve the result before it leaves. No compulsory subscription to a hosted model.",
+    "The platform Precifarm builds its engineering agents on. It sends each task to the hosted AI model that suits it, DeepSeek by default with Claude or ChatGPT where a task needs them, runs a bounded team of agents through a visual workflow you can watch, and holds every result for a person to approve before it is exported.",
   stack: [
-    { name: "Your machine", text: "A laptop to start, a single-GPU workstation to grow, several machines later." },
-    { name: "Local models", text: "Open-weight models served locally through Ollama, tested for instruction following, structured output and tool use." },
-    { name: "Bounded agents", text: "Many agent roles, a set number of models running at once. The harness never promises more than the hardware can run." },
+    { name: "Model routing", text: "Hosted models through their providers' APIs, picked per task. DeepSeek is the default." },
+    { name: "Bounded agents", text: "A set team of agent roles working to a plan, never more than the job needs." },
     { name: "Visual workflows", text: "Each step shown as it runs, with every event journaled for replay and audit." },
     { name: "Human sign-off", text: "Nothing is exported until a person approves it." },
   ],
   features: [
     {
-      title: "Private by default",
-      text: "Strict mode blocks every hosted model, so documents and prompts stay on the machine.",
+      title: "The right model per task",
+      text: "Fast, low-cost models handle routine steps; stronger models are used only where a task needs them, so cost follows the work.",
     },
     {
-      title: "Honest about hardware",
-      text: "Models are matched to the memory you have and their measured speed is shown, not guessed.",
+      title: "Work you can see",
+      text: "Every step, input and output is visible while it runs and kept afterwards, so a reviewer can see how a result was reached.",
     },
     {
       title: "Built for engineering work",
@@ -138,20 +137,20 @@ export const harnessPage: ProgrammePageContent = {
     },
   ],
   useCases: [
-    "Engineers and consultancies who cannot send client documents to a hosted AI service.",
-    "Startups that want agent workflows without per-seat model subscriptions.",
+    "Engineering teams that want AI to draft calculations and packages for a qualified person to check.",
     "Companies that need an audit trail of what an AI system did and who approved it.",
+    "Precifarm's own site engineering, as its first user.",
   ],
   requirementsTitle: "What it is and is not",
   requirements: [
     "In development. Early access is by request.",
-    "Precifarm Agent on this website is a separate, hosted assistant and does not run privately.",
+    "Prompts and documents are sent to the chosen model provider's API. Precifarm Agent on this website is also a hosted assistant and does not run privately on your machine.",
     "Results are drafts until a qualified person reviews them; the harness never approves its own work.",
   ],
   cta: { href: "/contact?interest=ai", label: "Request early access" },
-  secondaryCta: { href: "/agent", label: "Try Precifarm Agent (hosted)" },
+  secondaryCta: { href: "/agent", label: "Try Precifarm Agent" },
   closing: {
-    title: "Want private AI agents for your team?",
-    text: "Tell us about your hardware and the work you want to automate.",
+    title: "Want AI agents working on your engineering?",
+    text: "Tell us about your team and the work you want to automate.",
   },
 };

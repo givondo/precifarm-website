@@ -194,7 +194,7 @@ export const sustainabilityPage = {
  eyebrow: "Batteries",
  title: "We maintain, repair and reuse packs before they are recycled.",
  description:
- "Boda swap batteries and Corridor site storage are watched and serviced in the field. A contracted recycling partner in Kenya is a 2030 goal, not a live take-back scheme.",
+ "Boda swap batteries, and any storage at Corridor sites, are watched and serviced in the field. A contracted recycling partner in Kenya is a 2030 goal, not a live take-back scheme.",
  },
  commitmentSection: {
  eyebrow: "2030 goals",
@@ -260,7 +260,7 @@ export const sustainabilityPage = {
  goal: "Solar and storage on operated sites that need it",
  target: "Solar plus storage on every Corridor site that needs it",
  by: "2030",
- today: "Corridor site designs include on-site storage. No Corridor site is commissioned yet.",
+ today: "The first Corridor site is planned without storage; storage follows the Kenya Power study for each later site. No Corridor site is commissioned yet.",
  progress: "underway" as GoalProgress,
  },
  ],

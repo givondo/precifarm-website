@@ -134,7 +134,7 @@ export const consumerChargingFaqs: ChargingFaq[] = [
  id: "corridor",
  question: "What is Corridor charging?",
  answer:
- "Corridor is Precifarm's DC fast charging for highways and towns: two CCS2 guns on overhead cable trolleys, with on-site battery storage so the site needs a smaller grid connection. Each site is engineered around a power study with Kenya Power. The first Corridor sites, starting on Nairobi to Kisumu, are pilots in development; the price per kWh will be set for each site at commissioning.",
+ "Corridor is Precifarm's DC fast charging for highways and towns: a certified OEM DC charger of 120 to 180 kW with CCS2 connectors, under the Precifarm brand. Each site is engineered around a power study with Kenya Power, and storage is added only where that study shows a site needs it. The first Corridor site, starting on Nairobi to Kisumu, is a pilot in development; the price per kWh will be set for each site at commissioning.",
  },
  {
  id: "boda-hub",
@@ -230,7 +230,7 @@ export const hubEngineeringFaqs: FaqItem[] = [
  {
  question: "Who is the engineering package for?",
  answer:
- "Homeowners sizing a Pulse charger, fleet and property partners planning Pulse+ or Boda Hub yards, and highway hosts scoping Corridor DC with on-site storage. The package covers EV charging and energy systems, not passenger booking or bus timetable products.",
+ "Homeowners sizing a Pulse charger, fleet and property partners planning Pulse+ or Boda Hub yards, and highway hosts scoping Corridor DC sites. The package covers EV charging and energy systems, not passenger booking or bus timetable products.",
  },
  {
  question: "Does solar replace the Kenya Power connection?",

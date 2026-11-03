@@ -32,8 +32,8 @@ export const aboutPage = {
  },
  {
  eyebrow: "AI systems",
- title: "Private AI for engineering",
- text: "The Agent Harness runs open-weight AI models and agent workflows on your own machine, with a person approving every result. It is in development. Precifarm Agent, our hosted engineering assistant, is in early access.",
+ title: "AI agents for engineering",
+ text: "The Agent Harness runs agent workflows on the hosted AI model that suits each task, with a person approving every result. It is in development. Precifarm Agent, our hosted engineering assistant, is in early access.",
  href: "/ai",
  cta: "See the AI platform",
  image: {

@@ -87,7 +87,7 @@ export const homeProducts: HomeProduct[] = [
     name: productNames.corridor,
     summary: "DC fast charging for highways and towns, engineered around each site's grid connection.",
     tagline:
-      "Corridor puts two CCS2 guns on overhead cable trolleys with on-site storage. The first sites are pilots in development.",
+      "Corridor starts with a certified OEM DC charger of 120 to 180 kW under the Precifarm brand. The first site is a pilot in development.",
     category: "highway",
     status: "pilot",
     priceLabel: "Price per kWh shown upfront",
@@ -169,7 +169,7 @@ export const flagshipProductDetails: Record<FlagshipProductId, FlagshipProductDe
     headline: "DC Fast Charging",
     hook: "Charge fast. Keep moving.",
     description:
-      "Two CCS2 guns on overhead cable trolleys with on-site storage, engineered around each site's grid. First sites are pilots in development.",
+      "A certified OEM DC charger of 120 to 180 kW under the Precifarm brand, engineered around each site's grid. The first site is a pilot in development.",
     priceLabel: "Price per kWh shown upfront",
     specs: ["DC", "CCS2", "Highway", "M-Pesa"],
     bestFor: "Long-distance driving and fleets",

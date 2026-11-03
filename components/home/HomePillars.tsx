@@ -12,8 +12,8 @@ const pillars: { id: Pillar; eyebrow: string; title: string; text: string }[] = 
   {
     id: "ai",
     eyebrow: "Precifarm AI Systems",
-    title: "Private AI agents that do engineering work.",
-    text: "Local-first models and agent workflows, with a person approving every result. The same tools that engineer our sites.",
+    title: "AI agents that do engineering work.",
+    text: "Agent workflows on the right AI model for each task, with a person approving every result. The same tools that engineer our sites.",
   },
 ];
 

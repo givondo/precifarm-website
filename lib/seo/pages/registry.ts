@@ -172,7 +172,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  path: "/charging/corridor",
  title: "DC Fast Charging for Kenyan Highways | Precifarm Corridor",
  description:
- "Precifarm Corridor: DC fast charging with two CCS2 guns and on-site storage, engineered per site. First sites, on Nairobi to Kisumu, are pilots in development.",
+ "Precifarm Corridor: DC fast charging from a certified 120 to 180 kW OEM charger, engineered per site. The first site, on Nairobi to Kisumu, is a pilot in development.",
  keywords: [
  "DC fast charging Kenya",
  "highway EV charging Kenya",
@@ -202,14 +202,14 @@ export const pageSeoRegistry: PageSeoInput[] = [
  },
  {
  path: "/ai",
- title: "Private AI Agents on Your Own Machine | Precifarm Agent Harness",
+ title: "AI Agent Workflows for Engineering | Precifarm Agent Harness",
  description:
- "Precifarm Agent Harness: run open-weight AI models and agent workflows locally and privately, with a person approving every result. In development.",
+ "Precifarm Agent Harness: agent workflows on the hosted AI model that suits each task, DeepSeek by default, with a person approving every result. In development.",
  keywords: [
- "private AI Kenya",
- "local AI agents",
- "open-weight models",
- "Ollama agent workflows",
+ "AI agents Kenya",
+ "AI agent workflows",
+ "multi-model AI",
+ "DeepSeek agent workflows",
  "AI engineering assistant",
  "Precifarm Agent Harness",
  ],
@@ -217,7 +217,12 @@ export const pageSeoRegistry: PageSeoInput[] = [
  {
  question: "Is the Agent Harness the same as Precifarm Agent?",
  answer:
- "No. Precifarm Agent's web workspace runs on a hosted model. The Agent Harness is the local platform: models run on your own machine and nothing leaves it in strict privacy mode.",
+ "No. Precifarm Agent is the engineering assistant you can use at precifarm.com/agent. The Agent Harness is the platform Precifarm builds its agents on: it routes each task to a hosted model and runs the agent workflow.",
+ },
+ {
+ question: "Does it run AI models on my own computer?",
+ answer:
+ "No. It uses hosted models through their providers' APIs, so no GPU or local install is needed. Prompts and documents go to the chosen provider.",
  },
  {
  question: "Can I use it today?",

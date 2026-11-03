@@ -27,7 +27,7 @@ export const productImages = {
     brand: "none" as const,
   },
   corridor: {
-    /** Corridor concept visualisation: two CCS2 guns, M-Pesa tap-to-pay. */
+    /** Corridor concept visualisation from the earlier Precifarm-designed dispenser (stopped 2 Nov 2026); the first site uses a certified OEM charger. */
     src: "/images/products/corridor-v6.jpg",
     alt: "Precifarm Corridor DC fast charger concept with dual CCS2 holsters and M-Pesa tap-to-pay on the display",
     brand: "corridor" as const,

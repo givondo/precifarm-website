@@ -56,8 +56,8 @@ export const whereYouCharge = {
       body: [
         "Go beyond the city with ",
         { bold: "Corridor" },
-        " DC fast charging, with on-site storage and M-Pesa session pay. The first sites, starting on Nairobi to Kisumu, are ",
-        { bold: "pilots in development" },
+        " DC fast charging from a certified OEM charger, with M-Pesa session pay. The first site, starting on Nairobi to Kisumu, is a ",
+        { bold: "pilot in development" },
         ".",
       ] as const satisfies readonly CopyPart[],
       products: "Corridor · DC fast charging · price shown before you start",

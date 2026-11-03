@@ -33,7 +33,7 @@ export const entityRegistry: KnowledgeEntity[] = [
  type: "equipment",
  name: "Corridor charging",
  description:
- "DC fast charging with two CCS2 guns and on-site storage, engineered per site. First sites, starting on Nairobi to Kisumu, are pilots in development. Price per kWh set per site and shown before you start.",
+ "DC fast charging from a certified OEM charger of 120 to 180 kW under the Precifarm brand, engineered per site. The first site, starting on Nairobi to Kisumu, is a pilot in development. Price per kWh set per site and shown before you start.",
  url: absoluteUrl("/charging/corridor"),
  relatedIds: ["service-hub-charging", "equipment-ev-charger"],
  },
@@ -63,7 +63,7 @@ export const entityRegistry: KnowledgeEntity[] = [
  type: "service",
  name: "Agent Harness",
  description:
- "Local-first platform for running open-weight AI models and agent workflows privately on your own machine, with human sign-off before export. In development.",
+ "Precifarm's AI agent platform: agent workflows on the hosted model that suits each task, DeepSeek by default, with human sign-off before export. In development.",
  url: absoluteUrl("/ai"),
  relatedIds: ["service-mobile-app"],
  },

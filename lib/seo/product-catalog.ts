@@ -60,8 +60,8 @@ export const commercialProductCatalog = {
  sku: "corridor-dc",
  category: "DC Fast Charger",
  additionalProperty: [
- { name: "Connectors", value: "Dual CCS2" },
- { name: "Site storage", value: "On-site battery, sized per site" },
+ { name: "Connectors", value: "CCS2" },
+ { name: "Power", value: "Certified OEM charger, 120 to 180 kW" },
  { name: "Public DC rate", value: "set per site at commissioning" },
  { name: "Availability", value: "Pilot sites in development" },
  ],
