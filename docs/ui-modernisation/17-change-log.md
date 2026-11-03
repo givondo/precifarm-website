@@ -1,5 +1,20 @@
 # 17 Change log
 
+## Phase B1, second pass (3 November 2026)
+
+No URL, product claim or calculation changed. Dev dependencies added: `@playwright/test` 1.64.1, `@axe-core/playwright` 4.12.1 (matched to the axe-core already in the lockfile). Installed with npm 11 so the lockfile keeps its `libc` fields, which the Alpine Docker image needs to pick musl binaries.
+
+| Change | Files | Why | Verified by |
+|---|---|---|---|
+| Contact and survey routes rate-limited (5 per address per 10 min) with a honeypot that is never forwarded | `lib/rate-limit.ts`, `lib/form-guard.ts`, `components/forms/HoneypotField.tsx`, both API routes and forms | Security finding S-2 | `tests/form-guard.test.ts`; e2e contact tests with the API mocked |
+| Agent chat route uses the shared limiter | `app/api/agent/chat/route.ts` | One implementation | Same limits as before |
+| Form errors announced to screen readers | `ContactForm.tsx`, `HomeSurveyForm.tsx` | Errors were silent for assistive technology | e2e rate-limit test reads the alert |
+| Tables no longer cut off on phones | `components/training/TrainingTables.tsx`, `app/charging/engineering/page.tsx` | Grid items with `min-width: auto` let 640 px tables widen the column to 530 to 638 px, clipped by `overflow-x: clip` | Captures at 390 px now 390 wide; 1440 px pixel-identical; e2e clipping check fails on the old build and passes on this one |
+| Installation-process table on `/charging/home` keyboard-scrollable | `app/charging/home/page.tsx` | axe scrollable-region-focusable at 390 px | e2e axe |
+| Hub sheet availability badge legible | `components/hub-map/HubSiteDetail.tsx` | Pin green as text on a pale tint, about 2:1 | e2e axe |
+| Playwright and axe suite, `npm run test:e2e` | `playwright.config.ts`, `tests/e2e/` | Repeatable baseline in the repository | 110 pass |
+| Cascade-layer migration attempted and reverted | none kept | Measured 74 genuine conflicts; needs per-page decisions | `appendix-layer-conflicts.md` |
+
 ## Phase B1 (3 November 2026, branch `ui-modernisation/phase-a-b`)
 
 No URL, dependency, product claim or calculation changed.

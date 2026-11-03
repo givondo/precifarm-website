@@ -23,15 +23,15 @@ The site already runs the target framework (Next.js 16 App Router, React 19, Tai
 | React Flow (`@xyflow/react`) | Adopt for a read-only workflow viewer in `/agent/chat` once the chat route emits typed step events | There is no workflow event stream yet; a graph without one would be decoration |
 | Three.js / R3F | Pilot on one page only, when an approved GLB exists | Pulse Rev C geometry in FreeCAD is the likely first asset |
 | Zod | Adopt in `/api/contact` and `/api/survey` | Shared server and client validation |
-| Playwright and axe-core | Add as dev dependencies with the audit script from this session | Makes the baseline repeatable in CI |
+| Playwright and axe-core | Added as dev dependencies; `npm run test:e2e` | Done |
 
 ## Phases
 
 | Phase | Scope | Status |
 |---|---|---|
 | A | Audit, baseline screenshots, route and functional inventory | Done (this branch) |
-| B1 | Semantic status and feedback tokens, honest demo labelling, reduced-motion handling, contrast and JSON-LD fixes | Done (this branch) |
-| B2 | Decide D1; move component classes into `@layer components`; Button and Badge on tokens; Playwright and axe in `devDependencies` | Next |
+| B1 | Semantic status and feedback tokens, honest demo labelling, reduced-motion handling, contrast and JSON-LD fixes, form rate limits and honeypot, phone clipping fixes, e2e suite | Done (this branch) |
+| B2 | Decide D1; move component classes into `@layer components` page by page using `appendix-layer-conflicts.md`; Button and Badge on tokens | Next |
 | C | Header and footer on shadcn primitives, footer audit | After B2 |
 | D | Homepage hierarchy: hero media, programme cards with one status component | After D1 and D2 |
 | E | Programme pages on one `ProgrammeView` system with evidence labels per row | `ProgrammeView` already exists; extend it |
@@ -41,4 +41,4 @@ The site already runs the target framework (Next.js 16 App Router, React 19, Tai
 
 ## Rollback
 
-Every change is on `ui-modernisation/phase-a-b`, one commit per concern. Reverting a commit restores the previous behaviour; no data, URL or dependency changed in Phase B1.
+Every change is on `ui-modernisation/phase-a-b`, one commit per concern. Reverting a commit restores the previous behaviour; no data or URL changed in Phase B1; the only dependency change is two dev dependencies for testing.
