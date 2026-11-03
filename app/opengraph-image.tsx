@@ -31,7 +31,7 @@ export default function OpenGraphImage() {
             }}
           />
           <span style={{ fontSize: 22, fontWeight: 600, color: "#aedac2" }}>
-            EV CHARGING · ENERGY STORAGE
+            EV CHARGING · BATTERY SWAP · AI ENGINEERING
           </span>
         </div>
 
