@@ -155,8 +155,8 @@ export function brandPrintCss() {
 .pf-doc-toolbar-id { font-family: ui-monospace, Consolas, monospace; font-size: .78rem; color: var(--pf-subtle, #737373); letter-spacing: .04em; }
 .pf-doc-toolbar-actions { display: flex; gap: .5rem; flex-wrap: wrap; }
 .pf-print-band { display: none; }
-.pf-doc-footer-title { margin: .5rem 0 0; font-size: .88rem; color: var(--pf-ink, #0a0a0a); }
-.pf-doc-footer-social a { color: var(--pf-charge, #2563eb); text-decoration: none; }
+.pf-doc-footer-title { margin: .5rem 0 0; font-size: .88rem; color: var(--pf-ink, #111827); }
+.pf-doc-footer-social a { color: var(--pf-charge, #1f6f4a); text-decoration: none; }
 @media print {
   @page { size: A4; margin: 12mm 12mm 22mm; }
   body { padding-bottom: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -176,7 +176,7 @@ export function brandPrintCss() {
   }
   .pf-print-band-row { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem  .6rem; margin: 0 0 .6mm; }
   .pf-print-band-row:last-child { margin-bottom: 0; justify-content: space-between; }
-  .pf-print-band-brand strong { color: var(--pf-ink, #0a0a0a); font-size: 6.5pt; }
+  .pf-print-band-brand strong { color: var(--pf-ink, #111827); font-size: 6.5pt; }
   .pf-print-band-brand img { vertical-align: middle; margin-right: 1mm; }
   .pf-print-band-muted { color: var(--pf-subtle, #737373); }
   .pf-print-band-contact, .pf-print-band-social { color: var(--pf-subtle, #737373); font-size: 5.8pt; }

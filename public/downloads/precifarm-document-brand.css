@@ -7,16 +7,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&display=swap");
 
 :root {
-  --pf-ink: #0a0a0a;
-  --pf-muted: #404040;
-  --pf-subtle: #737373;
-  --pf-line: #e5e5e5;
+  --pf-ink: #111827;
+  --pf-muted: #374151;
+  --pf-subtle: #6b7280;
+  --pf-line: #e5e7eb;
   --pf-bg: #ffffff;
-  --pf-soft: #f5f5f5;
-  --pf-charge: #2563eb;
-  --pf-charge-soft: #eff6ff;
-  --pf-charge-hover: #1d4ed8;
-  --pf-mark-bg: #eff6ff;
+  --pf-soft: #f3f4f6;
+  --pf-charge: #1f6f4a;
+  --pf-charge-soft: #eef7f2;
+  --pf-charge-hover: #195a3c;
+  --pf-mark-bg: #eef7f2;
 
   /* Aliases for document body styles */
   --ink: var(--pf-ink);
