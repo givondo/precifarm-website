@@ -55,7 +55,7 @@ export const announcementBar = {
 
 export const homeHero = {
  eyebrow: "Precifarm EV charging",
- headline: "Powering every electric journey.",
+ headline: "Powering the shift to electric transport.",
  headlineAccent: "",
  whatWeDo:
  "From your doorstep to the highway, we're building the charging infrastructure that keeps Kenya moving. Reliable, accessible and designed for the road ahead.",

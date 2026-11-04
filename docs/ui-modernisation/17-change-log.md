@@ -1,5 +1,9 @@
 # 17 Change log
 
+## Hero headline (4 November 2026, 15:25)
+
+David changed the hero headline to "Powering the shift to electric transport." The supporting line and buttons are unchanged.
+
 ## Software and research section, HD-049 (4 November 2026)
 
 | Change | Detail |
