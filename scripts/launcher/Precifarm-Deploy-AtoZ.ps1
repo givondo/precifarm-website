@@ -130,7 +130,7 @@ if (-not $GitHubOnly) {
 
   # ---------------------------------------------------------------------------- E
   Step "E" "Project and services"
-  & $GCLOUD config set project $Project 2>$null | Out-Null
+  $null = & $GCLOUD config set project $Project --quiet 2>&1
   $enabled = & $GCLOUD services list --enabled --project $Project --format="value(config.name)" 2>$null
   if (-not $enabled) { Fail "Cannot read project $Project. Check this account has access to it." }
   $needed = @("run.googleapis.com", "cloudbuild.googleapis.com", "artifactregistry.googleapis.com", "storage.googleapis.com")
@@ -168,6 +168,10 @@ if (-not $repo) {
 }
 Set-Location $repo
 Ok $repo
+
+# Git needs a name and email to record merge commits (exit 128 without them).
+if (-not (git config user.email)) { git config user.email "david.givondoh@gmail.com"; Note "Set git email for this repo" }
+if (-not (git config user.name))  { git config user.name "Sayia David Givondo"; Note "Set git name for this repo" }
 
 # ------------------------------------------------------------------------------ G
 Step "G" "Local changes"
@@ -283,9 +287,14 @@ Run git @("push", "-u", "origin", $Branch) "Push $Branch"
 if ($Branch -ne "main") {
   Run git @("checkout", "main") "Checkout main"
   Run git @("pull", "--ff-only", "origin", "main") "Update main"
-  Run git @("merge", "--no-ff", $Branch, "-m", "Merge branch '$Branch'") "Merge $Branch into main"
+  git merge-base --is-ancestor $Branch main
+  if ($LASTEXITCODE -eq 0) {
+    Ok "$Branch is already in main"
+  } else {
+    Run git @("merge", "--no-ff", $Branch, "-m", "Merge branch '$Branch'") "Merge $Branch into main"
+    Ok "Merged $Branch into main (its pull request closes as merged)"
+  }
   Run git @("push", "origin", "main") "Push main"
-  Ok "Merged $Branch into main (its pull request closes as merged)"
 } else {
   Ok "main pushed"
 }

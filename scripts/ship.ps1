@@ -58,6 +58,9 @@ if (-not $GitHubOnly) {
 }
 Ok "git and npm found"
 
+if (-not (git config user.email)) { git config user.email "david.givondoh@gmail.com" }
+if (-not (git config user.name))  { git config user.name "Sayia David Givondo" }
+
 # ---------------------------------------------------------------- commit
 Step "Committing local changes"
 $branch = (git rev-parse --abbrev-ref HEAD).Trim()
