@@ -78,7 +78,9 @@ test("the legal name Precifarm AI Ltd appears only in legal content and structur
     }
   };
   for (const d of ["app", "components", "lib"]) walk(d);
-  for (const h of hits) assert.ok(allowed.some((a) => h.startsWith(a)), `${h} uses the legal name outside legal content`);
+  // Compare with forward slashes so the check also passes on Windows (join() gives backslashes there).
+  for (const h of hits.map((x) => x.replace(/\\/g, "/")))
+    assert.ok(allowed.some((a) => h.startsWith(a)), `${h} uses the legal name outside legal content`);
   const { pageSeoRegistry } = await import("@/lib/seo/pages/registry");
   for (const p of pageSeoRegistry.filter((x) => !x.path.startsWith("/legal"))) {
     assert.ok(!`${p.title} ${p.description}`.includes("Precifarm AI Ltd"), `${p.path} names the legal entity`);

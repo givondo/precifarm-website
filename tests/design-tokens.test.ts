@@ -28,7 +28,9 @@ test("every status token a status class names is defined in the Tailwind theme",
 test("display headings on dark panels use heading-inverted, since .heading-display overrides text-white", async () => {
   const { readdirSync, statSync } = await import("node:fs");
   const { join } = await import("node:path");
-  const root = new URL("..", import.meta.url).pathname;
+  const { fileURLToPath } = await import("node:url");
+  // fileURLToPath, not URL.pathname: on Windows .pathname gives "/C:/..." and join() makes "C:\\C:\\..."
+  const root = fileURLToPath(new URL("..", import.meta.url));
   const files: string[] = [];
   const walk = (dir: string) => {
     for (const name of readdirSync(dir)) {
