@@ -12,6 +12,12 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Local build and test output that is never committed (.gitignore)
+    ".netlify/**",
+    ".vercel/**",
+    "test-results/**",
+    "playwright-report/**",
+    "**/deploy-logs/**",
   ]),
 ]);
 
