@@ -29,8 +29,8 @@ if (!fs.existsSync(src)) {
 
 fs.mkdirSync(outDir, { recursive: true });
 
-const webOut = path.join(outDir, "precifarm-ad-v2-web.mp4");
-const mobileOut = path.join(outDir, "precifarm-ad-v2-mobile.mp4");
+const webOut = path.join(outDir, "precifarm-pitch-v9-web.mp4");
+const mobileOut = path.join(outDir, "precifarm-pitch-v9-mobile.mp4");
 
 /** H.264 + AAC, faststart for progressive download; CRF tuned for quality vs size */
 const webArgs = [

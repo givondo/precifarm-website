@@ -92,8 +92,8 @@ export function createPageSeo(input: PageSeoInput): GeneratedPageSeo {
         path: "/",
         thumbnailUrl: posterSrc,
         contentUrl: src,
-        uploadDate: "2026-10-14",
-        duration: "PT1M40S",
+        uploadDate: "2026-11-04",
+        duration: "PT2M",
       }),
       serviceSchema({
         name: "Precifarm EV Charging",
