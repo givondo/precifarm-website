@@ -1,5 +1,13 @@
 # 17 Change log
 
+## Software and research section, HD-049 (4 November 2026)
+
+| Change | Detail |
+|---|---|
+| Duplicate removed | The Precifarm Agent panel and Wireless R&D tile under the homepage product cards repeated the dark "Software & research" section further down. The pair under the cards is gone |
+| Agent: interactive engineering workspace | `components/home/AgentWorkspaceDemo.tsx`. The visitor picks a daily distance; the Agent's own deterministic tools (`lib/agent/tools/engineering.ts`) work out daily energy, charge time on Pulse, breaker and RCD, and cable voltage drop. Shows the steps, a single line diagram and an expandable calculation trace with evidence labels. No model call, nothing scripted |
+| Wireless: interactive R&D simulation | `components/home/WirelessSimulation.tsx`. Top view of a car over a ground pad; a slider moves the car off-centre; coupling falls, power trims inside a ±100 mm window and stops outside it. Labelled "Research simulation" and "Illustrative model, not operational hardware or measured data", as David asked. The coupling curve is illustrative, not bench data |
+
 ## Homepage refresh, HD-048 (4 November 2026)
 
 David's instructions of 3 November, 23:43 onwards.
