@@ -2,9 +2,9 @@
 
 export const guidesPage = {
   eyebrow: "Guides · Kenya",
-  title: "Home install, highway DC and M-Pesa — step by step",
+  title: "Home install, highway DC and M-Pesa, step by step",
   description:
-    "For Kenyan drivers and installers: Pulse charger at home, Corridor pilot sites on the highway, Charging Hub labels and Precifarm Agent.",
+    "For Kenyan drivers and installers: Pulse charger at home, ARC Corridor DC fast charging on the highway, the Charging Hub map and Precifarm Agent.",
   cta: {
     title: "Ready to charge?",
     description: "Browse the charging range or open the Charging Hub to see what is live near you.",

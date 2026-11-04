@@ -8,7 +8,7 @@ The site already runs the target framework (Next.js 16 App Router, React 19, Tai
 
 | ID | Decision | Why it matters |
 |---|---|---|
-| D1 | Brand palette: keep blue buttons and green links, or move CTAs to Precifarm green #1F6F4A and ink #111827 as in the document brand | Sets every component that follows. Not changed until decided |
+| D1 | Brand palette | Decided 3 Nov: Precifarm green #1F6F4A, ink #111827, grey #6B7280. Done, see 06 |
 | D2 | Claims R2 to R4 (Pulse availability, Harness local-first wording, Corridor storage) | Copy on live pages is out of step with 1 and 2 Nov decisions; the fix belongs in PRECIFARM_MASTER, then regenerate |
 | D3 | Canon R1: update `docs/CANON.md` to the six programmes | `AGENTS.md` sends every agent to a stale rulebook |
 | D4 | Dependency additions: shadcn/ui (Radix primitives), Motion, React Flow | Each adds client JavaScript; proposed only where listed below |

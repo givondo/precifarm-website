@@ -1,5 +1,5 @@
 import type { AvailabilityStatus, HubOperator, HubSiteKind } from "@/lib/hub-locations";
-import { availabilityConfig, siteKindConfig } from "@/lib/hub-locations";
+import { siteKindConfig } from "@/lib/hub-locations";
 
 export function createPinSvg(
   availability: AvailabilityStatus,
@@ -7,8 +7,9 @@ export function createPinSvg(
   siteKind: HubSiteKind,
   selected: boolean,
 ): string {
-  const availColor = availabilityConfig[availability].color;
-  const accent = siteKind === "swap" ? siteKindConfig.swap.pinColor : availColor;
+  // Availability is not shown on the map; colour follows the kind of site only.
+  void availability;
+  const accent = siteKindConfig[siteKind].pinColor;
   const size = selected ? 36 : 28;
   const cx = size / 2;
   const cy = size / 2 - 4;

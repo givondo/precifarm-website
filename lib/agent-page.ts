@@ -6,7 +6,7 @@ import { agentToolCatalogue } from "@/lib/agent/tools/engineering";
 
 export const agentPath = "/agent";
 
-export const agentStatusNote = "Live in early access · Ask and Plan modes · powered by DeepSeek V4 Flash";
+export const agentStatusNote = "Ask and Plan modes · powered by DeepSeek V4 Flash";
 
 export const agentPageFaqs: FaqItem[] = [
   {
@@ -22,7 +22,7 @@ export const agentPageFaqs: FaqItem[] = [
   {
     question: "Is Precifarm Agent live today?",
     answer:
-      "Yes, in early access. The web workspace is open at precifarm.com/agent/chat and on this page, with ten engineering tools. Android is available on request, and engineers can run it locally with OpenCode from precifarm.com/download.",
+      "Yes. The web workspace is open at precifarm.com/agent/chat and on this page, with ten engineering tools. Android is available on request, and engineers can run it locally with OpenCode from precifarm.com/download.",
   },
   {
     question: "Who is it for?",
@@ -55,7 +55,7 @@ export const agentPage = {
   progress: [
     { stat: String(agentToolCatalogue.length), label: "Deterministic engineering tools: EV, solar, battery, inverter, cables, protection, costs, products" },
     { stat: "100%", label: "Of numbers come from a tool and carry an evidence label you can audit" },
-    { stat: siteConfig.androidApp.name, label: "Android companion in early access · desktop workspace next" },
+    { stat: siteConfig.androidApp.name, label: "Android companion · desktop workspace coming" },
   ],
 
   northStar: {
@@ -112,10 +112,10 @@ export const agentPage = {
       next: "Next horizon",
     },
     shipped: [
-      "Web workspace in early access, Ask and Plan modes",
+      "Web workspace with Ask and Plan modes",
       "Ten-tool engineering kernel: EV, solar, battery, inverter, voltage drop, protection, cost, products",
       "Calculation trace with evidence labels on every reply",
-      `${siteConfig.androidApp.name} early access on Android`,
+      `${siteConfig.androidApp.name} on Android`,
     ],
     building: [
       "Kenyan benchmark: 50 real survey cases graded by registered engineers (Q1 2027)",

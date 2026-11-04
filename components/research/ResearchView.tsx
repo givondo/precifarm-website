@@ -100,15 +100,7 @@ function ProgrammeCard({ area }: { area: ResearchArea }) {
   return (
     <article id={area.id} className="card scroll-mt-24 overflow-hidden">
       <header className="border-b border-border p-6 sm:p-8">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="rounded-md bg-forest-900 px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider text-white">
-            {area.horizon}
-          </span>
-          <span className="rounded-md bg-muted px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-forest-600">
-            {area.stage}
-          </span>
-        </div>
-        <h3 className="heading-display mt-3 text-xl text-forest-900 sm:text-2xl">{area.title}</h3>
+        <h3 className="heading-display text-xl text-forest-900 sm:text-2xl">{area.title}</h3>
         <p className="mt-3 max-w-3xl text-base leading-relaxed text-forest-700">{area.question}</p>
         <div className="mt-6 grid gap-5 sm:grid-cols-2">
           <ProgressBar value={area.progress} towards={area.workingTowards} />
@@ -155,7 +147,8 @@ function ProgrammeCard({ area }: { area: ResearchArea }) {
                     aria-hidden
                   />
                   <p className="font-mono text-[11px] text-forest-500">
-                    {m.when} · <span className="uppercase tracking-wider">{s.label}</span>
+                    {m.when}
+                    <span className="sr-only"> ({s.label})</span>
                   </p>
                   <p className={`mt-0.5 text-sm leading-snug ${s.text}`}>{m.title}</p>
                 </li>

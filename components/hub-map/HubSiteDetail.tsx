@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  availabilityConfig,
   googleDirectionsUrl,
   hubCapacityLabel,
   hubSiteTypeLabel,
@@ -16,23 +15,11 @@ type HubSiteDetailProps = {
 };
 
 export function HubSiteDetail({ hub, directionsClassName = "btn-primary hub-map-sidebar-directions" }: HubSiteDetailProps) {
-  const avail = availabilityConfig[hub.availability];
   const kind = siteKindConfig[hub.siteKind];
 
   return (
     <>
       <div className="hub-map-sidebar-detail-head">
-        <span
-          className="hub-map-sidebar-badge"
-          style={{
-            // Pin colours (e.g. #22c55e) are too light for text on a pale tint; the colour cue stays in border and fill.
-            color: "var(--color-forest-700)",
-            borderColor: `${avail.color}80`,
-            backgroundColor: `${avail.color}1f`,
-          }}
-        >
-          {avail.label}
-        </span>
         <span
           className="hub-map-sidebar-kind"
           style={{

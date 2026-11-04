@@ -60,7 +60,7 @@ const meta: Record<ProgrammeCode, { id: ProgrammeId; pillar: Pillar; href: strin
     id: "corridor",
     pillar: "energy",
     href: "/charging/corridor",
-    summary: "DC fast charging with two CCS2 guns, overhead cables and on-site storage, engineered around each site's grid.",
+    summary: "DC fast charging for highways and towns from a certified OEM charger of 120 to 180 kW under the Precifarm brand, engineered around each site's grid.",
   },
   BODAHUB: {
     id: "boda",
@@ -78,11 +78,14 @@ const meta: Record<ProgrammeCode, { id: ProgrammeId; pillar: Pillar; href: strin
     id: "harness",
     pillar: "ai",
     href: "/ai",
-    summary: "A local-first platform for running open-weight AI models and agent workflows privately, on your own machine.",
+    summary: "The platform Precifarm builds its agents on: agent workflows on the hosted AI model that suits each task, with a person approving every result.",
   },
 };
 
-export const programmes: readonly Programme[] = generated.products.map((p) => ({
+/** Programmes published on precifarm.com. AGENTH stays in the engineering register but is not on the site (HD-046). */
+const SITE_CODES: ReadonlySet<ProgrammeCode> = new Set<ProgrammeCode>(["PULSE7K2", "PULSEPLUS", "CORRIDOR", "BODAHUB", "WPT"]);
+
+export const programmes: readonly Programme[] = generated.products.filter((p) => SITE_CODES.has(p.code)).map((p) => ({
   ...meta[p.code],
   code: p.code,
   name: p.name,

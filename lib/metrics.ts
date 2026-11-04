@@ -2,7 +2,7 @@
 export const whyItWorksMetrics = [
   {
     stat: "120 kW",
-    label: "Corridor DC on the highway",
+    label: "ARC Corridor on the highway",
   },
   {
     stat: "KES 140",

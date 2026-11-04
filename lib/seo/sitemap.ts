@@ -29,7 +29,7 @@ export function buildImageSitemapEntries(): Record<string, string[]> {
       absoluteUrl,
     ),
     "/charging/pulse-plus": [productImages.pulsePlus.src].map(absoluteUrl),
-    "/charging/corridor": [productImages.corridor.src, productImages.corridorForecourt.src].map(absoluteUrl),
+    "/charging/corridor": [productImages.corridor.src].map(absoluteUrl),
     "/charging/boda-hub": [
       productRenderPaths.bodaHubStudio,
       productRenderPaths.bodaHub,

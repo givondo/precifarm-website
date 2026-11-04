@@ -169,11 +169,11 @@ export const evChargingTracks: EvChargingTrack[] = [
     id: "route-hub",
     title: "Highway charging",
     description:
-      "Corridor charging at highway sites — CCS2 DC, live status and M-Pesa session pay on commissioned forecourts.",
+      "ARC Corridor at highway sites — CCS2 DC, live status and M-Pesa session pay on commissioned forecourts.",
     tiers: ["t1", "t2", "t3"],
     roles: "Hub operators, route engineers, partner depot leads",
     topics: [
-      "Corridor DC sessions and load sharing",
+      "ARC Corridor sessions and load sharing",
       "Live status and M-Pesa session pay",
       "Uptime targets and honest recovery",
     ],
@@ -195,7 +195,7 @@ export const evChargingTracks: EvChargingTrack[] = [
     id: "private-site",
     title: "Fleet charging",
     description:
-      "Pulse+ three-phase charging (in development) for yards, campuses and industrial sites: dedicated charging for fleets and staff vehicles.",
+      "Pulse+ three-phase charging for yards, campuses and industrial sites: dedicated charging for fleets and staff vehicles.",
     tiers: ["t2", "t3"],
     roles: "Project engineers, estate facilities teams, fleet managers",
     topics: [
@@ -208,7 +208,7 @@ export const evChargingTracks: EvChargingTrack[] = [
     id: "fleet",
     title: "Boda Hub & last-mile",
     description:
-      "Battery swap for electric bodas at partner-run pilot sites, under 5 minutes back on the road.",
+      "Battery swap for electric bodas at partner-run sites, under 5 minutes back on the road.",
     tiers: ["t1", "t2"],
     roles: "Boda operators, depot supervisors, last-mile partners",
     topics: [
@@ -233,7 +233,7 @@ export const trainingTrackMatrix: {
     t1: "Required",
     t2: "Required",
     t3: "Required",
-    note: "All tiers needed for Corridor sites, starting with the Nairobi to Kisumu pilots",
+    note: "All tiers needed for Corridor sites, starting on the Nairobi to Kisumu route",
   },
   {
     track: "Home charging",
@@ -260,7 +260,7 @@ export const trainingTrackMatrix: {
 
 export const trainingDeliveryDetails = [
   { item: "Classroom venue", detail: "Nairobi — Precifarm training facility" },
-  { item: "Field modules", detail: "Precifarm installation and pilot sites" },
+  { item: "Field modules", detail: "Precifarm installation sites" },
   { item: "Cohort size", detail: "6–16 participants per intake (partner cohorts on request)" },
   { item: "Language", detail: "English (Kiswahili support materials on request)" },
   { item: "Equipment", detail: "Same DC charger models and CSMS used on deployed hubs" },
@@ -285,7 +285,7 @@ export const trainingPrerequisites = [
 ] as const;
 
 export const trainingDelivery = [
-  "Classes run in Nairobi with field modules at installation and pilot sites.",
+  "Classes run in Nairobi with field modules at Precifarm installation sites.",
   "Partner cohorts available on request for operators and site hosts.",
   "Certificates issued per tier with annual refresher for T2 and T3.",
   "Training content aligned to chargers and CSMS deployed on Precifarm hubs.",

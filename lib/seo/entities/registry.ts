@@ -13,9 +13,9 @@ export const entityRegistry: KnowledgeEntity[] = [
  type: "organization",
  name: "Precifarm",
  description:
- "Kenyan company with two pillars: energy infrastructure for electric transport (EV charging and boda battery swapping) and private AI systems for engineering.",
+ "Kenyan company building energy infrastructure for electric transport (EV charging and boda battery swapping) and Precifarm Agent, an AI engineering assistant for EV charging and energy design.",
  url: siteConfig.url,
- relatedIds: ["service-charge-map", "service-home-charging", "product-pulse", "product-pulse-plus", "product-corridor", "product-boda", "product-agent-harness", "service-sustainability"],
+ relatedIds: ["service-charge-map", "service-home-charging", "product-pulse", "product-pulse-plus", "product-corridor", "product-boda", "service-mobile-app", "service-sustainability"],
  },
  {
  id: "product-pulse",
@@ -31,9 +31,9 @@ export const entityRegistry: KnowledgeEntity[] = [
  id: "product-corridor",
  slug: "corridor",
  type: "equipment",
- name: "Corridor charging",
+ name: "ARC Corridor",
  description:
- "DC fast charging with two CCS2 guns and on-site storage, engineered per site. First sites, starting on Nairobi to Kisumu, are pilots in development. Price per kWh set per site and shown before you start.",
+ "DC fast charging from a certified OEM charger of 120 to 180 kW under the Precifarm brand, engineered per site. The first site, on the Nairobi to Kisumu route, is being prepared. Price per kWh set per site and shown before you start.",
  url: absoluteUrl("/charging/corridor"),
  relatedIds: ["service-hub-charging", "equipment-ev-charger"],
  },
@@ -43,7 +43,7 @@ export const entityRegistry: KnowledgeEntity[] = [
  type: "equipment",
  name: "Pulse+ charger",
  description:
- "22 kW three-phase AC wallbox for fleet yards, workplaces and apartments; 11 kW and 7.4 kW modes; up to ten units on one site meter. In development.",
+ "22 kW three-phase AC wallbox for fleet yards, workplaces and apartments; 11 kW and 7.4 kW modes; up to ten units on one site meter.",
  url: absoluteUrl("/charging/pulse-plus"),
  relatedIds: ["service-fleet-charging", "product-corridor"],
  },
@@ -53,19 +53,9 @@ export const entityRegistry: KnowledgeEntity[] = [
  type: "equipment",
  name: "Boda Hub",
  description:
- "Battery swap for electric bodas: partner-run pilot sites today; the Automated Boda Hub cabinet is in development. One battery make per site.",
+ "Battery swap for electric bodas at partner-run sites, and the self-service Automated Boda Hub cabinet. One battery make per site.",
  url: absoluteUrl("/charging/boda-hub"),
  relatedIds: ["service-fleet-charging"],
- },
- {
- id: "product-agent-harness",
- slug: "agent-harness",
- type: "service",
- name: "Agent Harness",
- description:
- "Local-first platform for running open-weight AI models and agent workflows privately on your own machine, with human sign-off before export. In development.",
- url: absoluteUrl("/ai"),
- relatedIds: ["service-mobile-app"],
  },
  {
  id: "equipment-ev-charger",
@@ -104,7 +94,7 @@ export const entityRegistry: KnowledgeEntity[] = [
  slug: "hub-charging",
  type: "service",
  name: "Highway charging",
- description: "Corridor DC fast charging, paid with M-Pesa. The first sites are pilots in development.",
+ description: "ARC Corridor DC fast charging, paid with M-Pesa. The first site, on the Nairobi to Kisumu route, is being prepared.",
  url: absoluteUrl("/charging/corridor"),
  relatedIds: ["equipment-ev-charger", "location-nairobi", "location-kisumu", "service-charge-map"],
  },
@@ -124,7 +114,7 @@ export const entityRegistry: KnowledgeEntity[] = [
  type: "service",
  name: "Home charging",
  description:
- "Pulse charger on private property. A home charging day costs about KES 140 versus ~KES 1,000 diesel per day (illustrative).",
+ "Pulse charger on private property. A home charging day costs about KES 140 versus about KES 1,000 of diesel.",
  url: absoluteUrl("/charging/home"),
  aliases: ["Private house charging", "Pulse charger"],
  relatedIds: ["service-hub-charging", "product-pulse"],
@@ -144,8 +134,8 @@ export const entityRegistry: KnowledgeEntity[] = [
  type: "service",
  name: "Precifarm Agent",
  description:
- "AI electrical and energy engineering workspace for EV charging, solar, batteries and electrical systems. Desktop coming soon.",
- url: absoluteUrl("/download"),
+ "AI electrical and energy engineering assistant for EV charging, solar, batteries and electrical systems, on the web and on desktop.",
+ url: absoluteUrl("/agent"),
  relatedIds: ["service-charge-map", "service-home-charging", "product-pulse"],
  },
  {
@@ -226,13 +216,13 @@ export function internalLinksForPath(path: string): { href: string; label: strin
  add(chargingHub.path, chargingHub.label, "See hub locations");
  add("/charging/home", "Home EV charging", "Pulse charger and Lipa Pole Pole");
  add("/charging/pulse-plus", "Pulse+ charger", "22 kW fleet and workplace AC");
- add("/charging/corridor", "Corridor charging", "DC fast charging pilots");
+ add("/charging/corridor", "ARC Corridor", "DC fast charging on the highway");
  add("/charging/boda-hub", "Automated Boda Hub", "Self-service e-motorcycle battery swap");
  add("/partners", "Fleet EV charging", "Partner operator services");
  add("/evs", "Kenya EV guide", "Which charger fits your EV");
  break;
  case "/charging/boda-hub":
- add(chargingHub.path, chargingHub.label, "Live and coming-soon swap sites");
+ add(chargingHub.path, chargingHub.label, "Swap sites near you");
  add("/partners", "Partner programmes", "Host a Boda Hub site");
  add("/agent", "Precifarm Agent", "AI electrical & energy engineer");
  add("/charging/engineering", "Engineering", "Site design basis");
@@ -264,7 +254,7 @@ export function internalLinksForPath(path: string): { href: string; label: strin
  add("/partners", "Partners", "Fleet and hub hosting");
  break;
  case "/agent":
- add("/download", "Desktop download", "Request early access");
+ add("/download", "Desktop download", "Precifarm Agent for desktop");
  add("/charging/home", "Home EV charging", "Pulse charger installs");
  add("/charging", "EV charging", "Pulse charger to Corridor");
  break;
@@ -292,11 +282,6 @@ export function internalLinksForPath(path: string): { href: string; label: strin
  add("/partners", "Host a site", "Site-host and fleet programmes");
  add("/charging/engineering", "Engineering", "Site design basis");
  add("/charging", "EV charging", "From home charging to highway charging");
- break;
- case "/ai":
- add("/agent", "Precifarm Agent", "Hosted engineering assistant");
- add("/research", "Research", "R&D programmes");
- add("/contact", "Contact", "Talk to the team");
  break;
  default:
  break;

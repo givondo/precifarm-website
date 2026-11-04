@@ -20,7 +20,7 @@ export async function GET() {
     instructions: [
       "Use Precifarm engineering tools for numeric work when available.",
       "Label outputs: calculated, estimated, assumed, needs site check.",
-      "Programmes: Pulse charger (available), Pulse+ (in development), Corridor (pilot in development), Boda Hub (pilot), wireless charging (research only), Agent Harness (in development).",
+      "Programmes: Pulse charger (available), Pulse+ (in development), Corridor (pilot in development), Boda Hub (pilot), wireless charging (research only).",
     ],
     links: {
       product: "https://precifarm.com/agent",

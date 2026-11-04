@@ -5,7 +5,7 @@ export const sitePricing = {
   lipaFrom: "KES 3,300/month",
   homeDay: "KES 140",
   dieselDay: "KES 1,000",
-  /** Corridor DC: no public price until a site is commissioned and costed (engineering register COR-13, COR-16). */
+  /** ARC Corridor: no public price until a site is commissioned and costed (engineering register COR-13, COR-16). */
   publicDcPrice: "Shown before you start",
 } as const;
 

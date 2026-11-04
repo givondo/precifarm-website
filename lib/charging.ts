@@ -1,4 +1,4 @@
-/** EV charger images — product photography in /public/images/products/ */
+/** EV charger images: product photography in /public/images/products/ */
 import { productImages } from "@/lib/product-images";
 import { brand } from "@/lib/brand-messaging";
 import { siteCtas, sitePricing } from "@/lib/site-copy";
@@ -7,7 +7,7 @@ export const chargingPage = {
   eyebrow: "Charging",
   title: brand.promise,
   description:
-    "Home, fleet and highway: Pulse charger, Pulse+ charger, Corridor DC fast charging and Boda Hub battery swapping. M-Pesa on every product.",
+    "Home, fleet and highway: Pulse charger, Pulse+ charger, ARC Corridor DC fast charging and Boda Hub battery swapping. M-Pesa on every product.",
 } as const;
 
 type CopyPart = string | { readonly bold: string };
@@ -17,7 +17,7 @@ export const whereYouCharge = {
   title: "Charge where your journey takes you.",
   lead: "At home. At the depot. On the highway.",
   description:
-    "Precifarm gives you the right charging solution for every part of the journey — with installation, financing, monitoring and M-Pesa built in.",
+    "Precifarm gives you the right charging solution for every part of the journey, with installation, financing, monitoring and M-Pesa built in.",
   pillars: [
     {
       id: "home",
@@ -41,9 +41,9 @@ export const whereYouCharge = {
       body: [
         "Keep vehicles moving without changing your operation. ",
         { bold: "Pulse+" },
-        " brings 22 kW three-phase charging to yards and workplaces (in development), while ",
+        " brings 22 kW three-phase charging to yards and workplaces, while ",
         { bold: "Boda Hub" },
-        " swaps batteries for electric two-wheelers at partner-run pilot sites.",
+        " swaps batteries for electric two-wheelers at partner-hosted sites.",
       ] as const satisfies readonly CopyPart[],
       products: "Pulse+ · Boda Hub",
       cta: siteCtas.fleetCharging,
@@ -56,12 +56,12 @@ export const whereYouCharge = {
       body: [
         "Go beyond the city with ",
         { bold: "Corridor" },
-        " DC fast charging, with on-site storage and M-Pesa session pay. The first sites, starting on Nairobi to Kisumu, are ",
-        { bold: "pilots in development" },
-        ".",
+        " DC fast charging from a certified OEM charger, with M-Pesa session pay. The first site, on the ",
+        { bold: "Nairobi to Kisumu" },
+        " route, is being prepared.",
       ] as const satisfies readonly CopyPart[],
       products: "Corridor · DC fast charging · price shown before you start",
-      cta: { href: "/charging/corridor", label: "Corridor charging" },
+      cta: { href: "/charging/corridor", label: "ARC Corridor" },
       offeringsKey: "routeHub" as const,
     },
   ],
@@ -78,7 +78,7 @@ export const chargingOfferings = {
     image: productImages.corridor.src,
     imageAlt: productImages.corridor.alt,
     caption:
-      "Grid, T-canopy Corridor DC and dwell — integrated in one dependable stop for your EV.",
+      "Grid connection, ARC Corridor and a stop worth making, in one dependable site for your EV.",
   },
   home: {
     eyebrow: "Home charging",

@@ -2,7 +2,7 @@
 // Do not edit by hand: change the engineering register and regenerate.
 
 const specs = {
-  "generated": "2026-11-01",
+  "generated": "2026-11-03",
   "generator": "PRECIFARM_MASTER tools/pfm.py export-web",
   "products": [
     {
@@ -11,12 +11,12 @@ const specs = {
       "headline": "7 kW home wallbox",
       "status": "available",
       "maturity": "DESIGN",
-      "approval": "Approved by Sayia David Givondo, 2026-11-01 08:44 EAT (\"approve and proceed\")",
+      "approval": "Approved by Sayia David Givondo, 2026-11-03 22:26 EAT (approve R02, 3 Nov 2026)",
       "spec_doc": "PRF-PULSE7K2-SYS-SPEC-001-R00",
       "claims": [
         {
           "label": "Charging power",
-          "text": "32 A single phase: about 7.4 kW at 230 V, up to 7.7 kW on Kenya Power's 240 V supply",
+          "text": "32 A single phase: up to 7.4 kW",
           "spec_id": "PUL-03",
           "evidence": "target",
           "verification": "calculated"
@@ -145,29 +145,29 @@ const specs = {
       "headline": "DC fast charging for highways and towns",
       "status": "pilot",
       "maturity": "DESIGN",
-      "approval": "Approved by Sayia David Givondo, 2026-11-01 08:44 EAT (\"approve and proceed\")",
+      "approval": "Approved by Sayia David Givondo, 2026-11-03 22:26 EAT (approve R02, 3 Nov 2026)",
       "spec_doc": "PRF-CORRIDOR-SYS-SPEC-001-R00",
       "claims": [
         {
           "label": "Connectors",
-          "text": "Two CCS2 guns on overhead cable trolleys",
+          "text": "CCS2, on a certified OEM charger",
           "spec_id": "COR-04",
           "evidence": "target",
           "verification": "none"
         },
         {
           "label": "Power equipment",
-          "text": "Power conversion from established equipment makers, specified to IEC 61851-23",
+          "text": "A certified OEM charger of 120 to 180 kW under the Precifarm brand",
           "spec_id": "COR-15",
           "evidence": "target",
           "verification": "none"
         },
         {
           "label": "Site storage",
-          "text": "On-site battery so the site needs a smaller grid connection",
+          "text": "None at the first site; storage for later sites is sized after the Kenya Power quote",
           "spec_id": "COR-03",
           "evidence": "target",
-          "verification": "calculated"
+          "verification": "none"
         },
         {
           "label": "Grid",
@@ -182,13 +182,6 @@ const specs = {
           "spec_id": "COR-16",
           "evidence": "target",
           "verification": "none"
-        },
-        {
-          "label": "Access",
-          "text": "Screen, tap-to-pay and emergency stop within reach from a wheelchair",
-          "spec_id": "COR-09",
-          "evidence": "target",
-          "verification": "calculated"
         }
       ]
     },
@@ -280,36 +273,36 @@ const specs = {
     {
       "code": "AGENTH",
       "name": "Agent Harness",
-      "headline": "Private AI agents on your own machine",
+      "headline": "AI agent workflows on hosted models",
       "status": "development",
       "maturity": "DESIGN",
-      "approval": "Approved by Sayia David Givondo, 2026-11-01 08:44 EAT (\"approve and proceed\")",
+      "approval": "Approved by Sayia David Givondo, 2026-11-03 22:26 EAT (approve R02, 3 Nov 2026)",
       "spec_doc": "PRF-AGENTH-SYS-SPEC-001-R00",
       "claims": [
         {
           "label": "Models",
-          "text": "Open-weight models run locally through Ollama",
+          "text": "Hosted models through their APIs, picked per task; DeepSeek by default, Claude or ChatGPT where a task needs them",
           "spec_id": "AH-02",
           "evidence": "target",
           "verification": "none"
         },
         {
           "label": "Agents",
-          "text": "A bounded team of agents with a set number of models running at once",
+          "text": "A bounded team of agents working through a visual workflow you can watch",
           "spec_id": "AH-03",
           "evidence": "target",
           "verification": "none"
         },
         {
-          "label": "Privacy",
-          "text": "Strict mode blocks every hosted model; you approve results before export",
+          "label": "Data",
+          "text": "Prompts and documents go to the chosen model provider; you approve every result before export",
           "spec_id": "AH-06",
           "evidence": "target",
           "verification": "none"
         },
         {
           "label": "Hardware",
-          "text": "Starts with small models on an ordinary laptop; larger models need more memory or a GPU",
+          "text": "No GPU or local install: the models run on the providers' servers",
           "spec_id": "AH-09",
           "evidence": "target",
           "verification": "none"
@@ -317,7 +310,7 @@ const specs = {
       ]
     }
   ],
-  "source_commit": "9212fb4"
+  "source_commit": "ef485c5"
 } as const;
 
 export default specs;

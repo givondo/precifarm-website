@@ -4,7 +4,6 @@ import FaqAccordion from "@/components/seo/FaqAccordion";
 import SiteImage from "@/components/SiteImage";
 import PageCTA from "@/components/ui/PageCTA";
 import SectionHeader from "@/components/ui/SectionHeader";
-import StatusBadge from "@/components/ui/StatusBadge";
 import {
   bodaHubDisclaimer,
   bodaHubPageContent,
@@ -27,10 +26,7 @@ export default function BodaHubView() {
             ]}
           />
           <div className="mt-6 max-w-3xl">
-            <div className="flex flex-wrap items-center gap-3">
-              <p className="text-eyebrow">{p.hero.eyebrow}</p>
-              <StatusBadge status="concept" label="Automated lockers" />
-            </div>
+            <p className="text-eyebrow">{p.hero.eyebrow}</p>
             <h1 className="heading-display mt-3 text-[1.75rem] leading-[1.1] sm:text-3xl lg:text-4xl">
               {p.hero.title}
             </h1>

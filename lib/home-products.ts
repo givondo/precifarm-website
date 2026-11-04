@@ -1,4 +1,4 @@
-/** Product range: the charging and swapping programmes on sale or in pilot. Status follows the PRECIFARM_MASTER maturity register. */
+/** Product range: the charging and swapping programmes. `status` keeps the PRECIFARM_MASTER maturity for internal use; it is not shown as a label. */
 
 import { homeNetworkTeaser } from "@/lib/brand-messaging";
 import { productImages } from "@/lib/product-images";
@@ -8,12 +8,12 @@ export const productNames = {
   pulse: "Pulse charger",
   pulsePlus: "Pulse+ charger",
   boda: "Boda Hub",
-  corridor: "Corridor charging",
+  corridor: "ARC Corridor",
   financing: "Lipa Pole Pole",
 } as const;
 
 /**
- * Illustrative charge times for public copy. Pulse: a ~10 kWh typical Nairobi day (~60 km) needs about
+ * Typical charge times for public copy. Pulse: a ~10 kWh typical Nairobi day (~60 km) needs about
  * 12 kWh from the meter, about 103 minutes at 7 kW, so "under two hours" (engineering register SSOT V02).
  */
 export const productChargeTimes = {
@@ -59,7 +59,7 @@ export const homeProducts: HomeProduct[] = [
     name: productNames.pulsePlus,
     summary: "22 kW three-phase charging for fleet yards, workplaces and apartment parking.",
     tagline:
-      "Pulse+ is the three-phase member of the Pulse family. It adapts to each car, shares one site meter across up to ten units, and is in development.",
+      "Pulse+ is the three-phase member of the Pulse family. It adapts to each car and shares one site meter across up to ten units. Register your site.",
     category: "commercial",
     status: "development",
     priceLabel: "Quoted per site",
@@ -73,7 +73,7 @@ export const homeProducts: HomeProduct[] = [
     name: productNames.boda,
     summary: "Keep your bike moving: swap a flat pack for a charged one and pay on M-Pesa.",
     tagline:
-      "Boda Hub swap sites are run with partners today. The Automated Boda Hub cabinet, with a controller in every bay, is in development.",
+      "Boda Hub sites are built with partners, and the Automated Boda Hub cabinet adds self-service with a controller in every bay. Partner with us on a site.",
     category: "boda",
     status: "pilot",
     priceLabel: "Fleet pricing",
@@ -87,7 +87,7 @@ export const homeProducts: HomeProduct[] = [
     name: productNames.corridor,
     summary: "DC fast charging for highways and towns, engineered around each site's grid connection.",
     tagline:
-      "Corridor puts two CCS2 guns on overhead cable trolleys with on-site storage. The first sites are pilots in development.",
+      "Corridor starts with a certified OEM DC charger of 120 to 180 kW under the Precifarm brand. The first site, on the Nairobi to Kisumu route, is being prepared.",
     category: "highway",
     status: "pilot",
     priceLabel: "Price per kWh shown upfront",
@@ -156,7 +156,7 @@ export const flagshipProductDetails: Record<FlagshipProductId, FlagshipProductDe
     headline: "22 kW Three-Phase Charger",
     hook: "Charge the fleet while it is parked.",
     description:
-      "Three-phase AC for yards, workplaces and apartments. Adapts to each car's on-board charger and shares one site meter across up to ten units. In development.",
+      "Three-phase AC for yards, workplaces and apartments. Adapts to each car's on-board charger and shares one site meter across up to ten units.",
     priceLabel: "Quoted per site",
     specs: ["22 kW AC", "Type 2", "Fleet"],
     bestFor: "Fleets and workplaces",
@@ -169,7 +169,7 @@ export const flagshipProductDetails: Record<FlagshipProductId, FlagshipProductDe
     headline: "DC Fast Charging",
     hook: "Charge fast. Keep moving.",
     description:
-      "Two CCS2 guns on overhead cable trolleys with on-site storage, engineered around each site's grid. First sites are pilots in development.",
+      "A certified OEM DC charger of 120 to 180 kW under the Precifarm brand, engineered around each site's grid. The first site, on the Nairobi to Kisumu route, is being prepared.",
     priceLabel: "Price per kWh shown upfront",
     specs: ["DC", "CCS2", "Highway", "M-Pesa"],
     bestFor: "Long-distance driving and fleets",

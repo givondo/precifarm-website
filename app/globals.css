@@ -2,9 +2,9 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #0a0a0a;
-  --muted: #f5f5f5;
-  --border: #e5e5e5;
+  --foreground: #111827;
+  --muted: #f3f4f6;
+  --border: #e5e7eb;
   --surface: #f5f5f7;
   --radius-card-lg: 1.75rem;
   --site-header-height: 3.5rem;
@@ -25,36 +25,54 @@
   --font-display: var(--font-plus-jakarta);
   --font-mono: var(--font-geist-mono);
 
-  /* Ink — neutral black/gray for all text and UI chrome */
-  --color-forest-950: #0a0a0a;
-  --color-forest-900: #0a0a0a;
-  --color-forest-800: #0a0a0a;
-  --color-forest-700: #171717;
-  --color-forest-600: #262626;
-  --color-forest-500: #404040;
-  --color-forest-400: #525252;
-  --color-forest-300: #737373;
-  --color-forest-200: #d4d4d4;
-  --color-forest-100: #f5f5f5;
-  --color-forest-50: #fafafa;
+  /*
+   * Precifarm brand palette (3 Nov 2026), shared with the company's documents and decks:
+   * green #1F6F4A, ink #111827, muted grey #6B7280.
+   */
 
-  /* Green — hyperlinks */
-  /* Link green darkened from #16a34a (3.3:1 on white) to meet the 4.5:1 text contrast minimum. */
-  --color-link: #15803d;
-  --color-link-hover: #166534;
-  --color-link-700: #15803d;
-  --color-link-600: #16a34a;
-  --color-link-500: #22c55e;
+  /* Ink: Precifarm ink #111827 and the cool grey family around #6B7280. Each step keeps the
+     lightness of the neutral grey it replaced, so text contrast is unchanged or better. */
+  --color-forest-950: #111827;
+  --color-forest-900: #111827;
+  --color-forest-800: #111827;
+  --color-forest-700: #1a2230;
+  --color-forest-600: #1f2937;
+  --color-forest-500: #374151;
+  --color-forest-400: #4b5563;
+  --color-forest-300: #6b7280;
+  --color-forest-200: #d1d5db;
+  --color-forest-100: #f3f4f6;
+  --color-forest-50: #f9fafb;
 
-  /* Bright blue — buttons only */
-  --color-charge-50: #eff6ff;
-  --color-charge-100: #dbeafe;
-  --color-charge-200: #bfdbfe;
-  --color-charge-300: #93c5fd;
-  --color-charge-400: #60a5fa;
-  --color-charge-500: #3b82f6;
-  --color-charge-600: #2563eb;
-  --color-charge-700: #1d4ed8;
+  /* Brand green scale built on #1F6F4A (600). White text on 600 is 6.1:1, on 500 (hover) 4.6:1. */
+  --color-brand-50: #eef7f2;
+  --color-brand-100: #d6ede0;
+  --color-brand-200: #aedac2;
+  --color-brand-300: #7ec09d;
+  --color-brand-400: #4a9e73;
+  --color-brand-500: #2d8459;
+  --color-brand-600: #1f6f4a;
+  --color-brand-700: #195a3c;
+  --color-brand-800: #144830;
+  --color-brand-900: #0f3624;
+
+  /* Links use the brand green: 6.1:1 on white. */
+  --color-link: #1f6f4a;
+  --color-link-hover: #195a3c;
+  --color-link-700: #1f6f4a;
+  --color-link-600: #2d8459;
+  --color-link-500: #4a9e73;
+
+  /* Actions: buttons, CTAs, eyebrows and accents. Formerly bright blue; now the brand green.
+     The charge-* name stays so 220 existing class names keep working. */
+  --color-charge-50: #eef7f2;
+  --color-charge-100: #d6ede0;
+  --color-charge-200: #aedac2;
+  --color-charge-300: #7ec09d;
+  --color-charge-400: #4a9e73;
+  --color-charge-500: #2d8459;
+  --color-charge-600: #1f6f4a;
+  --color-charge-700: #195a3c;
 
   --color-green-50: #f0fdf4;
   --color-green-200: #bbf7d0;
@@ -632,7 +650,7 @@ html {
 
 .hero-mesh {
   background:
-    radial-gradient(ellipse 85% 65% at 8% -15%, rgba(37, 99, 235, 0.09), transparent),
+    radial-gradient(ellipse 85% 65% at 8% -15%, rgba(31, 111, 74, 0.09), transparent),
     radial-gradient(ellipse 55% 45% at 95% 5%, rgba(22, 163, 74, 0.07), transparent),
     radial-gradient(ellipse 45% 35% at 50% 100%, rgba(245, 158, 11, 0.05), transparent),
     #ffffff;
@@ -641,9 +659,9 @@ html {
 .page-hero {
   @apply relative overflow-hidden border-b border-border;
   background:
-    radial-gradient(ellipse 80% 60% at 0% -10%, rgba(37, 99, 235, 0.08), transparent),
+    radial-gradient(ellipse 80% 60% at 0% -10%, rgba(31, 111, 74, 0.08), transparent),
     radial-gradient(ellipse 50% 40% at 100% 0%, rgba(22, 163, 74, 0.06), transparent),
-    linear-gradient(180deg, #fafbff 0%, #ffffff 100%);
+    linear-gradient(180deg, #f8faf9 0%, #ffffff 100%);
 }
 
 .page-hero-container {
@@ -834,7 +852,7 @@ html {
 
 .site-footer {
   background:
-    radial-gradient(ellipse 70% 50% at 0% 0%, rgba(37, 99, 235, 0.12), transparent),
+    radial-gradient(ellipse 70% 50% at 0% 0%, rgba(31, 111, 74, 0.12), transparent),
     linear-gradient(180deg, var(--color-forest-950) 0%, #0c1220 55%, #080808 100%);
 }
 
@@ -1299,7 +1317,8 @@ html {
 }
 
 .training-th-t3 {
-  @apply bg-charge-700;
+  /* Ink, so the three tiers stay distinct now that charge-* is green like T1's emerald. */
+  @apply bg-forest-900;
 }
 
 .training-tier-header-cell {
@@ -1653,13 +1672,13 @@ button,
 
 @keyframes booking-pulse-ring {
   0% {
-    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.35);
+    box-shadow: 0 0 0 0 rgba(31, 111, 74, 0.35);
   }
   70% {
-    box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);
+    box-shadow: 0 0 0 10px rgba(31, 111, 74, 0);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+    box-shadow: 0 0 0 0 rgba(31, 111, 74, 0);
   }
 }
 
@@ -1686,7 +1705,7 @@ button,
 
 .home-showcase-section {
   background:
-    radial-gradient(ellipse 75% 70% at 100% 0%, rgba(37, 99, 235, 0.06), transparent),
+    radial-gradient(ellipse 75% 70% at 100% 0%, rgba(31, 111, 74, 0.06), transparent),
     radial-gradient(ellipse 55% 50% at 0% 100%, rgba(22, 163, 74, 0.05), transparent),
     #ffffff;
 }
@@ -2152,7 +2171,12 @@ button,
 }
 
 .leaflet-control-attribution {
-  @apply !text-[9px] !leading-tight !opacity-50;
+  /* Map data credit is a licence requirement; keep it small but legible (it failed contrast at 50% opacity). */
+  @apply !bg-white/85 !text-[10px] !leading-tight !text-forest-600;
+}
+
+.leaflet-control-attribution a {
+  @apply !text-forest-700;
 }
 
 .sr-only {

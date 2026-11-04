@@ -15,7 +15,7 @@ export default function OpenGraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "linear-gradient(145deg, #0c1220 0%, #132238 45%, #1a365d 100%)",
+          background: "linear-gradient(145deg, #0b111c 0%, #111827 45%, #0f3624 100%)",
           padding: "64px 72px",
           color: "#ffffff",
           fontFamily: "system-ui, sans-serif",
@@ -27,11 +27,11 @@ export default function OpenGraphImage() {
               width: 14,
               height: 14,
               borderRadius: "50%",
-              background: "#22c55e",
+              background: "#4a9e73",
             }}
           />
-          <span style={{ fontSize: 22, fontWeight: 600, color: "#86efac" }}>
-            EV CHARGING · ENERGY STORAGE
+          <span style={{ fontSize: 22, fontWeight: 600, color: "#aedac2" }}>
+            EV CHARGING · BATTERY SWAP · AI ENGINEERING
           </span>
         </div>
 

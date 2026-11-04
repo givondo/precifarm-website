@@ -27,7 +27,7 @@ export const commercialProductCatalog = {
  sku: "pulse-7kw",
  category: "Home EV Charger",
  additionalProperty: [
- { name: "Power", value: "Up to 7 kW class AC (32 A, single phase), design target" },
+ { name: "Power", value: "7 kW class AC (32 A, single phase)" },
  { name: "Connector", value: "Type 2, tethered" },
  { name: "Typical day charge", value: "under two hours for ~60 km" },
  { name: "Financing", value: "Lipa Pole Pole on M-Pesa from KES 3,300/month" },
@@ -46,9 +46,8 @@ export const commercialProductCatalog = {
  sku: "pulse-plus-22kw",
  category: "Fleet EV Charger",
  additionalProperty: [
- { name: "Power", value: "Up to 22 kW AC three phase, design target" },
+ { name: "Power", value: "Up to 22 kW AC three phase" },
  { name: "Connector", value: "Type 2, tethered" },
- { name: "Availability", value: "In development, not yet on sale" },
  ],
  // In development: no Offer.
  },
@@ -60,10 +59,9 @@ export const commercialProductCatalog = {
  sku: "corridor-dc",
  category: "DC Fast Charger",
  additionalProperty: [
- { name: "Connectors", value: "Dual CCS2" },
- { name: "Site storage", value: "On-site battery, sized per site" },
- { name: "Public DC rate", value: "set per site at commissioning" },
- { name: "Availability", value: "Pilot sites in development" },
+ { name: "Connectors", value: "CCS2" },
+ { name: "Power", value: "Certified OEM charger, 120 to 180 kW" },
+ { name: "Public DC rate", value: "set per site and shown before you start" },
  ],
  // Pilot: no commissioned site yet, so no Offer.
  },
@@ -77,7 +75,6 @@ export const commercialProductCatalog = {
  additionalProperty: [
  { name: "Turnaround", value: "under 5 minutes at partner-run sites" },
  { name: "Batteries", value: "One battery make per site" },
- { name: "Availability", value: "Partner-run pilots; Automated Boda Hub cabinet in development" },
  ],
  // Fleet pricing only; no catalogue unit price.
  },

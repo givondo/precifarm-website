@@ -30,7 +30,7 @@ export type RoutePhase = {
   path: { lat: number; lng: number }[];
 };
 
-/** Illustrative live-demo availability — not real-time telemetry */
+/** Charging Hub sites. Availability fields are kept for the data model and are not shown: no Precifarm site is commissioned yet. */
 export const chargingHubs: ChargingHub[] = [
   {
     id: "kisumu",
@@ -42,9 +42,9 @@ export const chargingHubs: ChargingHub[] = [
     availability: "available",
     freeBays: 3,
     totalChargers: 4,
-    route: "Nairobi – Kisumu",
-    phase: "live",
-    role: "Western terminus · CCS2 & CHAdeMO DC",
+    route: "Nairobi to Kisumu",
+    phase: "planned",
+    role: "Planned Corridor location",
   },
   {
     id: "nakuru",
@@ -56,9 +56,9 @@ export const chargingHubs: ChargingHub[] = [
     availability: "limited",
     freeBays: 1,
     totalChargers: 3,
-    route: "Nairobi – Kisumu",
-    phase: "live",
-    role: "En-route Corridor DC",
+    route: "Nairobi to Kisumu",
+    phase: "planned",
+    role: "Planned Corridor location",
   },
   {
     id: "nairobi",
@@ -71,8 +71,8 @@ export const chargingHubs: ChargingHub[] = [
     freeBays: 0,
     totalChargers: 6,
     route: "All routes",
-    phase: "live",
-    role: "Capital hub · corridor access",
+    phase: "planned",
+    role: "Planned Corridor location",
   },
   {
     id: "mtito-andei",
@@ -84,9 +84,9 @@ export const chargingHubs: ChargingHub[] = [
     availability: "available",
     freeBays: 2,
     totalChargers: 2,
-    route: "Nairobi – Mombasa",
-    phase: "next",
-    role: "En-route hub",
+    route: "Nairobi to Mombasa",
+    phase: "planned",
+    role: "Planned Corridor location",
   },
   {
     id: "voi",
@@ -98,9 +98,9 @@ export const chargingHubs: ChargingHub[] = [
     availability: "limited",
     freeBays: 1,
     totalChargers: 2,
-    route: "Nairobi – Mombasa",
-    phase: "next",
-    role: "En-route hub",
+    route: "Nairobi to Mombasa",
+    phase: "planned",
+    role: "Planned Corridor location",
   },
   {
     id: "mombasa",
@@ -112,9 +112,9 @@ export const chargingHubs: ChargingHub[] = [
     availability: "available",
     freeBays: 2,
     totalChargers: 4,
-    route: "Nairobi – Mombasa",
-    phase: "next",
-    role: "Coast terminus hub",
+    route: "Nairobi to Mombasa",
+    phase: "planned",
+    role: "Planned Corridor location",
   },
   {
     id: "garissa",
@@ -126,9 +126,9 @@ export const chargingHubs: ChargingHub[] = [
     availability: "limited",
     freeBays: 1,
     totalChargers: 2,
-    route: "Nairobi – Garissa",
+    route: "Nairobi to Garissa",
     phase: "planned",
-    role: "Eastern terminus hub",
+    role: "Planned Corridor location",
   },
   {
     id: "eldoret",
@@ -141,7 +141,7 @@ export const chargingHubs: ChargingHub[] = [
     freeBays: 1,
     totalChargers: 1,
     phase: "planned",
-    role: "Regional engineering",
+    role: "Planned Corridor location",
   },
   {
     id: "kitui",
@@ -154,7 +154,7 @@ export const chargingHubs: ChargingHub[] = [
     freeBays: 1,
     totalChargers: 1,
     phase: "planned",
-    role: "Regional engineering",
+    role: "Planned Corridor location",
   },
   {
     id: "partner-shell-langata",
@@ -167,7 +167,7 @@ export const chargingHubs: ChargingHub[] = [
     availability: "available",
     freeBays: 2,
     totalChargers: 2,
-    route: "Nairobi – Mombasa",
+    route: "Nairobi to Mombasa",
     role: "Fuel station partner · DC",
   },
   {
@@ -207,7 +207,7 @@ export const chargingHubs: ChargingHub[] = [
     availability: "available",
     freeBays: 2,
     totalChargers: 2,
-    route: "Nairobi – Kisumu",
+    route: "Nairobi to Kisumu",
     role: "Retail partner en-route stop",
   },
   {
@@ -221,7 +221,7 @@ export const chargingHubs: ChargingHub[] = [
     availability: "busy",
     freeBays: 0,
     totalChargers: 2,
-    route: "Nairobi – Kisumu",
+    route: "Nairobi to Kisumu",
     role: "Retail partner terminus area",
   },
   {
@@ -235,7 +235,7 @@ export const chargingHubs: ChargingHub[] = [
     availability: "available",
     freeBays: 1,
     totalChargers: 2,
-    route: "Nairobi – Mombasa",
+    route: "Nairobi to Mombasa",
     role: "Coast fuel partner · DC",
   },
   {
@@ -275,7 +275,7 @@ export const chargingHubs: ChargingHub[] = [
     availability: "available",
     freeBays: 1,
     totalChargers: 2,
-    route: "Nairobi – Kisumu",
+    route: "Nairobi to Kisumu",
     role: "Highway partner en-route",
   },
   {
@@ -288,8 +288,8 @@ export const chargingHubs: ChargingHub[] = [
     availability: "available",
     freeBays: 5,
     totalChargers: 6,
-    phase: "live",
-    role: "Battery swap · Roam Air & compatible e-bodas",
+    phase: "planned",
+    role: "Planned battery swap site",
     swapTime: "<5 min",
   },
   {
@@ -302,8 +302,8 @@ export const chargingHubs: ChargingHub[] = [
     availability: "limited",
     freeBays: 2,
     totalChargers: 4,
-    phase: "live",
-    role: "City-centre swap · M-Pesa",
+    phase: "planned",
+    role: "Planned battery swap site",
     swapTime: "<5 min",
   },
   {
@@ -316,8 +316,8 @@ export const chargingHubs: ChargingHub[] = [
     availability: "available",
     freeBays: 4,
     totalChargers: 5,
-    phase: "live",
-    role: "High-traffic boda corridor",
+    phase: "planned",
+    role: "Planned battery swap site",
     swapTime: "<5 min",
   },
   {
@@ -330,8 +330,8 @@ export const chargingHubs: ChargingHub[] = [
     availability: "available",
     freeBays: 3,
     totalChargers: 4,
-    phase: "live",
-    role: "South Nairobi swap station",
+    phase: "planned",
+    role: "Planned battery swap site",
     swapTime: "<5 min",
   },
   {
@@ -344,8 +344,8 @@ export const chargingHubs: ChargingHub[] = [
     availability: "limited",
     freeBays: 1,
     totalChargers: 3,
-    phase: "live",
-    role: "Suburban swap · Langata corridor",
+    phase: "planned",
+    role: "Planned battery swap site",
     swapTime: "<5 min",
   },
   {
@@ -359,8 +359,8 @@ export const chargingHubs: ChargingHub[] = [
     freeBays: 3,
     totalChargers: 4,
     route: "Kisumu",
-    phase: "live",
-    role: "Lake-side e-boda swap",
+    phase: "planned",
+    role: "Planned battery swap site",
     swapTime: "<5 min",
   },
   {
@@ -373,9 +373,9 @@ export const chargingHubs: ChargingHub[] = [
     availability: "available",
     freeBays: 2,
     totalChargers: 3,
-    route: "Nairobi – Kisumu",
-    phase: "live",
-    role: "En-route boda swap",
+    route: "Nairobi to Kisumu",
+    phase: "planned",
+    role: "Planned battery swap site",
     swapTime: "<5 min",
   },
 ];
@@ -383,8 +383,8 @@ export const chargingHubs: ChargingHub[] = [
 export const routePhases: RoutePhase[] = [
   {
     id: "phase-a",
-    label: "Phase A · Nairobi – Kisumu",
-    phase: "live",
+    label: "Phase A · Nairobi to Kisumu",
+    phase: "next",
     path: [
       { lat: -0.1022, lng: 34.7617 },
       { lat: -0.3031, lng: 36.08 },
@@ -393,8 +393,8 @@ export const routePhases: RoutePhase[] = [
   },
   {
     id: "phase-b",
-    label: "Phase B · Nairobi – Mombasa",
-    phase: "next",
+    label: "Phase B · Nairobi to Mombasa",
+    phase: "planned",
     path: [
       { lat: -1.2921, lng: 36.8219 },
       { lat: -2.6922, lng: 38.1667 },
@@ -404,7 +404,7 @@ export const routePhases: RoutePhase[] = [
   },
   {
     id: "phase-c",
-    label: "Phase C · Nairobi – Garissa",
+    label: "Phase C · Nairobi to Garissa",
     phase: "planned",
     path: [
       { lat: -1.2921, lng: 36.8219 },
@@ -417,8 +417,8 @@ export const routePhases: RoutePhase[] = [
 export const KENYA_CENTER = { lat: -0.5, lng: 37.5 };
 export const DEFAULT_ZOOM = 6;
 
-/** Canon live route — Nairobi–Kisumu only on Charging Hub */
-export const LIVE_ROUTE_LABEL = "Nairobi – Kisumu";
+/** First Corridor route, being prepared: Nairobi to Kisumu */
+export const LIVE_ROUTE_LABEL = "Nairobi to Kisumu";
 
 export const LIVE_ROUTE_CENTER = { lat: -0.72, lng: 35.75 };
 export const LIVE_ROUTE_ZOOM = 7;
@@ -441,24 +441,23 @@ export function hubSiteTypeLabel(hub: ChargingHub): string {
 }
 
 export function hubCapacityLabel(hub: ChargingHub): string {
-  if (hub.siteKind === "swap") {
-    return `${hub.freeBays} of ${hub.totalChargers} batteries ready`;
-  }
-  return `${hub.freeBays} of ${hub.totalChargers} bays free`;
+  if (hub.siteKind === "swap") return "Battery swap for electric motorcycles";
+  if (hub.operator === "partner") return "Partner charging";
+  return "DC fast charging";
 }
 
 export function isLiveRouteHub(hub: ChargingHub): boolean {
-  return hub.siteKind === "dc" && (hub.phase === "live" || hub.route === LIVE_ROUTE_LABEL);
+  return hub.siteKind === "dc" && (hub.phase === "live" || hub.phase === "next" || hub.route === LIVE_ROUTE_LABEL);
 }
 
 export function isChargingMapHub(hub: ChargingHub): boolean {
-  if (hub.siteKind === "swap") return hub.phase === "live";
-  return hub.phase === "live" || hub.route === LIVE_ROUTE_LABEL;
+  if (hub.siteKind === "swap") return true;
+  return hub.phase === "live" || hub.phase === "next" || hub.route === LIVE_ROUTE_LABEL;
 }
 
 export const liveRouteHubs = chargingHubs.filter(isLiveRouteHub);
 export const chargingMapHubs = chargingHubs.filter(isChargingMapHub);
-export const bodaSwapHubs = chargingHubs.filter((h) => h.siteKind === "swap" && h.phase === "live");
+export const bodaSwapHubs = chargingHubs.filter((h) => h.siteKind === "swap");
 
 export function getChargingHubDirectory() {
   const precifarmDc = chargingHubs.filter(

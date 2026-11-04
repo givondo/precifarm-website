@@ -13,12 +13,17 @@ export const productImages = {
   },
   boda: {
     src: productRenderPaths.bodaHub,
-    alt: "Precifarm Boda Hub smart locker for electric motorcycle battery swap, one door open with an Energy Module ready",
+    alt: "Precifarm Boda Hub battery-swap locker with twenty bays, one bay open with a battery pack ready, between yellow safety bollards",
     brand: "none" as const,
   },
   bodaStudio: {
     src: productRenderPaths.bodaHubStudio,
-    alt: "Precifarm Boda Hub battery-swap locker on its swap pad, with safety bollards and the rider screen on the side totem",
+    alt: "Precifarm Boda Hub battery-swap locker on its swap pad in golden evening light, with the rider screen on the side totem",
+    brand: "none" as const,
+  },
+  pulsePlusDepot: {
+    src: "/images/renders/pulse-plus-22kw-depot-rb.jpg",
+    alt: "Three Precifarm Pulse+ 22 kW chargers on a fleet depot wall above marked parking bays",
     brand: "none" as const,
   },
   pulsePlus: {
@@ -27,19 +32,14 @@ export const productImages = {
     brand: "none" as const,
   },
   corridor: {
-    /** Corridor concept visualisation: two CCS2 guns, M-Pesa tap-to-pay. */
-    src: "/images/products/corridor-v6.jpg",
-    alt: "Precifarm Corridor DC fast charger concept with dual CCS2 holsters and M-Pesa tap-to-pay on the display",
+    /** ARC R02 dispenser render, dusk (HD-048: no canopy scenes). Widened to 16:10 from the portrait master. */
+    src: productRenderPaths.arcDispenserDusk,
+    alt: "Precifarm ARC Corridor DC fast-charging dispenser at dusk, with two CCS2 cables, a touchscreen and an emergency stop",
     brand: "corridor" as const,
   },
   corridorDispenserRender: {
     src: productRenderPaths.corridorDispenser,
-    alt: "Precifarm Corridor DC dispenser unit with dual CCS2 holsters and emergency stop",
-    brand: "corridor" as const,
-  },
-  corridorForecourt: {
-    src: "/images/renders/corridor-forecourt-v6.jpg",
-    alt: "Precifarm Corridor DC fast charging bay at a Kenyan highway service area with solar canopy and M-Pesa session display",
+    alt: "Precifarm ARC Corridor dispenser unit with dual CCS2 holsters and emergency stop",
     brand: "corridor" as const,
   },
   corridorPowerCabinet: {
@@ -48,8 +48,9 @@ export const productImages = {
     brand: "none" as const,
   },
   financing: {
-    src: "/images/products/financing.png",
-    alt: "Lipa Pole Pole M-Pesa instalments for Precifarm home charging",
+    /** Lipa Pole Pole pays for this same Pulse install; the earlier image showed a generic charger. */
+    src: "/images/renders/pulse-7kw-installed-4x3.jpg",
+    alt: "Precifarm Pulse charger installed on a home wall, paid for in M-Pesa instalments with Lipa Pole Pole",
     brand: "none" as const,
   },
 } as const;

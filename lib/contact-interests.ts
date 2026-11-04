@@ -1,10 +1,11 @@
 /** Enquiry topics on /contact. `?interest=<key>` preselects one. */
 export const contactInterests = {
-  home: "Home charger installation (Pulse charger)",
+  survey: "Free EV charging survey (home, fuel station, office, workplace or depot)",
+ home: "Home charger installation (Pulse charger)",
   "pulse-plus": "Pulse+ fleet or workplace charging",
-  corridor: "Host a Corridor charging site",
+  corridor: "Host an ARC Corridor site",
   "boda-hub": "Boda Hub battery swapping",
-  ai: "Agent Harness or private AI",
+  ai: "Precifarm Agent",
   "agent-desktop": "Precifarm Agent access",
   dealer: "Dealer or installation partnership",
   finance: "Finance or OEM partnership",

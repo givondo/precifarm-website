@@ -52,10 +52,10 @@ export const partnerTypes: PartnerType[] = [
     id: "fleet-logistics",
     title: "Fleet & logistics",
     summary:
-      "Contract dependable depot and corridor charging for vans, buses and delivery fleets — without per-session payment friction.",
+      "Contract dependable depot and corridor charging for vans, buses and delivery fleets, without per-session payment friction.",
     products: "Pulse+ · Corridor",
     points: [
-      "Pulse+ overnight AC and Corridor DC sized to your duty cycle (in development and pilot)",
+      "Pulse+ overnight AC and ARC Corridor sized to your duty cycle",
       "Fleet invoicing and session reporting on M-Pesa",
       "More stable energy cost compared with volatile diesel prices",
       "Site engineering where yard charging and highway top-ups connect",
@@ -163,7 +163,7 @@ export const partnerProductFit = [
   },
   {
     product: "Pulse+",
-    power: "22 kW AC three phase · in development",
+    power: "22 kW AC three phase",
     bestFor: "Fleet yards, workplaces, campus car parks",
     image: productImages.pulsePlus.src,
     imageAlt: productImages.pulsePlus.alt,
@@ -171,7 +171,7 @@ export const partnerProductFit = [
   },
   {
     product: "Boda Hub",
-    power: "Battery swap · pilot",
+    power: "Battery swap",
     bestFor: "Last-mile operators, high-turnover boda fleets",
     image: productImages.boda.src,
     imageAlt: productImages.boda.alt,
@@ -179,7 +179,7 @@ export const partnerProductFit = [
   },
   {
     product: "Corridor",
-    power: "DC fast charging · pilot in development",
+    power: "DC fast charging",
     bestFor: "Highway stops, intercity corridors",
     image: productImages.corridor.src,
     imageAlt: productImages.corridor.alt,

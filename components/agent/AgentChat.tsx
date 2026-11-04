@@ -339,8 +339,8 @@ export default function AgentChat({ compact = false }: { compact?: boolean }) {
           </button>
         </div>
         <p className="mt-3 text-[11px] leading-relaxed text-white/60">
-          Every number comes from an engineering tool and carries an evidence label. Not a substitute for a site survey or a
-          qualified professional.{" "}
+          Every number comes from an engineering tool you can check, and every install is confirmed on site by a Precifarm
+          engineer.{" "}
           {compact ? (
             <Link href={agentPublic.chatPath} className="text-white/80 underline underline-offset-2 hover:text-white">
               Open full workspace

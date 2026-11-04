@@ -1,5 +1,4 @@
 import Link from "next/link";
-import StatusBadge from "@/components/ui/StatusBadge";
 import { homeScenarios, scenarioSection } from "@/lib/brand-messaging";
 
 export default function HomeScenarios() {
@@ -21,10 +20,7 @@ export default function HomeScenarios() {
               href={item.href}
               className="home-scenario-card group flex h-full flex-col rounded-[1.75rem] border border-border bg-white p-6 transition-[box-shadow,border-color] hover:border-forest-200 hover:shadow-md sm:p-7"
             >
-              <div className="flex items-center justify-between gap-3">
-                <p className="text-[11px] font-semibold uppercase tracking-widest text-charge-600">{item.audience}</p>
-                <StatusBadge status={item.status} />
-              </div>
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-charge-600">{item.audience}</p>
               <h3 className="mt-3 text-xl font-semibold tracking-tight text-forest-900 sm:text-2xl">{item.title}</h3>
               <p className="mt-3 flex-1 text-sm leading-relaxed text-forest-600">{item.text}</p>
               <p className="mt-4 text-xs font-medium uppercase tracking-wide text-forest-400">

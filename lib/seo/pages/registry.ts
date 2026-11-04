@@ -41,7 +41,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  {
  path: chargingHub.path,
  title: "EV Charging Stations Map Kenya: DC Fast & Boda Swap | Precifarm",
- ogImage: productImages.corridorForecourt.src,
+ ogImage: productImages.corridor.src,
  description: chargingHub.description,
  keywords: [
  "Charging Hub Kenya",
@@ -55,12 +55,12 @@ export const pageSeoRegistry: PageSeoInput[] = [
  {
  question: "What is Charging Hub?",
  answer:
- "Charging Hub lists every Precifarm fast charger, boda swap cabinet and partner stop in Kenya — with honest open and coming-soon labels on each site.",
+ "Charging Hub lists Precifarm fast charging, boda swap cabinets and partner stops across Kenya, with each site's details.",
  },
  {
  question: "How do I use Charging Hub?",
  answer:
- "Open precifarm.com/hub in your browser. Precifarm Agent desktop is coming soon — request access at precifarm.com/download.",
+ "Open precifarm.com/hub in your browser. For Precifarm Agent on desktop, request your download at precifarm.com/download.",
  },
  {
  question: "Can I pay with M-Pesa?",
@@ -76,7 +76,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  {
  path: "/charging",
  title: "EV Charging Solutions in Kenya: Home, Fleet & Highway",
- description: "EV charging in Kenya: the Pulse home wallbox (available), Pulse+ fleet AC (in development), Corridor DC fast charging pilots and Boda Hub battery swap, on M-Pesa.",
+ description: "EV charging in Kenya: the Pulse home wallbox, Pulse+ fleet AC, ARC Corridor DC fast charging on the highway and Boda Hub battery swap, all paid on M-Pesa.",
  keywords: ["EV charging Kenya", "fleet charging", "home AC charger installation",],
  faqs: chargingServicesFaqs,
  breadcrumbs: [
@@ -104,7 +104,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  {
  path: "/charging/engineering",
  title: "EV Charging Station Design & Engineering in Kenya",
- description: "Precifarm's design basis for home, fleet and highway EV charging in Kenya: grid, solar, LiFePO₄ storage, Corridor DC, Kenya Power hold points and commissioning.",
+ description: "Precifarm's design basis for home, fleet and highway EV charging in Kenya: grid, solar, LiFePO₄ storage, ARC Corridor, Kenya Power hold points and commissioning.",
  faqs: [...engineeringPageFaqs],
  keywords: [
  "EV charging station design Kenya",
@@ -121,7 +121,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  {
  path: "/charging/boda-hub",
  title: "Electric Boda Battery Swap Station in Kenya | Precifarm Boda Hub",
- description: "Battery swapping for electric bodas in Kenya, paid with M-Pesa: partner-run pilot sites today, with the self-service Automated Boda Hub cabinet in development.",
+ description: "Battery swapping for electric bodas in Kenya, paid with M-Pesa: partner-run swap sites and the self-service Automated Boda Hub cabinet. Partner with us on a site.",
  keywords: [
  "boda battery swap Kenya",
  "electric motorcycle smart locker",
@@ -141,7 +141,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  path: "/charging/pulse-plus",
  title: "22 kW Three-Phase EV Charger for Fleets in Kenya | Precifarm Pulse+",
  description:
- "Precifarm Pulse+: a 22 kW three-phase AC wallbox for fleet yards, workplaces and apartments in Kenya, with shared load management across up to ten units. In development.",
+ "Precifarm Pulse+: a 22 kW three-phase AC wallbox for fleet yards, workplaces and apartments in Kenya, with shared load management across up to ten units.",
  keywords: [
  "22 kW EV charger Kenya",
  "three-phase EV charger Kenya",
@@ -152,9 +152,9 @@ export const pageSeoRegistry: PageSeoInput[] = [
  ogImage: productImages.pulsePlus.src,
  faqs: [
  {
- question: "Is Pulse+ on sale?",
+ question: "How do I get Pulse+ for my fleet yard?",
  answer:
- "Not yet. Pulse+ is in development. Fleets and site hosts can register interest and receive a site quote once the first units are released.",
+ "Register your site. We survey it, quote it and include it in the first Pulse+ installations.",
  },
  {
  question: "Will my car charge at 22 kW?",
@@ -172,7 +172,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  path: "/charging/corridor",
  title: "DC Fast Charging for Kenyan Highways | Precifarm Corridor",
  description:
- "Precifarm Corridor: DC fast charging with two CCS2 guns and on-site storage, engineered per site. First sites, on Nairobi to Kisumu, are pilots in development.",
+ "Precifarm Corridor: DC fast charging from a certified 120 to 180 kW OEM charger, engineered per site. The first site, on the Nairobi to Kisumu route, is being prepared.",
  keywords: [
  "DC fast charging Kenya",
  "highway EV charging Kenya",
@@ -181,12 +181,12 @@ export const pageSeoRegistry: PageSeoInput[] = [
  "host an EV charging station Kenya",
  "Precifarm Corridor",
  ],
- ogImage: productImages.corridorForecourt.src,
+ ogImage: productImages.corridor.src,
  faqs: [
  {
- question: "Can I charge at a Corridor site today?",
+ question: "When does the first Corridor site open?",
  answer:
- "Not yet. The first Corridor sites are pilots in development; none is commissioned. The price per kWh will be set for each site at commissioning and paid with M-Pesa.",
+ "The first site, on the Nairobi to Kisumu route, is being prepared. The price per kWh is set for each site when it opens, shown before you start and paid with M-Pesa.",
  },
  {
  question: "Can I host a Corridor site?",
@@ -198,35 +198,6 @@ export const pageSeoRegistry: PageSeoInput[] = [
  { name: "Home", href: "/" },
  { name: "Charging", href: "/charging" },
  { name: "Corridor", href: "/charging/corridor" },
- ],
- },
- {
- path: "/ai",
- title: "Private AI Agents on Your Own Machine | Precifarm Agent Harness",
- description:
- "Precifarm Agent Harness: run open-weight AI models and agent workflows locally and privately, with a person approving every result. In development.",
- keywords: [
- "private AI Kenya",
- "local AI agents",
- "open-weight models",
- "Ollama agent workflows",
- "AI engineering assistant",
- "Precifarm Agent Harness",
- ],
- faqs: [
- {
- question: "Is the Agent Harness the same as Precifarm Agent?",
- answer:
- "No. Precifarm Agent's web workspace runs on a hosted model. The Agent Harness is the local platform: models run on your own machine and nothing leaves it in strict privacy mode.",
- },
- {
- question: "Can I use it today?",
- answer: "It is in development. Register interest on the contact page for early access.",
- },
- ],
- breadcrumbs: [
- { name: "Home", href: "/" },
- { name: "AI platform", href: "/ai" },
  ],
  },
  {
@@ -281,7 +252,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  "EV charging training Kenya",
  "EV charger installation course",
  "Precifarm certification",
- "Corridor DC commissioning training",
+ "ARC Corridor commissioning training",
  ],
  faqs: trainingPageFaqs.map(({ question, answer }) => ({ question, answer })),
  breadcrumbs: [
@@ -292,7 +263,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  {
  path: "/partners",
  title: "Fleet EV Charging & Charging Station Partners in Kenya",
- description: "Partner with Precifarm to host a Corridor charging site, electrify a fleet with Pulse+ or Boda Hub, or sell and install the Pulse home charger. M-Pesa on every product.",
+ description: "Partner with Precifarm to host an ARC Corridor site, electrify a fleet with Pulse+ or Boda Hub, or sell and install the Pulse home charger. M-Pesa on every product.",
  faqs: [
  {
  question: "Who can partner with Precifarm?",
@@ -302,7 +273,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  {
  question: "What fleet charging does Precifarm offer?",
  answer:
- "Pulse+ 22 kW three-phase AC (in development), Boda Hub battery swap and Corridor DC pilots on intercity routes, engineered, commissioned and operated by Precifarm.",
+ "Pulse+ 22 kW three-phase AC, Boda Hub battery swap and ARC Corridor DC fast charging on intercity routes, engineered, commissioned and operated by Precifarm.",
  },
  ],
  keywords: [
@@ -319,12 +290,12 @@ export const pageSeoRegistry: PageSeoInput[] = [
  {
  path: "/about",
  title: "About Precifarm AI: EV Charging Company in Nairobi",
- description: "Precifarm AI is a Nairobi company building EV charging and battery swapping for Kenya, and private AI systems for engineering, with M-Pesa on every product.",
+ description: "Precifarm AI is a Nairobi company building EV charging and battery swapping for Kenya, and Precifarm Agent for engineering, with M-Pesa on every product.",
  faqs: [
  {
  question: "What does Precifarm do?",
  answer:
- "Precifarm builds energy infrastructure for electric transport in Kenya: the Pulse home charger (available), Pulse+ fleet charging (in development), Corridor DC fast charging and Boda Hub battery swapping (pilots), and wireless charging research. Its second pillar is private AI for engineering. M-Pesa on every product.",
+ "Precifarm builds energy infrastructure for electric transport in Kenya: the Pulse home charger, Pulse+ fleet charging, ARC Corridor DC fast charging, Boda Hub battery swapping and wireless charging R&D. It also builds Precifarm Agent, an AI engineering assistant for EV charging and energy design. M-Pesa on every product.",
  },
  {
  question: "Does Precifarm operate vehicles or buses?",
@@ -334,7 +305,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  {
  question: "What can I buy today?",
  answer:
- "The Pulse home charger, with Lipa Pole Pole instalments on M-Pesa. Pulse+, Corridor and the Automated Boda Hub are in development or pilot, and wireless charging is research only. Spark, Pod, Depot and the modular energy family are no longer offered.",
+ "The Pulse home charger, with Lipa Pole Pole instalments on M-Pesa, plus Pulse+ for fleets, ARC Corridor DC fast charging, the Automated Boda Hub and wireless charging R&D. Spark, Pod, Depot and the modular energy family are no longer offered.",
  },
  ],
  breadcrumbs: [
@@ -367,7 +338,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  path: wirelessChargingPolicyPath,
  title: "Wireless EV Charging R&D Policy | Precifarm",
  description:
- "Wireless EV charging research policy: SAE J2954 and IEC 61980 benchmarks, safety gates, Kenya pilot rules. Not a product offer; wired charging stays commercial.",
+ "Precifarm wireless EV charging R&D for light-duty cars: SAE J2954 and IEC 61980 benchmarks, safety gates and the rules for field trials in Kenya.",
  keywords: [
  "wireless EV charging policy",
  "WPT research Kenya",
@@ -405,7 +376,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  {
  path: privacyPolicyPath,
  title: "Privacy policy | Precifarm",
- description: "How Precifarm handles personal data on precifarm.com, forms, and Agent chat — Kenya DPA 2019.",
+ description: "How Precifarm handles personal data on precifarm.com, forms and Agent chat, under the Kenya Data Protection Act 2019.",
  faqs: privacyFaqs,
  breadcrumbs: [
  { name: "Home", href: "/" },
@@ -433,7 +404,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  {
  question: "What is Precifarm's 2050 kilometre target?",
  answer:
- "By 2050, we aim to help replace 1 billion kilometres of fossil-fuel driving with electric kilometres across Kenya. That is a long-term target — not a live running total. We will publish how we count before showing a cumulative figure.",
+ "By 2050, we aim to help replace 1 billion kilometres of fossil-fuel driving with electric kilometres across Kenya. That is a long-term goal, and we will publish how we count before we show a running total.",
  },
  {
  question: "What are Precifarm's six 2030 goals?",
@@ -454,12 +425,12 @@ export const pageSeoRegistry: PageSeoInput[] = [
  {
  path: "/careers",
  title: "EV Charging Jobs & Careers in Kenya",
- description: "Join Precifarm to install Pulse home chargers, run Boda Hub battery swap pilots and build Corridor DC charging and M-Pesa checkout, from Nairobi to Kisumu.",
+ description: "Join Precifarm to install Pulse home chargers, run Boda Hub battery swap sites and build ARC Corridor charging and M-Pesa checkout, from Nairobi to Kisumu.",
  faqs: [
  {
  question: "Where does Precifarm hire first?",
  answer:
- "Nairobi–Kisumu corridor roles — field commissioning, Boda Hub swap operations, Corridor uptime and M-Pesa checkout support.",
+ "Nairobi to Kisumu corridor roles: field commissioning, Boda Hub swap operations, Corridor uptime and M-Pesa checkout support.",
  },
  {
  question: "How do I apply?",
@@ -497,7 +468,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  path: "/download",
  title: "Precifarm Agent Desktop: Download",
  description:
- "Request early access to Precifarm Agent for desktop. Coming soon for Windows and macOS — design EV charging, solar and storage from your computer.",
+ "Precifarm Agent for desktop on Windows and macOS: design EV charging, solar and storage from your computer. Request your download.",
  faqs: downloadPageFaqs,
  breadcrumbs: [
  { name: "Home", href: "/" },
@@ -558,13 +529,13 @@ export const pageSeoRegistry: PageSeoInput[] = [
  {
  path: "/locations",
  title: "EV Charging in Nairobi, Mombasa, Kisumu & Nakuru",
- description: "City guides for EV charging in Nairobi, Kisumu, Nakuru, Mombasa and beyond: home charger installs, Corridor DC pilots, Boda Hub battery swap and fleet charging.",
+ description: "City guides for EV charging in Nairobi, Kisumu, Nakuru, Mombasa and beyond: home chargers, ARC Corridor DC fast charging, Boda Hub swap and fleet charging.",
  keywords: ["EV charging Kenya cities", "Precifarm hubs", "electric travel locations"],
  faqs: [
  {
  question: "Which cities have Precifarm EV charging guides?",
  answer:
- "Published location pages cover major Kenyan cities and corridors where Precifarm installs or plans charging — check each page for live, coming-soon and partner-operated labels.",
+ "Published location pages cover major Kenyan cities and corridors where Precifarm installs or plans charging, with each site's details on its page.",
  },
  ],
  breadcrumbs: [

@@ -107,7 +107,7 @@ export default function WirelessChargingPolicyView() {
             ))}
             <p className="mt-4 text-sm">
               <Link href={researchPath} className="font-medium text-charge-700 hover:underline">
-                View research programmes →
+                Precifarm R&D →
               </Link>
             </p>
           </div>

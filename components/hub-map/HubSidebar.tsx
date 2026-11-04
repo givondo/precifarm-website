@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  availabilityConfig,
   hubCapacityLabel,
   siteKindConfig,
   type ChargingHub,
@@ -92,8 +91,7 @@ function HubSidebarItem({
   selected: boolean;
   onSelect: (id: string) => void;
 }) {
-  const avail = availabilityConfig[hub.availability];
-  const kind = siteKindConfig[hub.siteKind];
+    const kind = siteKindConfig[hub.siteKind];
 
   return (
     <li>
@@ -104,13 +102,13 @@ function HubSidebarItem({
       >
         <span
           className="hub-map-sidebar-dot"
-          style={{ backgroundColor: hub.siteKind === "swap" ? kind.pinColor : avail.color }}
+          style={{ backgroundColor: kind.pinColor }}
           aria-hidden
         />
         <span className="min-w-0 flex-1 text-left">
           <span className="hub-map-sidebar-name">{hub.name}</span>
           <span className="hub-map-sidebar-meta">
-            {kind.shortLabel} · {avail.label} · {hubCapacityLabel(hub)}
+            {kind.shortLabel} · {hubCapacityLabel(hub)}
             {hub.distanceKm != null && ` · ${formatDistance(hub.distanceKm)}`}
           </span>
         </span>

@@ -4,7 +4,7 @@ import type { FaqItem } from "@/lib/seo/types";
 /**
  * Public charging FAQs grounded in published consumer copy and the solar-hub
  * design basis. Handbook LCOC / payback figures stay on the engineering page
- * and are labelled planning / illustrative, never as live tariffs.
+ * and are presented as worked examples, never as live tariffs.
  *
  * Booking / Nairobi–Kisumu passenger content is retired from the public site:
  * Precifarm does not operate vehicles, so it contradicts the entity description
@@ -51,13 +51,13 @@ export const consumerChargingFaqs: ChargingFaq[] = [
  id: "public-dc-price",
  question: "How much is public DC charging?",
  answer:
- "At Precifarm Corridor charging sites the price per kWh is set for each site at commissioning and shown before you start, at the charger and in M-Pesa. The first Corridor sites, starting on Nairobi to Kisumu, are pilots in development. As an illustration, a car that accepts about 120 kW can add around 60 kWh in 30 minutes. Charging on your own home meter is usually cheaper per kWh than public DC.",
+ "At Precifarm ARC Corridor sites the price per kWh is set for each site at commissioning and shown before you start, at the charger and in M-Pesa. The first Corridor site, on the Nairobi to Kisumu route, is being prepared. For example, a car that accepts about 120 kW can add around 60 kWh in 30 minutes. Charging on your own home meter is usually cheaper per kWh than public DC.",
  },
  {
  id: "home-vs-public",
  question: "Why is home charging cheaper than public DC?",
  answer:
- "At home you pay your household electricity tariff on your own meter. Public Corridor charging sites recover charger hardware, Kenya Power demand, monitoring and uptime, so the public price per kWh is higher than a home tariff, and is set for each site at commissioning.",
+ "At home you pay your household electricity tariff on your own meter. Public ARC Corridor sites recover charger hardware, Kenya Power demand, monitoring and uptime, so the public price per kWh is higher than a home tariff, and is set for each site at commissioning.",
  },
  {
  id: "lipa-pole-pole",
@@ -87,7 +87,7 @@ export const consumerChargingFaqs: ChargingFaq[] = [
  id: "pulse-plus",
  question: "What is the Pulse+ charger?",
  answer:
- "Pulse+ is the 22 kW three-phase member of the Pulse family for fleet yards, workplaces and apartment parking. It adapts to each car: 22 kW where the car accepts it, 11 kW on most three-phase cars, and 7.4 kW in single-phase mode, and up to ten units can share one site meter. Pulse+ is in development; fleets and site hosts can register interest for a site quote.",
+ "Pulse+ is the 22 kW three-phase member of the Pulse family for fleet yards, workplaces and apartment parking. It adapts to each car: 22 kW where the car accepts it, 11 kW on most three-phase cars, and 7.4 kW in single-phase mode, and up to ten units can share one site meter. Fleets and site hosts can register their site for a quote.",
  },
  {
  id: "home-charge-time",
@@ -128,25 +128,25 @@ export const consumerChargingFaqs: ChargingFaq[] = [
  id: "ai-companion",
  question: "What is Precifarm Agent?",
  answer:
- "Precifarm Agent is the AI electrical and energy engineering workspace for EV charging, solar, batteries and electrical systems. Desktop coming soon — request access at precifarm.com/download.",
+ "Precifarm Agent is the AI electrical and energy engineering workspace for EV charging, solar, batteries and electrical systems. Request the desktop version at precifarm.com/download.",
  },
  {
  id: "corridor",
- question: "What is Corridor charging?",
+ question: "What is ARC Corridor?",
  answer:
- "Corridor is Precifarm's DC fast charging for highways and towns: two CCS2 guns on overhead cable trolleys, with on-site battery storage so the site needs a smaller grid connection. Each site is engineered around a power study with Kenya Power. The first Corridor sites, starting on Nairobi to Kisumu, are pilots in development; the price per kWh will be set for each site at commissioning.",
+ "Corridor is Precifarm's DC fast charging for highways and towns: a certified OEM DC charger of 120 to 180 kW with CCS2 connectors, under the Precifarm brand. Each site is engineered around a power study with Kenya Power, and storage is added only where that study shows a site needs it. The first Corridor site, on the Nairobi to Kisumu route, is being prepared; the price per kWh is set for each site at commissioning.",
  },
  {
  id: "boda-hub",
  question: "What is Boda Hub?",
  answer:
- "Boda Hub is battery swapping for electric motorcycles: at partner-run sites a swap takes under five minutes. The Automated Boda Hub cabinet, with a controller in every bay and charging only when the door is closed and latched, is in development. Each site uses one battery make; mixed brands are not accepted. See precifarm.com/charging/boda-hub.",
+ "Boda Hub is battery swapping for electric motorcycles: at partner-hosted sites a swap takes under five minutes. The Automated Boda Hub cabinet adds self-service, with a controller in every bay and charging only when the door is closed and latched. Each site uses one battery make; mixed brands are not accepted. See precifarm.com/charging/boda-hub.",
  },
  {
  id: "wireless",
- question: "Does Precifarm sell wireless EV charging?",
+ question: "Is Precifarm working on wireless EV charging?",
  answer:
- "No. Wireless charging is a Precifarm research programme. The first research target is stationary charging for light-duty cars at home and in fleet depots, with a later study for e-bodas. No transfer efficiency has been measured yet and nothing is for sale. The Pulse charger is what we install today.",
+ "Yes, in Precifarm R&D. The first target is stationary charging for light-duty cars at home and in fleet depots, with a later study for e-bodas. Efficiency is reported once it is measured on the bench. For charging at home today, we install the Pulse charger.",
  },
  {
  id: "training",
@@ -191,7 +191,7 @@ export const privateHouseScopeFaqs: FaqItem[] = [
  {
  question: "Is this different from a public charging hub?",
  answer:
- "Yes. House-based private charging is on your property for your vehicle only, billed on your meter. Public Corridor charging sites serve public sessions at the public DC price shown before each session.",
+ "Yes. House-based private charging is on your property for your vehicle only, billed on your meter. Public ARC Corridor sites serve public sessions at the public DC price shown before each session.",
  },
  {
  question: "Can you install at an apartment?",
@@ -201,7 +201,7 @@ export const privateHouseScopeFaqs: FaqItem[] = [
  {
  question: "What about a whole estate or school?",
  answer:
- "Multi-bay sites for organisations use Pulse+ three-phase chargers (in development) with shared load management. See fleet charging on the Partners page. That is not Pulse home charging. Those sites are sized to fleet and visitor demand in a written engineering assessment.",
+ "Multi-bay sites for organisations use Pulse+ three-phase chargers with shared load management; register your site for a quote. See fleet charging on the Partners page. That is not Pulse home charging. Those sites are sized to fleet and visitor demand in a written engineering assessment.",
  },
  {
  question: "How long does a house installation take?",
@@ -230,17 +230,17 @@ export const hubEngineeringFaqs: FaqItem[] = [
  {
  question: "Who is the engineering package for?",
  answer:
- "Homeowners sizing a Pulse charger, fleet and property partners planning Pulse+ or Boda Hub yards, and highway hosts scoping Corridor DC with on-site storage. The package covers EV charging and energy systems, not passenger booking or bus timetable products.",
+ "Homeowners sizing a Pulse charger, fleet and property partners planning Pulse+ or Boda Hub yards, and highway hosts scoping ARC Corridor sites. The package covers EV charging and energy systems, not passenger booking or bus timetable products.",
  },
  {
  question: "Does solar replace the Kenya Power connection?",
  answer:
- "No. A 40–80 kWp canopy in Kenya yields roughly 180–440 kWh/day. Against an illustrative 1,500 kWh/day hub, PV covers about 12–30% of daily energy. Use solar for cost, shade and resilience — not as a substitute for the Kenya Power feeder. Planning assumption.",
+ "No. A 40 to 80 kWp canopy in Kenya yields roughly 180 to 440 kWh a day. For a hub using 1,500 kWh a day, PV covers about 12 to 30% of daily energy. Use solar for cost, shade and resilience alongside the Kenya Power feeder.",
  },
  {
  question: "Why add batteries at a charging hub?",
  answer:
- "When peak charger demand exceeds the Kenya Power import limit, LiFePO₄ storage covers the gap and smooths demand charges. Example: 120 kWh in 30 minutes at ~240 kW with a 180 kW import limit needs storage for the difference plus reserve. Site-specific — not a bill of quantities.",
+ "When peak charger demand exceeds the Kenya Power import limit, LiFePO₄ storage covers the gap and smooths demand charges. For example, 120 kWh in 30 minutes at about 240 kW with a 180 kW import limit needs storage for the difference plus reserve. Every site is sized on its own.",
  },
  {
  question: "What moves hub payback more than charger efficiency?",
@@ -250,6 +250,6 @@ export const hubEngineeringFaqs: FaqItem[] = [
  {
  question: "Are the engineering cost figures a quotation?",
  answer:
- "No. Planning bands in the design doc (chargers, canopy PV, storage, connection) and handbook worked examples are illustrative. Corridor prices are set per site at commissioning. The Pulse charger starts from KES 79,000. Request a site-specific cost sheet after survey.",
+ "No. The bands in the design doc (chargers, canopy PV, storage, connection) and the worked examples show how a site is sized; your quote follows a survey. Corridor prices are set per site at commissioning. The Pulse charger starts from KES 79,000.",
  },
 ];

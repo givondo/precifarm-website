@@ -8,7 +8,8 @@ export type ProgrammePageContent = {
   eyebrow: string;
   title: string;
   intro: string;
-  image?: { src: string; alt: string; caption: string };
+  /** cover fills the frame (scenes); contain keeps a cut-out product whole. */
+  image?: { src: string; alt: string; fit?: "contain" | "cover" };
   stack?: readonly { name: string; text: string }[];
   features: readonly { title: string; text: string }[];
   useCases: readonly string[];
@@ -27,9 +28,9 @@ export const pulsePlusPage: ProgrammePageContent = {
   intro:
     "The three-phase member of the Pulse family, for fleet yards, workplaces, apartment parking and partner sites. It shares the Pulse safety architecture and adapts to every car it charges.",
   image: {
-    src: productImages.pulsePlus.src,
-    alt: productImages.pulsePlus.alt,
-    caption: "Engineering render of Pulse+ Rev B. Not a photograph of a production unit.",
+    src: productImages.pulsePlusDepot.src,
+    alt: productImages.pulsePlusDepot.alt,
+    fit: "cover",
   },
   features: [
     {
@@ -56,11 +57,11 @@ export const pulsePlusPage: ProgrammePageContent = {
     "An upstream four-pole Type A 30 mA RCD per unit, installed by a licensed electrician as part of every Precifarm install.",
     "Charging time depends on the car: a car limited to 11 kW AC takes about twice as long as one that accepts 22 kW.",
   ],
-  cta: { href: "/contact?interest=pulse-plus", label: "Register interest" },
+  cta: { href: "/contact?interest=pulse-plus", label: "Plan your site" },
   secondaryCta: { href: "/partners", label: "Fleet programmes" },
   closing: {
     title: "Planning fleet or workplace charging?",
-    text: "Pulse+ is in development. Tell us about your site and vehicles and we will include it in the first deployments.",
+    text: "Tell us about your site and vehicles, and we will survey the supply and plan the bays, load sharing and payments.",
   },
 };
 
@@ -68,26 +69,25 @@ export const corridorPage: ProgrammePageContent = {
   id: "corridor",
   path: "/charging/corridor",
   eyebrow: "EV Charging · Highway and town",
-  title: "Corridor DC fast charging",
+  title: "ARC Corridor DC fast charging",
   intro:
-    "A DC fast charging site engineered as one system: dispensers with two CCS2 guns on overhead cable trolleys, an on-site battery that shrinks the grid connection, and M-Pesa session pay. The first sites, starting on Nairobi to Kisumu, are pilots in development.",
+    "DC fast charging for highways and towns. Each Corridor site starts with a certified OEM charger of 120 to 180 kW under the Precifarm brand, with the grid connection, layout and M-Pesa session pay engineered around the site. The first site is being prepared on the Nairobi to Kisumu route.",
   image: {
     src: productImages.corridor.src,
     alt: productImages.corridor.alt,
-    caption: "Concept visualisation. The production design follows each site's engineering package.",
   },
   features: [
     {
-      title: "Cables from above",
-      text: "Balanced cable trolleys keep the heavy DC cables off the ground and within reach of a car's inlet on either side.",
+      title: "Certified charger",
+      text: "The charger itself is bought from an established maker and certified by them. Precifarm does not build its own DC power conversion for public sites.",
     },
     {
-      title: "Storage on site",
-      text: "A battery on the DC bus covers the busy hour, so a site that would need a large new transformer can run on a smaller grid connection.",
+      title: "Engineered site",
+      text: "Precifarm engineers what surrounds it: the grid connection, protection, bay layout, signage and the operations that keep the site running.",
     },
     {
-      title: "Certified power, engineered sites",
-      text: "Power conversion comes from certified equipment makers. Precifarm engineers the site, the dispenser layout, the storage and the operations around it.",
+      title: "Storage only where needed",
+      text: "The first site has no on-site battery. Storage is added at later sites only where the Kenya Power study shows the grid cannot meet demand.",
     },
   ],
   useCases: [
@@ -97,61 +97,14 @@ export const corridorPage: ProgrammePageContent = {
   ],
   requirementsTitle: "For site hosts",
   requirements: [
-    "A site with space for two bays per dispenser plus the storage and switchgear enclosure.",
+    "Space for the charger, its bays and the switchgear, with safe vehicle access.",
     "A power study with Kenya Power before any commitment; the grid connection is sized per site.",
     "Charging speed depends on the car: each vehicle draws only what its battery accepts.",
   ],
-  cta: { href: "/contact?interest=corridor", label: "Host a Corridor site" },
+  cta: { href: "/contact?interest=corridor", label: "Host an ARC Corridor site" },
   secondaryCta: { href: "/charging/engineering", label: "Engineering approach" },
   closing: {
     title: "Have a site on a busy route?",
-    text: "We are selecting the first Corridor pilot sites. Tell us where your site is and what supply it has today.",
-  },
-};
-
-export const harnessPage: ProgrammePageContent = {
-  id: "harness",
-  path: "/ai",
-  eyebrow: "AI Platform",
-  title: "Agent Harness: private AI on your own machine",
-  intro:
-    "Run open-weight AI models and agent workflows on hardware you control. Pick a model that fits the machine, describe the goal, watch a bounded team of agents work through a visual workflow, and approve the result before it leaves. No compulsory subscription to a hosted model.",
-  stack: [
-    { name: "Your machine", text: "A laptop to start, a single-GPU workstation to grow, several machines later." },
-    { name: "Local models", text: "Open-weight models served locally through Ollama, tested for instruction following, structured output and tool use." },
-    { name: "Bounded agents", text: "Many agent roles, a set number of models running at once. The harness never promises more than the hardware can run." },
-    { name: "Visual workflows", text: "Each step shown as it runs, with every event journaled for replay and audit." },
-    { name: "Human sign-off", text: "Nothing is exported until a person approves it." },
-  ],
-  features: [
-    {
-      title: "Private by default",
-      text: "Strict mode blocks every hosted model, so documents and prompts stay on the machine.",
-    },
-    {
-      title: "Honest about hardware",
-      text: "Models are matched to the memory you have and their measured speed is shown, not guessed.",
-    },
-    {
-      title: "Built for engineering work",
-      text: "Precifarm uses it to turn charging-site briefs into calculated, checked engineering packages that a registered engineer then reviews.",
-    },
-  ],
-  useCases: [
-    "Engineers and consultancies who cannot send client documents to a hosted AI service.",
-    "Startups that want agent workflows without per-seat model subscriptions.",
-    "Companies that need an audit trail of what an AI system did and who approved it.",
-  ],
-  requirementsTitle: "What it is and is not",
-  requirements: [
-    "In development. Early access is by request.",
-    "Precifarm Agent on this website is a separate, hosted assistant and does not run privately.",
-    "Results are drafts until a qualified person reviews them; the harness never approves its own work.",
-  ],
-  cta: { href: "/contact?interest=ai", label: "Request early access" },
-  secondaryCta: { href: "/agent", label: "Try Precifarm Agent (hosted)" },
-  closing: {
-    title: "Want private AI agents for your team?",
-    text: "Tell us about your hardware and the work you want to automate.",
+    text: "Tell us where your site is and what supply it has today, and we will start with a free survey and a Kenya Power study.",
   },
 };

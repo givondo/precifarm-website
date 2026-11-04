@@ -120,7 +120,7 @@ export const reportingPublished = [
  {
  id: "lfp",
  title: "Pulse charger specs",
- detail: "Ratings and protection on the home charging page, labelled as design targets until tested.",
+ detail: "Ratings and protection for the Pulse charger, on the home charging page.",
  href: "/charging/home",
  },
  {
@@ -172,7 +172,7 @@ export const sustainabilityPage = {
  lead:
  "By 2050, we aim to help replace 1 billion kilometres of fossil-fuel driving with electric kilometres across Kenya.",
  description:
- "Pulse lets you charge your EV at home, and Lipa Pole Pole spreads the cost on M-Pesa with the full price shown before you commit. Every product is labelled by its stage: available, pilot, in development or research.",
+ "Pulse lets you charge your EV at home, and Lipa Pole Pole spreads the cost on M-Pesa with the full price shown before you commit.",
  image: productImages.pulse,
  imageCaption: "Pulse charger, 7 kW home wallbox.",
  primaryCta: { href: siteCtas.exploreCharging.href, label: siteCtas.exploreCharging.label },
@@ -194,21 +194,21 @@ export const sustainabilityPage = {
  eyebrow: "Batteries",
  title: "We maintain, repair and reuse packs before they are recycled.",
  description:
- "Boda swap batteries and Corridor site storage are watched and serviced in the field. A contracted recycling partner in Kenya is a 2030 goal, not a live take-back scheme.",
+ "Boda swap batteries, and any storage at Corridor sites, are watched and serviced in the field. A contracted recycling partner in Kenya is our 2030 goal.",
  },
  commitmentSection: {
  eyebrow: "2030 goals",
  title: "Six goals for 2030.",
- description: "The 1 billion kilometre figure is a 2050 ambition, not a running total.",
+ description: "Our longer goal is 1 billion electric kilometres by 2050.",
  },
  outlookSection: {
  eyebrow: "Reporting",
  title: "What you can check on this site today, and what we still have to publish.",
  description:
- "We do not show annual impact reports or outside certificates until the counting method is ready. The 1 billion kilometre target stays labelled as an ambition until then.",
+ "We publish annual impact reports once the counting method is ready, so every figure can be checked.",
  ambition: {
  value: "1 billion km",
- title: "A 2050 ambition, not a live counter",
+ title: "A 2050 ambition",
  text: "By 2050, we aim to help replace 1 billion kilometres of fossil-fuel driving with electric kilometres across Kenya. That number is a target. We will publish how we count before any running total appears on this page.",
  },
  sdgNote:
@@ -260,7 +260,7 @@ export const sustainabilityPage = {
  goal: "Solar and storage on operated sites that need it",
  target: "Solar plus storage on every Corridor site that needs it",
  by: "2030",
- today: "Corridor site designs include on-site storage. No Corridor site is commissioned yet.",
+ today: "The first Corridor site is planned without storage; storage follows the Kenya Power study for each later site.",
  progress: "underway" as GoalProgress,
  },
  ],

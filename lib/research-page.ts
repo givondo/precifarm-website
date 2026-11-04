@@ -1,5 +1,5 @@
 /**
- * R&D — research programmes with goals, stage gates and a dated path to each gate.
+ * R&D programmes with goals, stage gates and a dated path to each gate.
  * Progress is engineering completion toward the next gate. It is never traction,
  * installed base or a promise to sell.
  */
@@ -46,7 +46,7 @@ export const researchGates: readonly ResearchGate[] = [
   },
   {
     id: "G3",
-    name: "Pilot",
+    name: "Field",
     question: "Does it work in Kenya?",
     exit: "Hosted site, metered and monitored for at least 90 days with a partner.",
   },
@@ -100,18 +100,18 @@ export const researchAreas: readonly ResearchArea[] = [
     question:
       "Can a parked car charge without a plug, safely, at home or in a fleet depot, through dust, rain and imperfect parking?",
     summary:
-      "Stationary inductive charging for light-duty cars first, at home and in fleet depots, then a later study for e-bodas. Coil and compensation design, alignment, foreign and living object protection, and field exposure. This is research, not a product: the Pulse wired charger is what we install today.",
+      "Stationary inductive charging for light-duty cars first, at home and in fleet depots, then a later study for e-bodas. Coil and compensation design, alignment, foreign and living object protection, and field exposure.",
     goal:
-      "A measured, safe car pad on the bench, with efficiency, misalignment and foreign-object results recorded against SAE J2954 and IEC 61980. No product or sale date is promised.",
+      "A measured, safe car pad on the bench, with efficiency, misalignment and foreign-object results recorded against SAE J2954 and IEC 61980.",
     targets: [
       { label: "First vehicle class", value: "Light-duty cars" },
       { label: "Research power class", value: "About 7.7 kVA input" },
-      { label: "Transfer efficiency", value: "Not yet measured; reported with its boundary" },
+      { label: "Transfer efficiency", value: "Measured on the bench and reported with its boundary" },
       { label: "Foreign object detection", value: "Target: 100% of standard test objects" },
       { label: "Field exposure", value: "Target: within ICNIRP public reference levels" },
     ],
     milestones: [
-      { when: "Step 1", title: "Coil, ferrite and LCC compensation modelled for a car pad (simulation only)", status: "active" },
+      { when: "Step 1", title: "Coil, ferrite and LCC compensation modelled for a car pad", status: "active" },
       { when: "Step 2", title: "Reduced-power car pad bench rig; first efficiency and thermal map", status: "next" },
       { when: "Step 3", title: "Foreign and living object protection on the bench", status: "next" },
       { when: "Step 4", title: "EMC pre-compliance against IEC 61980; bench report published (G2)", status: "later" },
@@ -131,7 +131,7 @@ export const researchAreas: readonly ResearchArea[] = [
     horizon: "Now",
     workingTowards: "G3",
     progress: 62,
-    stage: "Web workspace in early access",
+    stage: "Web workspace open to engineers",
     question:
       "Can an AI agent produce an EV charging and energy design that an installer trusts and an engineer is willing to sign?",
     summary:
@@ -168,7 +168,7 @@ export const researchAreas: readonly ResearchArea[] = [
     question:
       "What mix of grid, solar and battery keeps a Corridor site reliable and profitable on a weak rural feeder?",
     summary:
-      "Hourly models of site load, PV yield and battery duty cycle for the first Corridor pilot sites on the Nairobi to Kisumu route, with honest live and planned labelling.",
+      "Hourly models of site load, PV yield and battery duty cycle for the first Corridor site on the Nairobi to Kisumu route and the sites that follow.",
     goal:
       "A validated sizing and dispatch method, checked against metered site data, that every new hub uses before construction from 2027.",
     targets: [
@@ -178,9 +178,9 @@ export const researchAreas: readonly ResearchArea[] = [
     ],
     milestones: [
       { when: "Q4 2026", title: "Load and PV yield model for the first Corridor site", status: "active" },
-      { when: "Q1 2027", title: "Storage duty cycle simulated against Corridor DC session profiles", status: "next" },
+      { when: "Q1 2027", title: "Storage duty cycle simulated against ARC Corridor session profiles", status: "next" },
       { when: "Q2 2027", title: "Revenue-grade metering on a live site; model validated (G2)", status: "next" },
-      { when: "Q4 2027", title: "Dispatch controller pilot with Corridor site storage (G3)", status: "later" },
+      { when: "Q4 2027", title: "Dispatch controller field trial at a Corridor site with storage (G3)", status: "later" },
     ],
     needs: ["A site host with a weak feeder and a year of outage logs", "Utility tariff and demand charge data"],
     href: "/sustainability",
@@ -198,7 +198,7 @@ export const researchAreas: readonly ResearchArea[] = [
     summary:
       "State of health estimation from Boda Hub swap cycles and BMS telemetry, a capacity test protocol, and retirement rules that move packs from motorcycles to stationary duty such as Corridor site storage.",
     goal:
-      "State of health estimated within ± 3% of a capacity test, and a second-life rule set proven on a stationary pilot by 2028.",
+      "State of health estimated within ± 3% of a capacity test, and a second-life rule set proven in stationary service by 2028.",
     targets: [
       { label: "State of health accuracy", value: "± 3% vs capacity test" },
       { label: "Usable second-life capacity", value: "≥ 70% of nameplate" },
@@ -208,7 +208,7 @@ export const researchAreas: readonly ResearchArea[] = [
       { when: "Q1 2027", title: "Telemetry schema and logging on every swap pack", status: "next" },
       { when: "Q2 2027", title: "Capacity test protocol and first reference dataset (G1)", status: "next" },
       { when: "Q4 2027", title: "Health model validated against cycled packs (G2)", status: "later" },
-      { when: "2028", title: "Second-life stationary pilot (G3)", status: "later" },
+      { when: "2028", title: "Second-life stationary field trial (G3)", status: "later" },
     ],
     needs: ["Cell cycling equipment or a university battery lab", "Swap data volume from Boda Hub sites"],
     href: "/charging/boda-hub",
@@ -234,7 +234,7 @@ export const researchAreas: readonly ResearchArea[] = [
     milestones: [
       { when: "H2 2027", title: "Desk study: standards, vehicle support in Kenya, regulatory route (G1)", status: "later" },
       { when: "2028", title: "Bench vehicle to home demo with a compatible EV (G2)", status: "later" },
-      { when: "2029", title: "Hosted pilot on one home or depot (G3)", status: "later" },
+      { when: "2029", title: "Hosted field trial at one home or depot (G3)", status: "later" },
     ],
     needs: ["Access to a bidirectional-capable EV", "Early dialogue with the energy regulator and utility"],
   },
@@ -252,7 +252,7 @@ export const researchGoals = [
   },
   {
     year: "2027",
-    title: "First Kenyan pilots",
+    title: "First Kenyan field trials",
     text: "A wireless car pad bench report, and Agent-assisted home surveys running with partners for 90 days or more.",
   },
   {
@@ -289,20 +289,20 @@ export const researchRoadmap = {
     {
       programme: "Hub solar and storage",
       Now: "Corridor load and PV model, metered validation",
-      Next: "Dispatch controller pilot",
+      Next: "Dispatch controller field trial",
       Later: "Standard method for every new hub",
     },
     {
       programme: "Battery health",
       Now: "Telemetry schema on swap packs",
       Next: "Capacity protocol and health model",
-      Later: "Second-life stationary pilot",
+      Later: "Second-life stationary field trial",
     },
     {
       programme: "Bidirectional",
       Now: "Watching vehicle support",
       Next: "Desk study and regulatory route",
-      Later: "Vehicle to home bench and pilot",
+      Later: "Vehicle to home bench and field trial",
     },
   ],
 } as const;
@@ -314,7 +314,7 @@ export const researchCollaboration = [
   },
   {
     who: "Site hosts",
-    offer: "Host a pilot stand or a metered hub. You get early access, data and a revenue share once a product exists.",
+    offer: "Host a test stand or a metered hub. You get first access, the data and a revenue share as the work becomes a product.",
   },
   {
     who: "Suppliers and OEMs",
@@ -330,7 +330,7 @@ export const researchPageFaqs: FaqItem[] = [
   {
     question: "Can I buy wireless charging from Precifarm?",
     answer:
-      "No. Wireless charging is a research programme and nothing is for sale. The Pulse charger is the wired charger we install today, with Lipa Pole Pole on M-Pesa; Pulse+ and Corridor are in development and pilot."
+      "Wireless charging is part of Precifarm R&D, working towards a measured car pad on the bench. For charging at home today, we install the Pulse charger, with Lipa Pole Pole on M-Pesa."
   },
   {
     question: "What does the progress bar mean?",
@@ -358,11 +358,11 @@ export const researchPage = {
   hero: {
     eyebrow: researchNavLabel,
     title: "The future of electric mobility, engineered in Africa.",
-    lead: "Five programmes, each with a research question, a measurable goal and a dated path through five gates from model to Kenyan field pilot.",
+    lead: "Five programmes, each with a research question, a measurable goal and a dated path through five gates from model to a Kenyan field trial.",
     primaryCta: { href: "#programmes", label: "See the programmes" },
     secondaryCta: { href: "/contact", label: "Collaborate" },
     stats: [
-      { value: "5", label: "Research programmes" },
+      { value: "5", label: "Programmes" },
       { value: "G0 to G4", label: "Evidence gates" },
       { value: researchNextReview, label: "Next public review" },
     ],
@@ -396,7 +396,7 @@ export const researchPage = {
   },
   note: `Progress updates when a programme passes a named gate. Last reviewed ${researchLastReviewed}. Next review ${researchNextReview}.`,
   cta: {
-    title: "Partner on a research programme.",
+    title: "Partner with Precifarm R&D.",
     description: "Wireless hardware, Agent software, hub energy or battery health. Tell us which fits your lab, site or fleet.",
     primaryHref: "/contact",
     primaryLabel: "Contact R&D",

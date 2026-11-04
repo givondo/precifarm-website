@@ -30,7 +30,7 @@ export default function HomeHero() {
             <dl className="home-hero-stats mt-6 grid gap-4 border-t border-border pt-5 sm:mt-8 sm:grid-cols-2 sm:gap-6 sm:pt-6">
               {heroStats.map((item) => (
                 <div key={item.stat}>
-                  <dt className="font-mono text-xl font-semibold tracking-tight text-forest-900 sm:text-2xl">
+                  <dt className="heading-display text-xl text-forest-900 sm:text-2xl">
                     {item.stat}
                   </dt>
                   <dd className="mt-1 text-xs leading-relaxed text-forest-500 sm:text-sm">{item.label}</dd>

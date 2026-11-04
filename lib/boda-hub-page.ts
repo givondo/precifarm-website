@@ -2,7 +2,7 @@
  * Precifarm Automated Boda Hub: public product page.
  * Brand voice: short, Kenya-first, infrastructure not jargon.
  * Silver lockers · one battery make per site · partner-hosted.
- * Not live as unattended self-service yet.
+ * Partner-hosted sites; the self-service cabinet is the next step.
  */
 
 import { productRenderPaths } from "@/lib/product-renders-catalog";
@@ -19,10 +19,10 @@ export const bodaHubPaths = {
 } as const;
 
 export const bodaHubStatusNote =
- "The Automated Boda Hub cabinet is in development. Swaps today run at partner-run sites, which are pilots.";
+ "Boda Hub sites are built with partners: a rider-facing swap station and the self-service Automated Boda Hub cabinet. Partner with us on a site.";
 
 export const bodaHubDisclaimer =
- "Pilots follow Kenyan safety and electrical rules, checked with licensed professionals before unattended public use.";
+ "Every site follows Kenyan safety and electrical rules, checked with licensed professionals before it opens to riders.";
 
 export const bodaHubPageContent = {
  hero: {
@@ -61,7 +61,7 @@ export const bodaHubPageContent = {
  eyebrow: "The lockers",
  title: "One machine. Twenty bays.",
  description:
- "One cabinet design with 20 charging bays. Riders swap at the 16 lower doors; the top row charges packs that an attendant moves down as the lower doors empty, so nobody lifts a heavy pack above shoulder height. Busy sites add a second cabinet beside the first. In development.",
+ "One cabinet design with 20 charging bays. Riders swap at the 16 lower doors; the top row charges packs that an attendant moves down as the lower doors empty, so nobody lifts a heavy pack above shoulder height. Busy sites add a second cabinet beside the first.",
  image: {
  src: productRenderPaths.bodaHub,
  alt: "Boda Hub locker with one door open and a charged pack ready to swap (design render)",
@@ -239,15 +239,15 @@ export const bodaHubPageContent = {
  },
  roadmap: {
  eyebrow: "Roadmap",
- title: "Prove it. Pilot it. Scale it.",
+ title: "Prove it. Open it. Scale it.",
  phases: [
  {
  name: "1 · Prototype",
  text: "One working locker: doors, charging and safe swaps.",
  },
  {
- name: "2 · Pilot",
- text: "A few controlled sites. Real riders. Real uptime.",
+ name: "2 · First sites",
+ text: "A few partner sites. Real riders. Real uptime.",
  },
  {
  name: "3 · Partner rollout",
@@ -261,15 +261,15 @@ export const bodaHubPageContent = {
  },
  note: {
  economics:
- "Tariffs and payback come from pilots, not invented numbers on this page.",
+ "Tariffs and payback are set from the energy bills and uptime of the first sites.",
  regulatory:
- "Power, fire, battery handling, payments and data rules must clear Kenyan requirements before unattended public use.",
+ "Power, fire, battery handling, payments and data rules clear Kenyan requirements before a cabinet opens for self-service.",
  },
  faqs: [
  {
  question: "Can I use Automated Boda Hub today?",
  answer:
- "Not as self-service yet. The Automated Boda Hub cabinet is in development. Swaps today run at partner-run pilot sites with staff or partners on site.",
+ "Automated Boda Hub is the self-service cabinet we build with site partners. Tell us where you want one and we will plan the site with you.",
  },
  {
  question: "What battery does it use?",
@@ -279,7 +279,7 @@ export const bodaHubPageContent = {
  {
  question: "Is this a different brand from Boda Hub?",
  answer:
- "No. Same Precifarm silver cabinet language and blue lights, automated for self-service, not a new brand.",
+ "No. It is the same Boda Hub, automated for self-service.",
  },
  {
  question: "Are the cabinet and the locker bank different products?",
@@ -304,7 +304,7 @@ export const bodaHubPageContent = {
  {
  question: "How do I pay?",
  answer:
- "M-Pesa first: per swap, plans or fleet accounts. You always see the price before you confirm.",
+ "M-Pesa first. Riders pay for the energy in the pack they take, with a daily cap, and fleets can use accounts. You always see the price before you confirm.",
  },
  ],
  cta: {

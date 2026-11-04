@@ -25,7 +25,7 @@ export const productEngineeringDoc = {
     {
       src: productRenderPaths.energyStorageFamily,
       alt: "Precifarm charging and energy product family",
-      caption: "The full range — portable Spark through highway Corridor DC, plus home storage and battery swap.",
+      caption: "The full range — portable Spark through highway ARC Corridor, plus home storage and battery swap.",
     },
     {
       src: productRenderPaths.p2Home,
@@ -61,7 +61,7 @@ export const productEngineeringDoc = {
     "Portfolio at a glance — hardware, services and evidence labels",
     "Home charging — Spark, Pulse and Pod specifications and packages",
     "Home survey, protection, earthing and commissioning checklist",
-    "Depot AC and Corridor DC specifications and site gates",
+    "Depot AC and ARC Corridor specifications and site gates",
     "Corridor sizing worked example with storage and canopy PV",
     "Boda Hub swap, locker configurations and testing status",
     "Modular energy targets — Energy Module, P1 Go, P2 Home, Mini Stack",
