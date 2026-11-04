@@ -83,7 +83,7 @@ if (-not $SkipChecks) {
     if (Test-Path ".next") { Fail "Could not clear .next. Stop the localhost dev server (Ctrl+C in its window) and run again." }
   }
   Run npm @("run", "lint") "Lint"
-  Run npx @("tsc", "--noEmit") "Type check"
+  Run npm @("run", "typecheck") "Type check"
   Run npm @("test") "Unit tests"
   Run npm @("run", "build") "Production build"
   Ok "Lint, types, tests and build pass"

@@ -228,6 +228,28 @@ if ($commitLocal) {
 }
 Ok "On $Branch at $((git rev-parse --short HEAD).Trim())"
 
+# Self-update: the copy of this script in the repo is the source of truth. If the code just
+# pulled carries a newer version, replace this file with it and restart, so fixes made on
+# GitHub always reach this laptop.
+$repoCopy = Join-Path $repo "scripts\launcher\Precifarm-Deploy-AtoZ.ps1"
+if (-not $env:PRECIFARM_DEPLOY_CHILD -and (Test-Path $repoCopy) -and $PSCommandPath) {
+  if ((Get-FileHash $repoCopy).Hash -ne (Get-FileHash $PSCommandPath).Hash) {
+    Note "Newer release script found in the repo; updating this copy and restarting"
+    Copy-Item $repoCopy $PSCommandPath -Force
+    $childArgs = @()
+    if ($GitHubOnly) { $childArgs += "-GitHubOnly" }
+    if ($SkipChecks) { $childArgs += "-SkipChecks" }
+    if ($Yes)        { $childArgs += "-Yes" }
+    if ($NoPause)    { $childArgs += "-NoPause" }
+    if ($Message)    { $childArgs += @("-Message", $Message) }
+    $childArgs += @("-RepoPath", $repo)
+    try { Stop-Transcript | Out-Null } catch {}
+    $env:PRECIFARM_DEPLOY_CHILD = "1"
+    & powershell -NoProfile -ExecutionPolicy Bypass -File $PSCommandPath @childArgs
+    exit $LASTEXITCODE
+  }
+}
+
 # ------------------------------------------------------------------------------ I
 Step "I" "Packages"
 $lock = Get-Item "package-lock.json"
@@ -249,7 +271,7 @@ if ($SkipChecks) {
     if (Test-Path ".next") { Fail "Could not clear .next. Stop the localhost dev server (Ctrl+C in its window) and run again." }
   }
   Run npm @("run", "lint") "Lint"
-  Run npx @("tsc", "--noEmit") "Type check"
+  Run npm @("run", "typecheck") "Type check"
   Run npm @("test") "Unit tests"
   Run npm @("run", "build") "Production build"
   Ok "Lint, types, tests and build pass"

@@ -8,6 +8,7 @@
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint",
+    "typecheck": "node scripts/clean-next-types.mjs && tsc --noEmit",
     "ship": "powershell -ExecutionPolicy Bypass -File scripts/ship.ps1",
     "deploy:gcp": "powershell -ExecutionPolicy Bypass -File scripts/deploy-gcp.ps1",
     "seo:search-console": "powershell -ExecutionPolicy Bypass -File scripts/submit-search-console.ps1",
