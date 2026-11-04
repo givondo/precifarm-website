@@ -363,7 +363,7 @@ function Final-Path($resp) {
 
 $failed = 0
 foreach ($c in @(
-    @{ Path = "/";                  Expect = "Powering every electric journey" },
+    @{ Path = "/";                  Expect = "Powering the shift to electric transport" },
     @{ Path = "/charging/home";     Expect = "Pulse" },
     @{ Path = "/charging/corridor"; Expect = "ARC Corridor" },
     @{ Path = "/charging/boda-hub"; Expect = "Boda Hub" },
@@ -373,9 +373,20 @@ foreach ($c in @(
   if ($r -and $r.StatusCode -eq 200 -and $r.Content -match [regex]::Escape($c.Expect)) { Ok "$($c.Path)" }
   else { Write-Host "    $($c.Path) FAILED (expected '$($c.Expect)')" -ForegroundColor Red; $failed++ }
 }
+# Read the Location header directly: Windows PowerShell 5.1 does not follow the 308
+# permanent redirects Next.js sends, so following the redirect is not a fair test.
+function Get-RedirectPath($path) {
+  $req = [System.Net.HttpWebRequest]::Create("$Live$path")
+  $req.AllowAutoRedirect = $false
+  try { $resp = $req.GetResponse() } catch [System.Net.WebException] { $resp = $_.Exception.Response }
+  if (-not $resp) { return $null }
+  $loc = $resp.Headers["Location"]
+  $resp.Close()
+  if (-not $loc) { return $null }
+  return ([Uri]::new([Uri]"$Live$path", $loc)).AbsolutePath
+}
 foreach ($rd in @(@{ From = "/book"; To = "/charging" }, @{ From = "/ai"; To = "/agent" })) {
-  $r = Get-Page $rd.From
-  if ($r -and (Final-Path $r) -eq $rd.To) { Ok "$($rd.From) redirects to $($rd.To)" }
+  if ((Get-RedirectPath $rd.From) -eq $rd.To) { Ok "$($rd.From) redirects to $($rd.To)" }
   else { Write-Host "    $($rd.From) did not redirect to $($rd.To)" -ForegroundColor Red; $failed++ }
 }
 
