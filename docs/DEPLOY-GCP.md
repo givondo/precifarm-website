@@ -29,6 +29,21 @@ CMS env: Daraja and database credentials in **Secret Manager** — see [`docs/in
 
 ---
 
+## One command: ship
+
+`npm run ship` (`scripts/ship.ps1`) runs the whole release from the website folder on Windows:
+
+1. Commits any local changes (asks for a message).
+2. Lint, type check, unit tests and production build.
+3. Pushes the branch to GitHub and merges it into `main` (an open pull request closes as merged).
+4. Checks the hero video URLs in `lib/brand-messaging.ts` are live on GCS and uploads them with `scripts/upload-hero-video.ps1` if not.
+5. Asks you to type `DEPLOY`, then runs Cloud Build (`cloudbuild.yaml`) to Cloud Run `precifarm-website` in `europe-west1`.
+6. Smoke-tests precifarm.com (homepage headline, ARC Corridor, Agent, Pulse, `/book` and `/ai` redirects) and prints the rollback command for the previous revision.
+
+Options: `-Message "text"`, `-SkipChecks`, `-GitHubOnly`, `-NoMerge`, `-Yes`. `.gcloudignore` keeps `.env*` out of the Cloud Build upload.
+
+---
+
 ## Prerequisites
 
 1. [Google Cloud account](https://console.cloud.google.com) with billing enabled

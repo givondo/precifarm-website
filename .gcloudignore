@@ -3,3 +3,9 @@
 .next/
 node_modules/
 .git/
+
+# Never upload local secrets to Cloud Build
+.env*
+!.env.example
+test-results/
+playwright-report/
