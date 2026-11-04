@@ -77,6 +77,11 @@ if ($dirty) {
 if (-not $SkipChecks) {
   Step "Quality checks"
   if (-not (Test-Path "node_modules")) { Run npm @("ci") "npm ci" }
+  if (Test-Path ".next") {
+    Write-Host "Clearing the old Next.js build cache (.next)"
+    Remove-Item -Recurse -Force ".next" -ErrorAction SilentlyContinue
+    if (Test-Path ".next") { Fail "Could not clear .next. Stop the localhost dev server (Ctrl+C in its window) and run again." }
+  }
   Run npm @("run", "lint") "Lint"
   Run npx @("tsc", "--noEmit") "Type check"
   Run npm @("test") "Unit tests"

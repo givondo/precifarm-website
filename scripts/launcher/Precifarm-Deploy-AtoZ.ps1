@@ -243,6 +243,11 @@ if ($SkipChecks) {
   Step "J" "Quality checks skipped (-SkipChecks)"
 } else {
   Step "J" "Quality checks"
+  if (Test-Path ".next") {
+    Note "Clearing the old Next.js build cache (.next)"
+    Remove-Item -Recurse -Force ".next" -ErrorAction SilentlyContinue
+    if (Test-Path ".next") { Fail "Could not clear .next. Stop the localhost dev server (Ctrl+C in its window) and run again." }
+  }
   Run npm @("run", "lint") "Lint"
   Run npx @("tsc", "--noEmit") "Type check"
   Run npm @("test") "Unit tests"
