@@ -121,7 +121,8 @@ export default function EngineeringWorkspace() {
   const [replay, setReplay] = useState(0);
   const [copied, setCopied] = useState(false);
   const reduced = usePrefersReducedMotion();
-  const [ref, inView] = useInView<HTMLDivElement>(0.2);
+  // Observe the compact workspace bar, not the whole (very tall on phones) workspace.
+  const [ref, inView] = useInView<HTMLDivElement>(0.5);
   const uid = useId();
 
   const brief = workspaceBriefs.find((b) => b.id === briefId)!;
@@ -175,9 +176,9 @@ export default function EngineeringWorkspace() {
   const done = run.tasks.filter((_, i) => taskState(i) === "done").length;
 
   return (
-    <div ref={ref} className="overflow-hidden rounded-[1.5rem] border border-forest-900 bg-[#0c0f12] text-white shadow-[0_30px_80px_-40px_rgba(15,23,42,0.6)]">
+    <figure aria-label="Precifarm Agent workspace: a worked engineering brief" className="overflow-hidden rounded-[1.5rem] border border-forest-900 bg-[#0c0f12] text-white shadow-[0_30px_80px_-40px_rgba(15,23,42,0.6)]">
       {/* Workspace bar */}
-      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-b border-white/10 px-4 py-3 sm:px-6">
+      <div ref={ref} className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-b border-white/10 px-4 py-3 sm:px-6">
         <div className="flex min-w-0 items-center gap-2.5">
           <span aria-hidden className="h-2 w-2 shrink-0 rounded-full bg-brand-400" />
           <p className="shrink-0 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-white/85">Precifarm Agent</p>
@@ -414,6 +415,6 @@ export default function EngineeringWorkspace() {
           </p>
         </div>
       </div>
-    </div>
+    </figure>
   );
 }
