@@ -124,7 +124,7 @@ export default function AgentWorkspaceDemo() {
               >
                 {state === "done" ? "✓" : i + 1}
               </span>
-              <span className={`min-w-0 flex-1 text-sm transition-colors duration-300 ${state === "queued" ? "text-white/45" : "text-white/85"}`}>
+              <span className={`min-w-0 flex-1 text-sm transition-colors duration-300 ${state === "queued" ? "text-white/60" : "text-white/85"}`}>
                 {s.label}
               </span>
               <span className="font-mono text-sm font-semibold text-white">
@@ -137,7 +137,7 @@ export default function AgentWorkspaceDemo() {
                     <span className="agent-dot [animation-delay:300ms]">●</span>
                   </span>
                 ) : (
-                  <span className="text-white/35">queued</span>
+                  <span className="text-white/60">queued</span>
                 )}
               </span>
             </li>
