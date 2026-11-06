@@ -414,7 +414,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  {
  question: "Does Precifarm recycle batteries?",
  answer:
- "Boda swap packs and Corridor site storage use LFP batteries. We maintain and repair packs in the field, reuse suitable ones for backup power where we can, and plan a contracted recycling partner in Kenya by 2030.",
+ "Boda swap packs use LFP batteries, as would any storage added at later ARC Corridor sites (the first site has none). We maintain and repair packs in the field, reuse suitable ones for backup power where we can, and plan a contracted recycling partner in Kenya by 2030.",
  },
  ],
  breadcrumbs: [

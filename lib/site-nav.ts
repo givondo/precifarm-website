@@ -72,7 +72,7 @@ export const footerLegalLinks: readonly NavLink[] = [
 
 export const footerCopy = {
   description:
-    "Precifarm designs, installs, finances and operates EV charging and battery swapping in Kenya, from the home wallbox to the highway, with M-Pesa on every product.",
+    "Precifarm designs, installs and finances EV charging in Kenya, from the Pulse home charger today to highway charging and battery swapping in development, with M-Pesa on every product.",
   meta: `${brand.africa}`,
 } as const;
 
