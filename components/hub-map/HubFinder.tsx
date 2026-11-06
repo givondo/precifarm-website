@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import StageLabel, { type StageKind } from "@/components/interior/StageLabel";
 import {
   finderConnector,
@@ -192,6 +192,11 @@ export default function HubFinder() {
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [view, setView] = useState<"map" | "list">("list");
+  const mapRef = useRef<HTMLDivElement | null>(null);
+  const showOnMap = () => {
+    setView("map");
+    window.requestAnimationFrame(() => mapRef.current?.scrollIntoView({ block: "start", behavior: reduced ? "auto" : "smooth" }));
+  };
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [geo, setGeo] = useState<{ loading: boolean; error: string | null }>({ loading: false, error: null });
 
@@ -387,7 +392,7 @@ export default function HubFinder() {
                           <div className="mt-3 flex flex-wrap gap-2">
                             <button
                               type="button"
-                              onClick={() => setView("map")}
+                              onClick={showOnMap}
                               className="inline-flex min-h-11 items-center rounded-full bg-forest-950 px-4 text-sm font-semibold text-white"
                             >
                               Show on map
@@ -412,7 +417,7 @@ export default function HubFinder() {
           )}
         </div>
 
-        <div className={`${view === "map" ? "" : "hidden"} lg:block`}>
+        <div ref={mapRef} className={`scroll-mt-28 ${view === "map" ? "" : "hidden"} lg:block`}>
           <div className="relative h-[62vh] min-h-[22rem] overflow-hidden rounded-2xl bg-[#eef0f2] ring-1 ring-border lg:h-[38rem]">
             {googleMapsApiKey ? (
               <GoogleConnectivityMap apiKey={googleMapsApiKey} {...mapProps} />

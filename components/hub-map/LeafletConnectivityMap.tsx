@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import {
   MapContainer,
   Marker,
@@ -68,21 +68,32 @@ function MapController({
     }
   }, [map, selectedHub, reducedMotion]);
 
-  useEffect(() => {
-    if (visibleKey === undefined) return;
-    const t = window.setTimeout(() => map.invalidateSize(), 50);
-    return () => window.clearTimeout(t);
-  }, [map, visibleKey]);
+  const lastFit = useRef<string | undefined>(undefined);
 
+  // Re-measure when the container is shown again, then either fit the filtered set (when it changed,
+  // or on first show) or centre on the chosen site. A hidden (zero-width) map is left alone until shown.
   useEffect(() => {
-    if (fitKey === undefined || hubs.length === 0) return;
-    if (hubs.length === 1) {
-      map.setView([hubs[0].lat, hubs[0].lng], 11, { animate: !reducedMotion });
-      return;
-    }
-    const bounds = L.latLngBounds(hubs.map((h) => [h.lat, h.lng] as [number, number]));
-    map.fitBounds(bounds, { padding: [40, 40], maxZoom: 12, animate: !reducedMotion });
-    // fit only when the filtered set changes, not on every hub array identity change
+    if (fitKey === undefined && visibleKey === undefined) return;
+    const t = window.setTimeout(() => {
+      map.invalidateSize();
+      if (map.getSize().x === 0) return;
+      const firstShow = lastFit.current === undefined;
+      const setChanged = lastFit.current !== fitKey;
+      lastFit.current = fitKey;
+      if (selectedHub && (firstShow || !setChanged)) {
+        map.setView([selectedHub.lat, selectedHub.lng], Math.max(map.getZoom(), 11), { animate: false });
+        return;
+      }
+      if (hubs.length === 0) return;
+      if (hubs.length === 1) {
+        map.setView([hubs[0].lat, hubs[0].lng], 11, { animate: !reducedMotion });
+        return;
+      }
+      const bounds = L.latLngBounds(hubs.map((h) => [h.lat, h.lng] as [number, number]));
+      map.fitBounds(bounds, { padding: [40, 40], maxZoom: 12, animate: !reducedMotion });
+    }, 60);
+    return () => window.clearTimeout(t);
+    // run when the filtered set or visibility changes, not on every hub array identity change
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [map, fitKey, visibleKey]);
 
@@ -170,6 +181,14 @@ export default function LeafletConnectivityMap({
           zIndexOffset={hub.id === selectedHubId ? 1000 : 0}
           eventHandlers={{
             click: () => onSelectHub(hub.id),
+            // Leaflet focuses markers but only acts on Enter when a popup is bound; select the site instead.
+            keypress: (e: L.LeafletKeyboardEvent) => {
+              const k = e.originalEvent.key;
+              if (k === "Enter" || k === " ") {
+                e.originalEvent.preventDefault();
+                onSelectHub(hub.id);
+              }
+            },
           }}
         />
       ))}
