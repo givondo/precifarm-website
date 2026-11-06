@@ -579,6 +579,29 @@ html {
   @apply mt-8;
 }
 
+/* "What we build" showroom: fade and rise on entry. CSS scroll-driven only, so no client JS;
+   browsers without view timelines, and anyone who prefers reduced motion, see it static. */
+@keyframes showroom-rise {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .showroom-reveal {
+      animation: showroom-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+  }
+}
+
 @media (max-width: 639px) {
   .home-announcement-link {
     @apply !min-h-7 !min-w-7 items-center justify-center p-0;
