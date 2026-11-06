@@ -83,7 +83,7 @@ function Wide() {
   const segLabels = ["AC", "AC", "DC", "DC"];
 
   return (
-    <svg viewBox="0 0 1040 420" className="hidden h-auto w-full md:block" role="img" aria-labelledby="arc-elec-title">
+    <svg viewBox="0 0 1040 420" className="hidden h-auto w-full lg:block" role="img" aria-labelledby="arc-elec-title">
       <title id="arc-elec-title">
         ARC Corridor electrical architecture: Kenya Power grid connection and utility meter, transformer and switchgear, certified OEM power cabinet, ARC
         dispensers and vehicles, with optional storage on the AC side and a charge-point management and M-Pesa layer linked to the cabinet and dispensers.
@@ -189,7 +189,7 @@ function Tall() {
   const total = ys[4] + H + 8;
 
   return (
-    <svg viewBox={`0 0 360 ${total}`} className="h-auto w-full md:hidden" role="img" aria-labelledby="arc-elec-title-m">
+    <svg viewBox={`0 0 360 ${total}`} className="mx-auto h-auto w-full max-w-md lg:hidden" role="img" aria-labelledby="arc-elec-title-m">
       <title id="arc-elec-title-m">
         ARC Corridor power chain: grid connection, transformer and switchgear, certified OEM power cabinet, ARC dispensers, vehicles.
       </title>
@@ -239,7 +239,7 @@ export default function ArcElectricalDiagram() {
       <div className="rounded-[1.5rem] bg-white/[0.02] p-3 ring-1 ring-white/10 sm:p-6">
         <Wide />
         <Tall />
-        <div className="mt-4 grid gap-3 md:hidden">
+        <div className="mx-auto mt-4 grid max-w-md gap-3 lg:hidden">
           <div className="rounded-xl border border-dashed border-brand-300/50 bg-brand-300/[0.06] p-4">
             <p className="text-sm font-semibold text-white">{arcControlLayer.title}</p>
             <p className="mt-1 text-xs text-white/60">Linked to the power cabinet, every dispenser and the driver&apos;s phone.</p>
