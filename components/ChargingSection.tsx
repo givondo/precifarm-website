@@ -1,134 +1,49 @@
 import Link from "next/link";
-import ProductPhoto from "@/components/ProductPhoto";
-import ProductShowcaseRow from "@/components/ProductShowcaseRow";
-import SectionHeader from "@/components/ui/SectionHeader";
-import { chargingOfferings, whereYouCharge } from "@/lib/charging";
-import { productNames } from "@/lib/home-products";
+import ChargingComparison from "@/components/charging/ChargingComparison";
+import ChargingExplorer from "@/components/charging/ChargingExplorer";
+import { InteriorSection } from "@/components/interior";
+import { chargingComparison, chargingNextSteps, chargingSegments } from "@/lib/charging";
 
-type CopyPart = string | { readonly bold: string };
-
-function EmphasizedBody({ parts }: { parts: readonly CopyPart[] }) {
-  return (
-    <p className="mt-4 text-sm leading-relaxed text-forest-600/85 sm:text-base">
-      {parts.map((part, index) =>
-        typeof part === "string" ? (
-          part
-        ) : (
-          <strong key={`${part.bold}-${index}`} className="font-semibold text-forest-900">
-            {part.bold}
-          </strong>
-        ),
-      )}
-    </p>
-  );
-}
-
-function OfferingProducts({
-  products,
-}: {
-  products: readonly {
-    id: string;
-    src: string;
-    alt: string;
-  }[];
-}) {
-  return (
-    <ProductShowcaseRow
-      products={products.map((item) => ({
-        src: item.src,
-        alt: item.alt,
-        label: productNames[item.id as keyof typeof productNames],
-      }))}
-    />
-  );
-}
-
-function HighwayVisual() {
-  const { routeHub } = chargingOfferings;
-
-  return (
-    <div className="overflow-hidden rounded-2xl border border-border bg-white p-4 shadow-xl">
-      <ProductPhoto
-        src={routeHub.image}
-        alt={routeHub.imageAlt}
-        sizes="(max-width: 1024px) 100vw, 50vw"
-        className="mx-auto aspect-[4/3] w-full object-contain"
-        priority
-      />
-    </div>
-  );
-}
-
+/** /charging body: the product explorer, the side-by-side comparison and the next steps. */
 export default function ChargingSection() {
-  const { home, privateSite } = chargingOfferings;
-  const visuals = {
-    home: <OfferingProducts products={home.products} />,
-    privateSite: <OfferingProducts products={privateSite.products} />,
-    routeHub: <HighwayVisual />,
-  } as const;
-
   return (
-    <div className="page-container section-pad">
-      <SectionHeader eyebrow={whereYouCharge.eyebrow} title={whereYouCharge.title} />
-      <p className="mt-4 max-w-2xl text-base font-medium leading-relaxed text-forest-800">
-        {whereYouCharge.lead}
-      </p>
-      <p className="mt-3 max-w-2xl text-base leading-relaxed text-forest-600">
-        {whereYouCharge.description}
-      </p>
+    <>
+      <InteriorSection
+        id="explore"
+        tone="silver"
+        eyebrow="Where you charge"
+        title="Pick the place, then the product."
+        lead="Each product is built for how long a vehicle stands still: overnight at home, a shift at the depot, a stop on the highway, or a swap between rides."
+      >
+        <ChargingExplorer segments={chargingSegments} />
+      </InteriorSection>
 
-      <div className="mt-14 space-y-16">
-        {whereYouCharge.pillars.map((pillar, index) => {
-          const visual = visuals[pillar.offeringsKey];
-          const copyFirst = index % 2 === 0;
+      <InteriorSection id="compare" eyebrow="Compare" title={chargingComparison.title} lead={chargingComparison.lead}>
+        <ChargingComparison segments={chargingSegments} rows={chargingComparison.rows} />
+        <p className="mt-4 text-xs leading-relaxed text-forest-500">
+          Ratings are from the Precifarm engineering register and are design targets until tested. Status labels: Available is sold today after a survey; In
+          development is engineered but not yet released; Pilot development is being prepared for a first site.
+        </p>
+      </InteriorSection>
 
-          return (
-            <article
-              key={pillar.id}
-              className="grid items-center gap-8 border-t border-border pt-16 first:border-t-0 first:pt-0 lg:grid-cols-2 lg:gap-10"
-            >
-              <div className={copyFirst ? "order-2 lg:order-1" : "order-2"}>{visual}</div>
-              <div className={copyFirst ? "order-1 lg:order-2" : "order-1"}>
-                <p className="text-eyebrow text-xs font-semibold uppercase tracking-widest text-forest-500">
-                  {pillar.eyebrow}
-                </p>
-                <h3 className="mt-2 text-xl font-semibold text-forest-900 sm:text-2xl">{pillar.title}</h3>
-                <EmphasizedBody parts={pillar.body} />
-                <p className="mt-4 font-mono text-xs font-medium tracking-wide text-forest-500 sm:text-sm">
-                  {pillar.products}
-                </p>
-                <Link
-                  href={pillar.cta.href}
-                  className={`mt-6 inline-flex rounded-full px-6 py-2.5 text-sm font-semibold transition-colors ${
-                    pillar.id === "fleet"
-                      ? "border border-forest-200 text-forest-900 hover:bg-forest-50"
-                      : "bg-charge-600 text-white hover:bg-charge-500"
-                  }`}
-                >
-                  {pillar.cta.label} →
+      <section aria-labelledby="next-steps-title" className="border-t border-border bg-white py-14 sm:py-16">
+        <div className="interior-container">
+          <h2 id="next-steps-title" className="sr-only">
+            Next steps
+          </h2>
+          <ul className="grid gap-px overflow-hidden rounded-2xl bg-border ring-1 ring-border md:grid-cols-3">
+            {chargingNextSteps.map((n) => (
+              <li key={n.title} className="flex flex-col bg-white p-5 sm:p-6">
+                <p className="text-base font-semibold text-forest-900">{n.title}</p>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-forest-600">{n.text}</p>
+                <Link href={n.href} className="mt-4 inline-flex min-h-11 items-center text-sm font-semibold">
+                  {n.label} <span aria-hidden className="ml-1">›</span>
                 </Link>
-              </div>
-            </article>
-          );
-        })}
-      </div>
-
-      <div className="mt-16 rounded-2xl border border-border bg-muted/30 p-6 sm:p-8">
-        <p className="text-eyebrow text-xs font-semibold uppercase tracking-widest text-charge-600">
-          Engineering
-        </p>
-        <h2 className="mt-2 text-xl font-semibold text-forest-900 sm:text-2xl">Design basis for sites</h2>
-        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-forest-600">
-          Energy model, typical site plan and Kenya Power hold points for home, fleet and highway hubs.
-          Concept reference — not construction drawings.
-        </p>
-        <Link
-          href="/charging/engineering"
-          className="mt-6 inline-flex rounded-full border border-forest-200 px-6 py-2.5 text-sm font-semibold text-forest-900 transition-colors hover:bg-white"
-        >
-          Engineering package →
-        </Link>
-      </div>
-    </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    </>
   );
 }
