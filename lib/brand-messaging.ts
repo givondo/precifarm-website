@@ -65,7 +65,7 @@ export const homeHero = {
  video: {
  /** Hosted on GCS — see scripts/upload-hero-video.ps1 & compress-hero-video.mjs */
  src:
- "https://storage.googleapis.com/precifarm-public-media-skilled-orbit/videos/precifarm-pitch-v9-web.mp4",
+ "https://storage.googleapis.com/precifarm-public-media-skilled-orbit/videos/precifarm-pitch-v9-web-r2.mp4",
  srcMobile:
  "https://storage.googleapis.com/precifarm-public-media-skilled-orbit/videos/precifarm-pitch-v9-mobile.mp4",
  posterSrc: "/images/home-hero-pitch-poster.jpg",
