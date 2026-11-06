@@ -1,0 +1,17 @@
+/* Wireless research lab motion. Respects reduced motion. */
+.field {
+  stroke-dasharray: 4 5;
+  animation: field 0.8s linear infinite;
+}
+
+@keyframes field {
+  to {
+    stroke-dashoffset: 9;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .field {
+    animation: none;
+  }
+}

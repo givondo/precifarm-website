@@ -1,336 +1,148 @@
 import Link from "next/link";
 import AgentChat from "@/components/agent/AgentChat";
-import AgentExampleDemo from "@/components/agent/AgentExampleDemo";
-import AgentWorkflowStrip from "@/components/agent/AgentWorkflowStrip";
-import AgentWorkspaceMock from "@/components/agent/AgentWorkspaceMock";
-import Breadcrumbs from "@/components/seo/Breadcrumbs";
+import EngineeringWorkspace from "@/components/agent/EngineeringWorkspace";
+import EvidenceChip, { evidenceMeaning } from "@/components/agent/EvidenceChip";
+import ToolBench from "@/components/agent/ToolBench";
+import { InteriorHero, InteriorSection, StageLabel } from "@/components/interior";
 import FaqAccordion from "@/components/seo/FaqAccordion";
-import PageCTA from "@/components/ui/PageCTA";
-import SectionHeader from "@/components/ui/SectionHeader";
-import {
-  agentPage,
-  agentPageFaqs,
-  agentPath,
-  agentStatusNote,
-} from "@/lib/agent-page";
+import { agentPage, agentPageFaqs, agentPath, agentStatusNote } from "@/lib/agent-page";
+import type { EvidenceLabel } from "@/lib/agent/tools/engineering";
+
+const evidenceOrder: EvidenceLabel[] = ["calculated", "estimated", "assumed", "needs site check"];
+
+function LivenessPanel() {
+  return (
+    <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-2">
+      <p className="px-3 pb-1 pt-2 font-mono text-[10.5px] uppercase tracking-widest text-white/55">What is live on this page</p>
+      <ul className="divide-y divide-white/[0.07]">
+        {agentPage.liveness.map((row) => (
+          <li key={row.title} className="flex items-start gap-3 px-3 py-3.5">
+            <StageLabel kind={row.kind} label={row.label} tone="dark" className="mt-0.5 w-[5.5rem] justify-center" />
+            <div className="min-w-0">
+              <p className="text-sm font-semibold text-white">{row.title}</p>
+              <p className="mt-0.5 text-[13px] leading-snug text-white/65">{row.text}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+      <p className="flex items-center gap-2 px-3 pb-2 pt-1 text-xs text-white/55">
+        <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-brand-300" />
+        {agentStatusNote}
+      </p>
+    </div>
+  );
+}
 
 export default function AgentView() {
   const p = agentPage;
 
   return (
     <>
-      <section className="page-hero border-b border-border">
-        <div className="page-container pt-6 sm:pt-8">
-          <Breadcrumbs
-            items={[
-              { name: "Home", href: "/" },
-              { name: "Precifarm Agent", href: agentPath },
-            ]}
-          />
-          <div className="mt-8 grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-12 pb-10 sm:pb-12">
-            <div className="max-w-xl">
-              <p className="text-eyebrow">{p.hero.eyebrow}</p>
-              <h1 className="heading-display mt-3 text-[1.85rem] leading-[1.08] sm:text-4xl lg:text-[2.65rem]">
-                {p.hero.title}
-              </h1>
-              <p className="mt-5 text-base leading-relaxed text-forest-600 sm:text-[1.05rem]">
-                {p.hero.subhead}
-              </p>
-              <div className="mt-7 flex flex-wrap gap-3">
-                <a href={p.hero.primaryCta.href} className="btn-primary">
-                  {p.hero.primaryCta.label}
-                </a>
-                <Link href={p.hero.secondaryCta.href} className="btn-secondary">
-                  {p.hero.secondaryCta.label}
-                </Link>
+      <InteriorHero
+        tone="graphite"
+        eyebrow={p.hero.eyebrow}
+        title={p.hero.title}
+        lead={p.hero.lead}
+        breadcrumbs={[
+          { name: "Home", href: "/" },
+          { name: "Precifarm Agent", href: agentPath },
+        ]}
+        actions={p.hero.actions}
+        media={<LivenessPanel />}
+        facts={p.hero.facts}
+      />
+
+      <InteriorSection id={p.workspace.id} tone="silver" eyebrow={p.workspace.eyebrow} title={p.workspace.title} lead={p.workspace.lead}>
+        <EngineeringWorkspace />
+      </InteriorSection>
+
+      <InteriorSection
+        id={p.tryIt.id}
+        tone="graphite"
+        eyebrow={p.tryIt.eyebrow}
+        title={p.tryIt.title}
+        lead={p.tryIt.lead}
+      >
+        <AgentChat compact />
+      </InteriorSection>
+
+      <InteriorSection id={p.kernel.id} eyebrow={p.kernel.eyebrow} title={p.kernel.title} lead={p.kernel.lead}>
+        <ol className="mb-10 grid gap-px overflow-hidden rounded-2xl bg-border ring-1 ring-border sm:grid-cols-3 lg:grid-cols-6">
+          {p.kernel.pipeline.map((step, i) => (
+            <li key={step.title} className="relative bg-white px-4 py-4">
+              <p className="font-mono text-[11px] text-charge-600">{String(i + 1).padStart(2, "0")}</p>
+              <p className="mt-1.5 text-sm font-semibold text-forest-900">{step.title}</p>
+              <p className="mt-1 text-[13px] leading-snug text-forest-600">{step.text}</p>
+            </li>
+          ))}
+        </ol>
+        <ToolBench />
+      </InteriorSection>
+
+      <InteriorSection id={p.modes.id} tone="silver" eyebrow={p.modes.eyebrow} title={p.modes.title} lead={p.modes.lead}>
+        <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
+          <ol className="overflow-hidden rounded-2xl bg-white ring-1 ring-border">
+            {p.modes.items.map((m, i) => (
+              <li key={m.mode} className={`flex items-start gap-4 px-5 py-4 ${i ? "border-t border-border" : ""}`}>
+                <span className="w-12 shrink-0 font-mono text-sm font-semibold text-forest-900">{m.mode}</span>
+                <p className="min-w-0 flex-1 text-sm leading-relaxed text-forest-600">{m.text}</p>
+                <StageLabel kind={m.status} label={m.statusLabel} />
+              </li>
+            ))}
+          </ol>
+          <div>
+            <h3 className="text-base font-semibold text-forest-900">Evidence labels on every result</h3>
+            <dl className="mt-4 space-y-3">
+              {evidenceOrder.map((l) => (
+                <div key={l} className="flex flex-col gap-1.5 sm:flex-row sm:items-start sm:gap-4">
+                  <dt className="sm:w-36 sm:shrink-0 sm:pt-0.5">
+                    <EvidenceChip label={l} tone="light" />
+                  </dt>
+                  <dd className="text-sm leading-relaxed text-forest-600">{evidenceMeaning[l]}</dd>
+                </div>
+              ))}
+            </dl>
+            <p className="mt-5 text-sm leading-relaxed text-forest-600">
+              Precifarm Agent speeds up design. It does not replace a qualified professional: safety-critical work is confirmed on site and signed off by
+              an engineer.
+            </p>
+          </div>
+        </div>
+      </InteriorSection>
+
+      <InteriorSection
+        id={p.roadmap.id}
+        eyebrow={p.roadmap.eyebrow}
+        title={p.roadmap.title}
+        aside={
+          <Link href={p.roadmap.researchHref} className="inline-flex min-h-11 items-center text-sm font-semibold text-charge-600 hover:text-charge-700">
+            {p.roadmap.researchLabel} <span aria-hidden className="ml-1">›</span>
+          </Link>
+        }
+      >
+        <div className="grid gap-px overflow-hidden rounded-2xl bg-border ring-1 ring-border lg:grid-cols-3">
+          {p.roadmap.columns.map((col) => (
+            <div key={col.title} className="bg-white p-5 sm:p-6">
+              <div className="flex items-center justify-between gap-3">
+                <h3 className="text-base font-semibold text-forest-900">{col.title}</h3>
+                <StageLabel kind={col.kind} />
               </div>
-              <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm text-forest-700">
-                {p.hero.highlights.map((item) => (
-                  <li key={item} className="inline-flex items-center gap-1.5">
-                    <svg viewBox="0 0 20 20" className="h-4 w-4 text-charge-600" fill="currentColor" aria-hidden>
-                      <path d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.5 7.5a1 1 0 0 1-1.4 0L3.3 9.7a1 1 0 1 1 1.4-1.4l3.8 3.8 6.8-6.8a1 1 0 0 1 1.4 0z" />
-                    </svg>
+              <ul className="mt-4 space-y-2.5">
+                {col.items.map((item) => (
+                  <li key={item} className="flex gap-2.5 text-sm leading-relaxed text-forest-600">
+                    <span aria-hidden className="mt-[9px] h-1 w-1 shrink-0 rounded-full bg-forest-300" />
                     {item}
                   </li>
                 ))}
               </ul>
-              <p className="mt-4 inline-flex items-center gap-2 text-xs text-forest-500">
-                <span aria-hidden className="h-2 w-2 shrink-0 rounded-full bg-[#22c55e]" />
-                {agentStatusNote}
-              </p>
             </div>
-            <AgentWorkspaceMock />
-          </div>
+          ))}
         </div>
-      </section>
+      </InteriorSection>
 
-      <section className="border-y border-forest-900 bg-forest-900 section-pad" aria-label="Agent progress">
-        <div className="page-container">
-          <div className="grid gap-6 sm:grid-cols-3">
-            {p.progress.map((item) => (
-              <article key={item.stat} className="text-center sm:text-left">
-                <p className="font-mono text-lg font-bold tracking-tight text-white sm:text-xl">{item.stat}</p>
-                <p className="mt-2 text-sm leading-snug text-white/70">{item.label}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id={p.tryIt.id} className="scroll-mt-24 border-b border-border bg-white section-pad">
-        <div className="page-container">
-          <SectionHeader eyebrow={p.tryIt.eyebrow} title={p.tryIt.title} description={p.tryIt.description} />
-          <div className="mt-8">
-            <AgentChat compact />
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-border bg-muted/25 section-pad">
-        <div className="page-container max-w-3xl">
-          <SectionHeader
-            eyebrow={p.northStar.eyebrow}
-            title={p.northStar.title}
-            description={p.northStar.description}
-          />
-          <blockquote className="mt-8 border-l-2 border-charge-500 pl-5 text-base italic leading-relaxed text-forest-700">
-            {p.northStar.quote}
-          </blockquote>
-        </div>
-      </section>
-
-      <section className="border-b border-border bg-white section-pad">
-        <div className="page-container">
-          <SectionHeader
-            eyebrow={p.differentiation.eyebrow}
-            title={p.differentiation.title}
-            description={p.differentiation.body}
-          />
-          <AgentWorkflowStrip />
-        </div>
-      </section>
-
-      <section className="border-b border-border bg-muted/20 section-pad">
-        <div className="page-container">
-          <SectionHeader
-            eyebrow={p.modes.eyebrow}
-            title={p.modes.title}
-            description={p.modes.description}
-          />
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {p.modes.items.map((item) => (
-              <article key={item.mode} className="card p-5 sm:p-6">
-                <p className="font-mono text-xs font-semibold uppercase tracking-widest text-charge-600">
-                  {item.mode}
-                </p>
-                <h3 className="mt-2 font-semibold text-forest-900">{item.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-forest-600/85">{item.text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-border bg-white section-pad">
-        <div className="page-container">
-          <SectionHeader eyebrow={p.roadmap.eyebrow} title={p.roadmap.title} />
-          <div className="mt-10 grid gap-6 lg:grid-cols-3">
-            <div className="card p-6">
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-charge-700">
-                {p.roadmap.columns.shipped}
-              </p>
-              <ul className="mt-4 space-y-2.5">
-                {p.roadmap.shipped.map((line) => (
-                  <li key={line} className="text-sm leading-relaxed text-forest-600/90">
-                    · {line}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="card border-charge-200 bg-charge-50/30 p-6">
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-charge-800">
-                {p.roadmap.columns.building}
-              </p>
-              <ul className="mt-4 space-y-2.5">
-                {p.roadmap.building.map((line) => (
-                  <li key={line} className="text-sm leading-relaxed text-forest-700">
-                    · {line}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="card p-6">
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-forest-500">
-                {p.roadmap.columns.next}
-              </p>
-              <ul className="mt-4 space-y-2.5">
-                {p.roadmap.next.map((line) => (
-                  <li key={line} className="text-sm leading-relaxed text-forest-600/90">
-                    · {line}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-border bg-[#0c0f12] section-pad text-white">
-        <div className="page-container">
-          <SectionHeader
-            inverted
-            eyebrow={p.agentLoop.eyebrow}
-            title={p.agentLoop.title}
-            description={p.agentLoop.note}
-          />
-          <ol className="mt-10 flex flex-wrap gap-2">
-            {p.agentLoop.steps.map((step, i) => (
-              <li key={step} className="flex items-center gap-2">
-                <span className="rounded-lg border border-white/15 bg-white/5 px-3 py-2 font-mono text-[11px] uppercase tracking-wider text-white/85">
-                  {step}
-                </span>
-                {i < p.agentLoop.steps.length - 1 && (
-                  <span className="text-white/25" aria-hidden>
-                    →
-                  </span>
-                )}
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      <section id="how-it-works" className="scroll-mt-24 border-b border-border bg-muted/20 section-pad">
-        <div className="page-container">
-          <SectionHeader eyebrow={p.workflow.eyebrow} title={p.workflow.title} />
-          <ol className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
-            {p.workflow.steps.map((step) => (
-              <li key={step.n} className="bg-white p-5 sm:p-6">
-                <p className="font-mono text-[11px] text-charge-600">{step.n}</p>
-                <h3 className="mt-2 text-base font-semibold text-forest-900">{step.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-forest-600">{step.text}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      <section className="border-b border-border bg-white section-pad">
-        <div className="page-container">
-          <SectionHeader eyebrow={p.capabilities.eyebrow} title={p.capabilities.title} />
-          <div className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
-            {p.capabilities.cards.map((card) => (
-              <article key={card.title} className="bg-white p-5 sm:p-6">
-                <h3 className="text-base font-semibold text-forest-900">{card.title}</h3>
-                <ul className="mt-4 space-y-1.5">
-                  {card.items.map((item) => (
-                    <li key={item} className="text-sm text-forest-600">
-                      · {item}
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-border bg-[#0c0f12] section-pad text-white">
-        <div className="page-container">
-          <SectionHeader
-            inverted
-            eyebrow={p.kernel.eyebrow}
-            title={p.kernel.title}
-            description={p.kernel.lead}
-          />
-          <ol className="mt-10 flex flex-wrap items-center gap-2 sm:gap-3">
-            {p.kernel.pipeline.map((node, i) => (
-              <li key={node} className="flex items-center gap-2 sm:gap-3">
-                <span className="rounded-lg border border-white/15 bg-white/5 px-3 py-2 font-mono text-[11px] uppercase tracking-wider text-white/85 sm:text-xs">
-                  {node}
-                </span>
-                {i < p.kernel.pipeline.length - 1 && (
-                  <span className="text-white/30" aria-hidden>
-                    ↓
-                  </span>
-                )}
-              </li>
-            ))}
-          </ol>
-          <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {p.kernel.tools.map((tool) => (
-              <div
-                key={tool.fn}
-                className="rounded-xl border border-white/10 bg-white/[0.04] px-4 py-4"
-              >
-                <p className="font-mono text-[10px] uppercase tracking-widest text-charge-300">
-                  {tool.label}
-                </p>
-                <p className="mt-2 font-mono text-sm text-white/90">{tool.fn}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="example" className="scroll-mt-24 border-b border-border bg-white section-pad">
-        <div className="page-container">
-          <SectionHeader eyebrow={p.example.eyebrow} title={p.example.title} />
-          <AgentExampleDemo />
-        </div>
-      </section>
-
-      <section className="border-b border-border bg-muted/20 section-pad">
-        <div className="page-container max-w-3xl">
-          <SectionHeader
-            eyebrow={p.companion.eyebrow}
-            title={p.companion.title}
-            description={p.companion.description}
-          />
-          <Link href={p.companion.researchHref} className="btn-secondary mt-8 inline-flex w-fit">
-            {p.companion.researchLabel}
-          </Link>
-        </div>
-      </section>
-
-      <section className="border-b border-border bg-white section-pad">
-        <div className="page-container max-w-3xl">
-          <SectionHeader
-            eyebrow={p.trust.eyebrow}
-            title={p.trust.title}
-            description={p.trust.body}
-          />
-          <ul className="mt-8 flex flex-wrap gap-2">
-            {p.trust.labels.map((label) => (
-              <li
-                key={label}
-                className="rounded-md border border-border bg-muted/25 px-3 py-1.5 font-mono text-[11px] text-forest-700"
-              >
-                {label}
-              </li>
-            ))}
-          </ul>
-          <p className="mt-6 text-sm leading-relaxed text-forest-600">{p.trust.note}</p>
-        </div>
-      </section>
-
-      <section className="border-b border-border bg-muted/20 section-pad">
-        <div className="page-container max-w-3xl">
-          <SectionHeader eyebrow="FAQ" title="Common questions." />
-          <div className="mt-8">
-            <FaqAccordion items={[...agentPageFaqs]} />
-          </div>
-        </div>
-      </section>
-
-      <PageCTA
-        title={p.cta.title}
-        description={`${p.cta.description} ${p.cta.finalLine}`}
-        primaryHref={p.cta.primaryHref}
-        primaryLabel={p.cta.primaryLabel}
-        secondaryHref={p.cta.secondaryHref}
-        secondaryLabel={p.cta.secondaryLabel}
-      />
+      <InteriorSection id="faq" tone="silver" width="narrow" eyebrow="FAQ" title="Common questions.">
+        <FaqAccordion items={[...agentPageFaqs]} />
+      </InteriorSection>
     </>
   );
 }

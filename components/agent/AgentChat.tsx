@@ -36,7 +36,7 @@ const welcome: UiMessage = {
   role: "assistant",
   content:
     "Tell me what you're building: a home Pulse install, a depot, solar and storage, or a cable and protection check. I'll plan the work and run the engineering tools for every number.",
-  meta: `${agentPublic.stackLabel} · ${agentPublic.modelLabel}`,
+  meta: `${agentPublic.modelLabel} · hosted model`,
 };
 
 /* ---------------- Minimal, safe markdown (no HTML injection) ---------------- */
@@ -143,9 +143,9 @@ function Trace({ trace }: { trace: TraceEntry[] }) {
 
 /* ---------------- Workspace ---------------- */
 
-export default function AgentChat({ compact = false }: { compact?: boolean }) {
+export default function AgentChat({ compact = false, initialInput = "" }: { compact?: boolean; initialInput?: string }) {
   const [messages, setMessages] = useState<UiMessage[]>([welcome]);
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState(initialInput.slice(0, 6000));
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState<string | null>(null);
@@ -157,16 +157,10 @@ export default function AgentChat({ compact = false }: { compact?: boolean }) {
     });
   }, []);
 
-  const send = useCallback(
-    async (preset?: string) => {
-      const text = (preset ?? input).trim();
-      if (!text || loading) return;
-
+  /** Posts the conversation as it stands. Used by send and by retry after a failure. */
+  const request = useCallback(
+    async (next: UiMessage[]) => {
       setError(null);
-      setInput("");
-      const userMsg: UiMessage = { id: `u-${Date.now()}`, role: "user", content: text };
-      const next = [...messages, userMsg];
-      setMessages(next);
       setLoading(true);
       scrollToBottom();
 
@@ -208,8 +202,26 @@ export default function AgentChat({ compact = false }: { compact?: boolean }) {
         setLoading(false);
       }
     },
-    [input, loading, messages, scrollToBottom],
+    [scrollToBottom],
   );
+
+  const send = useCallback(
+    async (preset?: string) => {
+      const text = (preset ?? input).trim();
+      if (!text || loading) return;
+      setInput("");
+      const userMsg: UiMessage = { id: `u-${Date.now()}`, role: "user", content: text };
+      const next = [...messages, userMsg];
+      setMessages(next);
+      await request(next);
+    },
+    [input, loading, messages, request],
+  );
+
+  const lastIsUser = messages[messages.length - 1]?.role === "user";
+  const retry = () => {
+    if (!loading && lastIsUser) void request(messages);
+  };
 
   const reset = () => {
     setMessages([welcome]);
@@ -232,7 +244,7 @@ export default function AgentChat({ compact = false }: { compact?: boolean }) {
   return (
     <div
       className={`flex flex-col overflow-hidden rounded-2xl border border-border bg-[#0c0f12] shadow-lg ${
-        compact ? "h-[620px]" : "min-h-[70vh]"
+        compact ? "h-[min(640px,85dvh)]" : "h-[min(820px,calc(100dvh-9rem))] min-h-[520px]"
       }`}
     >
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 px-4 py-3 sm:px-5">
@@ -243,13 +255,13 @@ export default function AgentChat({ compact = false }: { compact?: boolean }) {
             className="rounded border border-white/15 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-white/60"
             title="Ask and Plan only: the Agent takes no actions, payments or bookings."
           >
-            Plan mode · no actions
+            Ask and Plan · no actions
           </span>
         </div>
         <div className="flex items-center gap-3">
           <p className="hidden font-mono text-[10px] text-white/45 sm:block">{agentPublic.modelLabel}</p>
           {started ? (
-            <button type="button" onClick={reset} className="font-mono text-[10px] uppercase tracking-wider text-white/55 hover:text-white">
+            <button type="button" onClick={reset} className="inline-flex min-h-9 items-center font-mono text-[10px] uppercase tracking-wider text-white/65 hover:text-white">
               New design
             </button>
           ) : null}
@@ -274,7 +286,7 @@ export default function AgentChat({ compact = false }: { compact?: boolean }) {
                 <button
                   type="button"
                   onClick={() => void copy(msg)}
-                  className="font-mono text-[10px] uppercase tracking-wider text-white/45 hover:text-white"
+                  className="inline-flex min-h-8 items-center font-mono text-[10px] uppercase tracking-wider text-white/60 hover:text-white"
                 >
                   {copied === msg.id ? "Copied" : "Copy"}
                 </button>
@@ -301,17 +313,31 @@ export default function AgentChat({ compact = false }: { compact?: boolean }) {
         ) : null}
 
         {loading ? (
-          <p className="flex items-center gap-2 font-mono text-xs text-white/55">
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-charge-500" aria-hidden />
-            Planning and running engineering tools…
+          <p className="flex items-center gap-2 font-mono text-xs text-white/65">
+            <span aria-hidden className="flex gap-1">
+              <span className="agent-dot h-1.5 w-1.5 rounded-full bg-brand-300" />
+              <span className="agent-dot h-1.5 w-1.5 rounded-full bg-brand-300 [animation-delay:150ms]" />
+              <span className="agent-dot h-1.5 w-1.5 rounded-full bg-brand-300 [animation-delay:300ms]" />
+            </span>
+            Planning and running engineering tools
           </p>
         ) : null}
       </div>
 
       {error ? (
-        <p role="alert" className="border-t border-red-500/20 bg-red-950/40 px-4 py-2 text-sm text-red-200">
-          {error}
-        </p>
+        <div role="alert" className="flex flex-wrap items-center justify-between gap-3 border-t border-red-500/20 bg-red-950/40 px-4 py-2.5 text-sm text-red-100">
+          <span>{error}</span>
+          {lastIsUser ? (
+            <button
+              type="button"
+              onClick={retry}
+              disabled={loading}
+              className="inline-flex min-h-9 items-center rounded-full border border-red-200/40 px-3.5 text-xs font-semibold text-red-50 hover:border-red-100 disabled:opacity-50"
+            >
+              Try again
+            </button>
+          ) : null}
+        </div>
       ) : null}
 
       <div className="border-t border-white/10 p-4 sm:p-5">
@@ -332,7 +358,7 @@ export default function AgentChat({ compact = false }: { compact?: boolean }) {
             rows={2}
             maxLength={6000}
             placeholder="e.g. Size a 7 kW Pulse install for 80 km/day in Nairobi with unreliable grid…"
-            className="min-h-[52px] flex-1 resize-y rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/55 focus:border-charge-500 focus:outline-none"
+            className="min-h-[52px] flex-1 resize-y rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/55 focus:border-brand-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-300/40"
           />
           <button type="button" onClick={() => void send()} disabled={loading || !input.trim()} className="btn-primary shrink-0 disabled:opacity-50">
             Send
@@ -347,7 +373,7 @@ export default function AgentChat({ compact = false }: { compact?: boolean }) {
             </Link>
           ) : (
             <Link href="/download" className="text-white/80 underline underline-offset-2 hover:text-white">
-              Local OpenCode setup
+              Web, Android and desktop options
             </Link>
           )}
         </p>
