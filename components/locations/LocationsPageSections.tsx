@@ -1,140 +1,73 @@
 "use client";
 
-import { useMemo, useState } from "react";
 import Link from "next/link";
-import SectionHeader from "@/components/ui/SectionHeader";
-import {
-  type EnrichedLocation,
-  type LocationRegionFilter,
-  locationRegionLabels,
-  locationsPage,
-  locationStatusLabels,
-  locationStatusStyles,
-} from "@/lib/locations-page";
+import { useMemo, useState } from "react";
+import StageLabel from "@/components/interior/StageLabel";
+import { type EnrichedLocation, type LocationRegionFilter, locationRegionLabels } from "@/lib/locations-page";
 
-function LocationCard({ location }: { location: EnrichedLocation }) {
+function LocationRow({ location }: { location: EnrichedLocation }) {
   return (
-    <Link
-      href={location.href}
-      className="group flex h-full flex-col rounded-2xl border border-border bg-white p-5 shadow-sm transition-all hover:border-forest-300 hover:shadow-md"
-    >
-      <div className="flex flex-wrap items-start justify-between gap-2">
-        <div>
-          <p className="text-xs font-medium text-forest-500">{location.county}</p>
-          <h3 className="mt-0.5 text-lg font-semibold text-forest-900 group-hover:text-charge-700">
-            {location.name}
-          </h3>
-        </div>
-        <span
-          className={`shrink-0 rounded-full border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${locationStatusStyles[location.status]}`}
-        >
-          {locationStatusLabels[location.status]}
+    <li>
+      <Link href={location.href} className="group grid gap-4 py-6 lg:grid-cols-[14rem_minmax(0,1fr)_auto] lg:items-start lg:gap-8">
+        <span>
+          <span className="block text-[11px] font-semibold uppercase tracking-widest text-forest-500">{location.county}</span>
+          <span className="mt-1 block font-display text-2xl font-semibold tracking-tight text-forest-950 group-hover:text-charge-700">{location.name}</span>
         </span>
-      </div>
-      <p className="mt-3 flex-1 text-sm leading-relaxed text-forest-600">{location.description}</p>
-      <div className="mt-4 flex flex-wrap gap-1.5">
-        {location.services.map((service) => (
-          <span
-            key={service}
-            className="rounded-full bg-muted px-2.5 py-0.5 text-[11px] font-medium text-forest-700"
-          >
-            {service}
+        <span className="min-w-0">
+          <span className="block text-[15px] leading-relaxed text-forest-700">{location.description}</span>
+          <span className="mt-3 flex flex-wrap gap-2">
+            {location.services.map((s) => (
+              <span key={s.name} className="inline-flex items-center gap-2 rounded-full bg-[#f1f3f4] py-1 pl-3 pr-1 text-xs text-forest-800">
+                {s.name}
+                <StageLabel kind={s.stage} />
+              </span>
+            ))}
           </span>
-        ))}
-      </div>
-      <span className="mt-4 text-sm font-medium text-forest-900">Read city guide ›</span>
-    </Link>
+        </span>
+        <span className="text-sm font-semibold text-charge-700 lg:pt-2">City page ›</span>
+      </Link>
+    </li>
   );
 }
 
-type Props = {
-  locations: EnrichedLocation[];
-};
-
-export function LocationsDirectory({ locations }: Props) {
-  const { directory } = locationsPage;
+/** City list with a region filter. All cities are server-rendered; the filter only hides rows. */
+export function LocationsDirectory({ locations }: { locations: EnrichedLocation[] }) {
   const [region, setRegion] = useState<LocationRegionFilter>("all");
-
-  const filtered = useMemo(() => {
-    if (region === "all") return locations;
-    return locations.filter((loc) => loc.region === region);
-  }, [locations, region]);
-
-  const regionCounts = useMemo(() => {
-    const counts: Record<LocationRegionFilter, number> = {
-      all: locations.length,
-      "nairobi-metro": 0,
-      western: 0,
-      coast: 0,
-      "rift-eastern": 0,
-    };
-    for (const loc of locations) {
-      counts[loc.region] += 1;
-    }
-    return counts;
+  const filtered = useMemo(() => (region === "all" ? locations : locations.filter((l) => l.region === region)), [locations, region]);
+  const counts = useMemo(() => {
+    const c: Record<string, number> = { all: locations.length };
+    for (const l of locations) c[l.region] = (c[l.region] ?? 0) + 1;
+    return c;
   }, [locations]);
 
   return (
-    <section className="border-b border-border bg-muted/20 section-pad">
-      <div className="page-container">
-        <SectionHeader
-          eyebrow={directory.eyebrow}
-          title={directory.title}
-          description={directory.description}
-        />
-        <div
-          role="tablist"
-          aria-label="Filter cities by region"
-          className="mt-8 flex flex-wrap gap-2"
-        >
-          {(Object.keys(locationRegionLabels) as LocationRegionFilter[]).map((id) => (
+    <div>
+      <div role="group" aria-label="Filter cities by region" className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:px-0 [&::-webkit-scrollbar]:hidden">
+        {(Object.keys(locationRegionLabels) as LocationRegionFilter[])
+          .filter((id) => id === "all" || counts[id])
+          .map((id) => (
             <button
               key={id}
               type="button"
-              role="tab"
-              aria-selected={region === id}
+              aria-pressed={region === id}
               onClick={() => setRegion(id)}
-              className={`filter-tab ${
-                region === id
-                  ? "border-forest-900 bg-forest-900 text-white"
-                  : "border-border bg-white text-forest-700 hover:border-forest-300"
+              className={`inline-flex min-h-10 shrink-0 items-center gap-2 rounded-full border px-4 text-sm transition-colors ${
+                region === id ? "border-forest-950 bg-forest-950 font-medium text-white" : "border-forest-200 bg-white text-forest-700 hover:border-forest-300"
               }`}
             >
               {locationRegionLabels[id]}
-              <span className="ml-1.5 font-mono text-xs opacity-70">({regionCounts[id]})</span>
+              <span className={`font-mono text-[11px] ${region === id ? "text-white/70" : "text-forest-400"}`}>{counts[id] ?? 0}</span>
             </button>
           ))}
-        </div>
-        <div role="tabpanel" className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((location) => (
-            <LocationCard key={location.slug} location={location} />
-          ))}
-          {filtered.length === 0 && (
-            <p className="text-sm text-forest-600 sm:col-span-2 lg:col-span-3">
-              No cities in this region yet — check back as Precifarm expands.
-            </p>
-          )}
-        </div>
       </div>
-    </section>
-  );
-}
-
-export function LocationsCorridorsNote() {
-  const { corridors } = locationsPage;
-
-  return (
-    <section className="section-pad page-container">
-      <div className="rounded-2xl border border-forest-500/20 bg-forest-50/80 p-6 sm:p-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-forest-600">
-          {corridors.eyebrow}
-        </p>
-        <h2 className="mt-2 text-xl font-semibold text-forest-900 sm:text-2xl">{corridors.title}</h2>
-        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-forest-600">{corridors.description}</p>
-        <Link href={corridors.href} className="text-link mt-4 inline-block text-sm font-semibold">
-          {corridors.label}
-        </Link>
-      </div>
-    </section>
+      <p role="status" aria-live="polite" className="sr-only">
+        {filtered.length} cities shown
+      </p>
+      <ul className="mt-4 divide-y divide-border border-y border-border">
+        {filtered.map((l) => (
+          <LocationRow key={l.slug} location={l} />
+        ))}
+      </ul>
+    </div>
   );
 }

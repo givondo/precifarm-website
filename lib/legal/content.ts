@@ -38,7 +38,7 @@ export const termsOfUseSections: readonly LegalSection[] = [
     title: "3. Products vs research",
     bullets: [
       "Commercial beachhead: wired EV charging and related services we commission (e.g. Pulse, Pulse+, Boda Hub, Corridor) as described on product pages.",
-      "Wireless EV charging: research only — see the Wireless EV charging R&D policy.",
+      "Wireless EV charging: research only; see the Wireless EV charging R&D policy.",
       "Precifarm Agent: software with early access; outputs are aids for professionals, not automatic sign-off for safety-critical work.",
     ],
   },
@@ -93,7 +93,7 @@ export const privacyPolicySections: readonly LegalSection[] = [
     bullets: [
       "Contact and survey forms: name, email, phone, company, message content, and fields you choose to submit.",
       "Precifarm Agent (web chat): messages you send and technical metadata needed to operate the service (e.g. timestamps, session identifiers). Do not send payment card numbers or national ID through chat.",
-      "Analytics (if enabled): aggregated page views and events proxied to our CMS — not sold to ad networks.",
+      "Analytics (if enabled): aggregated page views and events proxied to our CMS, not sold to ad networks.",
       "Server logs: IP address, user agent, and request paths for security and debugging, retained for a limited period.",
     ],
   },
@@ -148,7 +148,7 @@ export const cookiesPolicySections: readonly LegalSection[] = [
     bullets: [
       "Strictly necessary: session and security-related cookies or storage required for the site to function.",
       "Preferences: choices you make that we store locally (where implemented).",
-      "Analytics: if our CMS analytics ingest is enabled, events may be sent to our own API — see Privacy policy.",
+      "Analytics: if our CMS analytics ingest is enabled, events may be sent to our own API; see Privacy policy.",
     ],
   },
   {
@@ -173,7 +173,7 @@ export const termsFaqs: FaqItem[] = [
   },
   {
     question: "Where is wireless charging covered?",
-    answer: "Under R&D policies — not sold via the main product catalogue. See the Wireless EV charging R&D policy linked from /legal.",
+    answer: "Under R&D policies, not sold via the main product catalogue. See the Wireless EV charging R&D policy linked from /legal.",
   },
 ];
 

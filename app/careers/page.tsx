@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Breadcrumbs from "@/components/seo/Breadcrumbs";
+import { InteriorHero, InteriorSection, StepFlow } from "@/components/interior";
 import JsonLd from "@/components/seo/JsonLd";
-import CheckItem from "@/components/ui/CheckItem";
-import PageCTA from "@/components/ui/PageCTA";
-import PageHero from "@/components/ui/PageHero";
-import SectionHeader from "@/components/ui/SectionHeader";
 import {
   careerOpenings,
   careersApplyMailto,
@@ -14,28 +10,12 @@ import {
   careersIntro,
   careersPerks,
   careersValues,
-  type CareerDepartment,
 } from "@/lib/careers";
+import { contact } from "@/lib/contact";
 import { pageJsonLd, pageMetadata } from "@/lib/seo/pages/helpers";
 import { jobPostingSchema } from "@/lib/seo/schema";
 
 export const metadata: Metadata = pageMetadata("/careers");
-
-const departmentStyles: Record<CareerDepartment, string> = {
-  Infrastructure: "bg-muted/60 text-forest-700 ring-border",
-  Operations: "bg-muted/60 text-forest-700 ring-border",
-  Engineering: "bg-muted/60 text-forest-700 ring-border",
-};
-
-function DepartmentBadge({ department }: { department: CareerDepartment }) {
-  return (
-    <span
-      className={`inline-flex rounded-full px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide ring-1 ring-inset ${departmentStyles[department]}`}
-    >
-      {department}
-    </span>
-  );
-}
 
 export default function CareersPage() {
   const jsonLd = [
@@ -53,174 +33,130 @@ export default function CareersPage() {
   return (
     <>
       <JsonLd data={jsonLd} />
-      <PageHero
+      <InteriorHero
         eyebrow={careersIntro.eyebrow}
         title={careersIntro.title}
-        description={careersIntro.description}
+        lead={careersIntro.description}
+        breadcrumbs={[
+          { name: "Home", href: "/" },
+          { name: "Careers", href: "/careers" },
+        ]}
+        actions={[
+          { href: "#roles", label: "View open roles" },
+          { href: careersApplyMailto(), label: "Send your CV", variant: "secondary" },
+        ]}
+        facts={careersHighlights.map((h) => ({ value: h.stat, label: h.label }))}
+      />
+
+      <InteriorSection
+        id="roles"
+        eyebrow="Open roles"
+        title={`${careerOpenings.length} roles`}
+        lead={`${careersIntro.lead} No exact match? General applications are welcome.`}
       >
-        <div className="flex flex-wrap gap-3">
-          <a href="#roles" className="btn-primary">
-            View open roles
-          </a>
-          <a href={careersApplyMailto()} className="btn-secondary">
-            Send your CV
-          </a>
-        </div>
-      </PageHero>
-
-      <section className="careers-highlights border-y border-border bg-muted/30 section-pad">
-        <div className="page-container">
-          <p className="text-center text-xs font-semibold uppercase tracking-widest text-forest-500">
-            Why join Precifarm
-          </p>
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {careersHighlights.map((item) => (
-              <div key={item.stat} className="careers-highlight-card">
-                <p className="font-mono text-xl font-bold tracking-tight text-forest-900 sm:text-2xl">
-                  {item.stat}
-                </p>
-                <p className="mt-2 text-sm leading-snug text-forest-600">{item.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="roles" className="page-container pb-12 pt-6 sm:pb-14 sm:pt-8">
-        <Breadcrumbs
-          items={[
-            { name: "Home", href: "/" },
-            { name: "Careers", href: "/careers" },
-          ]}
-        />
-        <SectionHeader
-          className="mt-6"
-          eyebrow="Open roles"
-          title="Current opportunities"
-          description={`${careersIntro.lead} If you do not see a perfect match, general applications are welcome.`}
-        />
-        <div className="mt-8 grid gap-5 lg:grid-cols-2">
+        <ul className="divide-y divide-border border-y border-border">
           {careerOpenings.map((role) => (
-            <article key={role.id} className="careers-role-card card flex flex-col p-6">
-              <div className="flex flex-wrap items-center gap-2">
-                <DepartmentBadge department={role.department} />
-                <span className="text-xs font-medium text-forest-500">{role.type}</span>
+            <li key={role.id} id={role.id} className="scroll-mt-28 py-6 sm:py-8">
+              <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)_auto] lg:gap-10">
+                <div>
+                  <p className="text-[11px] font-semibold uppercase tracking-widest text-charge-600">{role.department}</p>
+                  <h3 className="mt-1.5 font-display text-xl font-semibold tracking-tight text-forest-950">{role.title}</h3>
+                  <p className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-sm text-forest-600">
+                    <span>{role.location}</span>
+                    <span aria-hidden className="text-forest-300">
+                      /
+                    </span>
+                    <span>{role.type}</span>
+                  </p>
+                </div>
+                <div className="min-w-0">
+                  <p className="text-[15px] leading-relaxed text-forest-700">{role.summary}</p>
+                  <details className="group mt-3">
+                    <summary className="inline-flex min-h-10 cursor-pointer list-none items-center gap-2 text-sm font-semibold text-forest-900 [&::-webkit-details-marker]:hidden">
+                      <span aria-hidden className="flex h-5 w-5 items-center justify-center rounded-full border border-forest-300 text-xs transition-transform group-open:rotate-45">
+                        +
+                      </span>
+                      What you bring
+                    </summary>
+                    <ul className="mt-2 space-y-2 pl-7 text-sm leading-relaxed text-forest-700">
+                      {role.points.map((p) => (
+                        <li key={p} className="relative">
+                          <span aria-hidden className="absolute -left-4 top-[0.6em] h-1.5 w-1.5 rounded-full bg-charge-600" />
+                          {p}
+                        </li>
+                      ))}
+                    </ul>
+                    {role.department === "Infrastructure" ? (
+                      <p className="mt-3 pl-7 text-sm text-forest-600">
+                        Field roles follow the{" "}
+                        <Link href="/training" className="font-medium text-charge-700 underline underline-offset-2">
+                          T1 to T3 training pathway
+                        </Link>
+                        .
+                      </p>
+                    ) : null}
+                  </details>
+                </div>
+                <div className="lg:pt-6">
+                  <a
+                    href={careersApplyMailto(role.title)}
+                    className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-charge-600 px-6 text-sm font-semibold text-white hover:bg-charge-500 sm:w-auto"
+                  >
+                    Apply<span className="sr-only"> for {role.title}</span>
+                  </a>
+                </div>
               </div>
-              <h2 className="mt-3 text-lg font-semibold text-forest-900">{role.title}</h2>
-              <p className="mt-1 text-xs font-medium text-forest-500">{role.location}</p>
-              <p className="mt-3 text-sm leading-relaxed text-forest-600/90">{role.summary}</p>
-              <ul className="mt-5 flex-1 space-y-2.5">
-                {role.points.map((point) => (
-                  <CheckItem key={point}>{point}</CheckItem>
-                ))}
-              </ul>
-              {role.department === "Infrastructure" && (
-                <p className="mt-4 text-sm text-forest-600">
-                  Field engineers can progress through our{" "}
-                  <Link href="/training" className="text-link font-medium">
-                    T1–T3 training programme
-                  </Link>
-                  .
-                </p>
-              )}
-              <a
-                href={careersApplyMailto(role.title)}
-                className="btn-primary mt-6 inline-flex w-full justify-center rounded-xl px-4 py-2.5 text-sm sm:w-auto"
-              >
-                Apply for this role
-              </a>
-            </article>
+            </li>
           ))}
-        </div>
-      </section>
+        </ul>
+      </InteriorSection>
 
-      <section className="border-y border-border bg-white section-pad">
-        <div className="page-container">
-          <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
-            <div>
-              <SectionHeader
-                eyebrow="How to apply"
-                title="A straightforward process"
-                description="We read every message. No automated rejections — just a practical conversation with the team."
-              />
-              <ol className="mt-8 space-y-6">
-                {careersApplySteps.map((step, index) => (
-                  <li key={step.title} className="careers-step flex gap-4">
-                    <span className="careers-step-num">{index + 1}</span>
-                    <div>
-                      <h3 className="text-sm font-semibold text-forest-900">{step.title}</h3>
-                      <p className="mt-1 text-sm leading-relaxed text-forest-600">{step.text}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-            </div>
-            <div>
-              <SectionHeader
-                eyebrow="What we offer"
-                title="Build on live infrastructure"
-                description="Small team, measurable outcomes on charging people use today."
-              />
-              <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-                {careersPerks.map((perk) => (
-                  <li key={perk.title} className="careers-perk-card">
-                    <h3 className="text-sm font-semibold text-forest-900">{perk.title}</h3>
-                    <p className="mt-1 text-sm leading-relaxed text-forest-600">{perk.text}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
+      <InteriorSection id="apply" tone="silver" eyebrow="How to apply" title="Three steps, and a reply to every message." lead={`Applications go to ${contact.email}.`}>
+        <StepFlow steps={careersApplySteps} />
+      </InteriorSection>
 
-      <section className="border-b border-border bg-muted/20 section-pad">
-        <div className="page-container max-w-2xl">
-          <SectionHeader
-            eyebrow="How we work"
-            title="What it is like to build with us"
-            description="Principles we hire for — not slogans on a wall."
-          />
-          <ul className="mt-6 space-y-3">
-            {careersValues.map((value) => (
-              <CheckItem key={value}>{value}</CheckItem>
+      <InteriorSection id="work" tone="graphite" eyebrow="Working here" title="What we offer, and how we work.">
+        <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
+          <dl className="divide-y divide-white/10 border-y border-white/10">
+            {careersPerks.map((p) => (
+              <div key={p.title} className="grid gap-1 py-4 sm:grid-cols-[11rem_minmax(0,1fr)] sm:gap-6">
+                <dt className="font-semibold text-white">{p.title}</dt>
+                <dd className="text-sm leading-relaxed text-white/70">{p.text}</dd>
+              </div>
             ))}
-          </ul>
+          </dl>
+          <ol className="grid gap-px overflow-hidden rounded-2xl bg-white/10 ring-1 ring-white/10 sm:grid-cols-2">
+            {careersValues.map((v, i) => (
+              <li key={v.title} className="bg-forest-950 p-5">
+                <p className="font-mono text-xs text-brand-300">{String(i + 1).padStart(2, "0")}</p>
+                <p className="mt-1.5 font-semibold text-white">{v.title}</p>
+                <p className="mt-1 text-sm leading-relaxed text-white/70">{v.text}</p>
+              </li>
+            ))}
+          </ol>
         </div>
-      </section>
+      </InteriorSection>
 
-      <section className="section-pad page-container">
-        <div className="mx-auto max-w-2xl card-elevated px-6 py-10 text-center sm:px-10">
-          <h2 className="text-lg font-semibold text-forest-900">General applications</h2>
-          <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-forest-600/90">
-            Operators, engineers, designers and commercial talent — if EV charging from home to highway in
-            Kenya motivates you, introduce yourself with a short note and CV.
-          </p>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-            <a
-              href={careersApplyMailto("General application")}
-              className="btn-primary"
-            >
+      <section aria-labelledby="general-title" className="bg-white">
+        <div className="interior-container grid gap-6 py-12 sm:py-16 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+          <div className="max-w-2xl">
+            <h2 id="general-title" className="font-display text-2xl font-semibold tracking-tight text-forest-950">
+              General applications
+            </h2>
+            <p className="mt-2 text-[15px] leading-relaxed text-forest-600">
+              Operators, engineers, designers and commercial people: if EV charging from home to highway in Kenya motivates you, introduce yourself with a short note and CV.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <a href={careersApplyMailto("General application")} className="inline-flex min-h-12 items-center rounded-full bg-charge-600 px-6 text-sm font-semibold text-white hover:bg-charge-500">
               Email careers
             </a>
-            <Link href="/about" className="btn-secondary">
+            <Link href="/about" className="inline-flex min-h-12 items-center rounded-full border border-forest-200 px-6 text-sm font-semibold text-forest-900 hover:border-forest-300">
               About Precifarm
-            </Link>
-            <Link href="/training" className="btn-secondary">
-              EV training
             </Link>
           </div>
         </div>
       </section>
-
-      <PageCTA
-        title="Questions about working at Precifarm?"
-        description="Reach the team through contact or email — we read every careers message."
-        primaryHref={careersApplyMailto("Careers enquiry")}
-        primaryLabel="Email us"
-        secondaryHref="/contact"
-        secondaryLabel="Contact page"
-      />
     </>
   );
 }

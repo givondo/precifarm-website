@@ -1,68 +1,78 @@
 import type { KenyaEvModel } from "@/lib/kenya-ev-compatibility";
 import { kenyaEvCompatibilityPage } from "@/lib/kenya-ev-compatibility";
-import ChargingTimeCell from "@/components/evs/ChargingTimeCell";
+import { fitLabels, fitTags } from "@/lib/pages/evs";
+import { rangeText } from "@/lib/publications";
 
 type KenyaEvComparisonTableProps = {
   models: KenyaEvModel[];
   caption?: string;
-  minWidth?: string;
-  showFootnote?: boolean;
 };
 
-export default function KenyaEvComparisonTable({
-  models,
-  caption = kenyaEvCompatibilityPage.caption,
-  minWidth = "1160px",
-  showFootnote = true,
-}: KenyaEvComparisonTableProps) {
-  const { columns, practicalRangeFootnote, variantDisclaimer, chargingTimeNote } = kenyaEvCompatibilityPage;
+function times(m: KenyaEvModel) {
+  return [
+    m.chargingTime.swap ? `Swap ${m.chargingTime.swap.replace("<", "under ")}` : null,
+    m.chargingTime.home ? `Home ${m.chargingTime.home}` : null,
+    m.chargingTime.dc ? `DC ${m.chargingTime.dc}` : null,
+  ].filter(Boolean) as string[];
+}
+
+/** Full comparison, all models in one scrollable table. Server-rendered so it reads without JavaScript. */
+export default function KenyaEvComparisonTable({ models, caption = kenyaEvCompatibilityPage.caption }: KenyaEvComparisonTableProps) {
+  const { columns } = kenyaEvCompatibilityPage;
 
   return (
-    <div className="training-table-shell">
-      <div className="training-table-wrap">
-        <div className="training-table-scroll" tabIndex={0} role="region" aria-label={`${caption} (scrolls sideways)`}>
-          <table className="training-table w-full text-left text-sm" style={{ minWidth }}>
-            <caption className="training-table-caption">
-              <span className="training-table-caption-label">{caption}</span>
-            </caption>
-            <thead>
-              <tr>
-                <th scope="col">{columns.model}</th>
-                <th scope="col">{columns.body}</th>
-                <th scope="col">{columns.battery}</th>
-                <th scope="col">{columns.practicalRange}</th>
-                <th scope="col">{columns.dcCharging}</th>
-                <th scope="col">{columns.chargingTime}</th>
-                <th scope="col">{columns.precifarmCharging}</th>
+    <div className="overflow-hidden rounded-2xl bg-white ring-1 ring-border">
+      <div className="overflow-x-auto" tabIndex={0} role="region" aria-label={`${caption} (scrolls sideways)`}>
+        <table className="w-full min-w-[56rem] border-collapse text-left text-sm">
+          <caption className="sr-only">{caption}</caption>
+          <thead className="bg-[#fbfbfc]">
+            <tr className="border-b border-border text-[11px] uppercase tracking-widest text-forest-500">
+              <th scope="col" className="sticky left-0 z-10 bg-[#fbfbfc] px-4 py-3 font-semibold">
+                {columns.model}
+              </th>
+              <th scope="col" className="px-4 py-3 font-semibold">
+                {columns.body}
+              </th>
+              <th scope="col" className="px-4 py-3 font-semibold">
+                {columns.battery}
+              </th>
+              <th scope="col" className="px-4 py-3 font-semibold">
+                {columns.practicalRange}
+              </th>
+              <th scope="col" className="px-4 py-3 font-semibold">
+                {columns.dcCharging}
+              </th>
+              <th scope="col" className="px-4 py-3 font-semibold">
+                Daily top-up
+              </th>
+              <th scope="col" className="px-4 py-3 font-semibold">
+                Precifarm fit
+              </th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-border">
+            {models.map((m) => (
+              <tr key={m.id}>
+                <th scope="row" className="sticky left-0 z-10 bg-white px-4 py-3 font-semibold text-forest-950">
+                  {m.model}
+                </th>
+                <td className="px-4 py-3 text-forest-600">{m.body}</td>
+                <td className="px-4 py-3 font-mono text-xs text-forest-800">{rangeText(m.battery)}</td>
+                <td className="px-4 py-3 font-mono text-xs text-forest-800">{rangeText(m.practicalRange)}</td>
+                <td className="px-4 py-3 font-mono text-xs text-forest-800">{rangeText(m.dcCharging)}</td>
+                <td className="px-4 py-3 font-mono text-xs text-forest-800">
+                  {times(m).map((t) => (
+                    <span key={t} className="block whitespace-nowrap">
+                      {t}
+                    </span>
+                  ))}
+                </td>
+                <td className="px-4 py-3 text-xs text-forest-700">{fitTags(m).map((t) => fitLabels[t]?.product ?? fitLabels[t]?.label ?? t).filter((v, i, a) => a.indexOf(v) === i).join(", ")}</td>
               </tr>
-            </thead>
-            <tbody>
-              {models.map((car) => (
-                <tr key={car.id}>
-                  <th scope="row" className="font-semibold text-forest-900">
-                    {car.model}
-                  </th>
-                  <td className="text-forest-600">{car.body}</td>
-                  <td className="font-mono text-forest-700">{car.battery}</td>
-                  <td className="font-mono text-forest-900">{car.practicalRange}</td>
-                  <td className="font-mono text-forest-900">{car.dcCharging}</td>
-                  <td className="align-top text-forest-700">
-                    <ChargingTimeCell time={car.chargingTime} />
-                  </td>
-                  <td className="font-medium text-charge-700">{car.precifarmCharging}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
       </div>
-      {showFootnote && (
-        <>
-          <p className="training-table-hint">{chargingTimeNote}</p>
-          <p className="training-table-hint">{practicalRangeFootnote}</p>
-          <p className="text-xs leading-relaxed text-forest-400">{variantDisclaimer}</p>
-        </>
-      )}
     </div>
   );
 }

@@ -226,7 +226,7 @@ export const kenyaEvMarketCallouts = {
   },
   ebike: {
     title: "Electric motorcycles: Kenya's fastest-growing EV segment",
-    text: "Roam Air and M-KOPA-financed bikes account for a large share of new EV registrations. Swap at Boda Hub in under 5 minutes, or charge overnight at home with Pulse charger.",
+    text: "Roam Air and M-KOPA-financed bikes account for a large share of new EV registrations. Boda Hub, in development, is designed for a swap in under 5 minutes; many bikes also charge overnight at home.",
   },
 } as const;
 
@@ -241,7 +241,7 @@ export const kenyaEvCompatibilityPage = {
   dataLayer:
     "Practical range and charging times here reflect Kenyan roads rather than WLTP or NEDC brochure figures. Over time, Precifarm session data will sharpen them into Kenya-specific range and charging insights.",
   marketContext:
-    "Kenya's EV market is expanding quickly: government data reported 39,324 cumulative registrations by 2025, with industry estimates above 35,000 in 2026. New imports, BYD dealer stock and e-motorcycle finance are shifting the mix, and this guide updates as the market does.",
+    "Kenya's EV market is expanding quickly: the Ministry of Roads and Transport put registered EVs at 24,754 at the end of 2025, up from 796 in 2022. New imports, BYD dealer stock and e-motorcycle finance are shifting the mix, and this guide updates as the market does.",
   variantDisclaimer:
     "Battery size, DC speed, charging time and practical range vary with build batch, import spec, software and the charger used. Charging times show a typical daily top-up rather than a full 0 to 100% charge.",
   chargingTimeNote: "Daily top-up · Home = Pulse charger · DC = public fast charge · Swap = Boda Hub",

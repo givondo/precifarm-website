@@ -27,7 +27,7 @@ export const sitePolicyDocuments = [
   },
   {
     title: "Privacy policy",
-    description: "What we collect through forms, Agent chat, and analytics — and your rights.",
+    description: "What we collect through forms, Agent chat and analytics, and your rights.",
     href: privacyPolicyPath,
     category: "Website",
   },

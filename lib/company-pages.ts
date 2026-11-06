@@ -32,7 +32,7 @@ export const faqPage = {
 
 export const contactPage = {
   eyebrow: "Contact · Kenya",
-  title: "Home survey, fleet depot or highway hub — tell us which you need",
+  title: "Tell us what you want to charge, and where.",
   description:
     "We respond within one business day. Homeowners get a Pulse survey; fleets and site hosts get engineering scoped to grid, solar and the duty cycle.",
   primaryCta: { href: "/charging/home", label: "Request a home survey" },

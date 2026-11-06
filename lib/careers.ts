@@ -14,60 +14,59 @@ export type CareerOpening = {
 
 export const careersIntro = {
   eyebrow: "Careers · Kenya",
-  title: "Install chargers people rely on — from Pulse at home to Corridor on route one",
+  title: "Build the charging Kenya will rely on, from Pulse at home to Corridor on the highway.",
   description:
-    "Join the team that commissions home wallboxes, keeps Boda Hub swap cabinets stocked, and restores Corridor sessions when a bay goes offline — starting on Nairobi–Kisumu.",
-  lead:
-    "We hire for field outcomes: uptime, honest Charging Hub labels and hardware that survives Kenyan heat, dust and weak feeders — not slide decks.",
+    "Precifarm installs the Pulse home charger today and is preparing its first ARC Corridor site on the Nairobi to Kisumu route. We are a small team hiring for field, operations and software work.",
+  lead: "We hire for field outcomes: uptime, honest Charging Hub labels and hardware that survives Kenyan heat, dust and weak feeders.",
 } as const;
 
 export const careersHighlights = [
-  { stat: "Route 1", label: "Nairobi–Kisumu — first corridor we are proving" },
-  { stat: "Small team", label: "Direct impact on hubs, home installations and ops" },
-  { stat: "Field + software", label: "Engineering from chargers to M-Pesa checkout" },
-  { stat: "Kenya-first", label: "Hubs and hires in the cities we serve" },
+  { stat: "Route one", label: "Nairobi to Kisumu, the first Corridor route, being prepared" },
+  { stat: "Small team", label: "Direct ownership of home installs, sites and software" },
+  { stat: "Field and software", label: "From the wallbox to M-Pesa checkout" },
+  { stat: "Kenya first", label: "Teams in the cities we serve" },
 ] as const;
 
 export const careerOpenings: CareerOpening[] = [
   {
     id: "field-engineer",
-    title: "Field engineer — charging hubs",
+    title: "Field engineer, charging",
     department: "Infrastructure",
     location: "Nairobi · Kisumu · route corridor",
     type: "Full-time",
     summary:
-      "Install, commission and maintain Pulse, Pulse+ and Corridor chargers. You keep uptime high so homes and highway stops stay online.",
+      "Survey, install and commission Pulse home chargers today, and Pulse+ and Corridor sites as they are built. You keep chargers online so homes and highway stops can rely on them.",
     points: [
       "Electrical or renewable energy background with field experience",
-      "Comfortable with CCS2 chargers, monitoring and fault recovery",
-      "Willing to travel along Nairobi–Kisumu during route launch",
-      "T2/T3 EV charging certification pathway for qualified candidates",
+      "Comfortable with chargers, monitoring and fault recovery",
+      "Willing to travel along Nairobi to Kisumu as the first Corridor site is built",
+      "T2 and T3 training pathway for qualified candidates",
     ],
   },
   {
     id: "hub-operations-lead",
-    title: "Hub operations lead",
+    title: "Site operations lead",
     department: "Operations",
-    location: "Nairobi–Kisumu corridor",
+    location: "Nairobi to Kisumu corridor",
     type: "Full-time",
     summary:
-      "Run day-to-day hub activity — Corridor sessions, partner coordination and honest status updates when plans change.",
+      "Set up and then run day-to-day site operations: Corridor sessions, partner coordination and honest status updates when plans change.",
     points: [
-      "Operations or transport background; calm when sessions queue and plans change.",
-      "Clear communication with drivers, partners and site hosts.",
+      "Operations or transport background; calm when sessions queue and plans change",
+      "Clear communication with drivers, partners and site hosts",
       "Data-minded: sessions, dwell and incident logs matter",
     ],
   },
   {
     id: "software-engineer",
-    title: "Software engineer — charging & payments",
+    title: "Software engineer, charging and payments",
     department: "Engineering",
     location: "Nairobi (hybrid)",
     type: "Full-time · Contract",
     summary:
-      "Extend the Charging Hub, website and Precifarm Agent — M-Pesa sessions, Lipa Pole Pole, live hub status and the SEO knowledge layer behind precifarm.com.",
+      "Extend the Charging Hub, the website and Precifarm Agent: M-Pesa sessions, Lipa Pole Pole, hub status and the knowledge layer behind precifarm.com.",
     points: [
-      "TypeScript, React/Next.js or React Native experience",
+      "TypeScript, React or Next.js, or React Native experience",
       "Care about reliable M-Pesa flows and clear charging UX",
       "Bonus: PostgreSQL, Cloud Run or mobile release experience",
     ],
@@ -75,44 +74,23 @@ export const careerOpenings: CareerOpening[] = [
 ];
 
 export const careersValues = [
-  "We prove one route properly before financing the next.",
-  "Uptime and honest communication beat glossy decks.",
-  "Partners operate vehicles; we survey, install and keep chargers online.",
-  "Kenya-first engineering — hubs in the cities we serve.",
+  { title: "Prove one route first", text: "We prove one route properly before financing the next." },
+  { title: "Honest over glossy", text: "Uptime and honest communication beat glossy decks." },
+  { title: "Partners run vehicles", text: "We survey, install and keep chargers online; operators keep their fleets." },
+  { title: "Kenya-first engineering", text: "Designed for Kenyan grids, heat, dust and M-Pesa." },
 ] as const;
 
 export const careersPerks = [
-  {
-    title: "Real infrastructure",
-    text: "Work on charging sites, solar and storage in the field, not demos parked in a warehouse.",
-  },
-  {
-    title: "Route-one focus",
-    text: "Ship improvements drivers and operators feel on Nairobi–Kisumu this quarter.",
-  },
-  {
-    title: "Training pathway",
-    text: "Field roles align with Precifarm T1–T3 EV charging certification.",
-  },
-  {
-    title: "Hybrid where it fits",
-    text: "Software and commercial roles split time between Nairobi and the corridor.",
-  },
+  { title: "Real hardware", text: "Field roles work on chargers, solar and storage on site, not on slides." },
+  { title: "Early, visible work", text: "Join before the first Corridor site opens and shape how it runs." },
+  { title: "Training pathway", text: "Field roles align with Precifarm T1 to T3 EV charging training." },
+  { title: "Hybrid where it fits", text: "Software and commercial roles split time between Nairobi and the field." },
 ] as const;
 
 export const careersApplySteps = [
-  {
-    title: "Pick a role or send a general CV",
-    text: "Apply to an open role below or email a short note if your fit is broader.",
-  },
-  {
-    title: "Tell us what you have shipped",
-    text: "Include projects, field work or products — links and metrics help.",
-  },
-  {
-    title: "Conversation with the team",
-    text: "We respond to every careers message. Expect a practical discussion, not a trivia test.",
-  },
+  { title: "Pick a role or write to us", text: "Apply to an open role below, or email a short note if your fit is broader." },
+  { title: "Show what you have built", text: "Projects, field work or products. Links and numbers help." },
+  { title: "Talk with the team", text: "We reply to every careers message. Expect a practical conversation, not a trivia test." },
 ] as const;
 
 export function careersApplyMailto(roleTitle?: string): string {
