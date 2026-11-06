@@ -41,8 +41,8 @@ export default function FaqExplorer({ items, topics }: { items: readonly FaqEntr
   const activeTopic = topic === "all" ? null : label(topic);
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-14">
-      <div className="lg:sticky lg:top-[calc(var(--site-header-height)+1.5rem)] lg:self-start">
+    <div className="grid grid-cols-1 gap-8 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-14">
+      <div className="min-w-0 lg:sticky lg:top-[calc(var(--site-header-height)+1.5rem)] lg:self-start">
         <label htmlFor={searchId} className="text-[11px] font-semibold uppercase tracking-widest text-forest-500">
           Search the FAQ
         </label>
@@ -63,7 +63,7 @@ export default function FaqExplorer({ items, topics }: { items: readonly FaqEntr
           />
         </div>
 
-        <fieldset className="mt-6">
+        <fieldset className="mt-6 min-w-0">
           <legend className="text-[11px] font-semibold uppercase tracking-widest text-forest-500">Topics</legend>
           <div className="-mx-4 mt-2 flex gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] lg:mx-0 lg:flex-col lg:gap-0.5 lg:overflow-visible lg:px-0 [&::-webkit-scrollbar]:hidden">
             {[{ id: "all", label: "All questions" }, ...topics].map((t) => {

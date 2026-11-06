@@ -30,7 +30,7 @@ function LadderGraphic() {
       <ol className="mt-6 flex items-end gap-2 sm:gap-3" aria-label="Training tiers in order">
         {trainingTiers.map((t, i) => (
           <li key={t.id} className="flex-1">
-            <a href={`#${t.id}`} className="group block">
+            <a href={`#${t.id}`} className="group block text-white hover:text-white">
               <span className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">{t.code}</span>
               <span className="mt-1 block text-xs leading-snug text-white/65">{t.title}</span>
               <span
@@ -209,7 +209,7 @@ export default function TrainingView() {
                       return (
                         <td key={t.id} className="mt-3 inline-block pr-2 md:mt-0 md:table-cell md:px-3 md:py-5 md:text-center md:align-top">
                           <span className="sr-only md:hidden">{t.code}: </span>
-                          <span className={`inline-flex min-h-7 items-center rounded-full px-2.5 text-[11px] font-semibold ${level === "Required" ? "bg-white text-forest-950" : level === "Recommended" ? "ring-1 ring-inset ring-white/40 text-white" : "text-white/45"}`}>
+                          <span className={`inline-flex min-h-7 items-center rounded-full px-2.5 text-[11px] font-semibold ${level === "Required" ? "bg-white text-forest-950" : level === "Recommended" ? "ring-1 ring-inset ring-white/40 text-white" : "text-white/70"}`}>
                             <span aria-hidden className="mr-1 md:hidden">{t.code}</span>
                             {level}
                           </span>

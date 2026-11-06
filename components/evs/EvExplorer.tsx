@@ -97,7 +97,7 @@ export default function EvExplorer({ models }: { models: readonly KenyaEvModel[]
   const current = models.find((m) => m.id === selected) ?? list[0];
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-10">
+    <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-10">
       <div className="min-w-0">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
           <div className="flex-1">
