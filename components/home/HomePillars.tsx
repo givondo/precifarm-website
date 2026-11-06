@@ -4,53 +4,63 @@ import { productImages } from "@/lib/product-images";
 
 type Tile = {
   href: string;
-  /** Category and status, worded by David (HD-048). */
-  eyebrow: string;
   name: string;
   line: string;
   cta: string;
   image: { src: string; alt: string };
-  /** Scenes fill the frame; cut-out products sit on the studio grey. */
-  fit?: "cover";
+  /**
+   * studio: trimmed cut-out render on a soft studio backdrop (wallboxes, shown as objects).
+   * scene: full-bleed site render (stations, shown as places).
+   */
+  treatment: "studio" | "scene";
 };
 
+/** No category or maturity labels on public tiles (site rule, 3 Nov 2026). */
 const charging: Tile[] = [
   {
     href: "/charging/home",
-    eyebrow: "Home charging · Available",
     name: "Pulse 7 kW",
-    line: "Reliable home EV charging, professionally installed. From KES 79,000.",
+    line: "Safe, reliable home charging, professionally installed. From KES 79,000.",
     cta: "Explore Pulse",
-    image: productImages.pulse,
+    image: { src: "/images/renders/cards/pulse-7kw-studio.png", alt: productImages.pulse.alt },
+    treatment: "studio",
   },
   {
     href: "/charging/pulse-plus",
-    eyebrow: "Workplace charging · In development",
     name: "Pulse+ 22 kW",
-    line: "Three-phase AC charging for workplaces, businesses and fleet parking.",
+    line: "Three-phase charging for offices, businesses and fleet depots. Top up staff and fleet vehicles while they’re parked.",
     cta: "Explore Pulse+",
-    image: productImages.pulsePlusDepot,
-    fit: "cover",
+    image: { src: "/images/renders/cards/pulse-plus-22kw-studio.png", alt: productImages.pulsePlus.alt },
+    treatment: "studio",
   },
   {
     href: "/charging/corridor",
-    eyebrow: "DC fast charging · Pilot development",
     name: "ARC Corridor",
-    line: "Scalable DC fast-charging infrastructure for highways, towns and fleets.",
+    line: "DC fast charging for highways, towns and fleet hubs. Modular by design, so each site grows with demand.",
     cta: "Explore ARC Corridor",
     image: productImages.corridor,
-    fit: "cover",
+    treatment: "scene",
   },
   {
     href: "/charging/boda-hub",
-    eyebrow: "Battery swapping · In development",
     name: "Boda Hub",
-    line: "Automated battery-swap lockers designed to keep electric motorcycles moving.",
+    line: "Automated swap lockers. Riders trade a flat battery for a full one and get straight back to earning.",
     cta: "Explore Boda Hub",
-    image: productImages.boda,
-    fit: "cover",
+    image: productImages.bodaStudio,
+    treatment: "scene",
   },
 ];
+
+const frame = {
+  studio:
+    "bg-[radial-gradient(120%_95%_at_50%_28%,#ffffff_0%,#f4f5f7_55%,#e8eaed_100%)]",
+  scene: "bg-forest-900",
+} as const;
+
+const media = {
+  studio: "object-contain px-10 pt-8 pb-6 sm:px-14 sm:pt-10 sm:pb-8",
+  scene: "object-cover object-center",
+} as const;
 
 export default function HomePillars() {
   return (
@@ -62,30 +72,36 @@ export default function HomePillars() {
             From the driveway to the highway.
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-forest-600 sm:text-base">
-            Chargers, swap stations and fast-charging sites, engineered for Kenyan grids and paid on M-Pesa.
+            Home chargers, workplace charging, highway fast charging and boda battery swaps. Engineered for Kenyan
+            grids and paid on M-Pesa.
           </p>
         </div>
 
-        <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:gap-5">
+        <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:gap-6">
           {charging.map((t) => (
             <li key={t.href}>
               <Link
                 href={t.href}
-                className="group flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-border bg-white transition-[box-shadow,border-color] hover:border-forest-200 hover:shadow-lg"
+                className="group flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-border bg-white transition-[box-shadow,border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-forest-200 hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-charge-600 motion-reduce:transform-none"
               >
-                <div className="relative aspect-[16/10] w-full bg-[#f5f5f7]">
+                <div className={`relative aspect-[4/3] w-full overflow-hidden ${frame[t.treatment]}`}>
                   <SiteImage
                     src={t.image.src}
                     alt={t.image.alt}
                     fill
-                    sizes="(max-width: 640px) 100vw, 50vw"
-                    className={`transition-transform duration-500 group-hover:scale-[1.03] ${t.fit === "cover" ? "object-cover object-center" : "object-contain p-6 sm:p-8"}`}
+                    sizes="(max-width: 640px) calc(100vw - 2rem), (max-width: 1024px) 50vw, 500px"
+                    className={`${media[t.treatment]} transition-transform duration-700 ease-out group-hover:scale-[1.035] motion-reduce:transition-none motion-reduce:group-hover:scale-100`}
                   />
+                  {t.treatment === "scene" && (
+                    <div
+                      aria-hidden
+                      className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black/20 to-transparent"
+                    />
+                  )}
                 </div>
-                <div className="flex flex-1 flex-col p-6 sm:p-7">
-                  <p className="text-[11px] font-semibold uppercase tracking-widest text-charge-600">{t.eyebrow}</p>
-                  <h3 className="mt-2 text-xl font-semibold tracking-tight text-forest-900">{t.name}</h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-forest-600">{t.line}</p>
+                <div className="flex flex-1 flex-col px-6 pt-6 pb-7 sm:px-8 sm:pt-7 sm:pb-8">
+                  <h3 className="text-xl font-semibold tracking-tight text-forest-900 sm:text-2xl">{t.name}</h3>
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-forest-600 sm:text-[0.95rem]">{t.line}</p>
                   <span className="mt-5 inline-flex items-center text-sm font-semibold text-charge-600">
                     {t.cta}
                     <span aria-hidden className="ml-1 transition-transform group-hover:translate-x-0.5">
