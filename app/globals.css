@@ -2223,3 +2223,33 @@ button,
   outline: 2px solid var(--color-forest-700);
   outline-offset: 2px;
 }
+
+/* Homepage Software & research motion (components/home/AgentWorkspaceDemo, WirelessSimulation) */
+@keyframes sld-flow {
+  from { background-position: 0 0; }
+  to { background-position: 16px 0; }
+}
+.sld-wire {
+  background-image: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.35) 0 6px, transparent 6px 8px);
+}
+.sld-wire[data-live="true"] {
+  background-image: repeating-linear-gradient(90deg, #7ec09d 0 5px, rgba(126, 192, 157, 0.15) 5px 8px);
+  background-size: 16px 100%;
+  animation: sld-flow 0.6s linear infinite;
+}
+@keyframes wpt-ripple {
+  0% { transform: scale(0.35); opacity: 0.9; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
+.wpt-ripple {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: wpt-ripple var(--wpt-speed, 1.8s) ease-out infinite;
+}
+@keyframes agent-step-dots {
+  0%, 80%, 100% { opacity: 0.25; }
+  40% { opacity: 1; }
+}
+.agent-dot {
+  animation: agent-step-dots 1s ease-in-out infinite;
+}
