@@ -1,23 +1,144 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import ProductPhoto from "@/components/ProductPhoto";
-import CheckItem from "@/components/ui/CheckItem";
+import { InPageNav, InteriorHero, InteriorSection, StageLabel } from "@/components/interior";
+import JourneyIcon from "@/components/partners/JourneyIcon";
 import JsonLd from "@/components/seo/JsonLd";
-import PageCTA from "@/components/ui/PageCTA";
-import PageHero from "@/components/ui/PageHero";
-import SectionHeader from "@/components/ui/SectionHeader";
-import {
-  partnerCommitments,
-  partnerHighlights,
-  partnerProcess,
-  partnerProductFit,
-  partnersPage,
-  partnerTypes,
-} from "@/lib/partners";
-import { chargingHubPage } from "@/lib/charging-hub";
+import { partnerJourneys, partnerPrinciples, partnersPage, type PartnerJourney } from "@/lib/partners";
 import { pageJsonLd, pageMetadata } from "@/lib/seo/pages/helpers";
 
 export const metadata: Metadata = pageMetadata("/partners");
+
+const contactHref = (interest: string) => `/contact?interest=${interest}`;
+
+function Chooser() {
+  return (
+    <ol className="grid grid-cols-1 gap-2 sm:grid-cols-2" aria-label="Partner journeys">
+      {partnerJourneys.map((j, i) => (
+        <li key={j.id} className={i === partnerJourneys.length - 1 ? "sm:col-span-2" : undefined}>
+          <a
+            href={`#${j.id}`}
+            className="group flex min-h-16 items-center gap-3.5 rounded-2xl bg-white px-4 py-3 ring-1 ring-border transition-shadow hover:shadow-[0_12px_30px_-18px_rgba(17,24,39,0.35)] hover:ring-forest-300"
+          >
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-forest-950 text-white">
+              <JourneyIcon kind={j.icon} className="h-5 w-5" />
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="block text-[15px] font-semibold text-forest-900">{j.who}</span>
+              <span className="block truncate text-[12.5px] text-forest-500">{j.title}</span>
+            </span>
+            <span aria-hidden className="text-forest-400 transition-transform group-hover:translate-x-0.5">
+              ›
+            </span>
+          </a>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+function Journey({ j, index, tone }: { j: PartnerJourney; index: number; tone: "white" | "silver" }) {
+  return (
+    <InteriorSection id={j.id} tone={tone}>
+      <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-14">
+        <div className="lg:sticky lg:top-[calc(var(--site-header-height,4rem)+4.5rem)] lg:self-start">
+          <div className="flex items-center gap-3">
+            <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-forest-950 text-white">
+              <JourneyIcon kind={j.icon} />
+            </span>
+            <p className="font-mono text-xs text-forest-500">
+              {String(index + 1).padStart(2, "0")} / {String(partnerJourneys.length).padStart(2, "0")} · {j.who}
+            </p>
+          </div>
+          <h2 id={`${j.id}-title`} className="heading-display mt-5 text-2xl leading-tight text-forest-900 sm:text-3xl">
+            {j.title}
+          </h2>
+          <p className="mt-3 text-[15px] leading-relaxed text-forest-600">{j.forWhom}</p>
+          <ul className="mt-5 flex flex-wrap gap-2" aria-label="Products in this journey">
+            {j.products.map((p) => (
+              <li key={p.name}>
+                <Link href={p.href} className="inline-flex min-h-10 items-center gap-2 rounded-full bg-white py-1 pl-3.5 pr-1.5 text-sm font-medium text-forest-900 ring-1 ring-border hover:ring-forest-300">
+                  {p.name}
+                  <StageLabel kind={p.stage} label={p.stageLabel} />
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3">
+            <Link
+              href={contactHref(j.cta.interest)}
+              className="inline-flex min-h-12 items-center justify-center rounded-full bg-charge-600 px-6 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-charge-500"
+            >
+              {j.cta.label}
+            </Link>
+            {j.secondary ? (
+              <Link href={j.secondary.href} className="inline-flex min-h-11 items-center text-sm font-semibold text-charge-600 hover:text-charge-700">
+                {j.secondary.label} <span aria-hidden className="ml-1">›</span>
+              </Link>
+            ) : null}
+          </div>
+        </div>
+
+        <div className="min-w-0 space-y-6">
+          <div className="grid overflow-hidden rounded-2xl bg-white ring-1 ring-border sm:grid-cols-2">
+            <div className="p-5 sm:p-6">
+              <h3 className="text-[11px] font-semibold uppercase tracking-widest text-charge-600">Precifarm does</h3>
+              <ul className="mt-3 space-y-2.5">
+                {j.precifarm.map((t) => (
+                  <li key={t} className="flex gap-2.5 text-sm leading-relaxed text-forest-700">
+                    <svg aria-hidden viewBox="0 0 16 16" className="mt-1 h-3.5 w-3.5 shrink-0 text-charge-600" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="m3.5 8.5 3 3 6-7" />
+                    </svg>
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="border-t border-border bg-[#fafbfb] p-5 sm:border-l sm:border-t-0 sm:p-6">
+              <h3 className="text-[11px] font-semibold uppercase tracking-widest text-forest-500">You provide</h3>
+              <ul className="mt-3 space-y-2.5">
+                {j.partner.map((t) => (
+                  <li key={t} className="flex gap-2.5 text-sm leading-relaxed text-forest-700">
+                    <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-forest-300" />
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <ol className="relative grid gap-px overflow-hidden rounded-2xl bg-border ring-1 ring-border sm:grid-cols-2">
+            {j.steps.map((s, i) => (
+              <li key={s.title} className="flex gap-3.5 bg-white p-4 sm:p-5">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-forest-950 font-mono text-[11px] font-semibold text-white">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3 className="text-[15px] font-semibold text-forest-900">{s.title}</h3>
+                  <p className="mt-1 text-[13.5px] leading-relaxed text-forest-600">{s.text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+
+          {j.sub ? (
+            <aside id={j.sub.id} className="scroll-mt-28 rounded-2xl bg-forest-950 p-5 text-white sm:p-6" aria-labelledby={`${j.sub.id}-title`}>
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <h3 id={`${j.sub.id}-title`} className="text-base font-semibold">
+                  {j.sub.title}
+                </h3>
+                <StageLabel kind="partner-site" label="Partner-run sites" tone="dark" />
+              </div>
+              <p className="mt-2 text-sm leading-relaxed text-white/72">{j.sub.text}</p>
+              <Link href={contactHref(j.sub.cta.interest)} className="mt-4 inline-flex min-h-11 items-center rounded-full bg-white px-5 text-sm font-semibold text-forest-950 hover:bg-brand-50">
+                {j.sub.cta.label}
+              </Link>
+            </aside>
+          ) : null}
+        </div>
+      </div>
+    </InteriorSection>
+  );
+}
 
 export default function PartnersPage() {
   const hero = partnersPage.hero;
@@ -25,174 +146,39 @@ export default function PartnersPage() {
   return (
     <>
       <JsonLd data={pageJsonLd("/partners")} />
-      <PageHero
+      <InteriorHero
         eyebrow={hero.eyebrow}
         title={hero.title}
-        description={hero.description}
-      >
-        <div className="flex flex-wrap gap-3">
-          <Link
-            href={hero.primaryHref}
-            className="btn-primary"
-          >
-            {hero.primaryLabel}
-          </Link>
-          <Link
-            href={hero.secondaryHref}
-            className="inline-flex rounded-full border border-border px-6 py-3 text-sm font-semibold text-forest-900 transition-colors hover:bg-muted"
-          >
-            {hero.secondaryLabel}
-          </Link>
-        </div>
-      </PageHero>
-
-      <section className="border-y border-forest-900 bg-forest-900 section-pad">
-        <div className="page-container">
-          <p className="text-center text-xs font-semibold uppercase tracking-widest text-white/60">
-            Why partners choose Precifarm
-          </p>
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {partnerHighlights.map((item) => (
-              <div key={item.stat} className="text-center lg:text-left">
-                <p className="font-mono text-2xl font-bold tracking-tight text-white sm:text-3xl">
-                  {item.stat}
-                </p>
-                <p className="mt-2 text-sm leading-snug text-white/70">{item.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-pad page-container">
-        <SectionHeader
-          eyebrow="Partner models"
-          title="Five ways to work with Precifarm"
-          description="From a single hub site to a national install network — pick the model that matches your assets, fleet or capital."
-        />
-        <div className="mt-10 grid gap-5 lg:grid-cols-2">
-          {partnerTypes.map((p) => (
-            <div key={p.id} id={p.id} className="card flex scroll-mt-24 flex-col p-6">
-              <div className="flex flex-wrap items-start justify-between gap-3">
-                <h2 className="text-lg font-semibold text-forest-900">{p.title}</h2>
-                <span className="rounded-full bg-charge-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-charge-700">
-                  {p.products}
-                </span>
-              </div>
-              <p className="mt-2 text-sm leading-relaxed text-forest-600/85">{p.summary}</p>
-              <ul className="mt-5 flex-1 space-y-2.5">
-                {p.points.map((pt) => (
-                  <CheckItem key={pt}>{pt}</CheckItem>
-                ))}
-              </ul>
-              <p className="mt-5 rounded-xl bg-muted p-4 text-sm leading-relaxed text-forest-600/80">
-                {p.keeps}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="border-y border-border bg-white section-pad">
-        <div className="page-container">
-          <SectionHeader
-            eyebrow="How it works"
-            title="From first conversation to live charging"
-            description="Every partnership follows the same engineering and commercial discipline — assess, agree terms, build and operate."
-          />
-          <ol className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {partnerProcess.map((step) => (
-              <li key={step.step} className="card p-5">
-                <span className="font-mono text-xs font-semibold text-forest-600">{step.step}</span>
-                <h3 className="mt-2 font-semibold text-forest-900">{step.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-forest-600/80">{step.text}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      <section className="section-pad page-container">
-        <SectionHeader
-          eyebrow="Product fit"
-          title="Which charger fits your partnership?"
-          description="Pulse to Corridor: M-Pesa and remote monitoring on every unit we commission."
-        />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-          {partnerProductFit.map((row) => (
-            <div key={row.product} className="overflow-hidden rounded-2xl border border-border bg-muted/20 p-3">
-              <ProductPhoto
-                src={row.image}
-                alt={row.imageAlt}
-                sizes="(max-width: 640px) 50vw, 15vw"
-                className="mx-auto aspect-[4/3] w-full object-contain"
-              />
-              <p className="mt-3 text-center text-sm font-semibold text-forest-900">{row.product}</p>
-              <p className="mt-1 text-center text-xs text-forest-500">{row.power}</p>
-              <p className="mt-2 text-center text-xs leading-relaxed text-forest-600">{row.bestFor}</p>
-            </div>
-          ))}
-        </div>
-        <p className="mt-6 text-sm text-forest-600/80">
-          Product detail on{" "}
-          <Link href="/charging" className="text-link font-semibold">
-            charging
-          </Link>{" "}
-          and live sites on the{" "}
-          <Link href="/hub" className="text-link font-semibold">
-            Charging Hub
-          </Link>
-          .
-        </p>
-      </section>
-
-      <section className="border-y border-border bg-muted/20 section-pad">
-        <div className="page-container">
-          <SectionHeader
-            eyebrow={chargingHubPage.siteSelection.eyebrow}
-            title={chargingHubPage.siteSelection.title}
-            description={chargingHubPage.siteSelection.description}
-          />
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {chargingHubPage.siteSelection.criteria.map((c, i) => (
-              <div key={c.title} className="card p-5">
-                <span className="font-mono text-xs font-semibold text-forest-600">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className="mt-2 font-semibold text-forest-900">{c.title}</h3>
-                <p className="mt-1 text-sm leading-relaxed text-forest-600/80">{c.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-border bg-white section-pad">
-        <div className="page-container">
-          <SectionHeader
-            eyebrow="Our commitments"
-            title="What Precifarm commits to every partner"
-            description="Partners need more than hardware. They need dependable energy, clear economics and infrastructure that earns its place site by site."
-          />
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {partnerCommitments.map((p) => (
-              <div key={p.title} className="card p-5">
-                <h3 className="font-semibold text-forest-900">{p.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-forest-600/80">{p.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <PageCTA
-        title="Ready to partner on EV charging?"
-        description="Tell us whether you host a highway site, operate a fleet, sell Pulse charger installations or support project finance — we will follow up within one business day."
-        primaryHref="/contact"
-        primaryLabel="Contact the team"
-        secondaryHref="/training"
-        secondaryLabel="EV charging training"
+        lead={hero.lead}
+        breadcrumbs={[
+          { name: "Home", href: "/" },
+          { name: "Partners", href: "/partners" },
+        ]}
+        media={<Chooser />}
       />
+      <InPageNav links={partnerJourneys.map((j) => ({ href: `#${j.id}`, label: j.who }))} label="Partner journeys" />
+
+      {partnerJourneys.map((j, i) => (
+        <Journey key={j.id} j={j} index={i} tone={i % 2 ? "silver" : "white"} />
+      ))}
+
+      <InteriorSection tone="graphite" eyebrow="Every partnership" title="What you can rely on.">
+        <ul className="grid gap-px overflow-hidden rounded-2xl bg-white/10 ring-1 ring-white/10 sm:grid-cols-2 lg:grid-cols-4">
+          {partnerPrinciples.map((p) => (
+            <li key={p.title} className="bg-forest-950 p-5 sm:p-6">
+              <h3 className="text-base font-semibold text-white">{p.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-white/70">{p.text}</p>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-6 text-sm text-white/60">
+          Not sure which journey fits?{" "}
+          <Link href="/contact?interest=general" className="font-semibold text-white underline underline-offset-2">
+            Send a general enquiry
+          </Link>{" "}
+          and we will route it.
+        </p>
+      </InteriorSection>
     </>
   );
 }

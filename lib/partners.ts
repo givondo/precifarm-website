@@ -1,188 +1,199 @@
-/** Partners page content — EV charging partnerships */
+/**
+ * /partners: customer journeys. Each journey says what Precifarm does, what the partner provides, the steps
+ * and the right enquiry (keys from lib/contact-interests.ts). Product status follows the programme labels:
+ * Pulse available; Pulse+ in development; ARC Corridor pilot development; Boda Hub partner-run sites today,
+ * the automated cabinet in development. No partners, sites or customers are named or implied.
+ *
+ * Section ids keep inbound links working: hub-hosts, fleet-logistics, boda-operators, dealers-installers, finance-oem.
+ */
 
-import { chargingHub } from "@/lib/charging-hub";
-import { productImages } from "@/lib/product-images";
+import type { ContactInterestKey } from "@/lib/contact-interests";
+import type { StageKind } from "@/components/interior/StageLabel";
 
 export const partnersPage = {
   hero: {
     eyebrow: "Partners",
-    title: "Electrify a fleet, host a hub, or sell home charging",
-    description:
-      "Precifarm designs, installs and operates chargers from home wallboxes to highway DC. You bring the site, fleet or sales channel — we handle survey, install, ops and M-Pesa settlement.",
-    primaryHref: "/contact",
-    primaryLabel: "Talk to the team",
-    secondaryHref: "/charging",
-    secondaryLabel: "Explore charging",
+    title: "Five ways to build electric transport with Precifarm.",
+    lead: "Fleets, site hosts, property owners, installers and infrastructure partners each start somewhere different. Pick your journey to see what we do, what you bring and the first step.",
   },
 } as const;
 
-export const partnerHighlights = [
-  { stat: "Pulse to Corridor", label: "from home charging to highway charging" },
-  { stat: "Home · Fleet · Highway", label: "one partner for every charging scenario" },
-  { stat: "24/7", label: "remote monitoring on commissioned sites" },
-  { stat: "M-Pesa", label: "session pay, Lipa Pole Pole and fleet billing" },
-] as const;
+export type ProductRef = { name: string; stage: StageKind; stageLabel?: string; href: string };
 
-export type PartnerType = {
+export type PartnerJourney = {
   id: string;
+  /** short label for the chooser */
+  who: string;
   title: string;
-  summary: string;
-  products: string;
-  points: string[];
-  keeps: string;
+  forWhom: string;
+  icon: "fleet" | "site" | "property" | "installer" | "infrastructure";
+  precifarm: readonly string[];
+  partner: readonly string[];
+  steps: readonly { title: string; text: string }[];
+  products: readonly ProductRef[];
+  cta: { interest: ContactInterestKey; label: string };
+  secondary?: { href: string; label: string };
+  /** optional sub-journey with its own anchor */
+  sub?: { id: string; title: string; text: string; cta: { interest: ContactInterestKey; label: string } };
 };
 
-export const partnerTypes: PartnerType[] = [
-  {
-    id: "hub-hosts",
-    title: "Hub site hosts",
-    summary:
-      "Turn a strong corridor location — fuel station, yard, mall or roadside stop — into recurring EV traffic and shared revenue.",
-    products: "Pulse+ · Corridor",
-    points: [
-      "Precifarm designs, builds, owns and operates the charging equipment",
-      "Revenue share on kWh sold and on-site retail dwell",
-      "Solar canopy, storage and grid connection handled by our engineering team",
-      "Co-investment options where the site meets our five-test criteria",
-    ],
-    keeps:
-      "You retain land ownership; we require durable site rights to operate and maintain the hub.",
-  },
+const pulse: ProductRef = { name: "Pulse charger", stage: "available", href: "/charging/home" };
+const pulsePlus: ProductRef = { name: "Pulse+ charger", stage: "development", href: "/charging/pulse-plus" };
+const corridor: ProductRef = { name: "ARC Corridor", stage: "pilot", href: "/charging/corridor" };
+const boda: ProductRef = { name: "Boda Hub", stage: "development", href: "/charging/boda-hub" };
+
+export const partnerJourneys: readonly PartnerJourney[] = [
   {
     id: "fleet-logistics",
-    title: "Fleet & logistics",
-    summary:
-      "Contract dependable depot and corridor charging for vans, buses and delivery fleets, without per-session payment friction.",
-    products: "Pulse+ · Corridor",
-    points: [
-      "Pulse+ overnight AC and ARC Corridor sized to your duty cycle",
-      "Fleet invoicing and session reporting on M-Pesa",
-      "More stable energy cost compared with volatile diesel prices",
-      "Site engineering where yard charging and highway top-ups connect",
+    who: "Fleet operators",
+    title: "Charge a fleet around its duty cycle.",
+    forWhom: "Company cars, vans, taxis, ride-hail and delivery fleets that park at a yard or depot.",
+    icon: "fleet",
+    precifarm: [
+      "Depot load study: vehicles, daily kWh, dwell windows and the site supply",
+      "Charger plan with load sharing so the yard stays inside its connection",
+      "Survey, installation and commissioning by one team",
+      "Session records and M-Pesa billing for the fleet",
     ],
-    keeps:
-      "You retain dispatch and day-to-day operations; Precifarm runs charging, billing and uptime on commissioned sites.",
+    partner: [
+      "Vehicle list, daily distances and when each vehicle is parked",
+      "Access to the yard, the meter and the main board",
+      "Your supply details or a Kenya Power bill",
+      "A named contact for dispatch and site access",
+    ],
+    steps: [
+      { title: "Share the duty cycle", text: "Vehicles, routes, parking hours and the yard address." },
+      { title: "Depot load study", text: "We size chargers and load sharing against your supply." },
+      { title: "Design and quote", text: "A written design and quote, with Kenya Power steps if the supply needs work." },
+      { title: "Install and commission", text: "Install, test and hand over with session records." },
+    ],
+    products: [pulse, pulsePlus, boda, corridor],
+    cta: { interest: "pulse-plus", label: "Plan fleet charging" },
+    secondary: { href: "/charging/engineering", label: "How we engineer a depot" },
+    sub: {
+      id: "boda-operators",
+      title: "Electric boda fleets",
+      text: "Riders swap batteries at partner-run Boda Hub sites today, with M-Pesa on every swap and one battery make per site. The automated Boda Hub cabinet is in development.",
+      cta: { interest: "boda-hub", label: "Talk about Boda Hub" },
+    },
   },
   {
-    id: "boda-operators",
-    title: "Boda & last-mile",
-    summary:
-      "Deploy Boda Hub for electric bodas — from partner-operated cabinets today toward automated self-service lockers on the product roadmap. Same design language as the rest of the range.",
-    products: "Boda Hub",
-    points: [
-      "Partner-hosted sites — Precifarm hardware, software and monitoring",
-      "M-Pesa session pay — no bank account required for riders",
-      "Remote monitoring and field response from the ops platform",
-      "Automated locker architecture under engineering validation — see /charging/boda-hub",
+    id: "hub-hosts",
+    who: "Charging-site hosts",
+    title: "Host public fast charging on your site.",
+    forWhom: "Fuel stations, malls, hotels and roadside stops with parking, amenities and strong traffic, starting on the Nairobi to Kisumu route.",
+    icon: "site",
+    precifarm: [
+      "Site assessment against five tests: demand, power and tariff, site and dwell, durable control, approvals",
+      "Power study and connection application with Kenya Power",
+      "A proposed ARC Corridor configuration around a certified OEM charger",
+      "Commissioning, session pricing shown before each charge, and M-Pesa payment",
     ],
-    keeps:
-      "You operate the riders and routes (or host the site); Precifarm supplies infrastructure, software and network care — not a counter attendant at every bay.",
+    partner: [
+      "Parking bays with safe access and room for the electrical equipment",
+      "Long-term site rights, agreed in writing",
+      "Amenities drivers use while charging: shade, food, toilets",
+      "Help with the landlord, county and utility approvals",
+    ],
+    steps: [
+      { title: "Offer the site", text: "Location, plot plan, existing supply and traffic." },
+      { title: "Five-test assessment", text: "We say plainly whether the site passes, and why." },
+      { title: "Terms and design", text: "Commercial terms per site, then the power study and station layout." },
+      { title: "Build and commission", text: "Civil and electrical works, testing, then public sessions." },
+    ],
+    products: [corridor],
+    cta: { interest: "corridor", label: "Offer a charging site" },
+    secondary: { href: "/charging/corridor", label: "ARC Corridor programme" },
+  },
+  {
+    id: "property-owners",
+    who: "Property owners",
+    title: "Add charging to apartments, offices and estates.",
+    forWhom: "Landlords, managing agents, offices, schools and gated estates whose residents or staff park for hours.",
+    icon: "property",
+    precifarm: [
+      "Survey of the parking, the landlord supply and the cable routes",
+      "A plan that starts small and grows bay by bay",
+      "Load management so charging never overloads the building",
+      "Installation, commissioning and support by one team",
+    ],
+    partner: [
+      "Parking layout and which bays will charge first",
+      "Access to the landlord meter and distribution boards",
+      "Consent from residents or the management committee where needed",
+      "A view on who pays: tenants, the property or a mix",
+    ],
+    steps: [
+      { title: "Request a survey", text: "Address, bay count and the supply you know about." },
+      { title: "Site survey", text: "We check boards, meters and routes on the day." },
+      { title: "Phased plan and quote", text: "First bays now, a path for more as demand grows." },
+      { title: "Install and hand over", text: "Tested circuits, chargers and a handover pack." },
+    ],
+    products: [pulse, pulsePlus],
+    cta: { interest: "survey", label: "Request a site survey" },
+    secondary: { href: "/charging/pulse-plus", label: "Pulse+ for shared parking" },
   },
   {
     id: "dealers-installers",
-    title: "Dealers & installers",
-    summary:
-      "Sell and install Pulse charger home units under Precifarm engineering standards, with certified crews, Lipa Pole Pole finance and three-year aftersale care.",
-    products: "Pulse · Lipa Pole Pole",
-    points: [
-      "Survey-to-commission workflow with Precifarm-approved installation checklists",
-      "Lipa Pole Pole M-Pesa instalments for the Pulse charger, with deposit, monthly and total shown up front",
-      "Lead referral from precifarm.com and Precifarm Agent",
-      "Training tiers T1–T3 for field and hub operations",
+    who: "Installers",
+    title: "Install Pulse chargers to Precifarm standards.",
+    forWhom: "Licensed electrical contractors, EV dealers and installers who want to offer home charging.",
+    icon: "installer",
+    precifarm: [
+      "The Pulse charger, its installation checklist and commissioning steps",
+      "Lipa Pole Pole M-Pesa instalments for your customers",
+      "Training on EV charging installation and safety",
+      "Referral of surveyed leads in your area",
     ],
-    keeps:
-      "You retain your customer relationship; Precifarm owns product spec, warranty and remote monitoring.",
+    partner: [
+      "A licensed electrical contractor on every job",
+      "Installation to the checklist, with test results recorded",
+      "Your own customer relationship and service area",
+      "Feedback from the field on the product and the process",
+    ],
+    steps: [
+      { title: "Apply", text: "Company details, licences and the areas you cover." },
+      { title: "Training", text: "Installation, testing and commissioning on the Pulse charger." },
+      { title: "Install to the checklist", text: "Survey to commission on the Precifarm-approved checklist, results recorded." },
+      { title: "Grow", text: "Take referrals and sell Pulse with Lipa Pole Pole on M-Pesa." },
+    ],
+    products: [pulse],
+    cta: { interest: "dealer", label: "Apply as an installer" },
+    secondary: { href: "/training", label: "EV charging training" },
   },
   {
     id: "finance-oem",
-    title: "Financiers & OEMs",
-    summary:
-      "Back charging infrastructure with contracted kWh demand and shared operating data — not projections alone.",
-    products: "Corridor · Pulse+",
-    points: [
-      "Projects underwritten on binding energy and utilisation commitments",
-      "Vehicle-neutral network — CCS2, CHAdeMO and AC where appropriate",
-      "Shared uptime, kWh, load factor and recovery metrics",
-      "Phase-gated expansion with clear decision gates between corridors",
+    who: "Infrastructure partners",
+    title: "Finance, supply or connect charging infrastructure.",
+    forWhom: "Financiers, vehicle makers, equipment suppliers and utilities working on electric transport in Kenya.",
+    icon: "infrastructure",
+    precifarm: [
+      "Sites screened on demand, power and approvals before capital is committed",
+      "Phased plans with a decision gate before each next site",
+      "Metered session data once sites are commissioned",
+      "Site engineering around certified OEM power equipment",
     ],
-    keeps:
-      "No new corridor opens until the current one has earned its place through proven returns.",
-  },
-];
-
-export const partnerProcess = [
-  {
-    step: "01",
-    title: "Introduce your site or fleet",
-    text: "Tell us the location, vehicle types, daily kWh need and timeline. We respond within one business day.",
-  },
-  {
-    step: "02",
-    title: "Site or fleet assessment",
-    text: "Our engineering team runs the five-test site criteria or depot load study — grid, solar, dwell and financeability.",
-  },
-  {
-    step: "03",
-    title: "Commercial terms",
-    text: "Revenue share, fleet contract or installation partnership — negotiated so partners earn before network take.",
-  },
-  {
-    step: "04",
-    title: "Build, commission and operate",
-    text: "Precifarm installs, commissions and monitors 24/7. Home customers can use Lipa Pole Pole on M-Pesa. You focus on customers, riders or fleet dispatch.",
+    partner: [
+      "Capital, equipment, vehicles or grid capacity, depending on your role",
+      "Clear terms on data, reporting and risk",
+      "A technical contact for integration and approvals",
+    ],
+    steps: [
+      { title: "Introduce your role", text: "Finance, equipment, vehicles or utility." },
+      { title: "Shared screening", text: "We share the site pipeline and the evidence behind each stage." },
+      { title: "Agree the structure", text: "Terms set per project, with decision gates." },
+      { title: "Deliver and report", text: "Commission, meter and report against what was agreed." },
+    ],
+    products: [corridor, pulsePlus],
+    cta: { interest: "finance", label: "Start a conversation" },
+    secondary: { href: "/research", label: "Research programmes" },
   },
 ] as const;
 
-export const partnerCommitments = [
-  {
-    title: "Uptime you can plan around",
-    text: "Contracted uptime, field response and honest status updates when equipment needs recovery.",
-  },
-  {
-    title: "Measured economics",
-    text: "Every session is metered, settlement is reconciled and operating metrics are shared with partners.",
-  },
-  {
-    title: "Partner-first returns",
-    text: "Network take is negotiated after partners earn on the site — not before.",
-  },
-  {
-    title: "Open to any capable vehicle",
-    text: `No OEM lock-in. Any compatible EV can use Precifarm Corridor and public AC bays listed on the ${chargingHub.name}.`,
-  },
-] as const;
-
-export const partnerProductFit = [
-  {
-    product: "Pulse",
-    power: "7 kW home · available",
-    bestFor: "Residential installs, dealer networks",
-    image: productImages.pulse.src,
-    imageAlt: productImages.pulse.alt,
-    brand: productImages.pulse.brand,
-  },
-  {
-    product: "Pulse+",
-    power: "22 kW AC three phase",
-    bestFor: "Fleet yards, workplaces, campus car parks",
-    image: productImages.pulsePlus.src,
-    imageAlt: productImages.pulsePlus.alt,
-    brand: productImages.pulsePlus.brand,
-  },
-  {
-    product: "Boda Hub",
-    power: "Battery swap",
-    bestFor: "Last-mile operators, high-turnover boda fleets",
-    image: productImages.boda.src,
-    imageAlt: productImages.boda.alt,
-    brand: productImages.boda.brand,
-  },
-  {
-    product: "Corridor",
-    power: "DC fast charging",
-    bestFor: "Highway stops, intercity corridors",
-    image: productImages.corridor.src,
-    imageAlt: productImages.corridor.alt,
-    brand: productImages.corridor.brand,
-  },
+/** Applies to every journey: what partners can rely on, stated without promises we cannot evidence. */
+export const partnerPrinciples = [
+  { title: "Survey before quote", text: "Every quote follows a survey or a site assessment. No capex without a feasible site and a power study." },
+  { title: "Honest status", text: "Each product carries its stage: available, in development or pilot. Planned sites stay labelled planned." },
+  { title: "Certified equipment", text: "Fast charging uses certified OEM power equipment; Precifarm engineers the site around it." },
+  { title: "M-Pesa built in", text: "Payment and instalments run on M-Pesa, so drivers and riders need no bank card." },
 ] as const;
