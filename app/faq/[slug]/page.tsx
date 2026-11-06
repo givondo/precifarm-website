@@ -1,20 +1,20 @@
-import PageHero from "@/components/ui/PageHero";
-import PageCTA from "@/components/ui/PageCTA";
-import AisoPageSections from "@/components/seo/AisoPageSections";
-import FaqAccordion from "@/components/seo/FaqAccordion";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import FaqList from "@/components/faq/FaqList";
+import { InteriorHero } from "@/components/interior";
+import ArticleBody from "@/components/publications/ArticleBody";
+import { ArticleByline, SourcesList } from "@/components/publications/ArticleMeta";
+import RelatedLinks from "@/components/publications/RelatedLinks";
 import JsonLd from "@/components/seo/JsonLd";
-import MarkdownContent from "@/components/seo/MarkdownContent";
-import TrustSignals from "@/components/seo/TrustSignals";
 import { BOOKING_FAQ_SLUG } from "@/lib/charging-faqs";
+import { parseMarkdownBlocks, readingMinutes, slugify } from "@/lib/publications";
 import { faqsFromCmsContent } from "@/lib/seo/cms-content";
 import { cmsGetSeoContent, cmsListSeoContent, type CmsSeoContent } from "@/lib/seo/cms-client";
 import { siteConfig } from "@/lib/seo/config";
 import { internalLinksForPath } from "@/lib/seo/entities/registry";
 import { createPageSeo } from "@/lib/seo/metadata";
 import { articleSchema, faqSchema, omitSchemaTypes } from "@/lib/seo/schema";
-import type { AisoContentBlock } from "@/lib/seo/types";
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 
 export const revalidate = 3600;
 
@@ -83,61 +83,74 @@ export default async function FaqPage({ params }: Props) {
         }),
       ]
     : seo.jsonLd;
-  const aisoBlocks = content.aisoBlocks as AisoContentBlock[];
-  const supplementalBlocks = aisoBlocks.filter((block) => block.type !== "faq");
+  const supplementalBlocks = content.aisoBlocks.filter((block) => block.type !== "faq" && (block.content || block.items?.length));
+  const blocks = content.bodyMd ? parseMarkdownBlocks(content.bodyMd) : [];
+  const minutes = readingMinutes(content.bodyMd, ...faqs.map((f) => `${f.question} ${f.answer}`));
 
   return (
     <>
       <JsonLd data={jsonLd} />
-      <article className="bg-white">
-        <PageHero
+      <article>
+        <InteriorHero
           eyebrow="FAQ"
           title={content.title}
-          description={content.description}
+          lead={content.description}
           breadcrumbs={[
             { name: "Home", href: "/" },
             { name: "FAQ", href: "/faq" },
             { name: content.title, href: path },
           ]}
         >
-          <TrustSignals
+          <ArticleByline
             authorName={content.authorName}
             reviewerName={content.reviewerName}
             reviewedAt={content.reviewedAt}
+            publishedAt={content.publishedAt}
             updatedAt={content.updatedAt}
-            sources={content.sources}
+            minutes={minutes}
           />
-        </PageHero>
+        </InteriorHero>
 
-        {faqs.length > 0 && (
-          <div className="section-pad border-b border-border">
-            <div className="page-container max-w-3xl">
-              <FaqAccordion items={faqs} />
+        <div className="interior-container max-w-3xl py-12 sm:py-16">
+          {faqs.length > 0 ? (
+            <FaqList items={faqs.map((f, i) => ({ id: slugify(f.question) || `q-${i + 1}`, question: f.question, answer: f.answer }))} />
+          ) : null}
+
+          {blocks.length ? (
+            <div className={faqs.length ? "mt-14" : ""}>
+              <ArticleBody blocks={blocks} />
             </div>
+          ) : null}
+
+          {supplementalBlocks.map((block) => (
+            <section key={block.id} className="mt-12">
+              <h2 className="font-display text-xl font-semibold tracking-tight text-forest-950">{block.title}</h2>
+              {block.content ? <p className="mt-3 text-[15px] leading-relaxed text-forest-700">{block.content}</p> : null}
+              {Array.isArray(block.items) && block.items.every((i) => typeof i === "string") ? (
+                <ul className="mt-4 space-y-2 text-[15px] leading-relaxed text-forest-700">
+                  {(block.items as string[]).map((item) => (
+                    <li key={item} className="relative pl-5">
+                      <span aria-hidden className="absolute left-0 top-[0.65em] h-1.5 w-1.5 rounded-full bg-charge-600" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+            </section>
+          ))}
+
+          <div className="mt-14">
+            <SourcesList sources={content.sources} />
           </div>
-        )}
 
-        {content.bodyMd && (
-          <div className="section-pad">
-            <div className="page-container max-w-3xl">
-              <MarkdownContent md={content.bodyMd} />
-            </div>
-          </div>
-        )}
+          <p className="mt-10 text-sm">
+            <Link href="/faq" className="font-semibold text-charge-700 hover:underline">
+              ‹ All questions
+            </Link>
+          </p>
+        </div>
 
-        <AisoPageSections
-          blocks={supplementalBlocks}
-          relatedLinks={internalLinksForPath(path)}
-        />
-
-        <PageCTA
-          title="Need more help?"
-          description="Contact our team by phone, email or WhatsApp."
-          primaryHref="/contact"
-          primaryLabel="Contact support"
-          secondaryHref="/charging"
-          secondaryLabel="Explore charging"
-        />
+        <RelatedLinks title="Related" links={internalLinksForPath(path).slice(0, 4)} />
       </article>
     </>
   );
