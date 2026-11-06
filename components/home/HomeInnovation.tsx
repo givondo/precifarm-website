@@ -26,8 +26,8 @@ export default function HomeInnovation() {
             <p className="font-mono text-[11px] font-semibold uppercase tracking-widest text-charge-300">Precifarm Agent</p>
             <h3 className="heading-display heading-inverted mt-3 text-xl sm:text-2xl">Interactive engineering workspace.</h3>
             <p className="mt-3 text-sm leading-relaxed text-white/70">
-              Change the brief and watch the engineering tools work it through: energy, charge time, protection and cable,
-              with every step in the trace.
+              The engineering tools run live on a real brief: energy, charge time, protection and cable, with every step in
+              the trace. Pick a distance to take over.
             </p>
             <AgentWorkspaceDemo />
             <div className="mt-auto flex flex-wrap items-center gap-x-4 gap-y-3 pt-8">
@@ -42,10 +42,10 @@ export default function HomeInnovation() {
 
           <article className="flex min-w-0 flex-col rounded-2xl border border-white/10 bg-white/[0.04] p-6 sm:p-8">
             <p className="font-mono text-[11px] font-semibold uppercase tracking-widest text-charge-300">Wireless EV charging</p>
-            <h3 className="heading-display heading-inverted mt-3 text-xl sm:text-2xl">Interactive R&amp;D simulation.</h3>
+            <h3 className="heading-display heading-inverted mt-3 text-xl sm:text-2xl">Research and Development.</h3>
             <p className="mt-3 text-sm leading-relaxed text-white/70">
-              Park over the charging pad and slide the car off-centre to see coil alignment, energy transfer and what
-              happens when the car is misaligned.
+              Watch a car park over the charging pad and drift off-centre: coil alignment, energy transfer and what
+              happens when the car is misaligned. Slide it yourself to take over.
             </p>
             <WirelessSimulation />
             <div className="mt-auto flex flex-wrap items-center gap-x-4 gap-y-3 pt-8">

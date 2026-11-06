@@ -2,8 +2,9 @@
 
 import { useEffect, useMemo, useState } from "react";
 import AnimatedNumber from "@/components/home/AnimatedNumber";
+import LiveBar from "@/components/home/LiveBar";
 import { runEngineeringTool, type ToolResult } from "@/lib/agent/tools/engineering";
-import { useInView } from "@/lib/use-in-view";
+import { useIsVisible } from "@/lib/use-in-view";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 
 /**
@@ -15,6 +16,8 @@ import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
  */
 
 const STEP_MS = 520;
+/** How long a finished result stays up before the live loop moves to the next brief. */
+const HOLD_MS = 4200;
 
 const DISTANCES = [40, 80, 120, 200] as const;
 const KWH_PER_100KM = 18;
@@ -60,20 +63,44 @@ function run(dailyKm: number): Step[] {
 export default function AgentWorkspaceDemo() {
   const [dailyKm, setDailyKm] = useState<number>(80);
   const steps = useMemo(() => run(dailyKm), [dailyKm]);
+  /** Measured time for the four tool calls, shown in the live bar. */
+  const [ms, setMs] = useState<number | null>(null);
   const [energy, time, prot, cable] = steps;
   const reduced = usePrefersReducedMotion();
-  const [ref, inView] = useInView<HTMLDivElement>(0.35);
+  const [ref, inView] = useIsVisible<HTMLDivElement>(0.35);
+  /** The loop runs until the visitor picks a distance or presses Pause. With reduced motion it
+   *  starts paused and runs only if the visitor presses Play. */
+  const [autoChoice, setAuto] = useState<boolean | null>(null);
   /** How many steps have finished; steps.length + 1 means the diagram is live. */
   const [doneStep, setDone] = useState(0);
 
   useEffect(() => {
     if (!inView || reduced) return;
-    const timers = Array.from({ length: steps.length + 2 }, (_, n) => window.setTimeout(() => setDone(n), n * STEP_MS));
+    const t0 = performance.now();
+    run(dailyKm);
+    const took = performance.now() - t0;
+    const timers = Array.from({ length: steps.length + 2 }, (_, n) =>
+      window.setTimeout(() => {
+        setDone(n);
+        if (n === steps.length + 1) setMs(took);
+      }, n * STEP_MS),
+    );
     return () => timers.forEach((t) => window.clearTimeout(t));
   }, [inView, reduced, dailyKm, steps.length]);
 
   const done = reduced && inView ? steps.length + 1 : doneStep;
   const live = done > steps.length;
+  const auto = autoChoice ?? !reduced;
+  const running = auto && inView;
+
+  // Live loop: once a run has finished and been on screen for HOLD_MS, take the next brief.
+  useEffect(() => {
+    if (!running || !live) return;
+    const t = window.setTimeout(() => {
+      setDailyKm((km) => DISTANCES[(DISTANCES.indexOf(km as (typeof DISTANCES)[number]) + 1) % DISTANCES.length]);
+    }, HOLD_MS);
+    return () => window.clearTimeout(t);
+  }, [running, live, dailyKm]);
   const values = [
     <AnimatedNumber key="e" value={Number(energy.result.data.kwhPerDay)} format={(n) => `${n.toFixed(1)} kWh`} />,
     <AnimatedNumber key="t" value={Number(time.result.data.hoursWithLosses)} format={hoursText} />,
@@ -83,6 +110,14 @@ export default function AgentWorkspaceDemo() {
 
   return (
     <div ref={ref} className="mt-6 overflow-hidden rounded-xl border border-white/10 bg-black/20">
+      <LiveBar
+        running={auto}
+        label={live ? `Result · ${dailyKm} km` : `Calculating · ${dailyKm} km`}
+        readout={live && ms !== null ? `${steps.length} tools, ${ms < 1 ? ms.toFixed(2) : ms.toFixed(1)} ms` : undefined}
+        onToggle={() => setAuto(!auto)}
+        progressKey={live ? `hold-${dailyKm}` : undefined}
+        holdMs={live && running ? HOLD_MS : undefined}
+      />
       <div className="border-b border-white/10 px-4 py-3">
         <p className="font-mono text-[10px] uppercase tracking-widest text-white/60">Project brief</p>
         <p className="mt-1.5 text-sm leading-relaxed text-white/85">
@@ -95,7 +130,10 @@ export default function AgentWorkspaceDemo() {
               key={km}
               type="button"
               aria-pressed={dailyKm === km}
-              onClick={() => setDailyKm(km)}
+              onClick={() => {
+                setAuto(false);
+                setDailyKm(km);
+              }}
               className={`min-h-9 rounded-full border px-3.5 text-xs font-semibold transition-colors ${
                 dailyKm === km
                   ? "border-brand-300 bg-brand-300 text-forest-950"

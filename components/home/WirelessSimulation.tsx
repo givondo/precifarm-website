@@ -1,7 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useId, useRef, useState } from "react";
-import { useInView } from "@/lib/use-in-view";
+import { useEffect, useId, useState } from "react";
+import LiveBar from "@/components/home/LiveBar";
+import { useIsVisible } from "@/lib/use-in-view";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 
 /**
@@ -9,14 +10,18 @@ import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
  * curve is illustrative, not measured, and the card says so. Drawn at 5 mm per SVG unit.
  *
  * Motion: when the card scrolls into view the car drives into the bay, the pads align,
- * then energy ripples between them at a rate and strength set by the power level.
- * "Play misalignment demo" sweeps the car across the pad and back to centre.
+ * then energy ripples between them at a rate and strength set by the power level. While the
+ * card is on screen a live loop sweeps the car across the pad and back, until the visitor
+ * pauses it or moves the slider.
  */
 
 const MAX_MM = 250;
 const WINDOW_MM = 100;
 const MM_PER_UNIT = 5;
-const DEMO = [0, 50, 100, 150, 200, 150, 100, 50, 0, -50, -100, -150, -100, -50, 0];
+/** Live loop: hold centred, sweep right past the window, back, sweep left, back. */
+const LOOP = [0, 50, 100, 150, 200, 150, 100, 50, 0, -50, -100, -150, -100, -50];
+const STEP_MS = 650;
+const HOLD_MS = 2600;
 
 /** Illustrative relative coupling, 100% when centred. Not bench data. */
 function relativeCoupling(offsetMm: number) {
@@ -28,11 +33,12 @@ type Phase = "waiting" | "parking" | "aligning" | "ready";
 export default function WirelessSimulation() {
   const [offset, setOffset] = useState(0);
   const [phaseState, setPhase] = useState<Phase>("waiting");
-  const [demo, setDemo] = useState(false);
+  /** null until the visitor chooses; reduced motion starts paused. */
+  const [autoChoice, setAuto] = useState<boolean | null>(null);
+  const [tick, setTick] = useState(0);
   const reduced = usePrefersReducedMotion();
   const sliderId = useId();
-  const [ref, inView] = useInView<HTMLDivElement>(0.35);
-  const demoTimer = useRef<number | null>(null);
+  const [ref, inView] = useIsVisible<HTMLDivElement>(0.35);
 
   // Drive in, align, then charge.
   useEffect(() => {
@@ -47,35 +53,24 @@ export default function WirelessSimulation() {
 
   const phase: Phase = reduced && inView ? "ready" : phaseState;
 
-  const stopDemo = useCallback(() => {
-    if (demoTimer.current !== null) window.clearInterval(demoTimer.current);
-    demoTimer.current = null;
-    setDemo(false);
-  }, []);
-
-  const playDemo = useCallback(() => {
-    stopDemo();
-    setPhase("ready");
-    if (reduced) {
-      setOffset(150);
-      return;
-    }
-    setDemo(true);
-    let i = 0;
-    setOffset(DEMO[0]);
-    demoTimer.current = window.setInterval(() => {
-      i += 1;
-      if (i >= DEMO.length) {
-        stopDemo();
-        return;
-      }
-      setOffset(DEMO[i]);
-    }, 650);
-  }, [reduced, stopDemo]);
-
-  useEffect(() => stopDemo, [stopDemo]);
-
   const ready = phase === "ready";
+  const auto = autoChoice ?? !reduced;
+  const running = auto && inView;
+
+  // Live loop. Index 0 is the centred hold; the rest step every STEP_MS.
+  useEffect(() => {
+    if (!running || !ready) return;
+    const t = window.setTimeout(
+      () => {
+        const next = (tick + 1) % LOOP.length;
+        setTick(next);
+        setOffset(LOOP[next]);
+      },
+      tick === 0 ? HOLD_MS : STEP_MS,
+    );
+    return () => window.clearTimeout(t);
+  }, [running, ready, tick]);
+
   const inWindow = Math.abs(offset) <= WINDOW_MM;
   const coupling = Math.round(relativeCoupling(offset) * 100);
   const power = ready && inWindow ? coupling : 0;
@@ -98,12 +93,15 @@ export default function WirelessSimulation() {
 
   return (
     <div ref={ref} className="mt-6 overflow-hidden rounded-xl border border-white/10 bg-black/20">
-      <div className="flex items-center justify-between gap-3 border-b border-white/10 px-4 py-2.5">
-        <p className="font-mono text-[10px] uppercase tracking-widest text-white/60">Top view</p>
-        <p className="rounded-full border border-amber-300/40 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-widest text-amber-200">
-          Research simulation
-        </p>
-      </div>
+      <LiveBar
+        running={auto}
+        label={!ready ? "Car arriving" : power > 0 ? `Transferring ${power}%` : "Transfer stopped"}
+        readout={ready ? `${offset > 0 ? "+" : ""}${offset} mm` : undefined}
+        onToggle={() => {
+          if (!auto) setPhase("ready");
+          setAuto(!auto);
+        }}
+      />
 
       <svg viewBox="0 0 400 230" className="h-auto w-full" role="img" aria-labelledby={`${sliderId}-t`}>
         <title id={`${sliderId}-t`}>
@@ -216,22 +214,15 @@ export default function WirelessSimulation() {
           step={10}
           value={offset}
           onChange={(e) => {
-            stopDemo();
+            setAuto(false);
+            setTick(0);
             setPhase("ready");
             setOffset(Number(e.target.value));
           }}
           className="mt-2 w-full accent-brand-400"
         />
-        <button
-          type="button"
-          onClick={demo ? stopDemo : playDemo}
-          className="mt-3 inline-flex min-h-9 items-center gap-2 rounded-full border border-white/20 px-3.5 text-xs font-semibold text-white/85 transition-colors hover:border-white/40 hover:text-white"
-        >
-          <span aria-hidden>{demo ? "■" : "▶"}</span>
-          {demo ? "Stop demo" : "Play misalignment demo"}
-        </button>
 
-        <dl className="mt-4 grid grid-cols-2 gap-3">
+        <dl className="mt-3 grid grid-cols-2 gap-3">
           <div>
             <dt className="text-[11px] text-white/60">Relative coupling</dt>
             <dd className="mt-0.5 font-mono text-base font-semibold text-white">{ready ? `${coupling}%` : "-"}</dd>
@@ -253,7 +244,7 @@ export default function WirelessSimulation() {
           {status}
         </p>
         <p className="mt-2 text-[11px] leading-relaxed text-white/55">
-          Illustrative model from Precifarm R&amp;D, not operational hardware or measured data.
+          Illustrative model from Precifarm research and development, not measured data.
         </p>
       </div>
     </div>

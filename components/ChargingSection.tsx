@@ -21,8 +21,7 @@ export default function ChargingSection() {
       <InteriorSection id="compare" eyebrow="Compare" title={chargingComparison.title} lead={chargingComparison.lead}>
         <ChargingComparison segments={chargingSegments} rows={chargingComparison.rows} />
         <p className="mt-4 text-xs leading-relaxed text-forest-500">
-          Ratings are from the Precifarm engineering register and are design targets until tested. Status labels: Available is sold today after a survey; In
-          development is engineered but not yet released; Pilot development is being prepared for a first site.
+          Ratings are from the Precifarm engineering register and are design targets until tested.
         </p>
       </InteriorSection>
 

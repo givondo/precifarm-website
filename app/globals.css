@@ -2076,3 +2076,10 @@ button,
     padding-right: max(2rem, env(safe-area-inset-right));
   }
 }
+@keyframes live-progress {
+  from { width: 0; }
+  to { width: 100%; }
+}
+.live-progress {
+  animation: live-progress linear forwards;
+}

@@ -4,7 +4,7 @@ import { productImages } from "@/lib/product-images";
 
 type Tile = {
   href: string;
-  /** Category and status, worded by David (HD-048). */
+  /** Product category (status eyebrows removed by David, 6 Nov 2026). */
   eyebrow: string;
   name: string;
   line: string;
@@ -17,7 +17,7 @@ type Tile = {
 const charging: Tile[] = [
   {
     href: "/charging/home",
-    eyebrow: "Home charging · Available",
+    eyebrow: "Home charging",
     name: "Pulse 7 kW",
     line: "Reliable home EV charging, professionally installed. From KES 79,000.",
     cta: "Explore Pulse",
@@ -25,7 +25,7 @@ const charging: Tile[] = [
   },
   {
     href: "/charging/pulse-plus",
-    eyebrow: "Workplace charging · In development",
+    eyebrow: "Workplace charging",
     name: "Pulse+ 22 kW",
     line: "Three-phase AC charging for workplaces, businesses and fleet parking.",
     cta: "Explore Pulse+",
@@ -34,7 +34,7 @@ const charging: Tile[] = [
   },
   {
     href: "/charging/corridor",
-    eyebrow: "DC fast charging · Pilot development",
+    eyebrow: "DC fast charging",
     name: "ARC Corridor",
     line: "Scalable DC fast-charging infrastructure for highways, towns and fleets.",
     cta: "Explore ARC Corridor",
@@ -43,7 +43,7 @@ const charging: Tile[] = [
   },
   {
     href: "/charging/boda-hub",
-    eyebrow: "Battery swapping · In development",
+    eyebrow: "Battery swapping",
     name: "Boda Hub",
     line: "Automated battery-swap lockers designed to keep electric motorcycles moving.",
     cta: "Explore Boda Hub",

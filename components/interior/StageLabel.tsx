@@ -45,6 +45,13 @@ const dark: Record<StageKind, string> = {
   illustrative: "bg-black/40 text-white/85 ring-white/25",
 };
 
+/**
+ * Product maturity is carried by the wording and calls to action, not by chips (David, 6 Nov 2026,
+ * HD-051): available, development and pilot render nothing. Labels that stop a render, a planned
+ * site or a model being mistaken for something installed or measured still show.
+ */
+const HIDDEN: ReadonlySet<StageKind> = new Set<StageKind>(["available", "development", "pilot"]);
+
 export default function StageLabel({
   kind,
   label,
@@ -56,6 +63,7 @@ export default function StageLabel({
   tone?: "light" | "dark";
   className?: string;
 }) {
+  if (HIDDEN.has(kind)) return null;
   const meta = stageCopy[kind];
   return (
     <span

@@ -23,3 +23,24 @@ export function useInView<T extends Element>(threshold = 0.3) {
   }, [inView, threshold]);
   return [ref, inView] as const;
 }
+
+/** True while the element is on screen (updates both ways), for pausing loops off screen. */
+export function useIsVisible<T extends Element>(threshold = 0.2) {
+  const ref = useRef<T | null>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { threshold });
+    io.observe(el);
+    const onVis = () => {
+      if (document.hidden) setVisible(false);
+    };
+    document.addEventListener("visibilitychange", onVis);
+    return () => {
+      io.disconnect();
+      document.removeEventListener("visibilitychange", onVis);
+    };
+  }, [threshold]);
+  return [ref, visible] as const;
+}
