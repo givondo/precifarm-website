@@ -411,7 +411,7 @@ export default function Header() {
           </nav>
 
           <div className="site-header-actions">
-            <a href={contact.phoneHref} className="site-header-phone">
+            <a href={contact.phoneHref} className="site-header-phone" aria-label={`Call Precifarm on ${contact.phone}`}>
               <IconPhone className="h-4 w-4 shrink-0" />
               <span className="hidden xl:inline">{contact.phone}</span>
             </a>

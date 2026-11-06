@@ -16,7 +16,7 @@ export default function TrainingPage() {
       description: "T1, T2 and T3 certification for EV charging hub staff and field engineers in Kenya.",
       path: "/training",
       items: trainingTiers.map((tier) => ({
-        name: `${tier.code} — ${tier.title}`,
+        name: `${tier.code}: ${tier.title}`,
         url: absoluteUrl(`/training#${tier.id}`),
       })),
     }),

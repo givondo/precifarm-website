@@ -64,7 +64,7 @@ export const engineeringDoc = {
   related: [
     { href: "/charging", label: "Charging services" },
     { href: "/charging/home", label: "Home charging" },
-    { href: "/hub", label: "Charging Hub" },
+    { href: "/charging/corridor", label: "ARC Corridor" },
     { href: "/training", label: "EV charging training" },
   ],
 } as const;

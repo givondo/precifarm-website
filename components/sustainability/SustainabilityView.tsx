@@ -1,254 +1,267 @@
 import Link from "next/link";
-import ProductPhoto from "@/components/ProductPhoto";
-import Breadcrumbs from "@/components/seo/Breadcrumbs";
-import StakeholderIcon from "@/components/sustainability/StakeholderIcon";
-import SustainabilitySectionNav from "@/components/sustainability/SustainabilitySectionNav";
-import PageCTA from "@/components/ui/PageCTA";
-import SectionHeader from "@/components/ui/SectionHeader";
+import { CalloutNote, InPageNav, InteriorHero, InteriorSection } from "@/components/interior";
 import {
+  checkableFigures,
   circularitySteps,
-  reportingPlanned,
+  evidenceClasses,
+  goalProgressLabel,
+  pendingMeasures,
+  peopleRows,
   reportingPublished,
-  socialImpactCards,
   sustainabilityGoalsOrdered,
-  sustainabilityHeroMetrics,
   sustainabilityPage,
-  whyItMattersCards,
+  sustainabilitySectionNav,
+  type EvidenceClass,
+  type GoalProgress,
 } from "@/lib/sustainability-page";
 
-const breadcrumbs = [
-  { name: "Home", href: "/" },
-  { name: "Sustainability", href: "/sustainability" },
-];
+const evidenceStyle: Record<EvidenceClass, string> = {
+  checkable: "bg-white text-forest-800 ring-forest-300",
+  target: "bg-forest-950 text-white ring-forest-950",
+  pending: "bg-[repeating-linear-gradient(135deg,#f6f7f8_0_6px,#eceef0_6px_12px)] text-forest-700 ring-forest-200",
+};
 
-const allGoals = sustainabilityGoalsOrdered;
+function EvidenceTag({ kind }: { kind: EvidenceClass }) {
+  return (
+    <span
+      title={evidenceClasses[kind].text}
+      className={`inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase leading-none tracking-wide ring-1 ring-inset ${evidenceStyle[kind]}`}
+    >
+      {evidenceClasses[kind].label}
+    </span>
+  );
+}
+
+const progressStyle: Record<GoalProgress, string> = {
+  done: "text-charge-700",
+  estimate: "text-forest-700",
+  planned: "text-forest-500",
+};
+
+function EvidencePanel() {
+  const goals = sustainabilityGoalsOrdered.length;
+  const rows = [
+    { kind: "checkable" as const, count: String(checkableFigures.length), text: "published figures and labels" },
+    { kind: "target" as const, count: String(goals + 1), text: "targets: six for 2030, one for 2050" },
+    { kind: "pending" as const, count: String(pendingMeasures.length), text: "impact figures waiting on a method" },
+  ];
+  return (
+    <div className="rounded-[1.75rem] bg-forest-950 p-6 text-white sm:p-8">
+      <p className="text-[11px] font-semibold uppercase tracking-widest text-brand-300">Evidence on this page</p>
+      <ul className="mt-5 divide-y divide-white/10">
+        {rows.map((r) => (
+          <li key={r.kind} className="grid grid-cols-[3.5rem_minmax(0,1fr)] items-baseline gap-3 py-4">
+            <span className="font-display text-3xl font-semibold tracking-tight">{r.count}</span>
+            <span className="min-w-0">
+              <span className="block text-sm font-semibold">{evidenceClasses[r.kind].label}</span>
+              <span className="block text-sm text-white/65">{r.text}</span>
+            </span>
+          </li>
+        ))}
+        <li className="grid grid-cols-[3.5rem_minmax(0,1fr)] items-baseline gap-3 pt-4">
+          <span className="font-display text-3xl font-semibold tracking-tight text-white/45">0</span>
+          <span className="min-w-0">
+            <span className="block text-sm font-semibold">Measured operational results</span>
+            <span className="block text-sm text-white/65">No Precifarm charging site is commissioned yet.</span>
+          </span>
+        </li>
+      </ul>
+    </div>
+  );
+}
 
 export default function SustainabilityView() {
   const page = sustainabilityPage;
 
   return (
     <>
-      <section className="page-hero border-b border-border">
-        <div className="page-hero-split">
-          <Breadcrumbs items={breadcrumbs} />
-          <div className="mt-6 grid items-center gap-10 lg:grid-cols-[1fr_minmax(280px,420px)] lg:gap-14">
-            <div>
-              <p className="text-eyebrow">{page.hero.eyebrow}</p>
-              <h1 className="heading-display mt-3 text-[1.75rem] leading-[1.15] sm:text-3xl lg:text-4xl">
-                {page.hero.headline}
-              </h1>
-              <p className="mt-4 max-w-xl text-base font-medium leading-relaxed text-forest-900 sm:text-lg">
-                {page.hero.lead}
-              </p>
-              <p className="mt-4 max-w-xl text-base leading-relaxed text-forest-600">{page.hero.description}</p>
-
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link href={page.hero.primaryCta.href} className="btn-primary">
-                  {page.hero.primaryCta.label}
-                </Link>
-                <a href={page.hero.secondaryCta.href} className="btn-secondary">
-                  {page.hero.secondaryCta.label}
-                </a>
-              </div>
-            </div>
-            <figure className="visual-frame-muted">
-              <ProductPhoto
-                src={page.hero.image.src}
-                alt={page.hero.image.alt}
-                width={1600}
-                height={1200}
-                priority
-                sizes="(max-width: 1024px) 100vw, 40vw"
-                className="aspect-[4/3] w-full object-contain p-4 sm:p-6"
-              />
-              <figcaption className="border-t border-border bg-white/80 px-4 py-3 text-sm leading-snug text-forest-600">
-                {page.hero.imageCaption}
-              </figcaption>
-            </figure>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-forest-900 bg-forest-900 section-pad" aria-label="What you can check today">
-        <div className="page-container">
-          <p className="text-center text-xs font-semibold uppercase tracking-widest text-white/60">
-            What you can check today
-          </p>
-          <div className="mt-8 grid gap-6 sm:grid-cols-3">
-            {sustainabilityHeroMetrics.map((metric) => (
-              <article key={metric.label} className="text-center sm:text-left">
-                <p className="font-mono text-lg font-bold tracking-tight text-white sm:text-xl">{metric.value}</p>
-                <p className="mt-2 text-sm font-medium text-white">{metric.label}</p>
-                <p className="mt-1 text-sm leading-relaxed text-white/70">{metric.note}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <SustainabilitySectionNav />
-
-      <section id="impact" className="section-pad scroll-mt-28 border-b border-border bg-white">
-        <div className="page-container">
-          <SectionHeader
-            eyebrow={page.whySection.eyebrow}
-            title={page.whySection.title}
-            description={page.whySection.description}
-          />
-          <div className="mt-10 grid gap-6 sm:grid-cols-2">
-            {whyItMattersCards.map((card) => (
-              <article key={card.id} className="sustainability-stakeholder-card">
-                <div className="flex items-start gap-3">
-                  <StakeholderIcon id={card.icon} />
-                  <div>
-                    <h3 className="font-semibold text-forest-900">{card.headline}</h3>
-                    <p className="mt-1 text-xs text-forest-500">{card.title}</p>
-                    <p className="mt-2 text-sm leading-relaxed text-forest-600">{card.text}</p>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="social" className="section-pad scroll-mt-28 border-b border-border bg-muted/20">
-        <div className="page-container">
-          <SectionHeader
-            eyebrow={page.socialSection.eyebrow}
-            title={page.socialSection.title}
-            description={page.socialSection.description}
-          />
-          <div className="mt-10 grid gap-5 sm:grid-cols-2">
-            {socialImpactCards.map((card) => (
-              <article key={card.id} className="sustainability-social-card">
-                <div className="flex items-start gap-3">
-                  <StakeholderIcon id={card.icon} />
-                  <div className="min-w-0 flex-1">
-                    <h3 className="font-semibold text-forest-900">{card.headline}</h3>
-                    <p className="mt-1 text-xs text-forest-500">{card.title}</p>
-                  </div>
-                </div>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-forest-600">{card.text}</p>
-                {"href" in card && card.href ? (
-                  <Link
-                    href={card.href}
-                    className="mt-4 inline-flex text-sm font-medium text-forest-900 underline-offset-2 hover:underline"
-                  >
-                    {card.label} ›
-                  </Link>
-                ) : null}
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="commitment" className="section-pad scroll-mt-28 border-b border-border bg-white">
-        <div className="page-container">
-          <SectionHeader
-            eyebrow={page.commitmentSection.eyebrow}
-            title={page.commitmentSection.title}
-            description={page.commitmentSection.description}
-          />
-
-          <ol className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {allGoals.map((goal) => (
-              <li key={goal.id} className="rounded-xl border border-border bg-white px-5 py-4">
-                <span className="text-[11px] font-semibold uppercase tracking-widest text-forest-500">
-                  Goal {goal.id}
-                </span>
-                <p className="mt-1 font-semibold text-forest-900">{goal.shortName}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      <section id="circularity" className="section-pad scroll-mt-28 border-b border-border bg-muted/20">
-        <div className="page-container">
-          <SectionHeader
-            eyebrow={page.circularitySection.eyebrow}
-            title={page.circularitySection.title}
-            description={page.circularitySection.description}
-          />
-          <ol className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {circularitySteps.map((step) => (
-              <li key={step.step} className="card p-5">
-                <span className="font-mono text-xs font-semibold text-forest-500">{step.step}</span>
-                <h3 className="mt-2 font-semibold text-forest-900">{step.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-forest-600/80">{step.text}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      <section id="outlook" className="section-pad scroll-mt-28 border-b border-border bg-white">
-        <div className="page-container">
-          <SectionHeader
-            eyebrow={page.outlookSection.eyebrow}
-            title={page.outlookSection.title}
-            description={page.outlookSection.description}
-          />
-
-          <div className="mt-8 rounded-2xl border border-border bg-muted/20 p-6 sm:p-8">
-            <p className="font-mono text-2xl font-bold tracking-tight text-forest-900 sm:text-3xl">
-              {page.outlookSection.ambition.value}
-            </p>
-            <h3 className="mt-2 text-base font-semibold text-forest-900">{page.outlookSection.ambition.title}</h3>
-            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-forest-600">
-              {page.outlookSection.ambition.text}
-            </p>
-          </div>
-
-          <div className="mt-8 overflow-hidden rounded-2xl border border-border">
-            <table className="sustainability-goals-table">
-              <caption className="sr-only">
-                What is on the site today and what is planned by 2030
-              </caption>
-              <thead>
-                <tr>
-                  <th scope="col">Item</th>
-                  <th scope="col">Status</th>
-                  <th scope="col">Detail</th>
-                </tr>
-              </thead>
-              <tbody>
-                {reportingPublished.map((item) => (
-                  <tr key={item.id}>
-                    <th scope="row">
-                      <Link href={item.href} className="hover:underline">
-                        {item.title}
-                      </Link>
-                    </th>
-                    <td data-label="Status">On the site today</td>
-                    <td data-label="Detail">{item.detail}</td>
-                  </tr>
-                ))}
-                {reportingPlanned.map((item) => (
-                  <tr key={item.id}>
-                    <th scope="row">{item.title}</th>
-                    <td data-label="Status">Planned by 2030</td>
-                    <td data-label="Detail">{item.detail}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <p className="mt-10 text-sm leading-relaxed text-forest-600">{page.outlookSection.sdgNote}</p>
-        </div>
-      </section>
-
-      <PageCTA
-        title={page.cta.title}
-        description={page.cta.description}
-        primaryHref={page.cta.primaryHref}
-        primaryLabel={page.cta.primaryLabel}
-        secondaryHref={page.cta.secondaryHref}
-        secondaryLabel={page.cta.secondaryLabel}
+      <InteriorHero
+        eyebrow={page.hero.eyebrow}
+        title={page.hero.headline}
+        lead={page.hero.lead}
+        breadcrumbs={[
+          { name: "Home", href: "/" },
+          { name: "Sustainability", href: "/sustainability" },
+        ]}
+        actions={[
+          { href: page.hero.primaryCta.href, label: page.hero.primaryCta.label, variant: "primary" },
+          { href: page.hero.secondaryCta.href, label: page.hero.secondaryCta.label, variant: "secondary" },
+        ]}
+        media={<EvidencePanel />}
       />
+
+      <InPageNav links={sustainabilitySectionNav} />
+
+      <InteriorSection id="evidence" eyebrow={page.evidenceSection.eyebrow} title={page.evidenceSection.title} lead={page.evidenceSection.lead}>
+        <dl className="grid gap-px overflow-hidden rounded-2xl bg-border ring-1 ring-border md:grid-cols-3">
+          {(Object.keys(evidenceClasses) as EvidenceClass[]).map((k) => (
+            <div key={k} className="bg-white p-5 sm:p-6">
+              <dt>
+                <EvidenceTag kind={k} />
+              </dt>
+              <dd className="mt-3 text-sm leading-relaxed text-forest-700">{evidenceClasses[k].text}</dd>
+            </div>
+          ))}
+        </dl>
+      </InteriorSection>
+
+      <InteriorSection id="today" tone="silver" eyebrow={page.todaySection.eyebrow} title={page.todaySection.title} lead={page.todaySection.lead}>
+        <ul className="grid gap-4 sm:grid-cols-2">
+          {checkableFigures.map((f) => (
+            <li key={f.label} className="flex flex-col rounded-2xl bg-white p-5 ring-1 ring-border sm:p-6">
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <p className="font-display text-2xl font-semibold tracking-tight text-forest-950 sm:text-[1.75rem]">{f.value}</p>
+                <EvidenceTag kind="checkable" />
+              </div>
+              <p className="mt-1 text-sm font-semibold text-forest-800">{f.label}</p>
+              <dl className="mt-4 space-y-3 border-t border-border pt-4 text-sm">
+                <div>
+                  <dt className="text-[11px] font-semibold uppercase tracking-widest text-forest-500">Basis</dt>
+                  <dd className="mt-1 leading-relaxed text-forest-700">{f.basis}</dd>
+                </div>
+                <div>
+                  <dt className="text-[11px] font-semibold uppercase tracking-widest text-forest-500">Limits</dt>
+                  <dd className="mt-1 leading-relaxed text-forest-700">{f.caveat}</dd>
+                </div>
+              </dl>
+              <Link href={f.href} className="mt-auto inline-flex min-h-11 items-center pt-4 text-sm font-semibold text-charge-700 hover:underline">
+                {f.link} ›
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-10">
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-forest-500">Also published on the site</p>
+          <ul className="mt-3 divide-y divide-border overflow-hidden rounded-2xl bg-white ring-1 ring-border">
+            {reportingPublished.map((r) => (
+              <li key={r.id}>
+                <Link href={r.href} className="group grid gap-1 px-5 py-3.5 sm:grid-cols-[16rem_minmax(0,1fr)_auto] sm:items-center sm:gap-6">
+                  <span className="font-semibold text-forest-950 group-hover:text-charge-700">{r.title}</span>
+                  <span className="text-sm text-forest-600">{r.detail}</span>
+                  <span aria-hidden className="hidden text-forest-300 group-hover:text-charge-600 sm:block">
+                    ›
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </InteriorSection>
+
+      <InteriorSection id="goals" eyebrow={page.goalsSection.eyebrow} title={page.goalsSection.title} lead={page.goalsSection.lead}>
+        <ol className="divide-y divide-border border-y border-border">
+          {sustainabilityGoalsOrdered.map((g) => (
+            <li key={g.id} className="grid gap-4 py-6 md:grid-cols-[3rem_minmax(0,1fr)_minmax(0,1fr)_9rem] md:gap-6">
+              <span className="font-mono text-sm text-forest-400">{g.id.padStart(2, "0")}</span>
+              <div className="min-w-0">
+                <p className="text-[11px] font-semibold uppercase tracking-widest text-forest-500">{g.theme}</p>
+                <h3 className="mt-1 font-display text-lg font-semibold tracking-tight text-forest-950">{g.shortName}</h3>
+                <p className="mt-2 flex flex-wrap items-center gap-2 text-sm text-forest-700">
+                  <EvidenceTag kind="target" />
+                  <span>
+                    {g.target}, by {g.by}.
+                  </span>
+                </p>
+              </div>
+              <div className="min-w-0 rounded-xl bg-[#f6f7f8] p-4 text-sm ring-1 ring-border md:bg-transparent md:p-0 md:ring-0">
+                <p className="text-[11px] font-semibold uppercase tracking-widest text-forest-500">Today</p>
+                <p className="mt-1 leading-relaxed text-forest-700">{g.today}</p>
+              </div>
+              <p className={`text-sm font-semibold md:text-right ${progressStyle[g.progress]}`}>
+                <span className="sr-only">Status: </span>
+                {goalProgressLabel[g.progress]}
+              </p>
+            </li>
+          ))}
+        </ol>
+
+        <div className="mt-10 grid gap-6 overflow-hidden rounded-[1.75rem] bg-forest-950 p-6 text-white sm:p-9 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center lg:gap-12">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-brand-300">{page.ambition.title}</p>
+            <p className="heading-display heading-inverted mt-3 text-4xl sm:text-5xl">{page.ambition.value}</p>
+            <p className="mt-2 text-sm text-white/65">Electric kilometres replacing fossil-fuel kilometres, by 2050</p>
+          </div>
+          <div>
+            <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-white/10 ring-1 ring-white/10">
+              <div className="bg-forest-950 p-4">
+                <dt className="text-[11px] uppercase tracking-widest text-white/55">Status</dt>
+                <dd className="mt-1 font-semibold">Target</dd>
+              </div>
+              <div className="bg-forest-950 p-4">
+                <dt className="text-[11px] uppercase tracking-widest text-white/55">Running total</dt>
+                <dd className="mt-1 font-semibold">Not reported</dd>
+              </div>
+            </dl>
+            <p className="mt-4 text-sm leading-relaxed text-white/72">{page.ambition.text}</p>
+          </div>
+        </div>
+      </InteriorSection>
+
+      <InteriorSection id="methods" tone="silver" eyebrow={page.methodsSection.eyebrow} title={page.methodsSection.title} lead={page.methodsSection.lead}>
+        <div className="overflow-hidden rounded-2xl bg-white ring-1 ring-border">
+          <div className="hidden grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)_minmax(0,1.2fr)_9rem] gap-6 border-b border-border bg-[#fbfbfc] px-5 py-3 text-[11px] font-semibold uppercase tracking-widest text-forest-500 lg:grid">
+            <span>Future figure</span>
+            <span>What it will measure</span>
+            <span>Needed first</span>
+            <span>Status</span>
+          </div>
+          <ul className="divide-y divide-border">
+            {pendingMeasures.map((m) => (
+              <li key={m.id} className="grid gap-2 px-5 py-4 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)_minmax(0,1.2fr)_9rem] lg:items-start lg:gap-6">
+                <p className="font-semibold text-forest-950">{m.title}</p>
+                <p className="text-sm leading-relaxed text-forest-700">{m.measure}</p>
+                <p className="text-sm leading-relaxed text-forest-700">
+                  <span className="font-semibold text-forest-900 lg:hidden">Needed first: </span>
+                  {m.prerequisite}
+                </p>
+                <p>
+                  <EvidenceTag kind="pending" />
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </InteriorSection>
+
+      <InteriorSection id="batteries" eyebrow={page.batteriesSection.eyebrow} title={page.batteriesSection.title} lead={page.batteriesSection.lead}>
+        <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-6 lg:gap-0">
+          {circularitySteps.map((s, i) => (
+            <li key={s.step} className="relative flex flex-col rounded-2xl bg-[#f6f7f8] p-4 ring-1 ring-border lg:rounded-none lg:bg-transparent lg:p-0 lg:pr-5 lg:ring-0">
+              <div aria-hidden className="mb-4 hidden items-center lg:flex">
+                <span className={`h-3 w-3 shrink-0 rounded-full ${s.kind === "target" ? "border-2 border-forest-950 bg-white" : "bg-charge-600"}`} />
+                {i < circularitySteps.length - 1 ? <span className={`h-px flex-1 ${s.kind === "target" ? "border-t border-dashed border-forest-300" : "bg-forest-300"}`} /> : null}
+              </div>
+              <p className="font-mono text-[11px] text-forest-500">{s.step}</p>
+              <h3 className="mt-1 text-base font-semibold text-forest-950">{s.title}</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-forest-600">{s.text}</p>
+              <p className="mt-3">{s.kind === "target" ? <EvidenceTag kind="target" /> : <span className="text-xs font-medium text-forest-500">Service practice</span>}</p>
+            </li>
+          ))}
+        </ol>
+        <div className="mt-8 max-w-3xl">
+          <CalloutNote title="Why the last two steps are targets">
+            Collection and recycling need a contracted partner in Kenya. None is signed yet, so these steps are shown as 2030 targets, not as a working service.
+          </CalloutNote>
+        </div>
+      </InteriorSection>
+
+      <InteriorSection id="people" tone="silver" eyebrow={page.peopleSection.eyebrow} title={page.peopleSection.title} lead={page.peopleSection.lead}>
+        <ul className="grid gap-px overflow-hidden rounded-2xl bg-border ring-1 ring-border sm:grid-cols-2 lg:grid-cols-3">
+          {peopleRows.map((p) => (
+            <li key={p.who} className="flex flex-col bg-white p-5 sm:p-6">
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-forest-500">{p.who}</p>
+              <h3 className="mt-2 text-base font-semibold text-forest-950">{p.benefit}</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-forest-600">{p.text}</p>
+              {"href" in p ? (
+                <Link href={p.href} className="mt-auto inline-flex min-h-11 items-center pt-3 text-sm font-semibold text-charge-700 hover:underline">
+                  {p.link} ›
+                </Link>
+              ) : null}
+            </li>
+          ))}
+        </ul>
+        <p className="mt-8 max-w-3xl text-sm leading-relaxed text-forest-600">{page.sdgNote}</p>
+      </InteriorSection>
     </>
   );
 }

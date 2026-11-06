@@ -38,9 +38,9 @@ export const trainingHeroImage = {
 
 export const trainingIntro = {
   eyebrow: trainingNavLabel,
-  title: "EV charging training — T1, T2 and T3",
+  title: "EV charging training: T1, T2 and T3",
   description:
-    "Certification for hub staff, installers and field engineers on the chargers Precifarm deploys in Kenya.",
+    "Precifarm certificates for site staff, installers and field engineers on the chargers Precifarm installs in Kenya.",
   lead:
     "Three tiers in sequence: site safety (T1), routine maintenance (T2), then commissioning and diagnostics (T3). Mapped to Pulse, Pulse+, Boda Hub and Corridor, not generic classroom theory.",
   whoShouldAttend: [
@@ -58,17 +58,17 @@ export const trainingTiers: TrainingTier[] = [
     title: "Awareness & site safety",
     subtitle: "Entry level",
     duration: "1 day",
-    format: "Classroom (4 hrs) + guided hub walkthrough (4 hrs)",
+    format: "Classroom (4 hours) and a guided site walkthrough (4 hours)",
     audience: "Hub staff, drivers, site hosts, partner front-line teams",
     summary:
-      "Understand EV charging fundamentals, high-voltage safety and Precifarm hub protocols before working near energized equipment or public bays.",
-    assessment: "Written safety quiz + observed hub walkthrough checklist",
-    certificate: "Precifarm T1 — EV charging site safety (valid 24 months)",
+      "Understand EV charging fundamentals, high-voltage safety and Precifarm site protocols before working near energised equipment or public bays.",
+    assessment: "Written safety quiz and an observed site walkthrough checklist",
+    certificate: "Precifarm T1: EV charging site safety (valid 24 months)",
     canDoAfter:
-      "Work safely near chargers, support drivers during a session, report faults and follow emergency procedures — without opening enclosures or performing live repairs.",
+      "Work safely near chargers, support drivers during a session, report faults and follow emergency procedures, without opening enclosures or performing live repairs.",
     outcomes: [
       "Identify DC charger components, CCS2 connectors and isolation points",
-      "Follow lock-out / tag-out and emergency stop procedures",
+      "Follow lock-out, tag-out and emergency stop procedures",
       "Escalate faults correctly without attempting live repairs",
       "Keep drivers and site users clear of live bays during charging windows",
     ],
@@ -85,25 +85,25 @@ export const trainingTiers: TrainingTier[] = [
     title: "Field technician",
     subtitle: "Intermediate",
     duration: "3 days",
-    format: "2 days classroom + 1 day supervised field work on a live hub",
-    audience: "Hub operators, maintenance staff, partner technicians",
+    format: "2 days classroom and 1 day of supervised field work at an installation site",
+    audience: "Site operators, maintenance staff, partner technicians",
     summary:
-      "Perform routine inspection, cleaning, connector care and first-line fault recovery on Precifarm DC chargers — with remote support from our engineering team.",
-    assessment: "Practical fault-drill assessment + CSMS log review",
-    certificate: "Precifarm T2 — EV charging field technician (annual refresher required)",
+      "Perform routine inspection, cleaning, connector care and first-line fault recovery on Precifarm chargers, with remote support from our engineering team.",
+    assessment: "Practical fault-drill assessment and a CSMS log review",
+    certificate: "Precifarm T2: EV charging field technician (annual refresher required)",
     canDoAfter:
-      "Run daily hub checks, resolve common first-line faults, reset sessions and coordinate spares with Precifarm NOC — within defined SLA boundaries.",
+      "Run daily site checks, resolve common first-line faults, reset sessions and coordinate spares with Precifarm engineering, within defined service limits.",
     outcomes: [
       "Run daily pre-session checks and post-session logs",
       "Handle common CCS2 cable, contactor and cooling faults",
       "Read charger status, session data and OCPP alerts in the CSMS",
-      "Coordinate spare parts and SLA response with Precifarm NOC",
+      "Coordinate spare parts and service response with Precifarm engineering",
     ],
     modules: [
-      "DC fast charging operation (IEC 61851 / CCS2)",
+      "DC fast charging operation (IEC 61851, CCS2)",
       "Preventive maintenance schedules and thermal inspection",
       "OCPP monitoring, session troubleshooting and reset procedures",
-      "Solar + storage awareness at route hubs (read-only interfaces)",
+      "Solar and storage awareness at route sites (read-only interfaces)",
     ],
   },
   {
@@ -112,14 +112,14 @@ export const trainingTiers: TrainingTier[] = [
     title: "Specialist & commissioning",
     subtitle: "Advanced",
     duration: "5 days",
-    format: "2 days classroom + 1 day lab + 2 days live hub commissioning module",
+    format: "2 days classroom, 1 day lab and 2 days of supervised commissioning",
     audience: "Lead engineers, commissioning teams, authorised partner specialists",
     summary:
-      "Commission, acceptance-test and maintain Precifarm charging infrastructure — including load management, BESS integration and advanced diagnostics on route hubs.",
-    assessment: "Commissioning checklist sign-off + supervised acceptance test on live hardware",
-    certificate: "Precifarm T3 — EV charging specialist (annual refresher + authorisation renewal)",
+      "Commission, acceptance-test and maintain Precifarm charging infrastructure, including load management, BESS integration and advanced diagnostics at route sites.",
+    assessment: "Commissioning checklist sign-off and a supervised acceptance test on energised hardware",
+    certificate: "Precifarm T3: EV charging specialist (annual refresher and authorisation renewal)",
     canDoAfter:
-      "Lead commissioning, configure CSMS reservations and load sharing, diagnose module-level faults and sign off hub handover documentation.",
+      "Lead commissioning, configure CSMS reservations and load sharing, diagnose module-level faults and sign off site handover documentation.",
     outcomes: [
       "Execute charger acceptance tests against Precifarm checklists",
       "Configure power sharing, reservations and fleet windows in CSMS",
@@ -127,7 +127,7 @@ export const trainingTiers: TrainingTier[] = [
       "Document handover, warranty evidence and ten-year spares planning",
     ],
     modules: [
-      "Electrical isolation, earthing and Kenya grid / EPRA compliance context",
+      "Electrical isolation, earthing, and the Kenya grid and EPRA compliance context",
       "Commissioning: 400 V and 800 V vehicle envelope validation",
       "BESS, dynamic load management and hub power architecture",
       "Cybersecurity basics, OTA updates and audit-ready maintenance records",
@@ -155,12 +155,12 @@ export const trainingProgression = [
   {
     from: "T1",
     to: "T2",
-    requirement: "Valid T1 certificate + electrical trade background or 12 months hub operations experience.",
+    requirement: "Valid T1 certificate, plus an electrical trade background or 12 months of site operations experience.",
   },
   {
     from: "T2",
     to: "T3",
-    requirement: "Valid T2 certificate + licensed electrical qualification + written authorisation from Precifarm engineering.",
+    requirement: "Valid T2 certificate, a licensed electrical qualification and written authorisation from Precifarm engineering.",
   },
 ] as const;
 
@@ -169,12 +169,12 @@ export const evChargingTracks: EvChargingTrack[] = [
     id: "route-hub",
     title: "Highway charging",
     description:
-      "ARC Corridor at highway sites — CCS2 DC, live status and M-Pesa session pay on commissioned forecourts.",
+      "ARC Corridor at highway sites: CCS2 DC, site status and M-Pesa session pay.",
     tiers: ["t1", "t2", "t3"],
-    roles: "Hub operators, route engineers, partner depot leads",
+    roles: "Site operators, route engineers, partner depot leads",
     topics: [
       "ARC Corridor sessions and load sharing",
-      "Live status and M-Pesa session pay",
+      "Site status and M-Pesa session pay",
       "Uptime targets and honest recovery",
     ],
   },
@@ -187,7 +187,7 @@ export const evChargingTracks: EvChargingTrack[] = [
     roles: "Install engineers, survey teams, warranty service technicians",
     topics: [
       "Site survey, earthing and consumer protection",
-      "Wallbox / DC unit installation and customer handover",
+      "Wallbox installation and customer handover",
       "Remote monitoring and warranty service visits",
     ],
   },
@@ -208,7 +208,7 @@ export const evChargingTracks: EvChargingTrack[] = [
     id: "fleet",
     title: "Boda Hub & last-mile",
     description:
-      "Battery swap for electric bodas at partner-run sites, under 5 minutes back on the road.",
+      "Battery swap for electric bodas at partner-run sites, designed for a swap in under 5 minutes.",
     tiers: ["t1", "t2"],
     roles: "Boda operators, depot supervisors, last-mile partners",
     topics: [
@@ -219,7 +219,7 @@ export const evChargingTracks: EvChargingTrack[] = [
   },
 ];
 
-export type TrackTierLevel = "Required" | "Recommended" | "—";
+export type TrackTierLevel = "Required" | "Recommended" | "Not required";
 
 export const trainingTrackMatrix: {
   track: string;
@@ -237,14 +237,14 @@ export const trainingTrackMatrix: {
   },
   {
     track: "Home charging",
-    t1: "—",
+    t1: "Not required",
     t2: "Required",
     t3: "Recommended",
     note: "T3 for lead installers and Pulse commissioning",
   },
   {
     track: "Fleet charging",
-    t1: "—",
+    t1: "Not required",
     t2: "Required",
     t3: "Recommended",
     note: "T3 for Pulse+ sites with shared load management",
@@ -253,17 +253,17 @@ export const trainingTrackMatrix: {
     track: "Boda Hub & last-mile",
     t1: "Required",
     t2: "Required",
-    t3: "—",
+    t3: "Not required",
     note: "T1 for bay staff; T2 for swap-cabinet maintenance leads",
   },
 ];
 
 export const trainingDeliveryDetails = [
-  { item: "Classroom venue", detail: "Nairobi — Precifarm training facility" },
-  { item: "Field modules", detail: "Precifarm installation sites" },
-  { item: "Cohort size", detail: "6–16 participants per intake (partner cohorts on request)" },
+  { item: "Classroom venue", detail: "Nairobi" },
+  { item: "Field modules", detail: "Precifarm installation sites, where available" },
+  { item: "Cohort size", detail: "6 to 16 participants per intake (partner cohorts on request)" },
   { item: "Language", detail: "English (Kiswahili support materials on request)" },
-  { item: "Equipment", detail: "Same DC charger models and CSMS used on deployed hubs" },
+  { item: "Equipment", detail: "The charger models and CSMS Precifarm installs" },
   { item: "Certificate issue", detail: "Within 5 business days of passing assessment" },
   { item: "Refresher", detail: "Annual for T2 and T3; T1 valid 24 months" },
   { item: "Partner cohorts", detail: "Custom dates for operators, site hosts and OEM teams" },
@@ -288,7 +288,7 @@ export const trainingDelivery = [
   "Classes run in Nairobi with field modules at Precifarm installation sites.",
   "Partner cohorts available on request for operators and site hosts.",
   "Certificates issued per tier with annual refresher for T2 and T3.",
-  "Training content aligned to chargers and CSMS deployed on Precifarm hubs.",
+  "Training content aligned to the chargers and CSMS Precifarm installs.",
 ] as const;
 
 export function getTrainingTier(id: TrainingTierId): TrainingTier | undefined {
@@ -296,7 +296,7 @@ export function getTrainingTier(id: TrainingTierId): TrainingTier | undefined {
 }
 
 export function trainingEnquiryMailto(): string {
-  const subject = encodeURIComponent("Training cohort enquiry — Precifarm EV charging");
+  const subject = encodeURIComponent("Training cohort enquiry: Precifarm EV charging");
   const body = encodeURIComponent(
     [
       "Hello Precifarm training team,",

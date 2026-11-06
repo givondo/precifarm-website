@@ -1,140 +1,59 @@
-/** Training page — structured copy and tables (data lives in lib/training.ts) */
+/** Training page copy. Tier, track and delivery data live in lib/training.ts. */
 
-import { productImages } from "@/lib/product-images";
-import {
-  evChargingTracks,
-  trainingDeliveryDetails,
-  trainingIntro,
-  trainingNavLabel,
-  trainingProgression,
-  trainingTiers,
-  trainingTrackMatrix,
-} from "@/lib/training";
+import { trainingNavLabel } from "@/lib/training";
 
 export const trainingPage = {
   hero: {
     eyebrow: trainingNavLabel,
-    title: "EV charging training — T1, T2 and T3.",
+    title: "EV charging training in three tiers: T1, T2 and T3.",
     description:
-      "Certify hub staff, installers and field engineers on the Pulse charger, Pulse+, Boda Hub and Corridor: Nairobi classroom and field modules.",
+      "Precifarm certificates for site staff, installers and field engineers on the Pulse charger, Pulse+, Boda Hub and Corridor: Nairobi classroom and supervised field modules.",
     primaryLabel: "Enquire about a cohort",
-    secondaryLabel: "Engineering design basis",
-    secondaryHref: "/charging/engineering",
-    meta: "Nairobi classroom · corridor field modules · certificates within 5 business days",
   },
-  stats: [
-    { stat: "T1 → T3", label: "Site safety, field technician, then commissioning specialist" },
-    { stat: "1–5 days", label: "Per tier — classroom plus supervised field work" },
-    { stat: "6–16", label: "Participants per cohort · partner intakes on request" },
-    { stat: "5 days", label: "Certificate issued within five business days of passing" },
+  facts: [
+    { value: "T1, T2, T3", label: "Taken in sequence" },
+    { value: "1 to 5 days", label: "Per tier" },
+    { value: "6 to 16", label: "People per cohort" },
+    { value: "5 business days", label: "To certificate after passing" },
   ],
-  who: {
-    eyebrow: "Who it is for",
-    title: "Operators, installers and engineers on Precifarm hardware",
-    description: trainingIntro.lead,
-    audience: trainingIntro.whoShouldAttend,
+  qualification: {
+    title: "What the certificate is, and is not",
+    text: "Certificates are issued by Precifarm and cover work on the equipment Precifarm installs. They are not a government licence or an accredited national qualification, and they do not replace the licensed electrical qualification that T3 already requires.",
   },
-  explore: [
+  nav: [
+    { href: "#ladder", label: "Tiers" },
     { href: "#t1", label: "T1" },
     { href: "#t2", label: "T2" },
     { href: "#t3", label: "T3" },
     { href: "#tracks", label: "Product tracks" },
+    { href: "#delivery", label: "Delivery" },
     { href: "#enrol", label: "Enrol" },
+    { href: "#faq", label: "FAQ" },
   ] as const,
-  why: {
-    eyebrow: "Why Precifarm training",
-    title: "Real hardware. Real hubs. Not generic EV theory.",
-    cards: [
-      {
-        title: "Same kit you operate",
-        text: "Courseware follows Pulse, Pulse+, Boda Hub and Corridor: the equipment Precifarm installs and operates in Kenya, not a generic OEM slide deck.",
-      },
-      {
-        title: "Field modules on route",
-        text: "T2 and T3 include supervised work at installation sites, with CSMS, M-Pesa sessions and fault drills included.",
-      },
-      {
-        title: "Clear scope of work",
-        text: "Each certificate states what the holder may do — from safe bay support at T1 to commissioning sign-off at T3 — so partners know who can open an enclosure.",
-      },
-    ],
-  },
-  tiers: {
+  ladder: {
     eyebrow: "Certification ladder",
-    title: "Three tiers in sequence.",
-    description:
-      "Start at T1 unless engineering approves equivalence. T2 requires electrical trade or hub experience; T3 requires licensed electrical qualification and authorisation.",
-    accent: {
-      t1: "border-l-charge-500 bg-charge-50/50",
-      t2: "border-l-forest-700 bg-muted/40",
-      t3: "border-l-forest-900 bg-forest-50/80",
-    } as const,
-  },
-  comparison: {
-    eyebrow: "At a glance",
-    title: "Compare tiers.",
-    columns: ["Tier", "Duration", "Format", "Typical roles", "Certificate"] as const,
-    caption: "Annual refresher for T2 and T3; T1 valid 24 months.",
-  },
-  curriculum: {
-    eyebrow: "Curriculum",
-    title: "Modules and assessed outcomes.",
-    description: "Every tier ends with a written or practical assessment before the certificate is issued.",
-    columns: ["Tier", "Modules", "You can after passing"] as const,
+    title: "Three tiers, each with a clear scope of work.",
+    lead: "Start at T1 unless Precifarm engineering approves equivalence. Each certificate states what the holder may do, so partners know who can open an enclosure.",
   },
   tracks: {
     eyebrow: "Product tracks",
-    title: "Which tier for which charger?",
-    description: "Plan a cohort by the hardware your team will run day to day.",
-    matrixColumns: ["Track", "T1", "T2", "T3", "Guidance"] as const,
-    products: [
-      { id: "corridor", ...productImages.corridor, label: "Corridor · highway DC" },
-      { id: "pulse", ...productImages.pulse, label: "Pulse · home 7 kW" },
-      { id: "pulsePlus", ...productImages.pulsePlus, label: "Pulse+ · fleet 22 kW" },
-      { id: "boda", ...productImages.boda, label: "Boda Hub · swap" },
-    ] as const,
-    trackCards: evChargingTracks.map((track) => ({
-      id: track.id,
-      title: track.title,
-      description: track.description,
-      roles: track.roles,
-      tiers: track.tiers.map((id) => trainingTiers.find((t) => t.id === id)?.code ?? id.toUpperCase()),
-      topics: track.topics,
-    })),
-  },
-  progression: {
-    eyebrow: "Progression",
-    title: "Moving between tiers.",
-    columns: ["From", "To", "Requirement"] as const,
+    title: "Which tiers each product needs.",
+    lead: "Plan a cohort by the hardware your team will work on day to day.",
   },
   delivery: {
     eyebrow: "Delivery",
     title: "How cohorts run.",
-    columns: ["Item", "Detail"] as const,
   },
   enrol: {
     eyebrow: "Enrol",
     title: "Book a cohort.",
-    description: "Email team size, current tier and tracks needed. We confirm within one business day.",
+    lead: "Email us your team size, current tier and the tracks you need. We reply within one business day.",
     checklist: [
       "Organisation name and number of participants",
       "Current tier (T1, T2, T3 or none)",
       "Tracks: home, fleet, highway or boda",
-      "Preferred month and contact phone",
+      "Preferred month and a contact phone",
     ],
-    panelTitle: "Training enquiries",
-  },
-  faqs: {
-    eyebrow: "Common questions",
-    title: "Training FAQ.",
-    description: "Certification scope, prerequisites and refresher policy.",
-  },
-  cta: {
-    title: "Need engineers certified before go-live?",
-    description: "Tell us your site type and team size — we schedule classroom and field modules around your commissioning window.",
-    primaryLabel: "Enquire about training",
-    secondaryLabel: "Contact sales",
-    secondaryHref: "/contact",
   },
 } as const;
 
@@ -143,25 +62,31 @@ export const trainingPageFaqs = [
     id: "who-for",
     question: "Who should attend Precifarm EV charging training?",
     answer:
-      "Hub operators and site hosts (T1), installation crews and maintenance leads for Pulse and Pulse+ (T2), and commissioning engineers authorised to sign off Corridor and depot handover (T3). Fleet managers often send bay staff at T1 plus one T2 lead per site.",
+      "Site operators and hosts (T1), installation crews and maintenance leads for Pulse and Pulse+ (T2), and commissioning engineers authorised to sign off Corridor and depot handover (T3). Fleet managers often send bay staff at T1 plus one T2 lead per site.",
   },
   {
     id: "prerequisites",
     question: "Do I need prior EV experience for T1?",
     answer:
-      "No. T1 is open enrolment with basic workplace safety awareness recommended. T2 requires a valid T1 certificate plus electrical trade background or 12 months hub operations. T3 requires T2, a licensed electrical qualification and written authorisation from Precifarm engineering.",
+      "No. T1 is open enrolment, with basic workplace safety awareness recommended. T2 requires a valid T1 certificate plus an electrical trade background or 12 months of site operations. T3 requires T2, a licensed electrical qualification and written authorisation from Precifarm engineering.",
+  },
+  {
+    id: "accreditation",
+    question: "Is the certificate a licence or a national qualification?",
+    answer:
+      "No. It is a Precifarm certificate for work on the equipment Precifarm installs. It does not replace an electrical licence, which T3 candidates must already hold.",
   },
   {
     id: "hardware",
     question: "Is training aligned to Precifarm chargers only?",
     answer:
-      "Yes. Modules reference Pulse, Pulse+, Boda Hub and Corridor hardware, Precifarm CSMS and M-Pesa session flows, not generic classroom simulators.",
+      "Yes. Modules reference Pulse, Pulse+, Boda Hub and Corridor hardware, the Precifarm CSMS and M-Pesa session flows, not generic classroom simulators.",
   },
   {
     id: "refresher",
     question: "How long is each certificate valid?",
     answer:
-      "T1 is valid 24 months. T2 and T3 require annual refresher and, for T3, authorisation renewal. Certificates are issued within five business days of passing assessment.",
+      "T1 is valid for 24 months. T2 and T3 need an annual refresher and, for T3, authorisation renewal. Certificates are issued within five business days of passing the assessment.",
   },
   {
     id: "partner-cohorts",
@@ -170,33 +95,3 @@ export const trainingPageFaqs = [
       "Yes. Partner cohorts of 6 to 16 participants can be scheduled on request with custom dates. Field modules use Precifarm installation sites where available.",
   },
 ] as const;
-
-export function trainingComparisonRows() {
-  return trainingTiers.map((tier) => [
-    `${tier.code} — ${tier.title}`,
-    tier.duration,
-    tier.format,
-    tier.audience,
-    tier.certificate,
-  ]);
-}
-
-export function trainingCurriculumRows() {
-  return trainingTiers.map((tier) => [
-    `${tier.code} (${tier.duration})`,
-    tier.modules.join(" · "),
-    tier.canDoAfter,
-  ]);
-}
-
-export function trainingTrackMatrixRows() {
-  return trainingTrackMatrix.map((row) => [row.track, row.t1, row.t2, row.t3, row.note]);
-}
-
-export function trainingProgressionRows() {
-  return trainingProgression.map((row) => [row.from, row.to, row.requirement]);
-}
-
-export function trainingDeliveryRows() {
-  return trainingDeliveryDetails.map((row) => [row.item, row.detail]);
-}

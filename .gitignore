@@ -83,3 +83,6 @@ next-env.d.ts
 # playwright
 /test-results/
 /playwright-report/
+
+# Local agent worktrees and settings
+.claude/

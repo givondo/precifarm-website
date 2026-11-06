@@ -1,5 +1,3 @@
-import { productImages } from "@/lib/product-images";
-import { sitePricing } from "@/lib/site-copy";
 
 /** Canonical public name and path for the Charging Hub */
 export const chargingHub = {
@@ -9,128 +7,69 @@ export const chargingHub = {
   openLabel: "Open Charging Hub",
   nameLower: "charging hub",
   description:
-    "Charging Hub maps planned Precifarm Corridor locations, boda battery swap sites and partner stops across Kenya, with M-Pesa pay at the bay.",
+    "Charging Hub finds planned ARC Corridor DC charging and Boda Hub battery swap sites in Kenya, with the stage and connector of each. No site is operating yet.",
   url: "https://precifarm.com/hub",
 } as const;
 
 export const chargingHubPage = {
   hero: {
-    eyebrow: "Kenya · charging map",
-    title: "Highway DC, boda swap and partner stops along your route",
-    description:
-      "Browse free on the web. See where Precifarm Corridor and Boda Hub sites are planned, check partner stops and plug types, and get directions in one tap.",
-    image: {
-      src: productImages.corridor.src,
-      alt: "Precifarm Charging Hub: highway DC, boda battery swap and partner charging stops across Kenya",
-    },
-    stopImages: [
-      {
-        src: productImages.corridor.src,
-        alt: productImages.corridor.alt,
-        label: "Highway DC",
-      },
-      {
-        src: productImages.bodaStudio.src,
-        alt: productImages.bodaStudio.alt,
-        label: "Boda swap",
-      },
-      {
-        src: productImages.pulsePlus.src,
-        alt: "Precifarm Pulse+ 22 kW AC wallbox for fleet and partner sites",
-        label: "Partner & fleet",
-      },
-    ] as const,
-    primaryHref: "/download",
-    primaryLabel: "Get Precifarm Agent",
-    secondaryHref: "/contact",
-    secondaryLabel: "Host a charger",
+    eyebrow: "Kenya · Station finder",
+    title: "Charging Hub",
+    lead:
+      "Find planned ARC Corridor and Boda Hub sites, check each site's connector and stage, and open its location in Maps. No site is operating yet, so the finder shows no live availability and no prices.",
   },
-  stats: [
-    { value: sitePricing.publicDcPrice, label: "Public fast charge price" },
-    { value: "Under 5 min", label: "Boda battery swap" },
-    { value: "M-Pesa", label: "Pay before you charge" },
-  ],
-  highlights: {
-    eyebrow: "What you get",
-    title: "A charging list you can trust",
-    items: [
-      {
-        id: "honest",
-        title: "Know before you go",
-        text: "Each site shows what it offers and where it sits on your route.",
-      },
-      {
-        id: "pick",
-        title: "Pick what you need",
-        text: "Fast highway charge, boda battery swap, or a charger at a shop you already visit.",
-      },
-      {
-        id: "price",
-        title: "Price before you pay",
-        text: "Session cost appears in the app before you enter your M-Pesa PIN.",
-      },
-      {
-        id: "maps",
-        title: "Directions in one tap",
-        text: "Open Google Maps from any site and see what plug it has before you drive.",
-      },
+  finderTitle: "Find a site",
+  legend: {
+    eyebrow: "Reading the finder",
+    title: "Every site carries its stage",
+    stages: [
+      { kind: "available" as const, label: "Operating", text: "Commissioned and open to drivers or riders, with its price shown before you start. No site is at this stage yet." },
+      { kind: "planned" as const, label: "Planned", text: "A location Precifarm is planning. Shown so you can see where the network is going, not where to charge today." },
+      { kind: "partner-site" as const, label: "Partner site", text: "Run by a site partner, not by Precifarm. Listed only once the partnership is confirmed." },
     ],
+    availability:
+      "Free and busy bays are not shown. When a site is commissioned it will be labelled operating, with its connector and its price per kWh or per swap.",
   },
   siteTypes: {
-    eyebrow: "Where you can charge",
+    eyebrow: "What you will find",
     title: "Three kinds of stop",
-    types: [
+    rows: [
       {
-        id: "highway",
-        title: "Highway fast charge",
-        stat: "~60 kWh in 30 min",
-        detail: "Fast top-up on major routes. Price per kWh shown before you start; pay on M-Pesa.",
-        imageKey: "corridor" as const,
-        status: "pilot" as const,
+        id: "corridor",
+        name: "ARC Corridor DC",
+        what: "DC fast charging for cars on highways and in towns",
+        connector: "CCS2, on a certified OEM charger",
+        pay: "Price per kWh shown before you start; paid with M-Pesa",
+        stage: "pilot" as const,
+        href: "/charging/corridor",
       },
       {
-        id: "boda",
-        title: "Boda battery swap",
-        stat: "Under 5 min",
-        detail: "Drop a flat pack and pick up a charged one at partner-run swap sites.",
-        imageKey: "boda" as const,
-        status: "pilot" as const,
+        id: "swap",
+        name: "Boda Hub swap",
+        what: "Battery swapping for electric motorcycles",
+        connector: "One battery make per site",
+        pay: "M-Pesa at the cabinet screen; price shown before you confirm",
+        stage: "development" as const,
+        href: "/charging/boda-hub",
       },
       {
         id: "partner",
-        title: "Partner chargers",
-        stat: "Shops & malls",
-        detail: "Chargers at fuel stations, malls and retail stops along routes you already drive.",
-        imageKey: "depot" as const,
-        status: "available" as const,
+        name: "Partner stops",
+        what: "Chargers at fuel stations, malls and retail stops, run by the site partner",
+        connector: "Listed per site once confirmed",
+        pay: "Set by the partner",
+        stage: "planned" as const,
+        href: "/partners",
       },
     ],
   },
-  steps: {
-    eyebrow: "How it works",
-    title: "Three steps to your next charge",
-    description: "Browse free on the web. Use Precifarm Agent for engineering and project work.",
-    items: [
-      {
-        step: "1",
-        title: "Open Charging Hub",
-        text: "Use precifarm.com/hub in your browser to browse sites along your route.",
-      },
-      {
-        step: "2",
-        title: "Pick a site",
-        text: "Choose fast charge, boda swap or partner. Check the plug type and what the site offers.",
-      },
-      {
-        step: "3",
-        title: "Go and pay",
-        text: "Get directions in Maps, then start the session and pay with M-Pesa.",
-      },
+  hosts: {
+    eyebrow: "Put your site on the map",
+    title: "Have land on a busy route or a boda stage?",
+    options: [
+      { title: "Host an ARC Corridor site", text: "Fuel stations, malls and roadside stops. Starts with a free survey and a Kenya Power study.", href: "/contact?interest=corridor" },
+      { title: "Host a Boda Hub", text: "Stages, shops, forecourts and depots where riders already stop.", href: "/contact?interest=boda-hub" },
     ],
-    appHref: "/download",
-    appLabel: "Desktop download",
-    guideHref: "/guides",
-    guideLabel: "Guides",
   },
   siteSelection: {
     eyebrow: "Site selection",
@@ -160,20 +99,31 @@ export const chargingHubPage = {
       },
     ],
   },
-  faq: {
-    title: "Common questions",
-    lead: "Public charging on the Charging Hub. Home Pulse installs are on ",
-    homeHref: "/charging/home",
-    homeLabel: "home charging",
-  },
-  cta: {
-    title: "Ready to charge?",
-    description: "Browse the hub for sites on your route. Want Precifarm Agent on desktop? Request access. Have land for a charger? Talk to us.",
-    primaryHref: "/download",
-    primaryLabel: "Get Precifarm Agent",
-    secondaryHref: "/contact",
-    secondaryLabel: "Host a charger",
-  },
+  faqs: [
+    {
+      question: "What is the Charging Hub?",
+      answer:
+        "A finder for Precifarm's planned ARC Corridor DC charging sites and Boda Hub battery swap sites in Kenya. Each site shows its stage, connector and location. It runs in your browser at precifarm.com/hub.",
+    },
+    {
+      question: "Can I charge at these sites today?",
+      answer:
+        "Not yet. Every site in the finder is planned. The first ARC Corridor site, on the Nairobi to Kisumu route, is being prepared. A site is labelled operating only once it is commissioned.",
+    },
+    {
+      question: "Why are there no prices or free bays?",
+      answer:
+        "Because no site is operating. The price per kWh for each Corridor site is set at commissioning and shown before you start. Live bay status is shown only for sites that are operating.",
+    },
+    {
+      question: "How will I pay?",
+      answer: "With M-Pesa. You see the price before you confirm, at the charger or the cabinet screen, and the receipt goes to your phone.",
+    },
+    {
+      question: "Does the map work on a weak connection?",
+      answer: "Yes. The list view needs no map tiles, so you can filter and read every site without loading the map.",
+    },
+  ],
 } as const;
 
 export const chargingHubSitePhaseStyles = {

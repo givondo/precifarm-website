@@ -31,8 +31,9 @@ test("no published figure is presented as tested without a test record", async (
 
 test("retired products are gone from navigation, footer, product range and LLM summary", async () => {
   const bm = await import("@/lib/brand-messaging");
+  const sn = await import("@/lib/site-nav");
   const hp = await import("@/lib/home-products");
-  const text = JSON.stringify([bm.siteNavGroups, bm.footerNavGroups, bm.footerProducts, bm.homeScenarios, bm.productRangeSection, bm.brand, hp.homeProducts, hp.productNames, hp.flagshipProductDetails]);
+  const text = JSON.stringify([bm.siteNavGroups, sn.footerGroups, bm.homeScenarios, bm.productRangeSection, bm.brand, hp.homeProducts, hp.productNames, hp.flagshipProductDetails]);
   assert.ok(!RETIRED.test(text), `retired product named: ${text.match(RETIRED)?.[0]}`);
   assert.ok(text.includes("Lipa Pole Pole"), "Lipa Pole Pole must stay");
 });

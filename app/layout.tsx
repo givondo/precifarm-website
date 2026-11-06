@@ -3,7 +3,7 @@ import { Geist, Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import "leaflet/dist/leaflet.css";
 import "./globals.css";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import SiteFooter from "@/components/footer/SiteFooter";
 import AnalyticsProvider from "@/components/AnalyticsProvider";
 import JsonLd from "@/components/seo/JsonLd";
 import { siteConfig } from "@/lib/seo/config";
@@ -69,7 +69,7 @@ export default function RootLayout({
         <AnalyticsProvider>
           <Header />
           <main className="relative z-0 flex-1">{children}</main>
-          <Footer />
+          <SiteFooter />
         </AnalyticsProvider>
       </body>
     </html>

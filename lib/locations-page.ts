@@ -1,113 +1,100 @@
-/** Locations index — city and corridor pages */
+/**
+ * /locations and the static fallback for /locations/<city>. City pages must work without the CMS,
+ * and must not describe any Precifarm site as open: no site is commissioned yet (lib/hub-locations.ts).
+ * Partner sites on the map are not named here; their status belongs to the Charging Hub.
+ */
 
+import type { StageKind } from "@/components/interior/StageLabel";
 import { contact } from "@/lib/contact";
+import { chargingHubs, routePhases, type ChargingHub } from "@/lib/hub-locations";
 import type { CmsSeoEntity } from "@/lib/seo/cms-client";
 
 export type LocationRegion = "nairobi-metro" | "western" | "coast" | "rift-eastern";
-
 export type LocationRegionFilter = "all" | LocationRegion;
 
 export const locationsPage = {
   hero: {
     eyebrow: "Locations",
-    title: "EV charging where Kenya drives",
+    title: "EV charging where Kenya drives.",
     description:
-      "City guides for home installs, corridor DC and Boda Hub swap — starting Nairobi, Kisumu and the western route.",
-    primaryHref: "/hub",
-    primaryLabel: "Charging Hub",
-    secondaryHref: "/charging/home",
-    secondaryLabel: "Home charging",
+      "City pages for the places Precifarm works from: what you can order today, and what is planned. Pulse home charging is available now; Corridor and Boda Hub sites are being planned, starting on the Nairobi to Kisumu route.",
   },
   directory: {
     eyebrow: "City pages",
-    title: "Local guides",
-    description: "What Precifarm installs in each city and how to charge with M-Pesa.",
+    title: "Six cities, one honest status line each.",
+    description: "Every city lists what is available today and what is still planned.",
   },
-  corridors: {
-    eyebrow: "Highway context",
-    title: "Cities connect to corridors",
-    description: "Nairobi–Kisumu is live. Mombasa and Garissa follow proven demand — see the Charging Hub for sites.",
-    href: "/hub",
-    label: "View corridor coverage →",
-  },
-  cta: {
-    title: "Not sure which product fits?",
-    description: "Tell us where you drive and park — we will point you to the right charger.",
-    primaryHref: "/contact",
-    primaryLabel: "Contact Precifarm",
-    secondaryHref: "/download",
-    secondaryLabel: "Get Precifarm Agent",
-  },
+
 } as const;
 
 export const locationRegionLabels: Record<LocationRegionFilter, string> = {
   all: "All cities",
   "nairobi-metro": "Nairobi metro",
-  western: "Western corridor",
+  western: "Western route",
   coast: "Coast",
-  "rift-eastern": "Rift & eastern",
+  "rift-eastern": "Rift and eastern",
 };
 
-const cityMeta: Record<
-  string,
-  {
-    region: LocationRegion;
-    services: readonly string[];
-    status: "live" | "next" | "planned";
-    county: string;
-    description: string;
-  }
-> = {
+type CityService = { name: string; stage: StageKind; text: string; href: string };
+
+type CityMeta = {
+  name: string;
+  region: LocationRegion;
+  county: string;
+  /** one line, honest about what is available and what is planned */
+  description: string;
+  /** hub id in lib/hub-locations.ts that marks the city centre */
+  hubId: string;
+  routeNote?: string;
+};
+
+const cityMeta: Record<string, CityMeta> = {
   nairobi: {
+    name: "Nairobi",
     region: "nairobi-metro",
-    services: ["Home", "ARC Corridor", "Boda Hub", "Fleet AC", "Partners"],
-    status: "live",
     county: "Nairobi County",
-    description: "Capital hub — home installs, Boda Hub swap and corridor access west and coast.",
+    hubId: "nairobi",
+    description: "Headquarters. Pulse home surveys today; planned Boda Hub swap sites and the start of the first Corridor route.",
+    routeNote: "Start of the first Corridor route to Kisumu, and of the planned routes to Mombasa and Garissa.",
   },
   kisumu: {
+    name: "Kisumu",
     region: "western",
-    services: ["ARC Corridor", "Boda Hub", "Home"],
-    status: "live",
     county: "Kisumu County",
-    description: "Western terminus on Nairobi–Kisumu — ARC Corridor, Boda Hub and home surveys.",
+    hubId: "kisumu",
+    description: "Western end of the first Corridor route. Pulse home surveys today; Corridor and Boda Hub sites planned.",
+    routeNote: "Western end of the first Corridor route from Nairobi.",
   },
   nakuru: {
+    name: "Nakuru",
     region: "western",
-    services: ["ARC Corridor", "Boda Hub", "Home"],
-    status: "live",
     county: "Nakuru County",
-    description: "En-route stop between Nairobi and Kisumu.",
+    hubId: "nakuru",
+    description: "On the first Corridor route between Nairobi and Kisumu. Pulse home surveys today; Corridor and Boda Hub sites planned.",
+    routeNote: "A planned stop on the first Corridor route, between Nairobi and Kisumu.",
   },
   mombasa: {
+    name: "Mombasa",
     region: "coast",
-    services: ["Home", "ARC Corridor"],
-    status: "next",
     county: "Mombasa County",
-    description: "Coast terminus (next phase) — home charging today; corridor DC follows western proof.",
+    hubId: "mombasa",
+    description: "Coast end of the planned Nairobi to Mombasa route. Pulse home surveys today.",
+    routeNote: "End of the planned Nairobi to Mombasa route, which follows the western route.",
   },
   eldoret: {
+    name: "Eldoret",
     region: "rift-eastern",
-    services: ["Home", "Engineering"],
-    status: "planned",
     county: "Uasin Gishu County",
-    description: "Regional engineering and home charging.",
+    hubId: "eldoret",
+    description: "Regional engineering and Pulse home surveys.",
   },
   kitui: {
+    name: "Kitui",
     region: "rift-eastern",
-    services: ["Home", "Engineering"],
-    status: "planned",
     county: "Kitui County",
-    description: "Eastern Kenya home installs and engineering support.",
+    hubId: "kitui",
+    description: "Eastern Kenya engineering support and Pulse home surveys.",
   },
-};
-
-const defaultMeta = {
-  region: "rift-eastern" as const,
-  services: ["Home"] as const,
-  status: "planned" as const,
-  county: "Kenya",
-  description: "Precifarm home charging and hub expansion across Kenya.",
 };
 
 export type EnrichedLocation = {
@@ -117,74 +104,115 @@ export type EnrichedLocation = {
   county: string;
   href: string;
   region: LocationRegion;
-  services: readonly string[];
-  status: "live" | "next" | "planned";
+  services: readonly CityService[];
 };
 
-export function resolveLocationHref(
-  slug: string,
-  localPageSlugs: ReadonlySet<string>,
-): string {
+function distanceKm(a: { lat: number; lng: number }, b: { lat: number; lng: number }) {
+  const r = 6371;
+  const dLat = ((b.lat - a.lat) * Math.PI) / 180;
+  const dLng = ((b.lng - a.lng) * Math.PI) / 180;
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos((a.lat * Math.PI) / 180) * Math.cos((b.lat * Math.PI) / 180) * Math.sin(dLng / 2) ** 2;
+  return 2 * r * Math.asin(Math.sqrt(h));
+}
+
+/** Precifarm sites on the Charging Hub map within 30 km of the city. All are planned today. */
+export function plannedSitesNear(slug: string): ChargingHub[] {
+  const meta = cityMeta[slug];
+  const centre = meta ? chargingHubs.find((h) => h.id === meta.hubId) : undefined;
+  if (!centre) return [];
+  return chargingHubs.filter((h) => h.operator === "precifarm" && distanceKm(centre, h) <= 30);
+}
+
+export function cityServices(slug: string): CityService[] {
+  const sites = plannedSitesNear(slug);
+  const dc = sites.filter((s) => s.siteKind === "dc" && s.role.includes("Corridor"));
+  const swap = sites.filter((s) => s.siteKind === "swap");
+  const meta = cityMeta[slug];
+  const centre = meta ? chargingHubs.find((h) => h.id === meta.hubId) : undefined;
+  const firstRoute = routePhases.find((r) => r.phase === "next");
+  const onRoute = !!centre && !!firstRoute?.path.some((p) => distanceKm(p, centre) < 5);
+  const services: CityService[] = [
+    { name: "Pulse home charging", stage: "available", text: "Request a survey; an engineer checks your supply, earthing and parking before a quote.", href: "/charging/home" },
+  ];
+  if (dc.length)
+    services.push({
+      name: "ARC Corridor",
+      stage: onRoute ? "pilot" : "planned",
+      text: onRoute ? "A planned Corridor location on the first route. The first site is being prepared." : "A planned Corridor location on a later route.",
+      href: "/charging/corridor",
+    });
+  if (swap.length)
+    services.push({
+      name: "Boda Hub",
+      stage: "planned",
+      text: `${swap.length} planned battery swap ${swap.length === 1 ? "site" : "sites"} on the map. Boda Hub is in development.`,
+      href: "/charging/boda-hub",
+    });
+  services.push({ name: "Fleet and workplace charging", stage: "development", text: "Pulse+ for depots and workplaces. Register a site and we plan it with you.", href: "/charging/pulse-plus" });
+  return services;
+}
+
+export function resolveLocationHref(slug: string, localPageSlugs: ReadonlySet<string>): string {
   const localSlug = `ev-charging-${slug}`;
   return localPageSlugs.has(localSlug) ? `/locations/${localSlug}` : `/locations/${slug}`;
 }
 
-export function enrichLocationsFromCms(
-  entities: CmsSeoEntity[],
-  localPageSlugs: ReadonlySet<string>,
-): EnrichedLocation[] {
+function toLocation(slug: string, localPageSlugs: ReadonlySet<string>, override?: Partial<EnrichedLocation>): EnrichedLocation {
+  const meta = cityMeta[slug];
+  return {
+    slug,
+    name: meta?.name ?? slug.charAt(0).toUpperCase() + slug.slice(1),
+    description: meta?.description ?? "Pulse home charging surveys. Other services are planned city by city.",
+    county: meta?.county ?? "Kenya",
+    href: resolveLocationHref(slug, localPageSlugs),
+    region: meta?.region ?? "rift-eastern",
+    services: cityServices(slug),
+    ...override,
+  };
+}
+
+export function enrichLocationsFromCms(entities: CmsSeoEntity[], localPageSlugs: ReadonlySet<string>): EnrichedLocation[] {
   return entities
     .filter((e) => e.type === "location" && e.published !== false)
-    .map((entity) => {
-      const meta = cityMeta[entity.slug] ?? defaultMeta;
-      return {
-        slug: entity.slug,
+    .map((entity) =>
+      toLocation(entity.slug, localPageSlugs, {
         name: entity.name,
-        description: entity.description || meta.description,
-        county: String(entity.metadata.county ?? entity.metadata.region ?? meta.county),
-        href: resolveLocationHref(entity.slug, localPageSlugs),
-        region: meta.region,
-        services: meta.services,
-        status: meta.status,
-      };
-    })
+        county: String(entity.metadata.county ?? entity.metadata.region ?? cityMeta[entity.slug]?.county ?? "Kenya"),
+      }),
+    )
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 
-export function fallbackLocations(localPageSlugs: ReadonlySet<string>): EnrichedLocation[] {
-  const names: Record<string, string> = {
-    nairobi: "Nairobi",
-    kisumu: "Kisumu",
-    nakuru: "Nakuru",
-    mombasa: "Mombasa",
-    eldoret: "Eldoret",
-    kitui: "Kitui",
-  };
-
-  return contact.hubs.map((hub) => {
-    const slug = hub.toLowerCase();
-    const meta = cityMeta[slug] ?? defaultMeta;
-    return {
-      slug,
-      name: names[slug] ?? hub,
-      description: meta.description,
-      county: meta.county,
-      href: resolveLocationHref(slug, localPageSlugs),
-      region: meta.region,
-      services: meta.services,
-      status: meta.status,
-    };
-  });
+/** The cities Precifarm lists in lib/contact.ts, each with a working static page. */
+export function fallbackLocations(localPageSlugs: ReadonlySet<string> = new Set()): EnrichedLocation[] {
+  return contact.hubs.map((hub) => toLocation(hub.toLowerCase(), localPageSlugs));
 }
 
-export const locationStatusStyles = {
-  live: "bg-green-50 text-green-800 border-green-200",
-  next: "bg-amber-50 text-amber-800 border-amber-200",
-  planned: "bg-muted text-forest-500 border-border",
-} as const;
+export function staticCitySlugs(): string[] {
+  return contact.hubs.map((h) => h.toLowerCase()).filter((s) => s in cityMeta);
+}
+
+/** Static page content for /locations/<city> when the CMS has nothing for that slug. */
+export function staticCityPage(slug: string) {
+  const meta = cityMeta[slug];
+  if (!meta) return null;
+  const sites = plannedSitesNear(slug);
+  return {
+    slug,
+    name: meta.name,
+    county: meta.county,
+    title: `EV charging in ${meta.name}, Kenya`,
+    description: `EV charging in ${meta.name}: Pulse home charging surveys today, with ${
+      sites.length ? "Corridor and Boda Hub sites planned nearby" : "fleet and highway charging planned city by city"
+    }. Status for every service, from Precifarm.`,
+    lead: meta.description,
+    routeNote: meta.routeNote,
+    services: cityServices(slug),
+    plannedSites: sites.map((s) => ({ id: s.id, name: s.name, kind: s.siteKind === "swap" ? "Boda Hub swap site" : "Corridor DC location", role: s.role })),
+  };
+}
 
 export const locationStatusLabels = {
-  live: "Live",
-  next: "Next corridor",
+  available: "Available",
   planned: "Planned",
 } as const;

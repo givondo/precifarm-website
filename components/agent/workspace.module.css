@@ -1,0 +1,66 @@
+/* Precifarm Agent workspace motion. Respects reduced motion. */
+
+.flow {
+  stroke-dasharray: 7 6;
+  animation: flow 0.9s linear infinite;
+}
+
+@keyframes flow {
+  to {
+    stroke-dashoffset: -13;
+  }
+}
+
+.reveal {
+  transition:
+    opacity 360ms ease,
+    transform 360ms ease;
+}
+
+.queued {
+  opacity: 0.32;
+  transform: translateY(4px);
+}
+
+.running {
+  animation: running 1.1s ease-in-out infinite;
+}
+
+@keyframes running {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+.dialog {
+  width: min(1100px, calc(100vw - 1.5rem));
+  max-width: none;
+  max-height: calc(100dvh - 1.5rem);
+  margin: auto;
+  padding: 0;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  border-radius: 1.25rem;
+  background: #0c0f12;
+  color: #fff;
+}
+
+.dialog::backdrop {
+  background: rgb(5 8 12 / 0.72);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow,
+  .running {
+    animation: none;
+  }
+  .reveal {
+    transition: none;
+  }
+  .queued {
+    transform: none;
+  }
+}

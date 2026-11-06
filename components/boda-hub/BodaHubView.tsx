@@ -1,343 +1,302 @@
-﻿import Link from "next/link";
-import Breadcrumbs from "@/components/seo/Breadcrumbs";
-import FaqAccordion from "@/components/seo/FaqAccordion";
-import SiteImage from "@/components/SiteImage";
-import PageCTA from "@/components/ui/PageCTA";
-import SectionHeader from "@/components/ui/SectionHeader";
+﻿import { CalloutNote, InPageNav, InteriorHero, InteriorSection, MediaFrame, SpecSheet, StageLabel, StepFlow } from "@/components/interior";
+import BodaCabinetSvg from "@/components/boda-hub/BodaCabinetSvg";
+import SwapDemo from "@/components/boda-hub/SwapDemo";
 import {
-  bodaHubDisclaimer,
-  bodaHubPageContent,
+  baseDoors,
+  bodaCabinet,
+  bodaHandling,
+  bodaHandlingFault,
+  bodaHandlingRules,
+  bodaHero,
+  bodaHost,
+  bodaHubFaqs,
   bodaHubPath,
-  bodaHubStatusNote,
+  bodaHubPaths,
+  bodaImages,
+  bodaMonitoring,
+  bodaNav,
+  bodaRoadmap,
+  bodaSafeguards,
+  bodaSpecRows,
+  bodaSpecSource,
+  bodaStatusLedger,
 } from "@/lib/boda-hub-page";
 
-export default function BodaHubView() {
-  const p = bodaHubPageContent;
+const breadcrumbs = [
+  { name: "Home", href: "/" },
+  { name: "Charging", href: "/charging" },
+  { name: "Boda Hub", href: bodaHubPath },
+];
 
+const arrangementMarks = ["A", "B", "C", "D"] as const;
+
+export default function BodaHubView() {
   return (
     <>
-      <section className="page-hero border-b border-border">
-        <div className="page-container pt-6 sm:pt-8">
-          <Breadcrumbs
-            items={[
-              { name: "Home", href: "/" },
-              { name: "Charging", href: "/charging" },
-              { name: "Automated Boda Hub", href: bodaHubPath },
-            ]}
-          />
-          <div className="mt-6 max-w-3xl">
-            <p className="text-eyebrow">{p.hero.eyebrow}</p>
-            <h1 className="heading-display mt-3 text-[1.75rem] leading-[1.1] sm:text-3xl lg:text-4xl">
-              {p.hero.title}
-            </h1>
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-forest-600">
-              {p.hero.description}
-            </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <Link href={p.hero.primaryCta.href} className="btn-primary">
-                {p.hero.primaryCta.label}
-              </Link>
-              <Link href={p.hero.secondaryCta.href} className="btn-secondary">
-                {p.hero.secondaryCta.label}
-              </Link>
-            </div>
-            <p className="mt-4 text-sm text-forest-500">{bodaHubStatusNote}</p>
-          </div>
-        </div>
-        <figure className="mt-8 sm:mt-10">
-          <div className="page-container">
-            <div className="visual-frame overflow-hidden bg-muted/25 p-4 sm:p-6">
-              <SiteImage
-                src={p.hero.image.src}
-                alt={p.hero.image.alt}
-                width={1920}
-                height={1080}
-                priority
-                sizes="100vw"
-                className="aspect-[16/9] w-full object-contain object-center"
+      <InteriorHero
+        eyebrow={bodaHero.eyebrow}
+        title={bodaHero.title}
+        lead={bodaHero.lead}
+        breadcrumbs={breadcrumbs}
+        stage="development"
+        actions={[
+          { href: bodaHubPaths.contact, label: "Host a Boda Hub site" },
+          { href: "#swap", label: "See how a swap works", variant: "secondary" },
+        ]}
+        media={{ src: bodaHero.image.src, alt: bodaHero.image.alt, fit: "cover", stage: "proposed" }}
+        facts={bodaHero.facts}
+      />
+
+      <InPageNav links={bodaNav} />
+
+      <InteriorSection
+        id="status"
+        eyebrow="Status"
+        title="Partner sites, a proposed cabinet, one battery make"
+        lead="Three different things sit behind the name Boda Hub. Here is where each one stands."
+      >
+        <ol className="grid gap-px overflow-hidden rounded-2xl bg-border ring-1 ring-border lg:grid-cols-3">
+          {bodaStatusLedger.map((row) => (
+            <li key={row.title} className="flex flex-col bg-white p-5 sm:p-6">
+              <StageLabel kind={row.stage} label={row.label} className="self-start" />
+              <h3 className="mt-4 text-lg font-semibold text-forest-950">{row.title}</h3>
+              <p className="mt-2 flex-1 text-[15px] leading-relaxed text-forest-700">{row.body}</p>
+              <p className="mt-4 font-mono text-[11px] uppercase tracking-wider text-forest-500">{row.source}</p>
+            </li>
+          ))}
+        </ol>
+      </InteriorSection>
+
+      <InteriorSection
+        id="swap"
+        tone="silver"
+        eyebrow="The swap"
+        title="From empty to charged at the cabinet"
+        lead="Step through a swap at the Automated Boda Hub cabinet: arrive, pay on M-Pesa, return the empty pack, take a charged one and ride. A drawing of the designed sequence, not live data."
+      >
+        <SwapDemo />
+      </InteriorSection>
+
+      <InteriorSection
+        id="cabinet"
+        eyebrow="Cabinet and doors"
+        title="Twenty bays, sixteen rider doors"
+        lead={`${bodaCabinet.doors}. ${bodaCabinet.growth}`}
+        aside={<StageLabel kind="proposed" />}
+      >
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start">
+          <figure className="rounded-[1.5rem] bg-[#f6f7f8] p-4 ring-1 ring-border sm:p-6">
+            <div className="mx-auto max-w-[24rem]">
+              <BodaCabinetSvg
+                doors={{ ...baseDoors, 6: "empty" }}
+                annotate
+                title="Door arrangement: doors 17 to 20 in the top row charge only; doors 01 to 16 below are rider doors; the side totem holds the rider screen; the swap zone is marked on the pad."
               />
             </div>
-          </div>
-        </figure>
-      </section>
-
-      <section className="border-b border-border bg-white section-pad">
-        <div className="page-container max-w-3xl">
-          <p className="text-xl font-semibold tracking-tight text-forest-900 sm:text-2xl">
-            {p.brandLine.headline}
-          </p>
-          <p className="mt-4 text-base leading-relaxed text-forest-600">{p.brandLine.body}</p>
-          <p className="mt-6 text-base leading-relaxed text-forest-600">{p.lead}</p>
-          <dl className="mt-10 space-y-6 border-t border-border pt-8">
-            {p.highlights.map((item) => (
-              <div key={item.label} className="sm:grid sm:grid-cols-[8rem_1fr] sm:gap-6">
-                <dt className="text-xs font-semibold uppercase tracking-widest text-forest-500">
-                  {item.label}
-                </dt>
-                <dd className="mt-1 text-sm leading-relaxed text-forest-900 sm:mt-0">{item.value}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
-
-      <section className="border-b border-border bg-muted/20 section-pad">
-        <div className="page-container">
-          <SectionHeader
-            eyebrow={p.lockers.eyebrow}
-            title={p.lockers.title}
-            description={p.lockers.description}
-          />
-          <figure className="visual-frame mt-10 bg-muted/25 p-4 sm:p-8">
-            <SiteImage
-              src={p.lockers.image.src}
-              alt={p.lockers.image.alt}
-              width={1920}
-              height={1080}
-              sizes="100vw"
-              className="aspect-[16/9] w-full object-contain"
-            />
+            <figcaption className="mt-3 text-xs text-forest-500">Front elevation after the Rev D renders. Not to scale.</figcaption>
           </figure>
-          <div className="mt-10 divide-y divide-border border-t border-border">
-            {p.lockers.configs.map((config) => (
-              <div
-                key={config.name}
-                className="grid gap-2 py-5 sm:grid-cols-[10rem_7rem_7rem_1fr] sm:items-baseline sm:gap-6"
-              >
-                <h3 className="font-semibold text-forest-900">{config.name}</h3>
-                <p className="font-mono text-sm text-charge-700">{config.bays}</p>
-                <p className="font-mono text-sm text-forest-500">{config.modules}</p>
-                <p className="text-sm leading-relaxed text-forest-600">{config.for}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      <section className="border-b border-border bg-white section-pad">
-        <div className="page-container">
-          <SectionHeader
-            eyebrow={p.module.eyebrow}
-            title={p.module.title}
-            description={p.module.description}
-          />
-          <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(260px,400px)_minmax(0,1fr)] lg:items-start">
-            <figure className="visual-frame bg-muted/25 p-4 sm:p-6">
-              <SiteImage
-                src={p.module.image.src}
-                alt={p.module.image.alt}
-                width={1200}
-                height={900}
-                sizes="(max-width: 1024px) 100vw, 32vw"
-                className="aspect-[4/3] w-full object-contain"
-              />
-            </figure>
-            <div>
-              <dl className="grid grid-cols-2 gap-x-6 gap-y-5 sm:grid-cols-4">
-                {p.module.facts.map((fact) => (
-                  <div key={fact.label}>
-                    <dt className="text-xs font-semibold uppercase tracking-widest text-forest-500">
-                      {fact.label}
-                    </dt>
-                    <dd className="mt-1 text-sm font-semibold text-forest-900">{fact.value}</dd>
+          <div>
+            <ol className="divide-y divide-border border-y border-border">
+              {[...bodaCabinet.arrangement, { rows: "Swap zone", text: "Marked on the pad in front of the doors, between yellow safety bollards." }].map((a, i) => (
+                <li key={a.rows} className="flex gap-4 py-4">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-forest-950 text-xs font-bold text-white">{arrangementMarks[i]}</span>
+                  <div>
+                    <h3 className="text-sm font-semibold text-forest-950">{a.rows}</h3>
+                    <p className="mt-1 text-sm leading-relaxed text-forest-600">{a.text}</p>
                   </div>
-                ))}
-              </dl>
-              <ul className="mt-8 space-y-3 border-t border-border pt-8">
-                {p.module.points.map((item) => (
-                  <li key={item} className="flex gap-3 text-sm leading-relaxed text-forest-600">
-                    <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-charge-600" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link href={p.module.href} className="btn-secondary mt-8 inline-flex">
-                {p.module.hrefLabel}
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-border bg-muted/20 section-pad">
-        <div className="page-container">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(260px,400px)] lg:items-start">
-            <div>
-              <SectionHeader
-                eyebrow={p.build.eyebrow}
-                title={p.build.title}
-                description={p.build.description}
-              />
-              <ol className="mt-8 space-y-6">
-                {p.build.anatomy.map((part, index) => (
-                  <li key={part.name} className="flex gap-4">
-                    <span className="font-mono text-xs font-semibold text-forest-400">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <div>
-                      <h3 className="font-semibold text-forest-900">{part.name}</h3>
-                      <p className="mt-1 text-sm leading-relaxed text-forest-600">{part.text}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-            </div>
-            <figure className="visual-frame bg-muted/25 p-4 sm:p-6">
-              <SiteImage
-                src={p.build.image.src}
-                alt={p.build.image.alt}
-                width={1200}
-                height={900}
-                sizes="(max-width: 1024px) 100vw, 32vw"
-                className="aspect-[4/3] w-full object-contain"
-              />
-            </figure>
-          </div>
-
-          <div className="mt-14 max-w-3xl border-t border-border pt-10">
-            <SectionHeader
-              eyebrow={p.networkSites.eyebrow}
-              title={p.networkSites.title}
-              description={p.networkSites.description}
-            />
-            <ul className="mt-6 space-y-2">
-              {p.networkSites.points.map((item) => (
-                <li key={item} className="flex gap-3 text-sm leading-relaxed text-forest-600">
-                  <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-charge-600" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-border bg-white section-pad">
-        <div className="page-container max-w-3xl">
-          <SectionHeader
-            eyebrow={p.journey.eyebrow}
-            title={p.journey.title}
-            description={p.journey.description}
-          />
-          <p className="mt-8 text-sm leading-relaxed text-forest-500">
-            {p.journey.uiScreens.map((screen, index) => (
-              <span key={screen.title}>
-                {index > 0 ? <span className="mx-2 text-forest-300">→</span> : null}
-                <span className="font-semibold text-forest-900">{screen.title}</span>
-                <span className="text-forest-500"> · {screen.line}</span>
-              </span>
-            ))}
-          </p>
-          <ol className="mt-10 space-y-6 border-t border-border pt-8">
-            {p.journey.steps.map((step, index) => (
-              <li key={step.name} className="flex gap-4">
-                <span className="font-mono text-xs font-semibold text-forest-400">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <h3 className="font-semibold text-forest-900">{step.name}</h3>
-                  <p className="mt-1 text-sm leading-relaxed text-forest-600">{step.text}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      <section className="border-b border-border bg-muted/20 section-pad">
-        <div className="page-container grid max-w-5xl gap-12 lg:grid-cols-2">
-          <div>
-            <SectionHeader
-              eyebrow={p.safety.eyebrow}
-              title={p.safety.title}
-              description={p.safety.description}
-            />
-            <ul className="mt-6 space-y-2">
-              {p.safety.points.map((item) => (
-                <li key={item} className="flex gap-3 text-sm leading-relaxed text-forest-600">
-                  <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-charge-600" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="space-y-10">
-            <SectionHeader
-              eyebrow={p.reliability.eyebrow}
-              title={p.reliability.title}
-              description={p.reliability.description}
-            />
-            <SectionHeader
-              eyebrow={p.batteries.eyebrow}
-              title={p.batteries.title}
-              description={p.batteries.description}
-            />
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-border bg-white section-pad">
-        <div className="page-container max-w-3xl">
-          <SectionHeader eyebrow={p.system.eyebrow} title={p.system.title} />
-          <dl className="mt-8 space-y-6 border-t border-border pt-8">
-            {p.system.items.map((item) => (
-              <div key={item.name} className="sm:grid sm:grid-cols-[9rem_1fr] sm:gap-6">
-                <dt className="font-semibold text-forest-900">{item.name}</dt>
-                <dd className="mt-1 text-sm leading-relaxed text-forest-600 sm:mt-0">{item.text}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
-
-      <section className="border-b border-border bg-muted/20 section-pad">
-        <div className="page-container grid gap-12 lg:grid-cols-2">
-          <div>
-            <SectionHeader
-              eyebrow={p.partners.eyebrow}
-              title={p.partners.title}
-              description={p.partners.description}
-            />
-            <p className="mt-6 text-sm leading-relaxed text-forest-600">
-              {p.partners.sites.join(" · ")}
-            </p>
-          </div>
-          <div>
-            <SectionHeader eyebrow={p.roadmap.eyebrow} title={p.roadmap.title} />
-            <ol className="mt-8 space-y-5">
-              {p.roadmap.phases.map((phase) => (
-                <li key={phase.name}>
-                  <h3 className="font-semibold text-forest-900">{phase.name}</h3>
-                  <p className="mt-1 text-sm leading-relaxed text-forest-600">{phase.text}</p>
                 </li>
               ))}
             </ol>
-            <div className="mt-8 space-y-2 border-t border-border pt-6 text-sm leading-relaxed text-forest-500">
-              <p>{p.note.economics}</p>
-              <p>{p.note.regulatory}</p>
-              <p>{bodaHubDisclaimer}</p>
+
+            <dl className="mt-8 grid gap-x-6 gap-y-5 sm:grid-cols-2">
+              {bodaCabinet.anatomy.map((p) => (
+                <div key={p.name}>
+                  <dt className="text-sm font-semibold text-forest-950">{p.name}</dt>
+                  <dd className="mt-1 text-sm leading-relaxed text-forest-600">{p.text}</dd>
+                </div>
+              ))}
+            </dl>
+
+            <div className="mt-8">
+              <CalloutNote title="Dimensions">{bodaCabinet.dimensionsNote}</CalloutNote>
             </div>
           </div>
         </div>
-      </section>
 
-      <section className="border-b border-border bg-white section-pad">
-        <div className="page-container max-w-3xl">
-          <h2 className="text-2xl font-semibold tracking-tight text-forest-900">Common questions</h2>
-          <div className="mt-8">
-            <FaqAccordion items={[...p.faqs]} />
+        <div className="mt-12 grid gap-5 md:grid-cols-3">
+          <MediaFrame src={bodaImages.front.src} alt={bodaImages.front.alt} stage="proposed" aspect="aspect-[3/2]" caption="Front, render Rev D." sizes="(max-width: 768px) 100vw, 33vw" />
+          <MediaFrame src={bodaImages.openBay.src} alt={bodaImages.openBay.alt} stage="proposed" aspect="aspect-[3/2]" caption="Open door with a pack on its tray, render Rev D." sizes="(max-width: 768px) 100vw, 33vw" />
+          <MediaFrame src={bodaImages.canopy.src} alt={bodaImages.canopy.alt} stage="proposed" aspect="aspect-[3/2]" caption="Canopy and top rows, render Rev D." sizes="(max-width: 768px) 100vw, 33vw" />
+        </div>
+      </InteriorSection>
+
+      <InteriorSection
+        id="batteries"
+        tone="graphite"
+        eyebrow="Battery handling"
+        title="One make per site, checked at every door"
+        lead="A pack is only charged after it is recognised, only behind a latched door, and only handed to the next rider if it is healthy."
+        aside={<StageLabel kind="development" label="Compatibility not yet validated" tone="dark" />}
+      >
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)]">
+          <div>
+            <ol className="relative grid gap-4 sm:grid-cols-2">
+              {bodaHandling.map((h, i) => (
+                <li key={h.title} className="rounded-2xl bg-white/[0.04] p-5 ring-1 ring-white/10">
+                  <span className="font-mono text-xs text-brand-300">{String(i + 1).padStart(2, "0")}</span>
+                  <h3 className="mt-1 font-semibold text-white">{h.title}</h3>
+                  <p className="mt-1.5 text-sm leading-relaxed text-white/70">{h.text}</p>
+                </li>
+              ))}
+            </ol>
+            <div className="mt-4 rounded-2xl border border-dashed border-amber-300/40 p-5">
+              <h3 className="font-semibold text-amber-200">{bodaHandlingFault.title}</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-white/70">{bodaHandlingFault.text}</p>
+            </div>
+          </div>
+          <div>
+            <h3 className="text-[11px] font-semibold uppercase tracking-widest text-white/60">Site rules</h3>
+            <ul className="mt-3 divide-y divide-white/10 border-y border-white/10">
+              {bodaHandlingRules.map((r) => (
+                <li key={r} className="flex gap-3 py-3 text-sm leading-relaxed text-white/80">
+                  <span aria-hidden className="mt-2 h-1 w-1 shrink-0 rounded-full bg-brand-300" />
+                  {r}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-5 text-sm leading-relaxed text-white/60">
+              We will not claim every e-boda pack works. The approved make for each site is named when that site is planned.
+            </p>
           </div>
         </div>
-      </section>
+      </InteriorSection>
 
-      <PageCTA
-        title={p.cta.title}
-        description={p.cta.description}
-        primaryHref={p.cta.primary.href}
-        primaryLabel={p.cta.primary.label}
-        secondaryHref={p.cta.secondary.href}
-        secondaryLabel={p.cta.secondary.label}
-      />
+      <InteriorSection id="safeguards" eyebrow="Safeguards and monitoring" title="We do not hand out a pack we have not checked">
+        <div className="grid gap-10 lg:grid-cols-2">
+          <div>
+            <h3 className="text-[11px] font-semibold uppercase tracking-widest text-forest-500">Safeguards</h3>
+            <ul className="mt-3 divide-y divide-border border-y border-border">
+              {bodaSafeguards.map((s) => (
+                <li key={s.text} className="grid gap-1 py-3.5 sm:grid-cols-[minmax(0,1fr)_auto] sm:gap-4">
+                  <span className="text-sm leading-relaxed text-forest-800">{s.text}</span>
+                  {s.ref ? (
+                    <span className="font-mono text-[11px] text-forest-500 sm:text-right">
+                      {s.ref}
+                      {s.note ? <span className="block font-sans text-[11px]">{s.note}</span> : null}
+                    </span>
+                  ) : null}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-[11px] font-semibold uppercase tracking-widest text-forest-500">Monitoring</h3>
+            <dl className="mt-3 space-y-5">
+              {bodaMonitoring.map((m) => (
+                <div key={m.name} className="border-l-2 border-forest-200 pl-4">
+                  <dt className="text-sm font-semibold text-forest-950">{m.name}</dt>
+                  <dd className="mt-1 text-sm leading-relaxed text-forest-600">{m.text}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </div>
+      </InteriorSection>
+
+      <InteriorSection
+        id="hosts"
+        tone="silver"
+        eyebrow="Site hosts"
+        title="You bring the site. We bring Boda Hub."
+        lead={bodaHost.terms}
+      >
+        <StepFlow steps={bodaHost.steps} />
+
+        <div className="mt-12 grid gap-px overflow-hidden rounded-2xl bg-border ring-1 ring-border md:grid-cols-2">
+          <div className="bg-white p-5 sm:p-6">
+            <h3 className="font-semibold text-forest-950">You provide</h3>
+            <ul className="mt-3 space-y-2.5">
+              {bodaHost.youProvide.map((t) => (
+                <li key={t} className="flex gap-3 text-sm leading-relaxed text-forest-700">
+                  <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-forest-400" />
+                  {t}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="bg-white p-5 sm:p-6">
+            <h3 className="font-semibold text-forest-950">Precifarm provides</h3>
+            <ul className="mt-3 space-y-2.5">
+              {bodaHost.precifarmProvides.map((t) => (
+                <li key={t} className="flex gap-3 text-sm leading-relaxed text-forest-700">
+                  <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-charge-600" />
+                  {t}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+          <div>
+            <h3 className="text-[11px] font-semibold uppercase tracking-widest text-forest-500">Good host sites</h3>
+            <ul className="mt-3 flex flex-wrap gap-2">
+              {bodaHost.sites.map((s) => (
+                <li key={s} className="rounded-full bg-white px-3 py-1.5 text-sm text-forest-800 ring-1 ring-border">
+                  {s}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-6">
+              <CalloutNote title="Before a cabinet opens">{bodaHost.regulatory}</CalloutNote>
+            </div>
+          </div>
+          <div>
+            <h3 className="text-[11px] font-semibold uppercase tracking-widest text-forest-500">Roadmap</h3>
+            <ol className="mt-3 divide-y divide-border border-y border-border">
+              {bodaRoadmap.map((r, i) => (
+                <li key={r.name} className="flex gap-4 py-3">
+                  <span className="font-mono text-xs text-forest-500">{String(i + 1).padStart(2, "0")}</span>
+                  <div>
+                    <p className="text-sm font-semibold text-forest-950">{r.name}</p>
+                    <p className="mt-0.5 text-sm text-forest-600">{r.text}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </InteriorSection>
+
+      <InteriorSection id="specification" eyebrow="Specification" title="Approved Boda Hub claims">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
+          <SpecSheet groups={[{ rows: bodaSpecRows }]} source={bodaSpecSource} />
+          <div>
+            <h3 className="text-lg font-semibold text-forest-950">Common questions</h3>
+            <div className="mt-4 divide-y divide-border border-y border-border">
+              {bodaHubFaqs.map((f) => (
+                <details key={f.question} className="group py-1">
+                  <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-forest-900 [&::-webkit-details-marker]:hidden">
+                    {f.question}
+                    <span aria-hidden className="text-forest-400 transition-transform group-open:rotate-45">
+                      +
+                    </span>
+                  </summary>
+                  <p className="pb-4 text-sm leading-relaxed text-forest-600">{f.answer}</p>
+                </details>
+              ))}
+            </div>
+            <p className="mt-6 text-sm text-forest-600">
+              Planned swap locations are on the{" "}
+              <a href={bodaHubPaths.hub} className="font-semibold text-charge-700 underline-offset-2 hover:underline">
+                Charging Hub map
+              </a>
+              , labelled planned.
+            </p>
+          </div>
+        </div>
+      </InteriorSection>
     </>
   );
 }

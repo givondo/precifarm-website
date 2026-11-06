@@ -354,29 +354,62 @@ export const researchPageFaqs: FaqItem[] = [
   },
 ];
 
+/* ------------------------------------------------------------------ */
+/* Wireless evidence requirements                                      */
+/* ------------------------------------------------------------------ */
+
+/**
+ * What must be measured before wireless charging moves gate by gate. Status text comes from the engineering
+ * register (WPT-04: efficiency not yet measured) and the targets above; nothing here is a result.
+ */
+export const wirelessEvidence = [
+  { item: "Transfer efficiency", status: "Not yet measured", needed: "Bench measurement, reported with its boundary (grid to battery or coil to coil)", gate: "G2" as GateId },
+  { item: "Foreign object detection", status: "Target: 100% of standard test objects", needed: "Bench tests with the standard object set, pad hot and cold", gate: "G2" as GateId },
+  { item: "Living object protection", status: "Target", needed: "Detection in and around the gap, integrated before any hosted site", gate: "G2" as GateId },
+  { item: "Field exposure", status: "Target: within ICNIRP public reference levels", needed: "Measured field map around the parked car", gate: "G2" as GateId },
+  { item: "EMC", status: "Target", needed: "Pre-compliance against IEC 61980 at a test house", gate: "G2" as GateId },
+  { item: "Alignment tolerance", status: "Target", needed: "Misalignment map on the bench, then driver behaviour in shared Kenyan parking", gate: "G3" as GateId },
+  { item: "Field performance", status: "Target", needed: "Hosted site metered and monitored for at least 90 days with a partner", gate: "G3" as GateId },
+] as const;
+
 export const researchPage = {
   hero: {
     eyebrow: researchNavLabel,
-    title: "The future of electric mobility, engineered in Africa.",
-    lead: "Five programmes, each with a research question, a measurable goal and a dated path through five gates from model to a Kenyan field trial.",
-    primaryCta: { href: "#programmes", label: "See the programmes" },
-    secondaryCta: { href: "/contact", label: "Collaborate" },
+    title: "Charging research, moved forward only by evidence.",
+    lead: "Five programmes, each with a research question, a measurable goal and a dated path through five gates, from a model on paper to a Kenyan field trial.",
+    actions: [
+      { href: "#wireless-lab", label: "Try the wireless model" },
+      { href: "#gates", label: "See the gates", variant: "secondary" as const },
+    ],
     stats: [
-      { value: "5", label: "Programmes" },
+      { value: String(researchAreas.length), label: "Programmes" },
       { value: "G0 to G4", label: "Evidence gates" },
+      { value: "Not yet measured", label: "Wireless efficiency" },
       { value: researchNextReview, label: "Next public review" },
     ],
+  },
+  lab: {
+    id: "wireless-lab",
+    eyebrow: "Wireless charging research",
+    title: "See why alignment decides wireless charging.",
+    lead: "Move the receiver pad, change the air gap and drop a coin on the pad. The model shows how coupling and coil efficiency fall away, and why protection stops transfer.",
+  },
+  evidence: {
+    id: "evidence",
+    eyebrow: "Evidence requirements",
+    title: "What wireless charging must prove, and when.",
+    lead: "Each requirement has to be measured before the programme passes its gate. Until then the page says target or not yet measured.",
+  },
+  gates: {
+    id: "gates",
+    eyebrow: "Method",
+    title: "Five gates. Evidence moves work forward.",
+    lead: "Every programme passes the same gates. Exit criteria are written before the work starts, and any programme can stop at any gate.",
   },
   goals: {
     eyebrow: "Goals",
     title: "Where the research is going.",
     description: "Four outcomes we hold ourselves to. Each one is checked at a public review.",
-  },
-  method: {
-    eyebrow: "Method",
-    title: "Five gates. Evidence moves work forward.",
-    description:
-      "Every programme passes the same gates. Exit criteria are written before the work starts, and any programme can stop at any gate.",
   },
   programmes: {
     id: "programmes",
@@ -390,17 +423,10 @@ export const researchPage = {
     description: "Dates are targets for gate reviews. They move only when measured data says so, and we will note any change here.",
   },
   collaboration: {
+    id: "collaborate",
     eyebrow: "Work with us",
     title: "Research needs partners.",
     description: "Each programme lists what it needs. These are the four ways in.",
   },
   note: `Progress updates when a programme passes a named gate. Last reviewed ${researchLastReviewed}. Next review ${researchNextReview}.`,
-  cta: {
-    title: "Partner with Precifarm R&D.",
-    description: "Wireless hardware, Agent software, hub energy or battery health. Tell us which fits your lab, site or fleet.",
-    primaryHref: "/contact",
-    primaryLabel: "Contact R&D",
-    secondaryHref: "/agent/chat",
-    secondaryLabel: "Try the Agent workspace",
-  },
 } as const;

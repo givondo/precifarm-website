@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { BOOKING_FAQ_SLUG, BOOKING_GUIDE_SLUG } from "@/lib/charging-faqs";
 import { absoluteUrl } from "@/lib/seo/config";
 import { cmsListSeoContent, type CmsSeoContent } from "@/lib/seo/cms-client";
+import { staticCitySlugs } from "@/lib/locations-page";
 import { buildStaticSitemapEntries } from "@/lib/seo/sitemap";
 import { staticGuides } from "@/lib/seo/static-guides";
 
@@ -64,5 +65,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  return dedupeSitemap([...staticEntries, ...dynamicEntries, ...guideEntries]);
+  // City pages render from static data when the CMS has none, so list them either way.
+  const cityEntries: MetadataRoute.Sitemap = staticCitySlugs().map((slug) => ({
+    url: absoluteUrl(`/locations/${slug}`),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
+  return dedupeSitemap([...staticEntries, ...dynamicEntries, ...guideEntries, ...cityEntries]);
 }
