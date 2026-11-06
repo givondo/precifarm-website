@@ -134,6 +134,7 @@ export default function GoogleConnectivityMap({
           key={hub.id}
           position={{ lat: hub.lat, lng: hub.lng }}
           icon={hubIcons.get(hub.id)}
+          title={hub.name}
           onClick={() => onSelectHub(hub.id)}
         />
       ))}
