@@ -111,7 +111,7 @@ const ctaByPrefix: ReadonlyArray<[string, FooterCta]> = [
       title: "Bring battery swapping to your stage.",
       text: "Tell us about your site, riders and power supply and we will plan a Boda Hub with you.",
       primary: { href: "/contact?interest=boda-hub", label: "Partner on a site" },
-      secondary: { href: "/charging/boda-hub", label: "How Boda Hub works" },
+      secondary: { href: "/hub?type=swap", label: "See planned swap sites" },
     },
   ],
   [

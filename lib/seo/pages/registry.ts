@@ -55,7 +55,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  {
  question: "What is Charging Hub?",
  answer:
- "Charging Hub lists Precifarm fast charging, boda swap cabinets and partner stops across Kenya, with each site's details.",
+ "Charging Hub lists planned Precifarm fast charging and boda swap sites across Kenya, each labelled with its stage.",
  },
  {
  question: "How do I use Charging Hub?",
@@ -134,7 +134,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  breadcrumbs: [
  { name: "Home", href: "/" },
  { name: "Charging", href: "/charging" },
- { name: "Automated Boda Hub", href: "/charging/boda-hub" },
+ { name: "Boda Hub", href: "/charging/boda-hub" },
  ],
  },
  {
@@ -170,16 +170,16 @@ export const pageSeoRegistry: PageSeoInput[] = [
  },
  {
  path: "/charging/corridor",
- title: "DC Fast Charging for Kenyan Highways | Precifarm Corridor",
+ title: "DC Fast Charging for Kenyan Highways | Precifarm ARC Corridor",
  description:
- "Precifarm Corridor: DC fast charging from a certified 120 to 180 kW OEM charger, engineered per site. The first site, on the Nairobi to Kisumu route, is being prepared.",
+ "ARC Corridor: DC fast charging from a certified 120 to 180 kW OEM charger, engineered per site. The first site, on the Nairobi to Kisumu route, is being prepared.",
  keywords: [
  "DC fast charging Kenya",
  "highway EV charging Kenya",
  "Nairobi Kisumu EV charging",
  "CCS2 charger Kenya",
  "host an EV charging station Kenya",
- "Precifarm Corridor",
+ "Precifarm ARC Corridor",
  ],
  ogImage: productImages.corridor.src,
  faqs: [
@@ -197,7 +197,7 @@ export const pageSeoRegistry: PageSeoInput[] = [
  breadcrumbs: [
  { name: "Home", href: "/" },
  { name: "Charging", href: "/charging" },
- { name: "Corridor", href: "/charging/corridor" },
+ { name: "ARC Corridor", href: "/charging/corridor" },
  ],
  },
  {
