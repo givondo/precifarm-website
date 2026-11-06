@@ -574,6 +574,66 @@ export const availabilityConfig: Record<
   },
 };
 
+/* ---------- Station finder (/hub) ---------- */
+
+/**
+ * Partner listings above name third-party brands (fuel retailers, malls, a campus) without a
+ * confirmed agreement on record in this repository. The finder leaves them out until each
+ * partnership is confirmed: add its id here when one is.
+ */
+export const confirmedPartnerIds: ReadonlySet<string> = new Set<string>();
+
+export type FinderStage = "operating" | "planned" | "partner";
+export type FinderType = "corridor" | "swap" | "partner";
+export type FinderConnector = "ccs2" | "swap-pack" | "unconfirmed";
+
+export function finderType(hub: ChargingHub): FinderType {
+  if (hub.siteKind === "swap") return "swap";
+  return hub.operator === "partner" ? "partner" : "corridor";
+}
+
+export function finderStage(hub: ChargingHub): FinderStage {
+  if (hub.phase === "live") return "operating";
+  if (hub.operator === "partner") return "partner";
+  return "planned";
+}
+
+/** Connector from the approved register: Corridor sites are CCS2 (COR-04); Boda Hub swaps one pack make per site (BH-06). */
+export function finderConnector(hub: ChargingHub): FinderConnector {
+  if (hub.siteKind === "swap") return "swap-pack";
+  return hub.operator === "partner" ? "unconfirmed" : "ccs2";
+}
+
+export const finderConnectorLabel: Record<FinderConnector, string> = {
+  ccs2: "CCS2 DC",
+  "swap-pack": "Battery swap, one pack make per site",
+  unconfirmed: "Not confirmed",
+};
+
+export const finderTypeLabel: Record<FinderType, string> = {
+  corridor: "ARC Corridor DC",
+  swap: "Boda Hub swap",
+  partner: "Partner stop",
+};
+
+/** No price is verified for any site: Corridor prices are set at commissioning (COR-16). */
+export function finderPriceLabel(hub: ChargingHub): string {
+  if (hub.siteKind === "swap") return "Not published. Shown at the cabinet before you confirm.";
+  return "Not published. Set for each site at commissioning.";
+}
+
+export function finderProductHref(hub: ChargingHub): string {
+  return hub.siteKind === "swap" ? "/charging/boda-hub" : "/charging/corridor";
+}
+
+/** Sites the finder lists: the existing map set, minus partner listings that are not confirmed. */
+export const finderHubs: ChargingHub[] = chargingMapHubs.filter(
+  (h) => h.operator !== "partner" || confirmedPartnerIds.has(h.id),
+);
+
+/** First Corridor route, drawn as an indicative straight line between planned sites. */
+export const finderRoutes: RoutePhase[] = routePhases.filter((r) => r.id === "phase-a");
+
 export const phaseRouteColors: Record<HubPhase, string> = {
   live: "#22c55e",
   next: "#fbbf24",
